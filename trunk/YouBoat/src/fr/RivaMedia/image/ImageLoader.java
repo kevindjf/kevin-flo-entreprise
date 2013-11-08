@@ -7,7 +7,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import android.content.Context;
 import android.widget.ImageView;
 
-public class WydeezImageLoader {
+public class ImageLoader {
 	
 	public static DisplayImageOptions options = null;
 	public static ImageLoaderConfiguration config = null;
