@@ -11,7 +11,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="14dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="160dp"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        android:textSize="16sp"
         android:gravity="center"
         android:text="Aujoud&apos;hui 15.508 annonces" />
     
@@ -47,7 +50,8 @@
             android:fontFamily="@drawable/bebasneue"
             android:text="@string/bateaux_et_voiliers"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textStyle="bold"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/annonces_bouton_bateaux_et_voiliers_texte"
@@ -94,7 +98,8 @@
             android:fontFamily="@drawable/bebasneue"
             android:text="@string/moteurs_hb_lb"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textStyle="bold"
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/annonces_bouton_moteurs_texte"
@@ -141,7 +146,8 @@
             android:fontFamily="@drawable/bebasneue"
             android:text="@string/accessoires_et_divers"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textStyle="bold"
+            android:textSize="17sp" />
 
         <TextView
             android:layout_width="match_parent"

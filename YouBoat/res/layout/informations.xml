@@ -3,7 +3,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-  	<include layout="@layout/header_retour_effacer" />
+
+    <include layout="@layout/header_retour_effacer" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dip"
+            android:background="@drawable/shape_blue"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:src="@drawable/info_logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:text="@string/achatetventebateaux"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Youboat propose des milliers d&apos;annonces de bateaux à moteur, voiliers et pneumatiques mais aussi des moteurs et accessoires marins. Des essais et des articles sont disponibles pour vous aider dans votre futur achat. Vous pouvez égalment vendre votre bateau directement depuis votre smartphone. Retrouvez aussi le magazine YOUBOAT chez votre marchand de jounaux !"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_white"
+            android:orientation="vertical"
+            android:layout_margin="10dip"
+             >
+
+            <TextView
+                android:id="@+id/societe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="100dip"
+                android:text="@string/societe"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/nomsociete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="75dip"
+                android:layout_toRightOf="@+id/societe"
+                android:text="@string/nomsociete"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/societe"
+                android:layout_marginRight="100dip"
+                android:text="@string/version"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/numeroversion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/societe"
+                android:layout_toRightOf="@+id/version"
+                android:text="@string/numversion"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </RelativeLayout>
+        
+        <ImageView 
+            android:layout_width="100dip"
+            android:layout_height="100dip"
+            android:src="@drawable/img_journal"
+            android:layout_marginLeft="10dip"
+            />
+    </LinearLayout>
 
 </LinearLayout>

@@ -73,4 +73,11 @@
 	<string name="principal_caracteristiques">CARACTERISTIQUES PRINCIPALES</string>
 	<string name="longueurLabel">Longueur :</string>
 	<string name="description">DESCRIPTION</string>
+	<string name="telephone">Téléphone</string>
+	<string name="email">E-Mail</string>
+	<string name="achatetventebateaux">Achat et vente de bateaux sur Internet</string>
+	<string name="societe">Société</string>
+	<string name="version">Version</string>
+	<string name="nomsociete">Rivamedia</string>
+	<string name="numversion">1.1</string>
 </resources>
