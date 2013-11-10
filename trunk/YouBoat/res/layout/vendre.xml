@@ -27,6 +27,7 @@
             android:padding="10dip" >
 
             <Button
+                android:id="@+id/vendre_bateaux"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -37,6 +38,7 @@
             </Button>
 
             <Button
+                android:id="@+id/vendre_moteurs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -47,6 +49,7 @@
             </Button>
 
             <Button
+                android:id="@+id/vendre_divers"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
