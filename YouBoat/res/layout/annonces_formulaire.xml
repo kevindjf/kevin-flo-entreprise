@@ -4,20 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="40dip"
-        android:background="@drawable/title" >
-
-        <View
-            android:id="@+id/retour"
-            android:layout_width="70dip"
-            android:layout_height="40dip"
-             >
-        </View>
-    </LinearLayout>
-
+    <include layout="@layout/header_retour_effacer"/>
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
