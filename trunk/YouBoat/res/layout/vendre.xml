@@ -18,7 +18,7 @@
             android:layout_marginTop="5dip"
             android:gravity="center"
             android:text="@string/que_souhaitez_vous_vendre"
-            android:textColor="@android:color/holo_blue_light"
+            android:textColor="@color/blue"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@android:color/holo_blue_light"
+                android:background="@color/blue"
                 android:text="@string/moteurs"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" >

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header_retour_effacer" />
+
+   
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+
+         <ImageView 
+        android:layout_width="fill_parent"
+        android:layout_height="200dip"
+        android:src="@drawable/img_journal"
+        />
+         
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:text="Le 17 octobre 2013 - par Youboat.fr"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:text="BAVARIA CRUISER 37 A DECOUVRIR SUR ST-MANDR.."
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="19sp"
+            android:textStyle="bold"
+             />
+
+        
+          <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:text="Annonce"
+            android:textAlignment="center"
+            android:textColor="@android:color/black" />
+      </LinearLayout>
+
+</LinearLayout>

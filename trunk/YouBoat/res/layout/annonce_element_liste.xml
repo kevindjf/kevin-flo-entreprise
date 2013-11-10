@@ -48,7 +48,7 @@
         android:id="@+id/annonce_element_liste_prix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@color/blue"
         android:textSize="16sp"
         android:textStyle="bold"
         android:layout_alignBottom="@+id/annonce_element_liste_image"
