@@ -66,8 +66,11 @@
     <string name="vendre">Vendre</string>
     <string name="boat_on_demand">Boat On Demand</string>
     <string name="actualites">Actualites</string>
+    <string name="description_boat_on_demand">Décrivez le bateau que vous cherchez, un professionnel vous proposera directement le modèle correspondant
+        à votre budget !</string>
     
     
-    
-
+	<string name="principal_caracteristiques">CARACTERISTIQUES PRINCIPALES</string>
+	<string name="longueurLabel">Longueur :</string>
+	<string name="description">DESCRIPTION</string>
 </resources>
