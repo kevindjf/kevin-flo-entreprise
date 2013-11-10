@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fond_acceuil" >
+
+    <TextView
+        android:id="@+id/annonces_aujourd_hui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="130dp"
+        android:gravity="center"
+        android:text="Aujoud&apos;hui 15.508 annonces" />
+    
+    <RelativeLayout
+         android:id="@+id/annonces_bouton_bateaux_et_voiliers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/annonces_aujourd_hui"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bouton_bleu_fleche_blanc_ombre" />
+
+        <View
+            android:id="@+id/annonces_bouton_bateaux_et_voiliers_rond"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/icone_bateau_ombre" />
+
+        <TextView
+            android:id="@+id/annonces_bouton_bateaux_et_voiliers_texte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dip"
+            android:layout_toRightOf="@+id/annonces_bouton_bateaux_et_voiliers_rond"
+            android:fontFamily="@drawable/bebasneue"
+            android:text="@string/bateaux_et_voiliers"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/annonces_bouton_bateaux_et_voiliers_texte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="30dip"
+            android:layout_toRightOf="@+id/annonces_bouton_bateaux_et_voiliers_rond"
+            android:fontFamily="@drawable/bebasneue"
+            android:text="@string/test_annonce_ventes"
+            android:textColor="@android:color/white"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/annonces_bouton_moteurs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/annonces_bouton_bateaux_et_voiliers"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bouton_bleu_fleche_blanc_ombre" />
+
+        <View
+            android:id="@+id/annonces_bouton_moteurs_rond"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/icone_moteur_ombre" />
+
+        <TextView
+            android:id="@+id/annonces_bouton_moteurs_texte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dip"
+            android:layout_toRightOf="@+id/annonces_bouton_moteurs_rond"
+            android:fontFamily="@drawable/bebasneue"
+            android:text="@string/moteurs_hb_lb"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/annonces_bouton_moteurs_texte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="30dip"
+            android:layout_toRightOf="@+id/annonces_bouton_moteurs_rond"
+            android:fontFamily="@drawable/bebasneue"
+            android:text="@string/test_annonce_ventes"
+            android:textColor="@android:color/white"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/annonces_bouton_accessoires_et_divers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/annonces_bouton_moteurs"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_centerVertical="true"
+            android:background="@drawable/bouton_bleu_fleche_blanc_ombre" />
+
+        <View
+            android:id="@+id/annonces_bouton_accessoires_et_divers_rond"
+            android:layout_width="60dip"
+            android:layout_height="60dip"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/icone_accessoire_ombre" />
+
+        <TextView
+            android:id="@+id/annonces_bouton_accessoires_et_divers_texte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="5dip"
+            android:layout_toRightOf="@+id/annonces_bouton_accessoires_et_divers_rond"
+            android:fontFamily="@drawable/bebasneue"
+            android:text="@string/accessoires_et_divers"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:layout_marginTop="30dip"
+            android:layout_toRightOf="@+id/annonces_bouton_accessoires_et_divers_rond"
+            android:fontFamily="@drawable/bebasneue"
+            android:text="@string/test_annonce_ventes"
+            android:textColor="@android:color/white"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

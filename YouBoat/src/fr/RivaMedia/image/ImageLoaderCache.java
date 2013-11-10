@@ -7,7 +7,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import android.content.Context;
 import android.widget.ImageView;
 
-public class ImageLoader {
+public class ImageLoaderCache {
 	
 	public static DisplayImageOptions options = null;
 	public static ImageLoaderConfiguration config = null;

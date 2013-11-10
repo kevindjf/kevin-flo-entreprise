@@ -1,23 +1,39 @@
 package fr.RivaMedia.activity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import fr.RivaMedia.R;
+import fr.RivaMedia.tab.*;
+import fr.RivaMedia.tab.core.*;
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
+	PagesAdapter _pagesAdapter;
+	ViewPager _page;
+	List<Tab> _pages = new ArrayList<Tab>();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		charger();
 	}
+	
+	protected void charger(){
+		_pages.add(new AnnoncesTab(getResources().getString(R.string.annonces),getResources().getDrawable(R.drawable.sailboat)));
+		_pages.add(new VendreTab(getResources().getString(R.string.vendre),getResources().getDrawable(R.drawable.pricetag)));
+		_pages.add(new BoatOnDemandTab(getResources().getString(R.string.boat_on_demand),getResources().getDrawable(R.drawable.eye)));
+		_pages.add(new ActualitesTab(getResources().getString(R.string.actualites),getResources().getDrawable(R.drawable.compass)));
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		_pagesAdapter = new PagesAdapter(getSupportFragmentManager(),_pages);
+		_page = (ViewPager) findViewById(R.id.main_pager);
+
+		_page.setAdapter(_pagesAdapter);
+		//_page.setOnPageChangeListener(this);
 	}
 
 }
