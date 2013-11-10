@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/header"
+    android:layout_width="match_parent"
+    android:layout_height="60dip"
+    android:background="@android:color/black" >
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="100dip"
+        android:layout_centerVertical="true"
+        android:background="@drawable/youboatfr" />
+
+    <Button
+        android:id="@+id/retour"
+        android:layout_width="60dip"
+        android:layout_height="25dip"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dip"
+        android:background="@android:color/transparent"
+        android:text="@string/retour"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/effacer"
+        android:layout_width="60dip"
+        android:layout_height="25dip"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dip"
+        android:background="#B00"
+        android:text="@string/effacer"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+
+</RelativeLayout>

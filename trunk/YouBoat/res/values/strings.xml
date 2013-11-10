@@ -6,5 +6,68 @@
     <string name="hello_world">Hello world!</string>
     
     <string name="vide">Aucun résultat</string>
+    
+    <string name="bateaux_et_voiliers">BATEAUX &amp; VOILIERS</string>
+    <string name="accessoires_et_divers">ACCESSOIRES &amp; DIVERS</string>
+    <string name="moteurs_hb_lb">MOTEURS HB / LB</string>
+    
+    <string name="test_annonce_ventes">1055 annonces en vente</string>
+    
+    <string name="type">Type</string>
+    <string name="type_star">Type *</string>
+    <string name="categorie">Categorie</string>
+    <string name="categorie_star">Categorie *</string>
+    <string name="prix">Prix</string>
+    <string name="prix_star">Prix *</string>
+    <string name="longueur">Longueur</string>
+    <string name="chantier_modele">Chantier / Modele</string>
+    <string name="etat">Etat</string>
+    <string name="localisation">Localisation</string>
+    <string name="que_souhaitez_vous_vendre">Que souhaitez vous vendre ?</string>
+    
+    <string name="bateaux">Bateaux</string>
+    <string name="moteurs">Moteurs</string>
+    <string name="divers">Divers</string>
+    
+    <string name="annee">Année</string>
+    <string name="rechercher">Rechercher</string>
+    <string name="retour">Retour</string>
+    <string name="effacer">Effacer</string>
+    <string name="generalites">Généralités</string>
+    <string name="caracteristiques">Caractéristiques</string>
+    <string name="taille">Taille</string>
+    <string name="lieu">Lieu</string>
+    <string name="budget">Budget</string>
+    <string name="budget_star">Budget *</string>
+    <string name="commentaire">Commentaire</string>
+    <string name="reprise_de_votre_bateau">Reprise de votre bateau ?</string>
+    <string name="decrivez_le_bateau_que_vous_possedez">Décrivez le bateau que vous possédez</string>
+    <string name="trouvez_un_professionnel_du_nautisme">Trouvez un profesionnel du Nautisme</string>
+    <string name="selectionnez_les_criteres_desires">Selectionnez les critères desirés</string>
+    <string name="choix_des_criteres">Choix des critères</string>
+    <string name="distributeur_de_la_marque">Distributeur de la marque</string>
+    <string name="distributeur_de_la_marque_dots">Distributeur de la marque :</string>
+    <string name="localite">Localite</string>
+    <string name="localite_dots">Localite :</string>
+    <string name="services">Services</string>
+    <string name="services_dots">Services :</string>
+    <string name="motorisation">Motorisation</string>
+    <string name="nombre_moteur">Nombre Moteur</string>
+    <string name="puissance_ch">Puissance (ch)</string>
+    <string name="marque_du_moteur">Marque du moteur</string>
+    <string name="annee_du_moteur">Année du moteur</string>
+    <string name="photo_and_description">Photo &amp; Description</string>
+    <string name="description">Description</string>
+    <string name="ajouter_une_photo">Ajouter une photo</string>
+    <string name="etape_suivante">ETAPE SUIVANTE</string>
+    
+    
+    <string name="annonces">Annonces</string>
+    <string name="vendre">Vendre</string>
+    <string name="boat_on_demand">Boat On Demand</string>
+    <string name="actualites">Actualites</string>
+    
+    
+    
 
 </resources>
