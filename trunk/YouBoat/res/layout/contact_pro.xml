@@ -3,7 +3,116 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-  	<include layout="@layout/header_retour_effacer" />
+
+    <include layout="@layout/header_retour_effacer" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dip"
+                android:text="Vous souhaitez publier vos annonces sur "
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Youboat.fr ou sur l&apos;application Youboat ?"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dip"
+                android:text="Vous souhaitez communiquer sur "
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="le magazine YOUBOAT ?"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dip"
+                android:text="Vous souhaitez avoir votre propre "
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="application IPhone ?"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:layout_marginTop="30dip"
+            android:text="Contactez nous : "
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dip"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/telephone"
+                android:layout_width="150dip"
+                android:layout_height="35dip"
+                android:layout_marginLeft="20dip"
+                android:layout_marginRight="20dip"
+                android:background="@android:color/black"
+                android:text="@string/telephone"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/email"
+                android:layout_width="150dip"
+                android:layout_height="35dip"
+                android:layout_toRightOf="@+id/telephone"
+                android:background="@color/blue"
+                android:text="@string/email"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/numero_telephone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/telephone"
+                android:text="02 38 75 99 41"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" 
+                android:layout_alignLeft="@+id/telephone"
+                />
+        </RelativeLayout>
+        
+      
+    </LinearLayout>
 
 </LinearLayout>

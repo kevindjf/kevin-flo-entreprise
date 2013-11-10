@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fond_acceuil" 
+    android:gravity="center_horizontal"
+    >
+
+    <LinearLayout
+        android:id="@+id/actualites"
+        android:layout_width="100dip"
+        android:layout_height="85dip"
+        android:layout_marginTop="170dip"
+        android:layout_marginLeft="15dip"
+        android:background="@drawable/buttonmore"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip"
+            android:src="@drawable/image_bt_news" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Actualités"
+            android:textColor="@android:color/white"
+            android:textSize="11sp" />
+    </LinearLayout>
+    
+
+    
+    <LinearLayout
+        android:id="@+id/annuaire"
+        android:layout_width="100dip"
+        android:layout_height="85dip"
+        android:layout_marginTop="170dip"
+        android:layout_marginLeft="15dip"
+        android:background="@drawable/buttonmore"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/actualites"
+         >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip"
+            android:src="@drawable/image_bt_profs" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Annuaires"
+            android:textColor="@android:color/white"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mesannonces"
+        android:layout_width="100dip"
+        android:layout_height="85dip"
+        android:layout_marginTop="170dip"
+        android:layout_marginLeft="15dip"
+        android:background="@drawable/buttonmore"
+        android:gravity="center"
+        android:orientation="vertical" 
+        android:layout_toRightOf="@+id/annuaire"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip"
+            android:src="@drawable/image_bt_ports" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mes annonces"
+            android:textColor="@android:color/white"
+            android:textSize="11sp" />
+    </LinearLayout>
+</RelativeLayout>
