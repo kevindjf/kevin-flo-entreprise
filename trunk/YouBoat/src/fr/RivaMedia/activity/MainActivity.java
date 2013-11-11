@@ -3,6 +3,7 @@ package fr.RivaMedia.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 
 import com.navdrawer.SimpleSideDrawer;
@@ -24,6 +25,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _slider_mes_alertes;
 	View _slider_informations;
 	View _slider_contact_pro;
+	
+	View[] _slider_elements;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,18 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_mes_alertes = findViewById(R.id.slider_mes_alertes);
 		_slider_informations = findViewById(R.id.slider_informations);
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
+		
+		_slider_elements = new View[]{
+				_slider_annonces,
+				_slider_vendre,
+				_slider_boat_on_demand,
+				_slider_actualites,
+				_slider_annuaire,
+				_slider_mes_annonces,
+				_slider_mes_alertes,
+				_slider_informations,
+				_slider_contact_pro
+		};
 	}
 
 	protected void charger(){
@@ -55,59 +70,63 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	protected void ajouterListeners(){
 		_header_menu.setOnClickListener(this);
-
-		_slider_annonces.setOnClickListener(this);
-		_slider_vendre.setOnClickListener(this);
-		_slider_boat_on_demand.setOnClickListener(this);
-		_slider_actualites.setOnClickListener(this);
-		_slider_annuaire.setOnClickListener(this);
-		_slider_mes_annonces.setOnClickListener(this);
-		_slider_mes_alertes.setOnClickListener(this);
-		_slider_informations.setOnClickListener(this);
-		_slider_contact_pro.setOnClickListener(this);
+	}
+	
+	public void ouvrirSlider(){
+		for(View v : this._slider_elements)
+			v.setOnClickListener(this);
+		_slider.toggleLeftDrawer();	
+	}
+	public void fermerSlider(){
+		for(View v : this._slider_elements)
+			v.setOnClickListener(null);
+		_slider.toggleLeftDrawer();	
 	}
 
 	@Override
 	public void onClick(View v) {
+		
+		Log.d("ID",""+v.getId());
+		
 		switch(v.getId()){
 		case R.id.header_menu:
-			_slider.toggleLeftDrawer();	
+			ouvrirSlider();
 			break;
 
 		case R.id.slider_annonces:
-			_slider.toggleLeftDrawer();	
+			fermerSlider();	
 			afficherAnnonces();
 			break;
 		case R.id.slider_vendre:
-			_slider.toggleLeftDrawer();	
+			fermerSlider();	
 			afficherVendre();
 			break;
 		case R.id.slider_boat_on_demand:
-			_slider.toggleLeftDrawer();	
+			fermerSlider();		
 			afficherBoatOnDemand();
 			break;
 		case R.id.slider_actualites:
-			_slider.toggleLeftDrawer();	
+			fermerSlider();		
 			afficherActualites();
 			break;
 		case R.id.slider_annuaire:
-			_slider.toggleLeftDrawer();	
+			fermerSlider();		
 			afficherAnnuaire();
 			break;
 		case R.id.slider_mes_annonces:
-			_slider.toggleLeftDrawer();	
+			fermerSlider();	
 			afficherMesAnnonces();
 			break;
 		case R.id.slider_mes_alertes:
-			_slider.toggleLeftDrawer();	
+			fermerSlider();		
 			afficherMesAlertes();
 			break;
 		case R.id.slider_informations:
-			_slider.toggleLeftDrawer();	
+			fermerSlider();	
 			afficherInformations();
 			break;
 		case R.id.slider_contact_pro:
-			_slider.toggleLeftDrawer();	
+			fermerSlider();	
 			afficherContactPro();
 			break;
 		}
@@ -116,25 +135,25 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	public void afficherAnnonces(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.main_fragment, new Annonces());
+		transaction.add(R.id.main_fragment, new Annonces());
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	public void afficherVendre(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.main_fragment, new Vendre());
+		transaction.add(R.id.main_fragment, new Vendre());
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	public void afficherBoatOnDemand(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.main_fragment, new BoatOnDemand());
+		transaction.add(R.id.main_fragment, new BoatOnDemand());
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	public void afficherActualites(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.main_fragment, new Actualites());
+		transaction.add(R.id.main_fragment, new Actualites());
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
@@ -143,21 +162,21 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	
 	public void afficherMesAlertes(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.main_fragment, new MesAlertes());
+		transaction.add(R.id.main_fragment, new MesAlertes());
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	
 	public void afficherInformations(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.main_fragment, new Informations());
+		transaction.add(R.id.main_fragment, new Informations());
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	
 	public void afficherContactPro(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(R.id.main_fragment, new ContactPro());
+		transaction.add(R.id.main_fragment, new ContactPro());
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
