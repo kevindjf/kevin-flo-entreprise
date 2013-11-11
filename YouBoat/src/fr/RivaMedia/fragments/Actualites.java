@@ -1,21 +1,14 @@
-package fr.RivaMedia.tab;
+package fr.RivaMedia.fragments;
 
-import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import fr.RivaMedia.R;
-import fr.RivaMedia.tab.core.Tab;
 
-@SuppressLint("ValidFragment")
-public class ActualitesTab extends Tab{
+public class Actualites extends Fragment{
 
-	public ActualitesTab(String titre,Drawable icon) {
-		super(titre,icon);
-	}
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		

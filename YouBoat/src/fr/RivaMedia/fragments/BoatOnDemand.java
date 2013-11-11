@@ -1,21 +1,16 @@
-package fr.RivaMedia.tab;
+package fr.RivaMedia.fragments;
 
 import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import fr.RivaMedia.R;
-import fr.RivaMedia.tab.core.Tab;
 
 @SuppressLint("ValidFragment")
-public class BoatOnDemandTab extends Tab{
+public class BoatOnDemand extends Fragment{
 
-	public BoatOnDemandTab(String titre,Drawable icon) {
-		super(titre,icon);
-	}
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		

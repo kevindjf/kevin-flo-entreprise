@@ -7,4 +7,5 @@
     <color name="lighter_gray">#EEE</color>
     <color name="gray">#DEDEDE</color>
     <color name="darker_gray">#AAA</color>
+    <color name="gris_menu">#383C3F</color>
 </resources>
