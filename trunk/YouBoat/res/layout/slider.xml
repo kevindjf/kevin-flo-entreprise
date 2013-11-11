@@ -5,7 +5,15 @@
     android:background="@color/black"
     android:orientation="vertical"
     android:padding="15dip" >
+
     <!-- android:background="#383C3F" -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:layout_marginTop="10dip"
+        android:src="@drawable/info_logo" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -57,7 +65,7 @@
 
             <LinearLayout
                 android:id="@+id/slider_actualites"
-                style="@style/slider_element">
+                style="@style/slider_element" >
 
                 <ImageView
                     style="@style/slider_element_image"
@@ -109,7 +117,7 @@
 
             <LinearLayout
                 android:id="@+id/slider_informations"
-                style="@style/slider_element">
+                style="@style/slider_element" >
 
                 <ImageView
                     style="@style/slider_element_image"

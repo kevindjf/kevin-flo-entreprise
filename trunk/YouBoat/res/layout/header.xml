@@ -15,8 +15,9 @@
         android:id="@+id/header_menu"
         android:layout_width="40dip"
         android:layout_height="40dip"
-        android:background="@drawable/ic_menu_more"
+        android:background="@drawable/menu"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="5dip"
         />
 
     <!-- 
