@@ -121,7 +121,7 @@
 
             <TextView
                 style="@style/more_cell_text"
-                android:text="@string/information"/>
+                android:text="@string/informations"/>
         </LinearLayout>
         
         <LinearLayout

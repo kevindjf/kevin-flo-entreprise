@@ -7,10 +7,19 @@
 
     <View
         android:layout_width="wrap_content"
-        android:layout_height="100dip"
+        android:layout_height="50dip"
         android:layout_centerVertical="true"
         android:background="@drawable/youboatfr" />
+    
+    <View
+        android:id="@+id/header_menu"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:background="@drawable/ic_menu_more"
+        android:layout_centerVertical="true"
+        />
 
+    <!-- 
     <Button
         android:id="@+id/retour"
         android:layout_width="60dip"
@@ -34,5 +43,6 @@
         android:text="@string/effacer"
         android:textColor="@android:color/white"
         android:textSize="12sp" />
+         -->
 
 </RelativeLayout>

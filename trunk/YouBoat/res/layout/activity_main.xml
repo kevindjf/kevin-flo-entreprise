@@ -1,25 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <android.support.v4.view.ViewPager
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/main_pager"
+    <include layout="@layout/header" />
+
+    <fragment
+        android:id="@+id/main_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white" >
+        android:layout_height="match_parent"
+        class="fr.RivaMedia.fragments.Annonces"
+        android:tag="annonces" />
 
-        <android.support.v4.view.PagerTabStrip
-            android:id="@+id/main_title_strip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="#000"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:textColor="#fff" />
-    </android.support.v4.view.ViewPager>
-
-</RelativeLayout>
+</LinearLayout>

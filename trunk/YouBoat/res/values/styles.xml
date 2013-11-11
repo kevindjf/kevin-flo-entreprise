@@ -105,4 +105,26 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="slider_element">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">15dip</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/fond_noir_select_gris</item>
+    </style>
+
+    <style name="slider_element_texte">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#e0e1e3</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="slider_element_image">
+        <item name="android:layout_width">20dip</item>
+        <item name="android:layout_height">20dip</item>
+        <item name="android:layout_marginRight">10dip</item>
+    </style>
+
 </resources>

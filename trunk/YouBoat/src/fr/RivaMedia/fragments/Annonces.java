@@ -1,8 +1,6 @@
 package fr.RivaMedia.fragments;
 
 import fr.RivaMedia.R;
-import fr.RivaMedia.tab.AnnoncesTab;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,6 +17,10 @@ public class Annonces extends Fragment implements View.OnClickListener{
 	private View _boutonAccessoiresDivers;
 	
 	private ItemSelectedListener listener;
+	
+	public static final int BATEAUX = 1;
+	public static final int MOTEURS = 2;
+	public static final int DIVERS = 3;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -37,21 +39,16 @@ public class Annonces extends Fragment implements View.OnClickListener{
 	}
 
 	@Override
-	public void onAttach(Activity activity) {
-		super.onAttach(activity);
-	}
-
-	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.annonces_bouton_bateaux_et_voiliers:
-			listener.itemSelected(AnnoncesTab.BATEAUX);
+			listener.itemSelected(BATEAUX);
 			break;
 		case R.id.annonces_bouton_moteurs:
-			listener.itemSelected(AnnoncesTab.MOTEURS);
+			listener.itemSelected(MOTEURS);
 			break;
 		case R.id.annonces_bouton_accessoires_et_divers:
-			listener.itemSelected(AnnoncesTab.DIVERS);
+			listener.itemSelected(DIVERS);
 			break;
 		}
 	}
