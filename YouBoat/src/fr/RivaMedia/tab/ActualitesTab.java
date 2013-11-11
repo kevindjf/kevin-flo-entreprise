@@ -19,7 +19,7 @@ public class ActualitesTab extends Tab{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
-		View v = inflater.inflate(R.layout.splash, container, false);
+		View v = inflater.inflate(R.layout.actualite_details, container, false);
 		
 		return v;
 	}
