@@ -29,9 +29,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#DDD"
+                android:background="@drawable/button_sold"
+                android:textColor="@drawable/button_sold"
                 android:text="@string/bateaux"
-                android:textColor="#555"
                 android:textSize="16sp" >
             </Button>
 
@@ -40,9 +40,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/blue"
+                android:background="@drawable/button_sold"
+                android:textColor="@drawable/button_sold"
                 android:text="@string/moteurs"
-                android:textColor="@android:color/white"
                 android:textSize="16sp" >
             </Button>
 
@@ -51,9 +51,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#DDD"
+                android:background="@drawable/button_sold"
+                android:textColor="@drawable/button_sold"
                 android:text="@string/divers"
-                android:textColor="#555"
                 android:textSize="16sp" >
             </Button>
         </LinearLayout>
@@ -233,7 +233,7 @@
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/vendre_annee_du_moteur"
                 style="@style/formulaire_cellule" >
@@ -256,7 +256,7 @@
                     style="@style/formulaire_separator_titre"
                     android:text="@string/photo_and_description" />
             </LinearLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/vendre_description"
                 style="@style/formulaire_cellule" >

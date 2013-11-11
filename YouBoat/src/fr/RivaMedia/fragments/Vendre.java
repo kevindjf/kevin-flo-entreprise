@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 public class Vendre extends Fragment implements View.OnClickListener{
 
@@ -24,6 +25,8 @@ public class Vendre extends Fragment implements View.OnClickListener{
 		_boutonBateaux.setOnClickListener(this);
 		_boutonMoteurs.setOnClickListener(this);
 		_boutonDivers.setOnClickListener(this);
+
+		_boutonBateaux.setSelected(true);
 
 		return view;
 	}
@@ -44,13 +47,20 @@ public class Vendre extends Fragment implements View.OnClickListener{
 	}
 
 	public void vendreBateaux(){
+		_boutonBateaux.setSelected(true);
+		_boutonDivers.setSelected(false);
+		_boutonMoteurs.setSelected(false);
 
 	}
 	public void vendreMoteurs(){
-
+		_boutonBateaux.setSelected(false);
+		_boutonDivers.setSelected(false);
+		_boutonMoteurs.setSelected(true);
 	}
 	public void vendreDivers(){
-
+		_boutonBateaux.setSelected(false);
+		_boutonDivers.setSelected(true);
+		_boutonMoteurs.setSelected(false);
 	}
 
 }
