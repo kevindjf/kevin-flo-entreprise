@@ -40,107 +40,64 @@
         android:background="#EEE"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="10dip" >
+        <LinearLayout style="@style/formulaire_separator" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/choix_des_criteres"
-                android:textColor="@android:color/holo_blue_dark"
-                android:textStyle="bold" />
+                style="@style/formulaire_separator_titre"
+                android:text="@string/choix_des_criteres" />
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/annuaire_distributeur_de_la_marque"
-            android:layout_width="match_parent"
-            android:layout_height="40dip"
-            android:background="@android:color/white"
-            android:orientation="horizontal"
-            android:padding="5dp" >
+            style="@style/formulaire_cellule" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/distributeur_de_la_marque_dots"
-                android:textColor="@android:color/black" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/distributeur_de_la_marque_dots" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dip"
-                android:text="\>"
-                android:textColor="@android:color/black" />
+                android:id="@+id/annuaire_distributeur_de_la_marque_text"
+                style="@style/formulaire_cellule_texte"
+                android:text="" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/annuaire_services"
-            android:layout_width="match_parent"
-            android:layout_height="40dip"
-            android:layout_marginTop="0.8dp"
-            android:background="@android:color/white"
-            android:orientation="horizontal"
-            android:padding="5dp" >
+            style="@style/formulaire_cellule"
+            android:layout_marginTop="0.8dp" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/services_dots"
-                android:textColor="@android:color/black" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/services_dots" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dip"
-                android:text="\>"
-                android:textColor="@android:color/black" />
+                android:id="@+id/annuaire_services_text"
+                style="@style/formulaire_cellule_texte"
+                android:text="@string/services" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/annuaire_localite"
-            android:layout_width="match_parent"
-            android:layout_height="40dip"
-            android:layout_marginTop="0.8dp"
-            android:background="@android:color/white"
-            android:orientation="horizontal"
-            android:padding="5dp" >
+            style="@style/formulaire_cellule"
+            android:layout_marginTop="0.8dp" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="@string/localite_dots"
-                android:textColor="@android:color/black" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/localite_dots" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dip"
-                android:text="\>"
-                android:textColor="@android:color/black" />
+                android:id="@+id/annuaire_localite_text"
+                style="@style/formulaire_cellule_texte"
+                android:text="@string/localite" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="40dip"
-            android:layout_marginTop="10dip"
-            android:background="#006ab3"
-            android:text="@string/rechercher"
-            android:textColor="@android:color/white"
-            android:textSize="17sp"
-            android:textStyle="bold" />
+        <Button style="@style/bouton_rechercher" />
     </LinearLayout>
 
 </LinearLayout>

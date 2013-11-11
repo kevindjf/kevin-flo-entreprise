@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <include layout="@layout/header_retour_effacer"/>
-    
+    <include layout="@layout/header_retour_effacer" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,167 +13,121 @@
         android:orientation="vertical"
         android:padding="10dip" >
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/annonces_formulaire_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bouton_blanc_fleche_bleu"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            style="@style/formulaire_cellule" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/type"
-                android:textStyle="bold" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/type" />
 
             <TextView
                 android:id="@+id/annonces_formulaire_type_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/type"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
+                style="@style/formulaire_cellule_texte"
+                android:text="@string/type" />
 
-        <LinearLayout
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/annonces_formulaire_categorie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bouton_blanc_fleche_bleu"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            style="@style/formulaire_cellule" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/categorie"
-                android:textStyle="bold" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/categorie" />
 
             <TextView
                 android:id="@+id/annonces_formulaire_categorie_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/categorie"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
+                style="@style/formulaire_cellule_texte"
+                android:text="@string/categorie" />
 
-        <LinearLayout
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/annonces_formulaire_prix"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/bouton_blanc_fleche_bleu"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            style="@style/formulaire_cellule"
+            android:layout_marginTop="10dip" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/prix"
-                android:textStyle="bold" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/prix" />
 
             <TextView
                 android:id="@+id/annonces_formulaire_prix_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/prix"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
+                style="@style/formulaire_cellule_texte"
+                android:text="@string/prix" />
 
-        <LinearLayout
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/annonces_formulaire_longueur"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bouton_blanc_fleche_bleu"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            style="@style/formulaire_cellule" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/longueur"
-                android:textStyle="bold" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/longueur" />
 
             <TextView
                 android:id="@+id/annonces_formulaire_longueur_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/longueur"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
+                style="@style/formulaire_cellule_texte"
+                android:text="@string/longueur" />
 
-        <LinearLayout
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/annonces_formulaire_chantier_modele"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bouton_blanc_fleche_bleu"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            style="@style/formulaire_cellule" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chantier_modele"
-                android:textStyle="bold" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/chantier_modele" />
 
             <TextView
-                android:id="@+id/annonces_formulaire_chantiere_modele_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/chantier_modele"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
+                android:id="@+id/annonces_formulaire_modele_text"
+                style="@style/formulaire_cellule_texte"
+                android:text="@string/chantier_modele" />
 
-        <LinearLayout
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/annonces_formulaire_etat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/bouton_blanc_fleche_bleu"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            style="@style/formulaire_cellule"
+            android:layout_marginTop="10dip" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/etat"
-                android:textStyle="bold" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/etat" />
 
             <TextView
                 android:id="@+id/annonces_formulaire_etat_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/etat"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
+                style="@style/formulaire_cellule_texte"
+                android:text="@string/etat" />
 
-        <LinearLayout
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/annonces_formulaire_localisation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bouton_blanc_fleche_bleu"
-            android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            style="@style/formulaire_cellule" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/localisation"
-                android:textStyle="bold" />
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/localisation" />
 
             <TextView
                 android:id="@+id/annonces_formulaire_localisation_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/prix"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
+                style="@style/formulaire_cellule_texte"
+                android:text="@string/localisation" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="40dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/bt_rechercher_up" />
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <Button style="@style/bouton_rechercher" />
     </LinearLayout>
 
 </LinearLayout>
