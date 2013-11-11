@@ -4,6 +4,7 @@ import fr.RivaMedia.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +48,12 @@ public class Annonces extends Fragment implements View.OnClickListener{
 		}
 	}
 
-	
+	public void afficherFormulaireBateaux(int item){
+		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		transaction.add(R.id.main_fragment, new AnnoncesFormulaire(item));
+		transaction.addToBackStack(null);
+		transaction.commit();
+	}
 
 	
 
@@ -55,16 +61,16 @@ public class Annonces extends Fragment implements View.OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.annonces_bouton_bateaux_et_voiliers:
-			Toast.makeText(getActivity(), "BATEAUX", Toast.LENGTH_SHORT).show();
-			//listener.itemSelected(BATEAUX);
+			//Toast.makeText(getActivity(), "BATEAUX", Toast.LENGTH_SHORT).show();
+			afficherFormulaireBateaux(BATEAUX);
 			break;
 		case R.id.annonces_bouton_moteurs:
-			Toast.makeText(getActivity(), "MOTEURS", Toast.LENGTH_SHORT).show();
-			//listener.itemSelected(MOTEURS);
+			//Toast.makeText(getActivity(), "MOTEURS", Toast.LENGTH_SHORT).show();
+			afficherFormulaireBateaux(MOTEURS);
 			break;
 		case R.id.annonces_bouton_accessoires_et_divers:
-			Toast.makeText(getActivity(), "DIVERS", Toast.LENGTH_SHORT).show();
-			//listener.itemSelected(DIVERS);
+			//Toast.makeText(getActivity(), "DIVERS", Toast.LENGTH_SHORT).show();
+			afficherFormulaireBateaux(DIVERS);
 			break;
 		}
 	}

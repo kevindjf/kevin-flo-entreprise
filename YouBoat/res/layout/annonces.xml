@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dip"
             android:layout_centerVertical="true"
-            android:background="@drawable/bouton_bleu_fleche_blanc_ombre" />
+            android:background="@drawable/bouton_annonces" />
 
         <View
             android:id="@+id/annonces_bouton_bateaux_et_voiliers_rond"
@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dip"
             android:layout_centerVertical="true"
-            android:background="@drawable/bouton_bleu_fleche_blanc_ombre" />
+            android:background="@drawable/bouton_annonces" />
 
         <View
             android:id="@+id/annonces_bouton_moteurs_rond"
@@ -145,7 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dip"
             android:layout_centerVertical="true"
-            android:background="@drawable/bouton_bleu_fleche_blanc_ombre" />
+            android:background="@drawable/bouton_annonces" />
 
         <View
             android:id="@+id/annonces_bouton_accessoires_et_divers_rond"
