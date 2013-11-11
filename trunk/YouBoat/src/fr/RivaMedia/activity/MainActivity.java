@@ -28,6 +28,7 @@ public class MainActivity extends FragmentActivity {
 		_pages.add(new VendreTab(getResources().getString(R.string.vendre),getResources().getDrawable(R.drawable.pricetag)));
 		_pages.add(new BoatOnDemandTab(getResources().getString(R.string.boat_on_demand),getResources().getDrawable(R.drawable.eye)));
 		_pages.add(new ActualitesTab(getResources().getString(R.string.actualites),getResources().getDrawable(R.drawable.compass)));
+		_pages.add(new MoreTab(getResources().getString(R.string.actualites),getResources().getDrawable(R.drawable.ronds)));
 
 		_pagesAdapter = new PagesAdapter(getSupportFragmentManager(),_pages);
 		_page = (ViewPager) findViewById(R.id.main_pager);
@@ -35,5 +36,7 @@ public class MainActivity extends FragmentActivity {
 		_page.setAdapter(_pagesAdapter);
 		//_page.setOnPageChangeListener(this);
 	}
+	
+	
 
 }
