@@ -2,145 +2,158 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="270dip"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    android:orientation="vertical"
-    android:padding="15dip" >
+    android:background="@color/blue"
+    android:orientation="vertical" >
 
     <!-- android:background="#383C3F" -->
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dip"
-        android:layout_marginTop="10dip"
-        android:src="@drawable/info_logo" />
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="50dip"
+        android:layout_marginBottom="10dip"
+        android:background="@color/black" >
 
-        <LinearLayout
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_centerInParent="true"
+            android:src="@drawable/info_logo" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
             <LinearLayout
-                android:id="@+id/slider_annonces"
-                style="@style/slider_element" >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-                <ImageView
-                    style="@style/slider_element_image"
-                    android:src="@drawable/image_bt_annonce" />
+                <LinearLayout
+                    android:id="@+id/slider_annonces"
+                    style="@style/slider_element" >
 
-                <TextView
-                    style="@style/slider_element_texte"
-                    android:text="@string/annonces" />
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/image_bt_annonce" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/annonces" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_vendre"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/image_bt_vendre" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/vendre" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_boat_on_demand"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/image_bt_bod" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/boat_on_demand" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_actualites"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/image_bt_news" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/actualites" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_annuaire"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/image_bt_profs" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/annuaire" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_mes_annonces"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/image_bt_ports" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/mes_annonces" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_mes_alertes"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/image_bt_alerte" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/mes_alertes" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_informations"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/image_bt_info" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/informations" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_contact_pro"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/icone_contact_pro" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/contact_pro" />
+                </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/slider_vendre"
-                style="@style/slider_element" >
-
-                <ImageView
-                    style="@style/slider_element_image"
-                    android:src="@drawable/image_bt_vendre" />
-
-                <TextView
-                    style="@style/slider_element_texte"
-                    android:text="@string/vendre" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/slider_boat_on_demand"
-                style="@style/slider_element" >
-
-                <ImageView
-                    style="@style/slider_element_image"
-                    android:src="@drawable/image_bt_bod" />
-
-                <TextView
-                    style="@style/slider_element_texte"
-                    android:text="@string/boat_on_demand" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/slider_actualites"
-                style="@style/slider_element" >
-
-                <ImageView
-                    style="@style/slider_element_image"
-                    android:src="@drawable/image_bt_news" />
-
-                <TextView
-                    style="@style/slider_element_texte"
-                    android:text="@string/actualites" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/slider_annuaire"
-                style="@style/slider_element" >
-
-                <ImageView
-                    style="@style/slider_element_image"
-                    android:src="@drawable/image_bt_profs" />
-
-                <TextView
-                    style="@style/slider_element_texte"
-                    android:text="@string/annuaire" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/slider_mes_annonces"
-                style="@style/slider_element" >
-
-                <ImageView
-                    style="@style/slider_element_image"
-                    android:src="@drawable/image_bt_ports" />
-
-                <TextView
-                    style="@style/slider_element_texte"
-                    android:text="@string/mes_annonces" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/slider_mes_alertes"
-                style="@style/slider_element" >
-
-                <ImageView
-                    style="@style/slider_element_image"
-                    android:src="@drawable/image_bt_alerte" />
-
-                <TextView
-                    style="@style/slider_element_texte"
-                    android:text="@string/mes_alertes" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/slider_informations"
-                style="@style/slider_element" >
-
-                <ImageView
-                    style="@style/slider_element_image"
-                    android:src="@drawable/image_bt_info" />
-
-                <TextView
-                    style="@style/slider_element_texte"
-                    android:text="@string/informations" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/slider_contact_pro"
-                style="@style/slider_element" >
-
-                <ImageView
-                    style="@style/slider_element_image"
-                    android:src="@drawable/icone_contact_pro" />
-
-                <TextView
-                    style="@style/slider_element_texte"
-                    android:text="@string/contact_pro" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>
