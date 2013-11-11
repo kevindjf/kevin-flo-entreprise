@@ -1,13 +1,16 @@
 package fr.RivaMedia.fragments;
 
 import fr.RivaMedia.R;
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Annonces extends Fragment implements View.OnClickListener{
 
@@ -15,9 +18,9 @@ public class Annonces extends Fragment implements View.OnClickListener{
 	private View _boutonBateauxVoiliers;
 	private View _boutonMoteurs;
 	private View _boutonAccessoiresDivers;
-	
+
 	private ItemSelectedListener listener;
-	
+
 	public static final int BATEAUX = 1;
 	public static final int MOTEURS = 2;
 	public static final int DIVERS = 3;
@@ -31,24 +34,37 @@ public class Annonces extends Fragment implements View.OnClickListener{
 		_boutonMoteurs = view.findViewById(R.id.annonces_bouton_moteurs);
 		_boutonAccessoiresDivers = view.findViewById(R.id.annonces_bouton_accessoires_et_divers);
 
-		_boutonBateauxVoiliers.setOnClickListener(this);
-		_boutonMoteurs.setOnClickListener(this);
-		_boutonAccessoiresDivers.setOnClickListener(this);
+		ajouterListeners();
 
 		return view;
 	}
+
+	protected void ajouterListeners(){
+		if(_boutonBateauxVoiliers != null && _boutonMoteurs != null && _boutonAccessoiresDivers != null){
+			_boutonBateauxVoiliers.setOnClickListener(this);
+			_boutonMoteurs.setOnClickListener(this);
+			_boutonAccessoiresDivers.setOnClickListener(this);
+		}
+	}
+
+	
+
+	
 
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.annonces_bouton_bateaux_et_voiliers:
-			listener.itemSelected(BATEAUX);
+			Toast.makeText(getActivity(), "BATEAUX", Toast.LENGTH_SHORT).show();
+			//listener.itemSelected(BATEAUX);
 			break;
 		case R.id.annonces_bouton_moteurs:
-			listener.itemSelected(MOTEURS);
+			Toast.makeText(getActivity(), "MOTEURS", Toast.LENGTH_SHORT).show();
+			//listener.itemSelected(MOTEURS);
 			break;
 		case R.id.annonces_bouton_accessoires_et_divers:
-			listener.itemSelected(DIVERS);
+			Toast.makeText(getActivity(), "DIVERS", Toast.LENGTH_SHORT).show();
+			//listener.itemSelected(DIVERS);
 			break;
 		}
 	}
