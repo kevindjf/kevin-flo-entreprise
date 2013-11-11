@@ -92,11 +92,13 @@
         </LinearLayout>
     </LinearLayout>
     
-    <LinearLayout style="@style/more_line" >
+    <LinearLayout style="@style/more_line" 
+        >
 
         <LinearLayout
             android:id="@+id/more_alerte"
             style="@style/more_cell"
+                    android:clickable="true"
              >
 
             <ImageView
