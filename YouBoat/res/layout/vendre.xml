@@ -287,7 +287,6 @@
 
             <Button
                 style="@style/bouton_rechercher"
-                android:layout_height="match_parent"
                 android:text="@string/etape_suivante" />
         </LinearLayout>
     </ScrollView>
