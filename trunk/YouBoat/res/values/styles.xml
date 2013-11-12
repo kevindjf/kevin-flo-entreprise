@@ -111,7 +111,7 @@
         <item name="android:padding">15dip</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:background">@drawable/fond_bleu_select_noir</item>
+        <item name="android:background">@drawable/fond_noir_select_gris</item>
     </style>
 
     <style name="slider_element_texte">

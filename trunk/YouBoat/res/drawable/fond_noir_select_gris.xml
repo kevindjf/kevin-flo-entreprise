@@ -15,6 +15,6 @@
     <item android:state_checked="true"> <color android:color="@color/gris_menu"/>
     </item>
     <!-- default -->
-    <item android:drawable="@color/black"/>
+    <item android:drawable="@android:color/transparent"/>
 
 </selector>
