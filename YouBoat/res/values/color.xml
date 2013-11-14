@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="blanc">#FFF</color>
+    <color name="gris_clair">#EEE</color>
     <color name="white">#FFF</color>
     <color name="black">#000</color>
     <color name="blue">#2673B5</color>
+    <color name="bleu_claire">#D1ECFF</color>
     <color name="darker_blue">#006ab3</color>
     <color name="lighter_gray">#EEE</color>
     <color name="gray">#DEDEDE</color>

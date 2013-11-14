@@ -20,7 +20,7 @@ public class BateauFactory {
     	bateau.setGpsLongtitude("10.3");
     	bateau.setTypeClient("Client Pro");
     	bateau.setPhotos("http://www.homeforhome.fr/wp-content/uploads/2009/07/bateau.jpg");
-    	bateau.setPrix("1000,50Û");
+    	bateau.setPrix("1000,50 â‚¬");
     	bateau.setTaxePrix("10%");
     	bateau.setPubDate("10/10/2010");
         
@@ -28,15 +28,15 @@ public class BateauFactory {
     	//bateau.setRubriquesDecscription(RubriqueDescriptionFactory.getListRubiqueDescription());
         
     	bateau.setType("Type Personnel");
-        // utilisŽ dans le tris des annonces
+        // utilisï¿½ dans le tris des annonces
         bateau.setPrixNumber(0);
         bateau.setTailleNumber(0);
         
         return bateau;        
     }
     
-    public static List<Bateau> getListBateaux(){
-    	List<Bateau> bateaux = new ArrayList<Bateau>();
+    public static List<Object> getListBateaux(){
+    	List<Object> bateaux = new ArrayList<Object>();
     	for(int i=0;i<10;++i)
     		bateaux.add(getBateau());
     	return bateaux;

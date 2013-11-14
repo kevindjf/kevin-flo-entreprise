@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- pressed -->
+    <!-- 
     <item android:state_pressed="true"><nine-patch android:src="@drawable/bouton_blanc_fleche_bleu_ombre"/></item>
-    <!-- focused -->
-    <item android:state_focused="true"> <nine-patch android:src="@drawable/bouton_blanc_fleche_bleu_ombre"/>
-    </item>
-    <!-- hovered -->
-    <item android:state_hovered="true"> <nine-patch android:src="@drawable/bouton_blanc_fleche_bleu_ombre"/>
-    </item>
-    <!-- checked -->
-    <item android:state_checked="true"> <nine-patch android:src="@drawable/bouton_blanc_fleche_bleu_ombre"/>
-    </item>
+    <item android:state_focused="true"> <nine-patch android:src="@drawable/bouton_blanc_fleche_bleu_ombre"/></item>
+    <item android:state_hovered="true"> <nine-patch android:src="@drawable/bouton_blanc_fleche_bleu_ombre"/></item>
+    <item android:state_checked="true"> <nine-patch android:src="@drawable/bouton_blanc_fleche_bleu_ombre"/></item>
+    
+    -->
+   
     <!-- default -->
     <item android:drawable="@drawable/bouton_bleu_fleche_blanc_ombre"/>
 

@@ -125,7 +125,7 @@
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
 
-        <Button style="@style/bouton_rechercher" />
+        <Button android:id="@+id/annonces_formulaire_bouton_rechercher" style="@style/bouton_rechercher" />
     </LinearLayout>
 
 </LinearLayout>
