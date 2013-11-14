@@ -1,22 +1,15 @@
 package fr.RivaMedia.fragments;
 
-import java.util.List;
 
-import fr.RivaMedia.R;
-import fr.RivaMedia.adapter.AnnonceListAdapter;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-import fr.RivaMedia.factory.*;
+import fr.RivaMedia.R;
+import fr.RivaMedia.adapter.AnnonceListAdapter;
+import fr.RivaMedia.factory.BateauFactory;
 
 public class AnnoncesListe extends Fragment implements View.OnClickListener{
 

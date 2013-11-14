@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="accessoires">Accessoires</string>
     <string name="accessoires_et_divers">ACCESSOIRES &amp; DIVERS</string>
     <string name="achatetventebateaux">Achat et vente de bateaux sur Internet</string>
     <string name="action_settings">Settings</string>
@@ -32,16 +33,21 @@
     <string name="divers">Divers</string>
     <string name="effacer">Effacer</string>
     <string name="email">E-Mail</string>
+    <string name="energie_star">Energie *</string>
     <string name="etape_suivante">ETAPE SUIVANTE</string>
     <string name="etat">Etat</string>
-    <string name="informations">Informations</string>
+    <string name="facultatif">facultatif</string>
     <string name="generalites">Généralités</string>
+    <string name="informations">Informations</string>
+    <string name="intitule">Intutilé</string>
     <string name="lieu">Lieu</string>
     <string name="localisation">Localisation</string>
     <string name="localite">Localite</string>
     <string name="localite_dots">Localite :</string>
     <string name="longueur">Longueur</string>
     <string name="longueur_dots">Longueur :</string>
+    <string name="marque">Marque</string>
+    <string name="marque_modele_star">Marque/Modèle *</string>
     <string name="marque_du_moteur">Marque du moteur</string>
     <string name="mes_annonces">Mes annonces</string>
     <string name="mes_alertes">Mes alertes</string>
@@ -54,12 +60,15 @@
     <string name="numversion">1.1</string>
     <string name="photo_and_description">Photo &amp; Description</string>
     <string name="prix">Prix</string>
+    <string name="prix_de_cession">Prix de cession</string>
     <string name="prix_star">Prix *</string>
     <string name="principal_caracteristiques">CARACTERISTIQUES PRINCIPALES</string>
+    <string name="puissance">Puissance</string>
     <string name="puissance_ch">Puissance (ch)</string>
     <string name="que_souhaitez_vous_vendre">Que souhaitez vous vendre ?</string>
     <string name="rechercher">Rechercher</string>
     <string name="reprise_de_votre_bateau">Reprise de votre bateau ?</string>
+    <string name="requis">requis</string>
     <string name="retour">Retour</string>
     <string name="selectionnez_les_criteres_desires">Selectionnez les critères desirés</string>
     <string name="services">Services</string>

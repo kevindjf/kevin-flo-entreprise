@@ -92,9 +92,9 @@
                     android:text="@string/type_star" />
 
                 <TextView
-                    android:id="@+id/vendre_type_text"
+                    android:id="@+id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/type" />
+                    android:text="@string/requis" />
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
@@ -108,9 +108,9 @@
                     android:text="@string/categorie_star" />
 
                 <TextView
-                    android:id="@+id/vendre_categorie_text"
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/categorie" />
+                    android:text="@string/requis" />
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
@@ -124,9 +124,25 @@
                     android:text="@string/chantier_modele" />
 
                 <TextView
-                    android:id="@+id/vendre_chantier_modele_text"
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/chantier_modele" />
+                    android:text="@string/requis" />
+
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/vendre_marque_modele"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/marque_modele_star" />
+
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/requis" />
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
@@ -146,12 +162,13 @@
                     style="@style/formulaire_cellule_titre"
                     android:text="@string/annee" />
 
-                <TextView
-                    android:id="@+id/vendre_annee_text"
+                <EditText
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/annee" />
+                    android:text="@string/facultatif"
+                    android:inputType="date"
+                     />
 
-                <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -162,10 +179,59 @@
                     style="@style/formulaire_cellule_titre"
                     android:text="@string/longueur" />
 
-                <TextView
-                    android:id="@+id/vendre_longueur_text"
+                <EditText
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/longueur" />
+                    android:hint="@string/facultatif"
+                    android:inputType="number"
+                     />
+
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/vendre_energie"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/energie_star" />
+
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/requis" />
+
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/vendre_puissance"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/puissance" />
+
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
+
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/vendre_intitule"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/intitule" />
+
+                <EditText
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:hint="@string/facultatif" />
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
@@ -178,15 +244,16 @@
                     style="@style/formulaire_cellule_titre"
                     android:text="@string/prix" />
 
-                <TextView
-                    android:id="@+id/vendre_prix_text"
+                <EditText
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/prix" />
+                    android:hint="@string/requis"
+                    android:inputType="number" />
 
-                <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
-            <LinearLayout style="@style/formulaire_separator" >
+            <LinearLayout style="@style/formulaire_separator"
+                android:id="@+id/vendre_motorisation" >
 
                 <TextView
                     style="@style/formulaire_separator_titre"
@@ -202,31 +269,31 @@
                     android:text="@string/nombre_moteur" />
 
                 <TextView
-                    android:id="@+id/vendre_nombre_moteur_text"
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/nombre_moteur" />
+                    android:text="@string/facultatif" />
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/vendre_puissance"
+                android:id="@+id/vendre_puissance_ch"
                 style="@style/formulaire_cellule" >
 
                 <TextView
                     style="@style/formulaire_cellule_titre"
                     android:text="@string/puissance_ch" />
 
-                <TextView
-                    android:id="@+id/vendre_puissance_text"
+                <EditText
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/puissance_ch" />
+                    android:hint="@string/facultatif"
+                    android:inputType="number" />
 
-                <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/vendre_marque_du_moteur"
+                android:id="@+id/vendre_marque_moteur"
                 style="@style/formulaire_cellule" >
 
                 <TextView
@@ -234,27 +301,27 @@
                     android:text="@string/marque_du_moteur" />
 
                 <TextView
-                    android:id="@+id/vendre_marque_du_moteur_text"
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/marque_du_moteur" />
+                    android:text="@string/facultatif" />
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/vendre_annee_du_moteur"
+                android:id="@+id/vendre_annee_moteur"
                 style="@style/formulaire_cellule" >
 
                 <TextView
                     style="@style/formulaire_cellule_titre"
                     android:text="@string/annee_du_moteur" />
 
-                <TextView
-                    android:id="@+id/vendre_annee_du_moteur_text"
+                <EditText
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/annee_du_moteur" />
+                    android:hint="@string/facultatif"
+                    android:inputType="date" />
 
-                <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
             <LinearLayout style="@style/formulaire_separator" >
@@ -273,14 +340,14 @@
                     android:text="@string/description" />
 
                 <TextView
-                    android:id="@+id/vendre_description_text"
+                    android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/description" />
+                    android:hint="@string/facultatif" />
 
-                <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
             <Button
+                android:id="@+id/vendre_ajouter_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="40dip"
                 android:layout_gravity="center_horizontal"
@@ -293,6 +360,7 @@
                 android:textStyle="bold" />
 
             <Button
+                android:id="@+id/vendre_etape_suivante"
                 style="@style/bouton_rechercher"
                 android:text="@string/etape_suivante" />
         </LinearLayout>

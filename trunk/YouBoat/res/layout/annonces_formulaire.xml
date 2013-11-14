@@ -20,9 +20,8 @@
                 android:text="@string/type" />
 
             <TextView
-                android:id="@+id/annonces_formulaire_type_text"
-                style="@style/formulaire_cellule_texte"
-                android:text="@string/type" />
+                android:id="@+id/text"
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -36,9 +35,8 @@
                 android:text="@string/categorie" />
 
             <TextView
-                android:id="@+id/annonces_formulaire_categorie_text"
-                style="@style/formulaire_cellule_texte"
-                android:text="@string/categorie" />
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -53,9 +51,8 @@
                 android:text="@string/prix" />
 
             <TextView
-                android:id="@+id/annonces_formulaire_prix_text"
-                style="@style/formulaire_cellule_texte"
-                android:text="@string/prix" />
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -69,9 +66,8 @@
                 android:text="@string/longueur" />
 
             <TextView
-                android:id="@+id/annonces_formulaire_longueur_text"
-                style="@style/formulaire_cellule_texte"
-                android:text="@string/longueur" />
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -85,12 +81,42 @@
                 android:text="@string/chantier_modele" />
 
             <TextView
-                android:id="@+id/annonces_formulaire_modele_text"
-                style="@style/formulaire_cellule_texte"
-                android:text="@string/chantier_modele" />
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_puissance"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/puissance" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_marque"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/marque" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+        
 
         <RelativeLayout
             android:id="@+id/annonces_formulaire_etat"
@@ -102,9 +128,8 @@
                 android:text="@string/etat" />
 
             <TextView
-                android:id="@+id/annonces_formulaire_etat_text"
-                style="@style/formulaire_cellule_texte"
-                android:text="@string/etat" />
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -118,14 +143,15 @@
                 android:text="@string/localisation" />
 
             <TextView
-                android:id="@+id/annonces_formulaire_localisation_text"
-                style="@style/formulaire_cellule_texte"
-                android:text="@string/localisation" />
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
 
-        <Button android:id="@+id/annonces_formulaire_bouton_rechercher" style="@style/bouton_rechercher" />
+        <Button
+            android:id="@+id/annonces_formulaire_bouton_rechercher"
+            style="@style/bouton_rechercher" />
     </LinearLayout>
 
 </LinearLayout>

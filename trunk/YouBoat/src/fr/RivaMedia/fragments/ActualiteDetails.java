@@ -5,21 +5,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import fr.RivaMedia.R;
-import fr.RivaMedia.adapter.ActualiteListAdapter;
-import fr.RivaMedia.factory.NewsFactory;
 
-public class Actualites extends Fragment{
+//TODO
+public class ActualiteDetails extends Fragment{
 
 	View _view;
-	ListView _liste = null;
-	ActualiteListAdapter _adapter = null;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
-		_view = inflater.inflate(R.layout.actualites, container, false);
+		_view = inflater.inflate(R.layout.actualite_details, container, false);
 		
 		charger();
 		remplir();
@@ -29,11 +25,8 @@ public class Actualites extends Fragment{
 	}
 	
 	protected void charger(){
-		_liste = (ListView)_view.findViewById(R.id.actualites_liste_listview);		
 	}
 	protected void remplir(){
-		_adapter = new ActualiteListAdapter(getActivity(), NewsFactory.getListeNews());
-		_liste.setAdapter(_adapter);
 	}
 	protected void ajouterListeners(){
 	}
