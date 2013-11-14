@@ -22,8 +22,8 @@ public class NewsFactory {
 		return news;
 	}
 	
-	public static List<News> getListeMoteurs(){
-		List<News> news = new ArrayList<News>();
+	public static List<Object> getListeNews(){
+		List<Object> news = new ArrayList<Object>();
 		for(int i=0;i<10;++i)
 			news.add(getNews());
 		return news;

@@ -7,6 +7,7 @@ public class Moteur {
 	private String marqueMoteur;
 	private String puissanceMoteur;
 	private Integer puissNumber;
+	private String prix;
 
 	public String getInfoMoteur() {
 		return infoMoteur;
@@ -43,6 +44,12 @@ public class Moteur {
 	}
 	public void setPuissNumber(Integer puissNumber) {
 		this.puissNumber = puissNumber;
+	}
+	public String getPrix() {
+		return prix;
+	}
+	public void setPrix(String prix) {
+		this.prix = prix;
 	}
 
 }

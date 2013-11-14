@@ -136,53 +136,58 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void afficherAnnonces(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new Annonces());
-		transaction.addToBackStack(null);
+		//transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	public void afficherVendre(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new Vendre());
-		transaction.addToBackStack(null);
+		//transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	public void afficherBoatOnDemand(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new BoatOnDemand());
-		transaction.addToBackStack(null);
+		//transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	public void afficherActualites(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new Actualites());
-		transaction.addToBackStack(null);
+		//transaction.addToBackStack(null);
 		transaction.commit();
 	}
 	public void afficherAnnuaire(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.replace(R.id.main_fragment, new Annuaire());
-		transaction.addToBackStack(null);
+		//transaction.addToBackStack(null);
 		transaction.commit();	
 	}
-	public void afficherMesAnnonces(){}
+	public void afficherMesAnnonces(){
+		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+		transaction.add(R.id.main_fragment, new MesAnnonces());
+		//transaction.addToBackStack(null);
+		transaction.commit();
+	}
 
 	public void afficherMesAlertes(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new MesAlertes());
-		transaction.addToBackStack(null);
+		//transaction.addToBackStack(null);
 		transaction.commit();
 	}
 
 	public void afficherInformations(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new Informations());
-		transaction.addToBackStack(null);
+		//transaction.addToBackStack(null);
 		transaction.commit();
 	}
 
 	public void afficherContactPro(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new ContactPro());
-		transaction.addToBackStack(null);
+		//transaction.addToBackStack(null);
 		transaction.commit();
 	}
 
