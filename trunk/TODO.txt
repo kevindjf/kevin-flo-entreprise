@@ -1,0 +1,11 @@
+1)implementer chaque vue, et chaque sous vue
+2)mettre chaque vue en fragment
+3)récupérer les elements de la vue dn le fragment
+4)ajouter le passage d'une vue a une autre (sans forcement leur passer de valeur)
+5)Remplir les vues avec le factory
+6)Ajouter les parseurs XML
+7)Ajouter la couche NET
+[ 8)Chargement au demarage ]
+9)Ajouter le NET aux fragment (en remplacement des Factory)
+10)Ajouter les listView rechargeables
+11)gérer les formulaires d'envoie (requetes,image, etc)
