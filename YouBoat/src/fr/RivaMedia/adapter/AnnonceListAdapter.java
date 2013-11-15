@@ -18,12 +18,14 @@ public class AnnonceListAdapter extends BaseAdapter  {
 	private Context _context;
 	private List<Object> _annonces;
 	private List<Object> _views = new ArrayList<Object>();
+	private String _type;
 
 	private static LayoutInflater inflater=null;
 
-	public AnnonceListAdapter(Context context, List<Object> annonces){
+	public AnnonceListAdapter(Context context, List<Object> annonces, String type){
 		this._context = context;
 		this._annonces = annonces;
+		this._type = type;
 
 		inflater = (LayoutInflater)_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -52,7 +54,7 @@ public class AnnonceListAdapter extends BaseAdapter  {
 
 		view = inflater.inflate(R.layout.annonce_element_liste, null);
 
-		AnnonceView av = new AnnonceView(_annonces.get(position),_context,view,position);
+		AnnonceView av = new AnnonceView(_annonces.get(position),_context,view,position,_type);
 		_views.add(position,av);
 
 		return view;

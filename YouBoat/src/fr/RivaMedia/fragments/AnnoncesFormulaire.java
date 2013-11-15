@@ -261,7 +261,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		}
 		else if(typeAnnonces == Annonces.BATEAUX){
 			FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new CategorieSelector(recherche_type,this));
+			transaction.add(R.id.main_fragment, new ChantierModeleSelector(recherche_type,this));
 			transaction.addToBackStack(null);
 			transaction.commit();
 		}
@@ -329,9 +329,9 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		}
 	}
 	
-	public void afficherAnnoncesListe(String url, List<NameValuePair> donneesFormulaire){
+	public void afficherAnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new AnnoncesListe(url,donneesFormulaire));
+		transaction.add(R.id.main_fragment, new AnnoncesListe(url,donneesFormulaire,type));
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
@@ -397,17 +397,12 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 			recherche_categorie = item;			
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
-		else if(from instanceof MarqueSelector){
+		else if(from instanceof MarqueSelector || from instanceof ChantierModeleSelector){
 			recherche_marque = item;
-			switch(typeAnnonces){
-			case Annonces.BATEAUX:
+			if(typeAnnonces == Annonces.BATEAUX)
 				((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
-				break;
-			case Annonces.MOTEURS:
+			if(typeAnnonces == Annonces.MOTEURS)
 				((TextView)_marque.findViewById(R.id.text)).setText(value);
-				break;
-			}
-
 		}
 
 
@@ -441,7 +436,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		if(this.recherche_type == null)
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		else{
-			afficherAnnoncesListe(recupererUrl(),recupererDonnees());
+			afficherAnnoncesListe(recupererUrl(),recupererDonnees(),recupererType());
 		}
 	}
 		
@@ -465,6 +460,15 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		
 		return url;
 	}
+	
+	protected String recupererType(){
+		
+	if(typeAnnonces == Annonces.BATEAUX){
+		return recherche_type;
+	}
+	else 
+		return ""+typeAnnonces;  
+	}
 
 	protected List<NameValuePair> recupererDonnees(){
 
@@ -479,21 +483,21 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
 			if(!this.recherche_longueur_max.equals(MinMaxDialog.PLUS))
 				Net.add(donnees, "maxtaille",recherche_longueur_max);
-			if(!this.recherche_longueur_min.equals("0"))
+			//if(!this.recherche_longueur_min.equals("0"))
 				Net.add(donnees, "mintaille",recherche_longueur_min);
 		}
 
 		if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
 			if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
 				Net.add(donnees, "maxpuiss",recherche_puissance_max);
-			if(!this.recherche_puissance_min.equals("0"))
+			//if(!this.recherche_puissance_min.equals("0"))
 				Net.add(donnees, "minpuiss",recherche_puissance_min);
 		}
 		
 		if(this.recherche_prix_min != null && this.recherche_prix_max != null){
 			if(!this.recherche_prix_max.equals(MinMaxDialog.PLUS))
 				Net.add(donnees, "maxprix",recherche_prix_max);
-			if(!this.recherche_prix_max.equals("0"))
+			//if(!this.recherche_prix_max.equals("0"))
 				Net.add(donnees, "minprix",recherche_prix_min);
 		}
 		

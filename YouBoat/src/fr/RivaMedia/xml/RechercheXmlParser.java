@@ -97,6 +97,34 @@ public class RechercheXmlParser extends XmlParser {
 					bateau.setPubDate(getString());
 				}
 				
+				/*
+				
+				else if(tag.equals("lien_annonce")){
+					bateau.setLienAnnonce(getString());
+				}
+				else if(tag.equals("numero_vendeur"))
+					bateau.setNumeroVendeur(getString());
+				else if(tag.equals("moteur"))
+					bateau.setMoteur(getMoteur());
+				else if(tag.equals("etat"))
+					bateau.setEtat(getString());
+				else if(tag.equals("longueur"))
+					bateau.setLongueur(getString());
+				else if(tag.equals("nb_cabine"))
+					bateau.setNbCabines(getString());
+				else if(tag.equals("nb_couch"))
+					bateau.setNbCouchettes(getString());
+				else if(tag.equals("nb_sdb"))
+					bateau.setNbSallesDeBain(getString());
+				else if(tag.equals("garantie"))
+					bateau.setGarantie(getString());
+				else if(tag.equals("commentaire"))
+					bateau.setCommentaire(getString());
+				else if(tag.equals("place_de_port"))
+					bateau.setPlaceDePort(getString());
+				else if(tag.equals("taxe"))
+					bateau.setTaxePrix(getString());
+				*/
 			}
 			eventType = XMLgetSuivant();
 		}
