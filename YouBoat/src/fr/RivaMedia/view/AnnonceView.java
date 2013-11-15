@@ -2,11 +2,15 @@ package fr.RivaMedia.view;
 
 import android.content.Context;
 import android.renderscript.Element;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.ActualiteDetail;
+import fr.RivaMedia.fragments.AnnonceDetail;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Bateau;
 import fr.RivaMedia.model.Moteur;
@@ -55,7 +59,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			if(bateau.getLien() != null)
 				ImageLoaderCache.charger(bateau.getLien().getUrl(),_image);
 			_titre.setText(bateau.getTitle());
-			_sousTitre.setText(bateau.getMoteur());
+			_sousTitre.setText(bateau.getNomMoteur());
 			_taille.setText(bateau.getLongueur()+" m");
 			_annee.setText(bateau.getAnnee());
 			_prix.setText(bateau.getPrix()+" €");
@@ -114,7 +118,19 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	}
 	
 	public void lancerAnnonceDetail(Object element){
+		String id = "";
+		if(_element instanceof Bateau){
+			Bateau bateau = (Bateau)_element;
+			id = bateau.getNumero();
+		}else if(_element instanceof Moteur){
+			Moteur moteur = (Moteur)_element;
+			//TODO trouver l'id d'un moteur
+		}
 		
+		FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
+		transaction.add(R.id.main_fragment, new AnnonceDetail(id,_type));
+		transaction.addToBackStack(null);
+		transaction.commit();
 	}
 
 }
