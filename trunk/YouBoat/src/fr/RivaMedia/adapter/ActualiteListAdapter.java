@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.RivaMedia.R;
+import fr.RivaMedia.model.News;
 import fr.RivaMedia.view.ActualiteView;
 import fr.RivaMedia.view.AnnonceView;
 
@@ -17,14 +18,14 @@ import android.widget.BaseAdapter;
 public class ActualiteListAdapter extends BaseAdapter  {
 
 	private Context _context;
-	private List<Object> _actualites;
+	private List<News> _actualites;
 	private List<Object> _views = new ArrayList<Object>();
 
 	private static LayoutInflater inflater=null;
 
-	public ActualiteListAdapter(Context context, List<Object> actualites){
+	public ActualiteListAdapter(Context context, List<News> _news){
 		this._context = context;
-		this._actualites = actualites;
+		this._actualites = _news;
 
 		inflater = (LayoutInflater)_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}

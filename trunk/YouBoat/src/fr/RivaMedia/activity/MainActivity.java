@@ -1,5 +1,8 @@
 package fr.RivaMedia.activity;
 
+import java.util.List;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +13,9 @@ import com.navdrawer.SimpleSideDrawer;
 
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.*;
+import fr.RivaMedia.fragments.MesAlertes;
+import fr.RivaMedia.model.*;
+import fr.RivaMedia.net.*;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener{
 
@@ -190,7 +196,5 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		//transaction.addToBackStack(null);
 		transaction.commit();
 	}
-
-
 
 }

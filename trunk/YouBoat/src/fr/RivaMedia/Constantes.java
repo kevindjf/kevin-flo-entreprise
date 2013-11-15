@@ -4,7 +4,7 @@ public class Constantes {
 
 	// adresses des services
 	public static final int CC_MD5_DIGEST_LENGTH = 16;
-	// utilisé par we kiss pour le md(#define APPLICATION_KEY "a#i4$5n_DaPs"
+	// utilisÔøΩ par we kiss pour le md(#define APPLICATION_KEY "a#i4$5n_DaPs"
 
 	public static final String kFBApplicationID = "222700434429506";
 	public static final String KFBAPISecretKey = "0e6b3af83b47dd755b115613629c486c";
@@ -28,7 +28,7 @@ public class Constantes {
 
 	public static final String BOD_ADRESS_COMPLEMENT = "bod.php?";
 	public static final String NEWS_ADRESS_COMPLEMENT = "xml-actu-bateau.php?";
-	//public static final StringMARQUE_MOTEUR_ADRESS_COMPLEMENT = "xml-marque-moteur.php?";
+	//public static final String MARQUE_MOTEUR_ADRESS_COMPLEMENT = "xml-marque-moteur.php?";
 	public static final String MARQUE_MOTEUR_ADRESS_COMPLEMENT = "xml-marque-moteur-rech.php?";
 	//public static final String RECHERCHE_BATEAU_ADRESSE = "xml-resultat-bateau.php?q=1&idcat=8 c ";
 	public static final String RECHERCHE_BATEAU_ADRESSE = "xml-resultat-bateau.php?";
@@ -45,9 +45,11 @@ public class Constantes {
 	public static final String TITRE_MAIL = "A Voir ! % %";
 	public static final String MESSAGE_MAIL_HTML = "";
 
+	//TYPE
 	public static final String BATEAU_A_MOTEUR = "1";
 	public static final String VOILIER = "2";
 	public static final String PNEU = "3";
+	
 	public static final String MOTEURS = "4";
 	public static final String ACCESSOIRES = "5";
 	public static final String PLACE_DE_PORT="6";
@@ -258,13 +260,13 @@ public class Constantes {
 	public static final String TYPE_VOULU = "Type";
 	public static final String CATEGORIE_VOULU = "Categorie";
 	public static final String MARQUE_VOULU = "Marque";
-	public static final String MODELE_VOULU = "Modèle";
+	public static final String MODELE_VOULU = "Modele";
 	public static final String MINTAILLE_VOULU = "Taille minimum";
 	public static final String MAXTAILLE_VOULU = "Taille maximum";
 	public static final String LIEU_VOULU = "Lieu";
 	public static final String MARQUE_MOTEUR = "marque_moteur";
 	public static final String BUDGET = "Budget";
-	public static final String PRIX_SOUHAITE = "Prix souhaité";
+	public static final String PRIX_SOUHAITE = "Prix souhait√©";
 	public static final String CARBURANT = "carburant";
 	public static final String ENERGIE = "Energie";
 	public static final String FORMATLONG = "Format longueur";
@@ -280,7 +282,7 @@ public class Constantes {
 	public static final String OCCASION = "occasion";
 	public static final String NEUF = "neuf";
 
-	public static final String BATEAUAMOTEUR = "Bateau à Moteur";
+	public static final String BATEAUAMOTEUR = "Bateau a Moteur";
 	public static final String VOILIERS = "Voilier";
 	public static final String PNEU_SEMI_RIGIDES = "Pneumatique/Semi-Rigides";
 	/*

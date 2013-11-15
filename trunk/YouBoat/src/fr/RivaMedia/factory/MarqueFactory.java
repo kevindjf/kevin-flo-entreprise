@@ -9,11 +9,10 @@ public class MarqueFactory {
 	public static Marque getMarque(){
 		Marque marque = new Marque();
 		
-		marque.setIdMarque("1");
+		marque.setId("1");
 		marque.setLibelle("PetitBateau");
 	    //private Map<Object,Object> modelesById;
 	    //ASIFormDataRequest* requete;
-	    marque.setIdType("1");
 		
 		return marque;
 	}

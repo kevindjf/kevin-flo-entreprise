@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dip"
+    android:minHeight="80dip"
     android:background="#EEE"
     android:padding="5dip" >
 
@@ -9,7 +10,7 @@
         android:id="@+id/actualite_element_liste_image"
         android:layout_width="100dip"
         android:layout_height="70dip"
-        android:src="@drawable/bateau_test"
+        android:layout_centerVertical="true"
         android:layout_marginRight="10dip" />
 
     <TextView
@@ -19,8 +20,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/actualite_element_liste_image"
         android:layout_toRightOf="@+id/actualite_element_liste_image"
-        android:text="SKUTSHJE 15M"
-        android:textSize="18sp"
+        android:textSize="13sp"
         android:textStyle="bold"
         android:textColor="@android:color/black" />
 
@@ -28,12 +28,11 @@
         android:id="@+id/actualite_element_liste_sous_titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/actualite_element_liste_image"
         android:layout_below="@+id/actualite_element_liste_titre"
         android:layout_toRightOf="@+id/actualite_element_liste_image"
         android:layout_marginRight="10dip"
-        android:text="azazazazasasna ksksckjsdvfjks nckjsdcsbd,q cjkazn kjdnkjaz bdkhazbe dkhez chk bzhkfb cez bcfkez bckbz fck"
         android:textColor="#555"
+        android:lines="3"
         android:textSize="11sp" />
 
 </RelativeLayout>

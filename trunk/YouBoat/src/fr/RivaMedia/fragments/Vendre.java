@@ -13,16 +13,16 @@ import android.widget.TextView;
  * Etoile = requis
  * Si: 
  *  - BATEAUX : 
- *         Generalites=[Type*,Catégorie*,"Chantier"/Modele*]
+ *         Generalites=[Type*,Categorie*,"Chantier"/Modele*]
  *         Caracteristiques=[Annee,Longueur,Prix*]
  *         Motorisation=[NombreMoteur,PuisanceCH,MarqueMoteur,AnneeMoteur]
  *         Photo&Description=[Description,AjouterPhoto]
  *  - MOTEURS :
- *  	   Generalites=[{Type="Moteurs"},Catégorie*,"Marque"/Modele*]
+ *  	   Generalites=[{Type="Moteurs"},Categorie*,"Marque"/Modele*]
  *         Caracteristiques=[Annee,Energie*,Puissance,Prix*]
  *         Photo&Description=[Description,AjouterPhoto]
  *  - DIVERS :
- *  	   Generalites=[{Type="Accessoires"},Catégorie*]
+ *  	   Generalites=[{Type="Accessoires"},Categorie*]
  *         Caracteristiques=[Intitule,Prix]
  *         Photo&Description=[Description,AjouterPhoto]
  */
@@ -69,6 +69,8 @@ public class Vendre extends Fragment implements View.OnClickListener{
 	View[] _vuesBateaux;
 	View[] _vuesMoteurs;
 	View[] _vuesDivers;
+	
+	String[] _texteInitial;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -165,6 +167,17 @@ public class Vendre extends Fragment implements View.OnClickListener{
 				_prix,
 				_description
 		};
+		
+		_texteInitial = new String[_views.length];
+		for(int i=0;i<_views.length;++i){
+			String texte = null;
+			Object o = _views[i].findViewById(R.id.text);
+			if(o instanceof TextView)
+				texte = ((TextView)o).getText().toString();
+			else if(o instanceof EditText)
+				texte = ((EditText)o).getHint().toString();
+			_texteInitial[i] = texte;
+		}
 	}
 
 	public void ajouterListeners(){
@@ -192,19 +205,95 @@ public class Vendre extends Fragment implements View.OnClickListener{
 		case R.id.vendre_divers:
 			vendreDivers();
 			break;
+
+		case R.id.vendre_ajouter_photo:
+			ajouterPhoto();
+			break;
+		case R.id.vendre_etape_suivante:
+			etapeSuivante();
+			break;
+		case R.id.vendre_type:
+			demanderType();
+			break;
+		case R.id.vendre_categorie:
+			demanderCategorie();
+			break;
+		case R.id.vendre_chantier_modele:
+			demanderChantierModele();
+			break;
+		case R.id.vendre_nombre_moteur:
+			demanderNombreMoteur();
+			break;
+		case R.id.vendre_marque_moteur:
+			demanderMarqueMoteur();
+			break;
+
+		case R.id.vendre_marque_modele:
+			demanderMarqueModele();
+			break;
+		case R.id.vendre_energie:
+			demanderEnergie();
+			break;
 		}
 	}
 
+	private void demanderCategorie() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void demanderEnergie() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void demanderMarqueModele() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void demanderMarqueMoteur() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void demanderNombreMoteur() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void demanderChantierModele() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void demanderType() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void etapeSuivante() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void ajouterPhoto() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void reset(){
+		int i=0;
 		for(View v : _views){
 			v.setOnClickListener(null);
 			v.setVisibility(View.GONE);
 			Object o = v.findViewById(R.id.text);
 			if(o instanceof TextView)
-				((TextView)o).setText("");
+				((TextView)o).setText(_texteInitial[i]);
 			else if(o instanceof EditText)
-				((EditText)o).setText("");
+				((EditText)o).setHint(_texteInitial[i]);
 			//spinners, etc
+			++i;
 		}
 	}
 
@@ -221,7 +310,7 @@ public class Vendre extends Fragment implements View.OnClickListener{
 		_type.setOnClickListener(this);
 		_categorie.setOnClickListener(this);
 		_chantierModele.setOnClickListener(this);
-		
+
 		_nombreMoteur.setOnClickListener(this);
 		_marqueMoteur.setOnClickListener(this);
 	}
@@ -231,10 +320,10 @@ public class Vendre extends Fragment implements View.OnClickListener{
 		_boutonMoteurs.setSelected(true);
 
 		reset();
-		
+
 		for(View v : _vuesMoteurs)
 			v.setVisibility(View.VISIBLE);
-		
+
 		_categorie.setOnClickListener(this);
 		_marqueModele.setOnClickListener(this);
 		_energie.setOnClickListener(this);
@@ -245,7 +334,7 @@ public class Vendre extends Fragment implements View.OnClickListener{
 		_boutonMoteurs.setSelected(false);
 
 		reset();
-		
+
 		for(View v : _vuesDivers)
 			v.setVisibility(View.VISIBLE);
 
