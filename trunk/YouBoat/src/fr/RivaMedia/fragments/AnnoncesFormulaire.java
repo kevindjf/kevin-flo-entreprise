@@ -163,7 +163,9 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 	protected void ajouterListeners(){
 		_rechercher.setOnClickListener(this);
 
-		_type.setOnClickListener(this);
+		if(typeAnnonces == Annonces.BATEAUX)
+			_type.setOnClickListener(this);
+		
 		_categorie.setOnClickListener(this);
 		_prix.setOnClickListener(this);
 		_longueur.setOnClickListener(this);

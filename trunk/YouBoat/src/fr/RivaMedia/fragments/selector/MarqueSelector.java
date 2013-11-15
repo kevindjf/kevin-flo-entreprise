@@ -80,9 +80,7 @@ public class MarqueSelector extends Fragment implements OnItemClickListener{
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 		_listener.itemSelected(this,_marques.get(position).getId(), _elements[position]);
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.detach(this);
-		transaction.commit();
+		getFragmentManager().popBackStack();
 	}
 
 }

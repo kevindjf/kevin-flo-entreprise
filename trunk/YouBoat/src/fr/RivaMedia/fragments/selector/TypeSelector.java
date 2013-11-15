@@ -73,9 +73,7 @@ public class TypeSelector extends Fragment implements OnItemClickListener{
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 		_listener.itemSelected(TypeSelector.this,_valeurs[position],_types_bateaux[position]);
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.detach(this);
-		transaction.commit();
+		getFragmentManager().popBackStack();
 	}
 	
 }
