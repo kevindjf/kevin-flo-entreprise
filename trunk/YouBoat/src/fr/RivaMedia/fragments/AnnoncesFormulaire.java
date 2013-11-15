@@ -1,8 +1,13 @@
 package fr.RivaMedia.fragments;
 
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -19,6 +24,8 @@ import fr.RivaMedia.dialog.MinMaxDialog;
 import fr.RivaMedia.dialog.OnMinMaxListener;
 import fr.RivaMedia.fragments.core.*;
 import fr.RivaMedia.fragments.selector.*;
+import fr.RivaMedia.net.NetRecherche;
+import fr.RivaMedia.net.core.Net;
 
 /**
  * Si 
@@ -53,8 +60,8 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 	View[] _vuesAccessoire;
 
 
-	String recherche_type;
-	String recherche_categorie;
+	String recherche_type = null;
+	String recherche_categorie = null;
 
 	String recherche_prix_min = null;
 	String recherche_prix_max = null;
@@ -62,17 +69,17 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 	String recherche_longueur_min = null;
 	String recherche_longueur_max = null;
 
-	String recherche_marque = null;
+	String recherche_marque = null; //aussi chantier/modele
 	String recherche_etat = null;
 	String recherche_localisation = null;
 
 	String recherche_puissance_min = null;
 	String recherche_puissance_max = null;
 
+	
 	public AnnoncesFormulaire(int type){
 		this.typeAnnonces = type;
 	}
-
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -171,7 +178,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.annonces_formulaire_bouton_rechercher:
-			afficherAnnoncesListe();
+			rechercher();
 			break;
 
 		case R.id.annonces_formulaire_type:
@@ -278,7 +285,6 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 		alertBuilder.create().show();
 	}
-
 	protected void demanderLocalisation(){
 		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
 		alertBuilder.setTitle(getActivity().getResources().getString(R.string.etat));
@@ -302,7 +308,6 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 		alertBuilder.create().show();
 	}
-
 	protected void demanderPuissance(){
 		new MinMaxDialog(
 				getActivity(), 
@@ -312,7 +317,6 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 				500
 				).show();
 	}
-
 	protected void demanderMarque(){
 		if(_type == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -324,11 +328,10 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 			transaction.commit();
 		}
 	}
-
-
-	public void afficherAnnoncesListe(){
+	
+	public void afficherAnnoncesListe(String url, List<NameValuePair> donneesFormulaire){
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new AnnoncesListe());
+		transaction.add(R.id.main_fragment, new AnnoncesListe(url,donneesFormulaire));
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
@@ -354,7 +357,6 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 		_type.setOnClickListener(this);
 	}
-
 	protected void afficherFormulaireMoteur(){
 		reset();
 
@@ -362,11 +364,11 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 			v.setVisibility(View.VISIBLE);
 		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
 
+		recherche_type = getResources().getString(R.string.moteurs);
 		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.moteurs));
 		_type.setOnClickListener(null);
 		_type.setClickable(false);
 	}
-
 	protected void afficherFormulaireAccessoire(){
 		reset();
 
@@ -375,11 +377,11 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
 
+		recherche_type = getResources().getString(R.string.accessoires);
 		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.accessoires));
 		_type.setOnClickListener(null);
 		_type.setClickable(false);
 	}
-
 
 	@Override
 	public void itemSelected(Object from, String item, String value) {	
@@ -411,7 +413,6 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 	}
 
-
 	@Override
 	public void onMinMaxSelected(String titre, String min, String max) {
 		if(titre.equals(getActivity().getResources().getString(R.string.prix))){
@@ -435,5 +436,84 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 	}
 
+	public void rechercher(){
+		
+		if(this.recherche_type == null)
+			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
+		else{
+			afficherAnnoncesListe(recupererUrl(),recupererDonnees());
+		}
+	}
+		
+	protected String recupererUrl(){
+		String url = "";
+
+		if(typeAnnonces == Annonces.BATEAUX){
+			if(recherche_type.equals(Constantes.BATEAU_A_MOTEUR))
+				url = Constantes.RECHERCHE_BATEAU_ADRESSE;
+			else if(recherche_type.equals(Constantes.VOILIER))
+				url = Constantes.RECHERCHE_VOILIER_ADRESSE;
+			else if(recherche_type.equals(Constantes.PNEU))
+				url = Constantes.RECHERCHE_PNEUMA_ADRESSE;
+		}
+		else if(typeAnnonces == Annonces.MOTEURS){
+			url = Constantes.RECHERCHE_MOTEUR_ADRESSE;
+		}
+		else if(typeAnnonces == Annonces.DIVERS){
+			url = Constantes.RECHERCHE_ACCESSOIRE_ADRESSE;  
+		}
+		
+		return url;
+	}
+
+	protected List<NameValuePair> recupererDonnees(){
+
+		List<NameValuePair> donnees = Net.construireDonnes();
+
+		if(this.recherche_categorie != null)
+			Net.add(donnees, "idcat",recherche_categorie);
+
+		if(this.recherche_localisation != null)
+			Net.add(donnees, "idregion",recherche_localisation);
+		
+		if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
+			if(!this.recherche_longueur_max.equals(MinMaxDialog.PLUS))
+				Net.add(donnees, "maxtaille",recherche_longueur_max);
+			if(!this.recherche_longueur_min.equals("0"))
+				Net.add(donnees, "mintaille",recherche_longueur_min);
+		}
+
+		if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
+			if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
+				Net.add(donnees, "maxpuiss",recherche_puissance_max);
+			if(!this.recherche_puissance_min.equals("0"))
+				Net.add(donnees, "minpuiss",recherche_puissance_min);
+		}
+		
+		if(this.recherche_prix_min != null && this.recherche_prix_max != null){
+			if(!this.recherche_prix_max.equals(MinMaxDialog.PLUS))
+				Net.add(donnees, "maxprix",recherche_prix_max);
+			if(!this.recherche_prix_max.equals("0"))
+				Net.add(donnees, "minprix",recherche_prix_min);
+		}
+		
+		if(this.recherche_etat != null){
+			if(this.recherche_etat.equals(getActivity().getResources().getString(R.string.occasion)))
+				Net.add(donnees, "etat","1");
+			else if(this.recherche_etat.equals(getActivity().getResources().getString(R.string.neuf)))
+				Net.add(donnees, "etat","2");
+			//ne pas ajouter indifferent
+		}
+		
+
+		if(this.recherche_marque != null){
+			if(typeAnnonces == Annonces.BATEAUX)
+				Net.add(donnees,"listModele",recherche_marque);
+			else if(typeAnnonces == Annonces.MOTEURS)
+				Net.add(donnees, "listMarque",recherche_marque);
+		}
+
+		return donnees;
+	}
 
 }

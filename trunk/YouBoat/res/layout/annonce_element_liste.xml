@@ -20,8 +20,9 @@
         android:layout_alignTop="@+id/annonce_element_liste_image"
         android:layout_toRightOf="@+id/annonce_element_liste_image"
         android:text="SKUTSHJE 15M"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textStyle="bold"
+        android:lines="1"
         android:textColor="@android:color/black" />
 
     <TextView
@@ -43,6 +44,15 @@
         android:layout_alignRight="@+id/annonce_element_liste_sous_titre"
         android:layout_below="@+id/annonce_element_liste_sous_titre"
         android:text="12.27m" />
+    
+    <TextView
+        android:id="@+id/annonce_element_liste_annee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#555"
+        android:layout_marginLeft="220dip"
+        android:layout_below="@+id/annonce_element_liste_sous_titre"
+        android:text="1990" />
 
     <TextView
         android:id="@+id/annonce_element_liste_prix"

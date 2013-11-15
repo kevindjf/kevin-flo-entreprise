@@ -33,6 +33,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _slider_contact_pro;
 	
 	View[] _slider_elements;
+	
+	View _progress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 				_slider_informations,
 				_slider_contact_pro
 		};
+		
+		_progress = findViewById(R.id.header_progress);
 	}
 
 	protected void charger(){
@@ -139,6 +143,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	}
 
+	public void afficherProgress(boolean afficher){
+		if(afficher)
+			_progress.setVisibility(View.VISIBLE);
+		else
+			_progress.setVisibility(View.GONE);
+	}
+	
 	public void afficherAnnonces(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new Annonces());
