@@ -5,14 +5,14 @@ import java.util.List;
 public class Bateau {
 	private String numero;
 	private String title;
-	private String moteur;
+	private String nomMoteur;
 	private String longueur;
 	private String annee;
 	private String categorie;
 	private String gpsLatitude;
 	private String gpsLongtitude;
 	private String typeClient;
-	private String photos; //le nombre de photos
+	private List<Lien> photos; //le nombre de photos
 	private String prix;
     private String taxePrix;
     private String pubDate;
@@ -21,6 +21,22 @@ public class Bateau {
     // utilise dans le tris des annonces
     private int prixNumber;
     private double tailleNumber;
+    
+    
+    private String lienAnnonce;
+    private String numeroVendeur;
+    private Moteur moteur;
+    private String etat;
+    private String largeur;
+    private String nbCabines;
+    private String nbCouchettes;
+    private String nbSallesDeBain;
+    private String garantie;
+    private String commentaire;
+    private String placeDePort;
+    private String taxe;
+    private String nbPhotos;
+    private Vendeur vendeur;
     
 	public String getNumero() {
 		return numero;
@@ -34,11 +50,11 @@ public class Bateau {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getMoteur() {
-		return moteur;
+	public String getNomMoteur() {
+		return nomMoteur;
 	}
-	public void setMoteur(String moteur) {
-		this.moteur = moteur;
+	public void setNomMoteur(String nomMoteur) {
+		this.nomMoteur = nomMoteur;
 	}
 	public String getLongueur() {
 		return longueur;
@@ -76,10 +92,10 @@ public class Bateau {
 	public void setTypeClient(String typeClient) {
 		this.typeClient = typeClient;
 	}
-	public String getPhotos() {
+	public List<Lien> getPhotos() {
 		return photos;
 	}
-	public void setPhotos(String photos) {
+	public void setPhotos(List<Lien> photos) {
 		this.photos = photos;
 	}
 	public String getPrix() {
@@ -124,4 +140,90 @@ public class Bateau {
 	public void setTailleNumber(double tailleNumber) {
 		this.tailleNumber = tailleNumber;
 	}
+	public String getLienAnnonce() {
+		return lienAnnonce;
+	}
+	public void setLienAnnonce(String lienAnnonce) {
+		this.lienAnnonce = lienAnnonce;
+	}
+	public String getNumeroVendeur() {
+		return numeroVendeur;
+	}
+	public void setNumeroVendeur(String numeroVendeur) {
+		this.numeroVendeur = numeroVendeur;
+	}
+	public Moteur getMoteur() {
+		return moteur;
+	}
+	public void setMoteur(Moteur moteur) {
+		this.moteur = moteur;
+	}
+	public String getEtat() {
+		return etat;
+	}
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+	public String getLargeur() {
+		return largeur;
+	}
+	public void setLargeur(String largeur) {
+		this.largeur = largeur;
+	}
+	public String getNbCabines() {
+		return nbCabines;
+	}
+	public void setNbCabines(String nbCabines) {
+		this.nbCabines = nbCabines;
+	}
+	public String getNbCouchettes() {
+		return nbCouchettes;
+	}
+	public void setNbCouchettes(String nbCouchettes) {
+		this.nbCouchettes = nbCouchettes;
+	}
+	public String getNbSallesDeBain() {
+		return nbSallesDeBain;
+	}
+	public void setNbSallesDeBain(String nbSallesDeBain) {
+		this.nbSallesDeBain = nbSallesDeBain;
+	}
+	public String getGarantie() {
+		return garantie;
+	}
+	public void setGarantie(String garantie) {
+		this.garantie = garantie;
+	}
+	public String getCommentaire() {
+		return commentaire;
+	}
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+	public String getPlaceDePort() {
+		return placeDePort;
+	}
+	public void setPlaceDePort(String placeDePort) {
+		this.placeDePort = placeDePort;
+	}
+	public String getTaxe() {
+		return taxe;
+	}
+	public void setTaxe(String taxe) {
+		this.taxe = taxe;
+	}
+	public String getNbPhotos() {
+		return nbPhotos;
+	}
+	public void setNbPhotos(String nbPhotos) {
+		this.nbPhotos = nbPhotos;
+	}
+	public Vendeur getVendeur() {
+		return vendeur;
+	}
+	public void setVendeur(Vendeur vendeur) {
+		this.vendeur = vendeur;
+	}
+    
+    
 }

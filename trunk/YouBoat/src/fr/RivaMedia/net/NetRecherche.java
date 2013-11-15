@@ -17,14 +17,14 @@ public class NetRecherche extends Net {
 
 		String xml = Net.requeteGet(Constantes.RECHERCHE_BATEAU_ADRESSE, null);
 
-		return new RechercheXmlParser(xml).getListeBateau();
+		return new RechercheXmlParser(xml).getListe();
 	}
 	
 	public static List<Object> rechercher(String url, List<NameValuePair> donnees){
 
 		String xml = Net.requeteGet(url,donnees);
 
-		return new RechercheXmlParser(xml).getListeBateau();
+		return new RechercheXmlParser(xml).getListe();
 	}
 
 	public static Object rechercherAnnonce(String url, List<NameValuePair> donnees) {

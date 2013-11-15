@@ -74,15 +74,15 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 	protected String recupererUrl(){
 		String url = null;
 
-		if(url.equals(Constantes.BATEAU_A_MOTEUR))
+		if(_type.equals(Constantes.BATEAU_A_MOTEUR))
 			url = "xml-detail-bateau.php?";
-		else if(url.equals(Constantes.VOILIER))
+		else if(_type.equals(Constantes.VOILIER))
 			url = "xml-detail-voilier.php?";
-		else if(url.equals(Constantes.PNEU))
+		else if(_type.equals(Constantes.PNEU))
 			url = "xml-detail-pneuma.php?";
-		else if(url.equals(Constantes.MOTEURS))
+		else if(_type.equals(Constantes.MOTEURS))
 			url = "xml-detail-moteur.php?";
-		else if(url.equals(Constantes.ACCESSOIRES))
+		else if(_type.equals(Constantes.ACCESSOIRES))
 			url = "xml-detail-accessoire.php?";
 
 		return url;
