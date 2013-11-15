@@ -8,7 +8,7 @@ public class News {
     private String imageAdress;
     private String pubDate;
     private String description;
-    private List<RubriqueDescription> contener;
+    private List<Lien> liens;
     private String dateFormattee;
     private String heureFormattee;
     
@@ -42,11 +42,11 @@ public class News {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public List<RubriqueDescription> getContener() {
-		return contener;
+	public List<Lien> getContener() {
+		return liens;
 	}
-	public void setContener(List<RubriqueDescription> contener) {
-		this.contener = contener;
+	public void setContener(List<Lien> liens) {
+		this.liens = liens;
 	}
 	public String getDateFormattee() {
 		return dateFormattee;

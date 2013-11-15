@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@color/blanc">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +24,9 @@
                 android:id="@+id/text"
                 style="@style/formulaire_cellule_texte" />
 
-            <ImageView style="@style/formulaire_cellule_indicator" />
+            <ImageView
+                android:id="@+id/indicator"
+                style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -86,7 +89,7 @@
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
-        
+
         <RelativeLayout
             android:id="@+id/annonces_formulaire_puissance"
             style="@style/formulaire_cellule" >
@@ -101,7 +104,7 @@
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
-        
+
         <RelativeLayout
             android:id="@+id/annonces_formulaire_marque"
             style="@style/formulaire_cellule" >
@@ -116,7 +119,6 @@
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
-        
 
         <RelativeLayout
             android:id="@+id/annonces_formulaire_etat"

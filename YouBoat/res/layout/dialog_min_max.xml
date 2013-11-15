@@ -1,0 +1,87 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/blanc"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/titre"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@color/bleu_claire"
+        android:text="titre" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dip" >
+
+        <TextView
+            android:id="@+id/min_label"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/min" />
+
+        <TextView
+            android:id="@+id/min_valeur"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="0" />
+
+        <SeekBar
+            android:id="@+id/min"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/min_valeur"
+            android:layout_toRightOf="@+id/min_label"
+            android:max="50000" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip" >
+
+        <TextView
+            android:id="@+id/max_label"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/max" />
+
+        <TextView
+            android:id="@+id/max_valeur"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="0" />
+
+        <SeekBar
+            android:id="@+id/max"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/max_valeur"
+            android:layout_toRightOf="@+id/max_label"
+            android:max="50000" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:background="@color/darker_blue"
+        android:text="@string/ok" >
+    </Button>
+
+</LinearLayout>

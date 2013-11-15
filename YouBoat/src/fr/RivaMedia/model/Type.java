@@ -1,22 +1,22 @@
 package fr.RivaMedia.model;
 
-import java.util.Map;
+import java.util.List;
 
 public class Type {
-	private String idType;
-    //private List<Categorie> categories;
-	private Map<Object,Object> categoriesById;
 	
-	public String getIdType() {
-		return idType;
+	private String id;
+	private List<Categorie> categories;
+	
+	public String getId() {
+		return id;
 	}
-	public void setIdType(String idType) {
-		this.idType = idType;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public Map<Object, Object> getCategoriesById() {
-		return categoriesById;
+	public List<Categorie> getCategories() {
+		return categories;
 	}
-	public void setCategoriesById(Map<Object, Object> categoriesById) {
-		this.categoriesById = categoriesById;
+	public void setCategories(List<Categorie> categories) {
+		this.categories = categories;
 	}
 }

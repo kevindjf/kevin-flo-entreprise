@@ -18,6 +18,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
@@ -29,6 +30,8 @@ import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
+import fr.RivaMedia.Constantes;
+
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.util.Log;
@@ -38,7 +41,7 @@ public class Net {
 	public static final String OK = "OK";
 	public static final String NO = "NO";
 
-	public static final String SITE = "http://preprod.wydeez.com/php/mobile/";
+	public static final String SITE = Constantes.BASE_ADRESS;
 
 	public static List<NameValuePair> newListNameValuePair(){
 		return new ArrayList<NameValuePair>();
@@ -97,17 +100,16 @@ public class Net {
 		donneesPost.addPart(cle, new ByteArrayBody(data, "image/jpeg"));
 	}
 
-
 	public static String requete(String url, List<NameValuePair> donneesPost){
 
 		add(donneesPost,"os","android");
 
 		HttpClient httpClient = new DefaultHttpClient();
 		try {
-			HttpPost requete = new HttpPost(SITE+url);
+			HttpPost requete = new HttpPost(SITE+(url.replace("?", "")));
 			requete.setEntity(new UrlEncodedFormEntity(donneesPost,"UTF-8"));
 
-			Log.d("WYDEEZ NET",SITE+url);
+			Log.d("NET",SITE+url+"/");
 			HttpResponse httpReponse = httpClient.execute(requete);
 
 			//StatusLine statusLine = httpReponse.getStatusLine();
@@ -115,7 +117,7 @@ public class Net {
 			//if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
 			//String response = responseToString(httpReponse.getEntity());
 			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim().replace("&aecute", "é");  
-			Log.d("WYDEEZ NET",response);
+			Log.d("NET",response);
 			return response;
 			//}
 
@@ -129,7 +131,56 @@ public class Net {
 				httpClient.getConnectionManager().shutdown();
 		}
 
-		Log.e("WYDEEZ","echec de la requete");
+		Log.e("NET","echec de la requete");
+		return NO; //en cas d'echec
+	}
+
+	public static String requeteGet(String url, List<NameValuePair> donnees){
+
+		StringBuilder sb = new StringBuilder();
+		if(donnees != null){
+			boolean premier = true;
+			for(NameValuePair nvp : donnees){
+				if(!premier)
+					sb.append("&");
+				premier = false;
+
+				sb.append(nvp.getName());
+				sb.append("=");
+				sb.append(nvp.getValue());
+			}
+		}
+
+		String urlRequete = SITE+url+sb.toString();
+		Log.d("NET",urlRequete);
+
+		HttpClient httpClient = new DefaultHttpClient();
+		try {
+
+			HttpGet requete = new HttpGet(urlRequete);
+
+			HttpResponse httpReponse = httpClient.execute(requete);
+
+			//StatusLine statusLine = httpReponse.getStatusLine();
+			//Log.e("NET",statusLine.toString());
+			//if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+			//String response = responseToString(httpReponse.getEntity());
+			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim().replace("&aecute", "é");  
+			Log.d("NET",response);
+			return response;
+			//}
+
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		} finally{
+			if(httpClient!=null)
+				httpClient.getConnectionManager().shutdown();
+		}
+
+		Log.e("NET","echec de la requete");
 		return NO; //en cas d'echec
 	}
 
@@ -152,7 +203,7 @@ public class Net {
 			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
 				//String response = responseToString(httpReponse.getEntity());
 				String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim();
-				Log.d("WYDEEZ",response);
+				Log.d("NET",response);
 				return response.replace("<br>", "").replace("<br>", "").replace("<br/>", "").replace("<br />", "");
 			}
 

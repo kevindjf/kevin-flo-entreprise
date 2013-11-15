@@ -9,3 +9,11 @@
 9)Ajouter le NET aux fragment (en remplacement des Factory)
 10)Ajouter les listView rechargeables
 11)gérer les formulaires d'envoie (requetes,image, etc)
+
+
+
+regarder MainClasses/YouBoatAppDelegate.m
+
+	-(void)categoryParse  -> transformer en java
+
+regarder AdDeposit/ViewController/DepotCriteriaVC

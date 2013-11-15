@@ -1,5 +1,6 @@
 package fr.RivaMedia.fragments;
 
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,8 +18,8 @@ public class Annonces extends Fragment implements View.OnClickListener{
 	private View _boutonAccessoiresDivers;
 
 	public static final int BATEAUX = 1;
-	public static final int MOTEURS = 2;
-	public static final int DIVERS = 3;
+	public static final int MOTEURS = 4; //Constantes.MOTEURS
+	public static final int DIVERS = 5; //Constantes.ACCESSOIRES
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {

@@ -12,13 +12,13 @@ public class Bateau {
 	private String gpsLatitude;
 	private String gpsLongtitude;
 	private String typeClient;
-	private String photos;
+	private String photos; //le nombre de photos
 	private String prix;
     private String taxePrix;
     private String pubDate;
-    List<RubriqueDescription> rubriquesDecscription;
+    private Lien lien;
     private String type;
-    // utilisé dans le tris des annonces
+    // utilise dans le tris des annonces
     private int prixNumber;
     private double tailleNumber;
     
@@ -100,12 +100,11 @@ public class Bateau {
 	public void setPubDate(String pubDate) {
 		this.pubDate = pubDate;
 	}
-	public List<RubriqueDescription> getRubriquesDecscription() {
-		return rubriquesDecscription;
+	public Lien getLien() {
+		return lien;
 	}
-	public void setRubriquesDecscription(
-			List<RubriqueDescription> rubriquesDecscription) {
-		this.rubriquesDecscription = rubriquesDecscription;
+	public void setLien(Lien lien) {
+		this.lien = lien;
 	}
 	public String getType() {
 		return type;

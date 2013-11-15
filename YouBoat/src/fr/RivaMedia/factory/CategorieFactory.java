@@ -9,8 +9,8 @@ public class CategorieFactory {
 	public static Categorie getCategorie(){
 		Categorie categorie = new Categorie();
 
-		categorie.setIdCategory(1);
-		categorie.setLibelle("Premiere catégorie");
+		categorie.setIdCategory("1");
+		categorie.setLibelle("Premiere categorie");
 		//private Map<Object,Object> contener;
 
 		return categorie;

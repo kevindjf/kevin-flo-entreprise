@@ -2,11 +2,15 @@ package fr.RivaMedia.view;
 
 import android.content.Context;
 import android.renderscript.Element;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.ActualiteDetail;
+import fr.RivaMedia.fragments.AnnoncesListe;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Bateau;
 import fr.RivaMedia.model.Moteur;
@@ -25,7 +29,7 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	public ActualiteView(Object element, Context context, View view, int position) {
 		super(context, view);
 		ImageLoaderCache.load(getContext());
-		
+
 		this._element = element;
 		this._position = position;
 		charger();
@@ -44,12 +48,12 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	public void remplir() {
 		if(_element instanceof News){
 			News news = (News)_element;
-			
+
 			ImageLoaderCache.charger(news.getImageAdress(),_image);
 			_titre.setText(news.getTitle());
 			_sousTitre.setText(news.getDescription());
 		}
-		
+
 		afficherNormal();
 	}
 
@@ -62,11 +66,11 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
-			default:
-				lancerAnnonceDetail(_element);
+		default:
+			lancerActualiteDetail(_element);
 		}
 	}
-	
+
 	private void afficherNormal(){
 		if(_position%2==0){
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.blanc));
@@ -77,7 +81,7 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	private void afficherTouch(){
 		getView().setBackgroundColor(getContext().getResources().getColor(R.color.blue));
 	}
-	
+
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if(event.getAction() == MotionEvent.ACTION_DOWN){
@@ -88,9 +92,17 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 		}
 		return false;
 	}
-	
-	public void lancerAnnonceDetail(Object element){
-		
+
+	public void lancerActualiteDetail(Object element){
+		if(_element instanceof News){
+			News news = (News)_element;
+
+			FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
+			transaction.add(R.id.main_fragment, new ActualiteDetail(news.getLink()));
+			transaction.addToBackStack(null);
+			transaction.commit();
+			
+		}
 	}
 
 }
