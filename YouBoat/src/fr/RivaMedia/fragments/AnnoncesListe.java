@@ -3,6 +3,9 @@ package fr.RivaMedia.fragments;
 
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,11 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
 import fr.RivaMedia.factory.BateauFactory;
 import fr.RivaMedia.net.NetNews;
 import fr.RivaMedia.net.NetRecherche;
 
+@SuppressLint("ValidFragment")
 public class AnnoncesListe extends Fragment implements View.OnClickListener{
 
 	View _view;
@@ -23,10 +28,20 @@ public class AnnoncesListe extends Fragment implements View.OnClickListener{
 	AnnonceListAdapter _adapter = null;
 	List<Object> _annonces;
 	
+	String _url;
+	List<NameValuePair> _donneesFormulaire;
+	
+	public AnnoncesListe(String url, List<NameValuePair> donneesFormulaire){
+		this._url = url;
+		this._donneesFormulaire = donneesFormulaire;
+	}
+	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.annonces_liste,container, false);
 
+		((MainActivity)getActivity()).afficherProgress(true);
 		new ChargerAnnoncesTask().execute();
 		
 		return _view;
@@ -63,13 +78,14 @@ public class AnnoncesListe extends Fragment implements View.OnClickListener{
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
-			_annonces = NetRecherche.chargerListeBateaux();
+			_annonces = NetRecherche.rechercher(_url, _donneesFormulaire);
 
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
 				public void run() {
 					chargerAnnonces();
+					((MainActivity)getActivity()).afficherProgress(false);
 				}
 
 			});

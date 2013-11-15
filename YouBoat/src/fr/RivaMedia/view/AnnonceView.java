@@ -21,6 +21,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	TextView _titre;
 	TextView _sousTitre;
 	TextView _taille;
+	TextView _annee;
 	TextView _prix;
 
 	public AnnonceView(Object element, Context context, View view, int position) {
@@ -40,6 +41,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_titre = (TextView)getView().findViewById(R.id.annonce_element_liste_titre);
 		_sousTitre = (TextView)getView().findViewById(R.id.annonce_element_liste_sous_titre);
 		_taille = (TextView)getView().findViewById(R.id.annonce_element_liste_taille);
+		_annee = (TextView)getView().findViewById(R.id.annonce_element_liste_annee);
 		_prix = (TextView)getView().findViewById(R.id.annonce_element_liste_prix);
 	}
 
@@ -48,11 +50,13 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		if(_element instanceof Bateau){
 			Bateau bateau = (Bateau)_element;
 			
-			ImageLoaderCache.charger(bateau.getPhotos(),_image);
+			if(bateau.getLien() != null)
+				ImageLoaderCache.charger(bateau.getLien().getUrl(),_image);
 			_titre.setText(bateau.getTitle());
-			_sousTitre.setText(bateau.getType());
-			_taille.setText(bateau.getLongueur());
-			_prix.setText(bateau.getPrix());
+			_sousTitre.setText(bateau.getMoteur());
+			_taille.setText(bateau.getLongueur()+" m");
+			_annee.setText(bateau.getAnnee());
+			_prix.setText(bateau.getPrix()+" €");
 			
 		}else if(_element instanceof Moteur){
 			Moteur moteur = (Moteur)_element;
@@ -60,8 +64,9 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			_image.setVisibility(View.GONE);
 			_titre.setText(moteur.getMarqueMoteur());
 			_sousTitre.setText(moteur.getInfoMoteur());
-			_taille.setText(moteur.getPuissanceMoteur());
-			_prix.setText(moteur.getPrix());
+			_taille.setText(moteur.getPuissanceMoteur()+" ch");
+			_annee.setVisibility(View.GONE);
+			_prix.setText(moteur.getPrix()+" €");
 		}
 		/*else if(_element instanceof Divers){
 			

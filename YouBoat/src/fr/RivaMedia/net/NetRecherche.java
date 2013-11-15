@@ -20,4 +20,11 @@ public class NetRecherche extends Net {
 		return new RechercheXmlParser(xml).getListeBateau();
 	}
 	
+	public static List<Object> rechercher(String url, List<NameValuePair> donnees){
+
+		String xml = Net.requeteGet(url,donnees);
+
+		return new RechercheXmlParser(xml).getListeBateau();
+	}
+	
 }

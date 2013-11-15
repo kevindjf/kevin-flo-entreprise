@@ -57,7 +57,7 @@ public class RechercheXmlParser extends XmlParser {
 					bateau.setTitle(getString());
 				}
 				else if(tag.equals("moteur")){
-					bateau.setTitle(getString());
+					bateau.setMoteur(getString());
 				}
 				else if(tag.equals("longueur")){
 					bateau.setLongueur(getString());
