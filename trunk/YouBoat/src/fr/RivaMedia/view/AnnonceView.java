@@ -16,6 +16,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	Object _element;
 	int _position;
+	String _type;
 
 	ImageView _image;
 	TextView _titre;
@@ -23,13 +24,14 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	TextView _taille;
 	TextView _annee;
 	TextView _prix;
-
-	public AnnonceView(Object element, Context context, View view, int position) {
+	
+	public AnnonceView(Object element, Context context, View view, int position, String type) {
 		super(context, view);
 		ImageLoaderCache.load(getContext());
 		
 		this._element = element;
 		this._position = position;
+		this._type = type;
 		charger();
 		remplir();
 		ajouterListeners();

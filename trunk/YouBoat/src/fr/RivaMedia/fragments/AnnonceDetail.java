@@ -13,80 +13,99 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
 import fr.RivaMedia.factory.BateauFactory;
+import fr.RivaMedia.model.Bateau;
 import fr.RivaMedia.net.NetNews;
 import fr.RivaMedia.net.NetRecherche;
+import fr.RivaMedia.net.core.Net;
 
 @SuppressLint("ValidFragment")
-public class AnnoncesListe extends Fragment implements View.OnClickListener{
+public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 	View _view;
-	ListView _liste = null;
-	AnnonceListAdapter _adapter = null;
-	List<Object> _annonces;
-	
-	String _url;
-	List<NameValuePair> _donneesFormulaire;
+	Object _annonce;
+
+	String _id;
 	String _type;
-	
-	public AnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
-		this._url = url;
-		this._donneesFormulaire = donneesFormulaire;
+
+	public AnnonceDetail(String id, String type){
+		this._id = id;
 		this._type = type;
 	}
-	
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		_view = inflater.inflate(R.layout.annonces_liste,container, false);
+		_view = inflater.inflate(R.layout.annonce_detail,container, false);
 
 		((MainActivity)getActivity()).afficherProgress(true);
-		new ChargerAnnoncesTask().execute();
-		
+		new ChargerAnnonceTask().execute();
+
 		return _view;
 	}
 
 	protected void charger(){
-		_liste = (ListView)_view.findViewById(R.id.annonces_liste_listview);		
 	}
 	protected void remplir(){
-		_adapter = new AnnonceListAdapter(getActivity(), _annonces,_type);
-		_liste.setAdapter(_adapter);
 	}
 	protected void ajouterListeners(){
 	}
 
 
-	
+
 
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
 		}
 	}
-	
-	
-	protected void chargerAnnonces(){
+
+
+	protected void chargerAnnonce(){
 		charger();
 		remplir();
 		ajouterListeners();
 	}
-	
+
+	protected String recupererUrl(){
+		String url = null;
+
+		if(url.equals(Constantes.BATEAU_A_MOTEUR))
+			url = "xml-detail-bateau.php?";
+		else if(url.equals(Constantes.VOILIER))
+			url = "xml-detail-voilier.php?";
+		else if(url.equals(Constantes.PNEU))
+			url = "xml-detail-pneuma.php?";
+		else if(url.equals(Constantes.MOTEURS))
+			url = "xml-detail-moteur.php?";
+		else if(url.equals(Constantes.ACCESSOIRES))
+			url = "xml-detail-accessoire.php?";
+
+		return url;
+	}
+
+	protected void chargerDetailAnnonce(){
+		_annonce = NetRecherche.rechercherAnnonce(recupererUrl(), Net.construireDonnes("idad",_id));
+	}
+
+
 	/* --------------------------------------------------------------------------- */
 
-	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
+	class ChargerAnnonceTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
-			_annonces = NetRecherche.rechercher(_url, _donneesFormulaire);
+
+			chargerDetailAnnonce();
 
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
 				public void run() {
-					chargerAnnonces();
+					chargerAnnonce();
 					((MainActivity)getActivity()).afficherProgress(false);
 				}
 

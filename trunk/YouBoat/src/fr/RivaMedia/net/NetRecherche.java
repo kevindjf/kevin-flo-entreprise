@@ -26,5 +26,9 @@ public class NetRecherche extends Net {
 
 		return new RechercheXmlParser(xml).getListeBateau();
 	}
+
+	public static Object rechercherAnnonce(String url, List<NameValuePair> donnees) {
+		return rechercher(url, donnees).get(0);
+	}
 	
 }

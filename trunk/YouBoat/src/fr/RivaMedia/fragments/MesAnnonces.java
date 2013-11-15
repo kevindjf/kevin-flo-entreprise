@@ -32,7 +32,7 @@ public class MesAnnonces extends Fragment implements View.OnClickListener{
 		_liste = (ListView)_view.findViewById(R.id.annonces_liste_listview);		
 	}
 	protected void remplir(){
-		_adapter = new AnnonceListAdapter(getActivity(), BateauFactory.getListBateaux());
+		_adapter = new AnnonceListAdapter(getActivity(), BateauFactory.getListBateaux(),null);
 		_liste.setAdapter(_adapter);
 	}
 	protected void ajouterListeners(){
