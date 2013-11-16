@@ -102,7 +102,12 @@
     <string name="type">Type</string>
     <string name="type_star">Type *</string>
     <string name="vendre">Vendre</string>
+    <string name="veuillez_choisir_une_categorie">Veuillez choisir une categorie</string>
+    <string name="veuillez_choisir_une_marque">Veuillez choisir une marque</string>
+    <string name="veuillez_choisir_un_modele">Veuillez choisir un modele</string>
+    <string name="veuillez_choisir_un_prix">Veuillez choisir un prix</string>
     <string name="veuillez_choisir_un_type">Veuillez choisir un type</string>
+    <string name="veuillez_choisir_un_type_d_energie">Veuillez choisir un type d\'energie</string>
     <string name="version">Version</string>
     <string name="vide">Aucun résultat</string>
     <string name="voiliers">Voiliers</string>
