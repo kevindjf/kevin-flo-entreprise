@@ -19,6 +19,7 @@
     <string name="boat_on_demand">Boat On Demand</string>
     <string name="budget">Budget</string>
     <string name="budget_star">Budget *</string>
+    <string name="cabines">Cabines</string>
     <string name="cancel">Cancel</string>
     <string name="caracteristiques">Caractéristiques</string>
     <string name="categorie">Categorie</string>
@@ -27,6 +28,7 @@
     <string name="choix_des_criteres">Choix des critères</string>
     <string name="commentaire">Commentaire</string>
     <string name="contact_pro">Contact PRO</string>
+    <string name="couchettes">Couchettes</string>
     <string name="decrivez_le_bateau_que_vous_possedez">Décrivez le bateau que vous possédez</string>
     <string name="description">Description</string>
     <string name="description_maj">DESCRIPTION</string>
@@ -52,6 +54,7 @@
     <string name="informations_youboat_propose">Youboat propose des milliers d\'annonces de bateaux à moteur, voiliers et pneumatiques mais aussi des moteurs et accessoires marins. Des essais et des articles sont disponibles pour vous aider dans votre futur achat. Vous pouvez égalment vendre votre bateau directement depuis votre smartphone. Retrouvez aussi le magazine YOUBOAT chez votre marchand de journaux !</string>
     <string name="intitule">Intutilé</string>
     <string name="languedoc_roussillon">Languedoc/Roussillon</string>
+    <string name="largeur">Largeur</string>
     <string name="lieu">Lieu</string>
     <string name="localisation">Localisation</string>
     <string name="localite">Localite</string>
@@ -67,11 +70,13 @@
     <string name="max">Max :</string>
     <string name="min">Min :</string>
     <string name="moins">-</string>
+    <string name="moteur">Moteur</string>
     <string name="moteurs">Moteurs</string>
     <string name="moteurs_hb_lb">MOTEURS HB / LB</string>
     <string name="motorisation">Motorisation</string>
     <string name="more">More</string>
     <string name="neuf">Neuf</string>
+    <string name="nombres_heures">Nb Heures</string>
     <string name="nombre_moteur">Nombre Moteur</string>
     <string name="nomsociete">Rivamedia</string>
     <string name="numversion">1.1</string>
@@ -83,7 +88,8 @@
     <string name="prix">Prix</string>
     <string name="prix_de_cession">Prix de cession</string>
     <string name="prix_star">Prix *</string>
-    <string name="principal_caracteristiques">CARACTERISTIQUES PRINCIPALES</string>
+    <string name="principal_caracteristiques">Caractéristiques principales</string>
+    <string name="propulsion">Propulsion</string>
     <string name="puissance">Puissance</string>
     <string name="puissance_ch">Puissance (ch)</string>
     <string name="que_souhaitez_vous_vendre">Que souhaitez vous vendre ?</string>
@@ -91,6 +97,7 @@
     <string name="reprise_de_votre_bateau">Reprise de votre bateau ?</string>
     <string name="requis">requis</string>
     <string name="retour">Retour</string>
+    <string name="salle_de_bain">Salle de bain</string>
     <string name="selectionnez_les_criteres_desires">Selectionnez les critères desirés</string>
     <string name="services">Services</string>
     <string name="services_dots">Services :</string>
@@ -102,6 +109,7 @@
     <string name="type">Type</string>
     <string name="type_star">Type *</string>
     <string name="vendre">Vendre</string>
+    <string name="vendeur">Le vendeur</string>
     <string name="veuillez_choisir_une_categorie">Veuillez choisir une categorie</string>
     <string name="veuillez_choisir_une_marque">Veuillez choisir une marque</string>
     <string name="veuillez_choisir_un_modele">Veuillez choisir un modele</string>

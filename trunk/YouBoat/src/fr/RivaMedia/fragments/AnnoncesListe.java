@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +56,7 @@ public class AnnoncesListe extends Fragment implements View.OnClickListener{
 	protected void remplir(){
 		_adapter = new AnnonceListAdapter(getActivity(), _annonces,_type);
 		_liste.setAdapter(_adapter);
+		Log.e("AnnoncesListe","Test");
 	}
 	protected void ajouterListeners(){
 	}

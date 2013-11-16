@@ -43,6 +43,22 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="annonce_cellule">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:background">@drawable/fond_blanc_select_bleu</item>
+    </style>
+
+    <style name="annonce_cellule_texte">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/darker_gray</item>
+        <item name="android:layout_marginLeft">90dip</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
     <style name="formulaire_cellule_indicator">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -126,6 +142,14 @@
         <item name="android:layout_width">20dip</item>
         <item name="android:layout_height">20dip</item>
         <item name="android:layout_marginRight">10dip</item>
+    </style>
+
+    <style name="CustomSeekBar" parent="android:Widget.SeekBar">
+        <item name="android:progressDrawable">@drawable/progressbar</item>
+        <item name="android:minHeight">2dip</item>
+        <item name="android:maxHeight">2dip</item>
+        <item name="android:thumb">@drawable/thumb_custom</item>
+        <item name="android:thumbOffset">0dip</item>
     </style>
 
 </resources>

@@ -97,9 +97,6 @@ public class RechercheXmlParser extends XmlParser {
 				else if(tag.equals("pubDate")){
 					bateau.setPubDate(getString());
 				}
-
-
-
 				else if(tag.equals("lien_annonce")){
 					bateau.setLienAnnonce(getString());
 				}
@@ -127,8 +124,10 @@ public class RechercheXmlParser extends XmlParser {
 					bateau.setNbPhotos(getString());
 				else if(tag.equals("photos"))
 					bateau.setPhotos(getPhotos());
-				else if(tag.equals("vendeur"))
+				else if(tag.equals("vendeur")){
+					Log.e("RechercheXmlParser","Vendeur");
 					bateau.setVendeur(getVendeur());
+				}
 			}
 			eventType = XMLgetSuivant();
 		}

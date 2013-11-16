@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 
+import android.util.Log;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Bateau;
 import fr.RivaMedia.model.Marque;
@@ -23,7 +24,7 @@ public class NetRecherche extends Net {
 	public static List<Object> rechercher(String url, List<NameValuePair> donnees){
 
 		String xml = Net.requeteGet(url,donnees);
-
+		Log.e("NetRecherche",xml);
 		return new RechercheXmlParser(xml).getListe();
 	}
 
