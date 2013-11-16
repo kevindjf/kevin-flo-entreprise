@@ -1,13 +1,21 @@
 package fr.RivaMedia.fragments;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.*;
+import fr.RivaMedia.net.core.Net;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,9 +90,8 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	private static int DEMANDER_MARQUE_MOTEUR = 2;
 	
 	String vendre_type = null;
-	String vndre_categorie = null;
+	String vendre_categorie = null;
 	String vendre_marque = null; //aussi chantier/modele
-	String vendre_annee = null;
 	String vendre_localisation = null;
 	String vendre_prix = null;
 	String vendre_nombre_moteur = null;
@@ -97,8 +104,12 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	
 	String vendre_intitule = null;
 	
+	String vendre_annee = null;
+	
 	String[] vendre_valeurs;
 	
+	//TODO: ajouter photos
+	List<Bitmap> photos = new ArrayList<Bitmap>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -107,6 +118,8 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		charger();
 		ajouterListeners();
 		remplir();
+		
+		vendreBateaux();
 
 		return _view;
 	}
@@ -206,7 +219,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		
 		vendre_valeurs = new String[]{
 				vendre_type,
-				vndre_categorie,
+				vendre_categorie,
 				vendre_marque,
 				vendre_annee,
 				vendre_localisation,
@@ -290,6 +303,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		transaction.add(R.id.main_fragment, new ChantierModeleSelector(vendre_type,this));
 		transaction.addToBackStack(null);
 		transaction.commit();
+		demanderMarque = DEMANDER_MARQUE_MODELE;
 	}
 
 	private void demanderCategorie() {
@@ -420,6 +434,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	}
 	public void vendreMoteurs(){
 		typeVente = Annonces.MOTEURS;
+		vendre_type = ""+Annonces.MOTEURS;
 		
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(false);
@@ -439,6 +454,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	}
 	public void vendreDivers(){
 		typeVente = Annonces.DIVERS;
+		vendre_type = ""+Annonces.DIVERS;
 		
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(true);
@@ -446,20 +462,162 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 
 		reset();
 		
-		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.accessoires));
+		((TextView)_type.findViewById(R.id.text)).setText(getString(R.string.accessoires));
 		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
+		
+
 
 		for(View v : _vuesDivers)
 			v.setVisibility(View.VISIBLE);
+		
+		_categorie.setOnClickListener(this);
 
 	}
 
 	@Override
 	public void itemSelected(Object from, String item, String value) {
-		// TODO Auto-generated method stub
-		
+		Log.e("ItemSelected", item+" | "+value);
+
+		if(from instanceof TypeSelector){
+			vendre_type = item;
+			((TextView)_type.findViewById(R.id.text)).setText(value);
+			vendre_categorie = null;
+			((TextView)_categorie.findViewById(R.id.text)).setText(getString(R.string.requis));
+
+		}
+		else if(from instanceof CategorieSelector){
+			vendre_categorie = item;			
+			((TextView)_categorie.findViewById(R.id.text)).setText(value);
+		}
+		else if(from instanceof MarqueSelector || from instanceof ChantierModeleSelector){
+			if(typeVente == Annonces.BATEAUX){
+				if(demanderMarque == DEMANDER_MARQUE_MODELE){
+					vendre_marque = item;
+					((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
+				}else if(demanderMarque == DEMANDER_MARQUE_MOTEUR){
+					vendre_marque_moteur = item;
+					((TextView)_marqueMoteur.findViewById(R.id.text)).setText(value);
+				}
+			}
+			if(typeVente == Annonces.MOTEURS){
+				vendre_marque = item;
+				((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
+			}
+		}
 	}
 
+	private List<NameValuePair> recupererDonnees(){
+		List<NameValuePair> donnees = Net.construireDonnes();
+		
+		if(typeVente == Annonces.BATEAUX){
+			
+			if(vendre_type == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			if(vendre_categorie == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			if(vendre_marque == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_modele), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			if(vendre_prix == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			
+			//les requis
+			Net.add(donnees, 
+					"",vendre_type,
+					"",vendre_categorie,
+					"",vendre_marque,
+					"",vendre_prix
+					);
+			
+			if(((EditText)_annee).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_annee).getText());
+			
+			if(((EditText)_longueur).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_longueur).getText());
+			
+			if(vendre_nombre_moteur != null)
+				Net.add(donnees,"",vendre_nombre_moteur);
+			
+			if(((EditText)_marqueMoteur).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_marqueMoteur).getText());
+			
+			if(((EditText)_anneeMoteur).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_anneeMoteur).getText());
+			
+		}else if(typeVente == Annonces.MOTEURS){
+			if(vendre_type == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			if(vendre_categorie == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			if(vendre_marque == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_marque), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			if(vendre_energie == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type_d_energie), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			if(vendre_prix == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			
+			//les requis
+			Net.add(donnees, 
+					"",vendre_type,
+					"",vendre_categorie,
+					"",vendre_marque,
+					"",vendre_energie,
+					"",vendre_prix
+					);
+			
+			if(((EditText)_annee).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_annee).getText());
+			
+			if(((EditText)_puissance).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_puissance).getText());
+			
+		}else if(typeVente == Annonces.DIVERS){
+			
+			if(vendre_type == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			if(vendre_categorie == null){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			
+			//les requis
+			Net.add(donnees, 
+					"",vendre_type,
+					"",vendre_categorie,
+					"",vendre_prix
+					);
+			
+			if(((EditText)_intitule).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_intitule).getText());
+			
+			
+		}
+		
+		if(((EditText)_description).getText().length() > 0)
+			Net.add(donnees,"",((EditText)_description).getText());
+		
+		return donnees;
+	}
+	
 	private void etapeSuivante() {
 		// TODO Auto-generated method stub
 		

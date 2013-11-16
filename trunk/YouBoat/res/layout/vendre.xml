@@ -215,12 +215,12 @@
                     style="@style/formulaire_cellule_titre"
                     android:text="@string/puissance" />
 
-                <TextView
+                <EditText
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/facultatif" />
+                    android:hint="@string/facultatif"
+                    android:inputType="number" />
 
-                <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
             
             <RelativeLayout
@@ -366,7 +366,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dip"
                 android:orientation="horizontal"
-                android:layout_marginTop="10dip">
+                android:layout_marginTop="10dip"
+                android:visibility="gone">
             </LinearLayout>
 
             <Button
