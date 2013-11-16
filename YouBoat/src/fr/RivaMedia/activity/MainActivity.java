@@ -31,9 +31,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _slider_mes_alertes;
 	View _slider_informations;
 	View _slider_contact_pro;
-	
+
 	View[] _slider_elements;
-	
+
 	View _progress;
 
 	@Override
@@ -43,6 +43,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		ajouterVues();
 		charger();
 		ajouterListeners();
+	}
+	public void afficherProgress(boolean afficher){
+		if(afficher)
+			_progress.setVisibility(View.VISIBLE);
+		else
+			_progress.setVisibility(View.GONE);
 	}
 
 	protected void ajouterVues(){
@@ -59,7 +65,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_mes_alertes = findViewById(R.id.slider_mes_alertes);
 		_slider_informations = findViewById(R.id.slider_informations);
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
-		
+
 		_slider_elements = new View[]{
 				_slider_annonces,
 				_slider_vendre,
@@ -71,7 +77,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 				_slider_informations,
 				_slider_contact_pro
 		};
-		
+
 		_progress = findViewById(R.id.header_progress);
 	}
 
@@ -81,7 +87,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	protected void ajouterListeners(){
 		_header_menu.setOnClickListener(this);
 	}
-	
+
 	public void ouvrirSlider(){
 		for(View v : this._slider_elements)
 			v.setOnClickListener(this);
@@ -95,9 +101,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	@Override
 	public void onClick(View v) {
-		
+
 		Log.d("ID",""+v.getId());
-		
+
 		switch(v.getId()){
 		case R.id.header_menu:
 			ouvrirSlider();
@@ -143,13 +149,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	}
 
-	public void afficherProgress(boolean afficher){
-		if(afficher)
-			_progress.setVisibility(View.VISIBLE);
-		else
-			_progress.setVisibility(View.GONE);
-	}
-	
+
+
 	public void afficherAnnonces(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new Annonces());

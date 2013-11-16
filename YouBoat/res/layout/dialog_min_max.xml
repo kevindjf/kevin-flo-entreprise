@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dip"
         android:background="@color/bleu_claire"
+        android:textSize="21sp"
+        android:textColor="@color/black"
         android:text="titre" />
 
     <RelativeLayout
@@ -36,12 +38,14 @@
 
         <SeekBar
             android:id="@+id/min"
-            android:layout_width="match_parent"
+            style="@style/CustomSeekBar"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/min_valeur"
             android:layout_toRightOf="@+id/min_label"
-            android:max="50000" />
+            android:max="50000"
+            android:padding="15dip" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -68,12 +72,14 @@
 
         <SeekBar
             android:id="@+id/max"
+            style="@style/CustomSeekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/max_valeur"
             android:layout_toRightOf="@+id/max_label"
-            android:max="50000" />
+            android:max="50000"
+            android:padding="15dip" />
     </RelativeLayout>
 
     <Button
