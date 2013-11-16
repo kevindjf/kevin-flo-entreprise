@@ -31,13 +31,17 @@
     <string name="description">Description</string>
     <string name="description_maj">DESCRIPTION</string>
     <string name="description_boat_on_demand">Décrivez le bateau que vous cherchez, un professionnel vous proposera directement le modèle correspondant à votre budget !</string>
+    <string name="diesel">Diesel</string>
     <string name="distributeur_de_la_marque">Distributeur de la marque</string>
     <string name="distributeur_de_la_marque_dots">Distributeur de la marque :</string>
     <string name="divers">Divers</string>
     <string name="dom_tom">Dom-Tom</string>
     <string name="effacer">Effacer</string>
     <string name="email">E-Mail</string>
+    <string name="energie">Diesel</string>
+    <string name="energie">Energie</string>
     <string name="energie_star">Energie *</string>
+    <string name="essence">Essence</string>
     <string name="etape_suivante">ETAPE SUIVANTE</string>
     <string name="etat">Etat</string>
     <string name="facultatif">facultatif</string>
@@ -62,6 +66,7 @@
     <string name="mes_alertes">Mes alertes</string>
     <string name="max">Max :</string>
     <string name="min">Min :</string>
+    <string name="moins">-</string>
     <string name="moteurs">Moteurs</string>
     <string name="moteurs_hb_lb">MOTEURS HB / LB</string>
     <string name="motorisation">Motorisation</string>

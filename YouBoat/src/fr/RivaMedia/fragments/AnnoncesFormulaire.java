@@ -221,7 +221,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		transaction.commit();
 	}
 	protected void demanderCategorie(){
-		if(_type == null){
+		if(recherche_type == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
@@ -258,7 +258,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 				).show();
 	}
 	protected void demanderChantierModele(){
-		if(_type == null){
+		if(recherche_type == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else if(typeAnnonces == Annonces.BATEAUX){
@@ -320,7 +320,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 				).show();
 	}
 	protected void demanderMarque(){
-		if(_type == null){
+		if(recherche_type == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
@@ -393,6 +393,8 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		if(from instanceof TypeSelector){
 			recherche_type = item;
 			((TextView)_type.findViewById(R.id.text)).setText(value);
+			recherche_categorie = null;
+			((TextView)_categorie.findViewById(R.id.text)).setText("");
 
 		}
 		else if(from instanceof CategorieSelector){

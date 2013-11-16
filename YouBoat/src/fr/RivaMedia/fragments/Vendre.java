@@ -1,13 +1,19 @@
 package fr.RivaMedia.fragments;
 
 import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.ItemSelectedListener;
+import fr.RivaMedia.fragments.selector.*;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /** 
  * Etoile = requis
@@ -26,13 +32,11 @@ import android.widget.TextView;
  *         Caracteristiques=[Intitule,Prix]
  *         Photo&Description=[Description,AjouterPhoto]
  */
-public class Vendre extends Fragment implements View.OnClickListener{
+public class Vendre extends Fragment implements View.OnClickListener, ItemSelectedListener{
 
 	View _view;
 
-	public static final int VENDRE_BATEAUX = 0;
-	public static final int VENDRE_MOTEURS = 0;
-	public static final int VENDRE_DIVERS = 0;
+	private int typeVente;
 
 	private View _boutonBateaux;
 	private View _boutonMoteurs;
@@ -71,6 +75,30 @@ public class Vendre extends Fragment implements View.OnClickListener{
 	View[] _vuesDivers;
 	
 	String[] _texteInitial;
+	
+	
+	int demanderMarque = 0;
+	private static int DEMANDER_MARQUE_MODELE = 1;
+	private static int DEMANDER_MARQUE_MOTEUR = 2;
+	
+	String vendre_type = null;
+	String vndre_categorie = null;
+	String vendre_marque = null; //aussi chantier/modele
+	String vendre_annee = null;
+	String vendre_localisation = null;
+	String vendre_prix = null;
+	String vendre_nombre_moteur = null;
+	String vendre_puissance = null;
+	String vendre_marque_moteur = null;
+	String vendre_annee_moteur = null;
+	String vendre_description = null;
+	
+	String vendre_energie = null;
+	
+	String vendre_intitule = null;
+	
+	String[] vendre_valeurs;
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -125,9 +153,6 @@ public class Vendre extends Fragment implements View.OnClickListener{
 				_puissanceCH,
 				_marqueMoteur,
 				_anneeMoteur,
-				_description,
-				_ajouterPhoto,
-				_etapeSuivante,
 				_marqueModele,
 				_energie,
 				_puissance,
@@ -178,6 +203,22 @@ public class Vendre extends Fragment implements View.OnClickListener{
 				texte = ((EditText)o).getHint().toString();
 			_texteInitial[i] = texte;
 		}
+		
+		vendre_valeurs = new String[]{
+				vendre_type,
+				vndre_categorie,
+				vendre_marque,
+				vendre_annee,
+				vendre_localisation,
+				vendre_prix,
+				vendre_nombre_moteur,
+				vendre_puissance,
+				vendre_marque_moteur,
+				vendre_annee_moteur,
+				vendre_description,
+				vendre_energie,
+				vendre_intitule
+		};
 	}
 
 	public void ajouterListeners(){
@@ -236,45 +277,101 @@ public class Vendre extends Fragment implements View.OnClickListener{
 			break;
 		}
 	}
+	
+	private void demanderType() {
+		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		transaction.add(R.id.main_fragment, new TypeSelector(this));
+		transaction.addToBackStack(null);
+		transaction.commit();
+	}
+	
+	private void demanderChantierModele() {
+		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		transaction.add(R.id.main_fragment, new ChantierModeleSelector(vendre_type,this));
+		transaction.addToBackStack(null);
+		transaction.commit();
+	}
 
 	private void demanderCategorie() {
-		// TODO Auto-generated method stub
-		
+		if(vendre_type == null){
+			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
+		}
+		else{
+			if(typeVente == Annonces.BATEAUX){
+				FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+				transaction.add(R.id.main_fragment, new CategorieSelector(vendre_type,this));
+				transaction.addToBackStack(null);
+				transaction.commit();
+			}
+			else{
+				FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+				transaction.add(R.id.main_fragment, new CategorieSelector(""+typeVente,this));
+				transaction.addToBackStack(null);
+				transaction.commit();
+			}
+		}
 	}
 
 	private void demanderEnergie() {
-		// TODO Auto-generated method stub
-		
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
+		alertBuilder.setTitle(getActivity().getResources().getString(R.string.energie));
+
+		final String[] items = new String[]{
+				getActivity().getResources().getString(R.string.diesel),
+				getActivity().getResources().getString(R.string.essence),
+				getActivity().getResources().getString(R.string.moins)
+		};
+
+		alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				vendre_energie = items[which];
+				((TextView)_energie.findViewById(R.id.text)).setText(vendre_energie);
+			}
+		});
+
+		alertBuilder.create().show();
 	}
 
 	private void demanderMarqueModele() {
-		// TODO Auto-generated method stub
-		
+		if(vendre_type == null){
+			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
+		}
+		else{
+			FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+			transaction.add(R.id.main_fragment, new MarqueSelector(""+typeVente,this));
+			transaction.addToBackStack(null);
+			transaction.commit();
+			demanderMarque = DEMANDER_MARQUE_MODELE;
+		}
+	}
+
+
+	private void demanderNombreMoteur() {
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
+		alertBuilder.setTitle(getActivity().getResources().getString(R.string.nombre_moteur));
+
+		final String[] items = new String[]{
+				"1",
+				"2",
+				"3"
+		};
+
+		alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				vendre_nombre_moteur = items[which];
+				((TextView)_nombreMoteur.findViewById(R.id.text)).setText(vendre_nombre_moteur);
+			}
+		});
+
+		alertBuilder.create().show();
 	}
 
 	private void demanderMarqueMoteur() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void demanderNombreMoteur() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void demanderChantierModele() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void demanderType() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void etapeSuivante() {
-		// TODO Auto-generated method stub
-		
+		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		transaction.add(R.id.main_fragment, new MarqueSelector(""+Annonces.MOTEURS,this));
+		transaction.addToBackStack(null);
+		transaction.commit();
+		demanderMarque = DEMANDER_MARQUE_MOTEUR;
 	}
 
 	private void ajouterPhoto() {
@@ -295,9 +392,13 @@ public class Vendre extends Fragment implements View.OnClickListener{
 			//spinners, etc
 			++i;
 		}
+		for(int j=0;j<vendre_valeurs.length;++j)
+			vendre_valeurs[j] = "";
 	}
 
 	public void vendreBateaux(){
+		typeVente = Annonces.BATEAUX;
+		
 		_boutonBateaux.setSelected(true);
 		_boutonDivers.setSelected(false);
 		_boutonMoteurs.setSelected(false);
@@ -306,6 +407,9 @@ public class Vendre extends Fragment implements View.OnClickListener{
 
 		for(View v : _vuesBateaux)
 			v.setVisibility(View.VISIBLE);
+		
+		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.requis));
+		_type.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
 
 		_type.setOnClickListener(this);
 		_categorie.setOnClickListener(this);
@@ -315,6 +419,8 @@ public class Vendre extends Fragment implements View.OnClickListener{
 		_marqueMoteur.setOnClickListener(this);
 	}
 	public void vendreMoteurs(){
+		typeVente = Annonces.MOTEURS;
+		
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(false);
 		_boutonMoteurs.setSelected(true);
@@ -323,21 +429,42 @@ public class Vendre extends Fragment implements View.OnClickListener{
 
 		for(View v : _vuesMoteurs)
 			v.setVisibility(View.VISIBLE);
+		
+		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.type));
+		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
 
 		_categorie.setOnClickListener(this);
 		_marqueModele.setOnClickListener(this);
 		_energie.setOnClickListener(this);
 	}
 	public void vendreDivers(){
+		typeVente = Annonces.DIVERS;
+		
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(true);
 		_boutonMoteurs.setSelected(false);
 
 		reset();
+		
+		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.accessoires));
+		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
 
 		for(View v : _vuesDivers)
 			v.setVisibility(View.VISIBLE);
 
 	}
 
+	@Override
+	public void itemSelected(Object from, String item, String value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void etapeSuivante() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	
 }

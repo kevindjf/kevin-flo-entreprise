@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 public class Annonces extends Fragment implements View.OnClickListener{
 
+	//TODO recuperer le nombre d'annonces du jour
 	private TextView _ajourdhuiAnnonces;
 	private View _boutonBateauxVoiliers;
 	private View _boutonMoteurs;
