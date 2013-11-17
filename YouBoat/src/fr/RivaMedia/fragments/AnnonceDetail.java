@@ -60,6 +60,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 	TextView postaleVendeur;
 	TextView tel_principal;
 	TextView tel_secondaire;
+	TextView email;
 
 	/*
 	ImageView imageprincipale;
@@ -69,6 +70,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 	ImageView image4;
 	 */
 	View relative_tel_secondaire;
+	View relative_email;
 
 
 	PagerAdapter _pagesAdapter;
@@ -101,6 +103,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 	protected void charger(){
 		screen = _view.findViewById(R.id.screen);
 		relative_tel_secondaire = _view.findViewById(R.id.relative_tel_2);
+		relative_email = _view.findViewById(R.id.relative_email);
 		titre_type = (TextView) _view.findViewById(R.id.type_title);	
 		subtitre_type = (TextView) _view.findViewById(R.id.sous_type_title);
 		type_bateau = (TextView) _view.findViewById(R.id.bateau_type);
@@ -122,6 +125,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 		postaleVendeur = (TextView) _view.findViewById(R.id.postale_vendeur);
 		tel_principal = (TextView) _view.findViewById(R.id.telephone_principal);
 		tel_secondaire = (TextView) _view.findViewById(R.id.telephone_secondaire);
+		email = (TextView) _view.findViewById(R.id.email);
 		/*
 		imageprincipale = (ImageView) _view.findViewById(R.id.principal_picture);
 		image1 = (ImageView) _view.findViewById(R.id.other_picture_1);
@@ -222,6 +226,10 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 					if(bateau.getVendeur().getTel2() != null){
 						relative_tel_secondaire.setVisibility(View.VISIBLE);
 						tel_secondaire.setText(bateau.getVendeur().getTel2());
+					}
+					if(bateau.getVendeur().getEmail() != null){
+						relative_email.setVisibility(View.VISIBLE);
+						email.setText(bateau.getVendeur().getEmail());
 					}
 				}
 			}
