@@ -571,7 +571,8 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type_d_energie), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			if(vendre_prix == null){
+			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString();
+			if(vendre_prix.length()==0){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
 				return null;
 			}
@@ -622,8 +623,14 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	}
 	
 	private void etapeSuivante() {
-		// TODO Auto-generated method stub
-		
+		List<NameValuePair> donneesVente = recupererDonnees();
+		if(donneesVente == null)
+			return;
+
+		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		transaction.add(R.id.main_fragment, new VendeurFormulaire(typeVente,donneesVente));
+		transaction.addToBackStack(null);
+		transaction.commit();
 	}
 
 
