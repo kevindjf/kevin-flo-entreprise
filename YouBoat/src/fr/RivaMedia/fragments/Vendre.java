@@ -5,10 +5,6 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 
-import fr.RivaMedia.R;
-import fr.RivaMedia.fragments.core.ItemSelectedListener;
-import fr.RivaMedia.fragments.selector.*;
-import fr.RivaMedia.net.core.Net;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
@@ -22,6 +18,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.ItemSelectedListener;
+import fr.RivaMedia.fragments.selector.CategorieSelector;
+import fr.RivaMedia.fragments.selector.ChantierModeleSelector;
+import fr.RivaMedia.fragments.selector.MarqueSelector;
+import fr.RivaMedia.fragments.selector.TypeSelector;
+import fr.RivaMedia.net.core.Net;
 
 /** 
  * Etoile = requis

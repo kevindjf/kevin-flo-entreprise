@@ -11,12 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.ActualiteListAdapter;
-import fr.RivaMedia.factory.NewsFactory;
-import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.News;
-import fr.RivaMedia.model.Service;
-import fr.RivaMedia.model.Type;
-import fr.RivaMedia.net.NetChargement;
 import fr.RivaMedia.net.NetNews;
 
 public class Actualites extends Fragment{

@@ -3,7 +3,7 @@ package fr.RivaMedia.factory;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.RivaMedia.model.*;
+import fr.RivaMedia.model.Bateau;
 
 public class BateauFactory {
     

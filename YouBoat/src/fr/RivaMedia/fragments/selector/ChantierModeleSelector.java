@@ -2,15 +2,9 @@ package fr.RivaMedia.fragments.selector;
 
 import java.util.List;
 
-import fr.RivaMedia.R;
-import fr.RivaMedia.fragments.core.ItemSelectedListener;
-import fr.RivaMedia.model.Categorie;
-import fr.RivaMedia.model.core.Donnees;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +12,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.ItemSelectedListener;
+import fr.RivaMedia.model.Categorie;
+import fr.RivaMedia.model.core.Donnees;
 
 //TODO n'affiche pas les bonnes données
 @SuppressLint("ValidFragment")

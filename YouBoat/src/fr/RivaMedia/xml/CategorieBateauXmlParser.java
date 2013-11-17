@@ -6,7 +6,6 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 
 import android.util.Log;
-
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.xml.core.XmlParser;
 

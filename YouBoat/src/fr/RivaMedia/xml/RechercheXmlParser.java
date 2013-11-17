@@ -6,8 +6,10 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 
 import android.util.Log;
-
-import fr.RivaMedia.model.*;
+import fr.RivaMedia.model.Bateau;
+import fr.RivaMedia.model.Lien;
+import fr.RivaMedia.model.Moteur;
+import fr.RivaMedia.model.Vendeur;
 import fr.RivaMedia.xml.core.XmlParser;
 
 public class RechercheXmlParser extends XmlParser {
@@ -175,6 +177,7 @@ public class RechercheXmlParser extends XmlParser {
 					lien.setType(getXpp().getAttributeValue(null, "type"));
 					lien.setUrl(getXpp().getAttributeValue(null, "url"));
 					liens.add(lien);
+					getString();
 				}
 			}
 

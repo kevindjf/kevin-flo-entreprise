@@ -1,14 +1,11 @@
 package fr.RivaMedia.net;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.NameValuePair;
-
 import fr.RivaMedia.Constantes;
-import fr.RivaMedia.model.*;
+import fr.RivaMedia.model.News;
 import fr.RivaMedia.net.core.Net;
-import fr.RivaMedia.xml.*;
+import fr.RivaMedia.xml.NewsXmlParser;
 
 public class NetNews extends Net{
 

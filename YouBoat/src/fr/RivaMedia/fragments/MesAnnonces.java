@@ -1,15 +1,15 @@
 package fr.RivaMedia.fragments;
 
 
-import fr.RivaMedia.R;
-import fr.RivaMedia.adapter.AnnonceListAdapter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import fr.RivaMedia.factory.*;
+import fr.RivaMedia.R;
+import fr.RivaMedia.adapter.AnnonceListAdapter;
+import fr.RivaMedia.factory.BateauFactory;
 
 public class MesAnnonces extends Fragment implements View.OnClickListener{
 

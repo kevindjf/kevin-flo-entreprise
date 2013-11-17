@@ -2,6 +2,7 @@ package fr.RivaMedia.factory;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import fr.RivaMedia.model.Marque;
 
 public class MarqueFactory {

@@ -17,8 +17,6 @@ import android.widget.ListView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
-import fr.RivaMedia.factory.BateauFactory;
-import fr.RivaMedia.net.NetNews;
 import fr.RivaMedia.net.NetRecherche;
 
 @SuppressLint("ValidFragment")

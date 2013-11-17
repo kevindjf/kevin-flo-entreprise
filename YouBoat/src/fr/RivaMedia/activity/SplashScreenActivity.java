@@ -2,17 +2,17 @@ package fr.RivaMedia.activity;
 
 import java.util.List;
 
-import fr.RivaMedia.Constantes;
-import fr.RivaMedia.R;
-import fr.RivaMedia.model.Marque;
-import fr.RivaMedia.model.Service;
-import fr.RivaMedia.model.Type;
-import fr.RivaMedia.model.core.Donnees;
-import fr.RivaMedia.net.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import fr.RivaMedia.Constantes;
+import fr.RivaMedia.R;
+import fr.RivaMedia.model.Marque;
+import fr.RivaMedia.model.Service;
+import fr.RivaMedia.model.core.Donnees;
+import fr.RivaMedia.net.NetChargement;
+import fr.RivaMedia.net.NetNews;
 
 public class SplashScreenActivity extends Activity{
 

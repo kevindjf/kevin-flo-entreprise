@@ -4,14 +4,13 @@ package fr.RivaMedia.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.RivaMedia.R;
-import fr.RivaMedia.view.AnnonceView;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import fr.RivaMedia.R;
+import fr.RivaMedia.view.AnnonceView;
 
 public class AnnonceListAdapter extends BaseAdapter  {
 

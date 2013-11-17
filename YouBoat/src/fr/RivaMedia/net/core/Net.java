@@ -30,11 +30,10 @@ import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
-import fr.RivaMedia.Constantes;
-
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.util.Log;
+import fr.RivaMedia.Constantes;
 
 public class Net {
 
