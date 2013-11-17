@@ -1,7 +1,5 @@
 package fr.RivaMedia.fragments;
 
-import fr.RivaMedia.Constantes;
-import fr.RivaMedia.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import fr.RivaMedia.R;
 
 public class Annonces extends Fragment implements View.OnClickListener{
 

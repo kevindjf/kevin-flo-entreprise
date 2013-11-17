@@ -3,7 +3,6 @@ package fr.RivaMedia.factory;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.RivaMedia.model.News;
 import fr.RivaMedia.model.Vendeur;
 
 public class VendeurFactory {

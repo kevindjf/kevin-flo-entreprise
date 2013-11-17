@@ -1,13 +1,13 @@
 package fr.RivaMedia.dialog;
 
-import fr.RivaMedia.R;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.view.*;
+import fr.RivaMedia.R;
 
 public class MinMaxDialog extends AlertDialog implements View.OnClickListener, OnSeekBarChangeListener
 {

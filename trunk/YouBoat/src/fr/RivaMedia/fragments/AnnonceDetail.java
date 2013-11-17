@@ -1,31 +1,33 @@
 package fr.RivaMedia.fragments;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.NameValuePair;
-
 import android.annotation.SuppressLint;
-import android.opengl.Visibility;
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.viewpagerindicator.CirclePageIndicator;
+
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.Gallery;
 import fr.RivaMedia.activity.MainActivity;
-import fr.RivaMedia.adapter.AnnonceListAdapter;
-import fr.RivaMedia.factory.BateauFactory;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Bateau;
-import fr.RivaMedia.net.NetNews;
+import fr.RivaMedia.model.Lien;
 import fr.RivaMedia.net.NetRecherche;
 import fr.RivaMedia.net.core.Net;
 
@@ -58,12 +60,23 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 	TextView postaleVendeur;
 	TextView tel_principal;
 	TextView tel_secondaire;
+
+	/*
 	ImageView imageprincipale;
 	ImageView image1;
 	ImageView image2;
 	ImageView image3;
 	ImageView image4;
+	 */
 	View relative_tel_secondaire;
+
+
+	PagerAdapter _pagesAdapter;
+	ViewPager _page;	
+	CirclePageIndicator _indicator;
+
+	LayoutInflater _inflater;
+
 	public AnnonceDetail(String id, String type){
 		this._id = id;
 		this._type = type;
@@ -78,6 +91,9 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 		((MainActivity)getActivity()).afficherProgress(true);
 		new ChargerAnnonceTask().execute();
+
+		this._inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
 
 		return _view;
 	}
@@ -106,70 +122,208 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 		postaleVendeur = (TextView) _view.findViewById(R.id.postale_vendeur);
 		tel_principal = (TextView) _view.findViewById(R.id.telephone_principal);
 		tel_secondaire = (TextView) _view.findViewById(R.id.telephone_secondaire);
+		/*
 		imageprincipale = (ImageView) _view.findViewById(R.id.principal_picture);
 		image1 = (ImageView) _view.findViewById(R.id.other_picture_1);
 		image2 = (ImageView) _view.findViewById(R.id.other_picture_2);
 		image3 = (ImageView) _view.findViewById(R.id.other_picture_3);
 		image4 = (ImageView) _view.findViewById(R.id.other_picture_4);
+		 */
+
+		_page = (ViewPager) getView().findViewById(R.id.annonce_detail_image_pager);
+
+		_indicator = (CirclePageIndicator)getView().findViewById(R.id.annonce_detail_image_pager_indicator);
+
 
 	}
 	protected void remplir(){
 		if(_annonce instanceof Bateau){
 			Bateau bateau = (Bateau) _annonce;
-			titre_type.setText(bateau.getTitle());
-			subtitre_type.setText(bateau.getMoteur().getInfoMoteur());
-			
-			type_bateau.setText(bateau.getType() + " > " +bateau.getCategorie());
-			longeur_text.setText(bateau.getLongueur());
-			largeur_text.setText(bateau.getLargeur());
-			cabines.setText(bateau.getNbCabines());
-			couchettes.setText(bateau.getNbCouchettes());
-			salle_de_bain.setText(bateau.getNbSallesDeBain());
-			annee.setText(bateau.getAnnee());
-			etat_text.setText(bateau.getEtat());
-			moteur_text.setText(bateau.getMoteur().getMarqueMoteur());
-			puissance_text.setText(bateau.getMoteur().getPuissanceMoteur());
-			propulsion_text.setText(bateau.getMoteur().getPropulsion());
-			nb_heures.setText(bateau.getMoteur().getHeureMoteur());
-			prix.setText(bateau.getPrix() + " " + bateau.getTaxePrix());
-			description_text.setText(bateau.getCommentaire());
-			
-			ImageLoaderCache.charger(bateau.getLien().getUrl(), imageprincipale);
+			if(bateau != null){
 
-			if(bateau.getPhotos().size() > 1){
-				image1.setVisibility(View.VISIBLE);
-				ImageLoaderCache.charger(bateau.getPhotos().get(0).getUrl(), image1);
+				if(bateau.getTitle() != null)
+					titre_type.setText(bateau.getTitle());
+				if(bateau.getMoteur() != null && bateau.getMoteur().getInfoMoteur() != null)
+					subtitre_type.setText(bateau.getMoteur().getInfoMoteur());
 
-			}
-			if(bateau.getPhotos().size() > 2){
-				image2.setVisibility(View.VISIBLE);
-				ImageLoaderCache.charger(bateau.getPhotos().get(1).getUrl(), image2);
+				if(bateau.getType() != null && bateau.getCategorie() != null)
+					type_bateau.setText(bateau.getType() + " > " +bateau.getCategorie());
+				if(bateau.getLongueur() != null)
+					longeur_text.setText(bateau.getLongueur());
+				if(bateau.getLargeur() != null)
+					largeur_text.setText(bateau.getLargeur());
+				if(bateau.getNbCabines() != null)
+					cabines.setText(bateau.getNbCabines());
+				if(bateau.getNbCouchettes() != null)
+					couchettes.setText(bateau.getNbCouchettes());
+				if(bateau.getNbSallesDeBain() != null)
+					salle_de_bain.setText(bateau.getNbSallesDeBain());
+				if(bateau.getAnnee() != null)
+					annee.setText(bateau.getAnnee());
+				if(bateau.getEtat() != null)
+					etat_text.setText(bateau.getEtat());
+				if(bateau.getMoteur() != null){ 
+					if(bateau.getMoteur().getMarqueMoteur() != null)
+						moteur_text.setText(bateau.getMoteur().getMarqueMoteur());
+					if(bateau.getMoteur().getPuissanceMoteur() != null)
+						puissance_text.setText(bateau.getMoteur().getPuissanceMoteur());
+					if(bateau.getMoteur().getPropulsion() != null)
+						propulsion_text.setText(bateau.getMoteur().getPropulsion());
+					if(bateau.getMoteur().getHeureMoteur() != null)
+						nb_heures.setText(bateau.getMoteur().getHeureMoteur());
+				}
+				if(bateau.getPrix() != null && bateau.getTaxePrix() != null)
+					prix.setText(bateau.getPrix() + " " + bateau.getTaxePrix());
+				if(bateau.getCommentaire() != null)
+					description_text.setText(bateau.getCommentaire());
 
-			}
-			if(bateau.getPhotos().size() > 3){
-				image3.setVisibility(View.VISIBLE);
-				ImageLoaderCache.charger(bateau.getPhotos().get(2).getUrl(), image3);
+				//if(bateau.getLien() != null && bateau.getLien().getUrl()!= null)
+				//	ImageLoaderCache.charger(bateau.getLien().getUrl(), imageprincipale);
 
-			}
-			if(bateau.getPhotos().size() > 4){
-				image4.setVisibility(View.VISIBLE);
-				ImageLoaderCache.charger(bateau.getPhotos().get(3).getUrl(), image4);
+				/*
+				if(bateau.getPhotos() != null){
+					if(bateau.getPhotos().size() > 1){
+						imageprincipale.setVisibility(View.VISIBLE);
+						ImageLoaderCache.charger(bateau.getPhotos().get(0).getUrl(), imageprincipale);
 
-			}
-			if(bateau.getVendeur() != null){
-			nomVendeur.setText(bateau.getVendeur().getNom());
-			rueVendeur.setText(bateau.getVendeur().getAdresse());
-			postaleVendeur.setText(bateau.getVendeur().getCodePostal() + " " + bateau.getVendeur().getVille());
-			tel_principal.setText(bateau.getVendeur().getTel1());
-			if(!bateau.getVendeur().getTel2().equals("")){
-			relative_tel_secondaire.setVisibility(View.VISIBLE);
-			tel_secondaire.setText(bateau.getVendeur().getTel2());
-			}
+					}
+					if(bateau.getPhotos().size() > 2){
+						image1.setVisibility(View.VISIBLE);
+						ImageLoaderCache.charger(bateau.getPhotos().get(1).getUrl(), image1);
+
+					}
+					if(bateau.getPhotos().size() > 3){
+						image2.setVisibility(View.VISIBLE);
+						ImageLoaderCache.charger(bateau.getPhotos().get(2).getUrl(), image2);
+
+					}
+					if(bateau.getPhotos().size() > 4){
+						image3.setVisibility(View.VISIBLE);
+						ImageLoaderCache.charger(bateau.getPhotos().get(3).getUrl(), image3);
+
+					}
+					if(bateau.getPhotos().size() > 5){
+						image4.setVisibility(View.VISIBLE);
+						ImageLoaderCache.charger(bateau.getPhotos().get(3).getUrl(), image4);
+
+					}
+
+				}
+				 */
+				if(bateau.getVendeur() != null){
+					if(bateau.getVendeur().getNom() != null)
+						nomVendeur.setText(bateau.getVendeur().getNom());
+					if(bateau.getVendeur().getAdresse() != null)
+						rueVendeur.setText(bateau.getVendeur().getAdresse());
+					if(bateau.getVendeur().getCodePostal() != null && bateau.getVendeur().getVille() != null)
+						postaleVendeur.setText(bateau.getVendeur().getCodePostal() + " " + bateau.getVendeur().getVille());
+					if(bateau.getVendeur().getTel1() != null)
+						tel_principal.setText(bateau.getVendeur().getTel1());
+					if(bateau.getVendeur().getTel2() != null){
+						relative_tel_secondaire.setVisibility(View.VISIBLE);
+						tel_secondaire.setText(bateau.getVendeur().getTel2());
+					}
+				}
 			}
 		}
 		screen.setVisibility(View.VISIBLE);
 
+		_pagesAdapter = new ImagePagesAdapter();
+		_page.setAdapter(_pagesAdapter);
+		_indicator.setViewPager(_page);
+		//_page.getAdapter().notifyDataSetChanged();
 	}
+
+
+	public class ImagePagesAdapter extends PagerAdapter {
+
+
+		public ArrayList<String> getListeUrls(List<Lien> ls){
+			ArrayList<String> urls = new ArrayList<String>();
+			for(Lien lien : ls){
+				urls.add(lien.getUrl());
+			}
+			return urls;
+		}
+
+		@Override
+		public Object instantiateItem(ViewGroup container, int position) {
+
+			if(_annonce instanceof Bateau && _annonce != null){
+				final Bateau bateau = (Bateau) _annonce;
+
+				String _urlImage = bateau.getPhotos().get(position).getUrl();
+
+				View	_layout = _inflater.inflate(R.layout.pager_image, container, false);
+				ImageView	_imageView = (ImageView)_layout.findViewById(R.id.image);
+
+				_imageView.setOnClickListener(new View.OnClickListener() {
+
+					@Override
+					public void onClick(View arg0) {
+						Intent intent = new Intent(AnnonceDetail.this.getActivity(),Gallery.class);
+						if(bateau.getTitle() != null)
+							intent.putExtra(Gallery.TEXTE, bateau.getTitle());
+						intent.putStringArrayListExtra(Gallery.IMAGES, getListeUrls(bateau.getPhotos()));
+						getActivity().startActivity(intent);
+					}
+				});
+
+				ImageLoaderCache.load(getActivity());
+				try{
+					ImageLoaderCache.charger(_urlImage, _imageView);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+
+				((ViewPager) container).addView(_layout,position);
+				return _layout;
+
+			}
+
+			return null;
+		}
+
+		@Override
+		public int getCount() {
+			if(_annonce instanceof Bateau && _annonce != null){
+				Bateau bateau = (Bateau) _annonce;
+				if(bateau.getPhotos() != null)
+					return bateau.getPhotos().size();
+				
+			}
+			return 0;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return "";
+		}
+
+		@Override
+		public boolean isViewFromObject(View view, Object object) {
+			return view==((View)object);
+		}
+
+		@Override
+		public int getItemPosition(Object object) {
+			return POSITION_NONE;
+		}
+
+		@Override
+		public void destroyItem(View container, int position, Object object) {
+			// TODO Auto-generated method stub
+			//super.destroyItem(container, position, object);
+		}
+
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object) {
+			// TODO Auto-generated method stub
+			//super.destroyItem(container, position, object);
+		}
+	}
+
+
 	protected void ajouterListeners(){
 	}
 

@@ -1,9 +1,5 @@
 package fr.RivaMedia.fragments;
 
-import java.util.List;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,17 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
-import fr.RivaMedia.adapter.ActualiteListAdapter;
-import fr.RivaMedia.factory.NewsFactory;
 import fr.RivaMedia.image.ImageLoaderCache;
-import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.News;
-import fr.RivaMedia.model.Service;
-import fr.RivaMedia.model.Type;
-import fr.RivaMedia.net.NetChargement;
 import fr.RivaMedia.net.NetNews;
 
 /**

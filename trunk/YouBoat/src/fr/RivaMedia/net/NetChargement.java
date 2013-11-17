@@ -6,9 +6,13 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 
 import fr.RivaMedia.Constantes;
-import fr.RivaMedia.model.*;
+import fr.RivaMedia.model.Marque;
+import fr.RivaMedia.model.Service;
+import fr.RivaMedia.model.Type;
 import fr.RivaMedia.net.core.Net;
-import fr.RivaMedia.xml.*;
+import fr.RivaMedia.xml.CategorieBateauXmlParser;
+import fr.RivaMedia.xml.MarqueXmlParser;
+import fr.RivaMedia.xml.ServiceXmlParser;
 
 public class NetChargement extends Net{
 

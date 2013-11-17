@@ -1,12 +1,8 @@
 package fr.RivaMedia.fragments.selector;
 
-import fr.RivaMedia.Constantes;
-import fr.RivaMedia.R;
-import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import fr.RivaMedia.Constantes;
+import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.ItemSelectedListener;
 
 @SuppressLint("ValidFragment")
 public class TypeSelector extends Fragment implements OnItemClickListener{

@@ -1,7 +1,6 @@
 package fr.RivaMedia.view;
 
 import android.content.Context;
-import android.renderscript.Element;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MotionEvent;
@@ -10,10 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.ActualiteDetail;
-import fr.RivaMedia.fragments.AnnoncesListe;
 import fr.RivaMedia.image.ImageLoaderCache;
-import fr.RivaMedia.model.Bateau;
-import fr.RivaMedia.model.Moteur;
 import fr.RivaMedia.model.News;
 import fr.RivaMedia.view.core.YouBoatView;
 

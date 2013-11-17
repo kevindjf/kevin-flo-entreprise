@@ -6,10 +6,7 @@ import org.apache.http.NameValuePair;
 
 import android.util.Log;
 import fr.RivaMedia.Constantes;
-import fr.RivaMedia.model.Bateau;
-import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.net.core.Net;
-import fr.RivaMedia.xml.MarqueXmlParser;
 import fr.RivaMedia.xml.RechercheXmlParser;
 
 public class NetRecherche extends Net {

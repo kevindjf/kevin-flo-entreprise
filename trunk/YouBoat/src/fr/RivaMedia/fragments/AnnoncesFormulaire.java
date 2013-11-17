@@ -7,7 +7,6 @@ import org.apache.http.NameValuePair;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -22,9 +21,11 @@ import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.dialog.MinMaxDialog;
 import fr.RivaMedia.dialog.OnMinMaxListener;
-import fr.RivaMedia.fragments.core.*;
-import fr.RivaMedia.fragments.selector.*;
-import fr.RivaMedia.net.NetRecherche;
+import fr.RivaMedia.fragments.core.ItemSelectedListener;
+import fr.RivaMedia.fragments.selector.CategorieSelector;
+import fr.RivaMedia.fragments.selector.ChantierModeleSelector;
+import fr.RivaMedia.fragments.selector.MarqueSelector;
+import fr.RivaMedia.fragments.selector.TypeSelector;
 import fr.RivaMedia.net.core.Net;
 
 /**

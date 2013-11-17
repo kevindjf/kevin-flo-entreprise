@@ -1,12 +1,12 @@
 package fr.RivaMedia.activity;
 
 
-import fr.RivaMedia.R;
-import fr.RivaMedia.image.ImageLoaderCache;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import fr.RivaMedia.R;
+import fr.RivaMedia.image.ImageLoaderCache;
 
 public class MagasineActivity extends Activity{
 

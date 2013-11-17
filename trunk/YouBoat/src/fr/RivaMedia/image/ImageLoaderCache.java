@@ -1,11 +1,11 @@
 package fr.RivaMedia.image;
 
+import android.content.Context;
+import android.widget.ImageView;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-
-import android.content.Context;
-import android.widget.ImageView;
 
 public class ImageLoaderCache {
 	
