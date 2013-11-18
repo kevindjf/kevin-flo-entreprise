@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.News;
 import fr.RivaMedia.net.NetNews;
@@ -31,6 +32,8 @@ public class ActualiteDetail extends Fragment{
 	TextView _date;
 	TextView _texte;
 
+	ChargerNewsTask task;
+
 	public ActualiteDetail(String id){
 		this._id = id;
 	}
@@ -40,12 +43,17 @@ public class ActualiteDetail extends Fragment{
 
 		_view = inflater.inflate(R.layout.actualite_details, container, false);
 
+		((MainActivity)getActivity()).afficherProgress(false);
+
 		ImageLoaderCache.load(getActivity());
 
-		new ChargerNewsTask().execute();
+		task = new ChargerNewsTask();
+		task.execute();
 
 		return _view;
 	}
+
+
 
 	protected void chargerNews(){
 		charger();
@@ -102,5 +110,16 @@ public class ActualiteDetail extends Fragment{
 
 		protected void onPostExecute(){
 		}
+	}
+
+
+	@Override
+	public void onPause() {
+		((MainActivity)getActivity()).afficherProgress(false);
+		try{
+			this.task.cancel(true);
+		}
+		catch(Exception e){e.printStackTrace();}
+		super.onPause();
 	}
 }

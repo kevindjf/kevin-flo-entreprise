@@ -18,5 +18,7 @@
     <color name="rounded_container_border">#3b3f44</color>
     <color name="light_gray_header_color">#646663</color>
     <color name="blue_progress">#34B3E1</color>
+    <color name="rouge">#FF0000</color>
+    <color name="rouge_claire">#FF889A</color>
 
 </resources>

@@ -26,7 +26,7 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.activity.Gallery;
 import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.image.ImageLoaderCache;
-import fr.RivaMedia.model.Bateau;
+import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.model.Lien;
 import fr.RivaMedia.net.NetRecherche;
 import fr.RivaMedia.net.core.Net;
@@ -79,6 +79,8 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 	LayoutInflater _inflater;
 
+	private ChargerAnnonceTask task = null;
+
 	public AnnonceDetail(String id, String type){
 		this._id = id;
 		this._type = type;
@@ -92,13 +94,16 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 		ImageLoaderCache.load(getActivity());
 
 		((MainActivity)getActivity()).afficherProgress(true);
-		new ChargerAnnonceTask().execute();
+		task = new ChargerAnnonceTask();
+		task.execute();
 
 		this._inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
 		return _view;
 	}
+
+
 
 	protected void charger(){
 		screen = _view.findViewById(R.id.screen);
@@ -141,8 +146,8 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 	}
 	protected void remplir(){
-		if(_annonce instanceof Bateau){
-			Bateau bateau = (Bateau) _annonce;
+		if(_annonce instanceof Annonce){
+			Annonce bateau = (Annonce) _annonce;
 			if(bateau != null){
 
 				if(bateau.getTitle() != null)
@@ -177,7 +182,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 						nb_heures.setText(bateau.getMoteur().getHeureMoteur());
 				}
 				if(bateau.getPrix() != null && bateau.getTaxePrix() != null)
-					prix.setText(bateau.getPrix() + " " + bateau.getTaxePrix());
+					prix.setText(bateau.getPrix() + " Û " + bateau.getTaxePrix());
 				if(bateau.getCommentaire() != null)
 					description_text.setText(bateau.getCommentaire());
 
@@ -257,8 +262,8 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
 
-			if(_annonce instanceof Bateau && _annonce != null){
-				final Bateau bateau = (Bateau) _annonce;
+			if(_annonce instanceof Annonce && _annonce != null){
+				final Annonce bateau = (Annonce) _annonce;
 
 				String _urlImage = bateau.getPhotos().get(position).getUrl();
 
@@ -294,11 +299,11 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 		@Override
 		public int getCount() {
-			if(_annonce instanceof Bateau && _annonce != null){
-				Bateau bateau = (Bateau) _annonce;
+			if(_annonce instanceof Annonce && _annonce != null){
+				Annonce bateau = (Annonce) _annonce;
 				if(bateau.getPhotos() != null)
 					return bateau.getPhotos().size();
-				
+
 			}
 			return 0;
 		}
@@ -397,6 +402,17 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 		protected void onPostExecute(){
 		}
+	}
+
+
+	@Override
+	public void onPause() {
+		((MainActivity)getActivity()).afficherProgress(false);
+		try{
+			this.task.cancel(true);
+		}
+		catch(Exception e){e.printStackTrace();}
+		super.onPause();
 	}
 
 }

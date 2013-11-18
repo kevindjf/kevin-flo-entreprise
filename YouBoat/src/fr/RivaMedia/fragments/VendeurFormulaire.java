@@ -16,12 +16,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.MainActivity;
+import fr.RivaMedia.fragments.core.Effaceable;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.PaysSelector;
 import fr.RivaMedia.net.core.Net;
 
 @SuppressLint("ValidFragment")
-public class VendeurFormulaire extends Fragment implements View.OnClickListener, ItemSelectedListener{
+public class VendeurFormulaire extends Fragment implements View.OnClickListener, ItemSelectedListener, Effaceable{
 
 	View _view;
 	View _valider;
@@ -35,6 +37,9 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 
 	int _typeVente;
 	List<NameValuePair> _donneesVente;
+	
+	View[] views;
+	String[] valeurs;
 	
 	public VendeurFormulaire(int typeVente, List<NameValuePair> donneesVente) {
 		_typeVente = typeVente;
@@ -60,11 +65,53 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 		_telephone = _view.findViewById(R.id.vendeur_formulaire_telephone);	
 		_codePostal = _view.findViewById(R.id.vendeur_formulaire_code_postal);	
 		_pays = _view.findViewById(R.id.vendeur_formulaire_pays);	
+		
+		views = new View[]{
+				 _nom,
+				 _prenom,
+				 _email,
+				 _telephone,
+				 _codePostal,
+				 _pays
+		};
+		
+		recupererValeursInitiales();
 
+	}
+	
+	protected void recupererValeursInitiales(){
+		valeurs = new String[views.length];
+		int i=0;
+		for(View v : views){
+			v.setOnClickListener(null);
+			v.setVisibility(View.GONE);
+			Object o = v.findViewById(R.id.text);
+			if(o instanceof TextView)
+				valeurs[i] = ((TextView)o).getText().toString();
+			else if(o instanceof EditText)
+				valeurs[i] = ((EditText)o).getHint().toString();
+			//spinners, etc
+			i++;
+		}
 	}
 
 	protected void remplir(){
-
+		
+	}
+	
+	protected void reset(){
+		int i=0;
+		for(View v : views){
+			v.setOnClickListener(null);
+			v.setVisibility(View.GONE);
+			Object o = v.findViewById(R.id.text);
+			if(o instanceof TextView)
+				((TextView)o).setText(valeurs[i]);
+			else if(o instanceof EditText)
+				((EditText)o).setHint(valeurs[i]);
+			//spinners, etc
+			i++;
+		}
 	}
 
 	protected void ajouterListeners(){
@@ -134,6 +181,24 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 	private void validerVendeur(List<NameValuePair> recupererDonnees) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void effacer() {
+		reset();
+		ajouterListeners();
+	}
+	
+	@Override
+	public void onPause() {
+		((MainActivity)getActivity()).cacherEffacer();
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		((MainActivity)getActivity()).afficherEffacer(this);
+		super.onResume();
 	}
 
 }

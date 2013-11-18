@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.ActualiteListAdapter;
 import fr.RivaMedia.model.News;
 import fr.RivaMedia.net.NetNews;
@@ -21,12 +22,18 @@ public class Actualites extends Fragment{
 	ActualiteListAdapter _adapter = null;
 	
 	List<News> _news = null;
+	
+	ChargerNewsTask task;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
 		_view = inflater.inflate(R.layout.actualites, container, false);
 		
-		new ChargerNewsTask().execute();
+		((MainActivity)getActivity()).afficherProgress(true);
+		
+		task = new ChargerNewsTask();
+		task.execute();
 		
 		return _view;
 	}
@@ -71,4 +78,15 @@ public class Actualites extends Fragment{
 		protected void onPostExecute(){
 		}
 	}
+	
+	@Override
+	public void onPause() {
+		((MainActivity)getActivity()).afficherProgress(false);
+		try{
+			this.task.cancel(true);
+		}
+		catch(Exception e){e.printStackTrace();}
+		super.onPause();
+	}
+
 }

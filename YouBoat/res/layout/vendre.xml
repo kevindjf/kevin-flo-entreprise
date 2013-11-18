@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/blanc">
+    android:background="@color/blanc"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,14 +62,13 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent" 
-        android:visibility="gone"
-        android:background="@drawable/fond_ad_detail"/>
-    
+        android:layout_height="match_parent"
+        android:background="@drawable/fond_ad_detail"
+        android:visibility="gone" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         >
+        android:layout_height="match_parent" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,7 +96,7 @@
                     style="@style/formulaire_cellule_texte"
                     android:text="@string/requis" />
 
-                <ImageView 
+                <ImageView
                     android:id="@+id/indicator"
                     style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
@@ -124,7 +123,7 @@
 
                 <TextView
                     style="@style/formulaire_cellule_titre"
-                    android:text="@string/chantier_modele" />
+                    android:text="@string/chantier_modele_star" />
 
                 <TextView
                     android:id="@id/text"
@@ -133,7 +132,7 @@
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/vendre_marque_modele"
                 style="@style/formulaire_cellule" >
@@ -169,9 +168,7 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif"
-                    android:inputType="date"
-                     />
-
+                    android:inputType="date" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -186,11 +183,9 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif"
-                    android:inputType="number"
-                     />
-
+                    android:inputType="number" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/vendre_energie"
                 style="@style/formulaire_cellule" >
@@ -206,7 +201,7 @@
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/vendre_puissance"
                 style="@style/formulaire_cellule" >
@@ -220,9 +215,8 @@
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif"
                     android:inputType="number" />
-
             </RelativeLayout>
-            
+
             <RelativeLayout
                 android:id="@+id/vendre_intitule"
                 style="@style/formulaire_cellule" >
@@ -235,7 +229,6 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif" />
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -244,18 +237,18 @@
 
                 <TextView
                     style="@style/formulaire_cellule_titre"
-                    android:text="@string/prix" />
+                    android:text="@string/prix_star" />
 
                 <EditText
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/requis"
                     android:inputType="number" />
-
             </RelativeLayout>
 
-            <LinearLayout style="@style/formulaire_separator"
-                android:id="@+id/vendre_motorisation" >
+            <LinearLayout
+                android:id="@+id/vendre_motorisation"
+                style="@style/formulaire_separator" >
 
                 <TextView
                     style="@style/formulaire_separator_titre"
@@ -291,7 +284,6 @@
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif"
                     android:inputType="number" />
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -323,7 +315,6 @@
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif"
                     android:inputType="date" />
-
             </RelativeLayout>
 
             <LinearLayout style="@style/formulaire_separator" >
@@ -345,7 +336,6 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif" />
-
             </RelativeLayout>
 
             <Button
@@ -360,14 +350,30 @@
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-            
-            <LinearLayout 
+
+            <LinearLayout
                 android:id="@+id/vendre_photos"
                 android:layout_width="match_parent"
-                android:layout_height="100dip"
-                android:orientation="horizontal"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
-                android:visibility="gone">
+                android:padding="10dip"
+                android:orientation="vertical"
+                android:background="@color/gris_clair"
+                 >
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vendre_photos_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dip"
+                     >
+                </android.support.v4.view.ViewPager>
+
+                <com.viewpagerindicator.CirclePageIndicator
+                    android:id="@+id/vendre_photos_pager_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:padding="3dip"
+                     />
             </LinearLayout>
 
             <Button
