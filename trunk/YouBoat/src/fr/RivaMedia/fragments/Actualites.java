@@ -4,18 +4,17 @@ import java.util.List;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.RivaMedia.R;
-import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.ActualiteListAdapter;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.News;
 import fr.RivaMedia.net.NetNews;
 
-public class Actualites extends Fragment{
+public class Actualites extends FragmentNormal{
 
 	View _view;
 	ListView _liste = null;
@@ -23,14 +22,12 @@ public class Actualites extends Fragment{
 	
 	List<News> _news = null;
 	
-	ChargerNewsTask task;
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
 		_view = inflater.inflate(R.layout.actualites, container, false);
 		
-		((MainActivity)getActivity()).afficherProgress(true);
+		afficherProgress(true);
 		
 		task = new ChargerNewsTask();
 		task.execute();
@@ -45,14 +42,14 @@ public class Actualites extends Fragment{
 		ajouterListeners();
 	}
 	
-	protected void charger(){
+	public void charger(){
 		_liste = (ListView)_view.findViewById(R.id.actualites_liste_listview);		
 	}
-	protected void remplir(){
+	public void remplir(){
 		_adapter = new ActualiteListAdapter(getActivity(), _news);
 		_liste.setAdapter(_adapter);
 	}
-	protected void ajouterListeners(){
+	public void ajouterListeners(){
 	}
 
 	
@@ -77,16 +74,6 @@ public class Actualites extends Fragment{
 
 		protected void onPostExecute(){
 		}
-	}
-	
-	@Override
-	public void onPause() {
-		((MainActivity)getActivity()).afficherProgress(false);
-		try{
-			this.task.cancel(true);
-		}
-		catch(Exception e){e.printStackTrace();}
-		super.onPause();
 	}
 
 }

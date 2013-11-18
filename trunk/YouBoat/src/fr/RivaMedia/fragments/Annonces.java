@@ -1,15 +1,15 @@
 package fr.RivaMedia.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 
-public class Annonces extends Fragment implements View.OnClickListener{
+public class Annonces extends FragmentNormal implements View.OnClickListener{
 
 	//TODO recuperer le nombre d'annonces du jour
 	private TextView _ajourdhuiAnnonces;
@@ -35,7 +35,7 @@ public class Annonces extends Fragment implements View.OnClickListener{
 		return view;
 	}
 
-	protected void ajouterListeners(){
+	public void ajouterListeners(){
 		if(_boutonBateauxVoiliers != null && _boutonMoteurs != null && _boutonAccessoiresDivers != null){
 			_boutonBateauxVoiliers.setOnClickListener(this);
 			_boutonMoteurs.setOnClickListener(this);
@@ -43,6 +43,14 @@ public class Annonces extends Fragment implements View.OnClickListener{
 		}
 	}
 
+	@Override
+	public void charger() {
+	}
+
+	@Override
+	public void remplir() {
+	}
+	
 	public void afficherFormulaireBateaux(int item){
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new AnnoncesFormulaire(item));

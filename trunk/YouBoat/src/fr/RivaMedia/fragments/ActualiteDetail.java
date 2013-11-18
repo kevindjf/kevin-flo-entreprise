@@ -3,14 +3,13 @@ package fr.RivaMedia.fragments;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
-import fr.RivaMedia.activity.MainActivity;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.News;
 import fr.RivaMedia.net.NetNews;
@@ -20,7 +19,7 @@ import fr.RivaMedia.net.NetNews;
  */
 
 @SuppressLint("ValidFragment")
-public class ActualiteDetail extends Fragment{
+public class ActualiteDetail extends FragmentNormal{
 
 	View _view;
 
@@ -32,8 +31,6 @@ public class ActualiteDetail extends Fragment{
 	TextView _date;
 	TextView _texte;
 
-	ChargerNewsTask task;
-
 	public ActualiteDetail(String id){
 		this._id = id;
 	}
@@ -43,7 +40,7 @@ public class ActualiteDetail extends Fragment{
 
 		_view = inflater.inflate(R.layout.actualite_details, container, false);
 
-		((MainActivity)getActivity()).afficherProgress(false);
+		afficherProgress(true);
 
 		ImageLoaderCache.load(getActivity());
 
@@ -61,7 +58,7 @@ public class ActualiteDetail extends Fragment{
 		ajouterListeners();
 	}
 
-	protected void charger(){
+	public void charger(){
 
 		_image = (ImageView)_view.findViewById(R.id.actualite_detail_image);	
 		_titre = (TextView)_view.findViewById(R.id.actualite_detail_titre);
@@ -69,7 +66,7 @@ public class ActualiteDetail extends Fragment{
 		_texte = (TextView)_view.findViewById(R.id.actualite_detail_texte);
 
 	}
-	protected void remplir(){
+	public void remplir(){
 		if(_news != null){
 			if(_news.getImageAdress() != null)
 				ImageLoaderCache.charger(_news.getImageAdress(), _image);
@@ -85,7 +82,7 @@ public class ActualiteDetail extends Fragment{
 				_texte.setText(_news.getDescription());
 		}
 	}
-	protected void ajouterListeners(){
+	public void ajouterListeners(){
 	}
 
 
@@ -101,6 +98,7 @@ public class ActualiteDetail extends Fragment{
 				@Override
 				public void run() {
 					chargerNews();
+					afficherProgress(false);
 				}
 
 			});
@@ -110,16 +108,5 @@ public class ActualiteDetail extends Fragment{
 
 		protected void onPostExecute(){
 		}
-	}
-
-
-	@Override
-	public void onPause() {
-		((MainActivity)getActivity()).afficherProgress(false);
-		try{
-			this.task.cancel(true);
-		}
-		catch(Exception e){e.printStackTrace();}
-		super.onPause();
 	}
 }

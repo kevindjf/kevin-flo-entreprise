@@ -4,7 +4,7 @@ public class Constantes {
 
 	// adresses des services
 	public static final int CC_MD5_DIGEST_LENGTH = 16;
-	// utilis� par we kiss pour le md(#define APPLICATION_KEY "a#i4$5n_DaPs"
+	// utilise par we kiss pour le md(#define APPLICATION_KEY "a#i4$5n_DaPs"
 
 	public static final String kFBApplicationID = "222700434429506";
 	public static final String KFBAPISecretKey = "0e6b3af83b47dd755b115613629c486c";

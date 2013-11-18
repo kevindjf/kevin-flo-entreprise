@@ -1,21 +1,25 @@
 package fr.RivaMedia.fragments;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
-import fr.RivaMedia.factory.BateauFactory;
+import fr.RivaMedia.fragments.core.FragmentNormal;
+import fr.RivaMedia.model.Annonce;
 
-public class MesAnnonces extends Fragment implements View.OnClickListener{
+public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 
 	View _view;
 	ListView _liste = null;
 	AnnonceListAdapter _adapter = null;
+	List<Annonce> _annonces = new ArrayList<Annonce>();
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -28,14 +32,14 @@ public class MesAnnonces extends Fragment implements View.OnClickListener{
 		return _view;
 	}
 
-	protected void charger(){
+	public void charger(){
 		_liste = (ListView)_view.findViewById(R.id.annonces_liste_listview);		
 	}
-	protected void remplir(){
-		_adapter = new AnnonceListAdapter(getActivity(), BateauFactory.getListBateaux(),null);
+	public void remplir(){
+		_adapter = new AnnonceListAdapter(getActivity(), _annonces,null);
 		_liste.setAdapter(_adapter);
 	}
-	protected void ajouterListeners(){
+	public void ajouterListeners(){
 	}
 
 
