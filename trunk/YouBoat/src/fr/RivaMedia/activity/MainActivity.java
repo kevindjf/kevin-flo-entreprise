@@ -18,11 +18,13 @@ import fr.RivaMedia.fragments.Informations;
 import fr.RivaMedia.fragments.MesAlertes;
 import fr.RivaMedia.fragments.MesAnnonces;
 import fr.RivaMedia.fragments.Vendre;
+import fr.RivaMedia.fragments.core.Effaceable;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener{
 
 	SimpleSideDrawer _slider;
 	View _header_menu;
+	View _header_effacer;
 
 	View _slider_annonces;
 	View _slider_vendre;
@@ -57,6 +59,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider = new SimpleSideDrawer( this );
 		_slider.setLeftBehindContentView( R.layout.slider);
 		_header_menu = findViewById(R.id.header_menu);
+		_header_effacer = findViewById(R.id.header_effacer);
 
 		_slider_annonces = findViewById(R.id.slider_annonces);
 		_slider_vendre = findViewById(R.id.slider_vendre);
@@ -209,6 +212,21 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		transaction.add(R.id.main_fragment, new ContactPro());
 		//transaction.addToBackStack(null);
 		transaction.commit();
+	}
+	
+	public void afficherEffacer(final Effaceable effaceable){
+		_header_effacer.setVisibility(View.VISIBLE);
+		_header_effacer.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				effaceable.effacer();
+			}
+		});
+	}
+	public void cacherEffacer(){
+		_header_effacer.setVisibility(View.GONE);
+		_header_effacer.setOnClickListener(null);
 	}
 
 }

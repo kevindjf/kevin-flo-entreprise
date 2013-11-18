@@ -12,7 +12,7 @@ public class MagasineActivity extends Activity{
 
 	ImageView _image;
 	public static final String urlMagasine = "http://www.youboat.fr/xml/promo/splash_promo_retina.png";
-	public static final int tempsAttenteSecondes = 0;
+	public static final int tempsAttenteSecondes = 3;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

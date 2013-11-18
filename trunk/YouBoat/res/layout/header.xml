@@ -20,21 +20,8 @@
         android:layout_marginLeft="5dip"
         />
 
-    <!-- 
     <Button
-        android:id="@+id/retour"
-        android:layout_width="60dip"
-        android:layout_height="25dip"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="5dip"
-        android:background="@android:color/transparent"
-        android:text="@string/retour"
-        android:textColor="@android:color/holo_blue_light"
-        android:textSize="12sp" />
-
-    <Button
-        android:id="@+id/effacer"
+        android:id="@+id/header_effacer"
         android:layout_width="60dip"
         android:layout_height="25dip"
         android:layout_alignParentRight="true"
@@ -43,8 +30,8 @@
         android:background="#B00"
         android:text="@string/effacer"
         android:textColor="@android:color/white"
+        android:visibility="gone"
         android:textSize="12sp" />
-         -->
 
     <ProgressBar
         android:id="@+id/header_progress"

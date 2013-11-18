@@ -1,29 +1,56 @@
 package fr.RivaMedia.fragments;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.text.GetChars;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.viewpagerindicator.CirclePageIndicator;
+
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.Gallery;
+import fr.RivaMedia.activity.MainActivity;
+import fr.RivaMedia.fragments.core.Effaceable;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.CategorieSelector;
 import fr.RivaMedia.fragments.selector.ChantierModeleSelector;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
 import fr.RivaMedia.fragments.selector.TypeSelector;
+import fr.RivaMedia.image.ImageLoaderCache;
+import fr.RivaMedia.image.ImageResizer;
+import fr.RivaMedia.model.Annonce;
+import fr.RivaMedia.model.Lien;
 import fr.RivaMedia.net.core.Net;
 
 /** 
@@ -43,7 +70,10 @@ import fr.RivaMedia.net.core.Net;
  *         Caracteristiques=[Intitule,Prix]
  *         Photo&Description=[Description,AjouterPhoto]
  */
-public class Vendre extends Fragment implements View.OnClickListener, ItemSelectedListener{
+public class Vendre extends Fragment implements View.OnClickListener, ItemSelectedListener, Effaceable{
+
+	public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1111;
+	public static final int IMAGE_REQUEST = 2222;
 
 	View _view;
 
@@ -84,14 +114,14 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	View[] _vuesBateaux;
 	View[] _vuesMoteurs;
 	View[] _vuesDivers;
-	
+
 	String[] _texteInitial;
-	
-	
+
+
 	int demanderMarque = 0;
 	private static int DEMANDER_MARQUE_MODELE = 1;
 	private static int DEMANDER_MARQUE_MOTEUR = 2;
-	
+
 	String vendre_type = null;
 	String vendre_categorie = null;
 	String vendre_marque = null; //aussi chantier/modele
@@ -102,27 +132,35 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	String vendre_marque_moteur = null;
 	String vendre_annee_moteur = null;
 	String vendre_description = null;
-	
+
 	String vendre_energie = null;
-	
+
 	String vendre_intitule = null;
-	
+
 	String vendre_annee = null;
-	
+
 	String[] vendre_valeurs;
-	
-	//TODO: ajouter photos
-	List<Bitmap> photos = new ArrayList<Bitmap>();
+
+	View _layoutPhotos;
+	PagerAdapter _pagesAdapter;
+	ViewPager _page;	
+	CirclePageIndicator _indicator;
+	List<Bitmap> _photos = new ArrayList<Bitmap>();
+	File _photoCamera;
+
+	LayoutInflater _inflater;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.vendre,container, false);
+		this._inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		charger();
 		ajouterListeners();
 		remplir();
-		
+
 		vendreBateaux();
+
 
 		return _view;
 	}
@@ -208,7 +246,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 				_prix,
 				_description
 		};
-		
+
 		_texteInitial = new String[_views.length];
 		for(int i=0;i<_views.length;++i){
 			String texte = null;
@@ -219,7 +257,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 				texte = ((EditText)o).getHint().toString();
 			_texteInitial[i] = texte;
 		}
-		
+
 		vendre_valeurs = new String[]{
 				vendre_type,
 				vendre_categorie,
@@ -235,6 +273,15 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 				vendre_energie,
 				vendre_intitule
 		};
+
+
+		_layoutPhotos = _view.findViewById(R.id.vendre_photos);
+		_page = (ViewPager) _view.findViewById(R.id.vendre_photos_pager);
+		_indicator = (CirclePageIndicator)_view.findViewById(R.id.vendre_photos_pager_indicator);
+
+		_pagesAdapter = new ImagePagesAdapter();
+		_page.setAdapter(_pagesAdapter);
+		_indicator.setViewPager(_page);
 	}
 
 	public void ajouterListeners(){
@@ -292,15 +339,16 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 			demanderEnergie();
 			break;
 		}
+
 	}
-	
+
 	private void demanderType() {
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new TypeSelector(this));
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
-	
+
 	private void demanderChantierModele() {
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new ChantierModeleSelector(vendre_type,this));
@@ -392,8 +440,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	}
 
 	private void ajouterPhoto() {
-		// TODO Auto-generated method stub
-		
+		afficherPopupSelectrionPhoto();
 	}
 
 	public void reset(){
@@ -411,11 +458,25 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		}
 		for(int j=0;j<vendre_valeurs.length;++j)
 			vendre_valeurs[j] = "";
+		
+		_photos.clear();
+		_pagesAdapter.notifyDataSetChanged();
+		System.gc();
+		_layoutPhotos.setVisibility(View.GONE);
+	}
+
+	public void afficherTypeVente(){
+		if(typeVente == Annonces.BATEAUX)
+			vendreBateaux();
+		else if(typeVente == Annonces.MOTEURS)
+			vendreMoteurs();
+		else if(typeVente == Annonces.DIVERS)
+			vendreDivers();
 	}
 
 	public void vendreBateaux(){
 		typeVente = Annonces.BATEAUX;
-		
+
 		_boutonBateaux.setSelected(true);
 		_boutonDivers.setSelected(false);
 		_boutonMoteurs.setSelected(false);
@@ -424,7 +485,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 
 		for(View v : _vuesBateaux)
 			v.setVisibility(View.VISIBLE);
-		
+
 		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.requis));
 		_type.findViewById(R.id.indicator).setVisibility(View.VISIBLE);
 
@@ -438,7 +499,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	public void vendreMoteurs(){
 		typeVente = Annonces.MOTEURS;
 		vendre_type = ""+Annonces.MOTEURS;
-		
+
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(false);
 		_boutonMoteurs.setSelected(true);
@@ -447,7 +508,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 
 		for(View v : _vuesMoteurs)
 			v.setVisibility(View.VISIBLE);
-		
+
 		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.type));
 		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
 
@@ -458,21 +519,21 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	public void vendreDivers(){
 		typeVente = Annonces.DIVERS;
 		vendre_type = ""+Annonces.DIVERS;
-		
+
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(true);
 		_boutonMoteurs.setSelected(false);
 
 		reset();
-		
+
 		((TextView)_type.findViewById(R.id.text)).setText(getString(R.string.accessoires));
 		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
-		
+
 
 
 		for(View v : _vuesDivers)
 			v.setVisibility(View.VISIBLE);
-		
+
 		_categorie.setOnClickListener(this);
 
 	}
@@ -511,9 +572,9 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 
 	private List<NameValuePair> recupererDonnees(){
 		List<NameValuePair> donnees = Net.construireDonnes();
-		
+
 		if(typeVente == Annonces.BATEAUX){
-			
+
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 				return null;
@@ -526,11 +587,13 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_modele), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			if(vendre_prix == null){
+
+			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString();
+			if(vendre_prix.length()==0){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			
+
 			//les requis
 			Net.add(donnees, 
 					"",vendre_type,
@@ -538,22 +601,22 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 					"",vendre_marque,
 					"",vendre_prix
 					);
-			
-			if(((EditText)_annee).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_annee).getText());
-			
-			if(((EditText)_longueur).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_longueur).getText());
-			
+
+			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_annee.findViewById(R.id.text)).getText());
+
+			if(((EditText)_longueur.findViewById(R.id.text)).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_longueur.findViewById(R.id.text)).getText());
+
 			if(vendre_nombre_moteur != null)
 				Net.add(donnees,"",vendre_nombre_moteur);
-			
-			if(((EditText)_marqueMoteur).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_marqueMoteur).getText());
-			
-			if(((EditText)_anneeMoteur).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_anneeMoteur).getText());
-			
+
+			if(((TextView)_marqueMoteur.findViewById(R.id.text)).getText().length() > 0)
+				Net.add(donnees,"",((TextView)_marqueMoteur.findViewById(R.id.text)).getText());
+
+			if(((EditText)_anneeMoteur.findViewById(R.id.text)).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_anneeMoteur.findViewById(R.id.text)).getText());
+
 		}else if(typeVente == Annonces.MOTEURS){
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -571,12 +634,13 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type_d_energie), Toast.LENGTH_SHORT).show();
 				return null;
 			}
+
 			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString();
 			if(vendre_prix.length()==0){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			
+
 			//les requis
 			Net.add(donnees, 
 					"",vendre_type,
@@ -585,15 +649,15 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 					"",vendre_energie,
 					"",vendre_prix
 					);
-			
-			if(((EditText)_annee).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_annee).getText());
-			
-			if(((EditText)_puissance).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_puissance).getText());
-			
+
+			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_annee.findViewById(R.id.text)).getText());
+
+			if(((EditText)_puissance.findViewById(R.id.text)).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_puissance.findViewById(R.id.text)).getText());
+
 		}else if(typeVente == Annonces.DIVERS){
-			
+
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 				return null;
@@ -602,26 +666,31 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			
+			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString();
+			if(vendre_prix.length()==0){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+
 			//les requis
 			Net.add(donnees, 
 					"",vendre_type,
 					"",vendre_categorie,
 					"",vendre_prix
 					);
-			
-			if(((EditText)_intitule).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_intitule).getText());
-			
-			
+
+			if(((EditText)_intitule.findViewById(R.id.text)).getText().length() > 0)
+				Net.add(donnees,"",((EditText)_intitule.findViewById(R.id.text)).getText());
+
+
 		}
-		
-		if(((EditText)_description).getText().length() > 0)
-			Net.add(donnees,"",((EditText)_description).getText());
-		
+
+		if(((EditText)_description.findViewById(R.id.text)).getText().length() > 0)
+			Net.add(donnees,"",((EditText)_description.findViewById(R.id.text)).getText());
+
 		return donnees;
 	}
-	
+
 	private void etapeSuivante() {
 		List<NameValuePair> donneesVente = recupererDonnees();
 		if(donneesVente == null)
@@ -633,6 +702,248 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		transaction.commit();
 	}
 
+	@Override
+	public void effacer() {
+		reset();
+		afficherTypeVente();
+		ajouterListeners();
+	}
 
-	
+	@Override
+	public void onPause() {
+		((MainActivity)getActivity()).cacherEffacer();
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		((MainActivity)getActivity()).afficherEffacer(this);
+		super.onResume();
+	}
+
+	public void getPhotoFromCamera(){
+		Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+		_photoCamera = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(_photoCamera));
+		startActivityForResult(intent, CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE);
+	}
+
+	public void getPhotoFromAlbum(){		
+		Intent intent = new Intent(Intent.ACTION_PICK);
+		intent.setAction(Intent.ACTION_GET_CONTENT);
+		intent.setType("image/*");
+		startActivityForResult(intent, IMAGE_REQUEST);
+	}
+
+	public void afficherPopupSelectrionPhoto(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+			}
+		});
+		builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				dialog.cancel();
+			}
+		});
+
+		String[] sources = { "Appareil photo", "Album" };
+
+		builder.setTitle(R.string.choisir_une_photo)
+		.setItems(sources, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int position) {
+				switch(position){
+				case 0:
+					getPhotoFromCamera();
+					break;
+				case 1:
+					getPhotoFromAlbum();
+				}
+			}
+		});
+
+		AlertDialog dialog = builder.create();
+		dialog.show();
+	}
+
+	protected void _ajouterPhotoExtras(Bitmap photo){
+		if(_photos.size()>0)
+			_page.setCurrentItem(0);
+		_photos.add(photo);
+		_pagesAdapter.notifyDataSetChanged();
+		System.out.println("photo ajoutee");
+	}
+
+	@SuppressLint("NewApi")
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) { 
+		switch(requestCode){
+		case CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE:
+			if(resultCode == Activity.RESULT_OK) { 
+
+				Bitmap photo = null;				
+
+				BitmapFactory.Options options=new BitmapFactory.Options();
+				options.inSampleSize = 6;
+				FileInputStream fileInputStream;  
+				try {
+					fileInputStream=new FileInputStream(_photoCamera);
+					photo=BitmapFactory.decodeStream(fileInputStream,null,options);
+					fileInputStream.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+					return;
+				}
+
+				photo = ImageResizer.applyOrientation(photo,_photoCamera);
+
+				if(photo != null)
+					_ajouterPhotoExtras(photo);
+			}
+			break;
+		case IMAGE_REQUEST:
+			if(resultCode == Activity.RESULT_OK){  
+
+				Uri selectedImage = data.getData();
+
+				Log.e("URI", selectedImage.toString());
+
+				String filePath = selectedImage.getLastPathSegment();
+
+				Bitmap b = null;
+				try {
+					b = android.provider.MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
+					_ajouterPhotoExtras(b);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				if(b == null){
+
+					if(selectedImage != null && filePath != null){
+						System.err.println(filePath);
+
+						BitmapFactory.Options o = new BitmapFactory.Options();
+						o.inJustDecodeBounds = true;
+
+						BitmapFactory.decodeFile(filePath,o);
+
+						//The new size we want to scale to
+						final int REQUIRED_WIDTH=700;
+						final int REQUIRED_HIGHT=700;
+						//Find the correct scale value. It should be the power of 2.
+						int scale=1;
+						while(o.outWidth/scale/2>=REQUIRED_WIDTH && o.outHeight/scale/2>=REQUIRED_HIGHT)
+							scale*=2;
+
+						//Decode with inSampleSize
+						BitmapFactory.Options o2 = new BitmapFactory.Options();
+						o2.inSampleSize=scale;
+
+						Bitmap photo = BitmapFactory.decodeFile(filePath,o2);
+
+						photo = ImageResizer.applyOrientation(photo,new File(filePath));
+
+						System.out.println("photo");
+						_ajouterPhotoExtras(photo);
+					}
+					break;
+				}
+			}
+		}
+	}
+
+	public void supprimerImage( int position){
+		this._photos.remove(position);
+		_pagesAdapter.notifyDataSetChanged();
+	}
+
+	public void afficherPopupImages(final int position){
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+		builder.setTitle("Image");
+		builder.setMessage("Supprimer l'image");
+
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				supprimerImage(position);
+			}
+		});
+		builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+				dialog.cancel();
+			}
+		});
+
+		AlertDialog alertDialog = builder.create();
+		alertDialog.show();
+	}
+
+	public class ImagePagesAdapter extends PagerAdapter {
+
+
+		public ArrayList<String> getListeUrls(List<Lien> ls){
+			ArrayList<String> urls = new ArrayList<String>();
+			for(Lien lien : ls){
+				urls.add(lien.getUrl());
+			}
+			return urls;
+		}
+
+		@Override
+		public Object instantiateItem(ViewGroup container, final int position) {
+
+			ImageView _imageView = (ImageView)_inflater.inflate(R.layout.photo, container, false);
+			_imageView.setImageBitmap(_photos.get(position));
+
+			_imageView.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					afficherPopupImages(position);
+				}
+			});
+
+			((ViewPager) container).addView(_imageView,position);
+			return _imageView;
+		}
+
+		@Override
+		public int getCount() {
+			int taille = _photos.size();
+			if(taille == 0)
+				_layoutPhotos.setVisibility(View.GONE);
+			else
+				_layoutPhotos.setVisibility(View.VISIBLE);
+			return taille;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return "";
+		}
+
+		@Override
+		public boolean isViewFromObject(View view, Object object) {
+			return view==((View)object);
+		}
+
+		@Override
+		public int getItemPosition(Object object) {
+			return POSITION_NONE;
+		}
+
+		@Override
+		public void destroyItem(View container, int position, Object object) {
+			// TODO Auto-generated method stub
+			//super.destroyItem(container, position, object);
+		}
+
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object) {
+			// TODO Auto-generated method stub
+			//super.destroyItem(container, position, object);
+		}
+	}
 }

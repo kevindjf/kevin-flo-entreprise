@@ -25,6 +25,8 @@
     <string name="categorie">Categorie</string>
     <string name="categorie_star">Categorie *</string>
     <string name="chantier_modele">Chantier / Modele</string>
+    <string name="chantier_modele_star">Chantier / Modele *</string>
+    <string name="choisir_une_photo">Choisir une photo</string>
     <string name="choix_des_criteres">Choix des critères</string>
     <string name="code_postal">Code Postal</string>
     <string name="code_postal_star">Code Postal *</string>
@@ -48,6 +50,7 @@
     <string name="energie">Energie</string>
     <string name="energie_star">Energie *</string>
     <string name="essence">Essence</string>
+    <string name="erreur_connexion">Une connexion à Internet est nécessaire pour utiliser YouBoat. Aucune n\'est disponible</string>
     <string name="etape_suivante">ETAPE SUIVANTE</string>
     <string name="etat">Etat</string>
     <string name="facultatif">facultatif</string>

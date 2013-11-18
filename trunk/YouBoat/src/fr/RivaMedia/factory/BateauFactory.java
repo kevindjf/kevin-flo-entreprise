@@ -3,12 +3,12 @@ package fr.RivaMedia.factory;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.RivaMedia.model.Bateau;
+import fr.RivaMedia.model.Annonce;
 
 public class BateauFactory {
     
-    public static Bateau getBateau(){
-    	Bateau bateau = new Bateau();
+    public static Annonce getBateau(){
+    	Annonce bateau = new Annonce();
     	
     	bateau.setNumero("1");
     	bateau.setTitle("Mon beau bateau");

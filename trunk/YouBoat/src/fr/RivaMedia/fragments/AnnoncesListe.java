@@ -31,6 +31,8 @@ public class AnnoncesListe extends Fragment implements View.OnClickListener{
 	List<NameValuePair> _donneesFormulaire;
 	String _type;
 	
+	private ChargerAnnoncesTask task;
+	
 	public AnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
 		this._url = url;
 		this._donneesFormulaire = donneesFormulaire;
@@ -43,7 +45,8 @@ public class AnnoncesListe extends Fragment implements View.OnClickListener{
 		_view = inflater.inflate(R.layout.annonces_liste,container, false);
 
 		((MainActivity)getActivity()).afficherProgress(true);
-		new ChargerAnnoncesTask().execute();
+		task = new ChargerAnnoncesTask();
+		task.execute();
 		
 		return _view;
 	}
@@ -97,6 +100,16 @@ public class AnnoncesListe extends Fragment implements View.OnClickListener{
 
 		protected void onPostExecute(){
 		}
+	}
+	
+	@Override
+	public void onPause() {
+		((MainActivity)getActivity()).afficherProgress(false);
+		try{
+			this.task.cancel(true);
+		}
+		catch(Exception e){e.printStackTrace();}
+		super.onPause();
 	}
 
 }

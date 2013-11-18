@@ -7,7 +7,7 @@ import org.apache.http.NameValuePair;
 import android.util.Log;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.net.core.Net;
-import fr.RivaMedia.xml.RechercheXmlParser;
+import fr.RivaMedia.xml.AnnonceXmlParser;
 
 public class NetRecherche extends Net {
 
@@ -15,14 +15,14 @@ public class NetRecherche extends Net {
 
 		String xml = Net.requeteGet(Constantes.RECHERCHE_BATEAU_ADRESSE, null);
 
-		return new RechercheXmlParser(xml).getListe();
+		return new AnnonceXmlParser(xml).getListe();
 	}
 	
 	public static List<Object> rechercher(String url, List<NameValuePair> donnees){
 
 		String xml = Net.requeteGet(url,donnees);
 		Log.e("NetRecherche",xml);
-		return new RechercheXmlParser(xml).getListe();
+		return new AnnonceXmlParser(xml).getListe();
 	}
 
 	public static Object rechercherAnnonce(String url, List<NameValuePair> donnees) {

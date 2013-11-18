@@ -8,9 +8,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
+import fr.RivaMedia.R.color;
 import fr.RivaMedia.fragments.AnnonceDetail;
 import fr.RivaMedia.image.ImageLoaderCache;
-import fr.RivaMedia.model.Bateau;
+import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.model.Moteur;
 import fr.RivaMedia.view.core.YouBoatView;
 
@@ -51,8 +52,8 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	@Override
 	public void remplir() {
-		if(_element instanceof Bateau){
-			Bateau bateau = (Bateau)_element;
+		if(_element instanceof Annonce){
+			Annonce bateau = (Annonce)_element;
 			
 			if(bateau.getLien() != null)
 				ImageLoaderCache.charger(bateau.getLien().getUrl(),_image);
@@ -99,6 +100,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		}else{
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.bleu_claire));
 		}
+		
 	}
 	private void afficherTouch(){
 		getView().setBackgroundColor(getContext().getResources().getColor(R.color.blue));
@@ -116,9 +118,10 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	}
 	
 	public void lancerAnnonceDetail(Object element){
+		afficherNormal();
 		String id = "";
-		if(_element instanceof Bateau){
-			Bateau bateau = (Bateau)_element;
+		if(_element instanceof Annonce){
+			Annonce bateau = (Annonce)_element;
 			id = bateau.getNumero();
 		}else if(_element instanceof Moteur){
 			Moteur moteur = (Moteur)_element;

@@ -19,8 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.dialog.MinMaxDialog;
 import fr.RivaMedia.dialog.OnMinMaxListener;
+import fr.RivaMedia.fragments.core.Effaceable;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.CategorieSelector;
 import fr.RivaMedia.fragments.selector.ChantierModeleSelector;
@@ -36,7 +38,7 @@ import fr.RivaMedia.net.core.Net;
  */
 
 @SuppressLint("ValidFragment")
-public class AnnoncesFormulaire extends Fragment implements View.OnClickListener, ItemSelectedListener, OnMinMaxListener{
+public class AnnoncesFormulaire extends Fragment implements View.OnClickListener, ItemSelectedListener, OnMinMaxListener, Effaceable{
 
 	private int typeAnnonces;
 
@@ -89,6 +91,8 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		charger();
 		remplir();
 		ajouterListeners();
+		
+		((MainActivity)getActivity()).afficherEffacer(this);
 
 		return _view;
 	}
@@ -524,5 +528,26 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 		return donnees;
 	}
+	
+	@Override
+	public void effacer() {
+		reset();
+		remplir();
+		ajouterListeners();
+	}
+
+	@Override
+	public void onPause() {
+		((MainActivity)getActivity()).cacherEffacer();
+		super.onPause();
+	}
+
+	@Override
+	public void onResume() {
+		((MainActivity)getActivity()).afficherEffacer(this);
+		super.onResume();
+	}
+	
+	
 
 }
