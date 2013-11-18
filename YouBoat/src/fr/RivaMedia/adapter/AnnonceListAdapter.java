@@ -10,18 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import fr.RivaMedia.R;
+import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.view.AnnonceView;
 
 public class AnnonceListAdapter extends BaseAdapter  {
 
 	private Context _context;
-	private List<Object> _annonces;
-	private List<Object> _views = new ArrayList<Object>();
+	private List<Annonce> _annonces;
+	private List<AnnonceView> _views = new ArrayList<AnnonceView>();
 	private String _type;
 
 	private static LayoutInflater inflater=null;
 
-	public AnnonceListAdapter(Context context, List<Object> annonces, String type){
+	public AnnonceListAdapter(Context context, List<Annonce> annonces, String type){
 		this._context = context;
 		this._annonces = annonces;
 		this._type = type;

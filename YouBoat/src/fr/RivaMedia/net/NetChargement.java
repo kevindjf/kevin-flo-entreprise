@@ -7,11 +7,13 @@ import org.apache.http.NameValuePair;
 
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Marque;
+import fr.RivaMedia.model.Modele;
 import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.Type;
 import fr.RivaMedia.net.core.Net;
-import fr.RivaMedia.xml.CategorieBateauXmlParser;
+import fr.RivaMedia.xml.CategorieXmlParser;
 import fr.RivaMedia.xml.MarqueXmlParser;
+import fr.RivaMedia.xml.ModeleXmlParser;
 import fr.RivaMedia.xml.ServiceXmlParser;
 
 public class NetChargement extends Net{
@@ -33,17 +35,17 @@ public class NetChargement extends Net{
 					Constantes.TYPE_ID, Integer.valueOf(i)
 					);
 			String xml = Net.requeteGet(Constantes.CATEGORY_ADRESS_COMPLEMENT, donnees);
-			type.setCategories(new CategorieBateauXmlParser(xml).getCategoriesBateau());
-			
+			type.setCategories(new CategorieXmlParser(xml).getCategoriesBateau());
+
 			types.add(type);
 		}
 
 
 		return types;
 	}
-	
+
 	public static String servicesUrl = "xml-services.php";
-	
+
 	public static List<Service> chargerServices(){
 		String xml = Net.requeteGet(servicesUrl, null);
 		return new ServiceXmlParser(xml).getServices();
@@ -68,7 +70,7 @@ public class NetChargement extends Net{
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
-	
+
 	public static List<Marque> chargerMarquesVoiliers(){
 
 		List<NameValuePair> donnees = Net.construireDonnes(
@@ -79,7 +81,7 @@ public class NetChargement extends Net{
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
-	
+
 	public static List<Marque> chargerMarquesPneu(){
 
 		List<NameValuePair> donnees = Net.construireDonnes(
@@ -90,11 +92,23 @@ public class NetChargement extends Net{
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
-	
+
 	public static List<Marque> chargerMarquesMoteurs(){
 		String xml = Net.requeteGet(Constantes.MARQUE_MOTEUR_ADRESS_COMPLEMENT, null);
 
 		return new MarqueXmlParser(xml).getMarques();
+	}
+
+	static String modelesUrl = "xml-modele-bateau-rech.php";
+	public static List<Modele> chargerModeles(String idType, String idMarque) {
+		List<NameValuePair> donnees = Net.construireDonnes(
+				"idtype", idType,
+				"idm", idMarque
+				);
+
+		String xml = Net.requeteGet(modelesUrl+"?", donnees);
+
+		return new ModeleXmlParser(xml).getModeles();
 	}
 
 }

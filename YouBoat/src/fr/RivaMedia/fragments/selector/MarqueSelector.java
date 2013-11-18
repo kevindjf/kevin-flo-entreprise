@@ -1,10 +1,12 @@
 package fr.RivaMedia.fragments.selector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,19 +27,20 @@ public class MarqueSelector extends Fragment implements OnItemClickListener{
 
 	String _type;
 	List<Marque> _marques;
-	String[] _elements;
 
 	ItemSelectedListener _listener;
+	int _reponseId;
 
-	public MarqueSelector (String type,ItemSelectedListener listener){
+	public MarqueSelector (ItemSelectedListener listener, int reponseId, String type){
 		this._type = type;
 		this._listener = listener;
+		this._reponseId = reponseId;
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-		_view = inflater.inflate(R.layout.liste_recherche, container, false);
+		_view = inflater.inflate(R.layout.liste_selector, container, false);
 
 		charger();
 		remplir();
@@ -53,16 +56,15 @@ public class MarqueSelector extends Fragment implements OnItemClickListener{
 
 	private void remplir() {
 		_marques = Donnees.getMarques(_type);
-
+		
 		if(_marques != null){
-			_elements = new String[_marques.size()];
-			int i=0;
+			List<String> libelles =  new ArrayList<String>();
+			
 			for(Marque m : _marques){
-				_elements[i] = m.getLibelle();
-				i++;
+				libelles.add(m.getLibelle());
 			}
 
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.element_liste_simple,_elements);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.element_liste_simple,libelles);
 			_listView.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
 		}
@@ -76,8 +78,11 @@ public class MarqueSelector extends Fragment implements OnItemClickListener{
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-		_listener.itemSelected(this,_marques.get(position).getId(), _elements[position]);
-		getFragmentManager().popBackStack();
+		
+		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+		transaction.add(R.id.main_fragment, new ModeleSelector(_listener, _reponseId, _type, _marques.get(position)));
+		transaction.addToBackStack(null);
+		transaction.commit();
 	}
 
 }

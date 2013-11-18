@@ -1,6 +1,8 @@
 package fr.RivaMedia.fragments;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 
@@ -23,11 +25,14 @@ import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.dialog.MinMaxDialog;
 import fr.RivaMedia.dialog.OnMinMaxListener;
 import fr.RivaMedia.fragments.core.Effaceable;
+import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
-import fr.RivaMedia.fragments.selector.CategorieSelector;
-import fr.RivaMedia.fragments.selector.ChantierModeleSelector;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
-import fr.RivaMedia.fragments.selector.TypeSelector;
+import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
+import fr.RivaMedia.fragments.selector.ModeleSelector;
+import fr.RivaMedia.model.Categorie;
+import fr.RivaMedia.model.Marque;
+import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
 
 /**
@@ -38,9 +43,15 @@ import fr.RivaMedia.net.core.Net;
  */
 
 @SuppressLint("ValidFragment")
-public class AnnoncesFormulaire extends Fragment implements View.OnClickListener, ItemSelectedListener, OnMinMaxListener, Effaceable{
+public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener, OnMinMaxListener{
 
 	private int typeAnnonces;
+
+	public static int TYPE = 0;
+	public static int CATEGORIE = 1;
+
+	public static int CHANTIER_MODELE = 2;
+	public static int MARQUE = 3;
 
 	View _view;
 	View _rechercher;
@@ -64,7 +75,11 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 
 	String recherche_type = null;
-	String recherche_categorie = null;
+	String recherche_categorie_id = null;
+	String recherche_marque_id = null;
+
+	String recherche_chantier_id = null;
+	String recherche_modele_id = null;
 
 	String recherche_prix_min = null;
 	String recherche_prix_max = null;
@@ -72,14 +87,11 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 	String recherche_longueur_min = null;
 	String recherche_longueur_max = null;
 
-	String recherche_marque = null; //aussi chantier/modele
-	String recherche_etat = null;
-	String recherche_localisation = null;
-
 	String recherche_puissance_min = null;
 	String recherche_puissance_max = null;
 
-	
+	List<Marque> _marques = null;
+
 	public AnnoncesFormulaire(int type){
 		this.typeAnnonces = type;
 	}
@@ -91,13 +103,11 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		charger();
 		remplir();
 		ajouterListeners();
-		
-		((MainActivity)getActivity()).afficherEffacer(this);
 
 		return _view;
 	}
 
-	protected void charger(){
+	public void charger(){
 		_rechercher = _view.findViewById(R.id.annonces_formulaire_bouton_rechercher);	
 
 		_type = _view.findViewById(R.id.annonces_formulaire_type);
@@ -152,7 +162,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		};
 	}
 
-	protected void remplir(){
+	public void remplir(){
 		switch(typeAnnonces){
 		case Annonces.BATEAUX:
 			afficherFormulaireBateau();
@@ -165,12 +175,12 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 			break;
 		}
 	}
-	protected void ajouterListeners(){
+	public void ajouterListeners(){
 		_rechercher.setOnClickListener(this);
 
 		if(typeAnnonces == Annonces.BATEAUX)
 			_type.setOnClickListener(this);
-		
+
 		_categorie.setOnClickListener(this);
 		_prix.setOnClickListener(this);
 		_longueur.setOnClickListener(this);
@@ -221,7 +231,17 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 	protected void demanderType(){
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new TypeSelector(this));
+
+		transaction.add(R.id.main_fragment, new DonneeValeurSelector(
+				this,
+				TYPE,
+				DonneeValeurSelector.creerDonneeValeur(
+						getString(R.string.bateau_a_moteur),Constantes.BATEAU_A_MOTEUR,
+						getString(R.string.voiliers),Constantes.VOILIER,
+						getResources().getString(R.string.pneumatiques_semi_rigide),Constantes.PNEU
+						)
+				));
+
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
@@ -230,20 +250,25 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			if(typeAnnonces == Annonces.BATEAUX){
+			String type = ""+typeAnnonces;
+			if(typeAnnonces == Annonces.BATEAUX)
+				type = recherche_type;
+
+			List<Categorie> categories = Donnees.getCategories(type);
+			if(categories != null){
+				Map<String,String> donneesValeurs = new HashMap<String,String>();
+				for(Categorie categorie : categories){
+					donneesValeurs.put(categorie.getLibelle(), categorie.getId());
+				}
+
 				FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-				transaction.add(R.id.main_fragment, new CategorieSelector(recherche_type,this));
-				transaction.addToBackStack(null);
-				transaction.commit();
-			}
-			else{
-				FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-				transaction.add(R.id.main_fragment, new CategorieSelector(""+typeAnnonces,this));
+				transaction.add(R.id.main_fragment, new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
 				transaction.addToBackStack(null);
 				transaction.commit();
 			}
 		}
 	}
+
 	protected void demanderPrix(){
 		new MinMaxDialog(
 				getActivity(), 
@@ -268,7 +293,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		}
 		else if(typeAnnonces == Annonces.BATEAUX){
 			FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new ChantierModeleSelector(recherche_type,this));
+			transaction.add(R.id.main_fragment, new MarqueSelector(this,CHANTIER_MODELE,recherche_type));
 			transaction.addToBackStack(null);
 			transaction.commit();
 		}
@@ -285,8 +310,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 		alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				recherche_etat = items[which];
-				((TextView)_etat.findViewById(R.id.text)).setText(recherche_etat);
+				((TextView)_etat.findViewById(R.id.text)).setText(items[which]);
 			}
 		});
 
@@ -308,8 +332,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 
 		alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				recherche_localisation = items[which];
-				((TextView)_localisation.findViewById(R.id.text)).setText(recherche_localisation);
+				((TextView)_localisation.findViewById(R.id.text)).setText(items[which]);
 			}
 		});
 
@@ -330,12 +353,12 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		}
 		else{
 			FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new MarqueSelector(""+typeAnnonces,this));
+			transaction.add(R.id.main_fragment, new MarqueSelector(this,MARQUE,""+typeAnnonces));
 			transaction.addToBackStack(null);
 			transaction.commit();
 		}
 	}
-	
+
 	public void afficherAnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 		transaction.add(R.id.main_fragment, new AnnoncesListe(url,donneesFormulaire,type));
@@ -343,7 +366,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		transaction.commit();
 	}
 
-	protected void reset(){
+	public void reset(){
 		for(View v : _views){
 			v.setOnClickListener(null);
 			v.setVisibility(View.GONE);
@@ -354,6 +377,12 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 				((EditText)o).setText("");
 			//spinners, etc
 		}
+
+		recherche_type = null;
+
+		recherche_chantier_id = null;
+		recherche_modele_id = null;
+		recherche_marque_id = null;
 	}
 
 	protected void afficherFormulaireBateau(){
@@ -391,27 +420,39 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 	}
 
 	@Override
-	public void itemSelected(Object from, String item, String value) {	
+	public void itemSelected(Object from,int idRetour, String item, String value) {	
 
 		Log.e("ItemSelected", item+" | "+value);
 
-		if(from instanceof TypeSelector){
-			recherche_type = item;
-			((TextView)_type.findViewById(R.id.text)).setText(value);
-			recherche_categorie = null;
-			((TextView)_categorie.findViewById(R.id.text)).setText("");
+		if(from instanceof DonneeValeurSelector){
+			if(idRetour == TYPE){
+				recherche_type = item;
+				((TextView)_type.findViewById(R.id.text)).setText(value);
+				recherche_categorie_id = null;
+				((TextView)_categorie.findViewById(R.id.text)).setText("");
+
+				_marques = Donnees.getMarques(item);
+
+			}else if(idRetour == CATEGORIE){
+				recherche_categorie_id = item;
+				((TextView)_categorie.findViewById(R.id.text)).setText(value);
+			}
 
 		}
-		else if(from instanceof CategorieSelector){
-			recherche_categorie = item;			
-			((TextView)_categorie.findViewById(R.id.text)).setText(value);
-		}
-		else if(from instanceof MarqueSelector || from instanceof ChantierModeleSelector){
-			recherche_marque = item;
-			if(typeAnnonces == Annonces.BATEAUX)
+		else if(from instanceof ModeleSelector){
+			recherche_marque_id = item;
+			if(idRetour == CHANTIER_MODELE){
+				String[] ids = item.split(";");
+				recherche_chantier_id = ids[0];
+				recherche_modele_id = ids[1];
 				((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
-			if(typeAnnonces == Annonces.MOTEURS)
+			}
+			if(idRetour == MARQUE){
+				String[] ids = item.split(";");
+				recherche_marque_id = ids[0];
+				recherche_modele_id = ids[1];
 				((TextView)_marque.findViewById(R.id.text)).setText(value);
+			}
 		}
 
 
@@ -441,14 +482,14 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 	}
 
 	public void rechercher(){
-		
+
 		if(this.recherche_type == null)
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		else{
 			afficherAnnoncesListe(recupererUrl(),recupererDonnees(),recupererType());
 		}
 	}
-		
+
 	protected String recupererUrl(){
 		String url = "";
 
@@ -466,69 +507,72 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		else if(typeAnnonces == Annonces.DIVERS){
 			url = Constantes.RECHERCHE_ACCESSOIRE_ADRESSE;  
 		}
-		
+
 		return url;
 	}
-	
+
 	protected String recupererType(){
-		
-	if(typeAnnonces == Annonces.BATEAUX){
-		return recherche_type;
-	}
-	else 
-		return ""+typeAnnonces;  
+
+		if(typeAnnonces == Annonces.BATEAUX){
+			return recherche_type;
+		}
+		else 
+			return ""+typeAnnonces;  
 	}
 
 	protected List<NameValuePair> recupererDonnees(){
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		if(this.recherche_categorie != null)
-			Net.add(donnees, "idcat",recherche_categorie);
+		if(this.recherche_categorie_id != null)
+			Net.add(donnees, "idcat",recherche_categorie_id);
 
-		if(this.recherche_localisation != null)
-			Net.add(donnees, "idregion",recherche_localisation);
-		
+		String localisation = ((TextView)_localisation.findViewById(R.id.text)).getText().toString();
+		if(localisation.length()>0)
+			Net.add(donnees, "idregion",localisation);
+
 		if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
 			if(!this.recherche_longueur_max.equals(MinMaxDialog.PLUS))
 				Net.add(donnees, "maxtaille",recherche_longueur_max);
 			//if(!this.recherche_longueur_min.equals("0"))
-				Net.add(donnees, "mintaille",recherche_longueur_min);
+			Net.add(donnees, "mintaille",recherche_longueur_min);
 		}
 
 		if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
 			if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
 				Net.add(donnees, "maxpuiss",recherche_puissance_max);
 			//if(!this.recherche_puissance_min.equals("0"))
-				Net.add(donnees, "minpuiss",recherche_puissance_min);
+			Net.add(donnees, "minpuiss",recherche_puissance_min);
 		}
-		
+
 		if(this.recherche_prix_min != null && this.recherche_prix_max != null){
 			if(!this.recherche_prix_max.equals(MinMaxDialog.PLUS))
 				Net.add(donnees, "maxprix",recherche_prix_max);
 			//if(!this.recherche_prix_max.equals("0"))
-				Net.add(donnees, "minprix",recherche_prix_min);
+			Net.add(donnees, "minprix",recherche_prix_min);
 		}
-		
-		if(this.recherche_etat != null){
-			if(this.recherche_etat.equals(getActivity().getResources().getString(R.string.occasion)))
+
+		String etat = ((TextView)_etat.findViewById(R.id.text)).getText().toString();
+		if(etat != null && etat.length()>0){
+			if(etat.equals(getActivity().getResources().getString(R.string.occasion)))
 				Net.add(donnees, "etat","1");
-			else if(this.recherche_etat.equals(getActivity().getResources().getString(R.string.neuf)))
+			else if(etat.equals(getActivity().getResources().getString(R.string.neuf)))
 				Net.add(donnees, "etat","2");
 			//ne pas ajouter indifferent
 		}
-		
 
-		if(this.recherche_marque != null){
+		String marque = ((TextView)_etat.findViewById(R.id.text)).getText().toString();
+		if(marque != null && etat.length()>0){
+			Net.add(donnees,"listModele",recherche_modele_id);
 			if(typeAnnonces == Annonces.BATEAUX)
-				Net.add(donnees,"listModele",recherche_marque);
+				Net.add(donnees, "listMarque",recherche_chantier_id);
 			else if(typeAnnonces == Annonces.MOTEURS)
-				Net.add(donnees, "listMarque",recherche_marque);
+				Net.add(donnees, "listMarque",recherche_marque_id);
 		}
 
 		return donnees;
 	}
-	
+
 	@Override
 	public void effacer() {
 		reset();
@@ -547,7 +591,7 @@ public class AnnoncesFormulaire extends Fragment implements View.OnClickListener
 		((MainActivity)getActivity()).afficherEffacer(this);
 		super.onResume();
 	}
-	
-	
+
+
 
 }

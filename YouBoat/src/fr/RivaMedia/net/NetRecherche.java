@@ -6,27 +6,33 @@ import org.apache.http.NameValuePair;
 
 import android.util.Log;
 import fr.RivaMedia.Constantes;
+import fr.RivaMedia.model.Annonce;
+import fr.RivaMedia.model.Modele;
 import fr.RivaMedia.net.core.Net;
 import fr.RivaMedia.xml.AnnonceXmlParser;
 
 public class NetRecherche extends Net {
 
-	public static List<Object> chargerListeBateaux(){
+	public static List<Annonce> chargerListeBateaux(){
 
 		String xml = Net.requeteGet(Constantes.RECHERCHE_BATEAU_ADRESSE, null);
 
 		return new AnnonceXmlParser(xml).getListe();
 	}
 	
-	public static List<Object> rechercher(String url, List<NameValuePair> donnees){
+	public static List<Annonce> rechercher(String url, List<NameValuePair> donnees){
 
 		String xml = Net.requeteGet(url,donnees);
 		Log.e("NetRecherche",xml);
 		return new AnnonceXmlParser(xml).getListe();
 	}
 
-	public static Object rechercherAnnonce(String url, List<NameValuePair> donnees) {
-		return rechercher(url, donnees).get(0);
+	public static Annonce rechercherAnnonce(String url, List<NameValuePair> donnees) {
+		List<Annonce> annonces = rechercher(url, donnees);
+		if(annonces.size()>0)
+			return annonces.get(0);
+		else
+			return null;
 	}
 	
 }

@@ -38,19 +38,15 @@ import android.widget.Toast;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
-import fr.RivaMedia.activity.Gallery;
 import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.fragments.core.Effaceable;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
-import fr.RivaMedia.fragments.selector.CategorieSelector;
-import fr.RivaMedia.fragments.selector.ChantierModeleSelector;
-import fr.RivaMedia.fragments.selector.MarqueSelector;
-import fr.RivaMedia.fragments.selector.TypeSelector;
-import fr.RivaMedia.image.ImageLoaderCache;
+import fr.RivaMedia.fragments.selector.*;
 import fr.RivaMedia.image.ImageResizer;
-import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.model.Lien;
+import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
 
 /** 
@@ -74,6 +70,12 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 
 	public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1111;
 	public static final int IMAGE_REQUEST = 2222;
+
+	public static final int TYPE = 0;
+	public static final int CHANTIER_MODELE = 1;
+	public static final int MARQUE_MOTEUR = 2;
+
+
 
 	View _view;
 
@@ -117,10 +119,6 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 
 	String[] _texteInitial;
 
-
-	int demanderMarque = 0;
-	private static int DEMANDER_MARQUE_MODELE = 1;
-	private static int DEMANDER_MARQUE_MOTEUR = 2;
 
 	String vendre_type = null;
 	String vendre_categorie = null;
@@ -282,6 +280,9 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		_pagesAdapter = new ImagePagesAdapter();
 		_page.setAdapter(_pagesAdapter);
 		_indicator.setViewPager(_page);
+
+		if(Donnees.uneSeulePhoto)
+			_indicator.setVisibility(View.GONE);
 	}
 
 	public void ajouterListeners(){
@@ -344,17 +345,25 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 
 	private void demanderType() {
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new TypeSelector(this));
+
+		transaction.add(R.id.main_fragment, new DonneeValeurSelector(this,
+				TYPE,
+				DonneeValeurSelector.creerDonneeValeur(
+						getString(R.string.bateau_a_moteur),Constantes.BATEAU_A_MOTEUR,
+						getString(R.string.voiliers),Constantes.VOILIER,
+						getResources().getString(R.string.pneumatiques_semi_rigide),Constantes.PNEU
+						)
+				));
+
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
 
 	private void demanderChantierModele() {
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new ChantierModeleSelector(vendre_type,this));
+		transaction.add(R.id.main_fragment, new MarqueSelector(this,CHANTIER_MODELE,vendre_type));
 		transaction.addToBackStack(null);
 		transaction.commit();
-		demanderMarque = DEMANDER_MARQUE_MODELE;
 	}
 
 	private void demanderCategorie() {
@@ -403,10 +412,9 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		}
 		else{
 			FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new MarqueSelector(""+typeVente,this));
+			transaction.add(R.id.main_fragment, new MarqueSelector(this,MARQUE_MOTEUR,""+typeVente));
 			transaction.addToBackStack(null);
 			transaction.commit();
-			demanderMarque = DEMANDER_MARQUE_MODELE;
 		}
 	}
 
@@ -433,10 +441,9 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 
 	private void demanderMarqueMoteur() {
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new MarqueSelector(""+Annonces.MOTEURS,this));
+		transaction.add(R.id.main_fragment, new MarqueSelector(this,MARQUE_MOTEUR,""+Annonces.MOTEURS));
 		transaction.addToBackStack(null);
 		transaction.commit();
-		demanderMarque = DEMANDER_MARQUE_MOTEUR;
 	}
 
 	private void ajouterPhoto() {
@@ -458,7 +465,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		}
 		for(int j=0;j<vendre_valeurs.length;++j)
 			vendre_valeurs[j] = "";
-		
+
 		_photos.clear();
 		_pagesAdapter.notifyDataSetChanged();
 		System.gc();
@@ -539,34 +546,35 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	}
 
 	@Override
-	public void itemSelected(Object from, String item, String value) {
+	public void itemSelected(Object from, int idRetour, String item, String value) {
 		Log.e("ItemSelected", item+" | "+value);
 
-		if(from instanceof TypeSelector){
-			vendre_type = item;
-			((TextView)_type.findViewById(R.id.text)).setText(value);
-			vendre_categorie = null;
-			((TextView)_categorie.findViewById(R.id.text)).setText(getString(R.string.requis));
+		if(from instanceof DonneeValeurSelector){
+			if(idRetour == TYPE){
+				vendre_type = item;
+				((TextView)_type.findViewById(R.id.text)).setText(value);
+				vendre_categorie = null;
+				((TextView)_categorie.findViewById(R.id.text)).setText(getString(R.string.requis));
+			}
 
 		}
 		else if(from instanceof CategorieSelector){
 			vendre_categorie = item;			
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
-		else if(from instanceof MarqueSelector || from instanceof ChantierModeleSelector){
-			if(typeVente == Annonces.BATEAUX){
-				if(demanderMarque == DEMANDER_MARQUE_MODELE){
-					vendre_marque = item;
-					((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
-				}else if(demanderMarque == DEMANDER_MARQUE_MOTEUR){
-					vendre_marque_moteur = item;
-					((TextView)_marqueMoteur.findViewById(R.id.text)).setText(value);
-				}
-			}
-			if(typeVente == Annonces.MOTEURS){
+		else if(from instanceof ModeleSelector){
+			if(idRetour == CHANTIER_MODELE){
 				vendre_marque = item;
-				((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
+				((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
 			}
+			else if(idRetour == MARQUE_MOTEUR){
+				vendre_marque_moteur = item;
+				((TextView)_marqueMoteur.findViewById(R.id.text)).setText(value);
+			}
+		}
+		if(typeVente == Annonces.MOTEURS){
+			vendre_marque = item;
+			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
 		}
 	}
 
@@ -767,9 +775,11 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		dialog.show();
 	}
 
-	protected void _ajouterPhotoExtras(Bitmap photo){
+	protected void ajouterPhotoExtras(Bitmap photo){
 		if(_photos.size()>0)
 			_page.setCurrentItem(0);
+		if(Donnees.uneSeulePhoto)
+			_photos.clear();
 		_photos.add(photo);
 		_pagesAdapter.notifyDataSetChanged();
 		System.out.println("photo ajoutee");
@@ -799,7 +809,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 				photo = ImageResizer.applyOrientation(photo,_photoCamera);
 
 				if(photo != null)
-					_ajouterPhotoExtras(photo);
+					ajouterPhotoExtras(photo);
 			}
 			break;
 		case IMAGE_REQUEST:
@@ -814,7 +824,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 				Bitmap b = null;
 				try {
 					b = android.provider.MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), selectedImage);
-					_ajouterPhotoExtras(b);
+					ajouterPhotoExtras(b);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -846,7 +856,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 						photo = ImageResizer.applyOrientation(photo,new File(filePath));
 
 						System.out.println("photo");
-						_ajouterPhotoExtras(photo);
+						ajouterPhotoExtras(photo);
 					}
 					break;
 				}

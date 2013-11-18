@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -24,7 +23,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.activity.Gallery;
-import fr.RivaMedia.activity.MainActivity;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.model.Lien;
@@ -32,7 +31,7 @@ import fr.RivaMedia.net.NetRecherche;
 import fr.RivaMedia.net.core.Net;
 
 @SuppressLint("ValidFragment")
-public class AnnonceDetail extends Fragment implements View.OnClickListener{
+public class AnnonceDetail extends FragmentNormal implements View.OnClickListener{
 
 	View _view;
 	Object _annonce;
@@ -79,8 +78,6 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 	LayoutInflater _inflater;
 
-	private ChargerAnnonceTask task = null;
-
 	public AnnonceDetail(String id, String type){
 		this._id = id;
 		this._type = type;
@@ -93,7 +90,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 		ImageLoaderCache.load(getActivity());
 
-		((MainActivity)getActivity()).afficherProgress(true);
+		afficherProgress(true);
 		task = new ChargerAnnonceTask();
 		task.execute();
 
@@ -105,7 +102,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 
 
-	protected void charger(){
+	public void charger(){
 		screen = _view.findViewById(R.id.screen);
 		relative_tel_secondaire = _view.findViewById(R.id.relative_tel_2);
 		relative_email = _view.findViewById(R.id.relative_email);
@@ -145,7 +142,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 
 	}
-	protected void remplir(){
+	public void remplir(){
 		if(_annonce instanceof Annonce){
 			Annonce bateau = (Annonce) _annonce;
 			if(bateau != null){
@@ -182,7 +179,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 						nb_heures.setText(bateau.getMoteur().getHeureMoteur());
 				}
 				if(bateau.getPrix() != null && bateau.getTaxePrix() != null)
-					prix.setText(bateau.getPrix() + " Û " + bateau.getTaxePrix());
+					prix.setText(bateau.getPrix() + " â‚¬ " + bateau.getTaxePrix());
 				if(bateau.getCommentaire() != null)
 					description_text.setText(bateau.getCommentaire());
 
@@ -337,7 +334,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 	}
 
 
-	protected void ajouterListeners(){
+	public void ajouterListeners(){
 	}
 
 
@@ -392,7 +389,7 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 				@Override
 				public void run() {
 					chargerAnnonce();
-					((MainActivity)getActivity()).afficherProgress(false);
+					afficherProgress(false);
 				}
 
 			});
@@ -402,17 +399,6 @@ public class AnnonceDetail extends Fragment implements View.OnClickListener{
 
 		protected void onPostExecute(){
 		}
-	}
-
-
-	@Override
-	public void onPause() {
-		((MainActivity)getActivity()).afficherProgress(false);
-		try{
-			this.task.cancel(true);
-		}
-		catch(Exception e){e.printStackTrace();}
-		super.onPause();
 	}
 
 }

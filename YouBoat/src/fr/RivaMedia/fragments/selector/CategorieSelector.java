@@ -37,7 +37,7 @@ public class CategorieSelector extends Fragment implements OnItemClickListener{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-		_view = inflater.inflate(R.layout.liste_recherche, container, false);
+		_view = inflater.inflate(R.layout.liste_selector, container, false);
 
 		charger();
 		remplir();
@@ -76,7 +76,7 @@ public class CategorieSelector extends Fragment implements OnItemClickListener{
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-		_listener.itemSelected(this,_categories.get(position).getId(), _elements[position]);
+		_listener.itemSelected(this,0,_categories.get(position).getId(), _elements[position]);
 		getFragmentManager().popBackStack();
 	}
 

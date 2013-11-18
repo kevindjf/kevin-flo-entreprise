@@ -111,12 +111,13 @@ public class SplashScreenActivity extends Activity{
 			final List<Marque> marquesMoteur = NetChargement.chargerMarquesMoteurs();
 
 			Donnees.marques.put("0", marquesBateaux);
-			Donnees.marques.put(Constantes.BATEAU_A_MOTEUR, marquesBateaux);
-			Donnees.marques.put(Constantes.VOILIER, marquesBateaux);
-			Donnees.marques.put(Constantes.PNEU, marquesBateaux);
+			Donnees.marques.put(Constantes.BATEAU_A_MOTEUR, marquesBateauxAMoteur);
+			Donnees.marques.put(Constantes.VOILIER, marquesVoilier);
+			Donnees.marques.put(Constantes.PNEU, marquesPneu);
 			Donnees.marques.put(Constantes.MOTEURS, marquesMoteur);
 
 			final List<Service> services = NetChargement.chargerServices();
+			Donnees.services = services;
 
 			//tests
 			NetNews.chargerListeNews();

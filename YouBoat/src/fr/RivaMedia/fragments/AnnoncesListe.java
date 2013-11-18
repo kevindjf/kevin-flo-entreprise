@@ -8,30 +8,27 @@ import org.apache.http.NameValuePair;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.RivaMedia.R;
-import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
+import fr.RivaMedia.fragments.core.FragmentNormal;
+import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetRecherche;
 
 @SuppressLint("ValidFragment")
-public class AnnoncesListe extends Fragment implements View.OnClickListener{
+public class AnnoncesListe extends FragmentNormal implements View.OnClickListener{
 
 	View _view;
 	ListView _liste = null;
 	AnnonceListAdapter _adapter = null;
-	List<Object> _annonces;
+	List<Annonce> _annonces;
 	
 	String _url;
 	List<NameValuePair> _donneesFormulaire;
 	String _type;
-	
-	private ChargerAnnoncesTask task;
 	
 	public AnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
 		this._url = url;
@@ -43,23 +40,22 @@ public class AnnoncesListe extends Fragment implements View.OnClickListener{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.annonces_liste,container, false);
-
-		((MainActivity)getActivity()).afficherProgress(true);
+		afficherProgress(true);
+		
 		task = new ChargerAnnoncesTask();
 		task.execute();
 		
 		return _view;
 	}
 
-	protected void charger(){
+	public void charger(){
 		_liste = (ListView)_view.findViewById(R.id.annonces_liste_listview);		
 	}
-	protected void remplir(){
+	public void remplir(){
 		_adapter = new AnnonceListAdapter(getActivity(), _annonces,_type);
 		_liste.setAdapter(_adapter);
-		Log.e("AnnoncesListe","Test");
 	}
-	protected void ajouterListeners(){
+	public void ajouterListeners(){
 	}
 
 
@@ -90,7 +86,7 @@ public class AnnoncesListe extends Fragment implements View.OnClickListener{
 				@Override
 				public void run() {
 					chargerAnnonces();
-					((MainActivity)getActivity()).afficherProgress(false);
+					afficherProgress(false);
 				}
 
 			});
@@ -100,16 +96,6 @@ public class AnnoncesListe extends Fragment implements View.OnClickListener{
 
 		protected void onPostExecute(){
 		}
-	}
-	
-	@Override
-	public void onPause() {
-		((MainActivity)getActivity()).afficherProgress(false);
-		try{
-			this.task.cancel(true);
-		}
-		catch(Exception e){e.printStackTrace();}
-		super.onPause();
 	}
 
 }

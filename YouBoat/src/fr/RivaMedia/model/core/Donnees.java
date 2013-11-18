@@ -5,12 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.annotation.SuppressLint;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Marque;
+import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.Type;
 
-@SuppressLint("UseSparseArrays")
 public class Donnees {
 
 	public static List<Type> types = new ArrayList<Type>();
@@ -23,8 +22,14 @@ public class Donnees {
 	}
 	
 	public static Map<String,List<Marque>> marques = new HashMap<String,List<Marque>>();
+	public static List<Service> services;
 	public static List<Marque> getMarques(String type){
-		return marques.get(type);
+		List<Marque> mqs = marques.get(type);
+		
+		return mqs;
 	}
 	
+	public static boolean uneSeulePhoto = true;
+	
+	//TODO envoyer tous les logs d'erreur par mail
 }

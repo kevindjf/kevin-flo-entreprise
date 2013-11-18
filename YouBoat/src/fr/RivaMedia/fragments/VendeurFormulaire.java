@@ -6,7 +6,6 @@ import org.apache.http.NameValuePair;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,14 +15,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.R;
-import fr.RivaMedia.activity.MainActivity;
-import fr.RivaMedia.fragments.core.Effaceable;
+import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
-import fr.RivaMedia.fragments.selector.PaysSelector;
+import fr.RivaMedia.fragments.selector.ValeurSelector;
 import fr.RivaMedia.net.core.Net;
 
 @SuppressLint("ValidFragment")
-public class VendeurFormulaire extends Fragment implements View.OnClickListener, ItemSelectedListener, Effaceable{
+public class VendeurFormulaire extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener{
+
+	public static final int PAYS = 0;
 
 	View _view;
 	View _valider;
@@ -37,10 +37,10 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 
 	int _typeVente;
 	List<NameValuePair> _donneesVente;
-	
+
 	View[] views;
 	String[] valeurs;
-	
+
 	public VendeurFormulaire(int typeVente, List<NameValuePair> donneesVente) {
 		_typeVente = typeVente;
 		_donneesVente = donneesVente;
@@ -57,7 +57,7 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 		return _view;
 	}
 
-	protected void charger(){
+	public void charger(){
 		_valider = _view.findViewById(R.id.vendeur_formulaire_valider);	
 		_nom = _view.findViewById(R.id.vendeur_formulaire_nom);	
 		_prenom = _view.findViewById(R.id.vendeur_formulaire_prenom);	
@@ -65,20 +65,20 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 		_telephone = _view.findViewById(R.id.vendeur_formulaire_telephone);	
 		_codePostal = _view.findViewById(R.id.vendeur_formulaire_code_postal);	
 		_pays = _view.findViewById(R.id.vendeur_formulaire_pays);	
-		
+
 		views = new View[]{
-				 _nom,
-				 _prenom,
-				 _email,
-				 _telephone,
-				 _codePostal,
-				 _pays
+				_nom,
+				_prenom,
+				_email,
+				_telephone,
+				_codePostal,
+				_pays
 		};
-		
+
 		recupererValeursInitiales();
 
 	}
-	
+
 	protected void recupererValeursInitiales(){
 		valeurs = new String[views.length];
 		int i=0;
@@ -95,11 +95,11 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 		}
 	}
 
-	protected void remplir(){
-		
+	public void remplir(){
+
 	}
-	
-	protected void reset(){
+
+	public void reset(){
 		int i=0;
 		for(View v : views){
 			v.setOnClickListener(null);
@@ -114,7 +114,7 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 		}
 	}
 
-	protected void ajouterListeners(){
+	public void ajouterListeners(){
 		_valider.setOnClickListener(this);
 
 		_pays.setOnClickListener(this);
@@ -136,18 +136,19 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 
 	protected void demanderPays(){
 		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new PaysSelector(this));
+		transaction.add(R.id.main_fragment, new ValeurSelector(this,PAYS,getResources().getStringArray(R.array.pays)));
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
 
 	@Override
-	public void itemSelected(Object from, String item, String value) {	
+	public void itemSelected(Object from, int idRetour, String item, String value) {	
+		if(idRetour == PAYS){
+			Log.e("ItemSelected", item+" | "+value);
 
-		Log.e("ItemSelected", item+" | "+value);
-
-		if(from instanceof PaysSelector){
-			((TextView)_pays.findViewById(R.id.text)).setText(value);
+			if(from instanceof ValeurSelector){
+				((TextView)_pays.findViewById(R.id.text)).setText(value);
+			}
 		}
 	}
 
@@ -177,28 +178,16 @@ public class VendeurFormulaire extends Fragment implements View.OnClickListener,
 
 		return donnees;
 	}
-	
+
 	private void validerVendeur(List<NameValuePair> recupererDonnees) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void effacer() {
 		reset();
 		ajouterListeners();
-	}
-	
-	@Override
-	public void onPause() {
-		((MainActivity)getActivity()).cacherEffacer();
-		super.onPause();
-	}
-
-	@Override
-	public void onResume() {
-		((MainActivity)getActivity()).afficherEffacer(this);
-		super.onResume();
 	}
 
 }

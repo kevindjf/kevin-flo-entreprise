@@ -6,8 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 
-public class ContactPro extends Fragment implements View.OnClickListener{
+public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 
 	@Override
@@ -21,6 +22,24 @@ public class ContactPro extends Fragment implements View.OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		}
+	}
+
+	@Override
+	public void charger() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void remplir() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void ajouterListeners() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

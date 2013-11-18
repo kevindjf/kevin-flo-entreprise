@@ -12,7 +12,7 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.Actualites;
 import fr.RivaMedia.fragments.Annonces;
 import fr.RivaMedia.fragments.Annuaire;
-import fr.RivaMedia.fragments.BoatOnDemand;
+import fr.RivaMedia.fragments.OnDemand;
 import fr.RivaMedia.fragments.ContactPro;
 import fr.RivaMedia.fragments.Informations;
 import fr.RivaMedia.fragments.MesAlertes;
@@ -170,7 +170,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 	public void afficherBoatOnDemand(){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new BoatOnDemand());
+		transaction.add(R.id.main_fragment, new OnDemand());
 		//transaction.addToBackStack(null);
 		transaction.commit();
 	}

@@ -22,8 +22,8 @@ public class AnnonceXmlParser extends XmlParser {
 		super(xpp);
 	}
 
-	public List<Object> getListe() {
-		List<Object> annonces = new ArrayList<Object>();
+	public List<Annonce> getListe() {
+		List<Annonce> annonces = new ArrayList<Annonce>();
 		int eventType = XMLgetEventType(); 
 		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
@@ -32,20 +32,11 @@ public class AnnonceXmlParser extends XmlParser {
 					Annonce bateau = getAnnonce(true);
 					annonces.add(bateau);
 				}
-				if(tag.equals("detail_bateau")){
+				if(tag.startsWith("detail_")){
+					String type = tag.replace("detail_", "");
 					Annonce annonce = getAnnonce(false);
+					annonce.setTypeAnnonce(type);
 					annonces.add(annonce);
-					annonce.setTypeAnnonce("detail_bateau");
-				}
-				if(tag.equals("detail_moteur")){
-					Annonce annonce = getAnnonce(false);
-					annonces.add(annonce);
-					annonce.setTypeAnnonce("detail_moteur");
-				}
-				if(tag.equals("detail_divers")){
-					Annonce annonce = getAnnonce(false);
-					annonces.add(annonce);
-					annonce.setTypeAnnonce("detail_divers");
 				}
 			}
 			eventType = XMLgetSuivant();
