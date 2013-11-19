@@ -10,8 +10,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
-import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.dialog.MinMaxDialog;
 import fr.RivaMedia.dialog.OnMinMaxListener;
-import fr.RivaMedia.fragments.core.Effaceable;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
@@ -230,9 +226,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	protected void demanderType(){
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-
-		transaction.add(R.id.main_fragment, new DonneeValeurSelector(
+		ajouterFragment(new DonneeValeurSelector(
 				this,
 				TYPE,
 				DonneeValeurSelector.creerDonneeValeur(
@@ -242,8 +236,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 						)
 				));
 
-		transaction.addToBackStack(null);
-		transaction.commit();
 	}
 	protected void demanderCategorie(){
 		if(recherche_type == null){
@@ -261,10 +253,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 					donneesValeurs.put(categorie.getLibelle(), categorie.getId());
 				}
 
-				FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-				transaction.add(R.id.main_fragment, new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
-				transaction.addToBackStack(null);
-				transaction.commit();
+				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
 			}
 		}
 	}
@@ -292,10 +281,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else if(typeAnnonces == Annonces.BATEAUX){
-			FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new MarqueSelector(this,CHANTIER_MODELE,recherche_type));
-			transaction.addToBackStack(null);
-			transaction.commit();
+			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,recherche_type));
 		}
 	}
 	protected void demanderEtat(){
@@ -352,18 +338,12 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new MarqueSelector(this,MARQUE,""+typeAnnonces));
-			transaction.addToBackStack(null);
-			transaction.commit();
+			ajouterFragment(new MarqueSelector(this,MARQUE,""+typeAnnonces));
 		}
 	}
 
 	public void afficherAnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new AnnoncesListe(url,donneesFormulaire,type));
-		transaction.addToBackStack(null);
-		transaction.commit();
+		ajouterFragment(new AnnoncesListe(url,donneesFormulaire,type));
 	}
 
 	public void reset(){
@@ -579,19 +559,5 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		remplir();
 		ajouterListeners();
 	}
-
-	@Override
-	public void onPause() {
-		((MainActivity)getActivity()).cacherEffacer();
-		super.onPause();
-	}
-
-	@Override
-	public void onResume() {
-		((MainActivity)getActivity()).afficherEffacer(this);
-		super.onResume();
-	}
-
-
 
 }

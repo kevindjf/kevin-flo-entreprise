@@ -5,8 +5,6 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +13,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.core.Donnees;
 
 @SuppressLint("ValidFragment")
-public class MarqueSelector extends Fragment implements OnItemClickListener{
+public class MarqueSelector extends FragmentNormal implements OnItemClickListener{
 
 	View _view;
 	ListView _listView;
@@ -50,11 +49,11 @@ public class MarqueSelector extends Fragment implements OnItemClickListener{
 	}
 
 
-	private void charger() {
+	public void charger() {
 		_listView = (ListView)_view.findViewById(R.id.liste);
 	}
 
-	private void remplir() {
+	public void remplir() {
 		_marques = Donnees.getMarques(_type);
 		
 		if(_marques != null){
@@ -71,18 +70,14 @@ public class MarqueSelector extends Fragment implements OnItemClickListener{
 	}
 
 
-	private void ajouterListeners() {
+	public void ajouterListeners() {
 		_listView.setOnItemClickListener(this);		
 	}
 
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-		
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new ModeleSelector(_listener, _reponseId, _type, _marques.get(position)));
-		transaction.addToBackStack(null);
-		transaction.commit();
+		ajouterFragment(new ModeleSelector(_listener, _reponseId, _type, _marques.get(position)));
 	}
 
 }

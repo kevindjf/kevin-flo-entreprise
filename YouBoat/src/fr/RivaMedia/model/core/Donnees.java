@@ -21,6 +21,7 @@ public class Donnees {
 		return null;
 	}
 	
+	public static List<Marque> toutesMarques = new ArrayList<Marque>();
 	public static Map<String,List<Marque>> marques = new HashMap<String,List<Marque>>();
 	public static List<Service> services;
 	public static List<Marque> getMarques(String type){

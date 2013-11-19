@@ -34,6 +34,7 @@
     <string name="contact_pro">Contact PRO</string>
     <string name="coordonnees">Coordonnées</string>
     <string name="couchettes">Couchettes</string>
+    <string name="dans_un_rayon_de">Dans un rayon de :</string>
     <string name="decrivez_le_bateau_que_vous_possedez">Décrivez le bateau que vous possédez</string>
     <string name="description">Description</string>
     <string name="description_maj">DESCRIPTION</string>
@@ -56,10 +57,14 @@
     <string name="facultatif">facultatif</string>
     <string name="france_autre_region">France/Autre region</string>
     <string name="generalites">Généralités</string>
+    <string name="geolocalisez_vous_ou_recherchez_une_localite">Géolocalisez vous ou recherchez une localité :</string>
+    <string name="gps_not_found_title">Aucun service GPS trouvé</string>
+    <string name="gps_not_found_message">Activer le GPS ?</string>
     <string name="indifferent">Indifférent</string>
     <string name="informations">Informations</string>
     <string name="informations_youboat_propose">Youboat propose des milliers d\'annonces de bateaux à moteur, voiliers et pneumatiques mais aussi des moteurs et accessoires marins. Des essais et des articles sont disponibles pour vous aider dans votre futur achat. Vous pouvez égalment vendre votre bateau directement depuis votre smartphone. Retrouvez aussi le magazine YOUBOAT chez votre marchand de journaux !</string>
     <string name="intitule">Intutilé</string>
+    <string name="km_autour_de">km autour de</string>
     <string name="languedoc_roussillon">Languedoc/Roussillon</string>
     <string name="largeur">Largeur</string>
     <string name="lieu">Lieu</string>
@@ -88,12 +93,14 @@
     <string name="nombres_heures">Nb Heures</string>
     <string name="nombre_moteur">Nombre Moteur</string>
     <string name="nomsociete">Rivamedia</string>
+    <string name="non">Non</string>
     <string name="numversion">1.1</string>
     <string name="paca">Paca</string>
     <string name="pays">Pays</string>
     <string name="pays_star">Pays *</string>
     <string name="occasion">Occasion</string>
     <string name="ok">Ok</string>
+    <string name="oui">Oui</string>
     <string name="photo_and_description">Photo &amp; Description</string>
     <string name="pneumatiques_semi_rigide">Pneumatiques/Semi-Rigides</string>
     <string name="prenom">Prénom</string>

@@ -135,10 +135,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	}
 
 	protected void demanderPays(){
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new ValeurSelector(this,PAYS,getResources().getStringArray(R.array.pays)));
-		transaction.addToBackStack(null);
-		transaction.commit();
+		ajouterFragment(new ValeurSelector(this,PAYS,getResources().getStringArray(R.array.pays)));
 	}
 
 	@Override
