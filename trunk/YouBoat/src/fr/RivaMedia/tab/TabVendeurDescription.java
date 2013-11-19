@@ -1,29 +1,33 @@
 package fr.RivaMedia.tab;
 
 
-import fr.RivaMedia.R;
-import fr.RivaMedia.model.Vendeur;
-import fr.RivaMedia.tab.core.Tab;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import fr.RivaMedia.R;
+import fr.RivaMedia.model.Vendeur;
+import fr.RivaMedia.tab.core.Tab;
 
 
 @SuppressLint("ValidFragment") 
 public class TabVendeurDescription extends Tab {
 
+	Activity _activity;
+	
 	Vendeur _vendeur;
 	View _descriptionLabel;
 	TextView _description;
 	View _servicesLabel;
 	ViewGroup _services;
 
-	public TabVendeurDescription(String titre, Vendeur vendeur){
-		super(titre);
+	public TabVendeurDescription(String titre, Vendeur vendeur, Activity activity){
+		super(titre,activity.getResources().getDrawable(R.drawable.logo_vendeur));
 		this._vendeur = vendeur;
+		this._activity = activity;
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {

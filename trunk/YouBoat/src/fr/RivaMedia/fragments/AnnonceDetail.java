@@ -27,7 +27,7 @@ import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.model.Lien;
-import fr.RivaMedia.net.NetRecherche;
+import fr.RivaMedia.net.NetAnnonce;
 import fr.RivaMedia.net.core.Net;
 
 @SuppressLint("ValidFragment")
@@ -369,7 +369,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	protected void chargerDetailAnnonce(){
 		Log.e("AnnonceDetail",recupererUrl());
-		_annonce = NetRecherche.rechercherAnnonce(recupererUrl(), Net.construireDonnes("idad",_id));
+		_annonce = NetAnnonce.rechercherAnnonce(recupererUrl(), Net.construireDonnes("idad",_id));
 	}
 
 

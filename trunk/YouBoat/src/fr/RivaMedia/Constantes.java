@@ -1,7 +1,7 @@
 package fr.RivaMedia;
 
-public class Constantes {
-
+public class Constantes {	
+	
 	// adresses des services
 	public static final int CC_MD5_DIGEST_LENGTH = 16;
 	// utilise par we kiss pour le md(#define APPLICATION_KEY "a#i4$5n_DaPs"

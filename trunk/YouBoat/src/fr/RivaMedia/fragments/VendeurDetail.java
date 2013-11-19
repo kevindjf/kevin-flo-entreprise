@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,18 +21,19 @@ import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Vendeur;
 import fr.RivaMedia.net.NetVendeur;
+import fr.RivaMedia.tab.TabVendeurAnnonces;
 import fr.RivaMedia.tab.TabVendeurDescription;
 import fr.RivaMedia.tab.core.PagesAdapter;
 import fr.RivaMedia.tab.core.Tab;
 
 @SuppressLint("ValidFragment")
-public class VendeurDetail extends FragmentNormal implements View.OnClickListener{
+public class VendeurDetail extends FragmentNormal implements View.OnClickListener, OnPageChangeListener{
 
 	View _view;
 	View _layout;
 	Vendeur _vendeur;
 	String _id;
-	
+
 	ImageView _logo;
 	TextView _nom;
 	TextView _adresse;
@@ -46,7 +48,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	List<Tab> _pages = new ArrayList<Tab>();
 
 	LayoutInflater _inflater;
-	
+
 	boolean afficherProgress = true;
 
 	public VendeurDetail(String id){
@@ -77,7 +79,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 
 	public void charger(){
 		_layout = _view.findViewById(R.id.vendeur_detail_layout);
-		
+
 		_logo = (ImageView)_view.findViewById(R.id.vendeur_detail_logo);
 		_nom = (TextView)_view.findViewById(R.id.vendeur_detail_nom);
 		_adresse = (TextView)_view.findViewById(R.id.vendeur_detail_adresse);
@@ -86,8 +88,8 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 		_telephonePrincipal = _view.findViewById(R.id.vendeur_detail_telephone_principal);
 		_telephoneSecondaire = _view.findViewById(R.id.vendeur_detail_telephone_secondaire);
 		_email = _view.findViewById(R.id.vendeur_detail_email);
-		
-		
+
+
 		_page = (ViewPager) _view.findViewById(R.id.vendeur_detail_pager);
 	}
 	public void remplir(){
@@ -123,11 +125,11 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 				_telephoneSecondaire.setVisibility(View.GONE);
 
 			if(_vendeur.getEmail() != null)
-				((TextView)_email.findViewById(R.id.text)).setText(_vendeur.getTel1());
+				((TextView)_email.findViewById(R.id.text)).setText(_vendeur.getEmail());
 			else
 				_email.setVisibility(View.GONE);
-			
-			
+
+
 			chargerTabs();
 		}
 	}
@@ -136,6 +138,9 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 		_telephonePrincipal.setOnClickListener(this);
 		_telephoneSecondaire.setOnClickListener(this);
 		_email.setOnClickListener(this);
+		
+		if(_pages.size()>0)
+			_page.setOnPageChangeListener(this);
 	}
 
 	@Override
@@ -160,16 +165,26 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	protected void chargerDetailVendeur(){
 		_vendeur = NetVendeur.getVendeur(_id);
 	}
-	
+
 	protected void chargerTabs(){
 		_pages.clear();
 
-		_pages.add(new TabVendeurDescription("Vendeur",_vendeur));
-		_pages.add(new TabVendeurDescription("Vendeur",_vendeur));
-		_pages.add(new TabVendeurDescription("Vendeur",_vendeur));
+		if(_vendeur.getDescription() == null || _vendeur.getServices() == null || _vendeur.getServices().size()==0){}
+		else
+			_pages.add(new TabVendeurDescription("Vendeur",_vendeur,getActivity()));
 
-		_pagesAdapter = new PagesAdapter(getChildFragmentManager(),_pages);
-		_page.setAdapter(_pagesAdapter);
+		if(_vendeur.getNbBateau() != null && !_vendeur.getNbBateau().equals("0"))
+			_pages.add(new TabVendeurAnnonces(getString(R.string.bateaux),_vendeur,""+Annonces.BATEAUX,getActivity()));
+		if(_vendeur.getNbMoteur() != null && !_vendeur.getNbMoteur().equals("0"))
+			_pages.add(new TabVendeurAnnonces(getString(R.string.moteurs),_vendeur,""+Annonces.MOTEURS,getActivity()));
+		if(_vendeur.getNbAccessoire() != null && !_vendeur.getNbAccessoire().equals("0"))
+			_pages.add(new TabVendeurAnnonces(getString(R.string.accessoires),_vendeur,""+Annonces.DIVERS,getActivity()));
+
+		if(_pages.size()>0){
+			_pagesAdapter = new PagesAdapter(getChildFragmentManager(),_pages);
+			_page.setAdapter(_pagesAdapter);
+		}else
+			_page.setVisibility(View.GONE);
 	}
 
 
@@ -198,6 +213,30 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 
 		protected void onPostExecute(){
 		}
+	}
+
+
+
+	@Override
+	public void onPageScrollStateChanged(int p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+		if((position-1)>0)
+			_pages.get(position-1).onResume();
+		if(position+1<this._pages.size())
+			_pages.get(position+1).onResume();		
+	}
+
+
+	@Override
+	public void onPageSelected(int arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

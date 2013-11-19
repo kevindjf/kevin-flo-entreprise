@@ -3,6 +3,7 @@ package fr.RivaMedia.view;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -56,8 +57,11 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	public void remplir() {
 		if(_annonce != null){
 
-			if(_annonce.getLien() != null && _annonce.getLien().getUrl() != null)
+			Log.e("IMAGE","vide");
+			if(_annonce.getLien() != null && _annonce.getLien().getUrl() != null){
 				ImageLoaderCache.charger(_annonce.getLien().getUrl(),_image);
+				Log.e("IMAGE",_annonce.getLien().getUrl());
+			}
 
 			if(_annonce.getTitle() != null)
 				_titre.setText(_annonce.getTitle());

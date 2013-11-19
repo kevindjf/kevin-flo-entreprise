@@ -55,7 +55,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/image_bt_vendre" />
+                        android:src="@drawable/logo_vendre" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -94,7 +94,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/image_bt_profs" />
+                        android:src="@drawable/logo_annuaire" />
 
                     <TextView
                         style="@style/slider_element_texte"
