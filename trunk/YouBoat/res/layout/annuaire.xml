@@ -55,9 +55,9 @@
                 android:text="@string/distributeur_de_la_marque_dots" />
 
             <TextView
-                android:id="@+id/annuaire_distributeur_de_la_marque_text"
+                android:id="@+id/text"
                 style="@style/formulaire_cellule_texte"
-                android:text="" />
+                 />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -72,9 +72,9 @@
                 android:text="@string/services_dots" />
 
             <TextView
-                android:id="@+id/annuaire_services_text"
+                android:id="@+id/text"
                 style="@style/formulaire_cellule_texte"
-                android:text="@string/services" />
+                 />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -89,9 +89,9 @@
                 android:text="@string/localite_dots" />
 
             <TextView
-                android:id="@+id/annuaire_localite_text"
+                android:id="@+id/text"
                 style="@style/formulaire_cellule_texte"
-                android:text="@string/localite" />
+                />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>

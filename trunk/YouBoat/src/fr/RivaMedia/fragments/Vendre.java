@@ -42,6 +42,7 @@ import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.fragments.core.Effaceable;
+import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.*;
 import fr.RivaMedia.image.ImageResizer;
@@ -66,7 +67,7 @@ import fr.RivaMedia.net.core.Net;
  *         Caracteristiques=[Intitule,Prix]
  *         Photo&Description=[Description,AjouterPhoto]
  */
-public class Vendre extends Fragment implements View.OnClickListener, ItemSelectedListener, Effaceable{
+public class Vendre extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener, Effaceable{
 
 	public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1111;
 	public static final int IMAGE_REQUEST = 2222;
@@ -344,9 +345,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	}
 
 	private void demanderType() {
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-
-		transaction.add(R.id.main_fragment, new DonneeValeurSelector(this,
+		ajouterFragment( new DonneeValeurSelector(this,
 				TYPE,
 				DonneeValeurSelector.creerDonneeValeur(
 						getString(R.string.bateau_a_moteur),Constantes.BATEAU_A_MOTEUR,
@@ -355,15 +354,10 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 						)
 				));
 
-		transaction.addToBackStack(null);
-		transaction.commit();
 	}
 
 	private void demanderChantierModele() {
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new MarqueSelector(this,CHANTIER_MODELE,vendre_type));
-		transaction.addToBackStack(null);
-		transaction.commit();
+		ajouterFragment( new MarqueSelector(this,CHANTIER_MODELE,vendre_type));
 	}
 
 	private void demanderCategorie() {
@@ -372,16 +366,10 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		}
 		else{
 			if(typeVente == Annonces.BATEAUX){
-				FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-				transaction.add(R.id.main_fragment, new CategorieSelector(vendre_type,this));
-				transaction.addToBackStack(null);
-				transaction.commit();
+				ajouterFragment(new CategorieSelector(vendre_type,this));
 			}
 			else{
-				FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-				transaction.add(R.id.main_fragment, new CategorieSelector(""+typeVente,this));
-				transaction.addToBackStack(null);
-				transaction.commit();
+				ajouterFragment(new CategorieSelector(""+typeVente,this));
 			}
 		}
 	}
@@ -411,10 +399,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new MarqueSelector(this,MARQUE_MOTEUR,""+typeVente));
-			transaction.addToBackStack(null);
-			transaction.commit();
+			ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,""+typeVente));
 		}
 	}
 
@@ -440,10 +425,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 	}
 
 	private void demanderMarqueMoteur() {
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new MarqueSelector(this,MARQUE_MOTEUR,""+Annonces.MOTEURS));
-		transaction.addToBackStack(null);
-		transaction.commit();
+		ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,""+Annonces.MOTEURS));
 	}
 
 	private void ajouterPhoto() {
@@ -704,10 +686,7 @@ public class Vendre extends Fragment implements View.OnClickListener, ItemSelect
 		if(donneesVente == null)
 			return;
 
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new VendeurFormulaire(typeVente,donneesVente));
-		transaction.addToBackStack(null);
-		transaction.commit();
+		ajouterFragment(new VendeurFormulaire(typeVente,donneesVente));
 	}
 
 	@Override

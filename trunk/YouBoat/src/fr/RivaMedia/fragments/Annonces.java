@@ -1,7 +1,6 @@
 package fr.RivaMedia.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,10 +51,7 @@ public class Annonces extends FragmentNormal implements View.OnClickListener{
 	}
 	
 	public void afficherFormulaireBateaux(int item){
-		FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new AnnoncesFormulaire(item));
-		transaction.addToBackStack(null);
-		transaction.commit();
+		ajouterFragment(new AnnoncesFormulaire(item));
 	}
 
 	
