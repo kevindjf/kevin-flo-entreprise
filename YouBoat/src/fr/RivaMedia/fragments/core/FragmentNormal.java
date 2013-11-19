@@ -6,8 +6,10 @@ import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
 
-public abstract class FragmentNormal extends Fragment implements IFragment{
+public abstract class FragmentNormal extends Fragment implements IFragment, OnClickListener{
 
 	protected AsyncTask<Void, Void, Void> task;
 	protected boolean visible = false;
@@ -35,7 +37,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment{
 		((MainActivity)getActivity()).cacherEffacer();
 		afficherProgress(false);
 		super.onResume();
+		getView().setOnClickListener(this);
 	}
+	
+	
 	
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -57,5 +62,11 @@ public abstract class FragmentNormal extends Fragment implements IFragment{
 	}
 	public void ajouterFragment(Fragment fragment, boolean back){
 		((MainActivity)getActivity()).ajouterFragment(fragment,back);
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

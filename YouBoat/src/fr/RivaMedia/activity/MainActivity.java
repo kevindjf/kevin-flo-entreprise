@@ -203,7 +203,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void ajouterFragment(Fragment fragment, boolean back){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 		
-		transaction.remove(getSupportFragmentManager().findFragmentById(R.id.main_fragment));
+		//transaction.remove(getSupportFragmentManager().findFragmentById(R.id.main_fragment));
 		transaction.add(R.id.main_fragment, fragment);
 
 		if(back)
