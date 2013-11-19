@@ -1,12 +1,16 @@
 package fr.RivaMedia.fragments;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import org.apache.http.NameValuePair;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
@@ -16,6 +20,7 @@ import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.core.Donnees;
+import fr.RivaMedia.net.core.Net;
 
 public class Annuaire extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener{
 
@@ -24,6 +29,7 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 	public static final int LOCALITE = 2;
 
 	View _view;
+	View _rechercher;
 
 	View _distributeur_marque;
 	View _services;
@@ -66,6 +72,7 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		_distributeur_marque = _view.findViewById(R.id.annuaire_distributeur_de_la_marque);
 		_services = _view.findViewById(R.id.annuaire_services);
 		_localite = _view.findViewById(R.id.annuaire_localite);
+		_rechercher = _view.findViewById(R.id.annuaire_rechercher);
 	}
 
 	@Override
@@ -77,6 +84,7 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		_distributeur_marque.setOnClickListener(this);
 		_services.setOnClickListener(this);
 		_localite.setOnClickListener(this);
+		_rechercher.setOnClickListener(this);
 	}
 
 	@Override
@@ -107,8 +115,28 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		case R.id.annuaire_localite:
 			demanderLocalite();
 			break;
+		case R.id.annuaire_rechercher:
+			rechercher();
+			break;
 		}
 
+	}
+
+	protected List<NameValuePair> recupererDonnees(){
+
+		List<NameValuePair> donnees = Net.construireDonnes();
+
+		if(marque_id != null)
+			Net.add(donnees, "listMarque",marque_id);
+		if(service_id != null)
+			Net.add(donnees,"service",service_id);
+		
+
+		return donnees;
+	}
+
+	protected void rechercher(){
+		ajouterFragment(new VendeursListe(recupererDonnees()));
 	}
 
 	protected void demanderDistributeurDeLaMarque(){
@@ -149,7 +177,7 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 			if(rp.length == 2){
 				String r = rp[0];
 				String p = rp[1];
-				
+
 				String text = r+" "+getString(R.string.km_autour_de)+" "+p;
 
 				((TextView)_localite.findViewById(R.id.text)).setText(text);

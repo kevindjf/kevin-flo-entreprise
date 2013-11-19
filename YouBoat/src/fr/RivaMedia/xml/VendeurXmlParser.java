@@ -68,13 +68,13 @@ public class VendeurXmlParser extends XmlParser {
 				}else if(tag.equals("nom")){
 					vendeur.setNom(getString());
 				}else if(tag.equals("ville")){
-					vendeur.setNom(getString());
+					vendeur.setVille(getString());
 				}else if(tag.equals("tel1")){
 					vendeur.setTel1(getString());
 				}else if(tag.equals("tel2")){
 					vendeur.setTel2(getString());
 				}else if(tag.equals("logo")){
-					vendeur.setNom(getXpp().getAttributeValue(null, "url"));
+					vendeur.setLogo(getXpp().getAttributeValue(null, "url"));
 					getString();
 				}else if(tag.equals("gpslatitude")){
 					vendeur.setGpsLatitude(getString());

@@ -8,30 +8,26 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
-import fr.RivaMedia.R.color;
-import fr.RivaMedia.fragments.AnnonceDetail;
+import fr.RivaMedia.fragments.VendeurDetail;
 import fr.RivaMedia.image.ImageLoaderCache;
-import fr.RivaMedia.model.Annonce;
-import fr.RivaMedia.model.Moteur;
+import fr.RivaMedia.model.Vendeur;
 import fr.RivaMedia.view.core.YouBoatView;
 
 public class VendeurView extends YouBoatView implements View.OnTouchListener{
 
-	Object _element;
+	Vendeur _vendeur;
 	int _position;
-	String _type;
 
 	ImageView _image;
 	TextView _titre;
 	TextView _sousTitre;
-	
-	public VendeurView(Object element, Context context, View view, int position, String type) {
+
+	public VendeurView(Vendeur vendeur, Context context, View view, int position) {
 		super(context, view);
 		ImageLoaderCache.load(getContext());
-		
-		this._element = element;
+
+		this._vendeur = vendeur;
 		this._position = position;
-		this._type = type;
 		charger();
 		remplir();
 		ajouterListeners();
@@ -46,17 +42,15 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 
 	@Override
 	public void remplir() {
-			Annonce bateau = (Annonce)_element;
-			
-			if(bateau.getLien() != null)
-				ImageLoaderCache.charger(bateau.getLien().getUrl(),_image);
-			_titre.setText(bateau.getTitle());
-			_sousTitre.setText(bateau.getNomMoteur());
-			
-		/*else if(_element instanceof Divers){
-			
-		}*/
-		
+		if(_vendeur != null){
+			if(_vendeur.getLogo() != null)
+				ImageLoaderCache.charger(_vendeur.getLogo(),_image);
+			if(_vendeur.getNom() != null)
+				_titre.setText(_vendeur.getNom());
+			if(_vendeur.getVille() != null)
+				_sousTitre.setText(_vendeur.getVille());
+		}
+
 		afficherNormal();
 	}
 
@@ -69,23 +63,23 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
-			default:
-				lancerAnnonceDetail(_element);
+		default:
+			lancerVendeur();
 		}
 	}
-	
+
 	private void afficherNormal(){
 		if(_position%2==0){
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.blanc));
 		}else{
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.bleu_claire));
 		}
-		
+
 	}
 	private void afficherTouch(){
 		getView().setBackgroundColor(getContext().getResources().getColor(R.color.blue));
 	}
-	
+
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if(event.getAction() == MotionEvent.ACTION_DOWN){
@@ -96,20 +90,13 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 		}
 		return false;
 	}
-	
-	public void lancerAnnonceDetail(Object element){
+
+	public void lancerVendeur(){
 		afficherNormal();
-		String id = "";
-		if(_element instanceof Annonce){
-			Annonce bateau = (Annonce)_element;
-			id = bateau.getNumero();
-		}else if(_element instanceof Moteur){
-			Moteur moteur = (Moteur)_element;
-			//TODO trouver l'id d'un moteur
-		}
-		
+		String id = _vendeur.getNumero();
+
 		FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new AnnonceDetail(id,_type));
+		transaction.add(R.id.main_fragment, new VendeurDetail(id));
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}

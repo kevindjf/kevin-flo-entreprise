@@ -96,7 +96,8 @@
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
 
-        <Button style="@style/bouton_rechercher" />
+        <Button style="@style/bouton_rechercher"
+            android:id="@+id/annuaire_rechercher"/>
     </LinearLayout>
 
 </LinearLayout>

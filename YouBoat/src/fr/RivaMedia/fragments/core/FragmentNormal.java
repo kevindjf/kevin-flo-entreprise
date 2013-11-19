@@ -1,10 +1,8 @@
 package fr.RivaMedia.fragments.core;
 
-import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
