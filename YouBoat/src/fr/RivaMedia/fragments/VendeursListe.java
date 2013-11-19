@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.VendeurListAdapter;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Vendeur;
@@ -28,6 +29,8 @@ public class VendeursListe extends FragmentNormal implements View.OnClickListene
 	
 	List<NameValuePair> _donneesFormulaire;
 	
+	boolean afficherProgress = true;
+	
 	public VendeursListe(List<NameValuePair> donneesFormulaire){
 		this._donneesFormulaire = donneesFormulaire;
 	}
@@ -36,12 +39,17 @@ public class VendeursListe extends FragmentNormal implements View.OnClickListene
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.annonces_liste,container, false);
-		afficherProgress(true);
 		
 		task = new ChargerAnnoncesTask();
 		task.execute();
 		
 		return _view;
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		afficherProgress(afficherProgress);
 	}
 
 	public void charger(){
@@ -82,7 +90,8 @@ public class VendeursListe extends FragmentNormal implements View.OnClickListene
 				@Override
 				public void run() {
 					chargerVendeurs();
-					afficherProgress(false);
+					afficherProgress = false;
+					afficherProgress(afficherProgress);
 				}
 
 			});

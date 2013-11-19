@@ -20,9 +20,10 @@ import fr.RivaMedia.net.NetVendeur;
 public class VendeurDetail extends FragmentNormal implements View.OnClickListener{
 
 	View _view;
+	View _layout;
 	Vendeur _vendeur;
 	String _id;
-
+	
 	ImageView _logo;
 	TextView _nom;
 	TextView _adresse;
@@ -36,6 +37,8 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	//ViewPager _page;	
 
 	LayoutInflater _inflater;
+	
+	boolean afficherProgress = true;
 
 	public VendeurDetail(String id){
 		this._id = id;
@@ -45,7 +48,6 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.vendeur_detail,container, false);
-		_view.setVisibility(View.GONE);
 
 		ImageLoaderCache.load(getActivity());
 
@@ -58,9 +60,15 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 		return _view;
 	}
 
-
+	@Override
+	public void onResume() {
+		super.onResume();
+		afficherProgress(afficherProgress);
+	}
 
 	public void charger(){
+		_layout = _view.findViewById(R.id.vendeur_detail_layout);
+		
 		_logo = (ImageView)_view.findViewById(R.id.vendeur_detail_logo);
 		_nom = (TextView)_view.findViewById(R.id.vendeur_detail_nom);
 		_adresse = (TextView)_view.findViewById(R.id.vendeur_detail_adresse);
@@ -131,7 +139,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 		charger();
 		remplir();
 		ajouterListeners();
-		_view.setVisibility(View.VISIBLE);
+		_layout.setVisibility(View.VISIBLE);
 	}
 
 	protected void chargerDetailVendeur(){
@@ -152,7 +160,8 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 				@Override
 				public void run() {
 					chargerVendeur();
-					afficherProgress(false);
+					afficherProgress = false;
+					afficherProgress(afficherProgress);
 				}
 
 			});

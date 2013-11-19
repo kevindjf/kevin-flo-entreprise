@@ -30,6 +30,8 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 	List<NameValuePair> _donneesFormulaire;
 	String _type;
 	
+	boolean afficherProgress = true;
+	
 	public AnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
 		this._url = url;
 		this._donneesFormulaire = donneesFormulaire;
@@ -40,12 +42,18 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.annonces_liste,container, false);
-		afficherProgress(true);
+		afficherProgress(afficherProgress);
 		
 		task = new ChargerAnnoncesTask();
 		task.execute();
 		
 		return _view;
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		afficherProgress(afficherProgress);
 	}
 
 	public void charger(){
@@ -86,7 +94,8 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 				@Override
 				public void run() {
 					chargerAnnonces();
-					afficherProgress(false);
+					afficherProgress = false;
+					afficherProgress(afficherProgress);
 				}
 
 			});

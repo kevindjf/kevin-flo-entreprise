@@ -11,6 +11,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 	protected AsyncTask<Void, Void, Void> task;
 	protected boolean visible = false;
+	protected boolean afficherProgress = false;
 	
 	public void afficherProgress(boolean afficher){
 		((MainActivity)getActivity()).afficherProgress(afficher);
@@ -19,7 +20,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	@Override
 	public void onPause() {
 		((MainActivity)getActivity()).cacherEffacer();
-		afficherProgress(false);
+		afficherProgress(afficherProgress);
 		try{
 			if(task != null)
 				this.task.cancel(true);
@@ -33,7 +34,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	@Override
 	public void onResume() {
 		((MainActivity)getActivity()).cacherEffacer();
-		afficherProgress(false);
+		afficherProgress(afficherProgress);
 		super.onResume();
 		getView().setOnClickListener(this);
 	}
