@@ -39,28 +39,29 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	String _type;
 	View screen;
 
-	TextView titre_type;
-	TextView subtitre_type;
-	TextView type_bateau;
-	TextView longeur_text;
-	TextView largeur_text;
-	TextView cabines;
-	TextView couchettes;
-	TextView salle_de_bain;
-	TextView annee;
-	TextView etat_text;
-	TextView moteur_text;
-	TextView puissance_text;
-	TextView propulsion_text;
-	TextView nb_heures;
-	TextView prix;
-	TextView description_text;
-	TextView nomVendeur;
-	TextView rueVendeur;
-	TextView postaleVendeur;
-	TextView tel_principal;
-	TextView tel_secondaire;
-	TextView email;
+	View titre;
+	View sousTitre;
+	View type;
+	View longeur;
+	View largeur;
+
+	View cabines;
+	View couchettes;
+	View salleDeBain;
+	View annee;
+	View etat;
+	View moteur;
+	View puissance;
+	View propulsion;
+	View nbHeures;
+	View prix;
+	View description;
+	View nomVendeur;
+	View adresseVendeur;
+	View postaleVendeur;
+	View telephonePrincipal;
+	View telephoneSecondaire;
+	View email;
 
 	/*
 	ImageView imageprincipale;
@@ -69,10 +70,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	ImageView image3;
 	ImageView image4;
 	 */
-	View relative_tel_secondaire;
-	View relative_email;
-
-
 	PagerAdapter _pagesAdapter;
 	ViewPager _page;	
 	CirclePageIndicator _indicator;
@@ -105,30 +102,28 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	public void charger(){
 		screen = _view.findViewById(R.id.screen);
-		relative_tel_secondaire = _view.findViewById(R.id.relative_tel_2);
-		relative_email = _view.findViewById(R.id.relative_email);
-		titre_type = (TextView) _view.findViewById(R.id.type_title);	
-		subtitre_type = (TextView) _view.findViewById(R.id.sous_type_title);
-		type_bateau = (TextView) _view.findViewById(R.id.bateau_type);
-		longeur_text = (TextView) _view.findViewById(R.id.longueur_text);
-		largeur_text = (TextView) _view.findViewById(R.id.largeur_text);
-		cabines = (TextView) _view.findViewById(R.id.cabines_text);
-		couchettes = (TextView) _view.findViewById(R.id.couchettes_text);
-		salle_de_bain = (TextView) _view.findViewById(R.id.salle_de_bain_text);
-		annee = (TextView) _view.findViewById(R.id.annee_text);
-		etat_text = (TextView) _view.findViewById(R.id.etat_text);
-		moteur_text = (TextView) _view.findViewById(R.id.moteur_text);
-		puissance_text = (TextView) _view.findViewById(R.id.puissance_text);
-		propulsion_text = (TextView) _view.findViewById(R.id.propulsion);
-		nb_heures = (TextView) _view.findViewById(R.id.nb_heure_text);
-		prix = (TextView) _view.findViewById(R.id.prix);
-		description_text = (TextView) _view.findViewById(R.id.description_annonce);
-		nomVendeur = (TextView) _view.findViewById(R.id.nom_vendeur);
-		rueVendeur = (TextView) _view.findViewById(R.id.rue_vendeur);
-		postaleVendeur = (TextView) _view.findViewById(R.id.postale_vendeur);
-		tel_principal = (TextView) _view.findViewById(R.id.telephone_principal);
-		tel_secondaire = (TextView) _view.findViewById(R.id.telephone_secondaire);
-		email = (TextView) _view.findViewById(R.id.email);
+		titre = _view.findViewById(R.id.annonce_detail_titre);	
+		sousTitre = _view.findViewById(R.id.annonce_detail_sous_titre);
+		type =  _view.findViewById(R.id.annonce_detail_type);
+		longeur = _view.findViewById(R.id.annonce_detail_longueur);
+		largeur =  _view.findViewById(R.id.annonce_detail_largeur);
+		cabines =  _view.findViewById(R.id.annonce_detail_cabines);
+		couchettes =  _view.findViewById(R.id.annonce_detail_couchettes);
+		salleDeBain = _view.findViewById(R.id.annonce_detail_salle_de_bain);
+		annee =  _view.findViewById(R.id.annonce_detail_annee);
+		etat =  _view.findViewById(R.id.annonce_detail_etat);
+		moteur =  _view.findViewById(R.id.annonce_detail_moteur);
+		puissance =  _view.findViewById(R.id.annonce_detail_puissance);
+		propulsion =  _view.findViewById(R.id.annonce_detail_propulsion);
+		nbHeures =  _view.findViewById(R.id.annonce_detail_nombre_heures);
+		prix =  _view.findViewById(R.id.annonce_detail_prix);
+		description = _view.findViewById(R.id.annonce_detail_description);
+		nomVendeur = _view.findViewById(R.id.annonce_detail_nom_vendeur);
+		adresseVendeur =  _view.findViewById(R.id.annonce_detail_adresse_vendeur);
+		postaleVendeur =  _view.findViewById(R.id.annonce_detail_code_postale_vendeur);
+		telephonePrincipal =  _view.findViewById(R.id.annonce_detail_telephone_principal);
+		telephoneSecondaire = _view.findViewById(R.id.annonce_detail_telephone_secondaire);
+		email = _view.findViewById(R.id.annonce_detail_email);
 		/*
 		imageprincipale = (ImageView) _view.findViewById(R.id.principal_picture);
 		image1 = (ImageView) _view.findViewById(R.id.other_picture_1);
@@ -147,91 +142,118 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		if(_annonce != null){
 
 			if(_annonce.getTitle() != null)
-				titre_type.setText(_annonce.getTitle());
+				((TextView)titre).setText(_annonce.getTitle());
+			else
+				titre.setVisibility(View.GONE);
+
 			if(_annonce.getMoteur() != null && _annonce.getMoteur().getInfoMoteur() != null)
-				subtitre_type.setText(_annonce.getMoteur().getInfoMoteur());
+				((TextView)sousTitre).setText(_annonce.getMoteur().getInfoMoteur());
+			else
+				sousTitre.setVisibility(View.GONE);
 
 			if(_annonce.getType() != null && _annonce.getCategorie() != null)
-				type_bateau.setText(_annonce.getType() + " > " +_annonce.getCategorie());
+				((TextView)type).setText(_annonce.getType() + " > " +_annonce.getCategorie());
+			else
+				type.setVisibility(View.GONE);
+
 			if(_annonce.getLongueur() != null)
-				longeur_text.setText(_annonce.getLongueur());
+				((TextView)longeur.findViewById(R.id.text)).setText(_annonce.getLongueur());
+			else
+				longeur.setVisibility(View.GONE);
+
 			if(_annonce.getLargeur() != null)
-				largeur_text.setText(_annonce.getLargeur());
+				((TextView)largeur.findViewById(R.id.text)).setText(_annonce.getLargeur());
+			else
+				largeur.setVisibility(View.GONE);
+			
 			if(_annonce.getNbCabines() != null)
-				cabines.setText(_annonce.getNbCabines());
+				((TextView)cabines.findViewById(R.id.text)).setText(_annonce.getNbCabines());
+			else
+				cabines.setVisibility(View.GONE);
+			
 			if(_annonce.getNbCouchettes() != null)
-				couchettes.setText(_annonce.getNbCouchettes());
+				((TextView)couchettes.findViewById(R.id.text)).setText(_annonce.getNbCouchettes());
+			else
+				cabines.setVisibility(View.GONE);
+			
 			if(_annonce.getNbSallesDeBain() != null)
-				salle_de_bain.setText(_annonce.getNbSallesDeBain());
+				((TextView)salleDeBain.findViewById(R.id.text)).setText(_annonce.getNbSallesDeBain());
+			else
+				salleDeBain.setVisibility(View.GONE);
+			
 			if(_annonce.getAnnee() != null)
-				annee.setText(_annonce.getAnnee());
+				((TextView)annee.findViewById(R.id.text)).setText(_annonce.getAnnee());
+			else
+				annee.setVisibility(View.GONE);
+			
 			if(_annonce.getEtat() != null)
-				etat_text.setText(_annonce.getEtat());
+				((TextView)etat.findViewById(R.id.text)).setText(_annonce.getEtat());
+			else
+				etat.setVisibility(View.GONE);
+			
 			if(_annonce.getMoteur() != null){ 
 				if(_annonce.getMoteur().getMarqueMoteur() != null)
-					moteur_text.setText(_annonce.getMoteur().getMarqueMoteur());
+					((TextView)moteur.findViewById(R.id.text)).setText(_annonce.getMoteur().getMarqueMoteur());
+				else
+					moteur.setVisibility(View.GONE);
+				
 				if(_annonce.getMoteur().getPuissanceMoteur() != null)
-					puissance_text.setText(_annonce.getMoteur().getPuissanceMoteur());
+					((TextView)puissance.findViewById(R.id.text)).setText(_annonce.getMoteur().getPuissanceMoteur());
+				else
+					puissance.setVisibility(View.GONE);
+				
 				if(_annonce.getMoteur().getPropulsion() != null)
-					propulsion_text.setText(_annonce.getMoteur().getPropulsion());
+					((TextView)propulsion.findViewById(R.id.text)).setText(_annonce.getMoteur().getPropulsion());
+				else
+					propulsion.setVisibility(View.GONE);
+				
 				if(_annonce.getMoteur().getHeureMoteur() != null)
-					nb_heures.setText(_annonce.getMoteur().getHeureMoteur());
+					((TextView)nbHeures.findViewById(R.id.text)).setText(_annonce.getMoteur().getHeureMoteur());
+				else
+					nbHeures.setVisibility(View.GONE);
 			}
+			
 			if(_annonce.getPrix() != null && _annonce.getTaxePrix() != null)
-				prix.setText(_annonce.getPrix() + " € " + _annonce.getTaxePrix());
+				((TextView)prix.findViewById(R.id.text)).setText(_annonce.getPrix() + " € " + _annonce.getTaxePrix());
+			else
+				prix.setVisibility(View.GONE);
+			
 			if(_annonce.getCommentaire() != null)
-				description_text.setText(_annonce.getCommentaire());
+				((TextView)description).setText(_annonce.getCommentaire());
+			else
+				description.setVisibility(View.GONE);
 
-			//if(_annonce.getLien() != null && _annonce.getLien().getUrl()!= null)
-			//	ImageLoaderCache.charger(_annonce.getLien().getUrl(), imageprincipale);
-
-			/*
-				if(_annonce.getPhotos() != null){
-					if(_annonce.getPhotos().size() > 1){
-						imageprincipale.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(_annonce.getPhotos().get(0).getUrl(), imageprincipale);
-
-					}
-					if(_annonce.getPhotos().size() > 2){
-						image1.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(_annonce.getPhotos().get(1).getUrl(), image1);
-
-					}
-					if(_annonce.getPhotos().size() > 3){
-						image2.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(_annonce.getPhotos().get(2).getUrl(), image2);
-
-					}
-					if(_annonce.getPhotos().size() > 4){
-						image3.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(_annonce.getPhotos().get(3).getUrl(), image3);
-
-					}
-					if(_annonce.getPhotos().size() > 5){
-						image4.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(_annonce.getPhotos().get(3).getUrl(), image4);
-
-					}
-
-				}
-			 */
 			if(_annonce.getVendeur() != null){
 				if(_annonce.getVendeur().getNom() != null)
-					nomVendeur.setText(_annonce.getVendeur().getNom());
+					((TextView)nomVendeur).setText(_annonce.getVendeur().getNom());
+				else
+					nomVendeur.setVisibility(View.GONE);
+				
 				if(_annonce.getVendeur().getAdresse() != null)
-					rueVendeur.setText(_annonce.getVendeur().getAdresse());
+					((TextView)adresseVendeur).setText(_annonce.getVendeur().getAdresse());
+				else
+					adresseVendeur.setVisibility(View.GONE);
+					
 				if(_annonce.getVendeur().getCodePostal() != null && _annonce.getVendeur().getVille() != null)
-					postaleVendeur.setText(_annonce.getVendeur().getCodePostal() + " " + _annonce.getVendeur().getVille());
+					((TextView)postaleVendeur).setText(_annonce.getVendeur().getCodePostal() + " " + _annonce.getVendeur().getVille());
+				else
+					postaleVendeur.setVisibility(View.GONE);
+				
 				if(_annonce.getVendeur().getTel1() != null)
-					tel_principal.setText(_annonce.getVendeur().getTel1());
-				if(_annonce.getVendeur().getTel2() != null){
-					relative_tel_secondaire.setVisibility(View.VISIBLE);
-					tel_secondaire.setText(_annonce.getVendeur().getTel2());
-				}
-				if(_annonce.getVendeur().getEmail() != null){
-					relative_email.setVisibility(View.VISIBLE);
-					email.setText(_annonce.getVendeur().getEmail());
-				}
+					((TextView)telephonePrincipal.findViewById(R.id.text)).setText(_annonce.getVendeur().getTel1());
+				else
+					telephonePrincipal.setVisibility(View.GONE);
+				
+				if(_annonce.getVendeur().getTel2() != null)
+					((TextView)telephoneSecondaire.findViewById(R.id.text)).setText(_annonce.getVendeur().getTel2());
+				else
+					telephoneSecondaire.setVisibility(View.GONE);
+				
+				if(_annonce.getVendeur().getEmail() != null)
+					((TextView)email.findViewById(R.id.text)).setText(_annonce.getVendeur().getEmail());
+				else
+					email.setVisibility(View.GONE);
+				
 			}
 		}
 		screen.setVisibility(View.VISIBLE);
