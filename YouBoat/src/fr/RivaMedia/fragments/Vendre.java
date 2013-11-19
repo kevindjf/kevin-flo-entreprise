@@ -2,10 +2,10 @@ package fr.RivaMedia.fragments;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 
@@ -15,18 +15,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.GetChars;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +42,7 @@ import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.*;
 import fr.RivaMedia.image.ImageResizer;
+import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Lien;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
@@ -73,8 +70,11 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	public static final int IMAGE_REQUEST = 2222;
 
 	public static final int TYPE = 0;
-	public static final int CHANTIER_MODELE = 1;
-	public static final int MARQUE_MOTEUR = 2;
+	public static final int CATEGORIE = 1;
+	public static final int CHANTIER_MODELE = 2;
+	public static final int MARQUE_MOTEUR = 3;
+	public static final int ENERGIE = 4;
+	public static final int NOMBRE_MOTEUR = 5;
 
 
 
@@ -365,33 +365,24 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			if(typeVente == Annonces.BATEAUX){
-				ajouterFragment(new CategorieSelector(vendre_type,this));
-			}
-			else{
-				ajouterFragment(new CategorieSelector(""+typeVente,this));
+			String type = ""+typeVente;
+			if(typeVente == Annonces.BATEAUX)
+				type = vendre_type;
+
+			List<Categorie> categories = Donnees.getCategories(type);
+			if(categories != null){
+				Map<String,String> donneesValeurs = new HashMap<String,String>();
+				for(Categorie categorie : categories){
+					donneesValeurs.put(categorie.getLibelle(), categorie.getId());
+				}
+
+				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
 			}
 		}
 	}
 
 	private void demanderEnergie() {
-		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
-		alertBuilder.setTitle(getActivity().getResources().getString(R.string.energie));
-
-		final String[] items = new String[]{
-				getActivity().getResources().getString(R.string.diesel),
-				getActivity().getResources().getString(R.string.essence),
-				getActivity().getResources().getString(R.string.moins)
-		};
-
-		alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				vendre_energie = items[which];
-				((TextView)_energie.findViewById(R.id.text)).setText(vendre_energie);
-			}
-		});
-
-		alertBuilder.create().show();
+		ajouterFragment(new ValeurSelector(this, ENERGIE,  getResources().getStringArray(R.array.energie)));
 	}
 
 	private void demanderMarqueModele() {
@@ -405,23 +396,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 
 	private void demanderNombreMoteur() {
-		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
-		alertBuilder.setTitle(getActivity().getResources().getString(R.string.nombre_moteur));
-
-		final String[] items = new String[]{
-				"1",
-				"2",
-				"3"
-		};
-
-		alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				vendre_nombre_moteur = items[which];
-				((TextView)_nombreMoteur.findViewById(R.id.text)).setText(vendre_nombre_moteur);
-			}
-		});
-
-		alertBuilder.create().show();
+		ajouterFragment(new ValeurSelector(this, NOMBRE_MOTEUR,  getResources().getStringArray(R.array.nombre_moteur)));
 	}
 
 	private void demanderMarqueMoteur() {
@@ -540,9 +515,17 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			}
 
 		}
-		else if(from instanceof CategorieSelector){
+		else if(idRetour == CATEGORIE){
 			vendre_categorie = item;			
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
+		}
+		else if(idRetour == ENERGIE){
+			vendre_energie = item;
+			((TextView)_energie.findViewById(R.id.text)).setText(vendre_energie);
+		}
+		else if(idRetour == NOMBRE_MOTEUR){
+			vendre_nombre_moteur = item;
+			((TextView)_nombreMoteur.findViewById(R.id.text)).setText(vendre_nombre_moteur);
 		}
 		else if(from instanceof ModeleSelector){
 			if(idRetour == CHANTIER_MODELE){
@@ -554,10 +537,11 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				((TextView)_marqueMoteur.findViewById(R.id.text)).setText(value);
 			}
 		}
-		if(typeVente == Annonces.MOTEURS){
+		else if(typeVente == Annonces.MOTEURS){
 			vendre_marque = item;
 			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
 		}
+
 	}
 
 	private List<NameValuePair> recupererDonnees(){

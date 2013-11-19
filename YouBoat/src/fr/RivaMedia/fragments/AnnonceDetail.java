@@ -34,10 +34,11 @@ import fr.RivaMedia.net.core.Net;
 public class AnnonceDetail extends FragmentNormal implements View.OnClickListener{
 
 	View _view;
-	Object _annonce;
+	Annonce _annonce;
 	String _id;
 	String _type;
 	View screen;
+
 	TextView titre_type;
 	TextView subtitre_type;
 	TextView type_bateau;
@@ -143,96 +144,93 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	}
 	public void remplir(){
-		if(_annonce instanceof Annonce){
-			Annonce bateau = (Annonce) _annonce;
-			if(bateau != null){
+		if(_annonce != null){
 
-				if(bateau.getTitle() != null)
-					titre_type.setText(bateau.getTitle());
-				if(bateau.getMoteur() != null && bateau.getMoteur().getInfoMoteur() != null)
-					subtitre_type.setText(bateau.getMoteur().getInfoMoteur());
+			if(_annonce.getTitle() != null)
+				titre_type.setText(_annonce.getTitle());
+			if(_annonce.getMoteur() != null && _annonce.getMoteur().getInfoMoteur() != null)
+				subtitre_type.setText(_annonce.getMoteur().getInfoMoteur());
 
-				if(bateau.getType() != null && bateau.getCategorie() != null)
-					type_bateau.setText(bateau.getType() + " > " +bateau.getCategorie());
-				if(bateau.getLongueur() != null)
-					longeur_text.setText(bateau.getLongueur());
-				if(bateau.getLargeur() != null)
-					largeur_text.setText(bateau.getLargeur());
-				if(bateau.getNbCabines() != null)
-					cabines.setText(bateau.getNbCabines());
-				if(bateau.getNbCouchettes() != null)
-					couchettes.setText(bateau.getNbCouchettes());
-				if(bateau.getNbSallesDeBain() != null)
-					salle_de_bain.setText(bateau.getNbSallesDeBain());
-				if(bateau.getAnnee() != null)
-					annee.setText(bateau.getAnnee());
-				if(bateau.getEtat() != null)
-					etat_text.setText(bateau.getEtat());
-				if(bateau.getMoteur() != null){ 
-					if(bateau.getMoteur().getMarqueMoteur() != null)
-						moteur_text.setText(bateau.getMoteur().getMarqueMoteur());
-					if(bateau.getMoteur().getPuissanceMoteur() != null)
-						puissance_text.setText(bateau.getMoteur().getPuissanceMoteur());
-					if(bateau.getMoteur().getPropulsion() != null)
-						propulsion_text.setText(bateau.getMoteur().getPropulsion());
-					if(bateau.getMoteur().getHeureMoteur() != null)
-						nb_heures.setText(bateau.getMoteur().getHeureMoteur());
-				}
-				if(bateau.getPrix() != null && bateau.getTaxePrix() != null)
-					prix.setText(bateau.getPrix() + " € " + bateau.getTaxePrix());
-				if(bateau.getCommentaire() != null)
-					description_text.setText(bateau.getCommentaire());
+			if(_annonce.getType() != null && _annonce.getCategorie() != null)
+				type_bateau.setText(_annonce.getType() + " > " +_annonce.getCategorie());
+			if(_annonce.getLongueur() != null)
+				longeur_text.setText(_annonce.getLongueur());
+			if(_annonce.getLargeur() != null)
+				largeur_text.setText(_annonce.getLargeur());
+			if(_annonce.getNbCabines() != null)
+				cabines.setText(_annonce.getNbCabines());
+			if(_annonce.getNbCouchettes() != null)
+				couchettes.setText(_annonce.getNbCouchettes());
+			if(_annonce.getNbSallesDeBain() != null)
+				salle_de_bain.setText(_annonce.getNbSallesDeBain());
+			if(_annonce.getAnnee() != null)
+				annee.setText(_annonce.getAnnee());
+			if(_annonce.getEtat() != null)
+				etat_text.setText(_annonce.getEtat());
+			if(_annonce.getMoteur() != null){ 
+				if(_annonce.getMoteur().getMarqueMoteur() != null)
+					moteur_text.setText(_annonce.getMoteur().getMarqueMoteur());
+				if(_annonce.getMoteur().getPuissanceMoteur() != null)
+					puissance_text.setText(_annonce.getMoteur().getPuissanceMoteur());
+				if(_annonce.getMoteur().getPropulsion() != null)
+					propulsion_text.setText(_annonce.getMoteur().getPropulsion());
+				if(_annonce.getMoteur().getHeureMoteur() != null)
+					nb_heures.setText(_annonce.getMoteur().getHeureMoteur());
+			}
+			if(_annonce.getPrix() != null && _annonce.getTaxePrix() != null)
+				prix.setText(_annonce.getPrix() + " € " + _annonce.getTaxePrix());
+			if(_annonce.getCommentaire() != null)
+				description_text.setText(_annonce.getCommentaire());
 
-				//if(bateau.getLien() != null && bateau.getLien().getUrl()!= null)
-				//	ImageLoaderCache.charger(bateau.getLien().getUrl(), imageprincipale);
+			//if(_annonce.getLien() != null && _annonce.getLien().getUrl()!= null)
+			//	ImageLoaderCache.charger(_annonce.getLien().getUrl(), imageprincipale);
 
-				/*
-				if(bateau.getPhotos() != null){
-					if(bateau.getPhotos().size() > 1){
+			/*
+				if(_annonce.getPhotos() != null){
+					if(_annonce.getPhotos().size() > 1){
 						imageprincipale.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(bateau.getPhotos().get(0).getUrl(), imageprincipale);
+						ImageLoaderCache.charger(_annonce.getPhotos().get(0).getUrl(), imageprincipale);
 
 					}
-					if(bateau.getPhotos().size() > 2){
+					if(_annonce.getPhotos().size() > 2){
 						image1.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(bateau.getPhotos().get(1).getUrl(), image1);
+						ImageLoaderCache.charger(_annonce.getPhotos().get(1).getUrl(), image1);
 
 					}
-					if(bateau.getPhotos().size() > 3){
+					if(_annonce.getPhotos().size() > 3){
 						image2.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(bateau.getPhotos().get(2).getUrl(), image2);
+						ImageLoaderCache.charger(_annonce.getPhotos().get(2).getUrl(), image2);
 
 					}
-					if(bateau.getPhotos().size() > 4){
+					if(_annonce.getPhotos().size() > 4){
 						image3.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(bateau.getPhotos().get(3).getUrl(), image3);
+						ImageLoaderCache.charger(_annonce.getPhotos().get(3).getUrl(), image3);
 
 					}
-					if(bateau.getPhotos().size() > 5){
+					if(_annonce.getPhotos().size() > 5){
 						image4.setVisibility(View.VISIBLE);
-						ImageLoaderCache.charger(bateau.getPhotos().get(3).getUrl(), image4);
+						ImageLoaderCache.charger(_annonce.getPhotos().get(3).getUrl(), image4);
 
 					}
 
 				}
-				 */
-				if(bateau.getVendeur() != null){
-					if(bateau.getVendeur().getNom() != null)
-						nomVendeur.setText(bateau.getVendeur().getNom());
-					if(bateau.getVendeur().getAdresse() != null)
-						rueVendeur.setText(bateau.getVendeur().getAdresse());
-					if(bateau.getVendeur().getCodePostal() != null && bateau.getVendeur().getVille() != null)
-						postaleVendeur.setText(bateau.getVendeur().getCodePostal() + " " + bateau.getVendeur().getVille());
-					if(bateau.getVendeur().getTel1() != null)
-						tel_principal.setText(bateau.getVendeur().getTel1());
-					if(bateau.getVendeur().getTel2() != null){
-						relative_tel_secondaire.setVisibility(View.VISIBLE);
-						tel_secondaire.setText(bateau.getVendeur().getTel2());
-					}
-					if(bateau.getVendeur().getEmail() != null){
-						relative_email.setVisibility(View.VISIBLE);
-						email.setText(bateau.getVendeur().getEmail());
-					}
+			 */
+			if(_annonce.getVendeur() != null){
+				if(_annonce.getVendeur().getNom() != null)
+					nomVendeur.setText(_annonce.getVendeur().getNom());
+				if(_annonce.getVendeur().getAdresse() != null)
+					rueVendeur.setText(_annonce.getVendeur().getAdresse());
+				if(_annonce.getVendeur().getCodePostal() != null && _annonce.getVendeur().getVille() != null)
+					postaleVendeur.setText(_annonce.getVendeur().getCodePostal() + " " + _annonce.getVendeur().getVille());
+				if(_annonce.getVendeur().getTel1() != null)
+					tel_principal.setText(_annonce.getVendeur().getTel1());
+				if(_annonce.getVendeur().getTel2() != null){
+					relative_tel_secondaire.setVisibility(View.VISIBLE);
+					tel_secondaire.setText(_annonce.getVendeur().getTel2());
+				}
+				if(_annonce.getVendeur().getEmail() != null){
+					relative_email.setVisibility(View.VISIBLE);
+					email.setText(_annonce.getVendeur().getEmail());
 				}
 			}
 		}
@@ -243,6 +241,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_indicator.setViewPager(_page);
 		//_page.getAdapter().notifyDataSetChanged();
 	}
+
 
 
 	public class ImagePagesAdapter extends PagerAdapter {
@@ -259,10 +258,9 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
 
-			if(_annonce instanceof Annonce && _annonce != null){
-				final Annonce bateau = (Annonce) _annonce;
+			if(_annonce != null){
 
-				String _urlImage = bateau.getPhotos().get(position).getUrl();
+				String _urlImage = _annonce.getPhotos().get(position).getUrl();
 
 				View	_layout = _inflater.inflate(R.layout.pager_image, container, false);
 				ImageView	_imageView = (ImageView)_layout.findViewById(R.id.image);
@@ -272,9 +270,9 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 					@Override
 					public void onClick(View arg0) {
 						Intent intent = new Intent(AnnonceDetail.this.getActivity(),Gallery.class);
-						if(bateau.getTitle() != null)
-							intent.putExtra(Gallery.TEXTE, bateau.getTitle());
-						intent.putStringArrayListExtra(Gallery.IMAGES, getListeUrls(bateau.getPhotos()));
+						if(_annonce.getTitle() != null)
+							intent.putExtra(Gallery.TEXTE, _annonce.getTitle());
+						intent.putStringArrayListExtra(Gallery.IMAGES, getListeUrls(_annonce.getPhotos()));
 						getActivity().startActivity(intent);
 					}
 				});
@@ -296,10 +294,9 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 		@Override
 		public int getCount() {
-			if(_annonce instanceof Annonce && _annonce != null){
-				Annonce bateau = (Annonce) _annonce;
-				if(bateau.getPhotos() != null)
-					return bateau.getPhotos().size();
+			if(_annonce != null){
+				if(_annonce.getPhotos() != null)
+					return _annonce.getPhotos().size();
 
 			}
 			return 0;

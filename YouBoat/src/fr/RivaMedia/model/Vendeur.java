@@ -1,6 +1,7 @@
 package fr.RivaMedia.model;
 
 public class Vendeur {
+	private String numero;
     private String nom;
     private String email;
     private String adresse;
@@ -13,6 +14,11 @@ public class Vendeur {
     
     private String vendeurLatitude;
     private String vendeurLongitude;
+    
+    private String logo;
+    private String gpsLatitude;
+    private String gpsLongitude;
+    private String nombreAnnonce;
     
 	public String getNom() {
 		return nom;
@@ -79,6 +85,36 @@ public class Vendeur {
 	}
 	public void setVendeurLongitude(String vendeurLongitude) {
 		this.vendeurLongitude = vendeurLongitude;
+	}
+	public String getNumero() {
+		return numero;
+	}
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	public String getGpsLatitude() {
+		return gpsLatitude;
+	}
+	public void setGpsLatitude(String gpsLatitude) {
+		this.gpsLatitude = gpsLatitude;
+	}
+	public String getGpsLongitude() {
+		return gpsLongitude;
+	}
+	public void setGpsLongitude(String gpsLongitude) {
+		this.gpsLongitude = gpsLongitude;
+	}
+	public String getNombreAnnonce() {
+		return nombreAnnonce;
+	}
+	public void setNombreAnnonce(String nombreAnnonce) {
+		this.nombreAnnonce = nombreAnnonce;
 	}
     
     

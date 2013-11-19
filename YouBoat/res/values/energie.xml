@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="energie">
+        <item>@string/diesel</item>
+        <item>@string/essence</item>
+        <item>@string/moins</item>
+    </string-array>
+
+</resources>

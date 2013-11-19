@@ -6,7 +6,6 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Modele;
 import fr.RivaMedia.net.NetChargement;
 
 @SuppressLint("ValidFragment")
-public class ModeleSelector extends Fragment implements OnItemClickListener{
+public class ModeleSelector extends FragmentNormal implements OnItemClickListener{
 
 	View _view;
 	ListView _listView;
@@ -33,8 +33,6 @@ public class ModeleSelector extends Fragment implements OnItemClickListener{
 	ItemSelectedListener _listener;
 	int _reponseId;
 	
-	ChargerModelesTask task = null;
-
 	public ModeleSelector (ItemSelectedListener listener, int reponseId, String type, Marque marque){
 		this._type = type;
 		this._listener = listener;
@@ -57,16 +55,6 @@ public class ModeleSelector extends Fragment implements OnItemClickListener{
 
 		return _view;
 	}
-	
-	@Override
-	public void onPause() {
-		((MainActivity)getActivity()).afficherProgress(false);
-		try{
-			this.task.cancel(true);
-		}
-		catch(Exception e){e.printStackTrace();}
-		super.onPause();
-	}
 
 	private void chargerVue(){
 		charger();
@@ -74,11 +62,11 @@ public class ModeleSelector extends Fragment implements OnItemClickListener{
 		ajouterListeners();
 	}
 	
-	private void charger() {
+	public void charger() {
 		_listView = (ListView)_view.findViewById(R.id.liste);
 	}
 
-	private void remplir() {
+	public void remplir() {
 		
 		List<Modele> _modeles = _marque.getModeles();
 
@@ -96,7 +84,7 @@ public class ModeleSelector extends Fragment implements OnItemClickListener{
 	}
 
 
-	private void ajouterListeners() {
+	public void ajouterListeners() {
 		_listView.setOnItemClickListener(this);		
 	}
 

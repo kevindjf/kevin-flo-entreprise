@@ -7,7 +7,6 @@ import java.util.Map;
 import org.apache.http.NameValuePair;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +25,7 @@ import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.fragments.selector.ModeleSelector;
+import fr.RivaMedia.fragments.selector.ValeurSelector;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.core.Donnees;
@@ -48,6 +48,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	public static int CHANTIER_MODELE = 2;
 	public static int MARQUE = 3;
+
+	public static int ETAT = 4;
+	public static int LOCALISATION = 5;
 
 	View _view;
 	View _rechercher;
@@ -285,44 +288,10 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		}
 	}
 	protected void demanderEtat(){
-		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
-		alertBuilder.setTitle(getActivity().getResources().getString(R.string.etat));
-
-		final String[] items = new String[]{
-				getActivity().getResources().getString(R.string.indifferent),
-				getActivity().getResources().getString(R.string.occasion),
-				getActivity().getResources().getString(R.string.neuf)
-		};
-
-		alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				((TextView)_etat.findViewById(R.id.text)).setText(items[which]);
-			}
-		});
-
-		alertBuilder.create().show();
+		ajouterFragment(new ValeurSelector(this, ETAT,  getResources().getStringArray(R.array.etat)));
 	}
 	protected void demanderLocalisation(){
-		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity());
-		alertBuilder.setTitle(getActivity().getResources().getString(R.string.etat));
-
-		final String[] items = new String[]{
-				getActivity().getResources().getString(R.string.indifferent),
-				getActivity().getResources().getString(R.string.manche_bretagne),
-				getActivity().getResources().getString(R.string.atlantique),
-				getActivity().getResources().getString(R.string.paca),
-				getActivity().getResources().getString(R.string.languedoc_roussillon),
-				getActivity().getResources().getString(R.string.dom_tom),
-				getActivity().getResources().getString(R.string.france_autre_region),
-		};
-
-		alertBuilder.setItems(items, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				((TextView)_localisation.findViewById(R.id.text)).setText(items[which]);
-			}
-		});
-
-		alertBuilder.create().show();
+		ajouterFragment(new ValeurSelector(this, LOCALISATION,  getResources().getStringArray(R.array.localisation)));
 	}
 	protected void demanderPuissance(){
 		new MinMaxDialog(
@@ -404,45 +373,46 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		Log.e("ItemSelected", item+" | "+value);
 
-		if(from instanceof DonneeValeurSelector){
-			if(idRetour == TYPE){
-				recherche_type = item;
-				((TextView)_type.findViewById(R.id.text)).setText(value);
-				recherche_categorie_id = null;
-				((TextView)_categorie.findViewById(R.id.text)).setText("");
+		if(idRetour == TYPE){
+			recherche_type = item;
+			((TextView)_type.findViewById(R.id.text)).setText(value);
+			recherche_categorie_id = null;
+			((TextView)_categorie.findViewById(R.id.text)).setText("");
 
-				_marques = Donnees.getMarques(item);
+			_marques = Donnees.getMarques(item);
 
-			}else if(idRetour == CATEGORIE){
-				recherche_categorie_id = item;
-				((TextView)_categorie.findViewById(R.id.text)).setText(value);
-			}
-
-		}
-		else if(from instanceof ModeleSelector){
-			if(idRetour == CHANTIER_MODELE){
-				String[] ids = item.split(";");
-				recherche_chantier_id = ids[0];
-				recherche_modele_id = ids[1];
-				System.out.println("CHANTIER :"+recherche_chantier_id);
-				((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
-			}
-			if(idRetour == MARQUE){
-				String[] ids = item.split(";");
-				recherche_marque_id = ids[0];
-				recherche_modele_id = ids[1];
-
-				System.err.println(item);
-				System.out.println(ids);
-				
-				System.out.println("MARQUE :"+recherche_chantier_id);
-
-				((TextView)_marque.findViewById(R.id.text)).setText(value);
-			}
+		}else if(idRetour == CATEGORIE){
+			recherche_categorie_id = item;
+			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
 
+		else if(idRetour == CHANTIER_MODELE){
+			String[] ids = item.split(";");
+			recherche_chantier_id = ids[0];
+			recherche_modele_id = ids[1];
+			System.out.println("CHANTIER :"+recherche_chantier_id);
+			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
+		}
+		else if(idRetour == MARQUE){
+			String[] ids = item.split(";");
+			recherche_marque_id = ids[0];
+			recherche_modele_id = ids[1];
 
+			System.err.println(item);
+			System.out.println(ids);
+
+			System.out.println("MARQUE :"+recherche_chantier_id);
+
+			((TextView)_marque.findViewById(R.id.text)).setText(value);
+		}
+		else if(idRetour == ETAT){
+			((TextView)_etat.findViewById(R.id.text)).setText(item);
+		}
+		else if(idRetour == LOCALISATION){
+			((TextView)_localisation.findViewById(R.id.text)).setText(item);
+		}
 	}
+
 
 	@Override
 	public void onMinMaxSelected(String titre, String min, String max) {
