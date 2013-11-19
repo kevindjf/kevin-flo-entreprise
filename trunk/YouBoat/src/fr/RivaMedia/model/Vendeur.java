@@ -1,5 +1,7 @@
 package fr.RivaMedia.model;
 
+import java.util.List;
+
 public class Vendeur {
 	private String numero;
     private String nom;
@@ -19,6 +21,16 @@ public class Vendeur {
     private String gpsLatitude;
     private String gpsLongitude;
     private String nombreAnnonce;
+    
+    private String fax;
+    private String contact;
+    private String horaires;
+    private String description;
+    private String nbBateau;
+    private String nbMoteur;
+    private String nbAccessoire;
+    
+    private List<String> services;
     
 	public String getNom() {
 		return nom;
@@ -115,6 +127,54 @@ public class Vendeur {
 	}
 	public void setNombreAnnonce(String nombreAnnonce) {
 		this.nombreAnnonce = nombreAnnonce;
+	}
+	public String getFax() {
+		return fax;
+	}
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	public String getHoraires() {
+		return horaires;
+	}
+	public void setHoraires(String horaires) {
+		this.horaires = horaires;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getNbBateau() {
+		return nbBateau;
+	}
+	public void setNbBateau(String nbBateau) {
+		this.nbBateau = nbBateau;
+	}
+	public String getNbMoteur() {
+		return nbMoteur;
+	}
+	public void setNbMoteur(String nbMoteur) {
+		this.nbMoteur = nbMoteur;
+	}
+	public String getNbAccessoire() {
+		return nbAccessoire;
+	}
+	public void setNbAccessoire(String nbAccessoire) {
+		this.nbAccessoire = nbAccessoire;
+	}
+	public List<String> getServices() {
+		return services;
+	}
+	public void setServices(List<String> services) {
+		this.services = services;
 	}
     
     
