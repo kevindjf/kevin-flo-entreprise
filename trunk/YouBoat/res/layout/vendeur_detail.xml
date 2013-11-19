@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blanc"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/vendeur_detail_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:visibility="gone"  >
 
         <LinearLayout
             android:id="@+id/vendeur_detail_layout_haut"
@@ -146,16 +147,24 @@
             </LinearLayout>
         </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/vendeur_detail_layout_milieu"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vendeur_detail_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/vendeur_detail_layout_bas"
             android:layout_below="@+id/vendeur_detail_layout_haut"
             android:background="@color/blanc" >
 
-            <include layout="@layout/vendeur_description" />
-        </ScrollView>
+            <android.support.v4.view.PagerTitleStrip
+                android:id="@+id/pager_title_strip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:background="@color/blue"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:textColor="@color/blanc" />
+        </android.support.v4.view.ViewPager>
     </RelativeLayout>
 
 </LinearLayout>
