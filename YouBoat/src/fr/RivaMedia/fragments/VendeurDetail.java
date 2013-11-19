@@ -1,10 +1,15 @@
 package fr.RivaMedia.fragments;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +20,9 @@ import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Vendeur;
 import fr.RivaMedia.net.NetVendeur;
+import fr.RivaMedia.tab.TabVendeurDescription;
+import fr.RivaMedia.tab.core.PagesAdapter;
+import fr.RivaMedia.tab.core.Tab;
 
 @SuppressLint("ValidFragment")
 public class VendeurDetail extends FragmentNormal implements View.OnClickListener{
@@ -33,8 +41,9 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	View _telephoneSecondaire;
 	View _email;
 
-	//PagerAdapter _pagesAdapter;
-	//ViewPager _page;	
+	PagerAdapter _pagesAdapter;
+	ViewPager _page;	
+	List<Tab> _pages = new ArrayList<Tab>();
 
 	LayoutInflater _inflater;
 	
@@ -77,6 +86,9 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 		_telephonePrincipal = _view.findViewById(R.id.vendeur_detail_telephone_principal);
 		_telephoneSecondaire = _view.findViewById(R.id.vendeur_detail_telephone_secondaire);
 		_email = _view.findViewById(R.id.vendeur_detail_email);
+		
+		
+		_page = (ViewPager) _view.findViewById(R.id.vendeur_detail_pager);
 	}
 	public void remplir(){
 		if(_vendeur != null){
@@ -114,6 +126,9 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 				((TextView)_email.findViewById(R.id.text)).setText(_vendeur.getTel1());
 			else
 				_email.setVisibility(View.GONE);
+			
+			
+			chargerTabs();
 		}
 	}
 
@@ -145,6 +160,18 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	protected void chargerDetailVendeur(){
 		_vendeur = NetVendeur.getVendeur(_id);
 	}
+	
+	protected void chargerTabs(){
+		_pages.clear();
+
+		_pages.add(new TabVendeurDescription("Vendeur",_vendeur));
+		_pages.add(new TabVendeurDescription("Vendeur",_vendeur));
+		_pages.add(new TabVendeurDescription("Vendeur",_vendeur));
+
+		_pagesAdapter = new PagesAdapter(getChildFragmentManager(),_pages);
+		_page.setAdapter(_pagesAdapter);
+	}
+
 
 
 	/* --------------------------------------------------------------------------- */
