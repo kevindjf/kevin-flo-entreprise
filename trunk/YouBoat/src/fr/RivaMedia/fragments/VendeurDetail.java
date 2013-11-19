@@ -1,0 +1,167 @@
+package fr.RivaMedia.fragments;
+
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.FragmentNormal;
+import fr.RivaMedia.image.ImageLoaderCache;
+import fr.RivaMedia.model.Vendeur;
+import fr.RivaMedia.net.NetVendeur;
+
+@SuppressLint("ValidFragment")
+public class VendeurDetail extends FragmentNormal implements View.OnClickListener{
+
+	View _view;
+	Vendeur _vendeur;
+	String _id;
+
+	ImageView _logo;
+	TextView _nom;
+	TextView _adresse;
+	TextView _codePostalVille;
+
+	View _telephonePrincipal;
+	View _telephoneSecondaire;
+	View _email;
+
+	//PagerAdapter _pagesAdapter;
+	//ViewPager _page;	
+
+	LayoutInflater _inflater;
+
+	public VendeurDetail(String id){
+		this._id = id;
+	}
+
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+		_view = inflater.inflate(R.layout.vendeur_detail,container, false);
+		_view.setVisibility(View.GONE);
+
+		ImageLoaderCache.load(getActivity());
+
+		afficherProgress(true);
+		task = new ChargerVendeurTask();
+		task.execute();
+
+		this._inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+		return _view;
+	}
+
+
+
+	public void charger(){
+		_logo = (ImageView)_view.findViewById(R.id.vendeur_detail_logo);
+		_nom = (TextView)_view.findViewById(R.id.vendeur_detail_nom);
+		_adresse = (TextView)_view.findViewById(R.id.vendeur_detail_adresse);
+		_codePostalVille = (TextView)_view.findViewById(R.id.vendeur_detail_code_postal_ville);
+
+		_telephonePrincipal = _view.findViewById(R.id.vendeur_detail_telephone_principal);
+		_telephoneSecondaire = _view.findViewById(R.id.vendeur_detail_telephone_secondaire);
+		_email = _view.findViewById(R.id.vendeur_detail_email);
+	}
+	public void remplir(){
+		if(_vendeur != null){
+			if(_vendeur.getLogo() != null)
+				ImageLoaderCache.charger(_vendeur.getLogo(), _logo);
+			else
+				_logo.setVisibility(View.GONE);
+
+			if(_vendeur.getNom() != null)
+				_nom.setText(_vendeur.getNom());
+			else
+				_nom.setVisibility(View.GONE);
+
+			if(_vendeur.getAdresse() != null)
+				_adresse.setText(_vendeur.getAdresse());
+			else
+				_adresse.setVisibility(View.GONE);
+
+			if(_vendeur.getCodePostal() != null && _vendeur.getVille() != null)
+				_codePostalVille.setText(_vendeur.getCodePostal()+", "+_vendeur.getVille());
+			else
+				_codePostalVille.setVisibility(View.GONE);
+
+			if(_vendeur.getTel1() != null)
+				((TextView)_telephonePrincipal.findViewById(R.id.text)).setText(_vendeur.getTel1());
+			else
+				_telephonePrincipal.setVisibility(View.GONE);
+
+			if(_vendeur.getTel2() != null)
+				((TextView)_telephoneSecondaire.findViewById(R.id.text)).setText(_vendeur.getTel2());
+			else
+				_telephoneSecondaire.setVisibility(View.GONE);
+
+			if(_vendeur.getEmail() != null)
+				((TextView)_email.findViewById(R.id.text)).setText(_vendeur.getTel1());
+			else
+				_email.setVisibility(View.GONE);
+		}
+	}
+
+	public void ajouterListeners(){
+		_telephonePrincipal.setOnClickListener(this);
+		_telephoneSecondaire.setOnClickListener(this);
+		_email.setOnClickListener(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()){
+		case R.id.vendeur_detail_telephone_principal:
+			break;
+		case R.id.vendeur_detail_telephone_secondaire:
+			break;
+		case R.id.vendeur_detail_email:
+			break;
+		}
+	}
+
+	protected void chargerVendeur(){
+		charger();
+		remplir();
+		ajouterListeners();
+		_view.setVisibility(View.VISIBLE);
+	}
+
+	protected void chargerDetailVendeur(){
+		_vendeur = NetVendeur.getVendeur(_id);
+	}
+
+
+	/* --------------------------------------------------------------------------- */
+
+	class ChargerVendeurTask extends AsyncTask<Void, Void, Void> {
+		protected Void doInBackground(Void...donnees) {
+			//tests
+
+			chargerDetailVendeur();
+
+			getActivity().runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					chargerVendeur();
+					afficherProgress(false);
+				}
+
+			});
+
+			return null;
+		}
+
+		protected void onPostExecute(){
+		}
+	}
+
+}

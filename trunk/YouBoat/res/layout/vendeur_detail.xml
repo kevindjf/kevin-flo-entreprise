@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanc"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/vendeur_detail_layout_haut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <ImageView
+            android:id="@+id/vendeur_detail_logo"
+            android:layout_width="100dip"
+            android:layout_height="100dip"
+            android:layout_marginBottom="10dip"
+            android:src="@drawable/bateau1" />
+
+        <TextView
+            android:id="@+id/vendeur_detail_nom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Nom du vendeur"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/vendeur_detail_adresse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Boulevard Allègre, Port De Plaisance"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/vendeur_detail_code_postal_ville"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="97290, Le Marin"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vendeur_detail_layout_bas"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blanc"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/vendeur_detail_telephone_principal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dip"
+            android:layout_weight="1"
+            android:background="@color/blue_title"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="5dp" >
+
+            <View
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:background="@drawable/phone"
+                android:text="appeler"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0606060606"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/vendeur_detail_telephone_secondaire"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dip"
+            android:layout_weight="1"
+            android:background="@color/blue_title"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="5dp" >
+
+            <View
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:background="@drawable/phone"
+                android:text="appeler"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0606060606"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/vendeur_detail_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dip"
+            android:layout_weight="1"
+            android:background="@color/blue_title"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="5dp" >
+
+            <View
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/mail"
+                android:text="appeler"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="youboat@youboat.com"
+                android:textColor="@android:color/white"
+                android:textSize="8sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/vendeur_detail_layout_milieu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/vendeur_detail_layout_bas"
+        android:layout_below="@+id/vendeur_detail_layout_haut"
+        android:background="@color/blanc" >
+
+        <include layout="@layout/vendeur_description" />
+    </ScrollView>
+
+</RelativeLayout>
