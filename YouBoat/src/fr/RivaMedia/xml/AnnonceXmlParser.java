@@ -82,6 +82,9 @@ public class AnnonceXmlParser extends XmlParser {
 				else if(tag.equals("gpslongitude")){
 					annonce.setGpsLongtitude(getString());
 				}
+				else if(tag.equals("type")){
+					annonce.setType(getString());
+				}
 				else if(tag.equals("typeclient")){
 					annonce.setTypeClient(getString());
 				}

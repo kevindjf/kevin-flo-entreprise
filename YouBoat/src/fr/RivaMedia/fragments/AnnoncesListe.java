@@ -16,7 +16,7 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Annonce;
-import fr.RivaMedia.net.NetRecherche;
+import fr.RivaMedia.net.NetAnnonce;
 
 @SuppressLint("ValidFragment")
 public class AnnoncesListe extends FragmentNormal implements View.OnClickListener{
@@ -87,7 +87,7 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
-			_annonces = NetRecherche.rechercher(_url, _donneesFormulaire);
+			_annonces = NetAnnonce.rechercher(_url, _donneesFormulaire);
 
 			getActivity().runOnUiThread(new Runnable(){
 
