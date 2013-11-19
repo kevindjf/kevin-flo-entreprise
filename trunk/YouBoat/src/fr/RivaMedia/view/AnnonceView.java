@@ -27,12 +27,14 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	TextView _taille;
 	TextView _annee;
 	TextView _prix;
-	
-	public AnnonceView(Object element, Context context, View view, int position, String type) {
+
+	Annonce _annonce;
+
+	public AnnonceView(Annonce annonce, Context context, View view, int position, String type) {
 		super(context, view);
 		ImageLoaderCache.load(getContext());
-		
-		this._element = element;
+
+		this._annonce = annonce;
 		this._position = position;
 		this._type = type;
 		charger();
@@ -52,31 +54,38 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	@Override
 	public void remplir() {
-		if(_element instanceof Annonce){
-			Annonce bateau = (Annonce)_element;
-			
-			if(bateau.getLien() != null)
-				ImageLoaderCache.charger(bateau.getLien().getUrl(),_image);
-			_titre.setText(bateau.getTitle());
-			_sousTitre.setText(bateau.getNomMoteur());
-			_taille.setText(bateau.getLongueur()+" m");
-			_annee.setText(bateau.getAnnee());
-			_prix.setText(bateau.getPrix()+" €");
-			
-		}else if(_element instanceof Moteur){
-			Moteur moteur = (Moteur)_element;
-			
-			_image.setVisibility(View.GONE);
-			_titre.setText(moteur.getMarqueMoteur());
-			_sousTitre.setText(moteur.getInfoMoteur());
-			_taille.setText(moteur.getPuissanceMoteur()+" ch");
-			_annee.setVisibility(View.GONE);
-			_prix.setText(moteur.getPrix()+" €");
+		if(_annonce != null){
+
+			if(_annonce.getLien() != null && _annonce.getLien().getUrl() != null)
+				ImageLoaderCache.charger(_annonce.getLien().getUrl(),_image);
+
+			if(_annonce.getTitle() != null)
+				_titre.setText(_annonce.getTitle());
+			else
+				if(_annonce.getMoteur() != null && _annonce.getMoteur().getMarqueMoteur() != null)
+					_titre.setText(_annonce.getMoteur().getMarqueMoteur());
+
+			if(_annonce.getNomMoteur() != null)
+				_sousTitre.setText(_annonce.getNomMoteur());
+			else
+				if(_annonce.getCommentaire() != null)
+					_sousTitre.setText(_annonce.getCommentaire());
+
+			if(_annonce.getLongueur() != null)
+				_taille.setText(_annonce.getLongueur()+" m");
+			if(_annonce.getMoteur() != null && _annonce.getMoteur().getPuissanceMoteur() != null)
+				_taille.setText(_annonce.getMoteur().getPuissanceMoteur()+" ch");
+
+			if(_annonce.getAnnee() != null)
+				_annee.setText(_annonce.getAnnee());
+			else
+				_annee.setVisibility(View.GONE);
+
+			if(_annonce.getPrix() != null)
+				_prix.setText(_annonce.getPrix()+" €");
+
 		}
-		/*else if(_element instanceof Divers){
-			
-		}*/
-		
+
 		afficherNormal();
 	}
 
@@ -89,23 +98,23 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
-			default:
-				lancerAnnonceDetail(_element);
+		default:
+			lancerAnnonceDetail();
 		}
 	}
-	
+
 	private void afficherNormal(){
 		if(_position%2==0){
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.blanc));
 		}else{
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.bleu_claire));
 		}
-		
+
 	}
 	private void afficherTouch(){
 		getView().setBackgroundColor(getContext().getResources().getColor(R.color.blue));
 	}
-	
+
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if(event.getAction() == MotionEvent.ACTION_DOWN){
@@ -116,22 +125,17 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		}
 		return false;
 	}
-	
-	public void lancerAnnonceDetail(Object element){
-		afficherNormal();
-		String id = "";
-		if(_element instanceof Annonce){
-			Annonce bateau = (Annonce)_element;
-			id = bateau.getNumero();
-		}else if(_element instanceof Moteur){
-			Moteur moteur = (Moteur)_element;
-			//TODO trouver l'id d'un moteur
+
+	public void lancerAnnonceDetail(){
+		if(_annonce != null){
+			afficherNormal();
+			String id = _annonce.getNumero();
+
+			FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
+			transaction.add(R.id.main_fragment, new AnnonceDetail(id,_type));
+			transaction.addToBackStack(null);
+			transaction.commit();
 		}
-		
-		FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new AnnonceDetail(id,_type));
-		transaction.addToBackStack(null);
-		transaction.commit();
 	}
 
 }

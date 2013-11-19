@@ -20,6 +20,7 @@ public class NetRecherche extends Net {
 		return new AnnonceXmlParser(xml).getListe();
 	}
 	
+	
 	public static List<Annonce> rechercher(String url, List<NameValuePair> donnees){
 
 		String xml = Net.requeteGet(url,donnees);

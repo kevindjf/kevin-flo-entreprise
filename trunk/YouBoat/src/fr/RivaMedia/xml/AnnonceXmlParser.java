@@ -29,8 +29,8 @@ public class AnnonceXmlParser extends XmlParser {
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
 				if(tag.equals("item")){
-					Annonce bateau = getAnnonce(true);
-					annonces.add(bateau);
+					Annonce annonce = getAnnonce(true);
+					annonces.add(annonce);
 				}
 				if(tag.startsWith("detail_")){
 					String type = tag.replace("detail_", "");

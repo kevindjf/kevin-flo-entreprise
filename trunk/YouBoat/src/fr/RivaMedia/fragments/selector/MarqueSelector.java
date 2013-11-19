@@ -3,6 +3,9 @@ package fr.RivaMedia.fragments.selector;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.woozzu.android.adapter.IndexableListViewAdapter;
+import com.woozzu.android.widget.IndexableListView;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,7 +25,7 @@ import fr.RivaMedia.model.core.Donnees;
 public class MarqueSelector extends FragmentNormal implements OnItemClickListener{
 
 	View _view;
-	ListView _listView;
+	IndexableListView _listView;
 
 	String _type;
 	List<Marque> _marques;
@@ -50,7 +53,8 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 
 
 	public void charger() {
-		_listView = (ListView)_view.findViewById(R.id.liste);
+		_listView = (IndexableListView)_view.findViewById(R.id.liste);
+		_listView.setFastScrollEnabled(true);
 	}
 
 	public void remplir() {
@@ -63,7 +67,7 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 				libelles.add(m.getLibelle());
 			}
 
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.element_liste_simple,libelles);
+			IndexableListViewAdapter adapter = new IndexableListViewAdapter(getActivity(), R.layout.element_liste_simple,libelles);
 			_listView.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
 		}
