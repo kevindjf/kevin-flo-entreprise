@@ -42,7 +42,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/image_bt_annonce" />
+                        android:src="@drawable/logo_annonces_blanc" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -55,7 +55,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_vendre" />
+                        android:src="@drawable/logo_vendre_blanc" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -63,16 +63,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/slider_boat_on_demand"
+                    android:id="@+id/slider_on_demand"
                     style="@style/slider_element" >
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/image_bt_bod" />
+                        android:src="@drawable/logo_on_demand_blanc" />
 
                     <TextView
                         style="@style/slider_element_texte"
-                        android:text="@string/boat_on_demand" />
+                        android:text="@string/on_demand" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -81,7 +81,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/image_bt_news" />
+                        android:src="@drawable/logo_actualites_blanc" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -94,7 +94,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_annuaire" />
+                        android:src="@drawable/logo_annuaire_blanc" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -107,7 +107,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/image_bt_ports" />
+                        android:src="@drawable/logo_mes_annonces_blanc" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -120,7 +120,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/image_bt_alerte" />
+                        android:src="@drawable/logo_mes_alertes_blanc" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -133,7 +133,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/image_bt_info" />
+                        android:src="@drawable/logo_informations_blanc" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -146,7 +146,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/icone_contact_pro" />
+                        android:src="@drawable/logo_contact_pro_blanc" />
 
                     <TextView
                         style="@style/slider_element_texte"

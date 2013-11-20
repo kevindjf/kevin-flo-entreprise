@@ -97,7 +97,7 @@
         <ImageView 
             android:layout_width="100dip"
             android:layout_height="100dip"
-            android:src="@drawable/img_journal"
+            android:src="@drawable/image_journal_pixelisee"
             android:layout_marginLeft="10dip"
             />
     </LinearLayout>

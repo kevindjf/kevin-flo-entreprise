@@ -17,7 +17,6 @@
     <string name="bateaux">Bateaux</string>
     <string name="bateau_a_moteur">Bateaux à Moteur</string>
     <string name="bateaux_et_voiliers">BATEAUX &amp; VOILIERS</string>
-    <string name="boat_on_demand">Boat On Demand</string>
     <string name="budget">Budget</string>
     <string name="budget_star">Budget *</string>
     <string name="cabines">Cabines</string>
@@ -104,6 +103,7 @@
     <string name="pays_star">Pays *</string>
     <string name="occasion">Occasion</string>
     <string name="ok">Ok</string>
+    <string name="on_demand">Boat On Demand</string>
     <string name="oui">Oui</string>
     <string name="photo_and_description">Photo &amp; Description</string>
     <string name="pneumatiques_semi_rigide">Pneumatiques/Semi-Rigides</string>
