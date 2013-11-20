@@ -53,14 +53,14 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 
 
 	public void charger() {
-		_listView = (IndexableListView)_view.findViewById(R.id.liste);
+		_listView = (IndexableListView)_view.findViewById(android.R.id.list);
 		_listView.setFastScrollEnabled(true);
 	}
 
 	public void remplir() {
 		_marques = Donnees.getMarques(_type);
 		
-		if(_marques != null){
+		if(_marques != null && _marques.size()>0){
 			List<String> libelles =  new ArrayList<String>();
 			
 			for(Marque m : _marques){
@@ -70,7 +70,8 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 			IndexableListViewAdapter adapter = new IndexableListViewAdapter(getActivity(), R.layout.element_liste_simple,libelles);
 			_listView.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
-		}
+		}else
+			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
 	}
 
 

@@ -23,7 +23,7 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		_view = inflater.inflate(R.layout.annonces_liste,container, false);
+		_view = inflater.inflate(R.layout.liste_annonces,container, false);
 
 		charger();
 		remplir();

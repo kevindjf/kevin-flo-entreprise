@@ -50,7 +50,7 @@ public class TabVendeurAnnonces extends Tab {
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-		_view = inflater.inflate(R.layout.annonces_liste, container, false);
+		_view = inflater.inflate(R.layout.liste_annonces, container, false);
 
 		if(task == null){
 			task = new ChargerAnnoncesTask();
@@ -72,13 +72,14 @@ public class TabVendeurAnnonces extends Tab {
 
 	public void charger(){
 		if(_view != null)
-			_liste = (ListView)_view.findViewById(R.id.annonces_liste_listview);		
+			_liste = (ListView)_view.findViewById(android.R.id.list);		
 	}
 	public void remplir(){
 		if(_liste != null){
 			_adapter = new AnnonceListAdapter(_activity, _annonces,_type);
 			_liste.setAdapter(_adapter);
-		}
+		}else
+			super.afficherVide(_view, true);
 	}
 	public void ajouterListeners(){
 	}

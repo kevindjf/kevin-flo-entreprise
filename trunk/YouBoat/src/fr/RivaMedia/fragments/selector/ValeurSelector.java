@@ -24,49 +24,52 @@ public class ValeurSelector extends Fragment implements OnItemClickListener{
 
 	View _view;
 	IndexableListView _listView;
-	
+
 	List<String> _valeurs;
-	
+
 	ItemSelectedListener _listener;
-	
+
 	String[] _stringArray;
 	int _idRetour;
-	
+
 	public ValeurSelector (ItemSelectedListener listener, int idRetour, String[] stringArray){
 		this._listener = listener;
 		this._stringArray = stringArray;
 		this._idRetour = idRetour;
 	}
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		
+
 		_view = inflater.inflate(R.layout.liste_selector, container, false);
-		
+
 		charger();
 		remplir();
 		ajouterListeners();
-		
+
 		return _view;
 	}
 
-	
+
 	private void charger() {
-		_listView = (IndexableListView)_view.findViewById(R.id.liste);
+		_listView = (IndexableListView)_view.findViewById(android.R.id.list);
 		_listView.setFastScrollEnabled(true);
 	}
 
 	private void remplir() {
 		_valeurs = new ArrayList<String>(Arrays.asList(_stringArray));
-		
-		Collections.sort(_valeurs);
-		
-		IndexableListViewAdapter adapter = new IndexableListViewAdapter(getActivity(), R.layout.element_liste_simple,_valeurs);
-		_listView.setAdapter(adapter);
-		adapter.notifyDataSetChanged();
+		if(_valeurs != null && _valeurs.size()>0){
+			Collections.sort(_valeurs);
+
+			IndexableListViewAdapter adapter = new IndexableListViewAdapter(getActivity(), R.layout.element_liste_simple,_valeurs);
+			_listView.setAdapter(adapter);
+			adapter.notifyDataSetChanged();
+		}
+		else
+			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
 	}
 
-	
+
 	private void ajouterListeners() {
 		_listView.setOnItemClickListener(this);		
 	}
@@ -78,5 +81,5 @@ public class ValeurSelector extends Fragment implements OnItemClickListener{
 		_listener.itemSelected(ValeurSelector.this,_idRetour,valeur,valeur);
 		getFragmentManager().popBackStack();
 	}
-	
+
 }

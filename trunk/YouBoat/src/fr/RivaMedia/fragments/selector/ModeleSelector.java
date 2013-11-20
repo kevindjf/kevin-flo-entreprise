@@ -32,9 +32,9 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 
 	ItemSelectedListener _listener;
 	int _reponseId;
-	
+
 	boolean afficherProgress = true;
-	
+
 	public ModeleSelector (ItemSelectedListener listener, int reponseId, String type, Marque marque){
 		this._type = type;
 		this._listener = listener;
@@ -63,13 +63,13 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 		remplir();
 		ajouterListeners();
 	}
-	
+
 	public void charger() {
-		_listView = (ListView)_view.findViewById(R.id.liste);
+		_listView = (ListView)_view.findViewById(android.R.id.list);
 	}
 
 	public void remplir() {
-		
+
 		List<Modele> _modeles = _marque.getModeles();
 
 		if(_modeles != null && _modeles.size()>0){
@@ -82,7 +82,8 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.element_liste_simple,libelles);
 			_listView.setAdapter(adapter);
 			adapter.notifyDataSetChanged();
-		}
+		}else
+			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
 	}
 
 
@@ -104,7 +105,7 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 		getFragmentManager().popBackStack();
 		getFragmentManager().popBackStack();
 	}
-	
+
 	class ChargerModelesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests

@@ -25,31 +25,31 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 	ListView _liste = null;
 	AnnonceListAdapter _adapter = null;
 	List<Annonce> _annonces;
-	
+
 	String _url;
 	List<NameValuePair> _donneesFormulaire;
 	String _type;
-	
+
 	boolean afficherProgress = true;
-	
+
 	public AnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
 		this._url = url;
 		this._donneesFormulaire = donneesFormulaire;
 		this._type = type;
 	}
-	
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		_view = inflater.inflate(R.layout.annonces_liste,container, false);
+		_view = inflater.inflate(R.layout.liste_annonces,container, false);
 		afficherProgress(afficherProgress);
-		
+
 		task = new ChargerAnnoncesTask();
 		task.execute();
-		
+
 		return _view;
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -57,31 +57,37 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 	}
 
 	public void charger(){
-		_liste = (ListView)_view.findViewById(R.id.annonces_liste_listview);		
+		_liste = (ListView)_view.findViewById(android.R.id.list);		
 	}
 	public void remplir(){
-		_adapter = new AnnonceListAdapter(getActivity(), _annonces,_type);
-		_liste.setAdapter(_adapter);
+
+		if(_annonces == null || _annonces.size()==0)
+			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
+		else{
+			_adapter = new AnnonceListAdapter(getActivity(), _annonces,_type);
+			_liste.setAdapter(_adapter);
+		}
+
 	}
 	public void ajouterListeners(){
 	}
 
 
-	
+
 
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
 		}
 	}
-	
-	
+
+
 	protected void chargerAnnonces(){
 		charger();
 		remplir();
 		ajouterListeners();
 	}
-	
+
 	/* --------------------------------------------------------------------------- */
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {

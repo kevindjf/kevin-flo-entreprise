@@ -5,6 +5,8 @@
     android:background="@color/white" 
     >
 
+    <include layout="@layout/vide" />
+    
     <ListView
         android:id="@+id/annonces_liste_listview"
         android:layout_width="match_parent"

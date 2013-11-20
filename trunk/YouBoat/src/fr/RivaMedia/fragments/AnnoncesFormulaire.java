@@ -390,7 +390,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			String[] ids = item.split(";");
 			recherche_chantier_id = ids[0];
 			recherche_modele_id = ids[1];
-			System.out.println("CHANTIER :"+recherche_chantier_id);
+			Log.e("CHANTIER",recherche_chantier_id);
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == MARQUE){
@@ -398,10 +398,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			recherche_marque_id = ids[0];
 			recherche_modele_id = ids[1];
 
-			System.err.println(item);
-			System.out.println(ids);
-
-			System.out.println("MARQUE :"+recherche_chantier_id);
+			Log.e("MODELE",recherche_chantier_id);
 
 			((TextView)_marque.findViewById(R.id.text)).setText(value);
 		}
@@ -521,9 +518,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		if(marque != null && etat.length()>0){
 			if(recherche_modele_id != null)
 				Net.add(donnees,"listModele",recherche_modele_id);
-			if(typeAnnonces == Annonces.BATEAUX)
+			if(typeAnnonces == Annonces.BATEAUX && recherche_chantier_id != null)
 				Net.add(donnees, "listMarque",recherche_chantier_id);
-			else if(typeAnnonces == Annonces.MOTEURS)
+			else if(typeAnnonces == Annonces.MOTEURS && recherche_marque_id != null)
 				Net.add(donnees, "listMarque",recherche_marque_id);
 		}
 
