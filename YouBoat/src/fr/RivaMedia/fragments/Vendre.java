@@ -506,15 +506,13 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	public void itemSelected(Object from, int idRetour, String item, String value) {
 		Log.e("ItemSelected", item+" | "+value);
 
-		if(from instanceof DonneeValeurSelector){
-			if(idRetour == TYPE){
-				vendre_type = item;
-				((TextView)_type.findViewById(R.id.text)).setText(value);
-				vendre_categorie = null;
-				((TextView)_categorie.findViewById(R.id.text)).setText(getString(R.string.requis));
-			}
-
+		if(idRetour == TYPE){
+			vendre_type = item;
+			((TextView)_type.findViewById(R.id.text)).setText(value);
+			vendre_categorie = null;
+			((TextView)_categorie.findViewById(R.id.text)).setText(getString(R.string.requis));
 		}
+
 		else if(idRetour == CATEGORIE){
 			vendre_categorie = item;			
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
@@ -527,15 +525,13 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			vendre_nombre_moteur = item;
 			((TextView)_nombreMoteur.findViewById(R.id.text)).setText(vendre_nombre_moteur);
 		}
-		else if(from instanceof ModeleSelector){
-			if(idRetour == CHANTIER_MODELE){
-				vendre_marque = item;
-				((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
-			}
-			else if(idRetour == MARQUE_MOTEUR){
-				vendre_marque_moteur = item;
-				((TextView)_marqueMoteur.findViewById(R.id.text)).setText(value);
-			}
+		else if(idRetour == CHANTIER_MODELE){
+			vendre_marque = item;
+			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
+		}
+		else if(idRetour == MARQUE_MOTEUR){
+			vendre_marque_moteur = item;
+			((TextView)_marqueMoteur.findViewById(R.id.text)).setText(value);
 		}
 		else if(typeVente == Annonces.MOTEURS){
 			vendre_marque = item;
@@ -665,12 +661,16 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		return donnees;
 	}
 
+	private String recupererUrl(){
+		return "";
+	}
+	
 	private void etapeSuivante() {
 		List<NameValuePair> donneesVente = recupererDonnees();
 		if(donneesVente == null)
 			return;
 
-		ajouterFragment(new VendeurFormulaire(typeVente,donneesVente));
+		ajouterFragment(new VendeurFormulaire(recupererUrl(),donneesVente));
 	}
 
 	@Override

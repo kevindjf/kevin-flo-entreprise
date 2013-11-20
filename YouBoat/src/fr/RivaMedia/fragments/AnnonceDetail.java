@@ -63,13 +63,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	View telephoneSecondaire;
 	View email;
 
-	/*
-	ImageView imageprincipale;
-	ImageView image1;
-	ImageView image2;
-	ImageView image3;
-	ImageView image4;
-	 */
 	PagerAdapter _pagesAdapter;
 	ViewPager _page;	
 	CirclePageIndicator _indicator;
@@ -171,10 +164,10 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			else
 				cabines.setVisibility(View.GONE);
 			
-			if(_annonce.getNbCouchettes() != null)
+			if(_annonce.getNbCouchettes() != null && !_annonce.getNbCouchettes().equals("0"))
 				((TextView)couchettes.findViewById(R.id.text)).setText(_annonce.getNbCouchettes());
 			else
-				cabines.setVisibility(View.GONE);
+				couchettes.setVisibility(View.GONE);
 			
 			if(_annonce.getNbSallesDeBain() != null)
 				((TextView)salleDeBain.findViewById(R.id.text)).setText(_annonce.getNbSallesDeBain());
@@ -211,6 +204,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 					((TextView)nbHeures.findViewById(R.id.text)).setText(_annonce.getMoteur().getHeureMoteur());
 				else
 					nbHeures.setVisibility(View.GONE);
+			}else{
+				moteur.setVisibility(View.GONE);
+				puissance.setVisibility(View.GONE);
+				propulsion.setVisibility(View.GONE);
+				nbHeures.setVisibility(View.GONE);
 			}
 			
 			if(_annonce.getPrix() != null && _annonce.getTaxePrix() != null)
@@ -263,7 +261,26 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_indicator.setViewPager(_page);
 		//_page.getAdapter().notifyDataSetChanged();
 	}
+	public void ajouterListeners(){
+		telephonePrincipal.setOnClickListener(this);
+		telephoneSecondaire.setOnClickListener(this);
+		email.setOnClickListener(this);
+	}
 
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()){
+		case R.id.annonce_detail_telephone_principal:
+			super.appeller(((TextView)telephonePrincipal.findViewById(R.id.text)).getText().toString());
+			break;
+		case R.id.annonce_detail_telephone_secondaire:
+			super.appeller(((TextView)telephoneSecondaire.findViewById(R.id.text)).getText().toString());
+			break;
+		case R.id.annonce_detail_email:
+			super.envoyerEmail(((TextView)email.findViewById(R.id.text)).getText().toString());
+			break;
+		}
+	}
 
 
 	public class ImagePagesAdapter extends PagerAdapter {
@@ -349,19 +366,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		public void destroyItem(ViewGroup container, int position, Object object) {
 			// TODO Auto-generated method stub
 			//super.destroyItem(container, position, object);
-		}
-	}
-
-
-	public void ajouterListeners(){
-	}
-
-
-
-
-	@Override
-	public void onClick(View v) {
-		switch(v.getId()){
 		}
 	}
 

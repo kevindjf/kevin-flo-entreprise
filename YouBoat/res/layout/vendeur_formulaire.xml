@@ -32,7 +32,8 @@
             <EditText
                 android:id="@+id/text"
                 style="@style/formulaire_cellule_texte"
-                android:text="@string/requis" />
+                android:hint="@string/requis"
+                android:inputType="textCapWords" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -44,9 +45,10 @@
                 android:text="@string/prenom" />
 
             <EditText
-                android:id="@+id/text"
+                android:id="@id/text"
                 style="@style/formulaire_cellule_texte"
-                android:text="@string/facultatif" />
+                android:hint="@string/facultatif"
+                android:inputType="textCapWords" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -75,7 +77,7 @@
             <EditText
                 android:id="@+id/text"
                 style="@style/formulaire_cellule_texte"
-                android:text="@string/facultatif"
+                android:hint="@string/facultatif"
                 android:inputType="phone" />
         </RelativeLayout>
 

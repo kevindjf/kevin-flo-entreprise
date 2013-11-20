@@ -62,6 +62,13 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	public void ajouterFragment(Fragment fragment, boolean back){
 		((MainActivity)getActivity()).ajouterFragment(fragment,back);
 	}
+	
+	public void envoyerEmail(String email){
+		((MainActivity)getActivity()).envoyerEmail(email);
+	}
+	public void appeller(String phone){
+		((MainActivity)getActivity()).appeller(phone);
+	}
 
 	@Override
 	public void onClick(View arg0) {
