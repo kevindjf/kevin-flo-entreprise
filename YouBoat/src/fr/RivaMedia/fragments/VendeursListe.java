@@ -26,26 +26,26 @@ public class VendeursListe extends FragmentNormal implements View.OnClickListene
 	ListView _liste = null;
 	VendeurListAdapter _adapter = null;
 	List<Vendeur> _vendeurs;
-	
+
 	List<NameValuePair> _donneesFormulaire;
-	
+
 	boolean afficherProgress = true;
-	
+
 	public VendeursListe(List<NameValuePair> donneesFormulaire){
 		this._donneesFormulaire = donneesFormulaire;
 	}
-	
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		_view = inflater.inflate(R.layout.annonces_liste,container, false);
-		
+		_view = inflater.inflate(R.layout.liste_annonces,container, false);
+
 		task = new ChargerAnnoncesTask();
 		task.execute();
-		
+
 		return _view;
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -53,31 +53,38 @@ public class VendeursListe extends FragmentNormal implements View.OnClickListene
 	}
 
 	public void charger(){
-		_liste = (ListView)_view.findViewById(R.id.annonces_liste_listview);		
+		_liste = (ListView)_view.findViewById(android.R.id.list);		
 	}
 	public void remplir(){
-		_adapter = new VendeurListAdapter(getActivity(), _vendeurs);
-		_liste.setAdapter(_adapter);
+
+		if(_vendeurs == null || _vendeurs.size()==0)
+			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
+		else{
+
+			_adapter = new VendeurListAdapter(getActivity(), _vendeurs);
+			_liste.setAdapter(_adapter);
+
+		}
 	}
 	public void ajouterListeners(){
 	}
 
 
-	
+
 
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
 		}
 	}
-	
-	
+
+
 	protected void chargerVendeurs(){
 		charger();
 		remplir();
 		ajouterListeners();
 	}
-	
+
 	/* --------------------------------------------------------------------------- */
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
