@@ -4,4 +4,4 @@
     android:layout_width="wrap_content"
     android:maxHeight="300dip"
     android:layout_height="300dip"
-    android:src="@color/gray" />
+    android:src="@color/couleur_texte_claire" />

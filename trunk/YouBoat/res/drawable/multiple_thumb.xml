@@ -29,8 +29,8 @@
 
             <gradient
                 android:angle="270"
-                android:endColor="@color/blue_progress"
-                android:startColor="@color/blue_progress"
+                android:endColor="@color/couleur_3"
+                android:startColor="@color/couleur_3"
                 android:type="linear" />
         </shape>
     </item>

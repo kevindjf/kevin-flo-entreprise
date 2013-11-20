@@ -3,14 +3,14 @@
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanc"
+    android:background="@color/couleur_fond"
     android:orientation="vertical"
     android:visibility="gone" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue_title"
+        android:background="@color/couleur_3"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dip"
             android:layout_marginTop="5dip"
-            android:textColor="@color/white"
+            android:textColor="@color/couleur_fond"
             android:textSize="17sp" />
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dip"
-            android:textColor="@color/gris_menu"
+            android:textColor="@color/couleur_texte_fonce"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -45,14 +45,14 @@
                 android:id="@+id/annonce_detail_image_pager"
                 android:layout_width="match_parent"
                 android:layout_height="250dip"
-                android:background="@color/blue_title" >
+                android:background="@color/couleur_3" >
             </android.support.v4.view.ViewPager>
 
             <com.viewpagerindicator.CirclePageIndicator
                 android:id="@+id/annonce_detail_image_pager_indicator"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/blue_title"
+                android:background="@color/couleur_3"
                 android:padding="3dip" />
 
             <LinearLayout
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
                     android:layout_marginTop="10dip"
-                    android:textColor="@color/gris_menu" />
+                    android:textColor="@color/couleur_texte_fonce" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -254,7 +254,7 @@
                         android:id="@id/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/blue"
+                        android:textColor="@color/couleur_1"
                         android:textSize="23sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -273,7 +273,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dip"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/couleur_texte_noir" />
 
                 <LinearLayout
                     style="@style/formulaire_separator"
@@ -290,7 +290,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
                     android:layout_marginTop="10dip"
-                    android:textColor="@color/blue_title"
+                    android:textColor="@color/couleur_3"
                     android:textSize="19sp"
                     android:textStyle="bold" />
 
@@ -299,7 +299,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
-                    android:textColor="@color/black"
+                    android:textColor="@color/couleur_texte_noir"
                     android:textSize="17sp" />
 
                 <TextView
@@ -307,14 +307,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
-                    android:textColor="@color/black"
+                    android:textColor="@color/couleur_texte_noir"
                     android:textSize="17sp" />
 
                 <LinearLayout
                     android:id="@+id/annonce_detail_layout_contacter"
                     android:layout_width="fill_parent"
                     android:layout_height="50dip"
-                    android:background="@color/blanc"
+                    android:background="@color/couleur_fond"
                     android:gravity="center"
                     android:orientation="horizontal" >
 
@@ -324,7 +324,7 @@
                         android:layout_height="match_parent"
                         android:layout_margin="1dip"
                         android:layout_weight="1"
-                        android:background="@color/blue_title"
+                        android:background="@color/couleur_3"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:paddingTop="5dp" >
@@ -350,7 +350,7 @@
                         android:layout_height="match_parent"
                         android:layout_margin="1dip"
                         android:layout_weight="1"
-                        android:background="@color/blue_title"
+                        android:background="@color/couleur_3"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:paddingTop="5dp" >
@@ -376,7 +376,7 @@
                         android:layout_height="match_parent"
                         android:layout_margin="1dip"
                         android:layout_weight="1"
-                        android:background="@color/blue_title"
+                        android:background="@color/couleur_3"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:paddingTop="5dp" >

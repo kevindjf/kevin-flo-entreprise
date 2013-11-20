@@ -163,11 +163,11 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 	@Override
 	public void itemSelected(Object from, int idRetour, String item,String value) {
 		if(idRetour == MARQUE){
-			marque_id = value;
+			marque_id = item;
 			((TextView)_distributeur_marque.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == SERVICE){
-			service_id = value;
+			service_id = item;
 			((TextView)_services.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == LOCALITE){

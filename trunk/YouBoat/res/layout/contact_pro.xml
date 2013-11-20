@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/blanc" >
+    android:background="@color/couleur_fond"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -23,14 +23,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dip"
                 android:text="Vous souhaitez publier vos annonces sur "
-                android:textColor="@android:color/black"
+                android:textColor="@color/couleur_texte_noir"
                 android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Youboat.fr ou sur l&apos;application Youboat ?"
-                android:textColor="@android:color/black"
+                android:textColor="@color/couleur_texte_noir"
                 android:textSize="18sp" />
 
             <TextView
@@ -38,14 +38,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dip"
                 android:text="Vous souhaitez communiquer sur "
-                android:textColor="@android:color/black"
+                android:textColor="@color/couleur_texte_noir"
                 android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="le magazine YOUBOAT ?"
-                android:textColor="@android:color/black"
+                android:textColor="@color/couleur_texte_noir"
                 android:textSize="18sp" />
 
             <TextView
@@ -53,14 +53,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dip"
                 android:text="Vous souhaitez avoir votre propre "
-                android:textColor="@android:color/black"
+                android:textColor="@color/couleur_texte_noir"
                 android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="application IPhone ?"
-                android:textColor="@android:color/black"
+                android:textColor="@color/couleur_texte_noir"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -70,7 +70,7 @@
             android:layout_marginLeft="20dip"
             android:layout_marginTop="30dip"
             android:text="Contactez nous : "
-            android:textColor="@android:color/black"
+            android:textColor="@color/couleur_texte_noir"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -80,38 +80,69 @@
             android:layout_marginTop="30dip"
             android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/telephone"
-                android:layout_width="150dip"
-                android:layout_height="35dip"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:background="@android:color/black"
-                android:text="@string/telephone"
-                android:textColor="@android:color/white" />
 
-            <Button
-                android:id="@+id/email"
-                android:layout_width="150dip"
-                android:layout_height="35dip"
-                android:layout_toRightOf="@+id/telephone"
-                android:background="@color/blue"
-                android:text="@string/email"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/numero_telephone"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/telephone"
-                android:text="02 38 75 99 41"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" 
-                android:layout_alignLeft="@+id/telephone"
-                />
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:id="@+id/annonce_detail_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dip"
+                    android:layout_weight="1"
+                    android:background="@color/couleur_texte_noir"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp" >
+
+                    <View
+                        android:layout_width="20dip"
+                        android:layout_height="20dip"
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/phone"
+                        android:text="appeler"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="02 38 75 99 41"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/annonce_detail_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dip"
+                    android:layout_weight="1"
+                    android:background="@color/couleur_1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp" >
+
+                    <View
+                        android:layout_width="20dip"
+                        android:layout_height="20dip"
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/mail"
+                        android:text="email"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Envoyer un email"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
         </RelativeLayout>
-        
-      
     </LinearLayout>
 
 </LinearLayout>

@@ -2,24 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanc"
+    android:background="@color/couleur_fond"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EEE"
+        android:background="@color/couleur_texte_claire"
         android:orientation="vertical"
         android:padding="10dip" >
-        
-        <LinearLayout
-                    style="@style/formulaire_separator"
-                    android:layout_marginTop="10dip" >
 
-                    <TextView
-                        style="@style/formulaire_separator_titre"
-                        android:text="@string/coordonnees" />
-                </LinearLayout>
+        <LinearLayout
+            style="@style/formulaire_separator"
+            android:layout_marginTop="10dip" >
+
+            <TextView
+                style="@style/formulaire_separator_titre"
+                android:text="@string/coordonnees" />
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/vendeur_formulaire_nom"
@@ -93,8 +93,7 @@
                 android:id="@+id/text"
                 style="@style/formulaire_cellule_texte"
                 android:hint="@string/requis"
-                android:inputType="number"
-                 />
+                android:inputType="number" />
         </RelativeLayout>
 
         <RelativeLayout
