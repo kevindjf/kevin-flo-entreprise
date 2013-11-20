@@ -25,7 +25,7 @@ public class TabVendeurDescription extends Tab {
 	ViewGroup _services;
 
 	public TabVendeurDescription(String titre, Vendeur vendeur, Activity activity){
-		super(titre,activity.getResources().getDrawable(R.drawable.logo_vendeur));
+		super(titre,activity.getResources().getDrawable(R.drawable.logo_vendeur_blanc));
 		this._vendeur = vendeur;
 		this._activity = activity;
 	}

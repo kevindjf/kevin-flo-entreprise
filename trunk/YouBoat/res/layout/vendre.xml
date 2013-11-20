@@ -63,7 +63,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fond_ad_detail"
+        android:background="@drawable/pub_vendre_2"
         android:visibility="gone" />
 
     <ScrollView

@@ -396,7 +396,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 
 	private void demanderNombreMoteur() {
-		ajouterFragment(new ValeurSelector(this, NOMBRE_MOTEUR,  getResources().getStringArray(R.array.nombre_moteur)));
+		ajouterFragment(new ValeurSelector(this, NOMBRE_MOTEUR,  getResources().getStringArray(R.array.nombre)));
 	}
 
 	private void demanderMarqueMoteur() {

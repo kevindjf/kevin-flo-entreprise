@@ -37,7 +37,7 @@ public class TabVendeurAnnonces extends Tab {
 	AsyncTask<Void, Void, Void> task = null;
 
 	public TabVendeurAnnonces(String titre, Vendeur vendeur, String type, Activity activity){
-		super(titre,activity.getResources().getDrawable(R.drawable.logo_vendre));
+		super(titre,activity.getResources().getDrawable(R.drawable.logo_vendre_blanc));
 		this._vendeur = vendeur;
 		this._type = type;
 		this._activity = activity;

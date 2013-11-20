@@ -28,7 +28,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	View _slider_annonces;
 	View _slider_vendre;
-	View _slider_boat_on_demand;
+	View _slider_on_demand;
 	View _slider_actualites;
 	View _slider_annuaire;
 	View _slider_mes_annonces;
@@ -66,7 +66,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 		_slider_annonces = findViewById(R.id.slider_annonces);
 		_slider_vendre = findViewById(R.id.slider_vendre);
-		_slider_boat_on_demand = findViewById(R.id.slider_boat_on_demand);
+		_slider_on_demand = findViewById(R.id.slider_on_demand);
 		_slider_actualites = findViewById(R.id.slider_actualites);
 		_slider_annuaire = findViewById(R.id.slider_annuaire);
 		_slider_mes_annonces = findViewById(R.id.slider_mes_annonces);
@@ -77,7 +77,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_elements = new View[]{
 				_slider_annonces,
 				_slider_vendre,
-				_slider_boat_on_demand,
+				_slider_on_demand,
 				_slider_actualites,
 				_slider_annuaire,
 				_slider_mes_annonces,
@@ -127,7 +127,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			fermerSlider();	
 			afficherVendre();
 			break;
-		case R.id.slider_boat_on_demand:
+		case R.id.slider_on_demand:
 			fermerSlider();		
 			afficherBoatOnDemand();
 			break;

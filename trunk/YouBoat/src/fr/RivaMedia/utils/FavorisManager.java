@@ -71,7 +71,7 @@ public class FavorisManager {
 		String lesIds = _settings.getString(FAVORIS, "");
 		String idSuppr = "["+id+"]";
 		
-		String nouvelIds = lesIds.replace(idSuppr,"");
+		String nouvelIds = lesIds.replace(idSuppr,"").trim().replace("  "," ");
 		editor.putString(FAVORIS, nouvelIds);
 		
 		Log.e("FAVORIS", "retirer :"+nouvelIds);

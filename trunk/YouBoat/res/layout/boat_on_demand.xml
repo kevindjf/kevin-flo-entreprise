@@ -17,7 +17,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="5dip"
             android:layout_marginTop="5dip"
-            android:text="@string/boat_on_demand"
+            android:text="@string/on_demand"
             android:textColor="@color/blue"
             android:textSize="18sp"
             android:textStyle="bold" />

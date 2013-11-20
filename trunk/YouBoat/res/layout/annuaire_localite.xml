@@ -31,7 +31,7 @@
                 android:layout_width="30dip"
                 android:layout_height="30dip"
                 android:layout_marginLeft="5dip"
-                android:background="@drawable/target_select" />
+                android:background="@drawable/gps_select" />
 
             <EditText
                 android:id="@+id/annuaire_localite_localite"
