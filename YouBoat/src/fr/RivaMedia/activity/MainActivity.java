@@ -1,7 +1,6 @@
 package fr.RivaMedia.activity;
 
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
@@ -19,12 +17,14 @@ import com.navdrawer.SimpleSideDrawer;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.*;
 import fr.RivaMedia.fragments.core.Effaceable;
+import fr.RivaMedia.model.Annonce;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener{
 
 	SimpleSideDrawer _slider;
 	View _header_menu;
 	View _header_effacer;
+	View _header_favoris;
 
 	View _slider_annonces;
 	View _slider_vendre;
@@ -39,6 +39,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View[] _slider_elements;
 
 	View _progress;
+	
+	Annonce _annoncePourFavoris;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider.setLeftBehindContentView( R.layout.slider);
 		_header_menu = findViewById(R.id.header_menu);
 		_header_effacer = findViewById(R.id.header_effacer);
+		_header_favoris = findViewById(R.id.header_favoris);
 
 		_slider_annonces = findViewById(R.id.slider_annonces);
 		_slider_vendre = findViewById(R.id.slider_vendre);
@@ -92,6 +95,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	protected void ajouterListeners(){
 		_header_menu.setOnClickListener(this);
+		_header_favoris.setOnClickListener(this);
 	}
 
 	public void ouvrirSlider(){
@@ -252,6 +256,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		alert.show();
 
 	}
-
+	
+	public View afficherFavoris(){
+		_header_favoris.setVisibility(View.VISIBLE);
+		return _header_favoris;
+	}
+	
+	public void cacherFavoris(){
+		_header_favoris.setVisibility(View.GONE);
+		_header_favoris.setOnClickListener(null);
+		_annoncePourFavoris = null;
+	}
 
 }

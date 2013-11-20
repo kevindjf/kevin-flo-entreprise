@@ -73,6 +73,13 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	@Override
 	public void onClick(View arg0) {
 		// TODO Auto-generated method stub
-		
+	}
+	
+	public View afficherFavoris(){
+		return ((MainActivity)getActivity()).afficherFavoris();
+	}
+	
+	public void cacherFavoris(){
+		((MainActivity)getActivity()).cacherFavoris();
 	}
 }
