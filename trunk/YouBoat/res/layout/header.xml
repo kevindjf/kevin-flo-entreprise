@@ -10,15 +10,14 @@
         android:layout_height="50dip"
         android:layout_centerVertical="true"
         android:background="@drawable/youboatfr" />
-    
+
     <View
         android:id="@+id/header_menu"
         android:layout_width="40dip"
         android:layout_height="40dip"
-        android:background="@drawable/menu"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dip"
-        />
+        android:background="@drawable/menu" />
 
     <Button
         android:id="@+id/header_effacer"
@@ -30,8 +29,8 @@
         android:background="#B00"
         android:text="@string/effacer"
         android:textColor="@android:color/white"
-        android:visibility="gone"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/header_progress"
@@ -40,7 +39,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_marginRight="86dp"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/header_favoris"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:background="@drawable/favoris_select"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:visibility="gone"
-        android:layout_marginRight="86dp" />
+        android:layout_marginRight="15dip" />
 
 </RelativeLayout>

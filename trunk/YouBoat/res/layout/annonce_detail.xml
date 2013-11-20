@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blanc"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:visibility="gone" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -310,68 +311,92 @@
                     android:textSize="17sp" />
 
                 <LinearLayout
+                    android:id="@+id/annonce_detail_layout_contacter"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dip"
-                    android:layout_marginTop="10dip"
+                    android:layout_height="50dip"
+                    android:background="@color/blanc"
                     android:gravity="center"
                     android:orientation="horizontal" >
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:id="@+id/annonce_detail_telephone_principal"
-                        android:layout_width="150dip"
-                        android:layout_height="35dip"
-                        android:layout_marginRight="10dip"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dip"
+                        android:layout_weight="1"
                         android:background="@color/blue_title"
-                        android:gravity="center" >
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:paddingTop="5dp" >
+
+                        <View
+                            android:layout_width="20dip"
+                            android:layout_height="20dip"
+                            android:background="@drawable/phone"
+                            android:text="appeler"
+                            android:textColor="@android:color/white" />
 
                         <TextView
-                            android:id="@id/text"
+                            android:id="@+id/text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="0606060606"
                             android:textColor="@android:color/white" />
-                    </RelativeLayout>
+                    </LinearLayout>
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:id="@+id/annonce_detail_telephone_secondaire"
-                        android:layout_width="150dip"
-                        android:layout_height="35dip"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dip"
+                        android:layout_weight="1"
                         android:background="@color/blue_title"
-                        android:gravity="center"
-                         >
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:paddingTop="5dp" >
+
+                        <View
+                            android:layout_width="20dip"
+                            android:layout_height="20dip"
+                            android:background="@drawable/phone"
+                            android:text="appeler"
+                            android:textColor="@android:color/white" />
 
                         <TextView
-                            android:id="@id/text"
+                            android:id="@+id/text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="0606060606"
                             android:textColor="@android:color/white" />
-                    </RelativeLayout>
-                </LinearLayout>
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dip"
-                    android:layout_marginTop="10dip"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
-
-                    <RelativeLayout
+                    <LinearLayout
                         android:id="@+id/annonce_detail_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dip"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="1dip"
+                        android:layout_weight="1"
                         android:background="@color/blue_title"
-                        android:gravity="center"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                         >
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:paddingTop="5dp" >
+
+                        <View
+                            android:layout_width="20dip"
+                            android:layout_height="20dip"
+                            android:layout_marginBottom="3dp"
+                            android:background="@drawable/mail"
+                            android:text="appeler"
+                            android:textColor="@android:color/white" />
 
                         <TextView
-                            android:id="@id/text"
+                            android:id="@+id/text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@android:color/white" />
-                    </RelativeLayout>
+                            android:text="youboat@youboat.com"
+                            android:textColor="@android:color/white"
+                            android:textSize="8sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

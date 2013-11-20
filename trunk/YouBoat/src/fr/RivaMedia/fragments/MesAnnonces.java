@@ -33,7 +33,7 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 	}
 
 	public void charger(){
-		_liste = (ListView)_view.findViewById(R.id.annonces_liste_listview);		
+		_liste = (ListView)_view.findViewById(android.R.id.list);		
 	}
 	public void remplir(){
 		_adapter = new AnnonceListAdapter(getActivity(), _annonces,null);

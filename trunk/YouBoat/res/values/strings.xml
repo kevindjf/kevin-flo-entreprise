@@ -57,6 +57,8 @@
     <string name="etape_suivante">ETAPE SUIVANTE</string>
     <string name="etat">Etat</string>
     <string name="facultatif">facultatif</string>
+    <string name="favoris_ajoutee">L\'annonce a été ajoutée à vos favoris</string>
+    <string name="favoris_retiree">L\'annonce a été retirée de vos favoris</string>
     <string name="france_autre_region">France/Autre region</string>
     <string name="generalites">Généralités</string>
     <string name="geolocalisez_vous_ou_recherchez_une_localite">Géolocalisez vous ou recherchez une localité :</string>

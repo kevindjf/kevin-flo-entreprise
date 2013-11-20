@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -29,6 +30,7 @@ import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.model.Lien;
 import fr.RivaMedia.net.NetAnnonce;
 import fr.RivaMedia.net.core.Net;
+import fr.RivaMedia.utils.FavorisManager;
 
 @SuppressLint("ValidFragment")
 public class AnnonceDetail extends FragmentNormal implements View.OnClickListener{
@@ -63,11 +65,16 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	View telephoneSecondaire;
 	View email;
 
+	View _favoris;
+	FavorisManager _favorisManager;
+
 	PagerAdapter _pagesAdapter;
 	ViewPager _page;	
 	CirclePageIndicator _indicator;
 
 	LayoutInflater _inflater;
+	
+	boolean afficherProgress = true;
 
 	public AnnonceDetail(String id, String type){
 		this._id = id;
@@ -80,8 +87,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_view = inflater.inflate(R.layout.annonce_detail,container, false);
 
 		ImageLoaderCache.load(getActivity());
+		_favorisManager = new FavorisManager(getActivity());
 
-		afficherProgress(true);
 		task = new ChargerAnnonceTask();
 		task.execute();
 
@@ -91,6 +98,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		return _view;
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		afficherProgress(afficherProgress);
+	}
 
 
 	public void charger(){
@@ -117,13 +129,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		telephonePrincipal =  _view.findViewById(R.id.annonce_detail_telephone_principal);
 		telephoneSecondaire = _view.findViewById(R.id.annonce_detail_telephone_secondaire);
 		email = _view.findViewById(R.id.annonce_detail_email);
-		/*
-		imageprincipale = (ImageView) _view.findViewById(R.id.principal_picture);
-		image1 = (ImageView) _view.findViewById(R.id.other_picture_1);
-		image2 = (ImageView) _view.findViewById(R.id.other_picture_2);
-		image3 = (ImageView) _view.findViewById(R.id.other_picture_3);
-		image4 = (ImageView) _view.findViewById(R.id.other_picture_4);
-		 */
 
 		_page = (ViewPager) getView().findViewById(R.id.annonce_detail_image_pager);
 
@@ -158,48 +163,48 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				((TextView)largeur.findViewById(R.id.text)).setText(_annonce.getLargeur());
 			else
 				largeur.setVisibility(View.GONE);
-			
+
 			if(_annonce.getNbCabines() != null)
 				((TextView)cabines.findViewById(R.id.text)).setText(_annonce.getNbCabines());
 			else
 				cabines.setVisibility(View.GONE);
-			
+
 			if(_annonce.getNbCouchettes() != null && !_annonce.getNbCouchettes().equals("0"))
 				((TextView)couchettes.findViewById(R.id.text)).setText(_annonce.getNbCouchettes());
 			else
 				couchettes.setVisibility(View.GONE);
-			
+
 			if(_annonce.getNbSallesDeBain() != null)
 				((TextView)salleDeBain.findViewById(R.id.text)).setText(_annonce.getNbSallesDeBain());
 			else
 				salleDeBain.setVisibility(View.GONE);
-			
+
 			if(_annonce.getAnnee() != null)
 				((TextView)annee.findViewById(R.id.text)).setText(_annonce.getAnnee());
 			else
 				annee.setVisibility(View.GONE);
-			
+
 			if(_annonce.getEtat() != null)
 				((TextView)etat.findViewById(R.id.text)).setText(_annonce.getEtat());
 			else
 				etat.setVisibility(View.GONE);
-			
+
 			if(_annonce.getMoteur() != null){ 
 				if(_annonce.getMoteur().getMarqueMoteur() != null)
 					((TextView)moteur.findViewById(R.id.text)).setText(_annonce.getMoteur().getMarqueMoteur());
 				else
 					moteur.setVisibility(View.GONE);
-				
+
 				if(_annonce.getMoteur().getPuissanceMoteur() != null)
 					((TextView)puissance.findViewById(R.id.text)).setText(_annonce.getMoteur().getPuissanceMoteur());
 				else
 					puissance.setVisibility(View.GONE);
-				
+
 				if(_annonce.getMoteur().getPropulsion() != null)
 					((TextView)propulsion.findViewById(R.id.text)).setText(_annonce.getMoteur().getPropulsion());
 				else
 					propulsion.setVisibility(View.GONE);
-				
+
 				if(_annonce.getMoteur().getHeureMoteur() != null)
 					((TextView)nbHeures.findViewById(R.id.text)).setText(_annonce.getMoteur().getHeureMoteur());
 				else
@@ -210,12 +215,12 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				propulsion.setVisibility(View.GONE);
 				nbHeures.setVisibility(View.GONE);
 			}
-			
+
 			if(_annonce.getPrix() != null && _annonce.getTaxePrix() != null)
 				((TextView)prix.findViewById(R.id.text)).setText(_annonce.getPrix() + " € " + _annonce.getTaxePrix());
 			else
 				prix.setVisibility(View.GONE);
-			
+
 			if(_annonce.getCommentaire() != null)
 				((TextView)description).setText(_annonce.getCommentaire());
 			else
@@ -226,32 +231,32 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 					((TextView)nomVendeur).setText(_annonce.getVendeur().getNom());
 				else
 					nomVendeur.setVisibility(View.GONE);
-				
+
 				if(_annonce.getVendeur().getAdresse() != null)
 					((TextView)adresseVendeur).setText(_annonce.getVendeur().getAdresse());
 				else
 					adresseVendeur.setVisibility(View.GONE);
-					
+
 				if(_annonce.getVendeur().getCodePostal() != null && _annonce.getVendeur().getVille() != null)
 					((TextView)postaleVendeur).setText(_annonce.getVendeur().getCodePostal() + " " + _annonce.getVendeur().getVille());
 				else
 					postaleVendeur.setVisibility(View.GONE);
-				
+
 				if(_annonce.getVendeur().getTel1() != null)
 					((TextView)telephonePrincipal.findViewById(R.id.text)).setText(_annonce.getVendeur().getTel1());
 				else
 					telephonePrincipal.setVisibility(View.GONE);
-				
+
 				if(_annonce.getVendeur().getTel2() != null)
 					((TextView)telephoneSecondaire.findViewById(R.id.text)).setText(_annonce.getVendeur().getTel2());
 				else
 					telephoneSecondaire.setVisibility(View.GONE);
-				
+
 				if(_annonce.getVendeur().getEmail() != null)
 					((TextView)email.findViewById(R.id.text)).setText(_annonce.getVendeur().getEmail());
 				else
 					email.setVisibility(View.GONE);
-				
+
 			}
 		}
 		screen.setVisibility(View.VISIBLE);
@@ -260,11 +265,23 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_page.setAdapter(_pagesAdapter);
 		_indicator.setViewPager(_page);
 		//_page.getAdapter().notifyDataSetChanged();
+
+
+
+
+
+		_favoris = super.afficherFavoris();
+		_favoris.setOnClickListener(this);
+		if(_annonce.getNumero() != null && !_annonce.getNumero().equals("")){
+			_favoris.setSelected(_favorisManager.contientFavoris(_annonce.getNumero()));
+		}
 	}
 	public void ajouterListeners(){
 		telephonePrincipal.setOnClickListener(this);
 		telephoneSecondaire.setOnClickListener(this);
 		email.setOnClickListener(this);
+
+		_favoris.setOnClickListener(this);
 	}
 
 	@Override
@@ -279,6 +296,27 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		case R.id.annonce_detail_email:
 			super.envoyerEmail(((TextView)email.findViewById(R.id.text)).getText().toString());
 			break;
+		case R.id.header_favoris:
+			switchFavoris();
+			break;
+		}
+	}
+
+	protected void switchFavoris(){
+		if(_annonce.getNumero() != null && !_annonce.getNumero().equals("")){
+			if(_favorisManager.contientFavoris(_annonce.getNumero())){
+				_favorisManager.retirerFavoris(_annonce.getNumero());
+				Toast.makeText(getActivity(), R.string.favoris_retiree, Toast.LENGTH_SHORT).show();
+				}
+			else{
+				_favorisManager.ajouterFavoris(_annonce.getNumero());
+				Toast.makeText(getActivity(), R.string.favoris_ajoutee, Toast.LENGTH_SHORT).show();
+			}
+			getActivity().runOnUiThread(new Runnable(){
+				public void run(){
+					_favoris.setSelected(_favorisManager.contientFavoris(_annonce.getNumero()));
+				}
+			});
 		}
 	}
 
@@ -422,6 +460,14 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 		protected void onPostExecute(){
 		}
+	}
+
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		if(_favoris != null)
+			super.cacherFavoris();
 	}
 
 }
