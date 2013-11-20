@@ -3,18 +3,18 @@
 
     <!-- pressed -->
     <item android:state_pressed="true">
-        <color android:color="@color/blue_progress"/>
+        <color android:color="@color/couleur_3"/>
     </item>
     <!-- focused -->
-    <item android:state_focused="true"> <color android:color="@color/blue_progress"/>
+    <item android:state_focused="true"> <color android:color="@color/couleur_3"/>
     </item>
     <!-- hovered -->
-    <item android:state_hovered="true"> <color android:color="@color/blue_progress"/>
+    <item android:state_hovered="true"> <color android:color="@color/couleur_3"/>
     </item>
     <!-- checked -->
-    <item android:state_checked="true"> <color android:color="@color/blue_progress"/>
+    <item android:state_checked="true"> <color android:color="@color/couleur_3"/>
     </item>
     <!-- default -->
-    <item android:drawable="@color/blue"/>
+    <item android:drawable="@color/couleur_1"/>
 
 </selector>

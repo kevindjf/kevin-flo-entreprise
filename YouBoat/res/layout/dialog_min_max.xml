@@ -2,16 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/blanc"
+    android:background="@color/couleur_fond"
     android:orientation="vertical" >
 
     <Button
         android:id="@+id/titre"
         android:layout_width="match_parent"
         android:layout_height="50dip"
-        android:background="@color/bleu_claire"
+        android:background="@color/couleur_2"
         android:textSize="21sp"
-        android:textColor="@color/black"
+        android:textColor="@color/couleur_texte_noir"
         android:text="titre" />
 
     <RelativeLayout
@@ -86,7 +86,7 @@
         android:id="@+id/ok"
         android:layout_width="match_parent"
         android:layout_height="50dip"
-        android:background="@color/darker_blue"
+        android:background="@color/couleur_bouton_rechercher"
         android:text="@string/ok" >
     </Button>
 

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/couleur_fond_gallery"
     android:orientation="vertical" >
 
     <ScrollView
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:padding="10dip"
             android:text="test"
-            android:textColor="@color/blue"
+            android:textColor="@color/couleur_1"
             android:textSize="18sp" />
     </ScrollView>
 

@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanc"
+    android:background="@color/couleur_fond"
     android:padding="10dip" >
 
     <LinearLayout
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/description_dots"
-            android:textColor="@color/black"
+            android:textColor="@color/couleur_texte_noir"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -26,7 +26,7 @@
             android:layout_marginBottom="20dip"
             android:layout_marginTop="10dip"
             android:text="@string/description_dots"
-            android:textColor="@color/black"
+            android:textColor="@color/couleur_texte_noir"
             android:textSize="15sp" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/services_dots"
-            android:textColor="@color/black"
+            android:textColor="@color/couleur_texte_noir"
             android:textSize="18sp"
             android:textStyle="bold" />
 

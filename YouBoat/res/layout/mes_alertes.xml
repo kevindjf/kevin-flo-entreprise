@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/blanc">
+    android:background="@color/couleur_fond"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/white" >
+        android:background="@color/couleur_fond" >
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/mes_alertes_header"
+            android:background="@color/couleur_1"
             android:orientation="vertical" >
 
             <LinearLayout
@@ -28,22 +28,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Mes alertes push"
-                    android:textColor="@color/white"
+                    android:textColor="@color/couleur_texte_blanc"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Voici vos alertes PUSH en cours:"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="10dip"
                     android:layout_marginBottom="10dip"
-                    android:textSize="12sp"
-              />
+                    android:layout_marginTop="10dip"
+                    android:text="Voici vos alertes PUSH en cours:"
+                    android:textColor="@color/couleur_texte_blanc"
+                    android:textSize="12sp" />
             </LinearLayout>
-            
-         
+
+            <ImageView
+                android:layout_width="15dip"
+                android:layout_height="15dip"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dip"
+                android:src="@drawable/mes_alertes_logo_entete" />
         </RelativeLayout>
     </LinearLayout>
 

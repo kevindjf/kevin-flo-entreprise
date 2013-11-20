@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white" 
+    android:background="@color/couleur_fond" 
     >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="100dip"
-        android:background="@color/blue"
+        android:background="@color/couleur_1"
         android:orientation="vertical"
         android:gravity="center"
          >
@@ -16,7 +16,7 @@
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/couleur_fond"
             android:textSize="25sp"
             android:text="YOUBOAT"
             android:textStyle="bold"
@@ -33,7 +33,7 @@
         android:layout_marginTop="160dp"
         android:gravity="center"
         android:text="Aujoud&apos;hui 15.508 annonces"
-        android:textColor="@color/blue"
+        android:textColor="@color/couleur_1"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -68,7 +68,7 @@
             android:layout_toRightOf="@+id/annonces_bouton_bateaux_et_voiliers_rond"
             android:fontFamily="@drawable/bebasneue"
             android:text="@string/bateaux_et_voiliers"
-            android:textColor="@android:color/black"
+            android:textColor="@color/couleur_texte_noir"
             android:textSize="17sp"
             android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
             android:layout_toRightOf="@+id/annonces_bouton_bateaux_et_voiliers_rond"
             android:fontFamily="@drawable/bebasneue"
             android:text="@string/test_annonce_ventes"
-            android:textColor="@android:color/white"
+            android:textColor="@color/couleur_fond"
             android:textSize="11sp" />
     </RelativeLayout>
 
@@ -116,7 +116,7 @@
             android:layout_toRightOf="@+id/annonces_bouton_moteurs_rond"
             android:fontFamily="@drawable/bebasneue"
             android:text="@string/moteurs_hb_lb"
-            android:textColor="@android:color/black"
+            android:textColor="@color/couleur_texte_noir"
             android:textSize="17sp"
             android:textStyle="bold" />
 
@@ -129,7 +129,7 @@
             android:layout_toRightOf="@+id/annonces_bouton_moteurs_rond"
             android:fontFamily="@drawable/bebasneue"
             android:text="@string/test_annonce_ventes"
-            android:textColor="@android:color/white"
+            android:textColor="@color/couleur_fond"
             android:textSize="11sp" />
     </RelativeLayout>
 
@@ -164,7 +164,7 @@
             android:layout_toRightOf="@+id/annonces_bouton_accessoires_et_divers_rond"
             android:fontFamily="@drawable/bebasneue"
             android:text="@string/accessoires_et_divers"
-            android:textColor="@android:color/black"
+            android:textColor="@color/couleur_texte_noir"
             android:textSize="17sp"
             android:textStyle="bold" />
 
@@ -176,7 +176,7 @@
             android:layout_toRightOf="@+id/annonces_bouton_accessoires_et_divers_rond"
             android:fontFamily="@drawable/bebasneue"
             android:text="@string/test_annonce_ventes"
-            android:textColor="@android:color/white"
+            android:textColor="@color/couleur_fond"
             android:textSize="11sp" />
     </RelativeLayout>
 

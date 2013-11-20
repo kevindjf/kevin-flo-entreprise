@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/blanc">
+    android:background="@color/couleur_fond"
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dip"
-        android:background="@drawable/annuaire_entete" >
+        android:background="@color/couleur_1" >
 
         <TextView
             android:id="@+id/textView1"
@@ -29,8 +29,16 @@
             android:layout_alignLeft="@+id/textView1"
             android:layout_below="@+id/textView1"
             android:text="@string/selectionnez_les_criteres_desires"
-            android:textColor="@android:color/white"
+            android:textColor="@color/couleur_texte_blanc"
             android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="15dip"
+            android:layout_height="15dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dip"
+            android:src="@drawable/annuaire_logo_entete" />
     </RelativeLayout>
 
     <LinearLayout
@@ -56,8 +64,7 @@
 
             <TextView
                 android:id="@+id/text"
-                style="@style/formulaire_cellule_texte"
-                 />
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -73,8 +80,7 @@
 
             <TextView
                 android:id="@+id/text"
-                style="@style/formulaire_cellule_texte"
-                 />
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -90,14 +96,14 @@
 
             <TextView
                 android:id="@+id/text"
-                style="@style/formulaire_cellule_texte"
-                />
+                style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
 
-        <Button style="@style/bouton_rechercher"
-            android:id="@+id/annuaire_rechercher"/>
+        <Button
+            android:id="@+id/annuaire_rechercher"
+            style="@style/bouton_rechercher" />
     </LinearLayout>
 
 </LinearLayout>

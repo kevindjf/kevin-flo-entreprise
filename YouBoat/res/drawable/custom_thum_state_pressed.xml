@@ -33,8 +33,8 @@
                 />
             <gradient
                 android:angle="270"
-                android:endColor="@color/white"
-                android:startColor="@color/white"
+                android:endColor="@color/couleur_fond"
+                android:startColor="@color/couleur_fond"
                 android:type="linear" />
         </shape>
     </item>

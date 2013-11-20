@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:state_selected="true" android:color="@color/white"><shape>
-            <gradient android:angle="270" android:endColor="@color/blue" android:startColor="@color/blue" />
+    <item android:state_selected="true" android:color="@color/couleur_fond"><shape>
+            <gradient android:angle="270" android:endColor="@color/couleur_1" android:startColor="@color/couleur_1" />
         </shape></item>
-      <item android:state_selected="false" android:color="@color/black"><shape>
-            <gradient android:angle="270" android:endColor="@color/gray" android:startColor="@color/gray" />
+    <item android:state_selected="false" android:color="@color/couleur_texte_noir"><shape>
+            <gradient android:angle="270" android:endColor="@color/couleur_texte" android:startColor="@color/couleur_texte" />
         </shape></item>
 
 </selector>

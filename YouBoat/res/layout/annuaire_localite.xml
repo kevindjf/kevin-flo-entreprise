@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/couleur_fond"
     android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:background="@color/couleur_1"
         android:orientation="vertical"
         android:paddingBottom="5dip" >
 
@@ -17,12 +17,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dip"
             android:text="@string/geolocalisez_vous_ou_recherchez_une_localite"
-            android:textColor="@color/white" />
+            android:textColor="@color/couleur_fond" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="45dip"
-            android:background="@color/blue"
+            android:background="@color/couleur_1"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dip"
-                android:background="@color/white"
+                android:background="@color/couleur_fond"
                 android:hint="@string/localisation"
                 android:paddingLeft="5dp"
                 android:textSize="15sp" />
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dip"
             android:text="@string/dans_un_rayon_de"
-            android:textColor="@color/black" />
+            android:textColor="@color/couleur_texte_noir" />
 
         <EditText
             android:id="@+id/annuaire_localite_rayon_texte"
@@ -64,10 +64,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dip"
             android:layout_marginLeft="15dip"
-            android:background="@color/blanc"
+            android:background="@color/couleur_fond"
             android:gravity="center"
             android:hint="@string/indifferent"
-            android:textColor="@color/black"
+            android:textColor="@color/couleur_texte_noir"
             android:textSize="15sp" />
     </LinearLayout>
 

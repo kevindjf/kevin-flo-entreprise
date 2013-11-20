@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blanc"
+    android:background="@color/couleur_fond"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -17,7 +17,7 @@
             android:layout_marginTop="5dip"
             android:gravity="center"
             android:text="@string/que_souhaitez_vous_vendre"
-            android:textColor="@color/blue"
+            android:textColor="@color/couleur_1"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -358,7 +358,7 @@
                 android:layout_marginTop="10dip"
                 android:padding="10dip"
                 android:orientation="vertical"
-                android:background="@color/gris_clair"
+                android:background="@color/couleur_texte_claire"
                  >
 
                 <android.support.v4.view.ViewPager

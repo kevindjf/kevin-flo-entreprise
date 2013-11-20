@@ -27,7 +27,7 @@
     <style name="formulaire_cellule_titre">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/couleur_texte_noir</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">12sp</item>
@@ -36,7 +36,7 @@
     <style name="formulaire_cellule_texte">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/darker_gray</item>
+        <item name="android:textColor">@color/couleur_texte_fonce</item>
         <item name="android:layout_marginLeft">150dip</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:textSize">12sp</item>
@@ -52,7 +52,7 @@
     <style name="annonce_cellule_texte">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/darker_gray</item>
+        <item name="android:textColor">@color/couleur_texte_fonce</item>
         <item name="android:layout_marginLeft">90dip</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:textSize">12sp</item>
@@ -70,7 +70,7 @@
     <style name="formulaire_separator">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/lighter_gray</item>
+        <item name="android:background">@color/couleur_texte_claire</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:padding">10dip</item>
@@ -79,14 +79,14 @@
     <style name="formulaire_separator_titre">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/couleur_texte_noir</item>
         <item name="android:textStyle">bold</item>
     </style>
     
     <style name="formulaire_separator_sous_titre">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/couleur_texte_noir</item>
         <item name="android:textStyle">italic</item>
     </style>
 
@@ -94,9 +94,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dip</item>
         <item name="android:layout_marginTop">10dip</item>
-        <item name="android:background">@color/darker_blue</item>
+        <item name="android:background">@color/couleur_bouton_rechercher</item>
         <item name="android:text">@string/rechercher</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/couleur_texte_blanc</item>
         <item name="android:textSize">17sp</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -125,7 +125,7 @@
     <style name="more_cell_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">@color/couleur_texte_blanc</item>
         <item name="android:textSize">10sp</item>
     </style>
 
@@ -141,7 +141,7 @@
     <style name="slider_element_texte">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">#e0e1e3</item>
+        <item name="android:textColor">@color/couleur_texte_claire</item>
         <item name="android:textSize">16sp</item>
     </style>
 

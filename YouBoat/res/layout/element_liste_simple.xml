@@ -9,4 +9,4 @@
     android:singleLine="true"
     android:text="test"
     android:textSize="20sp"
-    android:textColor="@color/black" />
+    android:textColor="@color/couleur_texte_noir" />
