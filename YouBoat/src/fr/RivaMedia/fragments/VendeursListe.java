@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.RivaMedia.R;
-import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.VendeurListAdapter;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Vendeur;

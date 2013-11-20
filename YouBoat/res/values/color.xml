@@ -26,6 +26,7 @@
     <color name="couleur_3">@color/_bleu_titre</color>
     <color name="couleur_progress">@color/_bleu_progress</color>
     <color name="couleur_fond">@color/_blanc</color>
+    <color name="couleur_fond_claire">@color/_gris_claire</color>
     <color name="couleur_menu">@color/_gris_menu</color>
     <color name="couleur_header">@color/_noir</color>
     <color name="couleur_slider">@color/_noir</color>
@@ -35,9 +36,10 @@
     <color name="couleur_bouton_rechercher">@color/_bleu_fonce</color>
     
     <color name="couleur_texte">@color/_gris</color>
-    <color name="couleur_texte_claire">@color/_gris_claire</color>
+     <color name="couleur_texte_claire">@color/_gris_claire</color>
     <color name="couleur_texte_fonce">@color/_gris_menu</color>
     <color name="couleur_texte_noir">@color/_noir</color>
+     
     <color name="couleur_texte_blanc">@color/_blanc	</color>
     
     <color name="couleur_cellule_paire">@color/_blanc</color>

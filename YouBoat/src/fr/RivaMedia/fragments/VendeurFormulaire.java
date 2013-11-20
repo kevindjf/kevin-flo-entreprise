@@ -6,7 +6,6 @@ import org.apache.http.NameValuePair;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
