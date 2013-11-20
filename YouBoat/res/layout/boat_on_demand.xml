@@ -124,10 +124,10 @@
 
                     <TextView
                         style="@style/formulaire_cellule_titre"
-                        android:text="@string/taille" />
+                        android:text="@string/taille_star" />
 
                     <TextView
-                        android:id="@+id/text"
+                        android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
                         android:text="@string/requis" />
 
@@ -191,7 +191,7 @@
                 <LinearLayout style="@style/formulaire_separator" >
 
                     <TextView
-                        style="@style/formulaire_separator_titre"
+                        style="@style/formulaire_separator_sous_titre"
                         android:text="@string/decrivez_le_bateau_que_vous_possedez" />
                 </LinearLayout>
                 
@@ -213,7 +213,8 @@
                 
                 <RelativeLayout
                     android:id="@+id/boat_on_demand_posseder_categorie"
-                    style="@style/formulaire_cellule" >
+                    style="@style/formulaire_cellule"
+                    android:layout_height="match_parent" >
 
                     <TextView
                         style="@style/formulaire_cellule_titre"
@@ -254,7 +255,7 @@
                     <EditText
                         android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
-                        android:text="@string/facultatif"
+                        android:hint="@string/facultatif"
                         android:inputType="number" />
 
                 </RelativeLayout>

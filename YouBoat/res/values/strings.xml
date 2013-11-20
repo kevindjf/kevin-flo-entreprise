@@ -126,6 +126,7 @@
     <string name="services_dots">Services :</string>
     <string name="societe">Société</string>
     <string name="taille">Taille</string>
+    <string name="taille_star">Taille *</string>
     <string name="telephone">Téléphone</string>
     <string name="test_annonce_ventes">1055 annonces en vente</string>
     <string name="trouvez_un_professionnel_du_nautisme">Trouvez un profesionnel du Nautisme</string>
@@ -134,6 +135,7 @@
     <string name="valider">Valider</string>
     <string name="vendre">Vendre</string>
     <string name="vendeur">Le vendeur</string>
+    <string name="veuillez_choisir_un_budget">Veuillez choisir un budget</string>
     <string name="veuillez_indiquer_votre_nom">Veuillez indiquer votre nom</string>
     <string name="veuillez_indiquer_votre_email">Veuillez indiquer votre email</string>
     <string name="veuillez_indiquer_votre_pays">Veuillez indiquer votre pays</string>
@@ -141,6 +143,7 @@
     <string name="veuillez_choisir_une_marque">Veuillez choisir une marque</string>
     <string name="veuillez_choisir_un_modele">Veuillez choisir un modele</string>
     <string name="veuillez_choisir_un_prix">Veuillez choisir un prix</string>
+    <string name="veuillez_choisir_une_taille">Veuillez choisir une taille</string>
     <string name="veuillez_choisir_un_type">Veuillez choisir un type</string>
     <string name="veuillez_choisir_un_type_d_energie">Veuillez choisir un type d\'energie</string>
     <string name="version">Version</string>
