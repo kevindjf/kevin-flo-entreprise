@@ -87,12 +87,12 @@
                 android:orientation="horizontal" >
 
                 <LinearLayout
-                    android:id="@+id/annonce_detail_email"
+                    android:id="@+id/contact_pro_telephone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="15dip"
                     android:layout_weight="1"
-                    android:background="@color/couleur_texte_noir"
+                    android:background="@color/couleur_1"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
                     android:paddingTop="5dp" >
@@ -102,20 +102,19 @@
                         android:layout_height="20dip"
                         android:layout_marginBottom="3dp"
                         android:background="@drawable/phone"
-                        android:text="appeler"
-                        android:textColor="@android:color/white" />
+                         />
 
                     <TextView
                         android:id="@+id/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="02 38 75 99 41"
-                        android:textColor="@android:color/white"
+                        android:text="@string/TELEPHONE"
+                        android:textColor="@color/couleur_texte_blanc"
                         android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/annonce_detail_email"
+                    android:id="@+id/contact_pro_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="15dip"
@@ -130,15 +129,14 @@
                         android:layout_height="20dip"
                         android:layout_marginBottom="3dp"
                         android:background="@drawable/mail"
-                        android:text="email"
-                        android:textColor="@android:color/white" />
+                         />
 
                     <TextView
-                        android:id="@+id/text"
+                        android:id="@id/text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Envoyer un email"
-                        android:textColor="@android:color/white"
+                        android:textColor="@color/couleur_texte_blanc"
                         android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>

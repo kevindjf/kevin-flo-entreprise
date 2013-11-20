@@ -149,5 +149,8 @@
     <string name="version">Version</string>
     <string name="vide">Aucun résultat</string>
     <string name="voiliers">Voiliers</string>
+    
+	<string name="TELEPHONE">02 38 75 99 41</string>
+	<string name="EMAIL">contact@youboat.fr</string>
 
 </resources>

@@ -8,9 +8,6 @@ import org.apache.http.NameValuePair;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -23,7 +20,6 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.dialog.MinMaxDialog;
 import fr.RivaMedia.dialog.OnMinMaxListener;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
-import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.fragments.selector.MarqueSelector;

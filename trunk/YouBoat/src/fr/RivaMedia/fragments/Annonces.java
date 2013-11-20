@@ -4,14 +4,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 
 public class Annonces extends FragmentNormal implements View.OnClickListener{
 
 	//TODO recuperer le nombre d'annonces du jour
-	private TextView _ajourdhuiAnnonces;
+	//private TextView _ajourdhuiAnnonces;
 	private View _boutonBateauxVoiliers;
 	private View _boutonMoteurs;
 	private View _boutonAccessoiresDivers;
@@ -24,7 +23,7 @@ public class Annonces extends FragmentNormal implements View.OnClickListener{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.annonces,container, false);
 
-		_ajourdhuiAnnonces = (TextView)view.findViewById(R.id.annonces_aujourd_hui);
+		//_ajourdhuiAnnonces = (TextView)view.findViewById(R.id.annonces_aujourd_hui);
 		_boutonBateauxVoiliers = view.findViewById(R.id.annonces_bouton_bateaux_et_voiliers);
 		_boutonMoteurs = view.findViewById(R.id.annonces_bouton_moteurs);
 		_boutonAccessoiresDivers = view.findViewById(R.id.annonces_bouton_accessoires_et_divers);

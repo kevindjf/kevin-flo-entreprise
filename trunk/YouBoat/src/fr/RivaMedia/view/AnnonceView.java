@@ -9,11 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
-import fr.RivaMedia.R.color;
 import fr.RivaMedia.fragments.AnnonceDetail;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Annonce;
-import fr.RivaMedia.model.Moteur;
 import fr.RivaMedia.view.core.YouBoatView;
 
 public class AnnonceView extends YouBoatView implements View.OnTouchListener{

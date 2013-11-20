@@ -13,8 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;

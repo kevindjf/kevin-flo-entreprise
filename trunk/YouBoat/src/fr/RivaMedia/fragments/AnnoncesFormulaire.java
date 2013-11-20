@@ -7,7 +7,6 @@ import java.util.Map;
 import org.apache.http.NameValuePair;
 
 import android.annotation.SuppressLint;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +23,6 @@ import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
-import fr.RivaMedia.fragments.selector.ModeleSelector;
 import fr.RivaMedia.fragments.selector.ValeurSelector;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Marque;
