@@ -33,6 +33,8 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 	ItemSelectedListener _listener;
 	int _reponseId;
 	
+	boolean afficherProgress = true;
+	
 	public ModeleSelector (ItemSelectedListener listener, int reponseId, String type, Marque marque){
 		this._type = type;
 		this._listener = listener;
@@ -86,6 +88,12 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 
 	public void ajouterListeners() {
 		_listView.setOnItemClickListener(this);		
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		afficherProgress(afficherProgress);
 	}
 
 

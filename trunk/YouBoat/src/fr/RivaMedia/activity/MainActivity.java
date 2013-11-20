@@ -1,5 +1,11 @@
 package fr.RivaMedia.activity;
 
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -181,11 +187,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void afficherContactPro(){
 		ajouterFragment(new ContactPro());
 	}
-	
+
 	public void afficherEffacer(final Effaceable effaceable){
 		_header_effacer.setVisibility(View.VISIBLE);
 		_header_effacer.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View arg0) {
 				effaceable.effacer();
@@ -196,19 +202,56 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_effacer.setVisibility(View.GONE);
 		_header_effacer.setOnClickListener(null);
 	}
-	
+
 	public void ajouterFragment(Fragment fragment){
 		ajouterFragment(fragment,true);
 	}
 	public void ajouterFragment(Fragment fragment, boolean back){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		
-		//transaction.remove(getSupportFragmentManager().findFragmentById(R.id.main_fragment));
+
+		//transaction.hide(getSupportFragmentManager().findFragmentById(R.id.main_fragment));
 		transaction.add(R.id.main_fragment, fragment);
 
 		if(back)
 			transaction.addToBackStack(null);
-		
+
 		transaction.commit();
 	}
+
+	public void envoyerEmail(String email){
+		Intent intent = new Intent(Intent.ACTION_VIEW);
+		intent.setData(Uri.parse("mailto:"+email));
+		startActivity(intent);
+	}
+
+	public void appeller(String phone){
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+		final String phone2 = phone.replace(".", "").replace(" ","").replace(",","");
+		alert.setTitle(getString(R.string.appeller)+" "+phone2);
+		alert.setCancelable(true);
+		alert.setPositiveButton(R.string.oui, new OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int pos) {
+				Intent callIntent = new Intent(Intent.ACTION_CALL);
+
+				callIntent.setData(Uri.parse("tel:"+phone2));
+				startActivity(callIntent);
+			}
+		});
+
+		alert.setNegativeButton(R.string.non, new OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+			}
+
+		});
+
+		alert.show();
+
+	}
+
+
 }

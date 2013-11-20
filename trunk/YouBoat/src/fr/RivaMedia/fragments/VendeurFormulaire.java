@@ -35,15 +35,15 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	View _codePostal;
 	View _pays;
 
-	int _typeVente;
-	List<NameValuePair> _donneesVente;
+	String _url;
+	List<NameValuePair> _donnees;
 
 	View[] views;
 	String[] valeurs;
 
-	public VendeurFormulaire(int typeVente, List<NameValuePair> donneesVente) {
-		_typeVente = typeVente;
-		_donneesVente = donneesVente;
+	public VendeurFormulaire(String url, List<NameValuePair> donneesVente) {
+		_url = url;
+		_donnees = donneesVente;
 	}
 
 	@Override
@@ -83,8 +83,6 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		valeurs = new String[views.length];
 		int i=0;
 		for(View v : views){
-			v.setOnClickListener(null);
-			v.setVisibility(View.GONE);
 			Object o = v.findViewById(R.id.text);
 			if(o instanceof TextView)
 				valeurs[i] = ((TextView)o).getText().toString();
@@ -103,7 +101,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		int i=0;
 		for(View v : views){
 			v.setOnClickListener(null);
-			v.setVisibility(View.GONE);
+			//v.setVisibility(View.GONE);
 			Object o = v.findViewById(R.id.text);
 			if(o instanceof TextView)
 				((TextView)o).setText(valeurs[i]);
