@@ -22,7 +22,7 @@
         android:layout_toRightOf="@+id/actualite_element_liste_image"
         android:textSize="13sp"
         android:textStyle="bold"
-        android:textColor="@color/couleur_texte_noir" />
+        android:textColor="@drawable/text_color_button" />
 
     <TextView
         android:id="@+id/actualite_element_liste_sous_titre"
@@ -31,7 +31,7 @@
         android:layout_below="@+id/actualite_element_liste_titre"
         android:layout_toRightOf="@+id/actualite_element_liste_image"
         android:layout_marginRight="10dip"
-        android:textColor="@color/couleur_texte_fonce"
+        android:textColor="@drawable/text_color_button"
         android:lines="3"
         android:textSize="11sp" />
 

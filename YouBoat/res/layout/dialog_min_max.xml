@@ -5,14 +5,27 @@
     android:background="@color/couleur_fond"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/titre"
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:background="@color/couleur_2"
-        android:textSize="21sp"
-        android:textColor="@color/couleur_texte_noir"
-        android:text="titre" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/titre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="10dip"
+            android:text="Titre"
+            android:textColor="#46B9E4"
+            android:textSize="23sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:layout_below="@+id/titre"
+            android:background="#46B9E4" />
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -82,12 +95,33 @@
             android:padding="15dip" />
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/ok"
-        android:layout_width="match_parent"
-        android:layout_height="50dip"
-        android:background="@color/couleur_bouton_rechercher"
-        android:text="@string/ok" >
-    </Button>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#EAEAEA" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:background="@drawable/selector_ok_button_holo"
+            android:text="@string/ok"
+            android:textColor="@drawable/text_color_button" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_weight="1"
+            android:background="@drawable/fond_blanc_select_bleu"
+            android:text="@string/cancel"
+            android:textColor="@drawable/text_color_button" />
+    </LinearLayout>
 
 </LinearLayout>
