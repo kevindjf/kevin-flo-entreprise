@@ -54,6 +54,10 @@ public class AnnonceListAdapter extends BaseAdapter  {
 		return position;
 	}
 
+	public AnnonceView getView(int position){
+		return _views.get(position);
+	}
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view=null;
@@ -63,7 +67,7 @@ public class AnnonceListAdapter extends BaseAdapter  {
 		else
 			view = inflater.inflate(R.layout.annonce_element_liste, null);
 
-		AnnonceView av = new AnnonceView(_annonces.get(position),_context,view,position,_type);
+		AnnonceView av = new AnnonceView(_annonces.get(position),_context,view,position,_type,_swipable);
 		_views.add(position,av);
 
 		return view;

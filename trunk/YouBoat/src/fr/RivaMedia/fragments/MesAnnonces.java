@@ -98,6 +98,7 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 			@Override
 			public void onClickFrontView(int position) {
 				Log.d("swipe", String.format("onClickFrontView %d", position));
+				_adapter.getView(position).onClickFrontView();
 			}
 
 			@Override
@@ -136,7 +137,9 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 					String[] ids = favoris.split(";");
 					String id = ids[0];
 					String type = ids[1];
-					_annonces.add(NetAnnonce.rechercherAnnonce(type, Net.construireDonnes(Constantes.ANNONCES_DETAIL_ID_ANNONCE,id)));
+					Annonce annonce = NetAnnonce.rechercherAnnonce(type, Net.construireDonnes(Constantes.ANNONCES_DETAIL_ID_ANNONCE,id));
+					annonce.setType(type);
+					_annonces.add(annonce);
 				}catch(Exception e){}
 			}
 

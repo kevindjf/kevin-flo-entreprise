@@ -19,6 +19,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	Object _element;
 	int _position;
 	String _type;
+	boolean _swipable;
 
 	ImageView _image;
 	TextView _titre;
@@ -29,13 +30,17 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	Annonce _annonce;
 
-	public AnnonceView(Annonce annonce, Context context, View view, int position, String type) {
+	View _derriere;
+	View _devant;
+
+	public AnnonceView(Annonce annonce, Context context, View view, int position, String type, boolean swipable) {
 		super(context, view);
 		ImageLoaderCache.load(getContext());
 
 		this._annonce = annonce;
 		this._position = position;
 		this._type = type;
+		this._swipable = swipable;
 		charger();
 		remplir();
 		ajouterListeners();
@@ -49,16 +54,29 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_taille = (TextView)getView().findViewById(R.id.annonce_element_liste_taille);
 		_annee = (TextView)getView().findViewById(R.id.annonce_element_liste_annee);
 		_prix = (TextView)getView().findViewById(R.id.annonce_element_liste_prix);
+
+		if(_swipable){
+			_devant = getView().findViewById(R.id.devant);
+			_derriere = getView().findViewById(R.id.derriere);
+		}
+		else
+			_devant = getView();
 	}
 
 	@Override
 	public void remplir() {
 		if(_annonce != null){
 
-			Log.e("IMAGE","vide");
-			if(_annonce.getLien() != null && _annonce.getLien().getUrl() != null){
-				ImageLoaderCache.charger(_annonce.getLien().getUrl(),_image);
-				Log.e("IMAGE",_annonce.getLien().getUrl());
+			if(!_swipable){
+				if(_annonce.getLien() != null && _annonce.getLien().getUrl() != null){
+					ImageLoaderCache.charger(_annonce.getLien().getUrl(),_image);
+					Log.e("IMAGE",_annonce.getLien().getUrl());
+				}
+			}else{
+				if(_annonce.getPhotos() != null && _annonce.getPhotos().size()>0 
+						&& _annonce.getPhotos().get(0) != null && _annonce.getPhotos().get(0).getUrl() != null){
+					ImageLoaderCache.charger(_annonce.getPhotos().get(0).getUrl(),_image);
+				}
 			}
 
 			if(_annonce.getTitle() != null)
@@ -67,11 +85,12 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 				if(_annonce.getMoteur() != null && _annonce.getMoteur().getMarqueMoteur() != null)
 					_titre.setText(_annonce.getMoteur().getMarqueMoteur());
 
-			if(_annonce.getNomMoteur() != null)
-				_sousTitre.setText(_annonce.getNomMoteur());
-			else
-				if(_annonce.getCommentaire() != null)
-					_sousTitre.setText(_annonce.getCommentaire());
+			if(!_swipable)
+				if(_annonce.getNomMoteur() != null)
+					_sousTitre.setText(_annonce.getNomMoteur());
+				else
+					if(_annonce.getCommentaire() != null)
+						_sousTitre.setText(_annonce.getCommentaire());
 
 			if(_annonce.getLongueur() != null)
 				_taille.setText(_annonce.getLongueur()+" m");
@@ -93,8 +112,8 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	@Override
 	public void ajouterListeners() {
-		this.getView().setOnClickListener(this);
-		this.getView().setOnTouchListener(this);
+		_devant.setOnClickListener(this);
+		_devant.setOnTouchListener(this);
 	}
 
 	@Override
@@ -107,13 +126,13 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	private void afficherNormal(){
 		if(_position%2==0){
-			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
+			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
 		}else{
-			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
+			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
 		}
 	}
 	private void afficherTouch(){
-		getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_touch));
+		_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_touch));
 	}
 
 	@Override
@@ -128,15 +147,24 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	public void lancerAnnonceDetail(){
-		if(_annonce != null){
+		if(_annonce != null && _annonce.getNumero() != null){
 			afficherNormal();
 			String id = _annonce.getNumero();
+			String type = _annonce.getType();
+			
+			System.err.println("ID :"+id);
+			System.err.println("TYPE :"+type);
 
 			FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new AnnonceDetail(id,_type));
+			transaction.add(R.id.main_fragment, new AnnonceDetail(id,type));
 			transaction.addToBackStack(null);
 			transaction.commit();
 		}
+	}
+
+	public void onClickFrontView() {
+		afficherNormal();
+		lancerAnnonceDetail();
 	}
 
 }

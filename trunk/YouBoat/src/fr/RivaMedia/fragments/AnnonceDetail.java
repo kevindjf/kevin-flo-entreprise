@@ -258,6 +258,12 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 					email.setVisibility(View.GONE);
 
 			}
+			
+			_favoris = super.afficherFavoris();
+			_favoris.setOnClickListener(this);
+			if(_annonce.getNumero() != null && !_annonce.getNumero().equals("")){
+				_favoris.setSelected(_favorisManager.contientFavoris(_annonce.getNumero()));
+			}
 		}
 		screen.setVisibility(View.VISIBLE);
 
@@ -266,21 +272,14 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_indicator.setViewPager(_page);
 		//_page.getAdapter().notifyDataSetChanged();
 
-
-
-
-
-		_favoris = super.afficherFavoris();
-		_favoris.setOnClickListener(this);
-		if(_annonce.getNumero() != null && !_annonce.getNumero().equals("")){
-			_favoris.setSelected(_favorisManager.contientFavoris(_annonce.getNumero()));
-		}
 	}
 	public void ajouterListeners(){
 		telephonePrincipal.setOnClickListener(this);
 		telephoneSecondaire.setOnClickListener(this);
 		email.setOnClickListener(this);
 
+		
+		if(_favoris != null)
 		_favoris.setOnClickListener(this);
 	}
 
