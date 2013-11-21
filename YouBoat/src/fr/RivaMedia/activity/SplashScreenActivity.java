@@ -17,6 +17,7 @@ import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.NetChargement;
 import fr.RivaMedia.net.NetNews;
+import fr.RivaMedia.net.core.Net;
 
 public class SplashScreenActivity extends Activity{
 
@@ -26,6 +27,7 @@ public class SplashScreenActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
+		Net.enableHttpResponseCache(this);
 
 		if(isOnline())
 			new ChargementsTask().execute();

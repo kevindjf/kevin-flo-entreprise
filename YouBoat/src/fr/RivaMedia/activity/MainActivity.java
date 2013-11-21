@@ -1,5 +1,6 @@
 package fr.RivaMedia.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -18,6 +19,7 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.*;
 import fr.RivaMedia.fragments.core.Effaceable;
 import fr.RivaMedia.model.Annonce;
+import fr.RivaMedia.net.core.Net;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener{
 
@@ -41,7 +43,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _progress;
 	
 	Annonce _annoncePourFavoris;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,6 +51,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		ajouterVues();
 		charger();
 		ajouterListeners();
+		
+		Net.enableHttpResponseCache(this);
 	}
 	public void afficherProgress(boolean afficher){
 		if(afficher)
