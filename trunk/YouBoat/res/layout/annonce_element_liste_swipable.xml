@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/derriere"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/couleur_fond_claire"
+        android:gravity="center"
+        android:tag="derriere" >
+
+        <Button
+            android:id="@+id/bouton_supprimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/couleur_bouton_effacer"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip"
+            android:paddingTop="10dip"
+            android:paddingBottom="10dip"
+            android:textColor="@color/couleur_texte_blanc"
+            android:text="@string/supprimer" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/devant"
+        layout="@layout/annonce_element_liste"
+        android:tag="devant" />
+
+</FrameLayout>
