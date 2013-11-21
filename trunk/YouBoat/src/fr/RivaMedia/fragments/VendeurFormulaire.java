@@ -153,12 +153,15 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_nom), Toast.LENGTH_SHORT).show();
 		else if(((EditText)_email.findViewById(R.id.text)).getText().toString().trim().equals(""))
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_email), Toast.LENGTH_SHORT).show();
-		else if(((TextView)_pays.findViewById(R.id.text)).getText().toString().trim().equals(R.string.requis))
+		else
+			if(((TextView)_pays.findViewById(R.id.text)).getText().toString().trim().equals(getString(R.string.requis)))
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_pays), Toast.LENGTH_SHORT).show();
+		
 		else if(((EditText)_codePostal.findViewById(R.id.text)).getText().toString().trim().equals(""))
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_code_postale), Toast.LENGTH_SHORT).show();
 		else
 			validerVendeur(recupererDonnees());	
+		
 	}
 
 	protected List<NameValuePair> recupererDonnees(){
