@@ -50,7 +50,7 @@ public class NetChargement extends Net{
 	}
 
 	public static List<Marque> chargerMarquesBateaux(){
-		String xml = Net.requeteGet(Constantes.URL_MARQUES.replace("?", ""), null);
+		String xml = Net.requeteGet(Constantes.URL_MARQUES, null);
 
 		return new MarqueXmlParser(xml).getMarques();
 	}

@@ -21,13 +21,19 @@ public class AnnonceListAdapter extends BaseAdapter  {
 	private String _type;
 
 	private static LayoutInflater inflater=null;
+	private boolean _swipable = false;
 
-	public AnnonceListAdapter(Context context, List<Annonce> annonces, String type){
+	public AnnonceListAdapter(Context context, List<Annonce> annonces, String type, boolean swipable){
 		this._context = context;
 		this._annonces = annonces;
 		this._type = type;
+		this._swipable = swipable;
 
 		inflater = (LayoutInflater)_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	}
+	
+	public AnnonceListAdapter(Context context, List<Annonce> annonces, String type){
+		this(context,annonces,type,false);
 	}
 
 	@Override
@@ -52,7 +58,10 @@ public class AnnonceListAdapter extends BaseAdapter  {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view=null;
 
-		view = inflater.inflate(R.layout.annonce_element_liste, null);
+		if(_swipable)
+			view = inflater.inflate(R.layout.annonce_element_liste_swipable, null);
+		else
+			view = inflater.inflate(R.layout.annonce_element_liste, null);
 
 		AnnonceView av = new AnnonceView(_annonces.get(position),_context,view,position,_type);
 		_views.add(position,av);

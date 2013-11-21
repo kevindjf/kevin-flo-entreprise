@@ -73,7 +73,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	CirclePageIndicator _indicator;
 
 	LayoutInflater _inflater;
-	
+
 	boolean afficherProgress = true;
 
 	public AnnonceDetail(String id, String type){
@@ -305,11 +305,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	protected void switchFavoris(){
 		if(_annonce.getNumero() != null && !_annonce.getNumero().equals("")){
 			if(_favorisManager.contientFavoris(_annonce.getNumero())){
-				_favorisManager.retirerFavoris(_annonce.getNumero());
+				_favorisManager.retirerFavoris(_annonce.getNumero(),_type);
 				Toast.makeText(getActivity(), R.string.favoris_retiree, Toast.LENGTH_SHORT).show();
-				}
+			}
 			else{
-				_favorisManager.ajouterFavoris(_annonce.getNumero());
+				_favorisManager.ajouterFavoris(_annonce.getNumero(),_type);
 				Toast.makeText(getActivity(), R.string.favoris_ajoutee, Toast.LENGTH_SHORT).show();
 			}
 			getActivity().runOnUiThread(new Runnable(){
@@ -414,26 +414,10 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		ajouterListeners();
 	}
 
-	protected String recupererUrl(){
-		String url = null;
 
-		if(_type.equals(Constantes.BATEAU_A_MOTEUR))
-			url = Constantes.URL_ANNONCES_BATEAUX_A_MOTEURS;
-		else if(_type.equals(Constantes.VOILIER))
-			url = Constantes.URL_ANNONCES_BATEAUX_VOILIERS;
-		else if(_type.equals(Constantes.PNEU))
-			url = Constantes.URL_ANNONCES_BATEAUX_PNEUMATIQUES;
-		else if(_type.equals(Constantes.MOTEURS))
-			url = Constantes.URL_ANNONCES_MOTEURS;
-		else if(_type.equals(Constantes.ACCESSOIRES))
-			url = Constantes.URL_ANNONCES_ACCESSOIRES;
-
-		return url;
-	}
 
 	protected void chargerDetailAnnonce(){
-		Log.e("AnnonceDetail",recupererUrl());
-		_annonce = NetAnnonce.rechercherAnnonce(recupererUrl(), Net.construireDonnes("idad",_id));
+		_annonce = NetAnnonce.rechercherAnnonce(_type, Net.construireDonnes(Constantes.ANNONCES_DETAIL_ID_ANNONCE,_id));
 	}
 
 

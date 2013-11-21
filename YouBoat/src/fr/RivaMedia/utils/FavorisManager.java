@@ -40,7 +40,7 @@ public class FavorisManager {
 	
 	public boolean contientFavoris(String id){
 		String lesIds = _settings.getString(FAVORIS, "");
-		String idRecherche = "["+id+"]";
+		String idRecherche = "["+id;
 		
 		Log.e("FAVORIS", "contient :"+idRecherche+" in "+lesIds);
 		
@@ -51,11 +51,11 @@ public class FavorisManager {
 		return contient;
 	}
 	
-	public void ajouterFavoris(String id){
+	public void ajouterFavoris(String id, String type){
 		SharedPreferences.Editor editor = _settings.edit();
 		
 		String lesIds = _settings.getString(FAVORIS, "");
-		String idAjout = "["+id+"]";
+		String idAjout = "["+id+";"+type+"]";
 		
 		String nouvelIds = lesIds+" "+idAjout;
 		editor.putString(FAVORIS, nouvelIds);
@@ -65,11 +65,11 @@ public class FavorisManager {
 		editor.commit();
 	}
 
-	public void retirerFavoris(String id) {
+	public void retirerFavoris(String id, String type) {
 		SharedPreferences.Editor editor = _settings.edit();
 		
 		String lesIds = _settings.getString(FAVORIS, "");
-		String idSuppr = "["+id+"]";
+		String idSuppr = "["+id+";"+type+"]";
 		
 		String nouvelIds = lesIds.replace(idSuppr,"").trim().replace("  "," ");
 		editor.putString(FAVORIS, nouvelIds);

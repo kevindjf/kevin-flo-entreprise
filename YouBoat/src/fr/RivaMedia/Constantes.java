@@ -113,7 +113,7 @@ public class Constantes {
 	public static final String TYPES_TYPE_ID = "idtype";
 	
 	public static final String URL_SERVICES = "xml-services.php?";
-	public static final String URL_MARQUES = "xml-marque-bateau-rech.php";
+	public static final String URL_MARQUES = "xml-marque-bateau-rech.php?";
 	public static final String URL_MARQUES_MOTEUR = "xml-marque-moteur-rech.php?";
 	public static final String MARQUES_ID_TYPE = "idtype";
 	
@@ -135,6 +135,7 @@ public class Constantes {
 	public static final String URL_ANNONCES_BATEAUX_PNEUMATIQUES = "xml-resultat-pneuma.php?";
 	public static final String URL_ANNONCES_MOTEURS = "xml-resultat-moteur.php?";
 	public static final String URL_ANNONCES_ACCESSOIRES = "xml-resultat-accessoire.php?";
+	public static final String ANNONCES_DETAIL_ID_ANNONCE = "idad";
 	
 	public static final String ANNONCES_CATEGORIE_ID = "idcat";
 	public static final String ANNONCES_REGION_ID = "idregion";
