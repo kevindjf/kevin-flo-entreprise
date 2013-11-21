@@ -135,6 +135,13 @@ public class Constantes {
 	public static final String URL_ANNONCES_BATEAUX_PNEUMATIQUES = "xml-resultat-pneuma.php?";
 	public static final String URL_ANNONCES_MOTEURS = "xml-resultat-moteur.php?";
 	public static final String URL_ANNONCES_ACCESSOIRES = "xml-resultat-accessoire.php?";
+	
+	
+	public static final String URL_ANNONCE_DETAIL_BATEAUX_A_MOTEURS = "xml-detail-bateau.php?";
+	public static final String URL_ANNONCE_DETAIL_BATEAUX_VOILIERS = "xml-detail-voilier.php?";
+	public static final String URL_ANNONCE_DETAIL_BATEAUX_PNEUMATIQUES = "xml-detail-pneuma.php?";
+	public static final String URL_ANNONCE_DETAIL_MOTEURS = "xml-detail-moteur.php?";
+	public static final String URL_ANNONCE_DETAIL_ACCESSOIRES = "xml-detail-accessoire.php?";
 	public static final String ANNONCES_DETAIL_ID_ANNONCE = "idad";
 	
 	public static final String ANNONCES_CATEGORIE_ID = "idcat";

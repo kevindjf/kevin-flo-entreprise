@@ -25,15 +25,15 @@ public class NetAnnonce extends Net {
 		if(_type != null){
 
 			if(_type.equals(Constantes.BATEAU_A_MOTEUR))
-				url = Constantes.URL_ANNONCES_BATEAUX_A_MOTEURS;
+				url = Constantes.URL_ANNONCE_DETAIL_BATEAUX_A_MOTEURS;
 			else if(_type.equals(Constantes.VOILIER))
-				url = Constantes.URL_ANNONCES_BATEAUX_VOILIERS;
+				url = Constantes.URL_ANNONCE_DETAIL_BATEAUX_VOILIERS;
 			else if(_type.equals(Constantes.PNEU))
-				url = Constantes.URL_ANNONCES_BATEAUX_PNEUMATIQUES;
+				url = Constantes.URL_ANNONCE_DETAIL_BATEAUX_PNEUMATIQUES;
 			else if(_type.equals(Constantes.MOTEURS))
-				url = Constantes.URL_ANNONCES_MOTEURS;
+				url = Constantes.URL_ANNONCE_DETAIL_MOTEURS;
 			else if(_type.equals(Constantes.ACCESSOIRES))
-				url = Constantes.URL_ANNONCES_ACCESSOIRES;
+				url = Constantes.URL_ANNONCE_DETAIL_ACCESSOIRES;
 		}
 
 		return url;

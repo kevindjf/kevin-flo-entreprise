@@ -2,6 +2,7 @@ package fr.RivaMedia.net.core;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -10,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpResponseInterceptor;
 import org.apache.http.HttpStatus;
 import org.apache.http.HttpVersion;
 import org.apache.http.NameValuePair;
@@ -25,15 +28,20 @@ import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.cache.CacheConfig;
+import org.apache.http.impl.client.cache.CachingHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.protocol.HTTP;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.util.Log;
 import fr.RivaMedia.Constantes;
+import fr.RivaMedia.activity.MainActivity;
 
 public class Net {
 
@@ -41,6 +49,15 @@ public class Net {
 	public static final String NO = "NO";
 
 	public static final String SITE = Constantes.URL_BASE;
+
+	static class MakeCacheable implements HttpResponseInterceptor {
+		public static final MakeCacheable INSTANCE = new MakeCacheable();
+		public void process(HttpResponse resp, HttpContext ctx) throws HttpException, IOException {
+			resp.removeHeaders("Expires");
+			resp.removeHeaders("Pragma");
+			resp.removeHeaders("Cache-Control");
+		}
+	}
 
 	public static List<NameValuePair> newListNameValuePair(){
 		return new ArrayList<NameValuePair>();
@@ -99,11 +116,34 @@ public class Net {
 		donneesPost.addPart(cle, new ByteArrayBody(data, "image/jpeg"));
 	}
 
-	public static String requete(String url, List<NameValuePair> donneesPost){
+	public static void enableHttpResponseCache(Activity activity) {
+		final long httpCacheSize = 10 * 1024 * 1024; // 10 MiB
+		final File httpCacheDir = new File(activity.getCacheDir(), "http");
+		try {
+			Class.forName("android.net.http.HttpResponseCache")
+			.getMethod("install", File.class, long.class)
+			.invoke(null, httpCacheDir, httpCacheSize);
+			Log.e("CACHE", "cache ok");
+		} catch (Exception httpResponseCacheNotAvailable) {
+			httpResponseCacheNotAvailable.printStackTrace();
+		}
 
+
+	}
+
+	public static String requete(String url, List<NameValuePair> donneesPost){
 		add(donneesPost,"os","android");
 
-		HttpClient httpClient = new DefaultHttpClient();
+		//HttpClient httpClient = new DefaultHttpClient();
+
+		CacheConfig cacheConfig = new CacheConfig();  
+		cacheConfig.setMaxCacheEntries(1000);
+		cacheConfig.setMaxObjectSizeBytes(8192);
+
+		DefaultHttpClient realClient = new DefaultHttpClient();
+		realClient.addResponseInterceptor(MakeCacheable.INSTANCE, 0); // This goes first
+		CachingHttpClient httpClient = new CachingHttpClient(realClient, cacheConfig);
+
 		try {
 			HttpPost requete = new HttpPost(SITE+(url.replace("?", "")));
 			requete.setEntity(new UrlEncodedFormEntity(donneesPost,"UTF-8"));
@@ -184,8 +224,6 @@ public class Net {
 	}
 
 	public static String requete(String url, MultipartEntity donneesPost){
-
-		add(donneesPost,"os","android");
 
 		HttpClient httpClient = new DefaultHttpClient();
 		httpClient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
