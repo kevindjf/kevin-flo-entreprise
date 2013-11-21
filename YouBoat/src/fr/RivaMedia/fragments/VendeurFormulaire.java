@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
@@ -168,12 +169,12 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		Net.add(donnees, "nom",((EditText)_nom.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, "prenom",((EditText)_prenom.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, "email",((EditText)_email.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, "tel1",((EditText)_telephone.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, "cp",((EditText)_codePostal.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, "pays",((TextView)_pays.findViewById(R.id.text)).getText().toString());
+		Net.add(donnees, Constantes.VENDEUR_NOM,((EditText)_nom.findViewById(R.id.text)).getText().toString());
+		Net.add(donnees, Constantes.VENDEUR_PRENOM,((EditText)_prenom.findViewById(R.id.text)).getText().toString());
+		Net.add(donnees, Constantes.VENDEUR_EMAIL,((EditText)_email.findViewById(R.id.text)).getText().toString());
+		Net.add(donnees, Constantes.VENDEUR_TEL_1,((EditText)_telephone.findViewById(R.id.text)).getText().toString());
+		Net.add(donnees, Constantes.VENDEUR_CODE_POSTAL,((EditText)_codePostal.findViewById(R.id.text)).getText().toString());
+		Net.add(donnees, Constantes.VENDEUR_PAYS,((TextView)_pays.findViewById(R.id.text)).getText().toString());
 
 		return donnees;
 	}

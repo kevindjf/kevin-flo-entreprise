@@ -418,15 +418,15 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		String url = null;
 
 		if(_type.equals(Constantes.BATEAU_A_MOTEUR))
-			url = "xml-detail-bateau.php?";
+			url = Constantes.URL_ANNONCES_BATEAUX_A_MOTEURS;
 		else if(_type.equals(Constantes.VOILIER))
-			url = "xml-detail-voilier.php?";
+			url = Constantes.URL_ANNONCES_BATEAUX_VOILIERS;
 		else if(_type.equals(Constantes.PNEU))
-			url = "xml-detail-pneuma.php?";
+			url = Constantes.URL_ANNONCES_BATEAUX_PNEUMATIQUES;
 		else if(_type.equals(Constantes.MOTEURS))
-			url = "xml-detail-moteur.php?";
+			url = Constantes.URL_ANNONCES_MOTEURS;
 		else if(_type.equals(Constantes.ACCESSOIRES))
-			url = "xml-detail-accessoire.php?";
+			url = Constantes.URL_ANNONCES_ACCESSOIRES;
 
 		return url;
 	}

@@ -145,13 +145,13 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus){
-					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" €");
+					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" ���");
 				}else{
 					if(
 							((EditText)(v.findViewById(R.id.text))).getText().toString().trim().equals("0")){
 						((EditText)(v.findViewById(R.id.text))).setText("");
 					}else{
-						((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText().toString().replace(" €", ""));
+						((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText().toString().replace(" ���", ""));
 					}
 				}
 
@@ -163,13 +163,13 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus){
-					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" €");
+					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" ���");
 				}else{
 					if(
 							((EditText)(v.findViewById(R.id.text))).getText().toString().trim().equals("0")){
 						((EditText)(v.findViewById(R.id.text))).setText("");
 					}else{
-						((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText().toString().replace(" €", ""));
+						((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText().toString().replace(" ���", ""));
 					}
 				}
 
@@ -231,7 +231,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	private String recupererUrl(){
-		return Constantes.BOD_ADRESS_COMPLEMENT;
+		return Constantes.URL_ON_DEMAND;
 	}
 	
 	private List<NameValuePair> recupererDonnees(){
@@ -438,7 +438,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		if(titre.equals(getActivity().getResources().getString(R.string.taille))){
 			recherche_taille_min = min;
 			recherche_taille_max = max;
-			((TextView)_taille.findViewById(R.id.text)).setText("de "+min+" € à "+max+" €");
+			((TextView)_taille.findViewById(R.id.text)).setText("de "+min+" à "+max+" m");
 		}
 
 	}

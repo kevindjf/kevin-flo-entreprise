@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 
@@ -14,10 +15,6 @@ public class Annonces extends FragmentNormal implements View.OnClickListener{
 	private View _boutonBateauxVoiliers;
 	private View _boutonMoteurs;
 	private View _boutonAccessoiresDivers;
-
-	public static final int BATEAUX = 1;
-	public static final int MOTEURS = 4; //Constantes.MOTEURS
-	public static final int DIVERS = 5; //Constantes.ACCESSOIRES
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -49,7 +46,7 @@ public class Annonces extends FragmentNormal implements View.OnClickListener{
 	public void remplir() {
 	}
 	
-	public void afficherFormulaireBateaux(int item){
+	public void afficherFormulaireBateaux(String item){
 		ajouterFragment(new AnnoncesFormulaire(item));
 	}
 
@@ -59,16 +56,13 @@ public class Annonces extends FragmentNormal implements View.OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.annonces_bouton_bateaux_et_voiliers:
-			//Toast.makeText(getActivity(), "BATEAUX", Toast.LENGTH_SHORT).show();
-			afficherFormulaireBateaux(BATEAUX);
+			afficherFormulaireBateaux(Constantes.BATEAUX);
 			break;
 		case R.id.annonces_bouton_moteurs:
-			//Toast.makeText(getActivity(), "MOTEURS", Toast.LENGTH_SHORT).show();
-			afficherFormulaireBateaux(MOTEURS);
+			afficherFormulaireBateaux(Constantes.MOTEURS);
 			break;
 		case R.id.annonces_bouton_accessoires_et_divers:
-			//Toast.makeText(getActivity(), "DIVERS", Toast.LENGTH_SHORT).show();
-			afficherFormulaireBateaux(DIVERS);
+			afficherFormulaireBateaux(Constantes.ACCESSOIRES);
 			break;
 		}
 	}

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.image.ImageLoaderCache;
@@ -174,11 +175,11 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 			_pages.add(new TabVendeurDescription("Vendeur",_vendeur,getActivity()));
 
 		if(_vendeur.getNbBateau() != null && !_vendeur.getNbBateau().equals("0"))
-			_pages.add(new TabVendeurAnnonces(getString(R.string.bateaux),_vendeur,""+Annonces.BATEAUX,getActivity()));
+			_pages.add(new TabVendeurAnnonces(getString(R.string.bateaux),_vendeur,Constantes.BATEAUX,getActivity()));
 		if(_vendeur.getNbMoteur() != null && !_vendeur.getNbMoteur().equals("0"))
-			_pages.add(new TabVendeurAnnonces(getString(R.string.moteurs),_vendeur,""+Annonces.MOTEURS,getActivity()));
+			_pages.add(new TabVendeurAnnonces(getString(R.string.moteurs),_vendeur,Constantes.MOTEURS,getActivity()));
 		if(_vendeur.getNbAccessoire() != null && !_vendeur.getNbAccessoire().equals("0"))
-			_pages.add(new TabVendeurAnnonces(getString(R.string.accessoires),_vendeur,""+Annonces.DIVERS,getActivity()));
+			_pages.add(new TabVendeurAnnonces(getString(R.string.accessoires),_vendeur,Constantes.ACCESSOIRES,getActivity()));
 
 		if(_pages.size()>0){
 			_pagesAdapter = new PagesAdapter(getChildFragmentManager(),_pages);
