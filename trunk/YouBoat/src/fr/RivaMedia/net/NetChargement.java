@@ -32,9 +32,9 @@ public class NetChargement extends Net{
 			type.setId(Integer.toString(i));
 
 			List<NameValuePair> donnees = Net.construireDonnes(
-					Constantes.TYPE_ID, Integer.valueOf(i)
+					Constantes.TYPES_TYPE_ID, Integer.valueOf(i)
 					);
-			String xml = Net.requeteGet(Constantes.CATEGORY_ADRESS_COMPLEMENT, donnees);
+			String xml = Net.requeteGet(Constantes.URL_TYPES, donnees);
 			type.setCategories(new CategorieXmlParser(xml).getCategoriesBateau());
 
 			types.add(type);
@@ -44,18 +44,13 @@ public class NetChargement extends Net{
 		return types;
 	}
 
-	public static String servicesUrl = "xml-services.php";
-
 	public static List<Service> chargerServices(){
-		String xml = Net.requeteGet(servicesUrl, null);
+		String xml = Net.requeteGet(Constantes.URL_SERVICES, null);
 		return new ServiceXmlParser(xml).getServices();
 	}
 
-	public static String marquesUrl = "xml-marque-bateau-rech.php";
-	public static String marquesIdType = "idtype";
-
 	public static List<Marque> chargerMarquesBateaux(){
-		String xml = Net.requeteGet(marquesUrl, null);
+		String xml = Net.requeteGet(Constantes.URL_MARQUES.replace("?", ""), null);
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
@@ -63,10 +58,10 @@ public class NetChargement extends Net{
 	public static List<Marque> chargerMarquesBateauAMoteur(){
 
 		List<NameValuePair> donnees = Net.construireDonnes(
-				marquesIdType, Constantes.BATEAU_A_MOTEUR
+				Constantes.MARQUES_ID_TYPE, Constantes.BATEAU_A_MOTEUR
 				);
 
-		String xml = Net.requeteGet(marquesUrl+"?", donnees);
+		String xml = Net.requeteGet(Constantes.URL_MARQUES, donnees);
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
@@ -74,10 +69,10 @@ public class NetChargement extends Net{
 	public static List<Marque> chargerMarquesVoiliers(){
 
 		List<NameValuePair> donnees = Net.construireDonnes(
-				marquesIdType, Constantes.VOILIER
+				Constantes.MARQUES_ID_TYPE, Constantes.VOILIER
 				);
 
-		String xml = Net.requeteGet(marquesUrl+"?", donnees);
+		String xml = Net.requeteGet(Constantes.URL_MARQUES, donnees);
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
@@ -85,28 +80,27 @@ public class NetChargement extends Net{
 	public static List<Marque> chargerMarquesPneu(){
 
 		List<NameValuePair> donnees = Net.construireDonnes(
-				marquesIdType, Constantes.PNEU
+				Constantes.MARQUES_ID_TYPE, Constantes.PNEU
 				);
 
-		String xml = Net.requeteGet(marquesUrl+"?", donnees);
+		String xml = Net.requeteGet(Constantes.URL_MARQUES, donnees);
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
 
 	public static List<Marque> chargerMarquesMoteurs(){
-		String xml = Net.requeteGet(Constantes.MARQUE_MOTEUR_ADRESS_COMPLEMENT, null);
+		String xml = Net.requeteGet(Constantes.URL_MARQUES_MOTEUR, null);
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
 
-	static String modelesUrl = "xml-modele-bateau-rech.php";
 	public static List<Modele> chargerModeles(String idType, String idMarque) {
 		List<NameValuePair> donnees = Net.construireDonnes(
-				"idtype", idType,
-				"idm", idMarque
+				Constantes.MODELES_ID_TYPE, idType,
+				Constantes.MODELES_ID_MARQUE, idMarque
 				);
 
-		String xml = Net.requeteGet(modelesUrl+"?", donnees);
+		String xml = Net.requeteGet(Constantes.URL_MODELES, donnees);
 
 		return new ModeleXmlParser(xml).getModeles();
 	}

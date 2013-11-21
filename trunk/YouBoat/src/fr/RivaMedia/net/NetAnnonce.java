@@ -6,20 +6,11 @@ import org.apache.http.NameValuePair;
 
 import android.util.Log;
 import fr.RivaMedia.Constantes;
-import fr.RivaMedia.fragments.Annonces;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.core.Net;
 import fr.RivaMedia.xml.AnnonceXmlParser;
 
-public class NetAnnonce extends Net {
-
-	public static List<Annonce> chargerListeBateaux(){
-
-		String xml = Net.requeteGet(Constantes.RECHERCHE_BATEAU_ADRESSE, null);
-
-		return new AnnonceXmlParser(xml).getListe();
-	}
-	
+public class NetAnnonce extends Net {	
 	
 	public static List<Annonce> rechercher(String url, List<NameValuePair> donnees){
 
@@ -36,24 +27,17 @@ public class NetAnnonce extends Net {
 			return null;
 	}
 
-
-	public static String annonceBateauDe = "xml-client-bateau.php?";
-	public static String annonceMoteurDe = "xml-client-moteur.php?";
-	public static String annonceAccessoiresDe = "xml-client-accessoire.php?";
-	
-	public static String idClient = "idcli";
-	
 	public static List<Annonce> getAnnoncesDe(String numero, String type) {
 		String url = "";
-		if(type.equals(""+Annonces.BATEAUX))
-			url = annonceBateauDe;
-		else if(type.equals(""+Annonces.MOTEURS))
-			url = annonceMoteurDe;
-		else if(type.equals(""+Annonces.DIVERS))
-			url = annonceAccessoiresDe;
+		if(type.equals(Constantes.BATEAUX))
+			url = Constantes.URL_ANNONCES_BATEAUX_DE;
+		else if(type.equals(Constantes.MOTEURS))
+			url = Constantes.URL_ANNONCES_MOTEURS_DE;
+		else if(type.equals(Constantes.ACCESSOIRES))
+			url = Constantes.URL_ANNONCES_ACCESSOIRES_DE;
 		
 		return rechercher(url, Net.construireDonnes(
-				idClient,numero
+				Constantes.ANNONCES_ID_CLIENT,numero
 				));
 	}
 	

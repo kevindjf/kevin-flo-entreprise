@@ -80,7 +80,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	View _view;
 
-	private int typeVente;
+	private String typeVente;
 
 	private View _boutonBateaux;
 	private View _boutonMoteurs;
@@ -366,7 +366,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		}
 		else{
 			String type = ""+typeVente;
-			if(typeVente == Annonces.BATEAUX)
+			if(typeVente.equals(Constantes.BATEAUX))
 				type = vendre_type;
 
 			List<Categorie> categories = Donnees.getCategories(type);
@@ -400,7 +400,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	private void demanderMarqueMoteur() {
-		ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,""+Annonces.MOTEURS));
+		ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,Constantes.MOTEURS));
 	}
 
 	private void ajouterPhoto() {
@@ -430,16 +430,16 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	public void afficherTypeVente(){
-		if(typeVente == Annonces.BATEAUX)
+		if(typeVente.equals(Constantes.BATEAUX))
 			vendreBateaux();
-		else if(typeVente == Annonces.MOTEURS)
+		if(typeVente.equals(Constantes.MOTEURS))
 			vendreMoteurs();
-		else if(typeVente == Annonces.DIVERS)
+		if(typeVente.equals(Constantes.ACCESSOIRES))
 			vendreDivers();
 	}
 
 	public void vendreBateaux(){
-		typeVente = Annonces.BATEAUX;
+		typeVente = Constantes.BATEAUX;
 
 		_boutonBateaux.setSelected(true);
 		_boutonDivers.setSelected(false);
@@ -461,8 +461,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_marqueMoteur.setOnClickListener(this);
 	}
 	public void vendreMoteurs(){
-		typeVente = Annonces.MOTEURS;
-		vendre_type = ""+Annonces.MOTEURS;
+		typeVente = Constantes.MOTEURS;
+		vendre_type = Constantes.MOTEURS;
 
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(false);
@@ -481,8 +481,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_energie.setOnClickListener(this);
 	}
 	public void vendreDivers(){
-		typeVente = Annonces.DIVERS;
-		vendre_type = ""+Annonces.DIVERS;
+		typeVente = Constantes.ACCESSOIRES;
+		vendre_type = Constantes.ACCESSOIRES;
 
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(true);
@@ -533,7 +533,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			vendre_marque_moteur = item;
 			((TextView)_marqueMoteur.findViewById(R.id.text)).setText(value);
 		}
-		else if(typeVente == Annonces.MOTEURS){
+		else if(typeVente.equals(Constantes.MOTEURS)){
 			vendre_marque = item;
 			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
 		}
@@ -543,7 +543,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	private List<NameValuePair> recupererDonnees(){
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		if(typeVente == Annonces.BATEAUX){
+		if(typeVente.equals(Constantes.BATEAUX)){
 
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -587,7 +587,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			if(((EditText)_anneeMoteur.findViewById(R.id.text)).getText().length() > 0)
 				Net.add(donnees,"",((EditText)_anneeMoteur.findViewById(R.id.text)).getText());
 
-		}else if(typeVente == Annonces.MOTEURS){
+		}else if(typeVente.equals(Constantes.MOTEURS)){
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 				return null;
@@ -626,7 +626,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			if(((EditText)_puissance.findViewById(R.id.text)).getText().length() > 0)
 				Net.add(donnees,"",((EditText)_puissance.findViewById(R.id.text)).getText());
 
-		}else if(typeVente == Annonces.DIVERS){
+		}else if(typeVente.equals(Constantes.ACCESSOIRES)){
 
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();

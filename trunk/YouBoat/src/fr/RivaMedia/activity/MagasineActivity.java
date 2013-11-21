@@ -5,13 +5,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.image.ImageLoaderCache;
 
 public class MagasineActivity extends Activity{
 
 	ImageView _image;
-	public static final String urlMagasine = "http://www.youboat.fr/xml/promo/splash_promo_retina.png";
 	public static final int tempsAttenteSecondes = 3;
 
 	@Override
@@ -22,7 +22,7 @@ public class MagasineActivity extends Activity{
 		ImageLoaderCache.load(this);
 
 		_image = (ImageView)findViewById(R.id.magasine_image);
-		ImageLoaderCache.charger(urlMagasine, _image);
+		ImageLoaderCache.charger(Constantes.URL_PUB_MAGASINE_HD, _image);
 
 		lancerDecompte();
 	}

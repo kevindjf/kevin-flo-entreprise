@@ -40,7 +40,7 @@ public class Net {
 	public static final String OK = "OK";
 	public static final String NO = "NO";
 
-	public static final String SITE = Constantes.BASE_ADRESS;
+	public static final String SITE = Constantes.URL_BASE;
 
 	public static List<NameValuePair> newListNameValuePair(){
 		return new ArrayList<NameValuePair>();

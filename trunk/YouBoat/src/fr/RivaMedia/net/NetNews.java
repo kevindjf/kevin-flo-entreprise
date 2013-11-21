@@ -10,14 +10,15 @@ import fr.RivaMedia.xml.NewsXmlParser;
 public class NetNews extends Net{
 
 	public static List<News> chargerListeNews(){
-		String xml = Net.requeteGet(Constantes.NEWS_ADRESS_COMPLEMENT,null);
+		String xml = Net.requeteGet(Constantes.URL_ACTUALITES,null);
 
 		return new NewsXmlParser(xml).getListeNews();
 	}
 	
 	public static News getNews(String id){
 
-		String xml = Net.requeteGet(Constantes.RECHERCHE_ACTU_DETAIL_ADRESS+id, null);
+		String xml = Net.requeteGet(Constantes.URL_ACTUALITE_DETAIL, Net.construireDonnes(
+				Constantes.ACTUALITE_DETAIL_ID_ACTUALITE));
 
 		return new NewsXmlParser(xml).getNews();
 	}
