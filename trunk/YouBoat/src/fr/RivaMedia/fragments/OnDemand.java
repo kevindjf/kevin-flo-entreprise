@@ -219,6 +219,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		case R.id.boat_on_demand_etape_suivante:
 			demanderEtapeSuivante();
 			break;
+						
 		}
 	}
 
@@ -254,7 +255,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			return null;
 		}
 		
-		budget_requis = ((EditText)_budget.findViewById(R.id.text)).getText().toString().trim();
+		budget_requis = ((EditText)_budget.findViewById(R.id.text)).getText().toString().trim().replace(" €", "");
 		if(budget_requis.length() == 0){
 			Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_budget), Toast.LENGTH_SHORT).show();	
 			return null;
@@ -290,7 +291,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Net.add(donnees,"",((TextView)_chantierModelePosseder.findViewById(R.id.text)).getText());
 		
 		if(((EditText)_prixCessionPosseder.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((TextView)_prixCessionPosseder.findViewById(R.id.text)).getText());
+			Net.add(donnees,"",((TextView)_prixCessionPosseder.findViewById(R.id.text)).getText().toString().trim().replace(" €", ""));
 		
 		return donnees;
 	}
