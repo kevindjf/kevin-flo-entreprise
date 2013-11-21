@@ -136,6 +136,7 @@
     <string name="vendre">Vendre</string>
     <string name="vendeur">Le vendeur</string>
     <string name="veuillez_choisir_un_budget">Veuillez choisir un budget</string>
+    <string name="veuillez_indiquer_votre_code_postale">Veuillez choisir un code postal</string>
     <string name="veuillez_indiquer_votre_nom">Veuillez indiquer votre nom</string>
     <string name="veuillez_indiquer_votre_email">Veuillez indiquer votre email</string>
     <string name="veuillez_indiquer_votre_pays">Veuillez indiquer votre pays</string>

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.ValeurSelector;
@@ -150,13 +151,14 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 		if(((EditText)_nom.findViewById(R.id.text)).getText().toString().equals(""))
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_nom), Toast.LENGTH_SHORT).show();
-		else if(((EditText)_email.findViewById(R.id.text)).getText().toString().equals(""))
+		else if(((EditText)_email.findViewById(R.id.text)).getText().toString().trim().equals(""))
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_email), Toast.LENGTH_SHORT).show();
-		else if(((TextView)_pays.findViewById(R.id.text)).getText().toString().equals(""))
+		else if(((TextView)_pays.findViewById(R.id.text)).getText().toString().trim().equals(R.string.requis))
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_pays), Toast.LENGTH_SHORT).show();
-		else{
-			validerVendeur(recupererDonnees());
-		}
+		else if(((EditText)_codePostal.findViewById(R.id.text)).getText().toString().trim().equals(""))
+			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_code_postale), Toast.LENGTH_SHORT).show();
+		else
+			validerVendeur(recupererDonnees());	
 	}
 
 	protected List<NameValuePair> recupererDonnees(){
@@ -174,9 +176,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	}
 
 	private void validerVendeur(List<NameValuePair> recupererDonnees) {
-		// TODO Auto-generated method stub
-
-	}
+		((MainActivity)getActivity()).ajouterFragment(new Annonces(),false);
+		}
 
 	@Override
 	public void effacer() {

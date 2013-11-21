@@ -24,6 +24,13 @@
         <item name="android:padding">5dip</item>
     </style>
 
+    <style name="formulaire_cellule_vendeur">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:background">@color/couleur_fond</item>
+        <item name="android:padding">5dip</item>
+    </style>
+    
     <style name="formulaire_cellule_titre">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

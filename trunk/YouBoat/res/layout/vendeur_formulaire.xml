@@ -13,17 +13,30 @@
         android:padding="10dip" >
 
         <LinearLayout
-            style="@style/formulaire_separator"
-            android:layout_marginTop="10dip" >
 
-            <TextView
-                style="@style/formulaire_separator_titre"
-                android:text="@string/coordonnees" />
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:background="@color/couleur_fond"
+		android:layout_marginBottom="5dip"
+		 >
+
+             <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:text="@string/coordonnees"
+            android:textColor="@color/couleur_1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
         </LinearLayout>
 
+      
         <RelativeLayout
             android:id="@+id/vendeur_formulaire_nom"
-            style="@style/formulaire_cellule" >
+            style="@style/formulaire_cellule_vendeur" >
 
             <TextView
                 style="@style/formulaire_cellule_titre"
@@ -38,7 +51,7 @@
 
         <RelativeLayout
             android:id="@+id/vendeur_formulaire_prenom"
-            style="@style/formulaire_cellule" >
+            style="@style/formulaire_cellule_vendeur" >
 
             <TextView
                 style="@style/formulaire_cellule_titre"
@@ -53,14 +66,14 @@
 
         <RelativeLayout
             android:id="@+id/vendeur_formulaire_email"
-            style="@style/formulaire_cellule" >
+            style="@style/formulaire_cellule_vendeur" >
 
             <TextView
                 style="@style/formulaire_cellule_titre"
                 android:text="@string/email_star" />
 
             <EditText
-                android:id="@+id/text"
+                android:id="@id/text"
                 style="@style/formulaire_cellule_texte"
                 android:hint="@string/requis"
                 android:inputType="textEmailAddress" />
@@ -68,14 +81,14 @@
 
         <RelativeLayout
             android:id="@+id/vendeur_formulaire_telephone"
-            style="@style/formulaire_cellule" >
+            style="@style/formulaire_cellule_vendeur" >
 
             <TextView
                 style="@style/formulaire_cellule_titre"
                 android:text="@string/telephone" />
 
             <EditText
-                android:id="@+id/text"
+                android:id="@id/text"
                 style="@style/formulaire_cellule_texte"
                 android:hint="@string/facultatif"
                 android:inputType="phone" />
@@ -83,14 +96,14 @@
 
         <RelativeLayout
             android:id="@+id/vendeur_formulaire_code_postal"
-            style="@style/formulaire_cellule" >
+            style="@style/formulaire_cellule_vendeur" >
 
             <TextView
                 style="@style/formulaire_cellule_titre"
                 android:text="@string/code_postal_star" />
 
             <EditText
-                android:id="@+id/text"
+                android:id="@id/text"
                 style="@style/formulaire_cellule_texte"
                 android:hint="@string/requis"
                 android:inputType="number" />
@@ -105,7 +118,7 @@
                 android:text="@string/pays_star" />
 
             <TextView
-                android:id="@+id/text"
+                android:id="@id/text"
                 style="@style/formulaire_cellule_texte"
                 android:text="@string/requis" />
 
