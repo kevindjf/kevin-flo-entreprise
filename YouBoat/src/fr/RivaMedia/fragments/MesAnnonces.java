@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AnnonceListAdapter;

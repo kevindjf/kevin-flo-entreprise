@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
@@ -126,9 +127,9 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		List<NameValuePair> donnees = Net.construireDonnes();
 
 		if(marque_id != null)
-			Net.add(donnees, "listMarque",marque_id);
+			Net.add(donnees, Constantes.ANNURAIRE_MARQUE,marque_id);
 		if(service_id != null)
-			Net.add(donnees,"service",service_id);
+			Net.add(donnees,Constantes.ANNURAIRE_SERVICE,service_id);
 		
 
 		return donnees;

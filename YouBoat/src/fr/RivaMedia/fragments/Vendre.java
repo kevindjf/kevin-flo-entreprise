@@ -566,26 +566,26 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 			//les requis
 			Net.add(donnees, 
-					"",vendre_type,
-					"",vendre_categorie,
-					"",vendre_marque,
-					"",vendre_prix
+					Constantes.VENDRE_TYPE,vendre_type,
+					Constantes.VENDRE_CATEGORIE,vendre_categorie,
+					Constantes.VENDRE_MARQUE,vendre_marque,
+					Constantes.VENDRE_PRIX,vendre_prix
 					);
 
 			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_annee.findViewById(R.id.text)).getText());
+				Net.add(donnees,Constantes.VENDRE_ANNEE,((EditText)_annee.findViewById(R.id.text)).getText());
 
 			if(((EditText)_longueur.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_longueur.findViewById(R.id.text)).getText());
+				Net.add(donnees,Constantes.VENDRE_LONGUEUR,((EditText)_longueur.findViewById(R.id.text)).getText());
 
 			if(vendre_nombre_moteur != null)
-				Net.add(donnees,"",vendre_nombre_moteur);
+				Net.add(donnees,Constantes.VENDRE_NOMBRE_MOTEUR,vendre_nombre_moteur);
 
 			if(((TextView)_marqueMoteur.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,"",((TextView)_marqueMoteur.findViewById(R.id.text)).getText());
+				Net.add(donnees,Constantes.VENDRE_MARQUE_MOTEUR,((TextView)_marqueMoteur.findViewById(R.id.text)).getText());
 
 			if(((EditText)_anneeMoteur.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_anneeMoteur.findViewById(R.id.text)).getText());
+				Net.add(donnees,Constantes.VENDRE_ANNEE_MOTEUR,((EditText)_anneeMoteur.findViewById(R.id.text)).getText());
 
 		}else if(typeVente.equals(Constantes.MOTEURS)){
 			if(vendre_type == null){
@@ -613,18 +613,18 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 			//les requis
 			Net.add(donnees, 
-					"",vendre_type,
-					"",vendre_categorie,
-					"",vendre_marque,
-					"",vendre_energie,
-					"",vendre_prix
+					Constantes.VENDRE_TYPE,vendre_type,
+					Constantes.VENDRE_CATEGORIE,vendre_categorie,
+					Constantes.VENDRE_MARQUE,vendre_marque,
+					Constantes.VENDRE_ENERGIE,vendre_energie,
+					Constantes.VENDRE_PRIX,vendre_prix
 					);
 
 			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_annee.findViewById(R.id.text)).getText());
+				Net.add(donnees,Constantes.VENDRE_ANNEE,((EditText)_annee.findViewById(R.id.text)).getText());
 
 			if(((EditText)_puissance.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_puissance.findViewById(R.id.text)).getText());
+				Net.add(donnees,Constantes.VENDRE_PUISSANCE,((EditText)_puissance.findViewById(R.id.text)).getText());
 
 		}else if(typeVente.equals(Constantes.ACCESSOIRES)){
 
@@ -644,19 +644,19 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 			//les requis
 			Net.add(donnees, 
-					"",vendre_type,
-					"",vendre_categorie,
-					"",vendre_prix
+					Constantes.VENDRE_TYPE,vendre_type,
+					Constantes.VENDRE_CATEGORIE,vendre_categorie,
+					Constantes.VENDRE_PRIX,vendre_prix
 					);
 
 			if(((EditText)_intitule.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,"",((EditText)_intitule.findViewById(R.id.text)).getText());
+				Net.add(donnees,Constantes.VENDRE_INTITULE,((EditText)_intitule.findViewById(R.id.text)).getText());
 
 
 		}
 
 		if(((EditText)_description.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((EditText)_description.findViewById(R.id.text)).getText());
+			Net.add(donnees,Constantes.VENDRE_DESCRIPTION,((EditText)_description.findViewById(R.id.text)).getText());
 
 		return donnees;
 	}

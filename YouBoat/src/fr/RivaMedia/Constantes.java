@@ -103,7 +103,6 @@ public class Constantes {
 	/////////////////////////////////////////////////////////////////////////
 	
 	//URL
-	
 	public static final String URL_BASE = "http://www.youboat.fr/xml/";
 	
 	public static final String URL_PUB_MAGASINE_NORMAL = "http://www.youboat.fr/xml/promo/splash_promo_normal.png";
@@ -153,11 +152,26 @@ public class Constantes {
 	public static final String ANNONCES_MAX_PRIX = "maxprix";
 	public static final String ANNONCES_MIN_PRIX = "minprix";
 	public static final String ANNONCES_ETAT = "etat";
-	public static final String ANNONCES_ETAT_OCCASION = "1";
-	public static final String ANNONCES_ETAT_NEUF = "2";
+	
+	public static final String ETAT_OCCASION = "1";
+	public static final String ETAT_NEUF = "2";
 	
 	public static final String ANNONCES_MODELE_ID = "listModele";
 	public static final String ANNONCES_MARQUE_ID = "listMarque";
+	
+	public static final String VENDRE_TYPE = "";
+	public static final String VENDRE_CATEGORIE = "";
+	public static final String VENDRE_MARQUE = "";
+	public static final String VENDRE_PRIX = "";
+	public static final String VENDRE_ANNEE = "";
+	public static final String VENDRE_LONGUEUR = "";
+	public static final String VENDRE_NOMBRE_MOTEUR = "";
+	public static final String VENDRE_MARQUE_MOTEUR = "";
+	public static final String VENDRE_ANNEE_MOTEUR = "";
+	public static final String VENDRE_ENERGIE = "";
+	public static final String VENDRE_PUISSANCE = "";
+	public static final String VENDRE_INTITULE = "";
+	public static final String VENDRE_DESCRIPTION = "";
 	
 	public static final String VENDEUR_NOM = "nom";
 	public static final String VENDEUR_PRENOM = "prenom";
@@ -171,6 +185,25 @@ public class Constantes {
 	public static final String URL_ANNONCES_ACCESSOIRES_DE = "xml-client-accessoire.php?";
 	public static final String ANNONCES_ID_CLIENT = "idcli";
 	
+	public static final String ANNURAIRE_MARQUE = "listMarque";
+	public static final String ANNURAIRE_SERVICE = "service";
+	
 	public static final String URL_ON_DEMAND = "bod.php?";
+	public static final String ON_DEMAND_TYPE = "listProduit";
+	public static final String ON_DEMAND_CATEGORIE = "listSsCat";
+	public static final String ON_DEMAND_MARQUE = "listMarque"; 
+	public static final String ON_DEMAND_MODELE = "listModele"; 
+	public static final String ON_DEMAND_TAILLE_MIN = "minlong"; //TODO
+	public static final String ON_DEMAND_TAILLE_MAX = "maxlong"; //TODO
+	public static final String ON_DEMAND_BUDGET = "budget";
+	public static final String ON_DEMAND_ETAT = "idtypads";
+	public static final String ON_DEMAND_LIEU = "listNav";
+	public static final String ON_DEMAND_COMMENTAIRE = "infosuprech";
+	public static final String ON_DEMAND_TYPE_POSSEDE = "listProduit2";
+	public static final String ON_DEMAND_CATEGORIE_POSSEDE = "listSsCat2";
+	public static final String ON_DEMAND_MARQUE_POSSEDE = "listMarque2"; 
+	public static final String ON_DEMAND_MODELE_POSSEDE = "listModele2";
+	public static final String ON_DEMAND_PRIX_CESSION = "";
+	public static final String ON_DEMAND_TAILLE = "";
 
 }

@@ -61,6 +61,7 @@
     <string name="france_autre_region">France/Autre region</string>
     <string name="generalites">Généralités</string>
     <string name="geolocalisez_vous_ou_recherchez_une_localite">Géolocalisez vous ou recherchez une localité :</string>
+    <string name="gerer_votre_recherche_directement_sur">Gérez votre recherche directement sur www.youboat.fr/recherche-bateau.html </string>
     <string name="gps_not_found_title">Aucun service GPS trouvé</string>
     <string name="gps_not_found_message">Activer le GPS ?</string>
     <string name="indifferent">Indifférent</string>
@@ -151,6 +152,7 @@
     <string name="version">Version</string>
     <string name="vide">Aucun résultat</string>
     <string name="voiliers">Voiliers</string>
+    <string name="votre_recherche_est_bien_enregistree">Votre recherche est bien enregistrée !</string>
     
 	<string name="TELEPHONE">02 38 75 99 41</string>
 	<string name="EMAIL">contact@youboat.fr</string>

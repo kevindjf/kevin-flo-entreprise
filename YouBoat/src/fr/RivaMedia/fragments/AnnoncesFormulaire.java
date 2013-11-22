@@ -500,9 +500,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		String etat = ((TextView)_etat.findViewById(R.id.text)).getText().toString();
 		if(etat != null && etat.length()>0){
 			if(etat.equals(getActivity().getResources().getString(R.string.occasion)))
-				Net.add(donnees, Constantes.ANNONCES_ETAT,Constantes.ANNONCES_ETAT_OCCASION);
+				Net.add(donnees, Constantes.ANNONCES_ETAT,Constantes.ETAT_OCCASION);
 			else if(etat.equals(getActivity().getResources().getString(R.string.neuf)))
-				Net.add(donnees, Constantes.ANNONCES_ETAT,Constantes.ANNONCES_ETAT_NEUF);
+				Net.add(donnees, Constantes.ANNONCES_ETAT,Constantes.ETAT_NEUF);
 			//ne pas ajouter indifferent
 		}
 

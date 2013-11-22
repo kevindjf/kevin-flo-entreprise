@@ -1,10 +1,15 @@
 package fr.RivaMedia.fragments;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +24,11 @@ import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.ValeurSelector;
+import fr.RivaMedia.model.Marque;
+import fr.RivaMedia.model.Service;
+import fr.RivaMedia.model.core.Donnees;
+import fr.RivaMedia.net.NetChargement;
+import fr.RivaMedia.net.NetNews;
 import fr.RivaMedia.net.core.Net;
 
 @SuppressLint("ValidFragment")
@@ -37,14 +47,16 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	View _pays;
 
 	String _url;
-	List<NameValuePair> _donnees;
+	List<NameValuePair> _donneesPrecedentes;
+
+	List<NameValuePair> _donneesEnvoyees;
 
 	View[] views;
 	String[] valeurs;
 
-	public VendeurFormulaire(String url, List<NameValuePair> donneesVente) {
+	public VendeurFormulaire(String url, List<NameValuePair> donneesPrecedentes) {
 		_url = url;
-		_donnees = donneesVente;
+		_donneesPrecedentes = donneesPrecedentes;
 	}
 
 	@Override
@@ -156,13 +168,13 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_email), Toast.LENGTH_SHORT).show();
 		else
 			if(((TextView)_pays.findViewById(R.id.text)).getText().toString().trim().equals(getString(R.string.requis)))
-			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_pays), Toast.LENGTH_SHORT).show();
-		
-		else if(((EditText)_codePostal.findViewById(R.id.text)).getText().toString().trim().equals(""))
-			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_code_postale), Toast.LENGTH_SHORT).show();
-		else
-			validerVendeur(recupererDonnees());	
-		
+				Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_pays), Toast.LENGTH_SHORT).show();
+
+			else if(((EditText)_codePostal.findViewById(R.id.text)).getText().toString().trim().equals(""))
+				Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_code_postale), Toast.LENGTH_SHORT).show();
+			else
+				validerVendeur(recupererDonnees());	
+
 	}
 
 	protected List<NameValuePair> recupererDonnees(){
@@ -179,14 +191,98 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		return donnees;
 	}
 
-	private void validerVendeur(List<NameValuePair> recupererDonnees) {
-		((MainActivity)getActivity()).ajouterFragment(new Annonces(),false);
+	private void validerVendeur(List<NameValuePair> donneesVendeur) {
+
+		_donneesEnvoyees = new ArrayList<NameValuePair>();
+		_donneesEnvoyees.addAll(_donneesPrecedentes);
+		_donneesEnvoyees.addAll(donneesVendeur);
+
+		if(_url.equals(Constantes.URL_ON_DEMAND)){
+			task = new EnvoyerOnDemandTask();
+			task.execute();
+		}else{ //vendre
+			task = new EnvoyerVendreTask();
+			task.execute();
 		}
+
+
+	}
 
 	@Override
 	public void effacer() {
 		reset();
 		ajouterListeners();
+	}
+
+
+	/* --------------------------------------------------------------------------- */
+
+	class EnvoyerOnDemandTask extends AsyncTask<Void, Void, Void> {
+		protected Void doInBackground(Void...donnees) {
+
+			synchronized (_donneesEnvoyees) {
+				Net.requete(_url, _donneesEnvoyees);
+			}
+
+			getActivity().runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+					alert.setTitle(R.string.votre_recherche_est_bien_enregistree);
+					alert.setMessage(R.string.gerer_votre_recherche_directement_sur);
+					alert.setPositiveButton(R.string.ok, new Dialog.OnClickListener(){
+
+						@Override
+						public void onClick(DialogInterface dialog, int pos) {
+							dialog.dismiss();
+							((MainActivity)getActivity()).ajouterFragment(new Annonces(),false);
+						}
+
+					});
+					alert.show();
+				}
+
+			});
+			return null;
+		}
+
+		protected void onPostExecute(){
+		}
+	}
+
+	class EnvoyerVendreTask extends AsyncTask<Void, Void, Void> {
+		protected Void doInBackground(Void...donnees) {
+
+			synchronized (_donneesEnvoyees) {
+				Net.requete(_url, _donneesEnvoyees);
+			}
+
+			getActivity().runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+					alert.setTitle("?"); //TODO
+					alert.setMessage("?"); //TODO
+					alert.setPositiveButton(R.string.ok, new Dialog.OnClickListener(){
+
+						@Override
+						public void onClick(DialogInterface dialog, int pos) {
+							dialog.dismiss();
+							((MainActivity)getActivity()).ajouterFragment(new Annonces(),false);
+						}
+
+					});
+					alert.show();
+				}
+
+			});
+			return null;
+		}
+
+		protected void onPostExecute(){
+		}
 	}
 
 }
