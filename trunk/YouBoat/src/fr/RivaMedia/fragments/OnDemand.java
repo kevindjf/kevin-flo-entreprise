@@ -63,25 +63,25 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	View _boat_on_demand_etape_suivante;
 
 
-	String recherche_type = null ;
-	String recherche_categorie_id = null;
-	String recherche_chantier_id = null;
-	String recherche_modele_id = null;
-	String recherche_taille_min = null;
-	String recherche_taille_max = null;
+	String demand_type = null ;
+	String demand_categorie_id = null;
+	String demand_chantier_id = null;
+	String demand_modele_id = null;
+	String demand_taille_min = null;
+	String demand_taille_max = null;
 
-	String recherche_type_posseder = null ;
-	String recherche_categorie_posseder_id = null;
-	String recherche_chantier_posseder_id = null;
-	String recherche_modele_posseder_id = null;
+	String demand_type_posseder = null ;
+	String demand_categorie_posseder_id = null;
+	String demand_chantier_posseder_id = null;
+	String demand_modele_posseder_id = null;
 
 
 	List<Marque> _marques = null;
 	List<Marque> _marques_posseder = null;
-	
+
 	String budget_requis;
 	String taille_requis;
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
@@ -145,7 +145,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus){
-					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" ���");
+					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" €");
 				}else{
 					if(
 							((EditText)(v.findViewById(R.id.text))).getText().toString().trim().equals("0")){
@@ -219,7 +219,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		case R.id.boat_on_demand_etape_suivante:
 			demanderEtapeSuivante();
 			break;
-						
+
 		}
 	}
 
@@ -227,24 +227,24 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		List<NameValuePair> donneesVente = recupererDonnees();
 		if(donneesVente == null)
 			return;
-		
+
 		ajouterFragment(new VendeurFormulaire(recupererUrl(),donneesVente));
 	}
 
 	private String recupererUrl(){
 		return Constantes.URL_ON_DEMAND;
 	}
-	
+
 	private List<NameValuePair> recupererDonnees(){
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		if(recherche_type == null){
+		if(demand_type == null){
 			Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 			return null;
 		}
-		
-		if(recherche_categorie_id == null){
+
+		if(demand_categorie_id == null){
 			Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
 			return null;	
 		}
@@ -254,63 +254,79 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_taille), Toast.LENGTH_SHORT).show();
 			return null;
 		}
-		
+
 		budget_requis = ((EditText)_budget.findViewById(R.id.text)).getText().toString().trim().replace(" €", "");
 		if(budget_requis.length() == 0){
 			Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_budget), Toast.LENGTH_SHORT).show();	
 			return null;
 		}
-		
+
 		//les requis
 		Net.add(donnees, 
-				"",recherche_type,
-				"",recherche_categorie_id,
-				"",taille_requis,
-				"",budget_requis
+				Constantes.ON_DEMAND_TYPE,demand_type,
+				Constantes.ON_DEMAND_CATEGORIE,demand_categorie_id,
+				Constantes.ON_DEMAND_TAILLE,taille_requis,
+				Constantes.ON_DEMAND_BUDGET,budget_requis
 				);
 
-		if(((TextView)_chantierModele.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((TextView)_chantierModele.findViewById(R.id.text)).getText());
-		
-		if(((TextView)_etat.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((TextView)_etat.findViewById(R.id.text)).getText());
+		if(((TextView)_chantierModele.findViewById(R.id.text)).getText().length() > 0 
+				&& demand_modele_id != null && demand_chantier_id != null){
+			Net.add(donnees,Constantes.ON_DEMAND_MODELE,demand_modele_id);
+			Net.add(donnees,Constantes.ON_DEMAND_MARQUE,demand_chantier_id);
+		}
+
+		if(((TextView)_etat.findViewById(R.id.text)).getText().length() > 0){
+			String etat = ((TextView)_etat.findViewById(R.id.text)).getText().toString();
+			if(etat.equals(getActivity().getResources().getString(R.string.occasion)))
+				Net.add(donnees, Constantes.ON_DEMAND_ETAT,Constantes.ETAT_OCCASION);
+			else if(etat.equals(getActivity().getResources().getString(R.string.neuf)))
+				Net.add(donnees, Constantes.ON_DEMAND_ETAT,Constantes.ETAT_NEUF);
+		}
+
+		if(((TextView)_taille.findViewById(R.id.text)).getText().length() > 0
+				&& demand_taille_min != null && demand_taille_max != null){
+			Net.add(donnees, Constantes.ON_DEMAND_TAILLE_MIN, demand_taille_min);
+			Net.add(donnees, Constantes.ON_DEMAND_TAILLE_MAX, demand_taille_max);
+		}
 
 		if(((TextView)_lieu.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((TextView)_lieu.findViewById(R.id.text)).getText());
-		
+			Net.add(donnees,Constantes.ON_DEMAND_LIEU,((TextView)_lieu.findViewById(R.id.text)).getText());
+
 		if(((EditText)_commentaire.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((TextView)_commentaire.findViewById(R.id.text)).getText());
-		
-		if(((TextView)_typePosseder.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((TextView)_typePosseder.findViewById(R.id.text)).getText());
-		
-		if(((TextView)_categoriePosseder.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((TextView)_chantierModele.findViewById(R.id.text)).getText());
-		
-		if(((TextView)_chantierModelePosseder.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((TextView)_chantierModelePosseder.findViewById(R.id.text)).getText());
-		
+			Net.add(donnees,Constantes.ON_DEMAND_COMMENTAIRE,((TextView)_commentaire.findViewById(R.id.text)).getText());
+
+		if(((TextView)_typePosseder.findViewById(R.id.text)).getText().length() > 0 && demand_type_posseder != null)
+			Net.add(donnees,Constantes.ON_DEMAND_TYPE_POSSEDE,demand_type_posseder);
+
+		if(((TextView)_categoriePosseder.findViewById(R.id.text)).getText().length() > 0 && demand_categorie_posseder_id != null)
+			Net.add(donnees,Constantes.ON_DEMAND_CATEGORIE_POSSEDE,demand_categorie_posseder_id);
+
+		if(((TextView)_chantierModelePosseder.findViewById(R.id.text)).getText().length() > 0 
+				&& demand_modele_posseder_id != null && demand_chantier_posseder_id != null){
+			Net.add(donnees,Constantes.ON_DEMAND_MODELE_POSSEDE,demand_modele_posseder_id);
+			Net.add(donnees,Constantes.ON_DEMAND_MARQUE_POSSEDE,demand_chantier_posseder_id);
+		}
+
 		if(((EditText)_prixCessionPosseder.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,"",((TextView)_prixCessionPosseder.findViewById(R.id.text)).getText().toString().trim().replace(" €", ""));
-		
+			Net.add(donnees,Constantes.ON_DEMAND_PRIX_CESSION,((TextView)_prixCessionPosseder.findViewById(R.id.text)).getText().toString().trim().replace(" €", ""));
 		return donnees;
 	}
 
 	private void demanderChantierModelePosseder() {
-		if(recherche_type_posseder == null){
+		if(demand_type_posseder == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else {
-			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE_POSSEDER,recherche_type_posseder));
+			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE_POSSEDER,demand_type_posseder));
 		}
 	}
 
 	private void demanderCategoriePosseder() {
-		if(recherche_type_posseder == null){
+		if(demand_type_posseder == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			List<Categorie> categories = Donnees.getCategories(recherche_type_posseder);
+			List<Categorie> categories = Donnees.getCategories(demand_type_posseder);
 			if(categories != null){
 				Map<String,String> donneesValeurs = new HashMap<String,String>();
 				for(Categorie categorie : categories){
@@ -344,7 +360,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 				getActivity(), 
 				getActivity().getResources().getString(R.string.taille),
 				this,
-				recherche_taille_min,recherche_taille_max,
+				demand_taille_min,demand_taille_max,
 				18
 				).show();
 	}
@@ -355,11 +371,11 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	private void demanderChantierModele() {
-		if(recherche_type == null){
+		if(demand_type == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else {
-			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,recherche_type));
+			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,demand_type));
 		}
 	}
 
@@ -377,11 +393,11 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	protected void demanderCategorie(){
-		if(recherche_type == null){
+		if(demand_type == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			List<Categorie> categories = Donnees.getCategories(recherche_type);
+			List<Categorie> categories = Donnees.getCategories(demand_type);
 			if(categories != null){
 				Map<String,String> donneesValeurs = new HashMap<String,String>();
 				for(Categorie categorie : categories){
@@ -397,38 +413,38 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	public void itemSelected(Object from, int idRetour, String item,
 			String value) {
 		if(idRetour == TYPE){
-			recherche_type = item;
+			demand_type = item;
 			((TextView)_type.findViewById(R.id.text)).setText(value);
-			recherche_categorie_id = null;
+			demand_categorie_id = null;
 			((TextView)_categorie.findViewById(R.id.text)).setText(getResources().getString(R.string.requis));
 			_marques = Donnees.getMarques(item);
 
 		} else if(idRetour == CATEGORIE){
-			recherche_categorie_id = item;
+			demand_categorie_id = item;
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == CHANTIER_MODELE){
 			String[] ids = item.split(";");
-			recherche_chantier_id = ids[0];
-			recherche_modele_id = ids[1];
+			demand_chantier_id = ids[0];
+			demand_modele_id = ids[1];
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == ETAT){
 			((TextView)_etat.findViewById(R.id.text)).setText(item);
 		}else if(idRetour == LOCALISATION){
 			((TextView)_lieu.findViewById(R.id.text)).setText(item);
 		} else if(idRetour == TYPE_POSSEDER){
-			recherche_type_posseder = item;
+			demand_type_posseder = item;
 			((TextView)_typePosseder.findViewById(R.id.text)).setText(value);
-			recherche_categorie_posseder_id = null;
+			demand_categorie_posseder_id = null;
 			((TextView)_categoriePosseder.findViewById(R.id.text)).setText(getResources().getString(R.string.facultatif));
 			_marques_posseder = Donnees.getMarques(item);
 		} else if(idRetour == CATEGORIE_POSSEDER){
-			recherche_categorie_posseder_id = item;
+			demand_categorie_posseder_id = item;
 			((TextView)_categoriePosseder.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == CHANTIER_MODELE_POSSEDER){
 			String[] ids = item.split(";");
-			recherche_chantier_posseder_id = ids[0];
-			recherche_modele_posseder_id = ids[1];
+			demand_chantier_posseder_id = ids[0];
+			demand_modele_posseder_id = ids[1];
 			((TextView)_chantierModelePosseder.findViewById(R.id.text)).setText(value);
 		}
 
@@ -437,8 +453,8 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	@Override
 	public void onMinMaxSelected(String titre, String min, String max) {
 		if(titre.equals(getActivity().getResources().getString(R.string.taille))){
-			recherche_taille_min = min;
-			recherche_taille_max = max;
+			demand_taille_min = min;
+			demand_taille_max = max;
 			((TextView)_taille.findViewById(R.id.text)).setText("de "+min+" à "+max+" m");
 		}
 
@@ -462,11 +478,11 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			//spinners, etc
 		}
 
-		recherche_type = null;
-		recherche_chantier_id = null;
-		recherche_modele_id = null;
-		recherche_type_posseder = null;
-		recherche_chantier_posseder_id = null;
-		recherche_modele_posseder_id = null;
+		demand_type = null;
+		demand_chantier_id = null;
+		demand_modele_id = null;
+		demand_type_posseder = null;
+		demand_chantier_posseder_id = null;
+		demand_modele_posseder_id = null;
 	}
 }

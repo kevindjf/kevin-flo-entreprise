@@ -151,6 +151,8 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			afficherNormal();
 			String id = _annonce.getNumero();
 			String type = _annonce.getType();
+			if(type == null)
+				type = _type;
 			
 			System.err.println("ID :"+id);
 			System.err.println("TYPE :"+type);
