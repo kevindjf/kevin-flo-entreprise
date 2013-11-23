@@ -26,6 +26,8 @@ import com.fortysevendeg.swipelistview.SwipeListView;
 public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 
 	View _view;
+	View _derriere;
+	View _bouton_supprimer;
 	SwipeListView _liste = null;
 	AnnonceListAdapter _adapter = null;
 	List<Annonce> _annonces = new ArrayList<Annonce>();
@@ -38,7 +40,8 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.liste_swipe_views,container, false);
 		_favorisManager = new FavorisManager(getActivity());
-
+		_derriere = _view.findViewById(R.id.derriere);
+		_bouton_supprimer = _view.findViewById(R.id.bouton_supprimer);
 		task = new ChargerAnnoncesTask();
 		task.execute();
 
@@ -123,6 +126,11 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
+		case R.id.derriere:
+			break;
+		case R.id.bouton_supprimer:
+			_favorisManager.retirerFavoris(id, type);
+			break;
 		}
 	}
 
