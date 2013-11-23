@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
@@ -17,10 +19,11 @@ import com.navdrawer.SimpleSideDrawer;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.*;
 import fr.RivaMedia.fragments.core.Effaceable;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.core.Net;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener{
+public class MainActivity extends FragmentActivity implements View.OnClickListener, OnBackStackChangedListener{
 
 	SimpleSideDrawer _slider;
 	View _header_menu;
@@ -99,6 +102,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	protected void ajouterListeners(){
 		_header_menu.setOnClickListener(this);
 		_header_favoris.setOnClickListener(this);
+		getSupportFragmentManager().addOnBackStackChangedListener(this);
 	}
 
 	public void ouvrirSlider(){
@@ -272,4 +276,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_annoncePourFavoris = null;
 	}
 
+	public void onBackStackChanged() 
+    {                   
+        FragmentManager manager = getSupportFragmentManager();
+
+        if (manager != null)
+        {
+            Fragment currFrag = (Fragment)manager.findFragmentById(R.id.main_fragment);
+
+            currFrag.onResume();
+        }                   
+    }
+	
 }
