@@ -51,5 +51,15 @@
         android:layout_centerVertical="true"
         android:visibility="gone"
         android:layout_marginRight="15dip" />
+    
+    <View
+        android:id="@+id/header_tri"
+        android:layout_width="30dip"
+        android:layout_height="30dip"
+        android:background="@drawable/trier"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:layout_marginRight="15dip" />
 
 </RelativeLayout>

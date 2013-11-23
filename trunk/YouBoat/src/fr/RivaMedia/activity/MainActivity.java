@@ -28,6 +28,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _header_menu;
 	View _header_effacer;
 	View _header_favoris;
+	View _header_trier;
 
 	View _slider_annonces;
 	View _slider_vendre;
@@ -66,9 +67,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	protected void ajouterVues(){
 		_slider = new SimpleSideDrawer( this );
 		_slider.setLeftBehindContentView( R.layout.slider);
+		_slider.setRightBehindContentView( R.layout.slider_right);
 		_header_menu = findViewById(R.id.header_menu);
 		_header_effacer = findViewById(R.id.header_effacer);
 		_header_favoris = findViewById(R.id.header_favoris);
+		_header_trier = findViewById(R.id.header_tri);
 
 		_slider_annonces = findViewById(R.id.slider_annonces);
 		_slider_vendre = findViewById(R.id.slider_vendre);
@@ -298,4 +301,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         }                   
     }
 	
+	public View afficherTrier(){
+		_header_trier.setVisibility(View.VISIBLE);
+		return _header_trier;
+	}
+	
+	public SimpleSideDrawer getSliderDroite(){
+		return _slider;
+	}
+	
+	public void afficherSliderDroite(){
+		_slider.openRightSide();
+	}
+	public void fermerSliderDroite(){
+		_slider.closeRightSide();
+	}
 }
