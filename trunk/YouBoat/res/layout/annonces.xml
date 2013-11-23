@@ -2,25 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/couleur_fond" 
-    >
+    android:background="@color/couleur_fond" >
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="100dip"
         android:background="@color/couleur_1"
-        android:orientation="vertical"
         android:gravity="center"
-         >
-        
-        <TextView 
+        android:orientation="vertical" >
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="YOUBOAT"
             android:textColor="@color/couleur_fond"
             android:textSize="25sp"
-            android:text="YOUBOAT"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
@@ -36,7 +33,7 @@
         android:textColor="@color/couleur_1"
         android:textSize="16sp"
         android:textStyle="bold" />
-
+    <!--
     <RelativeLayout
         android:id="@+id/annonces_bouton_bateaux_et_voiliers"
         android:layout_width="match_parent"
@@ -179,5 +176,149 @@
             android:textColor="@color/couleur_fond"
             android:textSize="11sp" />
     </RelativeLayout>
+    -->
+
+    <LinearLayout
+        android:id="@+id/linear_bloc"
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
+        android:layout_below="@+id/annonces_aujourd_hui"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="20dip" >
+
+        <LinearLayout
+            android:id="@+id/annonces_bouton_bateaux_et_voiliers"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/couleur_1"
+            android:orientation="vertical"
+            android:paddingTop="4dip" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <View
+                    android:layout_width="60dip"
+                    android:layout_height="60dip"
+                    android:layout_marginLeft="10dip"
+                    android:background="@drawable/icone_bateau_ombre" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginTop="5dip"
+                    android:fontFamily="@drawable/bebasneue"
+                    android:text="@string/moteurs_hb_lb"
+                    android:textColor="@color/_blanc"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:layout_marginTop="4dip"
+                android:fontFamily="@drawable/bebasneue"
+                android:text="@string/test_annonce_ventes"
+                android:textColor="@color/couleur_fond"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/annonces_bouton_moteurs"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dip"
+            android:layout_weight="1"
+            android:background="@color/couleur_3"
+            android:orientation="vertical"
+            android:paddingTop="4dip" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <View
+                    android:layout_width="60dip"
+                    android:layout_height="60dip"
+                    android:layout_marginLeft="10dip"
+                    android:background="@drawable/icone_bateau_ombre" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginTop="5dip"
+                    android:fontFamily="@drawable/bebasneue"
+                    android:text="@string/bateaux_et_voiliers"
+                    android:textColor="@color/couleur_texte_noir"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dip"
+                android:layout_marginTop="4dip"
+                android:fontFamily="@drawable/bebasneue"
+                android:text="@string/test_annonce_ventes"
+                android:textColor="@color/couleur_fond"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/annonces_bouton_accessoires_et_divers"
+        android:layout_width="fill_parent"
+        android:layout_height="100dip"
+        android:layout_below="@+id/linear_bloc"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dip"
+        android:background="@color/_gris_clair"
+        android:orientation="vertical"
+        android:paddingTop="4dip" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <View
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:layout_marginLeft="10dip"
+                android:background="@drawable/icone_bateau_ombre" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginTop="5dip"
+                android:fontFamily="@drawable/bebasneue"
+                android:text="@string/bateaux_et_voiliers"
+                android:textColor="@color/couleur_texte_noir"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="4dip"
+            android:fontFamily="@drawable/bebasneue"
+            android:text="@string/test_annonce_ventes"
+            android:textColor="@color/_gris_menu"
+            android:textSize="12sp" />
+    </LinearLayout>
 
 </RelativeLayout>

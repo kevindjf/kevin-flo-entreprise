@@ -19,7 +19,6 @@ import com.navdrawer.SimpleSideDrawer;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.*;
 import fr.RivaMedia.fragments.core.Effaceable;
-import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.core.Net;
 

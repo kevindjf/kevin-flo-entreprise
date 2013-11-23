@@ -16,3 +16,9 @@ Opt :
 + personnaliser les dialog
 - Comparatif annonce
 - Bar de Recherche
+
+Petits bug :
+
+-> progress tourne quand aucun résultat
+-> Bateau à moteur aucune marque ? Normal ?
+
