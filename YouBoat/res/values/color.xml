@@ -17,8 +17,8 @@
     <color name="_rounded_container_bg">#80000000</color>
     <color name="_rounded_container_border">#3b3f44</color>
     <color name="_gris_claire_couleur_entete">#646663</color>
-    <color name="_rouge">#FF0000</color>
-    <color name="_rouge_claire">#FF889A</color>
+    <color name="_rouge">#BB0000</color>
+    <color name="_rouge_claire">#F90000</color>
     
     
     <color name="couleur_1">@color/_bleu</color>

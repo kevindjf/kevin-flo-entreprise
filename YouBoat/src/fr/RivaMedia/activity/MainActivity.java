@@ -165,34 +165,34 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 
 	public void afficherAnnonces(){
-		ajouterFragment(new Annonces());
+		ajouterFragment(new Annonces(),false);
 	}
 	public void afficherVendre(){
-		ajouterFragment(new Vendre());
+		ajouterFragment(new Vendre(),false);
 	}
 	public void afficherBoatOnDemand(){
-		ajouterFragment(new OnDemand());
+		ajouterFragment(new OnDemand(),false);
 	}
 	public void afficherActualites(){
-		ajouterFragment(new Actualites());
+		ajouterFragment(new Actualites(),false);
 	}
 	public void afficherAnnuaire(){
-		ajouterFragment(new Annuaire());
+		ajouterFragment(new Annuaire(),false);
 	}
 	public void afficherMesAnnonces(){
-		ajouterFragment(new MesAnnonces());
+		ajouterFragment(new MesAnnonces(),false);
 	}
 
 	public void afficherMesAlertes(){
-		ajouterFragment(new MesAlertes());
+		ajouterFragment(new MesAlertes(),false);
 	}
 
 	public void afficherInformations(){
-		ajouterFragment(new Informations());
+		ajouterFragment(new Informations(),false);
 	}
 
 	public void afficherContactPro(){
-		ajouterFragment(new ContactPro());
+		ajouterFragment(new ContactPro(),false);
 	}
 
 	public void afficherEffacer(final Effaceable effaceable){
@@ -228,6 +228,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void envoyerEmail(String email){
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setData(Uri.parse("mailto:"+email));
+		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject));
 		startActivity(intent);
 	}
 

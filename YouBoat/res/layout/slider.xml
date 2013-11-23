@@ -152,6 +152,19 @@
                         style="@style/slider_element_texte"
                         android:text="@string/contact_pro" />
                 </LinearLayout>
+                
+                                <LinearLayout
+                    android:id="@+id/slider_contact_pro"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/logo_contact_pro_blanc" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/credit" />
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
