@@ -36,7 +36,7 @@
     <color name="couleur_bouton_rechercher">@color/_bleu_fonce</color>
     
     <color name="couleur_texte">@color/_gris</color>
-     <color name="couleur_texte_claire">@color/_gris_claire</color>
+    <color name="couleur_texte_claire">@color/_gris_claire</color>
     <color name="couleur_texte_fonce">@color/_gris_menu</color>
     <color name="couleur_texte_noir">@color/_noir</color>
      

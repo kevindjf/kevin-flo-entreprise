@@ -43,7 +43,7 @@ public class NetAnnonce extends Net {
 		String url = recupererUrl(type);
 		if(url != null){
 			List<Annonce> annonces = rechercher(url, donnees);
-			if(annonces.size()>0)
+			if(annonces!=null && annonces.size()>0)
 				return annonces.get(0);
 		}
 		return null;

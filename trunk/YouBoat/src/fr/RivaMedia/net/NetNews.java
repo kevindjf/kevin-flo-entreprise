@@ -18,7 +18,7 @@ public class NetNews extends Net{
 	public static News getNews(String id){
 
 		String xml = Net.requeteGet(Constantes.URL_ACTUALITE_DETAIL, Net.construireDonnes(
-				Constantes.ACTUALITE_DETAIL_ID_ACTUALITE));
+				Constantes.ACTUALITE_DETAIL_ID_ACTUALITE, id));
 
 		return new NewsXmlParser(xml).getNews();
 	}
