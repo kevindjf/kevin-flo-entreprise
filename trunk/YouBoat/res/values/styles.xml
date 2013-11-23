@@ -101,7 +101,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dip</item>
         <item name="android:layout_marginTop">10dip</item>
-        <item name="android:background">@color/couleur_bouton_rechercher</item>
+        <item name="android:background">@drawable/button_fond_bleu</item>
         <item name="android:text">@string/rechercher</item>
         <item name="android:textColor">@color/couleur_texte_blanc</item>
         <item name="android:textSize">17sp</item>

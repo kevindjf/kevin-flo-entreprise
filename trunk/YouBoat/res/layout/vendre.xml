@@ -340,11 +340,11 @@
 
             <Button
                 android:id="@+id/vendre_ajouter_photo"
+                style="@style/bouton_rechercher"
                 android:layout_width="wrap_content"
                 android:layout_height="40dip"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dip"
-                android:background="#006ab3"
                 android:padding="5dip"
                 android:text="@string/ajouter_une_photo"
                 android:textColor="@android:color/white"
@@ -356,24 +356,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
-                android:padding="10dip"
-                android:orientation="vertical"
                 android:background="@color/couleur_fond_claire"
-                 >
+                android:orientation="vertical"
+                android:padding="10dip" >
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/vendre_photos_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="250dip"
-                     >
+                    android:layout_height="250dip" >
                 </android.support.v4.view.ViewPager>
 
                 <com.viewpagerindicator.CirclePageIndicator
                     android:id="@+id/vendre_photos_pager_indicator"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:padding="3dip"
-                     />
+                    android:padding="3dip" />
             </LinearLayout>
 
             <Button

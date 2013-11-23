@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/couleur_fond">
+    android:background="@color/couleur_fond"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,11 +18,12 @@
 
             <TextView
                 style="@style/formulaire_cellule_titre"
-                android:text="@string/type" />
+                android:text="@string/type_star" />
 
             <TextView
                 android:id="@+id/text"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/requis" />
 
             <ImageView
                 android:id="@+id/indicator"
@@ -39,7 +40,8 @@
 
             <TextView
                 android:id="@id/text"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -55,7 +57,8 @@
 
             <TextView
                 android:id="@id/text"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -70,7 +73,8 @@
 
             <TextView
                 android:id="@id/text"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -85,7 +89,8 @@
 
             <TextView
                 android:id="@id/text"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -100,7 +105,8 @@
 
             <TextView
                 android:id="@id/text"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -115,7 +121,8 @@
 
             <TextView
                 android:id="@id/text"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -131,7 +138,8 @@
 
             <TextView
                 android:id="@id/text"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -146,7 +154,8 @@
 
             <TextView
                 android:id="@id/text"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
