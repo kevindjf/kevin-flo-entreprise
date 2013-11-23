@@ -1,12 +1,17 @@
 package fr.RivaMedia.fragments;
 
 import android.annotation.SuppressLint;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
@@ -64,6 +69,7 @@ public class ActualiteDetail extends FragmentNormal{
 		_titre = (TextView)_view.findViewById(R.id.actualite_detail_titre);
 		_date  = (TextView)_view.findViewById(R.id.actualite_detail_date);
 		_texte = (TextView)_view.findViewById(R.id.actualite_detail_texte);
+
 
 	}
 	public void remplir(){
