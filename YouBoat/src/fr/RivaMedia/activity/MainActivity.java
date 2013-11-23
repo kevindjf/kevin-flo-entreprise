@@ -39,6 +39,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _slider_mes_alertes;
 	View _slider_informations;
 	View _slider_contact_pro;
+	View _slider_credits;
 
 	View[] _slider_elements;
 
@@ -79,6 +80,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_mes_alertes = findViewById(R.id.slider_mes_alertes);
 		_slider_informations = findViewById(R.id.slider_informations);
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
+		_slider_credits = findViewById(R.id.slider_credits);
 
 		_slider_elements = new View[]{
 				_slider_annonces,
@@ -89,7 +91,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 				_slider_mes_annonces,
 				_slider_mes_alertes,
 				_slider_informations,
-				_slider_contact_pro
+				_slider_contact_pro,
+				_slider_credits
 		};
 
 		_progress = findViewById(R.id.header_progress);
@@ -162,6 +165,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			fermerSlider();	
 			afficherContactPro();
 			break;
+		case R.id.slider_credits:
+			fermerSlider();	
+			afficherCredits();
+			break;
 		}
 
 	}
@@ -197,6 +204,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	public void afficherContactPro(){
 		ajouterFragment(new ContactPro(),false);
+	}
+	
+	public void afficherCredits(){
+		ajouterFragment(new Credit(),false);
 	}
 
 	public void afficherEffacer(final Effaceable effaceable){

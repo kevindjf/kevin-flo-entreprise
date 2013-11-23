@@ -152,9 +152,9 @@
                         style="@style/slider_element_texte"
                         android:text="@string/contact_pro" />
                 </LinearLayout>
-                
-                                <LinearLayout
-                    android:id="@+id/slider_contact_pro"
+
+                <LinearLayout
+                    android:id="@+id/slider_credits"
                     style="@style/slider_element" >
 
                     <ImageView
