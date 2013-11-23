@@ -1,0 +1,18 @@
++ Date Fr
+- Push
++ Boutons d'appel
++ Emails avec entte
+- Notre page contact
+- Proto
+* Regarder aprs on demande et vendre
++ Continuer le design
+* Envoie des images -> aleaNumber: crypter la date ddMMHHmmss en md5
+- Supprimer favoris 
++ Design actu
+- Rapports de crash
+
+Opt :
+
++ personnaliser les dialog
+- Comparatif annonce
+- Bar de Recherche
