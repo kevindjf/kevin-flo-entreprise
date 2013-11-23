@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="170dip"
+    android:layout_height="match_parent"
+    android:background="@color/couleur_slider"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_marginBottom="10dip"
+        android:background="@color/couleur_slider" >
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/slider_annonces"
+                    style="@style/slider_element" >
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="Trier par date:" 
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_droite_date_croissant"
+                    style="@style/slider_element" >
+
+                    <ImageView 
+                        android:src="@drawable/arrow_up"
+                        style="@style/slider_element_image" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="Croissant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_droite_date_decroissant"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/arrow_down" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="Décroissant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_annuaire"
+                    style="@style/slider_element" >
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="Trier par prix :" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_droite_prix_croissant"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/arrow_up" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="Croissant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_droite_prix_decroissant"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/arrow_down" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="Décroissant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

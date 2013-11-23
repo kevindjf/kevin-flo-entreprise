@@ -2,6 +2,7 @@ package fr.RivaMedia.fragments;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.os.AsyncTask;
@@ -13,6 +14,9 @@ import android.view.ViewGroup;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
+import fr.RivaMedia.comparator.AnnonceDateComparator;
+import fr.RivaMedia.comparator.AnnoncePrixComparator;
+import fr.RivaMedia.fragments.core.FragmentListe;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
@@ -22,7 +26,7 @@ import fr.RivaMedia.utils.FavorisManager;
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
 
-public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
+public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 
 	View _view;
 	View _derriere;
@@ -58,7 +62,7 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 		super.onResume();
 		afficherProgress(afficherProgress);
 		if(_adapter != null){
-			//TODO Trouver une autre façon de changer la listView
+			//TODO Trouver une autre facon de changer la listView
 			boolean contient = _favorisManager.contientFavoris(_annonces.get(positionRetour).getNumero());
 			if(!contient){
 				_annonces.remove(positionRetour);
@@ -168,6 +172,54 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 		}
 
 		protected void onPostExecute(){
+		}
+	}
+
+
+	@Override
+	public void effacer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reset() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afficherPrixCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixComparator(true));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+
+
+	@Override
+	public void afficherPrixDeCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixComparator(false));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+
+
+	@Override
+	public void afficherDateCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnonceDateComparator(true));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+
+
+	@Override
+	public void afficherDateDeCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnonceDateComparator(false));
+			_adapter.notifyDataSetChanged();
 		}
 	}
 

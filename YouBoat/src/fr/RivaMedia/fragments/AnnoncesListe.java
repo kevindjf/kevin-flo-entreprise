@@ -1,6 +1,7 @@
 package fr.RivaMedia.fragments;
 
 
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -14,12 +15,14 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
-import fr.RivaMedia.fragments.core.FragmentNormal;
+import fr.RivaMedia.comparator.AnnonceDateComparator;
+import fr.RivaMedia.comparator.AnnoncePrixComparator;
+import fr.RivaMedia.fragments.core.FragmentListe;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
 
 @SuppressLint("ValidFragment")
-public class AnnoncesListe extends FragmentNormal implements View.OnClickListener{
+public class AnnoncesListe extends FragmentListe implements View.OnClickListener{
 
 	View _view;
 	ListView _liste = null;
@@ -29,8 +32,6 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 	String _url;
 	List<NameValuePair> _donneesFormulaire;
 	String _type;
-
-	boolean afficherProgress = true;
 
 	public AnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
 		this._url = url;
@@ -48,12 +49,6 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 		task.execute();
 
 		return _view;
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		afficherProgress(afficherProgress);
 	}
 
 	public void charger(){
@@ -77,6 +72,7 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 
 	@Override
 	public void onClick(View v) {
+		super.onClick(v);
 		switch(v.getId()){
 		}
 	}
@@ -110,6 +106,55 @@ public class AnnoncesListe extends FragmentNormal implements View.OnClickListene
 		}
 
 		protected void onPostExecute(){
+		}
+	}
+
+	@Override
+	public void effacer() {
+		// TODO Auto-generated method stub
+
+	}
+
+
+	@Override
+	public void reset() {
+		// TODO Auto-generated method stub
+
+	}
+
+
+	@Override
+	public void afficherPrixCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixComparator(true));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+
+
+	@Override
+	public void afficherPrixDeCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixComparator(false));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+
+
+	@Override
+	public void afficherDateCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnonceDateComparator(true));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+
+
+	@Override
+	public void afficherDateDeCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnonceDateComparator(false));
+			_adapter.notifyDataSetChanged();
 		}
 	}
 
