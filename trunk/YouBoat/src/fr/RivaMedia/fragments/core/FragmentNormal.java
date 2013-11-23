@@ -43,6 +43,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	}
 	
 	
+	@Override
+	public void onViewStateRestored(){
+		Log.e("FragmentNormal","Refresh");
+	}
 	
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {

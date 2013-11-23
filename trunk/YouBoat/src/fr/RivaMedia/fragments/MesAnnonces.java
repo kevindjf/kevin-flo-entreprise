@@ -30,8 +30,7 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 	SwipeListView _liste = null;
 	AnnonceListAdapter _adapter = null;
 	List<Annonce> _annonces = new ArrayList<Annonce>();
-	int positionClicked;
-	
+	static int  positionRetour;
 	boolean afficherProgress = true;
 
 	private FavorisManager _favorisManager;
@@ -41,7 +40,6 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 		_view = inflater.inflate(R.layout.liste_swipe_views,container, false);
 		_favorisManager = new FavorisManager(getActivity());
 		_derriere = _view.findViewById(R.id.derriere);
-		afficherProgress(afficherProgress);
 		task = new ChargerAnnoncesTask();
 		task.execute();
 
@@ -59,12 +57,19 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
-		if(_adapter != null)
-			_adapter.notifyDataSetChanged();
+		if(_adapter != null){
+			//TODO Trouver une autre façon de changer la listView
+			boolean contient = _favorisManager.contientFavoris(_annonces.get(positionRetour).getNumero());
+			if(!contient){
+				_annonces.remove(positionRetour);
+				_adapter.notifyDataSetChanged();
+
+			}
+		}
 	}
 
 	public void charger(){
-		_liste = (SwipeListView)_view.findViewById(android.R.id.list);		
+		_liste = (SwipeListView)_view.findViewById(R.id.list);		
 
 	}
 	public void remplir(){
@@ -103,20 +108,20 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 			@Override
 			public void onClickFrontView(int position) {
 				Log.d("swipe", String.format("onClickFrontView %d", position));
+				positionRetour = position;
 				_adapter.getView(position).onClickFrontView();
 			}
 
 			@Override
 			public void onClickBackView(int position) {
-				Log.d("swipe", String.format("onClickBackView %d", position));
-				//int [] tabposition = {position};
-				//onDismiss(tabposition);
-				positionClicked = position;
+				int [] tabposition = {position};
+				onDismiss(tabposition);
 			}
 
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {
 				for (int position : reverseSortedPositions) {
+					_favorisManager.retirerFavoris(_annonces.get(position).getNumero(), _annonces.get(position).getType());
 					_annonces.remove(position);
 				}
 				_adapter.notifyDataSetChanged();
@@ -127,26 +132,14 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 	}
 
 
-
-
-	@Override
-	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.derriere:
-			break;
-		case R.id.bouton_supprimer:
-			//_favorisManager.retirerFavoris(id, type);
-			Log.d("MesAnnonces",positionClicked+"");
-			break;
-		}
-	}
-
 	/* --------------------------------------------------------------------------- */
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			//tests
-			for(String favoris : _favorisManager.getFavois()){
+			//TODO Si aucune annonce afficher message
+			List<String> fav = _favorisManager.getFavois();
+			if(fav.size() > 1){
+			for(String favoris : fav){
 				try{
 					String[] ids = favoris.split(";");
 					String id = ids[0];
@@ -156,7 +149,10 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 					_annonces.add(annonce);
 				}catch(Exception e){}
 			}
-
+			}else{
+				_view.findViewById(R.id.liste_vide).setVisibility(View.VISIBLE);
+				_view.findViewById(R.id.list).setVisibility(View.GONE);
+			}
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
