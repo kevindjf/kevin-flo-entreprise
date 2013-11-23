@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 public class FavorisManager {
 
@@ -30,11 +31,13 @@ public class FavorisManager {
 	public List<String> getFavois(){
 		List<String > listeFavoris = new ArrayList<String>();
 		String lesIds = _settings.getString(FAVORIS, null);
-		
+		if(lesIds != null){
 		String[] ids = lesIds.split(" ");
 		for(String id : ids)
 			listeFavoris.add(id.replace("[","").replace("]",""));
-		
+		}else{
+			Toast.makeText(_context, "Aucun Favoris", Toast.LENGTH_SHORT).show();
+		}
 		return listeFavoris;
 	}
 	
