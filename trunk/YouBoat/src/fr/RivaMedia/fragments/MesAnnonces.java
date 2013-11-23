@@ -18,11 +18,9 @@ import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
 import fr.RivaMedia.net.core.Net;
 import fr.RivaMedia.utils.FavorisManager;
-import fr.RivaMedia.view.AnnonceView;
 
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
-
 
 public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 
@@ -137,6 +135,7 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 		case R.id.derriere:
 			break;
 		case R.id.bouton_supprimer:
+			//_favorisManager.retirerFavoris(id, type);
 			Log.d("MesAnnonces",positionClicked+"");
 			break;
 		}

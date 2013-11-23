@@ -4,6 +4,7 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.dialog.CallDialog;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
@@ -84,4 +85,5 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	public void cacherFavoris(){
 		((MainActivity)getActivity()).cacherFavoris();
 	}
+
 }

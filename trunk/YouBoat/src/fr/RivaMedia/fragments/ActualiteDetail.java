@@ -57,7 +57,6 @@ public class ActualiteDetail extends FragmentNormal{
 	}
 
 
-
 	protected void chargerNews(){
 		charger();
 		remplir();
@@ -88,10 +87,10 @@ public class ActualiteDetail extends FragmentNormal{
 			return "Samedi";
 		if(jour.equals("Sun"))
 			return "Dimanche";
-		
+
 		return "Err";		
 	}
-	
+
 	private String changerMois(String mois){
 		if(mois.equals("Jan"))
 			return "Janvier";
@@ -127,6 +126,48 @@ public class ActualiteDetail extends FragmentNormal{
 		Log.e("DateFr",dateFr);
 		return dateFr;
 	}
+
+	public String convertirDate(String date){
+
+		date = date.replace("Jan", "Janvier")
+				.replace("Feb", "Feb")
+				.replace("Mars", "Avril")
+				.replace("May", "Mai")
+				.replace("Jun", "Juin")
+				.replace("Jul", "Juillet")
+				.replace("Aug", "Aožt")
+				.replace("Sep", "Sep")
+				.replace("Oct", "Octobre")
+				.replace("Nov", "Novembre")
+				.replace("Dec", "DŽcembre")
+
+				.replace("Mon", "Lundi")
+				.replace("Tue", "Mardi")
+				.replace("Wed", "Mercredi")
+				.replace("Thu", "Jeudi")
+				.replace("Fri", "Vendredi")
+				.replace("Sat", "Samedi")
+				.replace("Sun", "Dimanche")
+
+				.replace(",", "");
+
+		String [] elements = date.split(" ");
+		String jourNom = elements[0];
+		String jour = elements[1];
+		String mois = elements[2];
+		String annee = elements[3];
+		String heureComplete = elements[4];
+
+		String[] hs = heureComplete.split(":");
+		String h = hs[0];
+		String m = hs[1];
+
+		date = jourNom+" "+jour+" "+mois+" "+annee+" "+h+"h"+m;
+
+		return date;
+
+	}
+
 	public void remplir(){
 		if(_news != null){
 			if(_news.getImageAdress() != null)
@@ -136,8 +177,9 @@ public class ActualiteDetail extends FragmentNormal{
 				_titre.setText(_news.getTitle());
 
 			if(_news.getPubDate() != null)
-				_date.setText(changerDate(_news.getPubDate()));
-			
+				_date.setText(convertirDate(_news.getPubDate()));
+			//	_date.setText(changerDate(_news.getPubDate()));
+
 			Log.e("Date",_news.getPubDate());
 			//TODO remplacer par dateFormatee
 

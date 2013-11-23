@@ -19,7 +19,6 @@ public class AnnonceListAdapter extends BaseAdapter  {
 	private List<Annonce> _annonces;
 	private List<AnnonceView> _views = new ArrayList<AnnonceView>();
 	private String _type;
-	private View delete;
 
 	private static LayoutInflater inflater=null;
 	private boolean _swipable = false;
