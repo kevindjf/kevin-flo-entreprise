@@ -18,6 +18,7 @@ import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
 import fr.RivaMedia.net.core.Net;
 import fr.RivaMedia.utils.FavorisManager;
+import fr.RivaMedia.view.AnnonceView;
 
 import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
@@ -31,7 +32,8 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 	SwipeListView _liste = null;
 	AnnonceListAdapter _adapter = null;
 	List<Annonce> _annonces = new ArrayList<Annonce>();
-
+	int positionClicked;
+	
 	boolean afficherProgress = true;
 
 	private FavorisManager _favorisManager;
@@ -41,7 +43,7 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 		_view = inflater.inflate(R.layout.liste_swipe_views,container, false);
 		_favorisManager = new FavorisManager(getActivity());
 		_derriere = _view.findViewById(R.id.derriere);
-		_bouton_supprimer = _view.findViewById(R.id.bouton_supprimer);
+		afficherProgress(afficherProgress);
 		task = new ChargerAnnoncesTask();
 		task.execute();
 
@@ -59,10 +61,13 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
+		if(_adapter != null)
+			_adapter.notifyDataSetChanged();
 	}
 
 	public void charger(){
 		_liste = (SwipeListView)_view.findViewById(android.R.id.list);		
+
 	}
 	public void remplir(){
 		_adapter = new AnnonceListAdapter(getActivity(), _annonces,null,true);
@@ -106,6 +111,9 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 			@Override
 			public void onClickBackView(int position) {
 				Log.d("swipe", String.format("onClickBackView %d", position));
+				//int [] tabposition = {position};
+				//onDismiss(tabposition);
+				positionClicked = position;
 			}
 
 			@Override
@@ -129,7 +137,7 @@ public class MesAnnonces extends FragmentNormal implements View.OnClickListener{
 		case R.id.derriere:
 			break;
 		case R.id.bouton_supprimer:
-			_favorisManager.retirerFavoris(id, type);
+			Log.d("MesAnnonces",positionClicked+"");
 			break;
 		}
 	}

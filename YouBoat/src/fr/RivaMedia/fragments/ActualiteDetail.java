@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -72,6 +73,60 @@ public class ActualiteDetail extends FragmentNormal{
 
 
 	}
+	private String changerJour(String jour){
+		if(jour.equals("Mon"))
+			return "Lundi";
+		if(jour.equals("Tue"))
+			return "Mardi";
+		if(jour.equals("Wed"))
+			return "Mercredi";
+		if(jour.equals("Thu"))
+			return "Jeudi";
+		if(jour.equals("Fri"))
+			return "Vendredi";
+		if(jour.equals("Sat"))
+			return "Samedi";
+		if(jour.equals("Sun"))
+			return "Dimanche";
+		
+		return "Err";		
+	}
+	
+	private String changerMois(String mois){
+		if(mois.equals("Jan"))
+			return "Janvier";
+		if(mois.equals("Feb"))
+			return "Février";
+		if(mois.equals("Mar"))
+			return "Mars";
+		if(mois.equals("Apr"))
+			return "Avril";
+		if(mois.equals("May"))
+			return "Mai";
+		if(mois.equals("Jun"))
+			return "Juin";
+		if(mois.equals("Jul"))
+			return "Juillet";
+		if(mois.equals("Aug"))
+			return "Août";
+		if(mois.equals("Sep"))
+			return "Septembre";
+		if(mois.equals("Oct"))
+			return "Octobre";
+		if(mois.equals("Nov"))
+			return "Novembre";
+		if(mois.equals("Dec"))
+			return "Decembre";
+		return "Err";
+	}
+	private String changerDate(String dateEn){
+		String dateFr ="";
+		Log.e("Jour", dateEn.substring(0,3));
+		dateFr+= changerJour(dateEn.substring(0,3))+dateEn.substring(3,7) + " "
+				+ changerMois(dateEn.substring(8,11))+ dateEn.substring(11,17) + "à "+dateEn.substring(17,22);
+		Log.e("DateFr",dateFr);
+		return dateFr;
+	}
 	public void remplir(){
 		if(_news != null){
 			if(_news.getImageAdress() != null)
@@ -81,7 +136,9 @@ public class ActualiteDetail extends FragmentNormal{
 				_titre.setText(_news.getTitle());
 
 			if(_news.getPubDate() != null)
-				_date.setText(_news.getPubDate());
+				_date.setText(changerDate(_news.getPubDate()));
+			
+			Log.e("Date",_news.getPubDate());
 			//TODO remplacer par dateFormatee
 
 			if(_news.getDescription() != null)

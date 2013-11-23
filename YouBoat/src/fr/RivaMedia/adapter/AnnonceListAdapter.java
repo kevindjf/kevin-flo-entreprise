@@ -19,6 +19,7 @@ public class AnnonceListAdapter extends BaseAdapter  {
 	private List<Annonce> _annonces;
 	private List<AnnonceView> _views = new ArrayList<AnnonceView>();
 	private String _type;
+	private View delete;
 
 	private static LayoutInflater inflater=null;
 	private boolean _swipable = false;
@@ -62,8 +63,9 @@ public class AnnonceListAdapter extends BaseAdapter  {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view=null;
 
-		if(_swipable)
+		if(_swipable){
 			view = inflater.inflate(R.layout.annonce_element_liste_swipable, null);
+		}
 		else
 			view = inflater.inflate(R.layout.annonce_element_liste, null);
 
