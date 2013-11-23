@@ -19,7 +19,7 @@ public class Annonces extends FragmentNormal implements View.OnClickListener{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.annonces,container, false);
-
+		
 		//_ajourdhuiAnnonces = (TextView)view.findViewById(R.id.annonces_aujourd_hui);
 		_boutonBateauxVoiliers = view.findViewById(R.id.annonces_bouton_bateaux_et_voiliers);
 		_boutonMoteurs = view.findViewById(R.id.annonces_bouton_moteurs);
