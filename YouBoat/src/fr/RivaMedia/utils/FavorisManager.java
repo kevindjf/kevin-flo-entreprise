@@ -33,8 +33,10 @@ public class FavorisManager {
 		String lesIds = _settings.getString(FAVORIS, null);
 		if(lesIds != null){
 		String[] ids = lesIds.split(" ");
-		for(String id : ids)
+		for(String id : ids){
+			System.out.println(id);
 			listeFavoris.add(id.replace("[","").replace("]",""));
+		}
 		}else{
 			Toast.makeText(_context, "Aucun Favoris", Toast.LENGTH_SHORT).show();
 		}
