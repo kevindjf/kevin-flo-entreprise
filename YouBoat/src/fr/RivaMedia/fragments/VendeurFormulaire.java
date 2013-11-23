@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,15 +49,17 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	String _url;
 	List<NameValuePair> _donneesPrecedentes;
+	List<Bitmap> _photos;
 
 	List<NameValuePair> _donneesEnvoyees;
 
 	View[] views;
 	String[] valeurs;
 
-	public VendeurFormulaire(String url, List<NameValuePair> donneesPrecedentes) {
+	public VendeurFormulaire(String url, List<NameValuePair> donneesPrecedentes, List<Bitmap> photos) {
 		_url = url;
 		_donneesPrecedentes = donneesPrecedentes;
+		_photos = photos;
 	}
 
 	@Override
@@ -255,7 +258,19 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		protected Void doInBackground(Void...donnees) {
 
 			synchronized (_donneesEnvoyees) {
+				//TODO: ajouter la date "ddMMHHmmss" cryptée en md5
+				
 				Net.requete(_url, _donneesEnvoyees);
+				
+				if(_photos != null && _photos.size()>0){
+					Net.requete(_url, Net.construireDonnesMultiPart(
+							Constantes.UPLOAD_PHOTO, _photos.get(0))
+					);
+				}
+	            
+	           // [requetePhoto setPostValue:typeGet forKey:@"typeget"];
+	            
+	           // [requetePhoto setPostValue:aleaNumber forKey:@"aleaNumber"];
 			}
 
 			getActivity().runOnUiThread(new Runnable(){
