@@ -228,7 +228,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		if(donneesVente == null)
 			return;
 
-		ajouterFragment(new VendeurFormulaire(recupererUrl(),donneesVente));
+		ajouterFragment(new VendeurFormulaire(recupererUrl(),donneesVente,null));
 	}
 
 	private String recupererUrl(){

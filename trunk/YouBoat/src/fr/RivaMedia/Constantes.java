@@ -205,5 +205,10 @@ public class Constantes {
 	public static final String ON_DEMAND_MODELE_POSSEDE = "listModele2";
 	public static final String ON_DEMAND_PRIX_CESSION = "";
 	public static final String ON_DEMAND_TAILLE = "";
+	
+	
+	public static final String URL_UPLOAD_PHOTO = "postPhoto.php";
+	public static final String UPLOAD_PHOTO = "Filedata";
+	public static final String URL_ENVOIE_ANNONCE = "getAnnonce.php";
 
 }

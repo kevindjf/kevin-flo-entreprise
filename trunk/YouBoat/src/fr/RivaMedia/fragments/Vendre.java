@@ -670,7 +670,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		if(donneesVente == null)
 			return;
 
-		ajouterFragment(new VendeurFormulaire(recupererUrl(),donneesVente));
+		ajouterFragment(new VendeurFormulaire(recupererUrl(),donneesVente,_photos));
 	}
 
 	@Override
