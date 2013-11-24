@@ -1,7 +1,9 @@
 package fr.RivaMedia.xml;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -20,6 +22,27 @@ public class AnnonceXmlParser extends XmlParser {
 
 	public AnnonceXmlParser(XmlPullParser xpp) {
 		super(xpp);
+	}
+	
+	public Map<String,Integer> getNbAnnonces() {
+		Map<String,Integer> nb = new HashMap<String,Integer>();
+		int eventType = XMLgetEventType();
+		XMLgetSuivant();
+		do{
+			if (eventType == XmlPullParser.START_TAG) {
+				try{
+				String tag = getXpp().getName();
+				String text = getString();
+				//Log.e("XML", tag+" : "+text);
+				nb.put(tag, Integer.parseInt(text));
+				}catch(Exception e){}
+			}
+			eventType = XMLgetSuivant();
+		}while (eventType != XmlPullParser.END_DOCUMENT);
+
+		Log.e("XML",nb.size()+" nombres d'annonces chargees");
+
+		return nb;
 	}
 
 	public List<Annonce> getListe() {

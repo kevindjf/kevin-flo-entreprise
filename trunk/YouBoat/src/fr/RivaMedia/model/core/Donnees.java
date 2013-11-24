@@ -12,6 +12,8 @@ import fr.RivaMedia.model.Type;
 
 public class Donnees {
 
+	public static Map<String,Integer> nbAnnonces;
+	
 	public static List<Type> types = new ArrayList<Type>();
 	public static List<Categorie> getCategories(String type){
 		for(Type t : types){

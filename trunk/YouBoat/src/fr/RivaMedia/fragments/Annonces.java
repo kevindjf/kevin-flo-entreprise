@@ -4,14 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
+import fr.RivaMedia.model.core.Donnees;
 
 public class Annonces extends FragmentNormal implements View.OnClickListener{
 
 	//TODO recuperer le nombre d'annonces du jour
-	//private TextView _ajourdhuiAnnonces;
+	private TextView _ajourdhuiAnnonces;
 	private View _boutonBateauxVoiliers;
 	private View _boutonMoteurs;
 	private View _boutonAccessoiresDivers;
@@ -20,12 +22,13 @@ public class Annonces extends FragmentNormal implements View.OnClickListener{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.annonces,container, false);
 		
-		//_ajourdhuiAnnonces = (TextView)view.findViewById(R.id.annonces_aujourd_hui);
+		_ajourdhuiAnnonces = (TextView)view.findViewById(R.id.annonces_aujourd_hui);
 		_boutonBateauxVoiliers = view.findViewById(R.id.annonces_bouton_bateaux_et_voiliers);
 		_boutonMoteurs = view.findViewById(R.id.annonces_bouton_moteurs);
 		_boutonAccessoiresDivers = view.findViewById(R.id.annonces_bouton_accessoires_et_divers);
 
 		ajouterListeners();
+		charger();
 
 		return view;
 	}
@@ -40,6 +43,21 @@ public class Annonces extends FragmentNormal implements View.OnClickListener{
 
 	@Override
 	public void charger() {
+		if(Donnees.nbAnnonces.size() > 0){
+			
+			
+			Integer nbBateaux = Donnees.nbAnnonces.get(Constantes.NB_ANNONCES_BATEAUX);
+			Integer nbMoteurs = Donnees.nbAnnonces.get(Constantes.NB_ANNONCES_MOTEURS);
+			Integer nbDivers = Donnees.nbAnnonces.get(Constantes.NB_ANNONCES_DIVERS);
+			
+			Integer nbAnnonces = Integer.valueOf(nbBateaux.intValue()+nbMoteurs.intValue()+nbDivers.intValue());
+			
+			_ajourdhuiAnnonces.setText(getString(R.string.aujourd_hui)+", "+nbAnnonces+" "+getString(R.string.annonces_small));
+			((TextView)_boutonBateauxVoiliers.findViewById(R.id.text)).setText(nbBateaux+" "+getString(R.string.annonces_en_vente));
+			((TextView)_boutonMoteurs.findViewById(R.id.text)).setText(nbMoteurs+" "+getString(R.string.annonces_en_vente));
+			((TextView)_boutonAccessoiresDivers.findViewById(R.id.text)).setText(nbDivers+" "+getString(R.string.annonces_en_vente));
+			
+		}
 	}
 
 	@Override

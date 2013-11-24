@@ -2,6 +2,7 @@ package fr.RivaMedia.net;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 
@@ -11,6 +12,7 @@ import fr.RivaMedia.model.Modele;
 import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.Type;
 import fr.RivaMedia.net.core.Net;
+import fr.RivaMedia.xml.AnnonceXmlParser;
 import fr.RivaMedia.xml.CategorieXmlParser;
 import fr.RivaMedia.xml.MarqueXmlParser;
 import fr.RivaMedia.xml.ModeleXmlParser;
@@ -103,6 +105,12 @@ public class NetChargement extends Net{
 		String xml = Net.requeteGet(Constantes.URL_MODELES, donnees);
 
 		return new ModeleXmlParser(xml).getModeles();
+	}
+	
+	public static Map<String,Integer> chargerNbAnnonces(){
+		String xml = Net.requeteGet(Constantes.URL_NB_ANNONCES, null);
+
+		return new AnnonceXmlParser(xml).getNbAnnonces();
 	}
 
 }

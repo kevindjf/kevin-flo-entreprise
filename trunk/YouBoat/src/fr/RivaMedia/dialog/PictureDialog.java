@@ -22,14 +22,14 @@ public class PictureDialog extends AlertDialog implements View.OnClickListener {
 
 	View from_camera;
 	View from_gallery;
-	File _photoCamera;
+	public File _photoCamera;
 
 
-	public PictureDialog(Vendre context, String titre,File _photoCamera) {
+	public PictureDialog(Vendre context, String titre,File photoCamera) {
 		super(context.getActivity());
 		_context = context;
 		_titre = titre;
-		this._photoCamera = _photoCamera;
+		_photoCamera = photoCamera;
 	}
 
 	@Override
@@ -70,7 +70,6 @@ public class PictureDialog extends AlertDialog implements View.OnClickListener {
 	
 	public void getPhotoFromCamera(){
 		Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-		_photoCamera = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(_photoCamera));
 		_context.startActivityForResult(intent, Vendre.CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE);
 		dismiss();
