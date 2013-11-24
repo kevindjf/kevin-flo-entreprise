@@ -4,17 +4,27 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
+import fr.RivaMedia.image.ImageLoaderCache;
 
 public class Informations extends FragmentNormal implements View.OnClickListener{
 
+	View _view;
+	ImageView _magasine;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.informations,container, false);
+		_view = inflater.inflate(R.layout.informations,container, false);
 
-		return view;
+		ImageLoaderCache.load(getActivity());
+		charger();
+		remplir();
+		ajouterListeners();
+		
+		return _view;
 	}
 
 	@Override
@@ -25,14 +35,12 @@ public class Informations extends FragmentNormal implements View.OnClickListener
 
 	@Override
 	public void charger() {
-		// TODO Auto-generated method stub
-		
+		_magasine = (ImageView) _view.findViewById(R.id.couverture_magasine);
 	}
 
 	@Override
 	public void remplir() {
-		// TODO Auto-generated method stub
-		
+		ImageLoaderCache.charger(Constantes.URL_PUB_MAGASINE_HD, _magasine);
 	}
 
 	@Override
