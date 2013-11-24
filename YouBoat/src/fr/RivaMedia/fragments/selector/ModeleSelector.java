@@ -110,18 +110,21 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 		protected Void doInBackground(Void...donnees) {
 			//tests
 			_marque.setModeles(NetChargement.chargerModeles(_type,_marque.getId()));
+			afficherProgress = false;
 
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
 				public void run() {
 					chargerVue();
-					((MainActivity)getActivity()).afficherProgress(false);
+					afficherProgress(afficherProgress);			
+					
 
 				}
 
 			});
 
+			
 			return null;
 		}
 

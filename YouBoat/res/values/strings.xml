@@ -12,11 +12,14 @@
     <string name="annee">Année</string>
     <string name="annee_du_moteur">Année du moteur</string>
     <string name="annonces">Annonces</string>
+    <string name="annonces_small">annonces</string>
+    <string name="annonces_en_vente">annonces en vente</string>
     <string name="annuaire">Annuaire</string>
     <string name="appareil_photo">Appareil photo</string>
     <string name="app_name">YouBoat</string>
     <string name="appeller">Appeler</string>
     <string name="atlantique">Atlantique</string>
+    <string name="aujourd_hui">Auhjourd\'hui</string>
     <string name="bateaux">Bateaux</string>
     <string name="bateau_a_moteur">Bateaux à Moteur</string>
     <string name="bateaux_et_voiliers">BATEAUX &amp; VOILIERS</string>

@@ -422,6 +422,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	private void ajouterPhoto() {
+		_photoCamera = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
 		new PictureDialog(this, getString(R.string.choisir_une_photo),_photoCamera).show();
 	}
 
@@ -716,7 +717,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	public void getPhotoFromCamera(){
 		Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-		_photoCamera = new File(Environment.getExternalStorageDirectory()+File.separator + "image.jpg");
+		_photoCamera = new File(Environment.getExternalStorageDirectory() + "image.jpg");
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(_photoCamera));
 		startActivityForResult(intent, CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE);
 	}
@@ -731,10 +732,14 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 
 	protected void ajouterPhotoExtras(Bitmap photo){
-		if(_photos.size()>0)
-			_page.setCurrentItem(0);
-		if(Donnees.uneSeulePhoto)
+		if(Donnees.uneSeulePhoto){
 			_photos.clear();
+			_pagesAdapter = new ImagePagesAdapter();
+			_page.setAdapter(_pagesAdapter);
+		}else{
+			if(_photos.size()>0)
+				_page.setCurrentItem(0);
+		}
 		_photos.add(photo);
 		_pagesAdapter.notifyDataSetChanged();
 		System.out.println("photo ajoutee");
@@ -753,6 +758,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				options.inSampleSize = 6;
 				FileInputStream fileInputStream;  
 				try {
+					Log.e("PHOTO",_photoCamera.getAbsolutePath());
 					fileInputStream=new FileInputStream(_photoCamera);
 					photo=BitmapFactory.decodeStream(fileInputStream,null,options);
 					fileInputStream.close();

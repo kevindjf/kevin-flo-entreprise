@@ -1,6 +1,7 @@
 package fr.RivaMedia.activity;
 
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
@@ -111,6 +112,7 @@ public class SplashScreenActivity extends Activity{
 			final List<Marque> marquesVoilier = NetChargement.chargerMarquesVoiliers();	
 			final List<Marque> marquesPneu = NetChargement.chargerMarquesPneu();
 			final List<Marque> marquesMoteur = NetChargement.chargerMarquesMoteurs();
+			final Map<String,Integer> nbAnnonces = NetChargement.chargerNbAnnonces();
 			
 			Donnees.toutesMarques = toutesMarques;
 			Donnees.marques.put("0", toutesMarques);
@@ -118,6 +120,7 @@ public class SplashScreenActivity extends Activity{
 			Donnees.marques.put(Constantes.VOILIER, marquesVoilier);
 			Donnees.marques.put(Constantes.PNEU, marquesPneu);
 			Donnees.marques.put(Constantes.MOTEURS, marquesMoteur);
+			Donnees.nbAnnonces = nbAnnonces;
 
 			final List<Service> services = NetChargement.chargerServices();
 			Donnees.services = services;

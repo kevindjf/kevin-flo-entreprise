@@ -210,5 +210,14 @@ public class Constantes {
 	public static final String URL_UPLOAD_PHOTO = "postPhoto.php";
 	public static final String UPLOAD_PHOTO = "Filedata";
 	public static final String URL_ENVOIE_ANNONCE = "getAnnonce.php";
+	
+	public static final String URL_NB_ANNONCES = "xml-nbannonce.php";
+	public static final String NB_ANNONCES_BATEAUX = "bateau";
+	public static final String NB_ANNONCES_BATEAUX_MOTEURS = "bateaumot";
+	public static final String NB_ANNONCES_VOILIERS = "voile";
+	public static final String NB_ANNONCES_PNEUMATIQUES = "pneuma";
+	public static final String NB_ANNONCES_MOTEURS = "moteur";
+	public static final String NB_ANNONCES_DIVERS = "divers";
+	public static final String NB_ANNONCES_LOCATION = "location";
 
 }
