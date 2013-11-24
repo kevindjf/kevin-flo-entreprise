@@ -159,7 +159,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_contact_pro_blanc" />
+                        android:src="@drawable/smartphone" />
 
                     <TextView
                         style="@style/slider_element_texte"

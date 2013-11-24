@@ -30,7 +30,7 @@
         <item name="android:background">@color/couleur_fond</item>
         <item name="android:padding">5dip</item>
     </style>
-    
+
     <style name="formulaire_cellule_titre">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -165,6 +165,47 @@
         <item name="android:maxHeight">2dip</item>
         <item name="android:thumb">@drawable/thumb_custom</item>
         <item name="android:thumbOffset">0dip</item>
+    </style>
+
+    <style name="annonces_menu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/fond_blanc_select_vide</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="annonces_menu_image">
+        <item name="android:layout_width">60dip</item>
+        <item name="android:layout_height">60dip</item>
+        <item name="android:layout_marginLeft">10dip</item>
+    </style>
+
+    <style name="annonces_menu_texte">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/couleur_1</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_marginLeft">15dip</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="annonces_menu_cerlce">
+        <item name="android:layout_width">30dip</item>
+        <item name="android:layout_height">30dip</item>
+        <item name="android:layout_marginLeft">50dip</item>
+        <item name="android:layout_marginTop">10dip</item>
+        <item name="android:background">@drawable/cercle_rouge</item>
+    </style>
+
+    <style name="annonces_menu_cerlce_texte">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginTop">2dip</item>
+        <item name="android:text">1055</item>
+        <item name="android:textColor">@color/couleur_texte_blanc</item>
+        <item name="android:textSize">10sp</item>
     </style>
 
 </resources>

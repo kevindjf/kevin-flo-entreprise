@@ -1,102 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/_blanc"
-    android:orientation="vertical" >
+    android:background="@color/_blanc" >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dip" >
+        android:background="@color/_blanc"
+        android:orientation="vertical" >
 
-        <ImageView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dip"
-            android:scaleType="center"
-            android:src="@drawable/fond_credits" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip" >
 
-        <ImageView
-            android:layout_width="100dip"
-            android:layout_height="100dip"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="150dip"
-            android:src="@drawable/florent_kevin_cercle_petit" />
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:scaleType="center"
+                android:src="@drawable/fond_credits" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Florent Champigny"
-        android:textColor="#737373"
-        android:textSize="18dip" />
+            <ImageView
+                android:layout_width="100dip"
+                android:layout_height="100dip"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="150dip"
+                android:src="@drawable/florent_kevin_cercle_petit" />
+        </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Kevin De Jesus Ferreira"
-        android:textColor="#737373"
-        android:textSize="18dip" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dip"
-        android:layout_marginTop="10dip"
-        android:gravity="center_horizontal"
-        android:text="Auto-Entrepreneurs"
-        android:textColor="#636363"
-        android:textSize="12dip" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dip"
-        android:background="@color/couleur_texte_claire" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:gravity="center_horizontal"
-        android:text="Application développée par Florent Champigny et Kevin De Jessus Ferreira,\npour la société RivaMedia"
-        android:textColor="#636363"
-        android:textSize="10dip" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip" >
-
-        <LinearLayout
-            android:id="@+id/credits_email"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dip"
-            android:layout_centerInParent="true"
-            android:layout_margin="1dip"
-            android:background="@color/_bleu"
+            android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingTop="5dp" >
+            android:text="Florent Champigny"
+            android:textColor="#737373"
+            android:textSize="18dip" />
 
-            <View
-                android:layout_width="20dip"
-                android:layout_height="20dip"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/mail"
-                android:text="appeler"
-                android:textColor="@android:color/white" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Kevin De Jesus Ferreira"
+            android:textColor="#737373"
+            android:textSize="18dip" />
 
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ChampignyDeJesus@gmail.com"
-                android:textColor="@android:color/white"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="10dip"
+            android:gravity="center_horizontal"
+            android:text="Auto-Entrepreneurs"
+            android:textColor="#636363"
+            android:textSize="12dip" />
 
-</LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="@color/couleur_texte_claire" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:gravity="center_horizontal"
+            android:text="Application développée pour la société RivaMedia"
+            android:textColor="#636363"
+            android:textSize="10dip" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="40dip"
+            android:paddingLeft="20dip"
+            android:paddingRight="20dip" >
+
+            <LinearLayout
+                android:id="@+id/credits_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:layout_centerInParent="true"
+                android:layout_margin="1dip"
+                android:background="@drawable/fond_bleu_select_bleu"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="5dp" >
+
+                <View
+                    android:layout_width="20dip"
+                    android:layout_height="20dip"
+                    android:layout_marginBottom="3dp"
+                    android:background="@drawable/mail"
+                    android:text="appeler"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nous_contacter"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

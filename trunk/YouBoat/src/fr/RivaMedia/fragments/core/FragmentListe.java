@@ -11,6 +11,7 @@ import fr.RivaMedia.activity.MainActivity;
 public abstract class FragmentListe extends FragmentNormal implements Effaceable{
 	
 	SimpleSideDrawer _slider;
+	protected boolean afficherProgress = true;
 	
 	public void afficherTrier(){
 		 _slider = ((MainActivity)getActivity()).getSliderDroite();

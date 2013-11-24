@@ -10,9 +10,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.Toast;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
+import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.core.Donnees;
@@ -29,6 +31,9 @@ public class SplashScreenActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 		Net.enableHttpResponseCache(this);
+		
+		ImageLoaderCache.load(this);
+		ImageLoaderCache.charger(Constantes.URL_PUB_MAGASINE_HD, new ImageView(this));
 
 		if(isOnline())
 			new ChargementsTask().execute();
@@ -70,9 +75,13 @@ public class SplashScreenActivity extends Activity{
 	}
 
 	protected void etapeSuivante(){
+		
 		Intent i = new Intent(this,MagasineActivity.class);
 		startActivity(i);
 		finish();
+		
+		overridePendingTransition(R.anim.entrer, R.anim.sortir); 
+		
 	}
 
 	protected void lancerDecompte(){
@@ -105,6 +114,7 @@ public class SplashScreenActivity extends Activity{
 
 	class ChargementsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
+			
 			Donnees.types = NetChargement.chargerTypes();
 
 			final List<Marque> toutesMarques = NetChargement.chargerMarquesBateaux();
@@ -127,6 +137,7 @@ public class SplashScreenActivity extends Activity{
 
 			//tests
 			NetNews.chargerListeNews();
+			
 
 
 			lancerDecompte();

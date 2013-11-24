@@ -101,6 +101,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
+		afficherLogoFavoris();
 	}
 
 
@@ -257,12 +258,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 					email.setVisibility(View.GONE);
 
 			}
-			
-			_favoris = super.afficherFavoris();
-			_favoris.setOnClickListener(this);
-			if(_annonce.getNumero() != null && !_annonce.getNumero().equals("")){
-				_favoris.setSelected(_favorisManager.contientFavoris(_annonce.getNumero()));
-			}
+
+			afficherLogoFavoris();
 		}
 		screen.setVisibility(View.VISIBLE);
 
@@ -277,9 +274,19 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		telephoneSecondaire.setOnClickListener(this);
 		email.setOnClickListener(this);
 
-		
+
 		if(_favoris != null)
-		_favoris.setOnClickListener(this);
+			_favoris.setOnClickListener(this);
+	}
+
+	public void afficherLogoFavoris(){
+		if(_annonce != null){
+			_favoris = super.afficherFavoris();
+			_favoris.setOnClickListener(this);
+			if(_annonce.getNumero() != null && !_annonce.getNumero().equals("")){
+				_favoris.setSelected(_favorisManager.contientFavoris(_annonce.getNumero()));
+			}
+		}
 	}
 
 	@Override
@@ -432,7 +439,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				@Override
 				public void run() {
 					chargerAnnonce();
-					afficherProgress(false);
+					afficherProgress = false;
+					afficherProgress(afficherProgress);
 				}
 
 			});
