@@ -44,6 +44,7 @@ import fr.RivaMedia.fragments.selector.*;
 import fr.RivaMedia.image.ImageResizer;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Lien;
+import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
 
@@ -75,6 +76,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	public static final int MARQUE_MOTEUR = 3;
 	public static final int ENERGIE = 4;
 	public static final int NOMBRE_MOTEUR = 5;
+	public static final int MARQUE_MODELE = 6;
 
 
 
@@ -390,7 +392,17 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,""+typeVente));
+			if(typeVente.equals(Constantes.BATEAUX))
+				ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,""+typeVente));
+			else{
+				List<Marque> marques = Donnees.getMarques(Constantes.MOTEURS);
+				Map<String,String> donneesValeurs = new HashMap<String, String>();
+				for(Marque m : marques){
+					donneesValeurs.put(m.getLibelle(), m.getId());
+				}
+				ajouterFragment(new DonneeValeurSelector(this, MARQUE_MODELE, donneesValeurs));
+			}
+
 		}
 	}
 
@@ -400,7 +412,12 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	private void demanderMarqueMoteur() {
-		ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,Constantes.MOTEURS));
+		List<Marque> marques = Donnees.getMarques(Constantes.MOTEURS);
+		Map<String,String> donneesValeurs = new HashMap<String, String>();
+		for(Marque m : marques){
+			donneesValeurs.put(m.getLibelle(), m.getId());
+		}
+		ajouterFragment(new DonneeValeurSelector(this, MARQUE_MOTEUR, donneesValeurs));
 	}
 
 	private void ajouterPhoto() {
@@ -473,7 +490,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		for(View v : _vuesMoteurs)
 			v.setVisibility(View.VISIBLE);
 
-		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.type));
+		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.moteurs));
 		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
 
 		_categorie.setOnClickListener(this);
@@ -528,6 +545,10 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		else if(idRetour == CHANTIER_MODELE){
 			vendre_marque = item;
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
+		}
+		else if(idRetour == MARQUE_MODELE){
+			vendre_marque = item;
+			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == MARQUE_MOTEUR){
 			vendre_marque_moteur = item;
@@ -664,7 +685,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	private String recupererUrl(){
 		return "";
 	}
-	
+
 	private void etapeSuivante() {
 		List<NameValuePair> donneesVente = recupererDonnees();
 		if(donneesVente == null)
