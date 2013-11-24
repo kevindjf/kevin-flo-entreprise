@@ -8,10 +8,12 @@
     <string name="action_settings">Settings</string>
     <string name="actualites">Actualites</string>
     <string name="ajouter_une_photo">Ajouter une photo</string>
+    <string name="album">Album</string>
     <string name="annee">Année</string>
     <string name="annee_du_moteur">Année du moteur</string>
     <string name="annonces">Annonces</string>
     <string name="annuaire">Annuaire</string>
+    <string name="appareil_photo">Appareil photo</string>
     <string name="app_name">YouBoat</string>
     <string name="appeller">Appeler</string>
     <string name="atlantique">Atlantique</string>

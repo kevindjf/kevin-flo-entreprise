@@ -153,9 +153,6 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 					_annonces.add(annonce);
 				}catch(Exception e){}
 			}
-			}else{
-				_view.findViewById(R.id.liste_vide).setVisibility(View.VISIBLE);
-				_view.findViewById(R.id.list).setVisibility(View.GONE);
 			}
 			getActivity().runOnUiThread(new Runnable(){
 

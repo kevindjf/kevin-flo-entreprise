@@ -117,6 +117,7 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 				public void run() {
 					chargerVue();
 					((MainActivity)getActivity()).afficherProgress(false);
+
 				}
 
 			});
