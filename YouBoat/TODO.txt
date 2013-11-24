@@ -1,10 +1,10 @@
 + Date Fr
 - Push
 + Boutons d'appel
-+ Emails avec ent�te
++ Emails avec entete
 + Notre page contact
 - Proto
-* Regarder apr�s on demande et vendre
+* Regarder apres on demande et vendre
 + Continuer le design
 * Envoie des images -> aleaNumber: crypter la date ddMMHHmmss en md5
 + Supprimer favoris 
@@ -19,7 +19,7 @@ Opt :
 
 Petits bug :
 
--> progress tourne quand aucun r�sultat
+-> progress tourne quand aucun resultat
 -> moteur aucune marque ? Normal ?
 -> Affichage du nombre d'annonce sur l'accueil
 

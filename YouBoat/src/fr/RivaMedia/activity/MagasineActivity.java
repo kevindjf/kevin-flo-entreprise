@@ -54,9 +54,13 @@ public class MagasineActivity extends Activity{
 	}
 
 	protected void etapeSuivante(){
+		
 		Intent i = new Intent(this,MainActivity.class);
 		startActivity(i);
 		finish();
+		
+		overridePendingTransition(R.anim.entrer, R.anim.sortir); 
+		
 	}
 
 }

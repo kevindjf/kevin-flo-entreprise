@@ -10,6 +10,7 @@
     <color name="_gris_claire">#EEE</color>
     <color name="_gris">#DEDEDE</color>
     <color name="_gris_clair">#EEE</color>
+    <color name="_gris_swipe">#999999</color>
     <color name="_gris_fonce">#AAA</color>
     <color name="_gris_menu">#383C3F</color>
     <color name="_noir">#000</color>
@@ -45,5 +46,7 @@
     <color name="couleur_cellule_paire">@color/_blanc</color>
     <color name="couleur_cellule_impaire">@color/_bleu_claire</color>
     <color name="couleur_cellule_touch">@color/_bleu</color>
+    
+    <color name="couleur_gris_supprimer_swipe">@color/_gris_swipe</color>
 
 </resources>

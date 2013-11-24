@@ -106,6 +106,7 @@
     <string name="nombre_moteur">Nombre Moteur</string>
     <string name="nomsociete">Rivamedia</string>
     <string name="non">Non</string>
+    <string name="nous_contacter">Nous contacter</string>
     <string name="numversion">1.1</string>
     <string name="paca">Paca</string>
     <string name="pays">Pays</string>
@@ -165,5 +166,6 @@
     <string name="votre_recherche_est_bien_enregistree">Votre recherche est bien enregistrée !</string>
     <string name="TELEPHONE">02 38 75 99 41</string>
     <string name="EMAIL">contact@youboat.fr</string>
+    <string name="EMAIL_FLORENT_KEVIN">ChampignyDeJesus@gmail.com</string>
 
 </resources>
