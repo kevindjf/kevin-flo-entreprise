@@ -1,105 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:background="@color/couleur_fond">
+    android:background="@color/couleur_fond" >
+
+    <ImageView
+        android:id="@+id/couverture_magasine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/image_journal_pixelisee" />
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
         android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dip"
-            android:padding="10dip"
-            android:background="@color/couleur_3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="vertical" >
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dip"
-                android:src="@drawable/info_logo" />
+                
+                android:background="@color/couleur_3_transparent"
+                android:orientation="vertical"
+                android:padding="10dip" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dip"
-                android:text="@string/achatetventebateaux"
-                android:textColor="@color/couleur_texte_blanc"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:src="@drawable/info_logo" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/informations_youboat_propose"
-                android:textColor="@color/couleur_texte_noir"
-                android:textSize="15sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:text="@string/achatetventebateaux"
+                    android:textColor="@color/couleur_texte_blanc"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/informations_youboat_propose"
+                    android:textColor="@color/couleur_texte_noir"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/couleur_2_transparent"
+                    android:padding="10dip" >
+
+                    <TextView
+                        android:id="@+id/societe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="100dip"
+                        android:text="@string/societe"
+                        android:textColor="@color/couleur_texte_noir"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/nomsociete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/societe"
+                        android:text="@string/nomsociete"
+                        android:textColor="@color/couleur_texte_noir"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/version"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/societe"
+                        android:layout_marginRight="100dip"
+                        android:text="@string/version"
+                        android:textColor="@color/couleur_texte_noir"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/numeroversion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/societe"
+                        android:layout_toRightOf="@+id/version"
+                        android:text="@string/numversion"
+                        android:textColor="@color/couleur_texte_noir"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+            </RelativeLayout>
         </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/couleur_2"
-            android:padding="10dip"
-            android:layout_margin="10dip"
-             >
-
-            <TextView
-                android:id="@+id/societe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="100dip"
-                android:text="@string/societe"
-                android:textColor="@color/couleur_texte_noir"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/nomsociete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="75dip"
-                android:layout_toRightOf="@+id/societe"
-                android:text="@string/nomsociete"
-                android:textColor="@color/couleur_texte_noir"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/societe"
-                android:layout_marginRight="100dip"
-                android:text="@string/version"
-                android:textColor="@color/couleur_texte_noir"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/numeroversion"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/societe"
-                android:layout_toRightOf="@+id/version"
-                android:text="@string/numversion"
-                android:textColor="@color/couleur_texte_noir"
-                android:textSize="14sp" />
-        </RelativeLayout>
-        
-        <ImageView 
-            android:layout_width="100dip"
-            android:layout_height="100dip"
-            android:src="@drawable/image_journal_pixelisee"
-            android:layout_marginLeft="10dip"
-            />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

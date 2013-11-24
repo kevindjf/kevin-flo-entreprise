@@ -3,11 +3,15 @@
 
     <color name="_blanc">#FFF</color>
     <color name="_bleu">#2673B5</color>
+    <color name="_bleu_transparent">#EE2673B5</color>
     <color name="_bleu_progress">#34B3E1</color>
     <color name="_bleu_claire">#D1ECFF</color>
+    <color name="_bleu_claire_transparent">#EED1ECFF</color>
     <color name="_bleu_titre">#6BB3E8</color>
+    <color name="_bleu_titre_transparent">#EE6BB3E8</color>
     <color name="_bleu_fonce">#006ab3</color>
     <color name="_gris_claire">#EEE</color>
+    <color name="_gris_claire_transparent">#EEEE</color>
     <color name="_gris">#DEDEDE</color>
     <color name="_gris_clair">#EEE</color>
     <color name="_gris_swipe">#999999</color>
@@ -25,6 +29,9 @@
     <color name="couleur_1">@color/_bleu</color>
     <color name="couleur_2">@color/_bleu_claire</color>
     <color name="couleur_3">@color/_bleu_titre</color>
+    <color name="couleur_1_transparent">@color/_bleu_transparent</color>
+    <color name="couleur_2_transparent">@color/_bleu_claire_transparent</color>
+    <color name="couleur_3_transparent">@color/_bleu_titre_transparent</color>
     <color name="couleur_progress">@color/_bleu_progress</color>
     <color name="couleur_fond">@color/_blanc</color>
     <color name="couleur_fond_claire">@color/_gris_claire</color>
@@ -35,18 +42,14 @@
     <color name="couleur_bouton_effacer">@color/_rouge</color>
     <color name="couleur_bouton_effacer_hover">@color/_rouge_claire</color>
     <color name="couleur_bouton_rechercher">@color/_bleu_fonce</color>
-    
     <color name="couleur_texte">@color/_gris</color>
     <color name="couleur_texte_claire">@color/_gris_claire</color>
     <color name="couleur_texte_fonce">@color/_gris_menu</color>
     <color name="couleur_texte_noir">@color/_noir</color>
-     
     <color name="couleur_texte_blanc">@color/_blanc	</color>
-    
     <color name="couleur_cellule_paire">@color/_blanc</color>
     <color name="couleur_cellule_impaire">@color/_bleu_claire</color>
     <color name="couleur_cellule_touch">@color/_bleu</color>
-    
     <color name="couleur_gris_supprimer_swipe">@color/_gris_swipe</color>
 
 </resources>

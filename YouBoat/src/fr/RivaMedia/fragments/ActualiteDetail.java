@@ -122,7 +122,7 @@ public class ActualiteDetail extends FragmentNormal{
 		String dateFr ="";
 		Log.e("Jour", dateEn.substring(0,3));
 		dateFr+= changerJour(dateEn.substring(0,3))+dateEn.substring(3,7) + " "
-				+ changerMois(dateEn.substring(8,11))+ dateEn.substring(11,17) + "Ã  "+dateEn.substring(17,22);
+				+ changerMois(dateEn.substring(8,11))+ dateEn.substring(11,17) + "ˆ "+dateEn.substring(17,22);
 		Log.e("DateFr",dateFr);
 		return dateFr;
 	}
@@ -162,7 +162,7 @@ public class ActualiteDetail extends FragmentNormal{
 		String h = hs[0];
 		String m = hs[1];
 
-		date = jourNom+" "+jour+" "+mois+" "+annee+" "+h+"h"+m;
+		date = jourNom+" "+jour+" "+mois+" "+annee+" ˆ "+h+"h"+m;
 
 		return date;
 
