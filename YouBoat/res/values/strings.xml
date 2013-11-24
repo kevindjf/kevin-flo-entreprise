@@ -40,6 +40,7 @@
     <string name="contact_pro">Contact PRO</string>
     <string name="coordonnees">Coordonnées</string>
     <string name="couchettes">Couchettes</string>
+    <string name="crash_toast_text">Une erreur est survenue, aidez nous à améliorer cette application en ous envoyant le rapport de bug</string>
     <string name="credit">Crédits</string>
     <string name="dans_un_rayon_de">Dans un rayon de :</string>
     <string name="decrivez_le_bateau_que_vous_possedez">Décrivez le bateau que vous possédez</string>
