@@ -226,6 +226,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_effacer.setVisibility(View.GONE);
 		_header_effacer.setOnClickListener(null);
 	}
+	
+	public void cacherTrier(){
+		_header_trier.setVisibility(View.GONE);
+		_header_trier.setOnClickListener(null);
+	}
 
 	public void ajouterFragment(Fragment fragment){
 		ajouterFragment(fragment,true);

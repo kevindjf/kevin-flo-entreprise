@@ -23,6 +23,8 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	@Override
 	public void onPause() {
 		((MainActivity)getActivity()).cacherEffacer();
+		((MainActivity)getActivity()).cacherTrier();
+		((MainActivity)getActivity()).cacherFavoris();
 		afficherProgress(afficherProgress);
 		try{
 			if(task != null)
@@ -37,6 +39,9 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	@Override
 	public void onResume() {
 		((MainActivity)getActivity()).cacherEffacer();
+		((MainActivity)getActivity()).cacherTrier();
+		((MainActivity)getActivity()).cacherFavoris();
+
 		afficherProgress(afficherProgress);
 		super.onResume();
 		getView().setOnClickListener(this);

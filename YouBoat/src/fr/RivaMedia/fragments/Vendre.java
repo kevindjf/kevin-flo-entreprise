@@ -37,6 +37,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
+import fr.RivaMedia.dialog.PictureDialog;
 import fr.RivaMedia.fragments.core.Effaceable;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
@@ -421,7 +422,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	private void ajouterPhoto() {
-		afficherPopupSelectrionPhoto();
+		new PictureDialog(this, getString(R.string.choisir_une_photo),_photoCamera).show();
 	}
 
 	public void reset(){
@@ -727,37 +728,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		startActivityForResult(intent, IMAGE_REQUEST);
 	}
 
-	public void afficherPopupSelectrionPhoto(){
-		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-			}
-		});
-		builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int id) {
-				dialog.cancel();
-			}
-		});
-
-		String[] sources = { "Appareil photo", "Album" };
-
-		builder.setTitle(R.string.choisir_une_photo)
-		.setItems(sources, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int position) {
-				switch(position){
-				case 0:
-					getPhotoFromCamera();
-					break;
-				case 1:
-					getPhotoFromAlbum();
-				}
-			}
-		});
-
-		AlertDialog dialog = builder.create();
-		dialog.show();
-	}
 
 	protected void ajouterPhotoExtras(Bitmap photo){
 		if(_photos.size()>0)
