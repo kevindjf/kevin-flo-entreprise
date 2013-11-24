@@ -20,6 +20,8 @@ Opt :
 Petits bug :
 
 -> progress tourne quand aucun r�sultat
--> Bateau � moteur aucune marque ? Normal ?
+-> moteur aucune marque ? Normal ?
 -> Affichage du nombre d'annonce sur l'accueil
+
+Popup ajouter Photo
 

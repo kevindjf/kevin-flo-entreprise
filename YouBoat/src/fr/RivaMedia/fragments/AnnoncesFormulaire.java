@@ -300,7 +300,16 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			ajouterFragment(new MarqueSelector(this,MARQUE,""+typeAnnonces));
+			if(typeAnnonces.equals(Constantes.MOTEURS)){
+				List<Marque> marques = Donnees.getMarques(""+typeAnnonces);
+				Map<String,String> donneesValeurs = new HashMap<String, String>();
+				for(Marque m : marques){
+					donneesValeurs.put(m.getLibelle(), m.getId());
+				}
+				ajouterFragment(new DonneeValeurSelector(this, MARQUE, donneesValeurs));
+			}else{
+				ajouterFragment(new MarqueSelector(this,MARQUE,""+typeAnnonces));
+			}
 		}
 	}
 
@@ -387,11 +396,10 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == MARQUE){
-			String[] ids = item.split(";");
-			recherche_marque_id = ids[0];
-			recherche_modele_id = ids[1];
+			recherche_marque_id = item;
+			recherche_modele_id = item;
 
-			Log.e("MODELE",recherche_chantier_id);
+			Log.e("MODELE",recherche_marque_id);
 
 			((TextView)_marque.findViewById(R.id.text)).setText(value);
 		}
