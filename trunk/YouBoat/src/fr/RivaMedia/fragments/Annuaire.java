@@ -73,6 +73,12 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		_services = _view.findViewById(R.id.annuaire_services);
 		_localite = _view.findViewById(R.id.annuaire_localite);
 		_rechercher = _view.findViewById(R.id.annuaire_rechercher);
+		
+		views = new View[]{
+				_distributeur_marque,
+				_services,
+				_localite				
+		};
 	}
 
 	@Override
