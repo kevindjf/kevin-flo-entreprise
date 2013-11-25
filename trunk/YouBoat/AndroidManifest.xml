@@ -70,7 +70,7 @@
             android:theme="@android:style/Theme.Dialog" />
 
         <receiver
-            android:name="fr.RivaMedia.GcmBroadcastReceiver"
+            android:name="fr.RivaMedia.alertes.GcmBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -80,7 +80,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="fr.RivaMedia.GcmIntentService" />
+        <service android:name="fr.RivaMedia.alertes.GcmIntentService" />
         
         
     </application>
