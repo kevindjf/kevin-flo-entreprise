@@ -1,10 +1,12 @@
 package fr.RivaMedia.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
+import android.net.http.HttpResponseCache;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -321,5 +323,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 	public void fermerSliderDroite(){
 		_slider.closeRightSide();
+	}
+	
+	@SuppressLint("NewApi")
+	protected void onStop() {
+		super.onStop();
+		HttpResponseCache cache = HttpResponseCache.getInstalled();
+		if (cache != null) {
+			cache.flush();
+		}
 	}
 }

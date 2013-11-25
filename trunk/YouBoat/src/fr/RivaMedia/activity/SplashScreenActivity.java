@@ -3,11 +3,13 @@ package fr.RivaMedia.activity;
 import java.util.List;
 import java.util.Map;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -31,7 +33,7 @@ public class SplashScreenActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 		Net.enableHttpResponseCache(this);
-		
+
 		ImageLoaderCache.load(this);
 		ImageLoaderCache.charger(Constantes.URL_PUB_MAGASINE_HD, new ImageView(this));
 
@@ -75,13 +77,13 @@ public class SplashScreenActivity extends Activity{
 	}
 
 	protected void etapeSuivante(){
-		
+
 		Intent i = new Intent(this,MagasineActivity.class);
 		startActivity(i);
 		finish();
-		
+
 		overridePendingTransition(R.anim.entrer, R.anim.sortir); 
-		
+
 	}
 
 	protected void lancerDecompte(){
@@ -114,16 +116,16 @@ public class SplashScreenActivity extends Activity{
 
 	class ChargementsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			
+
 			Donnees.types = NetChargement.chargerTypes();
 
 			final List<Marque> toutesMarques = NetChargement.chargerMarquesBateaux();
-			final List<Marque> marquesBateauxAMoteur = NetChargement.chargerMarquesBateaux();
+			final List<Marque> marquesBateauxAMoteur = NetChargement.chargerMarquesBateauAMoteur();
 			final List<Marque> marquesVoilier = NetChargement.chargerMarquesVoiliers();	
 			final List<Marque> marquesPneu = NetChargement.chargerMarquesPneu();
 			final List<Marque> marquesMoteur = NetChargement.chargerMarquesMoteurs();
 			final Map<String,Integer> nbAnnonces = NetChargement.chargerNbAnnonces();
-			
+
 			Donnees.toutesMarques = toutesMarques;
 			Donnees.marques.put("0", toutesMarques);
 			Donnees.marques.put(Constantes.BATEAU_A_MOTEUR, marquesBateauxAMoteur);
@@ -136,8 +138,8 @@ public class SplashScreenActivity extends Activity{
 			Donnees.services = services;
 
 			//tests
-			NetNews.chargerListeNews();
-			
+			Donnees.news = NetNews.chargerListeNews();
+
 
 
 			lancerDecompte();
@@ -154,5 +156,13 @@ public class SplashScreenActivity extends Activity{
 		super.onBackPressed();
 	}
 
+	@SuppressLint("NewApi")
+	protected void onStop() {
+		super.onStop();
+		HttpResponseCache cache = HttpResponseCache.getInstalled();
+		if (cache != null) {
+			cache.flush();
+		}
+	}
 
 }

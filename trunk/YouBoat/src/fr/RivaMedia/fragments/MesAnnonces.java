@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 import android.view.ViewGroup;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
@@ -17,7 +18,6 @@ import fr.RivaMedia.adapter.AnnonceListAdapter;
 import fr.RivaMedia.comparator.AnnonceDateComparator;
 import fr.RivaMedia.comparator.AnnoncePrixComparator;
 import fr.RivaMedia.fragments.core.FragmentListe;
-import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
 import fr.RivaMedia.net.core.Net;
@@ -55,6 +55,10 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 		charger();
 		remplir();
 		ajouterListeners();
+		if(_annonces.size()==0){
+			((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_favoris);
+			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override
