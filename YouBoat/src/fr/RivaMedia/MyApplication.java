@@ -4,6 +4,8 @@ import org.acra.ACRA;
 import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 
+import fr.RivaMedia.R;
+
 import android.app.Application;
 
 @ReportsCrashes(formKey = "", // will not be used

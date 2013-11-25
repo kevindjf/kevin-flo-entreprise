@@ -12,12 +12,13 @@ public class Credit extends FragmentNormal implements View.OnClickListener{
 
 	View _view;
 	View _email;
+	View _emailRivamedia;
 	View _photoPetite;
 	View _photoGrande;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		_view = inflater.inflate(R.layout.credit,container, false);
+		_view = inflater.inflate(R.layout.credit_rivamedia,container, false);
 
 		charger();
 		remplir();
@@ -32,6 +33,9 @@ public class Credit extends FragmentNormal implements View.OnClickListener{
 		switch(v.getId()){
 		case R.id.credits_email:
 			envoyerEmail(getString(R.string.EMAIL_FLORENT_KEVIN));
+			break;
+		case R.id.credits_email_rivamedia:
+			envoyerEmail(getString(R.string.EMAIL));
 			break;
 		case R.id.credits_photo_petite:
 			afficherPhotoGrande();
@@ -55,6 +59,7 @@ public class Credit extends FragmentNormal implements View.OnClickListener{
 
 	@Override
 	public void charger() {
+		_emailRivamedia = _view.findViewById(R.id.credits_email_rivamedia);
 		_email = _view.findViewById(R.id.credits_email);
 		_photoPetite = _view.findViewById(R.id.credits_photo_petite);
 		_photoGrande = _view.findViewById(R.id.credits_photo_grande);
