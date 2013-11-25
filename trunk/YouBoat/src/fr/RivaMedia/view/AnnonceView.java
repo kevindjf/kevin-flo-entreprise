@@ -103,7 +103,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 				_annee.setVisibility(View.GONE);
 
 			if(_annonce.getPrix() != null)
-				_prix.setText(_annonce.getPrix()+" €");
+				_prix.setText(_annonce.getPrix()+" ???");
 
 		}
 

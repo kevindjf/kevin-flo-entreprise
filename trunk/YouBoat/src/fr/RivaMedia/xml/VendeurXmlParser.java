@@ -142,7 +142,7 @@ public class VendeurXmlParser extends XmlParser {
 	<numero><![CDATA[2403]]></numero>
 	<nom><![CDATA[A.3.C]]></nom>
 	<email><![CDATA[contact@a-3-c.com]]></email>
-	<adresse><![CDATA[Boulevard Allgre, Port De Plaisance]]></adresse>
+	<adresse><![CDATA[Boulevard All?gre, Port De Plaisance]]></adresse>
 	<cp><![CDATA[97290]]></cp>
 	<ville><![CDATA[Le Marin]]></ville>
 	<tel1><![CDATA[0613096071]]></tel1>
@@ -158,15 +158,15 @@ public class VendeurXmlParser extends XmlParser {
 	<service><![CDATA[Gestion location]]></service>
 	<service><![CDATA[Hivernage]]></service>
 	<service><![CDATA[Maintenance]]></service>
-	<service><![CDATA[MŽcanique]]></service>
+	<service><![CDATA[M?canique]]></service>
 	<service><![CDATA[Pose accessoires]]></service>
-	<service><![CDATA[RŽparation]]></service>
+	<service><![CDATA[R?paration]]></service>
 	</services>
 	
 	<description><![CDATA[Vente de bateaux neufs et occasions aux Antilles.
-	Agent Nautitech Catamarans - RŽgion Cara•bes
+	Agent Nautitech Catamarans - R?gion Cara?bes
 	
-	Profitez de notre expŽrience et de notre Žquipe technique en France et aux Antilles, pour l'achat, l'Žquipement, et la prŽparation de votre bateau. A.3.C vous accompagne tout au long de votre projet !]]></description>
+	Profitez de notre exp?rience et de notre ?quipe technique en France et aux Antilles, pour l'achat, l'?quipement, et la pr?paration de votre bateau. A.3.C vous accompagne tout au long de votre projet !]]></description>
 	<logo url="http://www.youboat.fr/images/identite/2403.gif"/>
 	<gpslatitude><![CDATA[42.3914848]]></gpslatitude>
 	<gpslongitude><![CDATA[-8.7020824]]></gpslongitude>

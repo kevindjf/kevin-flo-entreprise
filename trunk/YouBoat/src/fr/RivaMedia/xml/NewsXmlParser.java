@@ -22,12 +22,12 @@ public class NewsXmlParser extends XmlParser {
 	/*
 	 * exemple: 
 	  		<item>
-				<title>BAVARIA CRUISER 37 À DÉCOUVRIR SUR ST-MANDRIER DANS LE VAR</title>
+				<title>BAVARIA CRUISER 37 ?? D??COUVRIR SUR ST-MANDRIER DANS LE VAR</title>
 				<categorie>News Bateau</categorie>
 				<link>188</link>
 				<image>http://www.youboat.fr/images/actu/188.jpg</image>
 				<pubDate>Thu, 17 Oct 2013 11:22:27 +0100</pubDate>
-				<description>EVASION YACHTING, concessionnaire Bavaria dans le Var, est fier de présenter le nouveau BAVARIA CRUISER 37 du célèbre chantier Allemand. BAVARIA frappe fort pour cette nouvelle saison avec 5 nouveautés dans la gamme des voiliers dont le BAVARIA CRUISER 37 qui était exposé en 1ère mondiale au Salon [...]</description>
+				<description>EVASION YACHTING, concessionnaire Bavaria dans le Var, est fier de pr??senter le nouveau BAVARIA CRUISER 37 du c??l??bre chantier Allemand. BAVARIA frappe fort pour cette nouvelle saison avec 5 nouveaut??s dans la gamme des voiliers dont le BAVARIA CRUISER 37 qui ??tait expos?? en 1??re mondiale au Salon [...]</description>
 			</item>
 	 */
 	
