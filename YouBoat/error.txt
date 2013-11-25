@@ -1,0 +1,49 @@
+Général:
+
++ Bug dans les tris ne contionnent pas toujours ( exemple : décroissant date -> puis décroissant prix ne trie pas)
+
+Magasine :
+
+* Je crois que la pub doit etre cliquable et envoyer sur internet
+
+Formulaire :
+
++ Rendre les edits plus cliquable
+
+Annonces :
+
+* Categories & chantier/modele : aucun résultat -> possible quand le chargement ne fonctionne pas au départ
++ Bouton effacer reste sur certaine sous vue
+
+Boat on demand :
+
++ Effacer ne remet pas facultatif et requis
++ Effacer ne remet pas les listeners
+
+Actualité :
+
++ Manque la bar de chargement (pareil pour actualité détail)
++ problème d'encodage dans la date surement le "à"
+* Pouvoir trier actu par date ?
+
+Annuaire :
+
++ Boutons appels et emails
++ Localisation mettre un toast si la localisation n'est pas effectué car sinon validé ne fait rien
+* Le rayon fonctionne vraiment ? -> non ^^
+
+Mes annonces :
+
++ Problème quand on enleve un favoris dans l'annonce et qu'on reviens sur la liste ( testé avec un seul élément)
+
+Mes alertes :
+
+* Push pas implémenté
+
+Informations :
+
++ Le magazine est caché par le texte du haut et du bas
+
+Crédits
+
++ optionnels click sur la bulle fait un zom dessus
