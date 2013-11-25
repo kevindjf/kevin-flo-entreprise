@@ -162,6 +162,7 @@
     <string name="veuillez_choisir_une_taille">Veuillez choisir une taille</string>
     <string name="veuillez_choisir_un_type">Veuillez choisir un type</string>
     <string name="veuillez_choisir_un_type_d_energie">Veuillez choisir un type d\'energie</string>
+    <string name="vous_devez_entrer_une_annee_entre_1990_et_maintenant">Vous devez entrer une annee entre 1990 et maintenant</string>
     <string name="version">Version</string>
     <string name="vide">Aucun résultat</string>
     <string name="voiliers">Voiliers</string>

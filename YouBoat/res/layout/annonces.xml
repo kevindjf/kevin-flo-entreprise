@@ -13,6 +13,7 @@
         android:padding="10dip" >
 
         <View
+            android:id="@+id/annonces_layout_logo"
             android:layout_width="175dip"
             android:layout_height="175dip"
             android:layout_centerInParent="true"
