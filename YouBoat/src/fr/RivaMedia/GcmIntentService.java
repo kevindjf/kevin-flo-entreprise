@@ -26,6 +26,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
@@ -98,17 +100,27 @@ public class GcmIntentService extends IntentService {
     private void sendNotification(String msg) {
         mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
+        
+        //TODO: remplir
+        //Intent de lancement
+        Intent lancement = new Intent(this, SplashScreenActivity.class);
 
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, SplashScreenActivity.class), 0);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, lancement, 0);
 
+        Bitmap large_100 = BitmapFactory.decodeResource(getResources(), R.drawable.logo_appli_100);
+        Bitmap large = BitmapFactory.decodeResource(getResources(), R.drawable.logo_appli);
+        
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
         .setSmallIcon(R.drawable.logo_appli)
+        .setLargeIcon(large)
         .setContentTitle("GCM Notification")
-        .setStyle(new NotificationCompat.BigTextStyle()
-        .bigText(msg))
-        .setContentText(msg);
+        .setStyle(new NotificationCompat.BigPictureStyle()
+        .setBigContentTitle("De nouvelles alertes vous attendent")
+        .setSummaryText("Clickez ici pour les visionner")
+        .bigPicture(large)
+        .bigLargeIcon(large_100)
+        );
 
         mBuilder.setContentIntent(contentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
