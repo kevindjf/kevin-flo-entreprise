@@ -86,9 +86,12 @@ public class AnnuaireLocaliteSelector extends FragmentNormal implements View.OnC
 	}
 
 	public void valider(){
-		if(_texteLocalite.getText() != null){
+		if(_texteLocalite.getText().toString().length()>1){
 			String item = longitude+";"+latitude;
-			String valeur = _rayon_texte.getText().toString()+";"+_texteLocalite.getText().toString();
+			String rayon = "0";
+			if(_rayon_texte.getText().toString().length()>0)
+				rayon = _rayon_texte.getText().toString();
+			String valeur = rayon+";"+_texteLocalite.getText().toString();
 			_listener.itemSelected(this,_idRetour,item,valeur);
 			getFragmentManager().popBackStack();
 
