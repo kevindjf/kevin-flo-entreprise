@@ -37,6 +37,8 @@ public class ActualiteDetail extends FragmentNormal{
 	TextView _date;
 	TextView _texte;
 
+	boolean afficherProgress = true;
+
 	public ActualiteDetail(String id){
 		this._id = id;
 	}
@@ -46,14 +48,18 @@ public class ActualiteDetail extends FragmentNormal{
 
 		_view = inflater.inflate(R.layout.actualite_details, container, false);
 
-		afficherProgress(true);
-
 		ImageLoaderCache.load(getActivity());
 
 		task = new ChargerNewsTask();
 		task.execute();
 
 		return _view;
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		afficherProgress(afficherProgress);
 	}
 
 
@@ -115,14 +121,14 @@ public class ActualiteDetail extends FragmentNormal{
 		if(mois.equals("Nov"))
 			return "Novembre";
 		if(mois.equals("Dec"))
-			return "Decembre";
+			return "D√©cembre";
 		return "Err";
 	}
 	private String changerDate(String dateEn){
 		String dateFr ="";
 		Log.e("Jour", dateEn.substring(0,3));
 		dateFr+= changerJour(dateEn.substring(0,3))+dateEn.substring(3,7) + " "
-				+ changerMois(dateEn.substring(8,11))+ dateEn.substring(11,17) + "à "+dateEn.substring(17,22);
+				+ changerMois(dateEn.substring(8,11))+ dateEn.substring(11,17) + "√† "+dateEn.substring(17,22);
 		Log.e("DateFr",dateFr);
 		return dateFr;
 	}
@@ -135,11 +141,11 @@ public class ActualiteDetail extends FragmentNormal{
 				.replace("May", "Mai")
 				.replace("Jun", "Juin")
 				.replace("Jul", "Juillet")
-				.replace("Aug", "Août")
+				.replace("Aug", "Ao√ªt")
 				.replace("Sep", "Sep")
 				.replace("Oct", "Octobre")
 				.replace("Nov", "Novembre")
-				.replace("Dec", "Décembre")
+				.replace("Dec", "D√©cembre")
 
 				.replace("Mon", "Lundi")
 				.replace("Tue", "Mardi")
@@ -162,7 +168,7 @@ public class ActualiteDetail extends FragmentNormal{
 		String h = hs[0];
 		String m = hs[1];
 
-		date = jourNom+" "+jour+" "+mois+" "+annee+" à "+h+"h"+m;
+		date = jourNom+" "+jour+" "+mois+" "+annee+" √† "+h+"h"+m;
 
 		return date;
 
@@ -203,7 +209,8 @@ public class ActualiteDetail extends FragmentNormal{
 				@Override
 				public void run() {
 					chargerNews();
-					afficherProgress(false);
+					afficherProgress = false;
+					afficherProgress(afficherProgress);
 				}
 
 			});

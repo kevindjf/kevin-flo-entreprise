@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
@@ -85,13 +86,17 @@ public class AnnuaireLocaliteSelector extends FragmentNormal implements View.OnC
 	}
 
 	public void valider(){
-		String item = longitude+";"+latitude;
-		String valeur = _rayon_texte.getText().toString()+";"+_texteLocalite.getText().toString();
-		_listener.itemSelected(this,_idRetour,item,valeur);
-		getFragmentManager().popBackStack();
-		
-		if(_locationManager != null && _locationListener != null)
-			_locationManager.removeUpdates(_locationListener);
+		if(_texteLocalite.getText() != null){
+			String item = longitude+";"+latitude;
+			String valeur = _rayon_texte.getText().toString()+";"+_texteLocalite.getText().toString();
+			_listener.itemSelected(this,_idRetour,item,valeur);
+			getFragmentManager().popBackStack();
+
+			if(_locationManager != null && _locationListener != null)
+				_locationManager.removeUpdates(_locationListener);
+		}else{
+			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_localite, Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override

@@ -17,10 +17,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 
 @SuppressLint("ValidFragment")
-public class ValeurSelector extends Fragment implements OnItemClickListener{
+public class ValeurSelector extends FragmentNormal implements OnItemClickListener{
 
 	View _view;
 	IndexableListView _listView;
@@ -51,12 +52,12 @@ public class ValeurSelector extends Fragment implements OnItemClickListener{
 	}
 
 
-	private void charger() {
+	public void charger() {
 		_listView = (IndexableListView)_view.findViewById(android.R.id.list);
 		_listView.setFastScrollEnabled(true);
 	}
 
-	private void remplir() {
+	public void remplir() {
 		_valeurs = new ArrayList<String>(Arrays.asList(_stringArray));
 		if(_valeurs != null && _valeurs.size()>0){
 			Collections.sort(_valeurs);
@@ -70,7 +71,7 @@ public class ValeurSelector extends Fragment implements OnItemClickListener{
 	}
 
 
-	private void ajouterListeners() {
+	public void ajouterListeners() {
 		_listView.setOnItemClickListener(this);		
 	}
 

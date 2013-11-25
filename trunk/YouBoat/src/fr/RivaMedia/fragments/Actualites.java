@@ -22,6 +22,8 @@ public class Actualites extends FragmentNormal{
 	
 	List<News> _news = null;
 	
+	boolean afficherProgress = true;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
@@ -33,6 +35,12 @@ public class Actualites extends FragmentNormal{
 		task.execute();
 		
 		return _view;
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		afficherProgress(afficherProgress);
 	}
 	
 	
@@ -65,6 +73,8 @@ public class Actualites extends FragmentNormal{
 				@Override
 				public void run() {
 					chargerNews();
+					afficherProgress = false;
+					afficherProgress(afficherProgress);
 				}
 				
 			});

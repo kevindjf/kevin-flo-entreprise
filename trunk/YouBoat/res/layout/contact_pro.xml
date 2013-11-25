@@ -14,23 +14,23 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
+            android:background="@color/couleur_1"
             android:gravity="center_horizontal"
+            android:padding="10dip"
             android:orientation="vertical" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dip"
                 android:text="Vous souhaitez publier vos annonces sur "
-                android:textColor="@color/couleur_texte_noir"
+                android:textColor="@color/couleur_texte_blanc"
                 android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Youboat.fr ou sur l&apos;application Youboat ?"
-                android:textColor="@color/couleur_texte_noir"
+                android:textColor="@color/couleur_texte_blanc"
                 android:textSize="18sp" />
 
             <TextView
@@ -38,14 +38,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dip"
                 android:text="Vous souhaitez communiquer sur "
-                android:textColor="@color/couleur_texte_noir"
+                android:textColor="@color/couleur_texte_blanc"
                 android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="le magazine YOUBOAT ?"
-                android:textColor="@color/couleur_texte_noir"
+                android:textColor="@color/couleur_texte_blanc"
                 android:textSize="18sp" />
 
             <TextView
@@ -53,14 +53,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dip"
                 android:text="Vous souhaitez avoir votre propre "
-                android:textColor="@color/couleur_texte_noir"
+                android:textColor="@color/couleur_texte_blanc"
                 android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="application IPhone ?"
-                android:textColor="@color/couleur_texte_noir"
+                android:textColor="@color/couleur_texte_blanc"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dip"
-            android:layout_marginTop="30dip"
+            android:layout_margin="15dip"
             android:text="Contactez nous : "
             android:textColor="@color/couleur_texte_noir"
             android:textSize="22sp"
@@ -77,7 +77,6 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dip"
             android:orientation="horizontal" >
 
 

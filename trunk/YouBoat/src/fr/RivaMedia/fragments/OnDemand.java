@@ -44,6 +44,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	View _view;
 
 	View[] _views;
+	String[] _texteInitial;
 
 	View _type;
 	View _categorie;
@@ -123,6 +124,16 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 				_chantierModelePosseder,
 				_prixCessionPosseder
 		};
+		_texteInitial = new String[_views.length];
+		for(int i=0;i<_views.length;++i){
+			String texte = null;
+			Object o = _views[i].findViewById(R.id.text);
+			if(o instanceof TextView)
+				texte = ((TextView)o).getText().toString();
+			else if(o instanceof EditText)
+				texte = ((EditText)o).getHint().toString();
+			_texteInitial[i] = texte;
+		}
 	}
 
 	public void remplir(){
@@ -468,14 +479,17 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 
 	@Override
 	public void reset() {
+		int i=0;
 		for(View v : _views){
-			v.setOnClickListener(null);
+			//v.setOnClickListener(null);
+			//v.setVisibility(View.GONE);
 			Object o = v.findViewById(R.id.text);
 			if(o instanceof TextView)
-				((TextView)o).setText("");
+				((TextView)o).setText(_texteInitial[i]);
 			else if(o instanceof EditText)
-				((EditText)o).setText("");
+				((EditText)o).setHint(_texteInitial[i]);
 			//spinners, etc
+			++i;
 		}
 
 		demand_type = null;
