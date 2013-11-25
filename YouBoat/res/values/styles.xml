@@ -46,6 +46,7 @@
         <item name="android:textColor">@color/couleur_texte_fonce</item>
         <item name="android:layout_marginLeft">150dip</item>
         <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:textSize">12sp</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
