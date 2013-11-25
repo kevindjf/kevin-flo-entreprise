@@ -222,7 +222,7 @@ public class AnnonceXmlParser extends XmlParser {
 		Vendeur vendeur = new Vendeur();
 
 		int eventType = XMLgetEventType(); 
-		while (eventType != XmlPullParser.END_TAG) { 
+		do { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
 				//Log.e("XML",tag);
@@ -243,10 +243,13 @@ public class AnnonceXmlParser extends XmlParser {
 					vendeur.setTel2(getString());
 				else if(tag.equals("type"))
 					vendeur.setType(getString());
+				else if(tag.equals("siteweb"))
+					vendeur.setSiteWeb(getString());
 			}
 
 			eventType = XMLgetSuivant();
-		}
+			
+		}while (eventType != XmlPullParser.END_TAG);
 		return vendeur;
 	}
 }

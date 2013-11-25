@@ -19,10 +19,11 @@ import com.woozzu.android.adapter.IndexableListViewAdapter;
 import com.woozzu.android.widget.IndexableListView;
 
 import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 
 @SuppressLint("ValidFragment")
-public class DonneeValeurSelector extends Fragment implements OnItemClickListener{
+public class DonneeValeurSelector extends FragmentNormal implements OnItemClickListener{
 
 	View _view;
 	IndexableListView _listView;
@@ -53,12 +54,12 @@ public class DonneeValeurSelector extends Fragment implements OnItemClickListene
 	}
 
 
-	private void charger() {
+	public void charger() {
 		_listView = (IndexableListView)_view.findViewById(android.R.id.list);
 		_listView.setFastScrollEnabled(true);
 	}
 
-	private void remplir() {
+	public void remplir() {
 		_types = new ArrayList<String>(_types_valeurs.keySet());
 		Collections.sort(_types);
 
@@ -72,7 +73,7 @@ public class DonneeValeurSelector extends Fragment implements OnItemClickListene
 	}
 
 
-	private void ajouterListeners() {
+	public void ajouterListeners() {
 		_listView.setOnItemClickListener(this);		
 	}
 

@@ -154,6 +154,7 @@
     <string name="veuillez_indiquer_votre_email">Veuillez indiquer votre email</string>
     <string name="veuillez_indiquer_votre_pays">Veuillez indiquer votre pays</string>
     <string name="veuillez_choisir_une_categorie">Veuillez choisir une categorie</string>
+    <string name="veuillez_choisir_une_localite">Veuillez choisir une localité</string>
     <string name="veuillez_choisir_une_marque">Veuillez choisir une marque</string>
     <string name="veuillez_choisir_un_modele">Veuillez choisir un modele</string>
     <string name="veuillez_choisir_un_prix">Veuillez choisir un prix</string>

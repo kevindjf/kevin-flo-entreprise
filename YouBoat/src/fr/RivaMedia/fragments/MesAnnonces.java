@@ -61,15 +61,23 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
-		if(_adapter != null){
-			//TODO Trouver une autre facon de changer la listView
-			boolean contient = _favorisManager.contientFavoris(_annonces.get(positionRetour).getNumero());
-			if(!contient){
-				_annonces.remove(positionRetour);
-				_adapter.notifyDataSetChanged();
-
+		getActivity().runOnUiThread(new Runnable(){
+			public void run(){
+				synchronized(_annonces){
+					if(_adapter != null){
+						for(Annonce a : _annonces){
+							//TODO Trouver une autre facon de changer la listView
+							if(!_favorisManager.contientFavoris(a.getNumero())){
+								_annonces.remove(a);
+								_adapter.notifyDataSetChanged();
+								break;
+							}
+						}
+					}
+				}
 			}
-		}
+		});
+		
 	}
 
 	public void charger(){
@@ -143,16 +151,16 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 			//TODO Si aucune annonce afficher message
 			List<String> fav = _favorisManager.getFavois();
 			if(fav.size() > 1){
-			for(String favoris : fav){
-				try{
-					String[] ids = favoris.split(";");
-					String id = ids[0];
-					String type = ids[1];
-					Annonce annonce = NetAnnonce.rechercherAnnonce(type, Net.construireDonnes(Constantes.ANNONCES_DETAIL_ID_ANNONCE,id));
-					annonce.setType(type);
-					_annonces.add(annonce);
-				}catch(Exception e){}
-			}
+				for(String favoris : fav){
+					try{
+						String[] ids = favoris.split(";");
+						String id = ids[0];
+						String type = ids[1];
+						Annonce annonce = NetAnnonce.rechercherAnnonce(type, Net.construireDonnes(Constantes.ANNONCES_DETAIL_ID_ANNONCE,id));
+						annonce.setType(type);
+						_annonces.add(annonce);
+					}catch(Exception e){}
+				}
 			}
 			getActivity().runOnUiThread(new Runnable(){
 
@@ -176,13 +184,13 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 	@Override
 	public void effacer() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void reset() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

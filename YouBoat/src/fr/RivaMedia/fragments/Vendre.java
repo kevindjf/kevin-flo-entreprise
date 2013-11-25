@@ -360,7 +360,10 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	private void demanderChantierModele() {
-		ajouterFragment( new MarqueSelector(this,CHANTIER_MODELE,vendre_type));
+		if(vendre_type != null)
+			ajouterFragment( new MarqueSelector(this,CHANTIER_MODELE,vendre_type));
+		else
+			Toast.makeText(getActivity(), R.string.veuillez_choisir_un_type, Toast.LENGTH_LONG).show();
 	}
 
 	private void demanderCategorie() {
@@ -530,6 +533,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			((TextView)_type.findViewById(R.id.text)).setText(value);
 			vendre_categorie = null;
 			((TextView)_categorie.findViewById(R.id.text)).setText(getString(R.string.requis));
+			vendre_marque = null;
+			((TextView)_chantierModele.findViewById(R.id.text)).setText(getString(R.string.requis));
 		}
 
 		else if(idRetour == CATEGORIE){
