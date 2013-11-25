@@ -25,3 +25,5 @@ Petits bug :
 
 Popup ajouter Photo
 
+
+-> Input de date et de prix

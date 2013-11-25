@@ -14,7 +14,7 @@ public class NetVendeur extends Net {
 
 	public static List<Vendeur> listeVendeurs(List<NameValuePair> donnees){
 
-		String xml = Net.requeteGet(Constantes.URL_VENDEURS,donnees);
+		String xml = Net.requete(Constantes.URL_VENDEURS,donnees);
 		Log.e("NetVendeur",xml);
 		return new VendeurXmlParser(xml).getListe();
 	}

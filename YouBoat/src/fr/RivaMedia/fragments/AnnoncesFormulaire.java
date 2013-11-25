@@ -514,15 +514,12 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			//ne pas ajouter indifferent
 		}
 
-		String marque = ((TextView)_etat.findViewById(R.id.text)).getText().toString();
-		if(marque != null && etat.length()>0){
-			if(recherche_modele_id != null)
-				Net.add(donnees,Constantes.ANNONCES_MODELE_ID,recherche_modele_id);
-			if(typeAnnonces.equals(Constantes.BATEAUX) && recherche_chantier_id != null)
-				Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_chantier_id);
-			else if(typeAnnonces.equals(Constantes.MOTEURS) && recherche_marque_id != null)
-				Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_marque_id);
-		}
+		if(recherche_modele_id != null)
+			Net.add(donnees,Constantes.ANNONCES_MODELE_ID,recherche_modele_id);
+		if(typeAnnonces.equals(Constantes.BATEAUX) && recherche_chantier_id != null)
+			Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_chantier_id);
+		else if(typeAnnonces.equals(Constantes.MOTEURS) && recherche_marque_id != null)
+			Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_marque_id);
 
 		return donnees;
 	}

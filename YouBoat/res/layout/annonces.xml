@@ -49,9 +49,9 @@
                 android:id="@+id/annonces_bouton_bateaux_et_voiliers"
                 style="@style/annonces_menu" >
 
-                <View
+                <ImageView
                     style="@style/annonces_menu_image"
-                    android:background="@drawable/icone_bateau_ssfond" />
+                    android:src="@drawable/logo_annonces_bateaux_2" />
 
                 <TextView
                     style="@style/annonces_menu_texte"
@@ -76,9 +76,9 @@
                 android:id="@+id/annonces_bouton_moteurs"
                 style="@style/annonces_menu" >
 
-                <View
+                <ImageView
                     style="@style/annonces_menu_image"
-                    android:background="@drawable/icone_moteur_ssfond" />
+                    android:src="@drawable/logo_moteur_2" />
 
                 <TextView
                     style="@style/annonces_menu_texte"
@@ -103,9 +103,9 @@
                 android:id="@+id/annonces_bouton_accessoires_et_divers"
                 style="@style/annonces_menu" >
 
-                <View
+                <ImageView
                     style="@style/annonces_menu_image"
-                    android:background="@drawable/icone_accessoire_ssfond" />
+                    android:src="@drawable/logo_accessoires_2" />
 
                 <TextView
                     style="@style/annonces_menu_texte"

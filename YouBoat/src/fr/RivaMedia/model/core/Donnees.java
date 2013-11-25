@@ -7,12 +7,14 @@ import java.util.Map;
 
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Marque;
+import fr.RivaMedia.model.News;
 import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.Type;
 
 public class Donnees {
 
 	public static Map<String,Integer> nbAnnonces;
+	public static List<News> news;
 	
 	public static List<Type> types = new ArrayList<Type>();
 	public static List<Categorie> getCategories(String type){

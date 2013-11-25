@@ -30,7 +30,6 @@ Annuaire :
 
 + Boutons appels et emails
 + Localisation mettre un toast si la localisation n'est pas effectué car sinon validé ne fait rien
-* Le rayon fonctionne vraiment ? -> non ^^
 
 Mes annonces :
 

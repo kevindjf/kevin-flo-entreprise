@@ -47,7 +47,8 @@ public class ActualiteDetail extends FragmentNormal{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
 		_view = inflater.inflate(R.layout.actualite_details, container, false);
-
+		_view.setVisibility(View.GONE);
+		
 		ImageLoaderCache.load(getActivity());
 
 		task = new ChargerNewsTask();
@@ -211,6 +212,7 @@ public class ActualiteDetail extends FragmentNormal{
 					chargerNews();
 					afficherProgress = false;
 					afficherProgress(afficherProgress);
+					_view.setVisibility(View.VISIBLE);
 				}
 
 			});
