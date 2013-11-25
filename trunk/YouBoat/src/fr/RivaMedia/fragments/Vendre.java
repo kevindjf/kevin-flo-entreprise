@@ -3,6 +3,7 @@ package fr.RivaMedia.fragments;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -66,7 +68,7 @@ import fr.RivaMedia.net.core.Net;
  *         Caracteristiques=[Intitule,Prix]
  *         Photo&Description=[Description,AjouterPhoto]
  */
-public class Vendre extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener, Effaceable{
+public class Vendre extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener, Effaceable, OnFocusChangeListener{
 
 	public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1111;
 	public static final int IMAGE_REQUEST = 2222;
@@ -295,6 +297,11 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_boutonDivers.setOnClickListener(this);	
 		_ajouterPhoto.setOnClickListener(this);
 		_etapeSuivante.setOnClickListener(this);
+
+		_annee.setOnFocusChangeListener(this);
+		_anneeMoteur.setOnFocusChangeListener(this);
+		_puissance.setOnFocusChangeListener(this);
+		_prix.setOnFocusChangeListener(this);
 	}
 
 	public void remplir(){
@@ -586,7 +593,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				return null;
 			}
 
-			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString();
+			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString().replace(" €", "");;
 			if(vendre_prix.length()==0){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
 				return null;
@@ -609,6 +616,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			if(vendre_nombre_moteur != null)
 				Net.add(donnees,Constantes.VENDRE_NOMBRE_MOTEUR,vendre_nombre_moteur);
 
+			if(((TextView)_puissance.findViewById(R.id.text)).getText().length() > 0)
+				Net.add(donnees,Constantes.VENDRE_PUISSANCE,((TextView)_puissance.findViewById(R.id.text)).getText().toString().replace(" ch",""));
+			
 			if(((TextView)_marqueMoteur.findViewById(R.id.text)).getText().length() > 0)
 				Net.add(donnees,Constantes.VENDRE_MARQUE_MOTEUR,((TextView)_marqueMoteur.findViewById(R.id.text)).getText());
 
@@ -633,7 +643,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				return null;
 			}
 
-			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString();
+			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString().replace(" €", "");;
 			if(vendre_prix.length()==0){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
 				return null;
@@ -664,7 +674,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString();
+			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString().replace(" €", "");
 			if(vendre_prix.length()==0){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
 				return null;
@@ -920,6 +930,50 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		public void destroyItem(ViewGroup container, int position, Object object) {
 			// TODO Auto-generated method stub
 			//super.destroyItem(container, position, object);
+		}
+	}
+
+	@Override
+	public void onFocusChange(View v, boolean hasFocus) {
+		switch(v.getId()){
+		case R.id.vendre_prix:
+			if(!hasFocus)
+				((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" €");
+			else{
+				if(((EditText)(v.findViewById(R.id.text))).getText().toString().trim().equals("0")){
+					((EditText)(v.findViewById(R.id.text))).setText("");
+				}else{
+					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText().toString().replace(" €", ""));
+				}
+			}
+			break;
+		case R.id.vendre_annee:
+			if(!hasFocus){
+				String a = ((EditText)v.findViewById(R.id.text)).getText().toString();
+				try{
+					int an = Integer.parseInt(a);
+					if(an>1990 && an<(new Date().getYear()))
+						((EditText)v.findViewById(R.id.text)).setText(a);
+					else{
+						((EditText)v.findViewById(R.id.text)).setText("");
+						Toast.makeText(getActivity(), R.string.vous_devez_entrer_une_annee_entre_1990_et_maintenant, Toast.LENGTH_SHORT).show();
+					}
+				}catch(Exception e){
+					((EditText)v.findViewById(R.id.text)).setText("");
+				}
+			}
+			break;
+		case R.id.vendre_puissance:
+			if(!hasFocus)
+				((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" ch");
+			else{
+				if(((EditText)(v.findViewById(R.id.text))).getText().toString().trim().equals("0")){
+					((EditText)(v.findViewById(R.id.text))).setText("");
+				}else{
+					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText().toString().replace(" ch", ""));
+				}
+			}
+			break;
 		}
 	}
 }
