@@ -28,6 +28,7 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 	private View _boutonAccessoiresDivers;
 
 	View  _logo;
+	View  _layoutLogo;
 
 	MediaPlayer mp;
 
@@ -39,7 +40,8 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 		_boutonBateauxVoiliers = _view.findViewById(R.id.annonces_bouton_bateaux_et_voiliers);
 		_boutonMoteurs = _view.findViewById(R.id.annonces_bouton_moteurs);
 		_boutonAccessoiresDivers = _view.findViewById(R.id.annonces_bouton_accessoires_et_divers);
-		_logo = _view.findViewById(R.id.annonces_layout_logo);
+		_logo = _view.findViewById(R.id.annonces_logo);
+		_layoutLogo = _view.findViewById(R.id.annonces_layout_logo);
 
 		ajouterListeners();
 		charger();
@@ -47,6 +49,8 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 
 		return _view;
 	}
+	
+	
 
 	public void ajouterListeners(){
 		if(_boutonBateauxVoiliers != null && _boutonMoteurs != null && _boutonAccessoiresDivers != null){
@@ -104,35 +108,25 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 		}
 	}
 
-	private int h=0;
-	private int w=0;
+	private int p=0;
 
 	@Override
 	public boolean onTouch(View arg0, MotionEvent e) {
 		switch(e.getAction()){
 		case MotionEvent.ACTION_CANCEL:
 		case MotionEvent.ACTION_UP:
-			LayoutParams params=_logo.getLayoutParams();
-
-			params.width = w;
-			params.height = h;
-
-			_logo.setLayoutParams(params);
+			_layoutLogo.setPadding(p,p,p,p);
 
 			mp.pause();
 			mp.seekTo(0);
 
 			return true;
 		case MotionEvent.ACTION_DOWN:
-			LayoutParams params2=_logo.getLayoutParams();
-
-			w = params2.width;
-			h = params2.height;
-
-			params2.width -=30;
-			params2.height -=30;
-
-			_logo.setLayoutParams(params2);	
+			p = _layoutLogo.getPaddingTop();
+			
+			int p2 = p+20;
+			_layoutLogo.setPadding(p2,p2,p2,p2);
+			
 			mp.start();
 
 			return true;

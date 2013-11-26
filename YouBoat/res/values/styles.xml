@@ -195,8 +195,14 @@
         <item name="android:layout_width">30dip</item>
         <item name="android:layout_height">30dip</item>
         <item name="android:layout_marginLeft">50dip</item>
-        <item name="android:layout_marginTop">10dip</item>
+        <item name="android:layout_marginBottom">50dip</item>
         <item name="android:background">@drawable/cercle_rouge</item>
+    </style>
+    
+        <style name="annonces_menu_cerlce_layout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
     </style>
 
     <style name="annonces_menu_cerlce_texte">

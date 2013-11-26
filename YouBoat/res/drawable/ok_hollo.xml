@@ -6,10 +6,6 @@
             <solid android:color="#FFFFFF" />
         </shape>
     </item>
-    <item android:left="159dp">
-        <shape android:shape="rectangle" >
-            <solid android:color="#EAEAEA"/>           
-        </shape>
-    </item>
+    
 
 </layer-list>

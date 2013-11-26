@@ -6,36 +6,46 @@
     android:orientation="vertical" >
 
     <RelativeLayout
-        android:id="@+id/annonces_layout_haut"
-        android:layout_width="fill_parent"
-        android:layout_height="200dip"
-        android:orientation="horizontal"
-        android:padding="10dip" >
-
-        <View
-            android:id="@+id/annonces_layout_logo"
-            android:layout_width="175dip"
-            android:layout_height="175dip"
-            android:layout_centerInParent="true"
-            android:background="@drawable/spash_screen_cercle" />
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/annonces_aujourd_hui"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dip"
-        android:layout_marginLeft="14dp"
-        android:gravity="center"
-        android:text="Aujoud&apos;hui 15.508 annonces"
-        android:textColor="@color/_blanc"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:minHeight="180dip"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/annonces_aujourd_hui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dip"
+            android:layout_marginLeft="14dp"
+            android:gravity="center"
+            android:text="Aujoud&apos;hui 15.508 annonces"
+            android:textColor="@color/_blanc"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/annonces_layout_logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/annonces_aujourd_hui"
+            android:padding="30dip" >
+
+            <ImageView
+                android:id="@+id/annonces_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/spash_screen_cercle" />
+        </RelativeLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/linear_bloc"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:background="@color/_gris_clair"
         android:gravity="center"
         android:orientation="vertical"
@@ -59,12 +69,15 @@
                     android:text="@string/bateaux_et_voiliers" />
             </LinearLayout>
 
-            <RelativeLayout style="@style/annonces_menu_cerlce" >
+            <LinearLayout style="@style/annonces_menu_cerlce_layout" >
 
-                <TextView
-                    android:id="@+id/annonces_nb_annonces_bateaux"
-                    style="@style/annonces_menu_cerlce_texte" />
-            </RelativeLayout>
+                <RelativeLayout style="@style/annonces_menu_cerlce" >
+
+                    <TextView
+                        android:id="@+id/annonces_nb_annonces_bateaux"
+                        style="@style/annonces_menu_cerlce_texte" />
+                </RelativeLayout>
+            </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
@@ -86,12 +99,15 @@
                     android:text="@string/moteurs_hb_lb" />
             </LinearLayout>
 
-            <RelativeLayout style="@style/annonces_menu_cerlce" >
+            <LinearLayout style="@style/annonces_menu_cerlce_layout" >
 
-                <TextView
-                    android:id="@+id/annonces_nb_annonces_moteurs"
-                    style="@style/annonces_menu_cerlce_texte" />
-            </RelativeLayout>
+                <RelativeLayout style="@style/annonces_menu_cerlce" >
+
+                    <TextView
+                        android:id="@+id/annonces_nb_annonces_moteurs"
+                        style="@style/annonces_menu_cerlce_texte" />
+                </RelativeLayout>
+            </LinearLayout>
         </RelativeLayout>
 
         <RelativeLayout
@@ -113,12 +129,15 @@
                     android:text="@string/accessoires_et_divers" />
             </LinearLayout>
 
-            <RelativeLayout style="@style/annonces_menu_cerlce" >
+            <LinearLayout style="@style/annonces_menu_cerlce_layout" >
 
-                <TextView
-                    android:id="@+id/annonces_nb_annonces_accessoires"
-                    style="@style/annonces_menu_cerlce_texte" />
-            </RelativeLayout>
+                <RelativeLayout style="@style/annonces_menu_cerlce" >
+
+                    <TextView
+                        android:id="@+id/annonces_nb_annonces_accessoires"
+                        style="@style/annonces_menu_cerlce_texte" />
+                </RelativeLayout>
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 

@@ -100,28 +100,37 @@
         android:layout_height="1dip"
         android:background="#EAEAEA" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dip"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/ok"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="50dip"
-            android:layout_weight="1"
-            android:background="@drawable/selector_ok_button_holo"
+            android:background="@drawable/fond_blanc_select_bleu"
             android:text="@string/ok"
-            android:textColor="@drawable/text_color_button" />
+            android:layout_alignParentLeft="true"
+            android:textColor="@drawable/text_color_button" 
+            android:layout_toLeftOf="@+id/separator"/>
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:background="#EAEAEA"
+            android:layout_centerHorizontal="true" />
 
         <Button
+            android:layout_toRightOf="@+id/separator"
             android:id="@+id/cancel"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="50dip"
-            android:layout_weight="1"
             android:background="@drawable/fond_blanc_select_bleu"
             android:text="@string/cancel"
+             android:layout_alignParentRight="true"
             android:textColor="@drawable/text_color_button" />
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>
