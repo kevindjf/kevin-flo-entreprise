@@ -22,10 +22,10 @@ import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.image.ImageLoaderCache;
 import fr.RivaMedia.model.Vendeur;
 import fr.RivaMedia.net.NetVendeur;
-import fr.RivaMedia.tab.TabVendeurAnnonces;
-import fr.RivaMedia.tab.TabVendeurDescription;
 import fr.RivaMedia.tab.core.PagesAdapter;
 import fr.RivaMedia.tab.core.Tab;
+import fr.RivaMedia.tab.vendeur.TabVendeurAnnonces;
+import fr.RivaMedia.tab.vendeur.TabVendeurDescription;
 
 @SuppressLint("ValidFragment")
 public class VendeurDetail extends FragmentNormal implements View.OnClickListener, OnPageChangeListener{

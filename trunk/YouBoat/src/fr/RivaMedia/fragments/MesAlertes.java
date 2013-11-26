@@ -1,193 +1,114 @@
 package fr.RivaMedia.fragments;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import android.os.AsyncTask;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
-import com.fortysevendeg.swipelistview.SwipeListView;
-
-import fr.RivaMedia.Constantes;
+import android.widget.Button;
 import fr.RivaMedia.R;
-import fr.RivaMedia.adapter.AnnonceListAdapter;
-import fr.RivaMedia.comparator.AnnonceDateComparator;
-import fr.RivaMedia.comparator.AnnoncePrixComparator;
 import fr.RivaMedia.fragments.core.FragmentListe;
-import fr.RivaMedia.model.Annonce;
-import fr.RivaMedia.net.NetAnnonce;
-import fr.RivaMedia.net.core.Net;
-import fr.RivaMedia.utils.AlertesManager;
+import fr.RivaMedia.tab.alertes.TabMesAlertesAnnonces;
+import fr.RivaMedia.tab.alertes.TabMesAlertesFormulaires;
+import fr.RivaMedia.tab.core.PagesAdapter;
+import fr.RivaMedia.tab.core.Tab;
 
 public class MesAlertes extends FragmentListe implements View.OnClickListener{
 
 	View _view;
-	View _derriere;
-	View _bouton_supprimer;
-	SwipeListView _liste = null;
-	AnnonceListAdapter _adapter = null;
-	List<Annonce> _annonces = new ArrayList<Annonce>();
-	static int  positionRetour;
-	boolean afficherProgress = true;
-
-	private AlertesManager _alertesManager;
+	TabMesAlertesAnnonces _tabAnnonces = null;
+	TabMesAlertesFormulaires _tabFormulaires = null;
+	
+	PagerAdapter _pagesAdapter;
+	ViewPager _page;	
+	List<Tab> _pages = new ArrayList<Tab>();
+	
+	Button _boutonAnnonces;
+	Button _boutonFragments;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		_view = inflater.inflate(R.layout.liste_swipe_views,container, false);
-		_alertesManager = new AlertesManager(getActivity());
-		//_alertesManager.reset();
-		_derriere = _view.findViewById(R.id.derriere);
-		task = new ChargerAnnoncesTask();
-		task.execute();
-
-
-		return _view;
-	}
-
-	public void chargerAnnonces(){
+		_view = inflater.inflate(R.layout.mes_alertes,container, false);
+		
 		charger();
 		remplir();
 		ajouterListeners();
-		if(_annonces.size()==0){
-			((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_alerte);
-			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
-		}
+
+		return _view;
+	}
+	
+
+	@Override
+	public void charger() {
+		_page = (ViewPager) _view.findViewById(R.id.mes_alertes_pager);
+		_boutonAnnonces = (Button)_view.findViewById(R.id.mes_alertes_bouton_annonces);
+		_boutonFragments = (Button)_view.findViewById(R.id.mes_alertes_bouton_formulaires);
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
-		afficherProgress(afficherProgress);
-		getActivity().runOnUiThread(new Runnable(){
-			public void run(){
-				synchronized(_annonces){
-					if(_adapter != null){
-						for(Annonce a : _annonces){
-							//TODO Trouver une autre facon de changer la listView
-							if(!_alertesManager.contient(a.getNumero())){
-								_annonces.remove(a);
-								_adapter.notifyDataSetChanged();
-								break;
-							}
-						}
-					}
-				}
-			}
-		});
-
+	public void remplir() {
+		chargerTabs();		
 	}
 
-	public void charger(){
-		_liste = (SwipeListView)_view.findViewById(R.id.list);		
-
+	@Override
+	public void ajouterListeners() {
+		_boutonAnnonces.setOnClickListener(this);
+		_boutonFragments.setOnClickListener(this);
 	}
-	public void remplir(){
-		_adapter = new AnnonceListAdapter(getActivity(), _annonces,null,true);
-		_liste.setAdapter(_adapter);
+	
+	protected void chargerTabs(){
+		_pages.clear();
+
+		_tabAnnonces = new TabMesAlertesAnnonces("Annonces", getActivity(), this);
+		_tabFormulaires = new TabMesAlertesFormulaires("Alertes", getActivity(), this);
+
+		_pages.add(_tabAnnonces);
+		_pages.add(_tabFormulaires);
+		
+		if(_pages.size()>0){
+			_pagesAdapter = new PagesAdapter(getChildFragmentManager(),_pages);
+			_page.setAdapter(_pagesAdapter);
+		}else
+			_page.setVisibility(View.GONE);
 	}
-	public void ajouterListeners(){
+	
 
-		_liste.setSwipeListViewListener(new BaseSwipeListViewListener() {
-			@Override
-			public void onOpened(int position, boolean toRight) {
-			}
-
-			@Override
-			public void onClosed(int position, boolean fromRight) {
-			}
-
-			@Override
-			public void onListChanged() {
-			}
-
-			@Override
-			public void onMove(int position, float x) {
-			}
-
-			@Override
-			public void onStartOpen(int position, int action, boolean right) {
-				Log.d("swipe", String.format("onStartOpen %d - action %d", position, action));
-			}
-
-			@Override
-			public void onStartClose(int position, boolean right) {
-				Log.d("swipe", String.format("onStartClose %d", position));
-			}
-
-			@Override
-			public void onClickFrontView(int position) {
-				Log.d("swipe", String.format("onClickFrontView %d", position));
-				positionRetour = position;
-				_adapter.getView(position).onClickFrontView();
-			}
-
-			@Override
-			public void onClickBackView(int position) {
-				int [] tabposition = {position};
-				onDismiss(tabposition);
-			}
-
-			@Override
-			public void onDismiss(int[] reverseSortedPositions) {
-				for (int position : reverseSortedPositions) {
-					_alertesManager.retirer(_annonces.get(position).getNumero(), _annonces.get(position).getType());
-					_annonces.remove(position);
-					if(_annonces.size()==0){
-						((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_alerte);
-						_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
-					}
-				}
-				_adapter.notifyDataSetChanged();
-			}
-
-		});
-
-	}
-
-
-	/* --------------------------------------------------------------------------- */
-
-	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
-		protected Void doInBackground(Void...donnees) {
-			//TODO Si aucune annonce afficher message
-			List<String> alertes = _alertesManager.getAll();
-			for(String favoris : alertes){
-				try{
-					String[] ids = favoris.split(";");
-					String id = ids[0];
-					String type = ids[1];
-					Annonce annonce = NetAnnonce.rechercherAnnonce(type, Net.construireDonnes(Constantes.ANNONCES_DETAIL_ID_ANNONCE,id));
-					annonce.setType(type);
-					_annonces.add(annonce);
-				}catch(Exception e){}
-			}
-			getActivity().runOnUiThread(new Runnable(){
-
-				@Override
-				public void run() {
-					chargerAnnonces();
-					afficherProgress = false;
-					afficherProgress(afficherProgress);
-				}
-
-			});
-
-			return null;
-		}
-
-		protected void onPostExecute(){
+	@Override
+	public void onClick(View v) {
+		super.onClick(v);
+		switch(v.getId()){
+		case R.id.mes_alertes_bouton_annonces:
+			inverserTabs();
+			_page.setCurrentItem(0);
+			break;
+		case R.id.mes_alertes_bouton_formulaires:
+			inverserTabs();
+			_page.setCurrentItem(1);
+			break;
 		}
 	}
-
-
+	
+	protected void inverserTabs(){
+		Drawable couleur1 = _boutonAnnonces.getBackground();
+		int couleurTexte1 = _boutonAnnonces.getTextColors().getDefaultColor();
+		Drawable couleur2 = _boutonFragments.getBackground();
+		int couleurTexte2 = _boutonFragments.getTextColors().getDefaultColor();
+		
+		_boutonAnnonces.setBackgroundDrawable(couleur2);
+		_boutonFragments.setBackgroundDrawable(couleur1);
+		
+		_boutonAnnonces.setTextColor(couleurTexte2);
+		_boutonFragments.setTextColor(couleurTexte1);	
+	}
+	protected void clickBoutonFormulaires(){
+		
+	}
+	
 	@Override
 	public void effacer() {
 		// TODO Auto-generated method stub
@@ -202,37 +123,37 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 
 	@Override
 	public void afficherPrixCroissant() {
-		if(_adapter != null && _annonces != null){
-			Collections.sort(_annonces,new AnnoncePrixComparator(true));
-			_adapter.notifyDataSetChanged();
+		if(_tabAnnonces != null){
+			_tabAnnonces.afficherPrixCroissant();
 		}
 	}
 
 
 	@Override
 	public void afficherPrixDeCroissant() {
-		if(_adapter != null && _annonces != null){
-			Collections.sort(_annonces,new AnnoncePrixComparator(false));
-			_adapter.notifyDataSetChanged();
+		if(_tabAnnonces != null){
+			_tabAnnonces.afficherPrixDeCroissant();
 		}
 	}
 
 
 	@Override
 	public void afficherDateCroissant() {
-		if(_adapter != null && _annonces != null){
-			Collections.sort(_annonces,new AnnonceDateComparator(true));
-			_adapter.notifyDataSetChanged();
+		if(_tabAnnonces != null){
+			_tabAnnonces.afficherDateCroissant();
 		}
 	}
 
 
 	@Override
 	public void afficherDateDeCroissant() {
-		if(_adapter != null && _annonces != null){
-			Collections.sort(_annonces,new AnnonceDateComparator(false));
-			_adapter.notifyDataSetChanged();
+		if(_tabAnnonces != null){
+			_tabAnnonces.afficherDateDeCroissant();
 		}
 	}
+
+
+
+
 
 }
