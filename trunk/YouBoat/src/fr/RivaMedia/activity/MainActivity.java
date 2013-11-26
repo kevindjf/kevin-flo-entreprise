@@ -1,3 +1,4 @@
+
 package fr.RivaMedia.activity;
 
 import android.annotation.SuppressLint;
@@ -14,12 +15,22 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.navdrawer.SimpleSideDrawer;
 
 import fr.RivaMedia.R;
-import fr.RivaMedia.fragments.*;
+import fr.RivaMedia.fragments.Actualites;
+import fr.RivaMedia.fragments.Annonces;
+import fr.RivaMedia.fragments.Annuaire;
+import fr.RivaMedia.fragments.ContactPro;
+import fr.RivaMedia.fragments.Credit;
+import fr.RivaMedia.fragments.Informations;
+import fr.RivaMedia.fragments.MesAlertes;
+import fr.RivaMedia.fragments.MesAnnonces;
+import fr.RivaMedia.fragments.OnDemand;
+import fr.RivaMedia.fragments.Vendre;
 import fr.RivaMedia.fragments.core.Effaceable;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.core.Net;
@@ -46,9 +57,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View[] _slider_elements;
 
 	View _progress;
-	
+
 	Annonce _annoncePourFavoris;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,7 +67,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		ajouterVues();
 		charger();
 		ajouterListeners();
-		
+
 		Net.enableHttpResponseCache(this);
 	}
 	public void afficherProgress(boolean afficher){
@@ -209,7 +220,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void afficherContactPro(){
 		ajouterFragment(new ContactPro(),false);
 	}
-	
+
 	public void afficherCredits(){
 		ajouterFragment(new Credit(),false);
 	}
@@ -228,7 +239,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_effacer.setVisibility(View.GONE);
 		_header_effacer.setOnClickListener(null);
 	}
-	
+
 	public void cacherTrier(){
 		_header_trier.setVisibility(View.GONE);
 		_header_trier.setOnClickListener(null);
@@ -240,11 +251,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void ajouterFragment(Fragment fragment, boolean back){
 		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-		
+		FragmentManager manager = getSupportFragmentManager();
+		Fragment currFrag = (Fragment)manager.findFragmentById(R.id.main_fragment);
+
 		//transaction.hide(getSupportFragmentManager().findFragmentById(R.id.main_fragment));
 		transaction.add(R.id.main_fragment, fragment);
 
-		if(back)
+		if(back || currFrag instanceof Annonces)
 			transaction.addToBackStack(null);
 
 		transaction.commit();
@@ -285,12 +298,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		alert.show();
 
 	}
-	
+
 	public View afficherFavoris(){
 		_header_favoris.setVisibility(View.VISIBLE);
 		return _header_favoris;
 	}
-	
+
 	public void cacherFavoris(){
 		_header_favoris.setVisibility(View.GONE);
 		_header_favoris.setOnClickListener(null);
@@ -298,33 +311,33 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	public void onBackStackChanged() 
-    {                   
-        FragmentManager manager = getSupportFragmentManager();
+	{                   
+		FragmentManager manager = getSupportFragmentManager();
 
-        if (manager != null)
-        {
-            Fragment currFrag = (Fragment)manager.findFragmentById(R.id.main_fragment);
+		if (manager != null)
+		{
+			Fragment currFrag = (Fragment)manager.findFragmentById(R.id.main_fragment);
 
-            currFrag.onResume();
-        }                   
-    }
-	
+			currFrag.onResume();
+		}                   
+	}
+
 	public View afficherTrier(){
 		_header_trier.setVisibility(View.VISIBLE);
 		return _header_trier;
 	}
-	
+
 	public SimpleSideDrawer getSliderDroite(){
 		return _slider;
 	}
-	
+
 	public void afficherSliderDroite(){
 		_slider.openRightSide();
 	}
 	public void fermerSliderDroite(){
 		_slider.closeRightSide();
 	}
-	
+
 	@SuppressLint("NewApi")
 	protected void onStop() {
 		super.onStop();
@@ -333,4 +346,36 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			cache.flush();
 		}
 	}
+
+	@Override
+	public void onBackPressed() {
+
+		if(!_slider.isClosed()){
+			_slider.toggleDrawer();
+		}else{
+			FragmentManager manager = getSupportFragmentManager();
+
+			if (manager != null)
+			{
+				Fragment currFrag = (Fragment)manager.findFragmentById(R.id.main_fragment);
+
+				if(currFrag instanceof Annonces)
+					this.finish();
+			}    
+
+			super.onBackPressed();
+		}
+	}
+
+	@Override
+	public boolean onKeyDown(int keycode, KeyEvent event ) {
+		if(keycode == KeyEvent.KEYCODE_MENU){
+			if(_slider != null)
+				_slider.toggleLeftDrawer();
+		}
+		return super.onKeyDown(keycode,event);  
+	}
+
+
+
 }

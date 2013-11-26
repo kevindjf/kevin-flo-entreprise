@@ -71,7 +71,7 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 					if(_adapter != null){
 						for(Annonce a : _annonces){
 							//TODO Trouver une autre facon de changer la listView
-							if(!_favorisManager.contientFavoris(a.getNumero())){
+							if(!_favorisManager.contient(a.getNumero())){
 								_annonces.remove(a);
 								_adapter.notifyDataSetChanged();
 								break;
@@ -81,7 +81,7 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 				}
 			}
 		});
-		
+
 	}
 
 	public void charger(){
@@ -137,8 +137,12 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {
 				for (int position : reverseSortedPositions) {
-					_favorisManager.retirerFavoris(_annonces.get(position).getNumero(), _annonces.get(position).getType());
+					_favorisManager.retirer(_annonces.get(position).getNumero(), _annonces.get(position).getType());
 					_annonces.remove(position);
+					if(_annonces.size()==0){
+						((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_favoris);
+						_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
+					}
 				}
 				_adapter.notifyDataSetChanged();
 			}
@@ -153,18 +157,16 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//TODO Si aucune annonce afficher message
-			List<String> fav = _favorisManager.getFavois();
-			if(fav.size() > 1){
-				for(String favoris : fav){
-					try{
-						String[] ids = favoris.split(";");
-						String id = ids[0];
-						String type = ids[1];
-						Annonce annonce = NetAnnonce.rechercherAnnonce(type, Net.construireDonnes(Constantes.ANNONCES_DETAIL_ID_ANNONCE,id));
-						annonce.setType(type);
-						_annonces.add(annonce);
-					}catch(Exception e){}
-				}
+			List<String> fav = _favorisManager.getAll();
+			for(String favoris : fav){
+				try{
+					String[] ids = favoris.split(";");
+					String id = ids[0];
+					String type = ids[1];
+					Annonce annonce = NetAnnonce.rechercherAnnonce(type, Net.construireDonnes(Constantes.ANNONCES_DETAIL_ID_ANNONCE,id));
+					annonce.setType(type);
+					_annonces.add(annonce);
+				}catch(Exception e){}
 			}
 			getActivity().runOnUiThread(new Runnable(){
 

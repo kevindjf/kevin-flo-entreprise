@@ -284,7 +284,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			_favoris = super.afficherFavoris();
 			_favoris.setOnClickListener(this);
 			if(_annonce.getNumero() != null && !_annonce.getNumero().equals("")){
-				_favoris.setSelected(_favorisManager.contientFavoris(_annonce.getNumero()));
+				_favoris.setSelected(_favorisManager.contient(_annonce.getNumero()));
 			}
 		}
 	}
@@ -309,17 +309,17 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	protected void switchFavoris(){
 		if(_annonce.getNumero() != null && !_annonce.getNumero().equals("")){
-			if(_favorisManager.contientFavoris(_annonce.getNumero())){
-				_favorisManager.retirerFavoris(_annonce.getNumero(),_type);
+			if(_favorisManager.contient(_annonce.getNumero())){
+				_favorisManager.retirer(_annonce.getNumero(),_type);
 				Toast.makeText(getActivity(), R.string.favoris_retiree, Toast.LENGTH_SHORT).show();
 			}
 			else{
-				_favorisManager.ajouterFavoris(_annonce.getNumero(),_type);
+				_favorisManager.ajouter(_annonce.getNumero(),_type);
 				Toast.makeText(getActivity(), R.string.favoris_ajoutee, Toast.LENGTH_SHORT).show();
 			}
 			getActivity().runOnUiThread(new Runnable(){
 				public void run(){
-					_favoris.setSelected(_favorisManager.contientFavoris(_annonce.getNumero()));
+					_favoris.setSelected(_favorisManager.contient(_annonce.getNumero()));
 				}
 			});
 		}

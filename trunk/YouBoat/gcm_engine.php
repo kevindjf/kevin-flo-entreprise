@@ -3,14 +3,26 @@
 // Set POST variables
 $url = 'https://android.googleapis.com/gcm/send';
 
-$idAnnonces = array();
+//CONSTANTES//////////////////
+$BATEAU_A_MOTEUR = "1";
+$BATEAUX = $BATEAU_A_MOTEUR;
+$VOILIER = "2";
+$PNEU = "3";
+
+$MOTEURS = "4";
+$ACCESSOIRES = "5";
+$PLACE_DE_PORT="6";
+//////////////////////////////
+
+
+$annonces = array();
 //On boucle ici sur les résultat de la requete Mysql. eg. foreach($MySQL_results as $K => $V)
 	//1Ere iteration
-	array_push($idAnnonces,"2544183");
+	array_push($annonces, array('type' => $BATEAUX, 'id' => "46093" ));
 	//2Eme iteration
-	array_push($idAnnonces,"2544182");
+	array_push($annonces, array('type' => $MOTEURS, 'id' => "3242" ));
 	//3eme iteration
-	array_push($idAnnonces,"2544179");
+	array_push($annonces, array('type' => $ACCESSOIRES, 'id' => "2081" ));
 //Fin boucle
 
 $ID_FLORENT="APA91bFEgdzAsY-U2RUY-UwwM3zcUpn-d14Hfefpczx9dfeHKBacHgwSxgUpnyv_6GrcXwzTBrl2Wo490xJQB_Dpxh0lgMCMI9xojLmParD1JhQAlz20m7uGMwHOVCsHSTtniMXeuaNAmHMPe6wH6r2CiSs2qOpnlA";
@@ -22,10 +34,12 @@ $IDENTIFIANT_TELEPHONE = $ID_FLORENT;
 //La clef de l'application que l'on vient de générer avec les identifiants sur la console Google
 $API_KEY = 'AIzaSyD4qJA03LqSDGuBZuLBl_7Vmo_0DESuoRo';
 
+$datas = array( "message" => "Nouvelles Alertes !" , "annonces" => json_encode($annonces));
+
 $fields = array(
 
 				'registration_ids'  => array( $IDENTIFIANT_TELEPHONE ),
-			    'data'              => array( "message" => "Nouvelles Alertes !" , "annonces" => json_encode($idAnnonces) ),
+			    'data'              => $datas
                 );
 
 $headers = array( 
