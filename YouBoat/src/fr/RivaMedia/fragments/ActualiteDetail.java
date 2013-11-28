@@ -1,24 +1,19 @@
 package fr.RivaMedia.fragments;
 
 import android.annotation.SuppressLint;
-import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.image.ImageLoaderCache;
-import fr.RivaMedia.model.News;
-import fr.RivaMedia.net.NetNews;
+import fr.RivaMedia.model.Actualite;
+import fr.RivaMedia.net.NetActualite;
 
 /**
  * TODO: Afficher dans des onglets (viewpager)
@@ -30,7 +25,7 @@ public class ActualiteDetail extends FragmentNormal{
 	View _view;
 
 	String _id;
-	News _news;
+	Actualite _news;
 
 	ImageView _image;
 	TextView _titre;
@@ -125,6 +120,7 @@ public class ActualiteDetail extends FragmentNormal{
 			return "Décembre";
 		return "Err";
 	}
+	@SuppressWarnings("unused")
 	private String changerDate(String dateEn){
 		String dateFr ="";
 		Log.e("Jour", dateEn.substring(0,3));
@@ -203,7 +199,7 @@ public class ActualiteDetail extends FragmentNormal{
 	class ChargerNewsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
-			_news = NetNews.getNews(_id);
+			_news = NetActualite.getNews(_id);
 
 			getActivity().runOnUiThread(new Runnable(){
 

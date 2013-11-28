@@ -1,9 +1,12 @@
 package fr.RivaMedia.fragments;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.entity.mime.MultipartEntity;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -24,16 +27,21 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
+import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.fragments.selector.ValeurSelector;
-import fr.RivaMedia.model.Marque;
-import fr.RivaMedia.model.Service;
+import fr.RivaMedia.model.Categorie;
+import fr.RivaMedia.model.Departement;
 import fr.RivaMedia.model.core.Donnees;
-import fr.RivaMedia.net.NetChargement;
-import fr.RivaMedia.net.NetNews;
+import fr.RivaMedia.net.NetVendre;
 import fr.RivaMedia.net.core.Net;
 
 @SuppressLint("ValidFragment")
 public class VendeurFormulaire extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener{
+
+	public static int VENDRE = 0;
+	public static int ON_DEMAND = 1;
+
+	int pour = VENDRE;
 
 	public static final int PAYS = 0;
 
@@ -45,20 +53,21 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	View _email;
 	View _telephone;
 	View _codePostal;
+
 	View _pays;
+	View _ville;
 
-	String _url;
-	List<NameValuePair> _donneesPrecedentes;
+	String idPays;
+
+	MultipartEntity _donnees;
 	List<Bitmap> _photos;
-
-	List<NameValuePair> _donneesEnvoyees;
 
 	View[] views;
 	String[] valeurs;
 
-	public VendeurFormulaire(String url, List<NameValuePair> donneesPrecedentes, List<Bitmap> photos) {
-		_url = url;
-		_donneesPrecedentes = donneesPrecedentes;
+	public VendeurFormulaire(int pour, MultipartEntity donneesPrecedentes, List<Bitmap> photos) {
+		this.pour = pour;
+		_donnees = donneesPrecedentes;
 		_photos = photos;
 	}
 
@@ -88,7 +97,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 				_email,
 				_telephone,
 				_codePostal,
-				_pays
+				_pays,
+				_ville
 		};
 
 		recupererValeursInitiales();
@@ -116,7 +126,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	public void reset(){
 		int i=0;
 		for(View v : views){
-			v.setOnClickListener(null);
+			//v.setOnClickListener(null);
 			//v.setVisibility(View.GONE);
 			Object o = v.findViewById(R.id.text);
 			if(o instanceof TextView)
@@ -126,6 +136,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 			//spinners, etc
 			i++;
 		}
+
+		idPays = null;
 	}
 
 	public void ajouterListeners(){
@@ -149,7 +161,15 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	}
 
 	protected void demanderPays(){
-		ajouterFragment(new ValeurSelector(this,PAYS,getResources().getStringArray(R.array.pays)));
+		List<Departement> departements = Donnees.departements;
+		if(departements != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Departement departement : departements){
+				donneesValeurs.put(departement.getNom(), departement.getId());
+			}
+
+			ajouterFragment(new DonneeValeurSelector(this,PAYS,donneesValeurs));
+		}
 	}
 
 	@Override
@@ -159,6 +179,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 			if(from instanceof ValeurSelector){
 				((TextView)_pays.findViewById(R.id.text)).setText(value);
+				idPays = item;
 			}
 		}
 	}
@@ -169,43 +190,55 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_nom), Toast.LENGTH_SHORT).show();
 		else if(((EditText)_email.findViewById(R.id.text)).getText().toString().trim().equals(""))
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_email), Toast.LENGTH_SHORT).show();
-		else
-			if(((TextView)_pays.findViewById(R.id.text)).getText().toString().trim().equals(getString(R.string.requis)))
+		else if(((EditText)_codePostal.findViewById(R.id.text)).getText().toString().trim().equals(""))
+			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_code_postale), Toast.LENGTH_SHORT).show();
+		else{
+			if(pour == VENDRE && idPays == null)
 				Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_pays), Toast.LENGTH_SHORT).show();
+			else if(pour == ON_DEMAND && 
+					((TextView)_ville.findViewById(R.id.text)).getText().toString().trim().equals(getString(R.string.requis))
+					)
+				Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_ville), Toast.LENGTH_SHORT).show();
+			else{
+				validerVendeur();	
+			}
+		}
 
-			else if(((EditText)_codePostal.findViewById(R.id.text)).getText().toString().trim().equals(""))
-				Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_code_postale), Toast.LENGTH_SHORT).show();
-			else
-				validerVendeur(recupererDonnees());	
 
 	}
 
-	protected List<NameValuePair> recupererDonnees(){
+	protected void recupererDonnees(){
 
-		List<NameValuePair> donnees = Net.construireDonnes();
-
-		Net.add(donnees, Constantes.VENDEUR_NOM,((EditText)_nom.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, Constantes.VENDEUR_PRENOM,((EditText)_prenom.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, Constantes.VENDEUR_EMAIL,((EditText)_email.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, Constantes.VENDEUR_TEL_1,((EditText)_telephone.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, Constantes.VENDEUR_CODE_POSTAL,((EditText)_codePostal.findViewById(R.id.text)).getText().toString());
-		Net.add(donnees, Constantes.VENDEUR_PAYS,((TextView)_pays.findViewById(R.id.text)).getText().toString());
-
-		return donnees;
+		String nom = ((EditText)_nom.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
+		Net.add(_donnees, Constantes.VENDEUR_NOM,nom);
+		
+		String prenom = ((EditText)_prenom.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
+		if(prenom.length() > 0)
+			Net.add(_donnees, Constantes.VENDEUR_PRENOM,prenom);
+			
+		Net.add(_donnees, Constantes.VENDEUR_EMAIL,((EditText)_email.findViewById(R.id.text)).getText().toString());
+		Net.add(_donnees, Constantes.VENDEUR_TEL_1,((EditText)_telephone.findViewById(R.id.text)).getText().toString().trim().replace(".", "").replace(",",""));
+		Net.add(_donnees, Constantes.VENDEUR_CODE_POSTAL,((EditText)_codePostal.findViewById(R.id.text)).getText().toString());
+		
+		if(pour == VENDRE && idPays != null)
+			Net.add(_donnees, Constantes.VENDEUR_PAYS,idPays);
+		else if(pour == ON_DEMAND){
+			String ville = ((TextView)_ville.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
+			if(ville.length() > 0)
+				Net.add(_donnees, Constantes.VENDEUR_VILLE,ville);
+		}
 	}
 
-	private void validerVendeur(List<NameValuePair> donneesVendeur) {
-
-		_donneesEnvoyees = new ArrayList<NameValuePair>();
-		_donneesEnvoyees.addAll(_donneesPrecedentes);
-		_donneesEnvoyees.addAll(donneesVendeur);
-
-		if(_url.equals(Constantes.URL_ON_DEMAND)){
-			task = new EnvoyerOnDemandTask();
-			task.execute();
-		}else{ //vendre
-			task = new EnvoyerVendreTask();
-			task.execute();
+	private void validerVendeur() {
+		recupererDonnees();
+		if(task == null){
+			if(pour == ON_DEMAND){
+				task = new EnvoyerOnDemandTask();
+				task.execute();
+			}else if(pour == VENDRE){
+				task = new EnvoyerVendreTask();
+				task.execute();
+			}
 		}
 
 
@@ -223,8 +256,9 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	class EnvoyerOnDemandTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
-			synchronized (_donneesEnvoyees) {
-				Net.requete(_url, _donneesEnvoyees);
+			synchronized (_donnees) {
+				
+				NetVendre.vendre(_donnees, _photos);
 			}
 
 			getActivity().runOnUiThread(new Runnable(){
@@ -257,20 +291,20 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	class EnvoyerVendreTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
-			synchronized (_donneesEnvoyees) {
+			synchronized (_donnees) {
 				//TODO: ajouter la date "ddMMHHmmss" cryptée en md5
-				
+
 				Net.requete(_url, _donneesEnvoyees);
-				
+
 				if(_photos != null && _photos.size()>0){
 					Net.requete(_url, Net.construireDonnesMultiPart(
 							Constantes.UPLOAD_PHOTO, _photos.get(0))
-					);
+							);
 				}
-	            
-	           // [requetePhoto setPostValue:typeGet forKey:@"typeget"];
-	            
-	           // [requetePhoto setPostValue:aleaNumber forKey:@"aleaNumber"];
+
+				// [requetePhoto setPostValue:typeGet forKey:@"typeget"];
+
+				// [requetePhoto setPostValue:aleaNumber forKey:@"aleaNumber"];
 			}
 
 			getActivity().runOnUiThread(new Runnable(){

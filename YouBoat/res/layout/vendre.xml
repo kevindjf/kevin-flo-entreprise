@@ -187,6 +187,20 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/vendre_unite_longueur"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/unite" />
+
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/vendre_energie"
                 style="@style/formulaire_cellule" >
 

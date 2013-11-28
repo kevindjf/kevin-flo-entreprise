@@ -10,7 +10,7 @@ import android.widget.TextView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.ActualiteDetail;
 import fr.RivaMedia.image.ImageLoaderCache;
-import fr.RivaMedia.model.News;
+import fr.RivaMedia.model.Actualite;
 import fr.RivaMedia.view.core.YouBoatView;
 
 public class ActualiteView extends YouBoatView implements View.OnTouchListener{
@@ -42,8 +42,8 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 
 	@Override
 	public void remplir() {
-		if(_element instanceof News){
-			News news = (News)_element;
+		if(_element instanceof Actualite){
+			Actualite news = (Actualite)_element;
 
 			ImageLoaderCache.charger(news.getImageAdress(),_image);
 			_titre.setText(news.getTitle());
@@ -90,8 +90,8 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	public void lancerActualiteDetail(Object element){
-		if(_element instanceof News){
-			News news = (News)_element;
+		if(_element instanceof Actualite){
+			Actualite news = (Actualite)_element;
 			afficherNormal();
 
 			FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();

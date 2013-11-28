@@ -10,7 +10,7 @@ import android.widget.ListView;
 import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.ActualiteListAdapter;
 import fr.RivaMedia.fragments.core.FragmentNormal;
-import fr.RivaMedia.model.News;
+import fr.RivaMedia.model.Actualite;
 import fr.RivaMedia.model.core.Donnees;
 
 public class Actualites extends FragmentNormal{
@@ -19,7 +19,7 @@ public class Actualites extends FragmentNormal{
 	ListView _liste = null;
 	ActualiteListAdapter _adapter = null;
 
-	List<News> _news = null;
+	List<Actualite> _news = null;
 
 	boolean afficherProgress = true;
 

@@ -27,3 +27,21 @@ Popup ajouter Photo
 
 
 -> Input de date et de prix
+
+-> Chaque vue dn un scroll
+
+
+
+//DEPUIS PROTO
+-> charger dynamiquement les news
+-> s'occuper des types d'annonces (enlever ceux de Constantes, et voir dans donnees)
+-> regions dans Donnees, plus dans string.xml
+-> etats dans Donnees, plus dans string.xml
+-> departements dans Donnees, plus dans string.xml
+-> energies dans Donnees, plus dans string.xml
+
+-> pages
+-> recherche par mot clé
+-> formulaire on demand
+-> emails
+-> checkbox 'm', 'ft' / defaut : metres

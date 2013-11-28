@@ -29,12 +29,13 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	AnnonceListAdapter _adapter = null;
 	List<Annonce> _annonces;
 
-	String _url;
 	List<NameValuePair> _donneesFormulaire;
 	String _type;
 
-	public AnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
-		this._url = url;
+	int page = 0;
+	String idClient = null; 
+	
+	public AnnoncesListe(List<NameValuePair> donneesFormulaire, String type){
 		this._donneesFormulaire = donneesFormulaire;
 		this._type = type;
 	}
@@ -84,30 +85,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		ajouterListeners();
 	}
 
-	/* --------------------------------------------------------------------------- */
 
-	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
-		protected Void doInBackground(Void...donnees) {
-			//tests
-			_annonces = NetAnnonce.rechercher(_url, _donneesFormulaire);
-
-			getActivity().runOnUiThread(new Runnable(){
-
-				@Override
-				public void run() {
-					chargerAnnonces();
-					afficherProgress = false;
-					afficherProgress(afficherProgress);
-				}
-
-			});
-
-			return null;
-		}
-
-		protected void onPostExecute(){
-		}
-	}
 
 	@Override
 	public void effacer() {
@@ -155,6 +133,31 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		if(_adapter != null && _annonces != null){
 			Collections.sort(_annonces,new AnnonceDateComparator(false));
 			_adapter.notifyDataSetChanged();
+		}
+	}
+	
+	/* --------------------------------------------------------------------------- */
+
+	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
+		protected Void doInBackground(Void...donnees) {
+			//tests
+			_annonces = NetAnnonce.rechercher(_type, Integer.valueOf(page), _donneesFormulaire, idClient);
+
+			getActivity().runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					chargerAnnonces();
+					afficherProgress = false;
+					afficherProgress(afficherProgress);
+				}
+
+			});
+
+			return null;
+		}
+
+		protected void onPostExecute(){
 		}
 	}
 

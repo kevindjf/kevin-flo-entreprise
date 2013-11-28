@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.entity.mime.MultipartEntity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -646,8 +647,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	}
 
-	private List<NameValuePair> recupererDonnees(){
-		List<NameValuePair> donnees = Net.construireDonnes();
+	private MultipartEntity recupererDonnees(){
+		MultipartEntity donnees = Net.construireDonnesMultiPart();
 
 		if(typeVente.equals(Constantes.BATEAUX)){
 
@@ -770,16 +771,12 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		return donnees;
 	}
 
-	private String recupererUrl(){
-		return "";
-	}
-
 	private void etapeSuivante() {
-		List<NameValuePair> donneesVente = recupererDonnees();
+		MultipartEntity donneesVente = recupererDonnees();
 		if(donneesVente == null)
 			return;
 
-		ajouterFragment(new VendeurFormulaire(recupererUrl(),donneesVente,_photos));
+		ajouterFragment(new VendeurFormulaire(VendeurFormulaire.VENDRE,donneesVente,_photos));
 	}
 
 	@Override

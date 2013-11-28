@@ -23,9 +23,10 @@ import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
-import fr.RivaMedia.fragments.selector.ValeurSelector;
 import fr.RivaMedia.model.Categorie;
+import fr.RivaMedia.model.Etat;
 import fr.RivaMedia.model.Marque;
+import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
 
@@ -52,6 +53,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	View _view;
 	View _rechercher;
+	View _ajouterAlerte;
 
 	View _type;
 	View _categorie;
@@ -87,6 +89,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	String recherche_puissance_min = null;
 	String recherche_puissance_max = null;
 
+	String recherche_localisation_id = null;
+	String recherche_etat_id = null;
+
 	List<Marque> _marques = null;
 
 	public AnnoncesFormulaire(String type){
@@ -106,6 +111,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	public void charger(){
 		_rechercher = _view.findViewById(R.id.annonces_formulaire_bouton_rechercher);	
+		_ajouterAlerte = _view.findViewById(R.id.annonces_formulaire_bouton_alertes);	
 
 		_type = _view.findViewById(R.id.annonces_formulaire_type);
 		_categorie = _view.findViewById(R.id.annonces_formulaire_categorie);
@@ -170,6 +176,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	public void ajouterListeners(){
 		_rechercher.setOnClickListener(this);
+		_ajouterAlerte.setOnClickListener(this);
 
 		if(typeAnnonces.equals(Constantes.BATEAUX))
 			_type.setOnClickListener(this);
@@ -189,6 +196,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		switch(v.getId()){
 		case R.id.annonces_formulaire_bouton_rechercher:
 			rechercher();
+			break;
+		case R.id.annonces_formulaire_bouton_alertes:
+			ajouterAlerte();
 			break;
 
 		case R.id.annonces_formulaire_type:
@@ -222,6 +232,11 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		}
 	}
 
+	private void ajouterAlerte() {
+		// TODO Auto-generated method stub
+
+	}
+
 	protected void demanderType(){
 		ajouterFragment(new DonneeValeurSelector(
 				this,
@@ -239,9 +254,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			String type = typeAnnonces;
-			if(typeAnnonces.equals(Constantes.BATEAUX))
-				type = recherche_type;
+			String type = recherche_type;
 
 			List<Categorie> categories = Donnees.getCategories(type);
 			if(categories != null){
@@ -281,10 +294,27 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,recherche_type));
 	}
 	protected void demanderEtat(){
-		ajouterFragment(new ValeurSelector(this, ETAT,  getResources().getStringArray(R.array.etat)));
+		List<Etat> etats = Donnees.etats;
+		if(etats != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Etat etat : etats){
+				donneesValeurs.put(etat.getNom(), etat.getId());
+			}
+
+			ajouterFragment(new DonneeValeurSelector(this,ETAT,donneesValeurs));
+		}
 	}
 	protected void demanderLocalisation(){
-		ajouterFragment(new ValeurSelector(this, LOCALISATION,  getResources().getStringArray(R.array.localisation)));
+
+		List<Region> regions = Donnees.regions;
+		if(regions != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Region region : regions){
+				donneesValeurs.put(region.getNom(), region.getId());
+			}
+
+			ajouterFragment(new DonneeValeurSelector(this,LOCALISATION,donneesValeurs));
+		}
 	}
 	protected void demanderPuissance(){
 		new MinMaxDialog(
@@ -313,8 +343,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		}
 	}
 
-	public void afficherAnnoncesListe(String url, List<NameValuePair> donneesFormulaire, String type){
-		ajouterFragment(new AnnoncesListe(url,donneesFormulaire,type));
+	public void afficherAnnoncesListe(List<NameValuePair> donneesFormulaire, String type){
+		ajouterFragment(new AnnoncesListe(donneesFormulaire,type));
 	}
 
 	public void reset(){
@@ -334,6 +364,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		recherche_chantier_id = null;
 		recherche_modele_id = null;
 		recherche_marque_id = null;
+		recherche_localisation_id = null;
+		recherche_etat_id = null;
 	}
 
 	protected void afficherFormulaireBateau(){
@@ -388,6 +420,11 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
 
+		else if(idRetour == LOCALISATION){
+			recherche_localisation_id = item;
+			((TextView)_localisation.findViewById(R.id.text)).setText(value);
+		}
+
 		else if(idRetour == CHANTIER_MODELE){
 			String[] ids = item.split(";");
 			recherche_chantier_id = ids[0];
@@ -405,9 +442,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		}
 		else if(idRetour == ETAT){
 			((TextView)_etat.findViewById(R.id.text)).setText(item);
-		}
-		else if(idRetour == LOCALISATION){
-			((TextView)_localisation.findViewById(R.id.text)).setText(item);
+			recherche_etat_id = item;
 		}
 	}
 
@@ -440,29 +475,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		if(this.recherche_type == null)
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		else{
-			afficherAnnoncesListe(recupererUrl(),recupererDonnees(),recupererType());
+			afficherAnnoncesListe(recupererDonnees(),recupererType());
 		}
-	}
-
-	protected String recupererUrl(){
-		String url = "";
-
-		if(typeAnnonces.equals(Constantes.BATEAUX)){
-			if(recherche_type.equals(Constantes.BATEAU_A_MOTEUR))
-				url = Constantes.URL_ANNONCES_BATEAUX_A_MOTEURS;
-			else if(recherche_type.equals(Constantes.VOILIER))
-				url = Constantes.URL_ANNONCES_BATEAUX_VOILIERS;
-			else if(recherche_type.equals(Constantes.PNEU))
-				url = Constantes.URL_ANNONCES_BATEAUX_PNEUMATIQUES;
-		}
-		else if(typeAnnonces.equals(Constantes.MOTEURS)){
-			url = Constantes.URL_ANNONCES_MOTEURS;
-		}
-		else if(typeAnnonces.equals(Constantes.ACCESSOIRES)){
-			url = Constantes.URL_ANNONCES_ACCESSOIRES;  
-		}
-
-		return url;
 	}
 
 	protected String recupererType(){
@@ -477,12 +491,14 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
+		if(this.recherche_type != null)
+			Net.add(donnees, Constantes.ANNONCES_TYPE_ID,recherche_type);
+
 		if(this.recherche_categorie_id != null)
 			Net.add(donnees, Constantes.ANNONCES_CATEGORIE_ID,recherche_categorie_id);
 
-		String localisation = ((TextView)_localisation.findViewById(R.id.text)).getText().toString();
-		if(localisation.length()>0)
-			Net.add(donnees, Constantes.ANNONCES_REGION_ID,localisation);
+		if(recherche_localisation_id != null)
+			Net.add(donnees, Constantes.ANNONCES_REGION_ID,recherche_localisation_id);
 
 		if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
 			if(!this.recherche_longueur_max.equals(MinMaxDialog.PLUS))
@@ -504,15 +520,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			//if(!this.recherche_prix_max.equals("0"))
 			Net.add(donnees, Constantes.ANNONCES_MIN_PRIX,recherche_prix_min);
 		}
-
-		String etat = ((TextView)_etat.findViewById(R.id.text)).getText().toString();
-		if(etat != null && etat.length()>0){
-			if(etat.equals(getActivity().getResources().getString(R.string.occasion)))
-				Net.add(donnees, Constantes.ANNONCES_ETAT,Constantes.ETAT_OCCASION);
-			else if(etat.equals(getActivity().getResources().getString(R.string.neuf)))
-				Net.add(donnees, Constantes.ANNONCES_ETAT,Constantes.ETAT_NEUF);
-			//ne pas ajouter indifferent
-		}
+		
+		if(recherche_etat_id != null)
+				Net.add(donnees, Constantes.ANNONCES_ETAT,recherche_etat_id);
 
 		if(recherche_modele_id != null)
 			Net.add(donnees,Constantes.ANNONCES_MODELE_ID,recherche_modele_id);

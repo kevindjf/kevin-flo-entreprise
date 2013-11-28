@@ -1,7 +1,5 @@
 package fr.RivaMedia.fragments;
 
-import java.io.IOException;
-
 import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -10,7 +8,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;

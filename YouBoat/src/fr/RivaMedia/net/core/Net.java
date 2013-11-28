@@ -41,7 +41,6 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.util.Log;
 import fr.RivaMedia.Constantes;
-import fr.RivaMedia.activity.MainActivity;
 
 public class Net {
 
@@ -131,8 +130,12 @@ public class Net {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public static String requete(String url, List<NameValuePair> donneesPost){
-		add(donneesPost,"os","android");
+		if(donneesPost == null)
+			donneesPost = Net.construireDonnes();
+		
+		add(donneesPost,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
 
 		//HttpClient httpClient = new DefaultHttpClient();
 
@@ -175,7 +178,13 @@ public class Net {
 
 	public static String requeteGet(String url, List<NameValuePair> donnees){
 
+		if(donnees == null)
+			donnees = Net.construireDonnes();
+		add(donnees,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
+		
 		StringBuilder sb = new StringBuilder();
+		if(!url.contains("?"))
+			sb.append("?");
 		if(donnees != null){
 			boolean premier = true;
 			for(NameValuePair nvp : donnees){
@@ -224,6 +233,11 @@ public class Net {
 
 	public static String requete(String url, MultipartEntity donneesPost){
 
+		if(donneesPost == null)
+			donneesPost = Net.construireDonnesMultiPart();
+		
+		add(donneesPost,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
+		
 		HttpClient httpClient = new DefaultHttpClient();
 		httpClient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 		try {

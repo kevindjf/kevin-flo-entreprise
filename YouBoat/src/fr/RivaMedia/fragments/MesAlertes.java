@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentListe;
 import fr.RivaMedia.tab.alertes.TabMesAlertesAnnonces;
@@ -30,6 +31,9 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 	
 	Button _boutonAnnonces;
 	Button _boutonFragments;
+	
+	View _boutonRechercher;
+	View _boutonAjouterAlerte;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -48,6 +52,9 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 		_page = (ViewPager) _view.findViewById(R.id.mes_alertes_pager);
 		_boutonAnnonces = (Button)_view.findViewById(R.id.mes_alertes_bouton_annonces);
 		_boutonFragments = (Button)_view.findViewById(R.id.mes_alertes_bouton_formulaires);
+		
+		_boutonRechercher = _view.findViewById(R.id.mes_alertes_bouton_rechercher);
+		_boutonAjouterAlerte = _view.findViewById(R.id.mes_alertes_bouton_alertes);
 	}
 
 	@Override
@@ -59,6 +66,9 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 	public void ajouterListeners() {
 		_boutonAnnonces.setOnClickListener(this);
 		_boutonFragments.setOnClickListener(this);
+		
+		_boutonRechercher.setOnClickListener(this);
+		_boutonAjouterAlerte.setOnClickListener(this);
 	}
 	
 	protected void chargerTabs(){
@@ -90,9 +100,26 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 			inverserTabs();
 			_page.setCurrentItem(1);
 			break;
+		case R.id.mes_alertes_bouton_rechercher:
+			rechercher();
+			break;
+		case R.id.mes_alertes_bouton_alertes:
+			ajouterAlerte();
+			break;
 		}
 	}
 	
+	private void ajouterAlerte() {
+		ajouterFragment(new AjouterAlerteFormulaire());
+	}
+
+
+	private void rechercher() {
+		ajouterFragment(new AnnoncesFormulaire(Constantes.BATEAUX));
+	}
+
+
+	@SuppressWarnings("deprecation")
 	protected void inverserTabs(){
 		Drawable couleur1 = _boutonAnnonces.getBackground();
 		int couleurTexte1 = _boutonAnnonces.getTextColors().getDefaultColor();
@@ -152,6 +179,14 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 		}
 	}
 
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		//TODO recharger les formulaires d'alerte
+	}
+
+	
 
 
 

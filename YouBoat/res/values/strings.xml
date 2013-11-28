@@ -7,7 +7,9 @@
     <string name="achatetventebateaux">Achat et vente de bateaux sur Internet</string>
     <string name="action_settings">Settings</string>
     <string name="actualites">Actualites</string>
+    <string name="ajouter_une_alerte">Ajouter une alerte</string>
     <string name="ajouter_une_photo">Ajouter une photo</string>
+    <string name="alerte_ajoutee">L\'alerte à été ajoutée</string>
     <string name="album">Album</string>
     <string name="annee">Année</string>
     <string name="annee_du_moteur">Année du moteur</string>
@@ -116,6 +118,7 @@
     <string name="occasion">Occasion</string>
     <string name="ok">Ok</string>
     <string name="on_demand">Boat On Demand</string>
+    <string name="ou">ou</string>
     <string name="oui">Oui</string>
     <string name="photo_and_description">Photo &amp; Description</string>
     <string name="pneumatiques_semi_rigide">Pneumatiques/Semi-Rigides</string>
@@ -147,6 +150,7 @@
     <string name="trouvez_un_professionnel_du_nautisme">Trouvez un profesionnel du Nautisme</string>
     <string name="type">Type</string>
     <string name="type_star">Type *</string>
+    <string name="unite">Unité</string>
     <string name="valider">Valider</string>
     <string name="vendre">Vendre</string>
     <string name="vendeur">Le vendeur</string>
@@ -155,6 +159,7 @@
     <string name="veuillez_indiquer_votre_nom">Veuillez indiquer votre nom</string>
     <string name="veuillez_indiquer_votre_email">Veuillez indiquer votre email</string>
     <string name="veuillez_indiquer_votre_pays">Veuillez indiquer votre pays</string>
+    <string name="veuillez_indiquer_votre_ville">Veuillez indiquer votre ville</string>
     <string name="veuillez_choisir_une_categorie">Veuillez choisir une categorie</string>
     <string name="veuillez_choisir_une_localite">Veuillez choisir une localité</string>
     <string name="veuillez_choisir_une_marque">Veuillez choisir une marque</string>
@@ -166,6 +171,8 @@
     <string name="vous_devez_entrer_une_annee_entre_1990_et_maintenant">Vous devez entrer une annee entre 1990 et maintenant</string>
     <string name="version">Version</string>
     <string name="vide">Aucun résultat</string>
+    <string name="ville">Ville</string>
+    <string name="ville_star">Ville *</string>
     <string name="voiliers">Voiliers</string>
     <string name="votre_recherche_est_bien_enregistree">Votre recherche est bien enregistrée !</string>
     <string name="TELEPHONE">02 38 75 99 41</string>

@@ -25,6 +25,7 @@
     <color name="_gris_claire_couleur_entete">#646663</color>
     <color name="_rouge">#BB0000</color>
     <color name="_rouge_claire">#F90000</color>
+    <color name="_rose">#ff7070</color>
     
     
     <color name="couleur_1">@color/_bleu</color>
@@ -42,7 +43,7 @@
     <color name="couleur_fond_gallery">@color/_noir</color>
     <color name="couleur_bouton_effacer">@color/_rouge</color>
     <color name="couleur_bouton_effacer_hover">@color/_rouge_claire</color>
-    <color name="couleur_bouton_rechercher">@color/_bleu_fonce</color>
+    <color name="couleur_bouton_rechercher">@color/couleur_3</color>
     <color name="couleur_texte">@color/_gris</color>
     <color name="couleur_texte_claire">@color/_gris_claire</color>
     <color name="couleur_texte_fonce">@color/_gris_menu</color>
@@ -54,6 +55,6 @@
     <color name="couleur_gris_supprimer_swipe">@color/_gris_swipe</color>
     
     <color name="couleur_onglet_blanc">@color/_blanc</color>
-    <color name="couleur_onglet_claire">@color/couleur_1</color>
+    <color name="couleur_onglet_claire">@color/couleur_3</color>
 
 </resources>
