@@ -23,7 +23,7 @@ public class AnnonceXmlParser extends XmlParser {
 	public AnnonceXmlParser(XmlPullParser xpp) {
 		super(xpp);
 	}
-	
+
 	public Map<String,Integer> getNbAnnonces() {
 		Map<String,Integer> nb = new HashMap<String,Integer>();
 		int eventType = XMLgetEventType();
@@ -31,10 +31,10 @@ public class AnnonceXmlParser extends XmlParser {
 		do{
 			if (eventType == XmlPullParser.START_TAG) {
 				try{
-				String tag = getXpp().getName();
-				String text = getString();
-				//Log.e("XML", tag+" : "+text);
-				nb.put(tag, Integer.parseInt(text));
+					String tag = getXpp().getName();
+					String text = getString();
+					//Log.e("XML", tag+" : "+text);
+					nb.put(tag, Integer.parseInt(text));
 				}catch(Exception e){}
 			}
 			eventType = XMLgetSuivant();
@@ -51,14 +51,8 @@ public class AnnonceXmlParser extends XmlParser {
 		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				if(tag.equals("item")){
+				if(tag.equals("ad")){
 					Annonce annonce = getAnnonce(true);
-					annonces.add(annonce);
-				}
-				if(tag.startsWith("detail_")){
-					String type = tag.replace("detail_", "");
-					Annonce annonce = getAnnonce(false);
-					annonce.setTypeAnnonce(type);
 					annonces.add(annonce);
 				}
 			}
@@ -70,15 +64,21 @@ public class AnnonceXmlParser extends XmlParser {
 		return annonces;
 	}
 
+	public Annonce getAnnonce(){
+		return getAnnonce(false);
+	}
+	
 	public Annonce getAnnonce(boolean item){
 		Annonce annonce = new Annonce();
-		
+
 		int eventType = XMLgetEventType(); 
 		while (eventType != XmlPullParser.END_TAG) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
 				//Log.e("XML",tag);
-				if(tag.equals("numero")){
+				if(tag.equals("detail")){
+				}
+				else if(tag.equals("id")){
 					annonce.setNumero(getString());
 				}
 				else if(tag.equals("title")){
@@ -107,6 +107,9 @@ public class AnnonceXmlParser extends XmlParser {
 				}
 				else if(tag.equals("type")){
 					annonce.setType(getString());
+				}
+				else if(tag.equals("idclient")){
+					annonce.setIdClient(getString());
 				}
 				else if(tag.equals("typeclient")){
 					annonce.setTypeClient(getString());
@@ -150,10 +153,19 @@ public class AnnonceXmlParser extends XmlParser {
 					annonce.setPlaceDePort(getString());
 				else if(tag.equals("taxe"))
 					annonce.setTaxePrix(getString());
+
+				else if(tag.equals("equipements"))
+					annonce.getEquipement().addAll(getEquipements());
+				
+				else if(tag.equals("electroniques"))
+					annonce.getElectroniques().addAll(getElectroniques());
+				
+				
 				else if(tag.equals("equipement"))
 					annonce.getEquipement().add(getString());
 				else if(tag.equals("electronique"))
-					annonce.getEquipement().add(getString());
+					annonce.getElectroniques().add(getString());
+
 				else if(tag.equals("nb_photos"))
 					annonce.setNbPhotos(getString());
 				else if(tag.equals("photos"))
@@ -162,6 +174,8 @@ public class AnnonceXmlParser extends XmlParser {
 					Log.e("RechercheXmlParser","Vendeur");
 					annonce.setVendeur(getVendeur());
 				}
+				else
+					Log.e("XML INCONNU",tag);
 			}
 			eventType = XMLgetSuivant();
 		}
@@ -217,6 +231,44 @@ public class AnnonceXmlParser extends XmlParser {
 		}
 		return liens;
 	}
+	
+	public List<String> getEquipements(){
+		List<String> equipements = new ArrayList<String>();
+
+		int eventType = XMLgetEventType(); 
+		while (eventType != XmlPullParser.END_TAG) { 
+			if (eventType == XmlPullParser.START_TAG) {
+				String tag = getXpp().getName();
+				//Log.e("XML",tag);
+
+				if(tag.equals("equipement")){
+					equipements.add(getString());
+				}
+			}
+
+			eventType = XMLgetSuivant();
+		}
+		return equipements;
+	}
+	
+	public List<String> getElectroniques(){
+		List<String> electroniques = new ArrayList<String>();
+
+		int eventType = XMLgetEventType(); 
+		while (eventType != XmlPullParser.END_TAG) { 
+			if (eventType == XmlPullParser.START_TAG) {
+				String tag = getXpp().getName();
+				//Log.e("XML",tag);
+
+				if(tag.equals("elecroniques")){
+					electroniques.add(getString());
+				}
+			}
+
+			eventType = XMLgetSuivant();
+		}
+		return electroniques;
+	}
 
 	public Vendeur getVendeur(){
 		Vendeur vendeur = new Vendeur();
@@ -248,7 +300,7 @@ public class AnnonceXmlParser extends XmlParser {
 			}
 
 			eventType = XMLgetSuivant();
-			
+
 		}while (eventType != XmlPullParser.END_TAG);
 		return vendeur;
 	}

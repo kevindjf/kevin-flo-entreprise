@@ -8,6 +8,7 @@ public class Annonce {
 	
 	
 	private String numero;
+	private String idClient;
 	private String title;
 	private String nomMoteur;
 	private String longueur;
@@ -42,6 +43,7 @@ public class Annonce {
     private String nbPhotos;
     private Vendeur vendeur;
     private List<String> equipement = new ArrayList<String>();
+    private List<String> electroniques = new ArrayList<String>();
     
 	public String getNumero() {
 		return numero;
@@ -243,6 +245,18 @@ public class Annonce {
 	}
 	public void setEquipement(List<String> equipement) {
 		this.equipement = equipement;
+	}
+	public String getIdClient() {
+		return idClient;
+	}
+	public void setIdClient(String idClient) {
+		this.idClient = idClient;
+	}
+	public List<String> getElectroniques() {
+		return electroniques;
+	}
+	public void setElectroniques(List<String> electroniques) {
+		this.electroniques = electroniques;
 	}
     
     
