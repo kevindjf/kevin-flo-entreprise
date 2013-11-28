@@ -12,14 +12,30 @@ import fr.RivaMedia.xml.AnnonceXmlParser;
 
 public class NetAnnonce extends Net {	
 
+	protected static String recupererUrlAnnonces(String _type){
+		String url = null;
+
+		if(_type != null){
+
+			if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU))
+				url = Constantes.URL_ANNONCES_BATEAUX;
+			else if(_type.equals(Constantes.MOTEURS))
+				url = Constantes.URL_ANNONCES_MOTEURS;
+			else if(_type.equals(Constantes.ACCESSOIRES))
+				url = Constantes.URL_ANNONCES_DIVERS;
+		}
+
+		return url;
+	}
+
 	public static List<Annonce> rechercher(String type, Integer page, List<NameValuePair> donnees, String idClient){
 
 		if(page != null)
 			Net.add(donnees, Constantes.PAGE, page);
 		if(idClient != null)
 			Net.add(donnees, Constantes.ANNONCES_ID_CLIENT, idClient);
-		
-		String xml = Net.requeteGet(recupererUrlAnnonce(type),donnees);
+
+		String xml = Net.requeteGet(recupererUrlAnnonces(type),donnees);
 		Log.e("NetRecherche",xml);
 		return new AnnonceXmlParser(xml).getListe();
 	}
@@ -39,30 +55,14 @@ public class NetAnnonce extends Net {
 
 		return url;
 	}
-	
-	protected static String recupererUrlAnnonces(String _type){
-		String url = null;
 
-		if(_type != null){
 
-			if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU))
-				url = Constantes.URL_ANNONCES_BATEAUX;
-			else if(_type.equals(Constantes.MOTEURS))
-				url = Constantes.URL_ANNONCES_MOTEURS;
-			else if(_type.equals(Constantes.ACCESSOIRES))
-				url = Constantes.URL_ANNONCES_DIVERS;
-		}
-
-		return url;
-	}
 
 	public static Annonce rechercherAnnonce(String type, List<NameValuePair> donnees) {
 		String url = recupererUrlAnnonce(type);
 		if(url != null){
 			String xml = Net.requeteGet(recupererUrlAnnonce(type),donnees);
-			List<Annonce> annonces = new AnnonceXmlParser(xml).getListe();
-			if(annonces!=null && annonces.size()>0)
-				return annonces.get(0);
+			return  new AnnonceXmlParser(xml).getAnnonce();
 		}
 		return null;
 	}

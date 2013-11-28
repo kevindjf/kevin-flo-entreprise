@@ -45,3 +45,5 @@ Popup ajouter Photo
 -> formulaire on demand
 -> emails
 -> checkbox 'm', 'ft' / defaut : metres
+
+-> AnnonceDetail : afficher place de port

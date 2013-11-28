@@ -18,6 +18,7 @@
 
 package com.fortysevendeg.swipelistview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.DataSetObserver;
@@ -35,7 +36,8 @@ import java.util.List;
 /**
  * ListView subclass that provides the swipe functionality
  */
-public class SwipeListView extends ListView {
+@SuppressLint("Recycle")
+public class SwipeListView extends com.costum.android.widget.LoadMoreListView {
 
     /**
      * Used when user want change swipe list mode on some rows

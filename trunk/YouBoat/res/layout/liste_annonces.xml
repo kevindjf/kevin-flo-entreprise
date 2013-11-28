@@ -7,13 +7,12 @@
 
     <include layout="@layout/vide" />
     
-    <ListView
+    <com.costum.android.widget.LoadMoreListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="0.0dp"
         android:divider="@android:color/transparent"
-        >
-    </ListView>
+        />
     
 </RelativeLayout>

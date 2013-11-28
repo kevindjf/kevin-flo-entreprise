@@ -113,7 +113,7 @@ public class Constantes {
 	public static final String URL_TYPES_ANNONCES = "type.php"; //F
 	public static final String URL_REGIONS = "region.php"; //F
 	public static final String URL_ETATS = "etat.php"; //F
-	public static final String URL_ENERGIES = "energie.php"; //F
+	public static final String URL_ENERGIES = "nrj.php"; //F
 	
 	public static final String URL_DEPARTEMENTS = "departement.php"; //F
 	
