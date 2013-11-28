@@ -9,6 +9,7 @@ import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Departement;
 import fr.RivaMedia.model.Energie;
 import fr.RivaMedia.model.Etat;
+import fr.RivaMedia.model.Magazine;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Actualite;
 import fr.RivaMedia.model.Region;
@@ -46,5 +47,6 @@ public class Donnees {
 	public static List<Etat> etats = new ArrayList<Etat>();
 	public static List<Departement> departements = new ArrayList<Departement>();
 	public static List<Energie> energies = new ArrayList<Energie>();
+	public static Magazine magazine;
 	
 }

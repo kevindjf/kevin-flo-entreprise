@@ -69,17 +69,12 @@ public class NetAnnonce extends Net {
 	}
 
 	public static List<Annonce> getAnnoncesDe(String numero, String type) {
-		String url = "";
-		if(type.equals(Constantes.BATEAUX))
-			url = Constantes.URL_ANNONCES_BATEAUX_DE;
-		else if(type.equals(Constantes.MOTEURS))
-			url = Constantes.URL_ANNONCES_MOTEURS_DE;
-		else if(type.equals(Constantes.ACCESSOIRES))
-			url = Constantes.URL_ANNONCES_ACCESSOIRES_DE;
+		String url = recupererUrlAnnonces(type);
 
 		String xml = Net.requeteGet(url,Net.construireDonnes(
 				Constantes.ANNONCES_ID_CLIENT,numero
-				), true);
+				));
+		
 		List<Annonce> annonces = new AnnonceXmlParser(xml).getListe();
 		return annonces;
 	}

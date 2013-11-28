@@ -5,10 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.image.ImageLoaderCache;
+import fr.RivaMedia.model.core.Donnees;
 
 public class Informations extends FragmentNormal implements View.OnClickListener{
 
@@ -40,7 +40,7 @@ public class Informations extends FragmentNormal implements View.OnClickListener
 
 	@Override
 	public void remplir() {
-		ImageLoaderCache.charger(Constantes.URL_PUB_MAGASINE_HD, _magasine);
+		ImageLoaderCache.charger(Donnees.magazine.getImage(), _magasine);
 	}
 
 	@Override

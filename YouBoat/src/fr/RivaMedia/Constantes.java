@@ -2,6 +2,7 @@ package fr.RivaMedia;
 
 public class Constantes {	
 
+	/*
 	// adresses des services
 	public static final int CC_MD5_DIGEST_LENGTH = 16;
 	// utilise par we kiss pour le md(#define APPLICATION_KEY "a#i4$5n_DaPs"
@@ -20,7 +21,7 @@ public class Constantes {
 
 	public static final String EcranNormal = "http://www.youboat.fr/xml/promo/splash_promo_normal.png";
 	public static final String EcranRetina = "http://www.youboat.fr/xml/promo/splash_promo_retina.png";
-
+	 */
 	/*
 	public static final String BASE_ADRESS = "http://www.youboat.fr/xml/";
 
@@ -45,6 +46,7 @@ public class Constantes {
 	public static final String RECHERCHE_ACTU_DETAIL_ADRESS = "xml-actu-detail.php?idredac=";
 	*/
 	
+	/*
 	public static final String POST_ANNONCE = "getAnnonce.php";
 	public static final String REQUEST_PUSH = "alerte.php?";
 	public static final String ALERTE = "alerte";
@@ -86,6 +88,7 @@ public class Constantes {
 	public static final String BUDGET_MIN = "budget_min";
 	public static final String BUDGET_MAX = "budget_max";
 	public static final String DATE = "date";
+	*/
 
 
 	/////////////////////////////////////////////////////////////////////////
@@ -107,8 +110,13 @@ public class Constantes {
 	//URL
 	public static final String URL_BASE = "http://www.youboat.fr/xml/android/"; //F
 	
-	public static final String URL_PUB_MAGASINE_NORMAL = "http://www.youboat.fr/xml/promo/splash_promo_normal.png";
-	public static final String URL_PUB_MAGASINE_HD = "http://www.youboat.fr/xml/promo/splash_promo_retina.png";
+	
+	
+	
+	//public static final String URL_PUB_MAGASINE_NORMAL = "http://www.youboat.fr/xml/promo/splash_promo_normal.png";
+	//public static final String URL_PUB_MAGASINE_HD = "http://www.youboat.fr/xml/promo/splash_promo_retina.png";
+	
+	public static final String URL_MAGAZINE = "magazine.php"; //F
 	
 	public static final String URL_TYPES_ANNONCES = "type.php"; //F
 	public static final String URL_REGIONS = "region.php"; //F
@@ -203,9 +211,9 @@ public class Constantes {
 	public static final String VENDRE_INTITULE_DIVERS = "intituledivers"; //F
 	
 	
-	public static final String URL_ANNONCES_BATEAUX_DE = "xml-client-bateau.php?";
-	public static final String URL_ANNONCES_MOTEURS_DE = "xml-client-moteur.php?";
-	public static final String URL_ANNONCES_ACCESSOIRES_DE = "xml-client-accessoire.php?";
+	//public static final String URL_ANNONCES_BATEAUX_DE = "xml-client-bateau.php?";
+	//public static final String URL_ANNONCES_MOTEURS_DE = "xml-client-moteur.php?";
+	//public static final String URL_ANNONCES_ACCESSOIRES_DE = "xml-client-accessoire.php?";
 	public static final String ANNONCES_ID_CLIENT = "idcli"; //F
 	
 	public static final String ANNURAIRE_MARQUE = "listMarque";
@@ -273,7 +281,7 @@ public class Constantes {
 	public static final String SUPPRIMER_ALERTE_ID = "id"; //F
 	public static final String SUPPRIMER_ALERTE_DELETE = "delete"; //F
 	
-	
+
 	public static final String DATE_MD5 = "kh"; //F
 	public static final String PAGE = "pg"; //F
 	

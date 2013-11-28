@@ -7,9 +7,6 @@ import java.util.Map;
 import org.apache.http.entity.mime.MultipartEntity;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,11 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
-import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
-import fr.RivaMedia.fragments.selector.ValeurSelector;
 import fr.RivaMedia.model.Departement;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.NetOnDemand;
@@ -88,6 +83,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		_telephone = _view.findViewById(R.id.vendeur_formulaire_telephone);	
 		_codePostal = _view.findViewById(R.id.vendeur_formulaire_code_postal);	
 		_pays = _view.findViewById(R.id.vendeur_formulaire_pays);	
+		_ville = _view.findViewById(R.id.vendeur_formulaire_ville);	
 
 		views = new View[]{
 				_nom,
@@ -118,7 +114,10 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	}
 
 	public void remplir(){
-
+		if(pour == ON_DEMAND)
+			_pays.setVisibility(View.GONE);
+		else if(pour == VENDRE)
+			_ville.setVisibility(View.GONE);
 	}
 
 	public void reset(){
@@ -175,10 +174,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		if(idRetour == PAYS){
 			Log.e("ItemSelected", item+" | "+value);
 
-			if(from instanceof ValeurSelector){
-				((TextView)_pays.findViewById(R.id.text)).setText(value);
-				idPays = item;
-			}
+			((TextView)_pays.findViewById(R.id.text)).setText(value);
+			idPays = item;
 		}
 	}
 
@@ -209,15 +206,15 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 		String nom = ((EditText)_nom.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
 		Net.add(_donnees, Constantes.VENDEUR_NOM,nom);
-		
+
 		String prenom = ((EditText)_prenom.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
 		if(prenom.length() > 0)
 			Net.add(_donnees, Constantes.VENDEUR_PRENOM,prenom);
-			
+
 		Net.add(_donnees, Constantes.VENDEUR_EMAIL,((EditText)_email.findViewById(R.id.text)).getText().toString());
 		Net.add(_donnees, Constantes.VENDEUR_TEL_1,((EditText)_telephone.findViewById(R.id.text)).getText().toString().trim().replace(".", "").replace(",",""));
 		Net.add(_donnees, Constantes.VENDEUR_CODE_POSTAL,((EditText)_codePostal.findViewById(R.id.text)).getText().toString());
-		
+
 		if(pour == VENDRE && idPays != null)
 			Net.add(_donnees, Constantes.VENDEUR_PAYS,idPays);
 		else if(pour == ON_DEMAND){
@@ -251,11 +248,16 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	/* --------------------------------------------------------------------------- */
 
+	public void demande_envoyee(){
+		Toast.makeText(getActivity(), R.string.demande_postee, Toast.LENGTH_LONG).show();
+		ajouterFragment(new Annonces(), false);
+	}
+	
 	class EnvoyerOnDemandTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
 			synchronized (_donnees) {
-				
+
 				NetOnDemand.onDemand(_donnees, _photos);
 			}
 
@@ -263,19 +265,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 				@Override
 				public void run() {
-					AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-					alert.setTitle(R.string.votre_recherche_est_bien_enregistree);
-					alert.setMessage(R.string.gerer_votre_recherche_directement_sur);
-					alert.setPositiveButton(R.string.ok, new Dialog.OnClickListener(){
-
-						@Override
-						public void onClick(DialogInterface dialog, int pos) {
-							dialog.dismiss();
-							((MainActivity)getActivity()).ajouterFragment(new Annonces(),false);
-						}
-
-					});
-					alert.show();
+					demande_envoyee();
 				}
 
 			});
@@ -286,6 +276,11 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		}
 	}
 
+	public void vendu(){
+		Toast.makeText(getActivity(), R.string.annonce_postee, Toast.LENGTH_LONG).show();
+		ajouterFragment(new Annonces(), false);
+	}
+	
 	class EnvoyerVendreTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
@@ -297,19 +292,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 				@Override
 				public void run() {
-					AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-					alert.setTitle("?"); //TODO
-					alert.setMessage("?"); //TODO
-					alert.setPositiveButton(R.string.ok, new Dialog.OnClickListener(){
-
-						@Override
-						public void onClick(DialogInterface dialog, int pos) {
-							dialog.dismiss();
-							((MainActivity)getActivity()).ajouterFragment(new Annonces(),false);
-						}
-
-					});
-					alert.show();
+					vendu();
 				}
 
 			});

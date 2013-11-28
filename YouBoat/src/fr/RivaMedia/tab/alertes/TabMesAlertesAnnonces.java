@@ -87,13 +87,14 @@ public class TabMesAlertesAnnonces extends Tab {
 			public void run(){
 				synchronized(_annonces){
 					if(_adapter != null){
+						int position = 0;
 						for(Annonce a : _annonces){
-							//TODO Trouver une autre facon de changer la listView
 							if(!_alertesManager.contient(a.getNumero())){
-								_annonces.remove(a);
-								_adapter.notifyDataSetChanged();
-								break;
+								_liste.dismiss(position);
+								_liste.dismissSelected();
+								_liste.unselectedChoiceStates();
 							}
+							position++;
 						}
 					}
 				}
@@ -156,7 +157,9 @@ public class TabMesAlertesAnnonces extends Tab {
 			public void onDismiss(int[] reverseSortedPositions) {
 				for (int position : reverseSortedPositions) {
 					_alertesManager.retirer(_annonces.get(position).getNumero(), _annonces.get(position).getType());
-					_annonces.remove(position);
+					_liste.dismiss(position);
+					_liste.dismissSelected();
+					_liste.unselectedChoiceStates();
 					if(_annonces.size()==0){
 						((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_alerte);
 						_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);

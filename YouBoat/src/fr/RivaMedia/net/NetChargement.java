@@ -10,6 +10,7 @@ import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Departement;
 import fr.RivaMedia.model.Energie;
 import fr.RivaMedia.model.Etat;
+import fr.RivaMedia.model.Magazine;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Modele;
 import fr.RivaMedia.model.Region;
@@ -17,11 +18,11 @@ import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.TypeAnnonce;
 import fr.RivaMedia.model.TypeCategories;
 import fr.RivaMedia.net.core.Net;
-import fr.RivaMedia.xml.AnnonceXmlParser;
 import fr.RivaMedia.xml.CategorieXmlParser;
 import fr.RivaMedia.xml.DepartementXmlParser;
 import fr.RivaMedia.xml.EnergieXmlParser;
 import fr.RivaMedia.xml.EtatXmlParser;
+import fr.RivaMedia.xml.MagazineXmlParser;
 import fr.RivaMedia.xml.MarqueXmlParser;
 import fr.RivaMedia.xml.ModeleXmlParser;
 import fr.RivaMedia.xml.NombreXmlParser;
@@ -158,6 +159,12 @@ public class NetChargement extends Net{
 		String xml = Net.requeteGet(Constantes.URL_NB_ANNONCES, null);
 
 		return new NombreXmlParser(xml).getNombres();
+	}
+
+	public static Magazine chargerMagazine() {
+		String xml = Net.requeteGet(Constantes.URL_MAGAZINE, null);
+
+		return new MagazineXmlParser(xml).getMagazine();
 	}
 
 }

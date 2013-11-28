@@ -3,7 +3,7 @@ package fr.RivaMedia.fragments;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -298,17 +298,17 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			_indicator.setVisibility(View.GONE);
 	}
 
-	@SuppressWarnings("deprecation")
 	public void ajouterListeners(){
 		_boutonBateaux.setOnClickListener(this);
 		_boutonMoteurs.setOnClickListener(this);
 		_boutonDivers.setOnClickListener(this);	
 		_ajouterPhoto.setOnClickListener(this);
 		_etapeSuivante.setOnClickListener(this);
+		_longueurUnite.setOnClickListener(this);
 
 		_annee.findViewById(R.id.text).setOnFocusChangeListener(new OnFocusChangeListener() {
 
-			
+
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus){
@@ -316,7 +316,10 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 					try{
 						int an = Integer.parseInt(a);
-						if(an>1990 && an<(new Date().getYear()))
+						Calendar c = Calendar.getInstance(); 
+						int annee = c.get(Calendar.YEAR);
+						System.out.println(an+" "+annee);
+						if(an>=1990 && an<=annee)
 							((EditText)v.findViewById(R.id.text)).setText(a);
 						else{
 							((EditText)v.findViewById(R.id.text)).setText("");
@@ -338,7 +341,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 					try{
 						int an = Integer.parseInt(a);
-						if(an>1990 && an<(new Date().getYear()))
+						Calendar c = Calendar.getInstance(); 
+						int annee = c.get(Calendar.YEAR);
+						if(an>=1990 && an<=annee)
 							((EditText)v.findViewById(R.id.text)).setText(a);
 						else{
 							((EditText)v.findViewById(R.id.text)).setText("");
@@ -457,10 +462,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	private void demanderUniteLongueur() {
-		if(vendre_type != null)
-			ajouterFragment( new ValeurSelector(this,UNITE_LONGUEUR,getResources().getStringArray(R.array.unite_longueur)));
-		else
-			Toast.makeText(getActivity(), R.string.veuillez_choisir_un_type, Toast.LENGTH_LONG).show();
+		ajouterFragment( new ValeurSelector(this,UNITE_LONGUEUR,getResources().getStringArray(R.array.unite_longueur)));
 	}
 
 	private void demanderCategorie() {
@@ -485,7 +487,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	private void demanderEnergie() {
-		
+
 		List<Energie> energies = Donnees.energies;
 		if(energies != null){
 			Map<String,String> donneesValeurs = new HashMap<String,String>();
@@ -510,7 +512,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				for(Marque m : marques){
 					donneesValeurs.put(m.getLibelle(), m.getId());
 				}
-				ajouterFragment(new DonneeValeurSelector(this, MARQUE_MODELE, donneesValeurs));
+				ajouterFragment(new DonneeValeurSelector(this, MARQUE_MOTEUR, donneesValeurs));
 			}
 
 		}
@@ -587,6 +589,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 		_nombreMoteur.setOnClickListener(this);
 		_marqueMoteur.setOnClickListener(this);
+		_longueurUnite.setOnClickListener(this);
 	}
 	public void vendreMoteurs(){
 		typeVente = Constantes.MOTEURS;
@@ -759,7 +762,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			if(vendre_marque == null){
+			if(vendre_marque_moteur_id == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_marque), Toast.LENGTH_SHORT).show();
 				return null;
 			}

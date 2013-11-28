@@ -5,147 +5,153 @@
     android:background="@color/couleur_fond"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/couleur_fond_claire"
-        android:orientation="vertical"
-        android:padding="10dip" >
+        android:layout_height="match_parent" >
 
         <LinearLayout
-
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		android:background="@color/couleur_fond"
-		android:layout_marginBottom="5dip"
-		 >
-
-             <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dip"
-            android:layout_marginTop="5dip"
-            android:text="@string/coordonnees"
-            android:textColor="@color/couleur_1"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-        </LinearLayout>
+            android:orientation="vertical" >
 
-      
-        <RelativeLayout
-            android:id="@+id/vendeur_formulaire_nom"
-            style="@style/formulaire_cellule_vendeur" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/couleur_fond_claire"
+                android:orientation="vertical"
+                android:padding="10dip" >
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/nom_star" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/requis"
-                android:inputType="textCapWords" />
-        </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dip"
+                        android:layout_marginTop="5dip"
+                        android:text="@string/coordonnees"
+                        android:textColor="@color/couleur_texte_fonce"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/vendeur_formulaire_prenom"
-            style="@style/formulaire_cellule_vendeur" >
-
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/prenom" />
-
-            <EditText
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif"
-                android:inputType="textCapWords" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/vendeur_formulaire_email"
-            style="@style/formulaire_cellule_vendeur" >
-
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/email_star" />
-
-            <EditText
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/requis"
-                android:inputType="textEmailAddress" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/vendeur_formulaire_telephone"
-            style="@style/formulaire_cellule_vendeur" >
-
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/telephone" />
-
-            <EditText
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif"
-                android:inputType="phone" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/vendeur_formulaire_code_postal"
-            style="@style/formulaire_cellule_vendeur" >
-
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/code_postal_star" />
-
-            <EditText
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/requis"
-                android:inputType="number" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/vendeur_formulaire_pays"
-            style="@style/formulaire_cellule" >
-
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/pays_star" />
-
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:text="@string/requis" />
-
-            <ImageView
-                android:id="@+id/indicator"
-                style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
-        
                 <RelativeLayout
-            android:id="@+id/vendeur_formulaire_ville"
-            style="@style/formulaire_cellule" >
+                    android:id="@+id/vendeur_formulaire_nom"
+                    style="@style/formulaire_cellule_vendeur" >
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/ville_star" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/nom_star" />
 
-            <EditText
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/requis" />
+                    <EditText
+                        android:id="@+id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/requis"
+                        android:inputType="textCapWords" />
+                </RelativeLayout>
 
-        </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/vendeur_formulaire_prenom"
+                    style="@style/formulaire_cellule_vendeur" >
 
-        <Button
-            android:id="@+id/vendeur_formulaire_valider"
-            style="@style/bouton_rechercher"
-            android:text="@string/valider" />
-    </LinearLayout>
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/prenom" />
+
+                    <EditText
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/facultatif"
+                        android:inputType="textCapWords" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/vendeur_formulaire_email"
+                    style="@style/formulaire_cellule_vendeur" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/email_star" />
+
+                    <EditText
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/requis"
+                        android:inputType="textEmailAddress" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/vendeur_formulaire_telephone"
+                    style="@style/formulaire_cellule_vendeur" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/telephone" />
+
+                    <EditText
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/facultatif"
+                        android:inputType="phone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/vendeur_formulaire_code_postal"
+                    style="@style/formulaire_cellule_vendeur" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/code_postal_star" />
+
+                    <EditText
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/requis"
+                        android:inputType="number" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/vendeur_formulaire_pays"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/pays_star" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/requis" />
+
+                    <ImageView
+                        android:id="@+id/indicator"
+                        style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/vendeur_formulaire_ville"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/ville_star" />
+
+                    <EditText
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/requis" />
+                </RelativeLayout>
+
+                <Button
+                    android:id="@+id/vendeur_formulaire_valider"
+                    style="@style/bouton_rechercher"
+                    android:text="@string/valider" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

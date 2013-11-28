@@ -437,8 +437,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	@Override
-	public void itemSelected(Object from, int idRetour, String item,
-			String value) {
+	public void itemSelected(Object from, int idRetour, String item, String value) {
 		if(idRetour == TYPE){
 			demand_type = item;
 			((TextView)_type.findViewById(R.id.text)).setText(value);
