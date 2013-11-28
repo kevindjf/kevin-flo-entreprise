@@ -6,7 +6,7 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 
 import android.util.Log;
-import fr.RivaMedia.model.News;
+import fr.RivaMedia.model.Actualite;
 import fr.RivaMedia.xml.core.XmlParser;
 
 public class NewsXmlParser extends XmlParser {
@@ -31,8 +31,8 @@ public class NewsXmlParser extends XmlParser {
 			</item>
 	 */
 	
-	public List<News> getListeNews() {
-		List<News> listeNews = new ArrayList<News>();
+	public List<Actualite> getListeNews() {
+		List<Actualite> listeNews = new ArrayList<Actualite>();
 		int eventType = XMLgetEventType(); 
 		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
@@ -48,8 +48,8 @@ public class NewsXmlParser extends XmlParser {
 		return listeNews;
 	}
 	
-	public News getNews(){
-		News news = new News();
+	public Actualite getNews(){
+		Actualite news = new Actualite();
 		
 		int eventType = XMLgetEventType(); 
 		while (eventType != XmlPullParser.END_TAG) { 

@@ -10,18 +10,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import fr.RivaMedia.R;
-import fr.RivaMedia.model.News;
+import fr.RivaMedia.model.Actualite;
 import fr.RivaMedia.view.ActualiteView;
 
 public class ActualiteListAdapter extends BaseAdapter  {
 
 	private Context _context;
-	private List<News> _actualites;
+	private List<Actualite> _actualites;
 	private List<Object> _views = new ArrayList<Object>();
 
 	private static LayoutInflater inflater=null;
 
-	public ActualiteListAdapter(Context context, List<News> _news){
+	public ActualiteListAdapter(Context context, List<Actualite> _news){
 		this._context = context;
 		this._actualites = _news;
 

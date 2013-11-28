@@ -6,19 +6,25 @@ import java.util.List;
 import java.util.Map;
 
 import fr.RivaMedia.model.Categorie;
+import fr.RivaMedia.model.Departement;
+import fr.RivaMedia.model.Energie;
+import fr.RivaMedia.model.Etat;
 import fr.RivaMedia.model.Marque;
-import fr.RivaMedia.model.News;
+import fr.RivaMedia.model.Actualite;
+import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.Service;
-import fr.RivaMedia.model.Type;
+import fr.RivaMedia.model.TypeAnnonce;
+import fr.RivaMedia.model.TypeCategories;
 
 public class Donnees {
 
 	public static Map<String,Integer> nbAnnonces;
-	public static List<News> news;
+	public static List<Actualite> news;
+	public static List<TypeAnnonce> typesAnnonces = new ArrayList<TypeAnnonce>();
 	
-	public static List<Type> types = new ArrayList<Type>();
+	public static List<TypeCategories> typeCategories = new ArrayList<TypeCategories>();
 	public static List<Categorie> getCategories(String type){
-		for(Type t : types){
+		for(TypeCategories t : typeCategories){
 			if(t.getId().equals(type))
 				return t.getCategories();
 		}
@@ -36,5 +42,9 @@ public class Donnees {
 	
 	public static boolean uneSeulePhoto = true;
 	
-	//TODO envoyer tous les logs d'erreur par mail
+	public static List<Region> regions = new ArrayList<Region>();
+	public static List<Etat> etats = new ArrayList<Etat>();
+	public static List<Departement> departements = new ArrayList<Departement>();
+	public static List<Energie> energies = new ArrayList<Energie>();
+	
 }

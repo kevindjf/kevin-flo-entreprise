@@ -19,7 +19,7 @@
 
     <style name="formulaire_cellule">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">40dip</item>
+        <item name="android:layout_height">50dip</item>
         <item name="android:background">@drawable/fond_blanc_select_bleu</item>
         <item name="android:padding">5dip</item>
     </style>
@@ -37,7 +37,7 @@
         <item name="android:textColor">@color/couleur_texte_noir</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="formulaire_cellule_texte">
@@ -47,7 +47,7 @@
         <item name="android:layout_marginLeft">150dip</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
 

@@ -347,6 +347,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void onBackPressed() {
 

@@ -235,20 +235,20 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	private void demanderEtapeSuivante() {
-		List<NameValuePair> donneesVente = recupererDonnees();
+		MultipartEntity donneesVente = recupererDonnees();
 		if(donneesVente == null)
 			return;
 
-		ajouterFragment(new VendeurFormulaire(recupererUrl(),donneesVente,null));
+		ajouterFragment(new VendeurFormulaire(VendeurFormulaire.ON_DEMAND,donneesVente,null));
 	}
 
 	private String recupererUrl(){
 		return Constantes.URL_ON_DEMAND;
 	}
 
-	private List<NameValuePair> recupererDonnees(){
+	private MultipartEntity recupererDonnees(){
 
-		List<NameValuePair> donnees = Net.construireDonnes();
+		MultipartEntity donnees = Net.construireDonnesMultiPart();
 
 		if(demand_type == null){
 			Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();

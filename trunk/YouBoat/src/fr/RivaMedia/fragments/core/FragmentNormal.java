@@ -17,6 +17,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	protected boolean afficherProgress = false;
 	
 	public void afficherProgress(boolean afficher){
+		this.afficherProgress = afficher;
 		((MainActivity)getActivity()).afficherProgress(afficher);
 	}
 	
