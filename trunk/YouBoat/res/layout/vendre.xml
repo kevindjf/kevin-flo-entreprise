@@ -198,6 +198,8 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:text="@string/facultatif" />
+                
+                <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
             <RelativeLayout

@@ -44,9 +44,9 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 		_view = inflater.inflate(R.layout.liste_swipe_views,container, false);
 		_favorisManager = new FavorisManager(getActivity());
 		_derriere = _view.findViewById(R.id.derriere);
+
 		task = new ChargerAnnoncesTask();
 		task.execute();
-
 
 		return _view;
 	}
@@ -59,6 +59,9 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 			((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_favoris);
 			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
 		}
+
+		afficherProgress = false;
+		afficherProgress(afficherProgress);
 	}
 
 	@Override
@@ -69,13 +72,14 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 			public void run(){
 				synchronized(_annonces){
 					if(_adapter != null){
+						int position = 0;
 						for(Annonce a : _annonces){
-							//TODO Trouver une autre facon de changer la listView
 							if(!_favorisManager.contient(a.getNumero())){
-								_annonces.remove(a);
-								_adapter.notifyDataSetChanged();
-								break;
+								_liste.dismiss(position);
+								_liste.dismissSelected();
+								_liste.unselectedChoiceStates();
 							}
+							position++;
 						}
 					}
 				}
@@ -93,6 +97,7 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 		_liste.setAdapter(_adapter);
 	}
 	public void ajouterListeners(){
+		_liste.setSwipeListViewListener(null);
 
 		_liste.setSwipeListViewListener(new BaseSwipeListViewListener() {
 			@Override
@@ -130,21 +135,14 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 
 			@Override
 			public void onClickBackView(int position) {
-				int [] tabposition = {position};
-				onDismiss(tabposition);
+				_favorisManager.retirer(_annonces.get(position).getNumero(), _annonces.get(position).getType());
+				_liste.dismiss(position);
+				_liste.dismissSelected();
+				_liste.unselectedChoiceStates();
 			}
 
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {
-				for (int position : reverseSortedPositions) {
-					_favorisManager.retirer(_annonces.get(position).getNumero(), _annonces.get(position).getType());
-					_annonces.remove(position);
-					if(_annonces.size()==0){
-						((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_favoris);
-						_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
-					}
-				}
-				_adapter.notifyDataSetChanged();
 			}
 
 		});
@@ -173,8 +171,6 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 				@Override
 				public void run() {
 					chargerAnnonces();
-					afficherProgress = false;
-					afficherProgress(afficherProgress);
 				}
 
 			});

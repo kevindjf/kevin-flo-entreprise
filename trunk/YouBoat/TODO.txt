@@ -1,53 +1,20 @@
-+ Date Fr
 - Push
-+ Boutons d'appel
 + Emails avec entete
-+ Notre page contact
-- Proto
-* Regarder apres on demande et vendre
-+ Continuer le design
-* Envoie des images -> aleaNumber: crypter la date ddMMHHmmss en md5
-+ Supprimer favoris 
-+ Design actu
-- Rapports de crash
 
 Opt :
 
-+ personnaliser les dialog
-+ Comparatif annonce
 - Bar de Recherche
-
-Petits bug :
-
--> progress tourne quand aucun resultat
--> moteur aucune marque ? Normal ?
--> Affichage du nombre d'annonce sur l'accueil
-
-Popup ajouter Photo
-
-
--> Input de date et de prix
 
 -> Chaque vue dn un scroll
 
 
 
 //DEPUIS PROTO
--> charger dynamiquement les news
 -> s'occuper des types d'annonces (enlever ceux de Constantes, et voir dans donnees)
--> regions dans Donnees, plus dans string.xml
--> etats dans Donnees, plus dans string.xml
--> departements dans Donnees, plus dans string.xml
--> energies dans Donnees, plus dans string.xml
 
--> pages
 -> recherche par mot clé
--> formulaire on demand
 -> emails
--> checkbox 'm', 'ft' / defaut : metres
 
 -> AnnonceDetail : afficher place de port
-
--> Nouvelle page magasine (HD)
 
 -> ENVOYER : AnnonceFormulaire : Localisation renvoie toujours 0

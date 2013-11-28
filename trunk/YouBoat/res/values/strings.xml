@@ -16,6 +16,7 @@
     <string name="annonces">Annonces</string>
     <string name="annonces_small">annonces</string>
     <string name="annonces_en_vente">annonces en vente</string>
+    <string name="annonce_postee">Votre annonce sera mise en ligne prochainement</string>
     <string name="annuaire">Annuaire</string>
     <string name="appareil_photo">Appareil photo</string>
     <string name="app_name">YouBoat</string>
@@ -48,6 +49,7 @@
     <string name="credit">Crédits</string>
     <string name="dans_un_rayon_de">Dans un rayon de :</string>
     <string name="decrivez_le_bateau_que_vous_possedez">Décrivez le bateau que vous possédez</string>
+    <string name="demande_postee">Votre demande sera mise en ligne prochainement</string>
     <string name="description">Description</string>
     <string name="description_dots">Description :</string>
     <string name="description_maj">DESCRIPTION</string>

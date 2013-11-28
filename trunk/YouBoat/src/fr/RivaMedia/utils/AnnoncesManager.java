@@ -39,7 +39,7 @@ public class AnnoncesManager {
 
 	public boolean contient(String id){
 		String lesIds = _settings.getString(KEY, "");
-		String idRecherche = "["+id;
+		String idRecherche = "["+id+";";
 
 		Log.e(KEY, "contient :"+idRecherche+" in "+lesIds);
 

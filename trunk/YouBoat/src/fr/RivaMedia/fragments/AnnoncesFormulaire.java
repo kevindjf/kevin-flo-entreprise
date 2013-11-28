@@ -25,7 +25,6 @@ import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
-import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Etat;
 import fr.RivaMedia.model.Marque;
