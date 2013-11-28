@@ -1,11 +1,9 @@
 package fr.RivaMedia.fragments;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.NameValuePair;
 import org.apache.http.entity.mime.MultipartEntity;
 
 import android.annotation.SuppressLint;
@@ -29,9 +27,9 @@ import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.fragments.selector.ValeurSelector;
-import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Departement;
 import fr.RivaMedia.model.core.Donnees;
+import fr.RivaMedia.net.NetOnDemand;
 import fr.RivaMedia.net.NetVendre;
 import fr.RivaMedia.net.core.Net;
 
@@ -258,7 +256,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 			synchronized (_donnees) {
 				
-				NetVendre.vendre(_donnees, _photos);
+				NetOnDemand.onDemand(_donnees, _photos);
 			}
 
 			getActivity().runOnUiThread(new Runnable(){
@@ -292,19 +290,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		protected Void doInBackground(Void...donnees) {
 
 			synchronized (_donnees) {
-				//TODO: ajouter la date "ddMMHHmmss" cryptée en md5
-
-				Net.requete(_url, _donneesEnvoyees);
-
-				if(_photos != null && _photos.size()>0){
-					Net.requete(_url, Net.construireDonnesMultiPart(
-							Constantes.UPLOAD_PHOTO, _photos.get(0))
-							);
-				}
-
-				// [requetePhoto setPostValue:typeGet forKey:@"typeget"];
-
-				// [requetePhoto setPostValue:aleaNumber forKey:@"aleaNumber"];
+				NetVendre.vendre(_donnees, _photos);
 			}
 
 			getActivity().runOnUiThread(new Runnable(){

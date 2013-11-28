@@ -95,7 +95,7 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 			afficherNormal();
 
 			FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new ActualiteDetail(news.getLink()));
+			transaction.add(R.id.main_fragment, new ActualiteDetail(news.getId()));
 			transaction.addToBackStack(null);
 			transaction.commit();
 			

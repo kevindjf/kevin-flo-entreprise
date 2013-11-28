@@ -78,7 +78,7 @@ public class NetAnnonce extends Net {
 
 		String xml = Net.requeteGet(url,Net.construireDonnes(
 				Constantes.ANNONCES_ID_CLIENT,numero
-				));
+				), true);
 		List<Annonce> annonces = new AnnonceXmlParser(xml).getListe();
 		return annonces;
 	}

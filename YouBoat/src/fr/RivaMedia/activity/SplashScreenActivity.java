@@ -124,20 +124,25 @@ public class SplashScreenActivity extends Activity{
 	class ChargementsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
-			Donnees.typesAnnonces = NetChargement.chargerTypesAnnonces();
 			
+			Donnees.typesAnnonces = NetChargement.chargerTypesAnnonces();
+	
 			Donnees.typeCategories = NetChargement.chargerTypesCategories();
-				
 			Donnees.regions = NetChargement.chargerRegions();
 			Donnees.etats = NetChargement.chargerEtats();
 			Donnees.departements = NetChargement.chargerDepartements();
-			Donnees.energies = NetChargement.chargerEnergies();
+			
+			
+			//Donnees.energies = NetChargement.chargerEnergies();
 
+			
 			final List<Marque> toutesMarques = NetChargement.chargerMarquesBateauType(null, null);
 			final List<Marque> marquesBateauxAMoteur = NetChargement.chargerMarquesBateauType(Constantes.BATEAU_A_MOTEUR,null);
 			final List<Marque> marquesVoilier = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null);	
 			final List<Marque> marquesPneu = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null);
 			final List<Marque> marquesMoteur = NetChargement.chargerMarquesMoteurs(null);
+			
+			
 			final Map<String,Integer> nbAnnonces = NetChargement.chargerNbAnnonces();
 
 			Donnees.toutesMarques = toutesMarques;

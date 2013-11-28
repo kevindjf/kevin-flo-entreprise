@@ -57,7 +57,7 @@ public class NetChargement extends Net{
 	}
 
 	public static List<Service> chargerServices(){
-		String xml = Net.requeteGet(Constantes.URL_SERVICES, null);
+		String xml = Net.requeteGet(Constantes.URL_SERVICES, null,true);
 		return new ServiceXmlParser(xml).getServices();
 	}
 	
@@ -78,6 +78,7 @@ public class NetChargement extends Net{
 	
 	public static List<Energie> chargerEnergies(){
 		String xml = Net.requeteGet(Constantes.URL_ENERGIES, null);
+		
 		return new EnergieXmlParser(xml).getEnergies();
 	}
 	
@@ -153,7 +154,7 @@ public class NetChargement extends Net{
 	}
 
 	public static Map<String,Integer> chargerNbAnnonces(){
-		String xml = Net.requeteGet(Constantes.URL_NB_ANNONCES, null);
+		String xml = Net.requeteGet(Constantes.URL_NB_ANNONCES, null, true);
 
 		return new AnnonceXmlParser(xml).getNbAnnonces();
 	}

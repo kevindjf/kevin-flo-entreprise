@@ -130,8 +130,12 @@ public class Net {
 
 	}
 
-	@SuppressWarnings("deprecation")
 	public static String requete(String url, List<NameValuePair> donneesPost){
+		return requete(url, donneesPost);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public static String requete(String url, List<NameValuePair> donneesPost, boolean anciennesUrl){
 		if(donneesPost == null)
 			donneesPost = Net.construireDonnes();
 		
@@ -148,7 +152,14 @@ public class Net {
 		CachingHttpClient httpClient = new CachingHttpClient(realClient, cacheConfig);
 
 		try {
-			HttpPost requete = new HttpPost(SITE+(url.replace("?", "")));
+			
+			String urlRequete = "";
+			if(anciennesUrl)
+				urlRequete = Constantes.ANCIEN_URL_BASE+url;
+			else
+				urlRequete = SITE+url;
+			
+			HttpPost requete = new HttpPost(urlRequete.replace("?", ""));
 			requete.setEntity(new UrlEncodedFormEntity(donneesPost,"UTF-8"));
 
 			Log.d("NET",SITE+url+"/");
@@ -175,8 +186,12 @@ public class Net {
 		Log.e("NET","echec de la requete");
 		return NO; //en cas d'echec
 	}
-
+	
 	public static String requeteGet(String url, List<NameValuePair> donnees){
+		return requeteGet(url, donnees,false);
+	}
+
+	public static String requeteGet(String url, List<NameValuePair> donnees, boolean anciennesUrl){
 
 		if(donnees == null)
 			donnees = Net.construireDonnes();
@@ -197,8 +212,12 @@ public class Net {
 				sb.append(nvp.getValue());
 			}
 		}
-
-		String urlRequete = SITE+url+sb.toString();
+		
+		String urlRequete = "";
+		if(anciennesUrl)
+			urlRequete = Constantes.ANCIEN_URL_BASE+url+sb.toString();
+		else
+			urlRequete = SITE+url+sb.toString();
 		Log.d("NET",urlRequete);
 
 		HttpClient httpClient = new DefaultHttpClient();

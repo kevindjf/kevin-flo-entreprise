@@ -5,7 +5,7 @@ import java.util.List;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Actualite;
 import fr.RivaMedia.net.core.Net;
-import fr.RivaMedia.xml.NewsXmlParser;
+import fr.RivaMedia.xml.ActualiteXmlParser;
 
 public class NetActualite extends Net{
 
@@ -13,15 +13,15 @@ public class NetActualite extends Net{
 		String xml = Net.requeteGet(Constantes.URL_ACTUALITES,Net.
 				construireDonnes(Constantes.PAGE,page));
 
-		return new NewsXmlParser(xml).getListeNews();
+		return new ActualiteXmlParser(xml).getListeActualites();
 	}
 	
-	public static Actualite getNews(String id){
+	public static Actualite getActualite(String id){
 
 		String xml = Net.requeteGet(Constantes.URL_ACTUALITE_DETAIL, Net.construireDonnes(
 				Constantes.ACTUALITE_DETAIL_ID_ACTUALITE, id));
 
-		return new NewsXmlParser(xml).getNews();
+		return new ActualiteXmlParser(xml).getNews();
 	}
 
 }

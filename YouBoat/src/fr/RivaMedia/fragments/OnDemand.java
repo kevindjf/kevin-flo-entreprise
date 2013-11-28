@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.NameValuePair;
+import org.apache.http.entity.mime.MultipartEntity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -23,9 +23,10 @@ import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
-import fr.RivaMedia.fragments.selector.ValeurSelector;
 import fr.RivaMedia.model.Categorie;
+import fr.RivaMedia.model.Etat;
 import fr.RivaMedia.model.Marque;
+import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
 
@@ -70,6 +71,8 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	String demand_modele_id = null;
 	String demand_taille_min = null;
 	String demand_taille_max = null;
+	String demand_etat_id = null;
+	String demand_lieu_id = null;
 
 	String demand_type_posseder = null ;
 	String demand_categorie_posseder_id = null;
@@ -82,6 +85,8 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 
 	String budget_requis;
 	String taille_requis;
+	
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -174,7 +179,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus){
-					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" ���");
+					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" €");
 				}else{
 					if(
 							((EditText)(v.findViewById(R.id.text))).getText().toString().trim().equals("0")){
@@ -242,10 +247,6 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		ajouterFragment(new VendeurFormulaire(VendeurFormulaire.ON_DEMAND,donneesVente,null));
 	}
 
-	private String recupererUrl(){
-		return Constantes.URL_ON_DEMAND;
-	}
-
 	private MultipartEntity recupererDonnees(){
 
 		MultipartEntity donnees = Net.construireDonnesMultiPart();
@@ -271,27 +272,27 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_budget), Toast.LENGTH_SHORT).show();	
 			return null;
 		}
+		
+		
 
 		//les requis
 		Net.add(donnees, 
+				Constantes.ON_DEMAND_ORIGINE,Constantes.ON_DEMAND_ORIGINE_VALUE,				
+				
 				Constantes.ON_DEMAND_TYPE,demand_type,
 				Constantes.ON_DEMAND_CATEGORIE,demand_categorie_id,
-				Constantes.ON_DEMAND_TAILLE,taille_requis,
+				//Constantes.ON_DEMAND_TAILLE,taille_requis,
 				Constantes.ON_DEMAND_BUDGET,budget_requis
 				);
 
 		if(((TextView)_chantierModele.findViewById(R.id.text)).getText().length() > 0 
 				&& demand_modele_id != null && demand_chantier_id != null){
 			Net.add(donnees,Constantes.ON_DEMAND_MODELE,demand_modele_id);
-			Net.add(donnees,Constantes.ON_DEMAND_MARQUE,demand_chantier_id);
+			//Net.add(donnees,Constantes.ON_DEMAND_MARQUE,demand_chantier_id);
 		}
 
-		if(((TextView)_etat.findViewById(R.id.text)).getText().length() > 0){
-			String etat = ((TextView)_etat.findViewById(R.id.text)).getText().toString();
-			if(etat.equals(getActivity().getResources().getString(R.string.occasion)))
-				Net.add(donnees, Constantes.ON_DEMAND_ETAT,Constantes.ETAT_OCCASION);
-			else if(etat.equals(getActivity().getResources().getString(R.string.neuf)))
-				Net.add(donnees, Constantes.ON_DEMAND_ETAT,Constantes.ETAT_NEUF);
+		if(demand_etat_id != null){
+			Net.add(donnees, Constantes.ON_DEMAND_ETAT,demand_etat_id);
 		}
 
 		if(((TextView)_taille.findViewById(R.id.text)).getText().length() > 0
@@ -300,10 +301,10 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Net.add(donnees, Constantes.ON_DEMAND_TAILLE_MAX, demand_taille_max);
 		}
 
-		if(((TextView)_lieu.findViewById(R.id.text)).getText().length() > 0)
-			Net.add(donnees,Constantes.ON_DEMAND_LIEU,((TextView)_lieu.findViewById(R.id.text)).getText());
+		if(demand_lieu_id != null)
+			Net.add(donnees,Constantes.ON_DEMAND_LIEU_ID,demand_lieu_id);
 
-		if(((EditText)_commentaire.findViewById(R.id.text)).getText().length() > 0)
+		if(((EditText)_commentaire.findViewById(R.id.text)).getText().toString().trim().length() > 0)
 			Net.add(donnees,Constantes.ON_DEMAND_COMMENTAIRE,((TextView)_commentaire.findViewById(R.id.text)).getText());
 
 		if(((TextView)_typePosseder.findViewById(R.id.text)).getText().length() > 0 && demand_type_posseder != null)
@@ -362,8 +363,16 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	private void demanderLieu() {
-		ajouterFragment(new ValeurSelector(this, LOCALISATION,  getResources().getStringArray(R.array.localisation)));
+		
+		List<Region> regions = Donnees.regions;
+		if(regions != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Region region : regions){
+				donneesValeurs.put(region.getNom(), region.getId());
+			}
 
+			ajouterFragment(new DonneeValeurSelector(this,LOCALISATION,donneesValeurs));
+		}
 	}
 
 	private void demanderTaille() {
@@ -377,8 +386,15 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	private void demanderEtat() {
-		ajouterFragment(new ValeurSelector(this, ETAT,  getResources().getStringArray(R.array.etat)));
+		List<Etat> etats = Donnees.etats;
+		if(etats != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Etat etat : etats){
+				donneesValeurs.put(etat.getNom(), etat.getId());
+			}
 
+			ajouterFragment(new DonneeValeurSelector(this,ETAT,donneesValeurs));
+		}
 	}
 
 	private void demanderChantierModele() {
@@ -440,9 +456,11 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			demand_modele_id = ids[1];
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == ETAT){
-			((TextView)_etat.findViewById(R.id.text)).setText(item);
+			((TextView)_etat.findViewById(R.id.text)).setText(value);
+			demand_etat_id = item;
 		}else if(idRetour == LOCALISATION){
-			((TextView)_lieu.findViewById(R.id.text)).setText(item);
+			((TextView)_lieu.findViewById(R.id.text)).setText(value);
+			demand_lieu_id = item;
 		} else if(idRetour == TYPE_POSSEDER){
 			demand_type_posseder = item;
 			((TextView)_typePosseder.findViewById(R.id.text)).setText(value);
@@ -493,10 +511,16 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		}
 
 		demand_type = null;
+		demand_categorie_id = null;
 		demand_chantier_id = null;
 		demand_modele_id = null;
 		demand_type_posseder = null;
 		demand_chantier_posseder_id = null;
 		demand_modele_posseder_id = null;
+		demand_etat_id = null;
+		demand_taille_max = null;
+		demand_taille_min = null;
+		demand_categorie_posseder_id = null;
+		demand_lieu_id = null;
 	}
 }
