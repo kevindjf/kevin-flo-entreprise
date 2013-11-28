@@ -1,5 +1,6 @@
 package fr.RivaMedia.fragments;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import org.apache.http.NameValuePair;
 
 import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,11 +25,13 @@ import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
+import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Etat;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.core.Donnees;
+import fr.RivaMedia.net.NetAnnonce;
 import fr.RivaMedia.net.core.Net;
 
 /**
@@ -54,6 +58,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	View _view;
 	View _rechercher;
 	View _ajouterAlerte;
+	TextView _nombreAnnonces;
 
 	View _type;
 	View _categorie;
@@ -71,6 +76,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	View[] _vuesBateau;
 	View[] _vuesMoteur;
 	View[] _vuesAccessoire;
+
+
+	List<NameValuePair> donnees = new ArrayList<NameValuePair>();
 
 
 	String recherche_type = null;
@@ -112,6 +120,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	public void charger(){
 		_rechercher = _view.findViewById(R.id.annonces_formulaire_bouton_rechercher);	
 		_ajouterAlerte = _view.findViewById(R.id.annonces_formulaire_bouton_alertes);	
+		_nombreAnnonces = (TextView)_view.findViewById(R.id.annonces_formulaire_nombre_annonces);	
 
 		_type = _view.findViewById(R.id.annonces_formulaire_type);
 		_categorie = _view.findViewById(R.id.annonces_formulaire_categorie);
@@ -161,7 +170,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 				_etat,
 				_localisation,
 				_puissance,
-				_marque
+				_marque,
 		};
 	}
 
@@ -360,12 +369,25 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		}
 
 		recherche_type = null;
+		recherche_categorie_id = null;
 
 		recherche_chantier_id = null;
 		recherche_modele_id = null;
 		recherche_marque_id = null;
 		recherche_localisation_id = null;
 		recherche_etat_id = null;
+
+		recherche_prix_min = null;
+		recherche_prix_max = null;
+
+		recherche_longueur_min = null;
+		recherche_longueur_max = null;
+
+		recherche_puissance_min = null;
+		recherche_puissance_max = null;
+
+		_nombreAnnonces.setText("");
+		donnees.clear();
 	}
 
 	protected void afficherFormulaireBateau(){
@@ -383,10 +405,12 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			v.setVisibility(View.VISIBLE);
 		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
 
-		recherche_type = getResources().getString(R.string.moteurs);
+		recherche_type = Constantes.MOTEURS;
 		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.moteurs));
 		_type.setOnClickListener(null);
 		_type.setClickable(false);
+
+		rechercherNombre();
 	}
 	protected void afficherFormulaireAccessoire(){
 		reset();
@@ -396,10 +420,12 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
 
-		recherche_type = getResources().getString(R.string.accessoires);
+		recherche_type = Constantes.ACCESSOIRES;
 		((TextView)_type.findViewById(R.id.text)).setText(getResources().getString(R.string.accessoires));
 		_type.setOnClickListener(null);
 		_type.setClickable(false);
+
+		rechercherNombre();
 	}
 
 	@Override
@@ -441,9 +467,11 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			((TextView)_marque.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == ETAT){
-			((TextView)_etat.findViewById(R.id.text)).setText(item);
+			((TextView)_etat.findViewById(R.id.text)).setText(value);
 			recherche_etat_id = item;
 		}
+
+		rechercherNombre();
 	}
 
 
@@ -468,6 +496,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			((TextView)_puissance.findViewById(R.id.text)).setText("de "+min+" ch à "+max+" ch");
 		}
 
+		rechercherNombre();
+
 	}
 
 	public void rechercher(){
@@ -476,6 +506,14 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		else{
 			afficherAnnoncesListe(recupererDonnees(),recupererType());
+		}
+	}
+
+	public void rechercherNombre(){
+
+		if(this.recherche_type != null){
+			task = new RechercherNombreAnnoncesTask();
+			task.execute();
 		}
 	}
 
@@ -491,47 +529,62 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		if(this.recherche_type != null)
-			Net.add(donnees, Constantes.ANNONCES_TYPE_ID,recherche_type);
+		if(this.recherche_type == null)
+			return donnees;
+		else{
 
-		if(this.recherche_categorie_id != null)
-			Net.add(donnees, Constantes.ANNONCES_CATEGORIE_ID,recherche_categorie_id);
+			if(this.recherche_type != null)
+				Net.add(donnees, Constantes.ANNONCES_TYPE_ID,recherche_type);
 
-		if(recherche_localisation_id != null)
-			Net.add(donnees, Constantes.ANNONCES_REGION_ID,recherche_localisation_id);
+			if(this.recherche_categorie_id != null)
+				Net.add(donnees, Constantes.ANNONCES_CATEGORIE_ID,recherche_categorie_id);
 
-		if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
-			if(!this.recherche_longueur_max.equals(MinMaxDialog.PLUS))
-				Net.add(donnees, Constantes.ANNONCES_MAX_TAILLE,recherche_longueur_max);
-			//if(!this.recherche_longueur_min.equals("0"))
-			Net.add(donnees, Constantes.ANNONCES_MIN_TAILLE,recherche_longueur_min);
-		}
+			if(recherche_localisation_id != null)
+				Net.add(donnees, Constantes.ANNONCES_REGION_ID,recherche_localisation_id);
 
-		if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
-			if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
-				Net.add(donnees, Constantes.ANNONCES_MAX_PUISS,recherche_puissance_max);
-			//if(!this.recherche_puissance_min.equals("0"))
-			Net.add(donnees, Constantes.ANNONCES_MIN_PUISS,recherche_puissance_min);
-		}
+			if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
+				if(!this.recherche_longueur_max.equals(MinMaxDialog.PLUS))
+					Net.add(donnees, Constantes.ANNONCES_MAX_TAILLE,recherche_longueur_max);
+				//if(!this.recherche_longueur_min.equals("0"))
+				Net.add(donnees, Constantes.ANNONCES_MIN_TAILLE,recherche_longueur_min);
+			}
 
-		if(this.recherche_prix_min != null && this.recherche_prix_max != null){
-			if(!this.recherche_prix_max.equals(MinMaxDialog.PLUS))
-				Net.add(donnees, Constantes.ANNONCES_MAX_PRIX,recherche_prix_max);
-			//if(!this.recherche_prix_max.equals("0"))
-			Net.add(donnees, Constantes.ANNONCES_MIN_PRIX,recherche_prix_min);
-		}
-		
-		if(recherche_etat_id != null)
+			if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
+				if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
+					Net.add(donnees, Constantes.ANNONCES_MAX_PUISS,recherche_puissance_max);
+				//if(!this.recherche_puissance_min.equals("0"))
+				Net.add(donnees, Constantes.ANNONCES_MIN_PUISS,recherche_puissance_min);
+			}
+
+			if(this.recherche_prix_min != null && this.recherche_prix_max != null){
+				if(!this.recherche_prix_max.equals(MinMaxDialog.PLUS))
+					Net.add(donnees, Constantes.ANNONCES_MAX_PRIX,recherche_prix_max);
+				//if(!this.recherche_prix_max.equals("0"))
+				Net.add(donnees, Constantes.ANNONCES_MIN_PRIX,recherche_prix_min);
+			}
+
+			if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
+				if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
+					Net.add(donnees, Constantes.ANNONCES_MAX_PUISS,recherche_puissance_max);
+				//if(!this.recherche_prix_max.equals("0"))
+				Net.add(donnees, Constantes.ANNONCES_MIN_PUISS,recherche_puissance_min);
+			}
+
+
+			if(recherche_etat_id != null)
 				Net.add(donnees, Constantes.ANNONCES_ETAT,recherche_etat_id);
 
-		if(recherche_modele_id != null)
-			Net.add(donnees,Constantes.ANNONCES_MODELE_ID,recherche_modele_id);
-		if(typeAnnonces.equals(Constantes.BATEAUX) && recherche_chantier_id != null)
-			Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_chantier_id);
-		else if(typeAnnonces.equals(Constantes.MOTEURS) && recherche_marque_id != null)
-			Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_marque_id);
+			if(typeAnnonces.equals(Constantes.BATEAUX)){
+				if(recherche_modele_id != null)
+					Net.add(donnees,Constantes.ANNONCES_MODELE_ID,recherche_modele_id);
+				if(recherche_chantier_id != null)
+					Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_chantier_id);
+			}
+			else if(typeAnnonces.equals(Constantes.MOTEURS) && recherche_marque_id != null)
+				Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_marque_id);
 
-		return donnees;
+			return donnees;
+		}
 	}
 
 	@Override
@@ -539,6 +592,40 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		reset();
 		remplir();
 		ajouterListeners();
+	}
+
+
+	public void afficherNombreAnnonces(final String nombre){
+		getActivity().runOnUiThread(new Runnable(){
+
+			@Override
+			public void run() {
+				System.err.println(nombre);
+				_nombreAnnonces.setText(nombre);
+				_nombreAnnonces.invalidate();
+				System.err.println(_nombreAnnonces.getText());
+			}
+
+		});
+
+	}
+
+	/* --------------------------------------------------------------------------- */
+
+	class RechercherNombreAnnoncesTask extends AsyncTask<Void, Void, Void> {
+		protected Void doInBackground(Void...d) {
+			synchronized (donnees) {
+				donnees.clear();
+				donnees.addAll(recupererDonnees());
+				String nombre = NetAnnonce.nombreAnnonces(recherche_type, donnees);
+				afficherNombreAnnonces(nombre);
+			}
+
+			return null;
+		}
+
+		protected void onPostExecute(){
+		}
 	}
 
 }

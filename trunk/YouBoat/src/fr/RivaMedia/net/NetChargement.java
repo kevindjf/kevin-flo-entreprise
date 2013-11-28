@@ -24,6 +24,7 @@ import fr.RivaMedia.xml.EnergieXmlParser;
 import fr.RivaMedia.xml.EtatXmlParser;
 import fr.RivaMedia.xml.MarqueXmlParser;
 import fr.RivaMedia.xml.ModeleXmlParser;
+import fr.RivaMedia.xml.NombreXmlParser;
 import fr.RivaMedia.xml.RegionXmlParser;
 import fr.RivaMedia.xml.ServiceXmlParser;
 import fr.RivaMedia.xml.TypeAnnonceXmlParser;
@@ -154,9 +155,9 @@ public class NetChargement extends Net{
 	}
 
 	public static Map<String,Integer> chargerNbAnnonces(){
-		String xml = Net.requeteGet(Constantes.URL_NB_ANNONCES, null, true);
+		String xml = Net.requeteGet(Constantes.URL_NB_ANNONCES, null);
 
-		return new AnnonceXmlParser(xml).getNbAnnonces();
+		return new NombreXmlParser(xml).getNombres();
 	}
 
 }

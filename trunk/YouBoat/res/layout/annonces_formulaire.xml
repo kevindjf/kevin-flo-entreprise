@@ -254,19 +254,18 @@
             android:layout_height="35dip"
             android:layout_centerInParent="true" >
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/cercle_bleu" />
-
             <TextView
+                android:id="@+id/annonces_formulaire_nombre_annonces"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                 android:background="@drawable/cercle_bleu"
                 android:paddingBottom="2dip"
-                android:text="ou"
+                android:paddingTop="2dip"
+                android:text=""
+                android:textSize="10sp"
                 android:textColor="@color/couleur_texte_blanc"
-                android:textStyle="bold" />
+                 />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
