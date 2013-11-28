@@ -3,6 +3,7 @@ package fr.RivaMedia.model;
 import java.util.List;
 
 public class Actualite {
+	private String id;
     private String title;
     private String link;
     private String imageAdress;
@@ -59,5 +60,17 @@ public class Actualite {
 	}
 	public void setHeureFormattee(String heureFormattee) {
 		this.heureFormattee = heureFormattee;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public List<Lien> getLiens() {
+		return liens;
+	}
+	public void setLiens(List<Lien> liens) {
+		this.liens = liens;
 	}
 }

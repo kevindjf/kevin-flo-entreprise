@@ -32,7 +32,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	List<NameValuePair> _donneesFormulaire;
 	String _type;
 
-	int page = 0;
+	int page = 1;
 	String idClient = null; 
 	
 	public AnnoncesListe(List<NameValuePair> donneesFormulaire, String type){

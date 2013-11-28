@@ -7,7 +7,6 @@ import org.xmlpull.v1.XmlPullParser;
 
 import android.util.Log;
 import fr.RivaMedia.model.Etat;
-import fr.RivaMedia.model.Region;
 import fr.RivaMedia.xml.core.XmlParser;
 
 public class EtatXmlParser extends XmlParser {

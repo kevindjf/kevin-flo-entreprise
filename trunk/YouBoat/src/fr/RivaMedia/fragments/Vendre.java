@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.NameValuePair;
 import org.apache.http.entity.mime.MultipartEntity;
 
 import android.annotation.SuppressLint;
@@ -47,6 +46,7 @@ import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.*;
 import fr.RivaMedia.image.ImageResizer;
 import fr.RivaMedia.model.Categorie;
+import fr.RivaMedia.model.Energie;
 import fr.RivaMedia.model.Lien;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.core.Donnees;
@@ -81,6 +81,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	public static final int ENERGIE = 4;
 	public static final int NOMBRE_MOTEUR = 5;
 	public static final int MARQUE_MODELE = 6;
+	public static final int UNITE_LONGUEUR = 7;
 
 
 
@@ -98,6 +99,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	View _chantierModele;
 	View _annee;
 	View _longueur;
+	View _longueurUnite;
 	View _prix;
 	View _motorisation;
 	View _nombreMoteur;
@@ -134,11 +136,11 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	String vendre_prix = null;
 	String vendre_nombre_moteur = null;
 	String vendre_puissance = null;
-	String vendre_marque_moteur = null;
+	String vendre_marque_moteur_id = null;
 	String vendre_annee_moteur = null;
 	String vendre_description = null;
 
-	String vendre_energie = null;
+	String vendre_energie_id = null;
 
 	String vendre_intitule = null;
 
@@ -178,11 +180,13 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_etapeSuivante = _view.findViewById(R.id.vendre_etape_suivante);
 
 
+
 		_type = _view.findViewById(R.id.vendre_type);
 		_categorie = _view.findViewById(R.id.vendre_categorie);
 		_chantierModele = _view.findViewById(R.id.vendre_chantier_modele);
 		_annee = _view.findViewById(R.id.vendre_annee);
 		_longueur = _view.findViewById(R.id.vendre_longueur);
+		_longueurUnite = _view.findViewById(R.id.vendre_unite_longueur);
 		_prix = _view.findViewById(R.id.vendre_prix);
 		_motorisation = _view.findViewById(R.id.vendre_motorisation);
 		_nombreMoteur = _view.findViewById(R.id.vendre_nombre_moteur);
@@ -206,6 +210,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				_chantierModele,
 				_annee,
 				_longueur,
+				_longueurUnite,
 				_prix,
 				_motorisation,
 				_nombreMoteur,
@@ -224,6 +229,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				_chantierModele,
 				_annee,
 				_longueur,
+				_longueurUnite,
 				_prix,
 				_motorisation,
 				_nombreMoteur,
@@ -272,10 +278,10 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				vendre_prix,
 				vendre_nombre_moteur,
 				vendre_puissance,
-				vendre_marque_moteur,
+				vendre_marque_moteur_id,
 				vendre_annee_moteur,
 				vendre_description,
-				vendre_energie,
+				vendre_energie_id,
 				vendre_intitule
 		};
 
@@ -292,6 +298,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			_indicator.setVisibility(View.GONE);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void ajouterListeners(){
 		_boutonBateaux.setOnClickListener(this);
 		_boutonMoteurs.setOnClickListener(this);
@@ -301,6 +308,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 		_annee.findViewById(R.id.text).setOnFocusChangeListener(new OnFocusChangeListener() {
 
+			
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus){
@@ -342,7 +350,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				}
 			}
 		});
-		
+
 		_puissance.findViewById(R.id.text).setOnFocusChangeListener(new OnFocusChangeListener() {
 
 			@Override
@@ -406,6 +414,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		case R.id.vendre_categorie:
 			demanderCategorie();
 			break;
+		case R.id.vendre_unite_longueur:
+			demanderUniteLongueur();
+			break;
 		case R.id.vendre_chantier_modele:
 			demanderChantierModele();
 			break;
@@ -445,6 +456,13 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_un_type, Toast.LENGTH_LONG).show();
 	}
 
+	private void demanderUniteLongueur() {
+		if(vendre_type != null)
+			ajouterFragment( new ValeurSelector(this,UNITE_LONGUEUR,getResources().getStringArray(R.array.unite_longueur)));
+		else
+			Toast.makeText(getActivity(), R.string.veuillez_choisir_un_type, Toast.LENGTH_LONG).show();
+	}
+
 	private void demanderCategorie() {
 		if(vendre_type == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -467,7 +485,16 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	private void demanderEnergie() {
-		ajouterFragment(new ValeurSelector(this, ENERGIE,  getResources().getStringArray(R.array.energie)));
+		
+		List<Energie> energies = Donnees.energies;
+		if(energies != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Energie energie : energies){
+				donneesValeurs.put(energie.getNom(), energie.getId());
+			}
+
+			ajouterFragment(new DonneeValeurSelector(this,ENERGIE,donneesValeurs));
+		}
 	}
 
 	private void demanderMarqueModele() {
@@ -621,8 +648,11 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == ENERGIE){
-			vendre_energie = item;
-			((TextView)_energie.findViewById(R.id.text)).setText(vendre_energie);
+			vendre_energie_id = item;
+			((TextView)_energie.findViewById(R.id.text)).setText(value);
+		}
+		else if(idRetour == UNITE_LONGUEUR){
+			((TextView)_longueurUnite.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == NOMBRE_MOTEUR){
 			vendre_nombre_moteur = item;
@@ -637,7 +667,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == MARQUE_MOTEUR){
-			vendre_marque_moteur = item;
+			vendre_marque_moteur_id = item;
 			((TextView)_marqueMoteur.findViewById(R.id.text)).setText(value);
 		}
 		else if(typeVente.equals(Constantes.MOTEURS)){
@@ -675,24 +705,47 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Net.add(donnees, 
 					Constantes.VENDRE_TYPE,vendre_type,
 					Constantes.VENDRE_CATEGORIE,vendre_categorie,
-					Constantes.VENDRE_MARQUE,vendre_marque,
+					//Constantes.VENDRE_MARQUE,vendre_marque,
 					Constantes.VENDRE_PRIX,vendre_prix
 					);
 
 			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
 				Net.add(donnees,Constantes.VENDRE_ANNEE,((EditText)_annee.findViewById(R.id.text)).getText());
 
-			if(((EditText)_longueur.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,Constantes.VENDRE_LONGUEUR,((EditText)_longueur.findViewById(R.id.text)).getText());
+			String longueur = ((EditText)_longueur.findViewById(R.id.text)).getText().toString().trim();
+			if(longueur.length() > 0){
+				String avant = longueur;
+				String apres = "0";
+				if(longueur.contains(".")){
+					String [] s = longueur.split(".");
+					if(s.length>1){
+						avant = s[0];
+						apres = s[1];
+					}
+				}
+				else if(longueur.contains(",")){
+					String [] s = longueur.split(",");
+					if(s.length>1){
+						avant = s[0];
+						apres = s[1];
+					}
+				}
+				Net.add(donnees,Constantes.VENDRE_LONGUEUR_AVANT_VIRGULE,avant);
+				Net.add(donnees,Constantes.VENDRE_LONGUEUR_APRES_VIRGULE,apres);
+			}
+
+			if(((TextView)_longueurUnite.findViewById(R.id.text)).getText().length() > 0)
+				Net.add(donnees,Constantes.VENDRE_LONGUEUR_UNITE,((TextView)_longueurUnite.findViewById(R.id.text)).getText());
+
 
 			if(vendre_nombre_moteur != null)
 				Net.add(donnees,Constantes.VENDRE_NOMBRE_MOTEUR,vendre_nombre_moteur);
 
 			if(((TextView)_puissance.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,Constantes.VENDRE_PUISSANCE,((TextView)_puissance.findViewById(R.id.text)).getText().toString().replace(" ch",""));
+				Net.add(donnees,Constantes.VENDRE_PUISSANCE_MOTEUR,((TextView)_puissance.findViewById(R.id.text)).getText().toString().replace(" ch",""));
 
-			if(((TextView)_marqueMoteur.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,Constantes.VENDRE_MARQUE_MOTEUR,((TextView)_marqueMoteur.findViewById(R.id.text)).getText());
+			if(vendre_marque_moteur_id != null)
+				Net.add(donnees,Constantes.VENDRE_MARQUE_MOTEUR_ID,vendre_marque_moteur_id);
 
 			if(((EditText)_anneeMoteur.findViewById(R.id.text)).getText().length() > 0)
 				Net.add(donnees,Constantes.VENDRE_ANNEE_MOTEUR,((EditText)_anneeMoteur.findViewById(R.id.text)).getText());
@@ -710,7 +763,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_marque), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			if(vendre_energie == null){
+			if(vendre_energie_id == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type_d_energie), Toast.LENGTH_SHORT).show();
 				return null;
 			}
@@ -725,8 +778,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Net.add(donnees, 
 					Constantes.VENDRE_TYPE,vendre_type,
 					Constantes.VENDRE_CATEGORIE,vendre_categorie,
-					Constantes.VENDRE_MARQUE,vendre_marque,
-					Constantes.VENDRE_ENERGIE,vendre_energie,
+					Constantes.VENDRE_MARQUE_MOTEUR_ID,vendre_marque_moteur_id,
+					Constantes.VENDRE_ENERGIE_ID,vendre_energie_id,
 					Constantes.VENDRE_PRIX,vendre_prix
 					);
 
@@ -734,7 +787,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Net.add(donnees,Constantes.VENDRE_ANNEE,((EditText)_annee.findViewById(R.id.text)).getText());
 
 			if(((EditText)_puissance.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,Constantes.VENDRE_PUISSANCE,((EditText)_puissance.findViewById(R.id.text)).getText().toString().replace(" ch",""));
+				Net.add(donnees,Constantes.VENDRE_PUISSANCE_MOTEUR,((EditText)_puissance.findViewById(R.id.text)).getText().toString().replace(" ch",""));
 
 		}else if(typeVente.equals(Constantes.ACCESSOIRES)){
 
@@ -760,7 +813,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 					);
 
 			if(((EditText)_intitule.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,Constantes.VENDRE_INTITULE,((EditText)_intitule.findViewById(R.id.text)).getText());
+				Net.add(donnees,Constantes.VENDRE_INTITULE_DIVERS,((EditText)_intitule.findViewById(R.id.text)).getText().toString().trim());
 
 
 		}

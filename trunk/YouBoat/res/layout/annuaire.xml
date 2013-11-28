@@ -65,6 +65,7 @@
 
             <TextView
                 android:id="@+id/text"
+                android:layout_marginLeft="180dip"
                 style="@style/formulaire_cellule_texte" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />

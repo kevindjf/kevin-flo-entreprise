@@ -6,7 +6,6 @@ import java.util.List;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Toast;
 
 public class AnnoncesManager {
 

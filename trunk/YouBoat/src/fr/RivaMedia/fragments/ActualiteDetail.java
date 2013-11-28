@@ -199,7 +199,7 @@ public class ActualiteDetail extends FragmentNormal{
 	class ChargerNewsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
-			_news = NetActualite.getNews(_id);
+			_news = NetActualite.getActualite(_id);
 
 			getActivity().runOnUiThread(new Runnable(){
 

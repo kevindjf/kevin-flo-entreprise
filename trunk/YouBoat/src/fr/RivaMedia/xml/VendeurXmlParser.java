@@ -60,8 +60,10 @@ public class VendeurXmlParser extends XmlParser {
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
 				//Log.e("XML",tag);
-				if(tag.equals("numero")){
+				if(tag.equals("id")){
 					vendeur.setNumero(getString());
+				}else if(tag.equals("numero")){
+						vendeur.setNumero(getString());
 				}else if(tag.equals("nom")){
 					vendeur.setNom(getString());
 				}else if(tag.equals("ville")){

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- 
     <string-array name="energie">
         <item>@string/diesel</item>
         <item>@string/essence</item>
         <item>@string/moins</item>
     </string-array>
-    
     <string-array name="etat">
         <item>@string/indifferent</item>
         <item>@string/occasion</item>
         <item>@string/neuf</item>
     </string-array>
-    
     <string-array name="localisation">
         <item>@string/indifferent</item>
         <item>@string/manche_bretagne</item>
@@ -22,13 +21,17 @@
         <item>@string/dom_tom</item>
         <item>@string/france_autre_region</item>
     </string-array>
-    
+     -->
     <string-array name="nombre">
         <item>1</item>
         <item>2</item>
         <item>3</item>
     </string-array>
-    
+    <string-array name="unite_longueur">
+        <item>m</item>
+        <item>ft</item>
+    </string-array>
+        <!-- 
     <string-array name="pays">
         <item>France</item>
         <item>Royaume-Uni</item>
@@ -48,5 +51,6 @@
         <item>Etats-Unis</item>
         <item>Senegal</item>
     </string-array>
+    -->
 
 </resources>

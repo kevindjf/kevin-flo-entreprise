@@ -14,14 +14,15 @@ public class NetVendeur extends Net {
 
 	public static List<Vendeur> listeVendeurs(List<NameValuePair> donnees){
 
-		String xml = Net.requete(Constantes.URL_VENDEURS,donnees);
+		String xml = Net.requete(Constantes.URL_VENDEURS,donnees,true);
 		Log.e("NetVendeur",xml);
 		return new VendeurXmlParser(xml).getListe();
 	}
 
 	
 	public static Vendeur getVendeur(String id) {
-		String xml = Net.requeteGet(Constantes.URL_INFORMATIONS_VENDEUR,Net.construireDonnes(
+		String xml = Net.requeteGet(Constantes.URL_INFORMATIONS_VENDEUR,
+				Net.construireDonnes(
 				Constantes.VENDEUR_INFORMATIONS_ID_CLIENT,id)
 				);
 		List<Vendeur> vendeurs = new VendeurXmlParser(xml).getListe();

@@ -102,6 +102,8 @@ public class Constantes {
 
 	/////////////////////////////////////////////////////////////////////////
 	
+	public static final String ANCIEN_URL_BASE = "http://www.youboat.fr/xml/";
+	
 	//URL
 	public static final String URL_BASE = "http://www.youboat.fr/xml/android/"; //F
 	
@@ -217,6 +219,8 @@ public class Constantes {
 	public static final String VENDEUR_CODE_POSTAL = "cp"; //F
 	public static final String VENDEUR_VILLE = "ville"; //F
 	public static final String VENDEUR_PAYS = "pays"; //F
+	
+	public static final String ON_DEMAND_ORIGINE_VALUE = "BOD"; //F
 	
 	public static final String ON_DEMAND_ORIGINE = "origine"; //F
 	public static final String ON_DEMAND_ETAT = "idtypads"; //F
