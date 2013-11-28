@@ -47,3 +47,7 @@ Popup ajouter Photo
 -> checkbox 'm', 'ft' / defaut : metres
 
 -> AnnonceDetail : afficher place de port
+
+-> Nouvelle page magasine (HD)
+
+-> ENVOYER : AnnonceFormulaire : Localisation renvoie toujours 0

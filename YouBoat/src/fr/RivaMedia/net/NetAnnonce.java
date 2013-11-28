@@ -9,6 +9,7 @@ import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.core.Net;
 import fr.RivaMedia.xml.AnnonceXmlParser;
+import fr.RivaMedia.xml.NombreXmlParser;
 
 public class NetAnnonce extends Net {	
 
@@ -83,4 +84,29 @@ public class NetAnnonce extends Net {
 		return annonces;
 	}
 
+	protected static String recupererUrlNombreAnnonces(String _type){
+		String url = null;
+
+		if(_type != null){
+
+			if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU))
+				url = Constantes.URL_NB_ANNONCES_BATEAUX;
+			else if(_type.equals(Constantes.MOTEURS))
+				url = Constantes.URL_NB_ANNONCES_MOTEURS;
+			else if(_type.equals(Constantes.ACCESSOIRES))
+				url = Constantes.URL_NB_ANNONCES_DIVERS;
+		}
+
+		return url;
+	}
+	
+	public static String nombreAnnonces(String type, List<NameValuePair> donnees) {
+		String url = recupererUrlNombreAnnonces(type);
+		if(url != null){
+			String xml = Net.requeteGet(url,donnees);
+			return new NombreXmlParser(xml).getNombre();
+		}
+		return null;
+	}
+	
 }

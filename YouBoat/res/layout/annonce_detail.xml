@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,6 +8,7 @@
     android:visibility="gone" >
 
     <LinearLayout
+        android:id="@+id/annonce_detail_layout_haut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/couleur_3"
@@ -32,8 +33,103 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <ScrollView
+   
+
+    <LinearLayout
+        android:id="@+id/annonce_detail_layout_bas"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="@color/couleur_fond"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/annonce_detail_telephone_principal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dip"
+            android:layout_weight="1"
+            android:background="@color/couleur_3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="5dp" >
+
+            <View
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:background="@drawable/phone"
+                android:text="appeler"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0606060606"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/annonce_detail_telephone_secondaire"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dip"
+            android:layout_weight="1"
+            android:background="@color/couleur_3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="5dp" >
+
+            <View
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:background="@drawable/phone"
+                android:text="appeler"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0606060606"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/annonce_detail_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="1dip"
+            android:layout_weight="1"
+            android:background="@color/couleur_3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="5dp" >
+
+            <View
+                android:layout_width="20dip"
+                android:layout_height="20dip"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/mail"
+                android:text="appeler"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="youboat@youboat.com"
+                android:textColor="@android:color/white"
+                android:textSize="8sp" />
+        </LinearLayout>
+    </LinearLayout>
+    
+     <ScrollView
+        android:id="@+id/annonce_detail_layout_central"
         android:layout_width="match_parent"
+        android:layout_below="@+id/annonce_detail_layout_haut"
+        android:layout_above="@+id/annonce_detail_layout_bas"
         android:layout_height="fill_parent" >
 
         <LinearLayout
@@ -309,97 +405,8 @@
                     android:layout_marginLeft="10dip"
                     android:textColor="@color/couleur_texte_noir"
                     android:textSize="17sp" />
-
-                <LinearLayout
-                    android:id="@+id/annonce_detail_layout_contacter"
-                    android:layout_width="fill_parent"
-                    android:layout_height="50dip"
-                    android:background="@color/couleur_fond"
-                    android:gravity="center"
-                    android:orientation="horizontal" >
-
-                    <LinearLayout
-                        android:id="@+id/annonce_detail_telephone_principal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="1dip"
-                        android:layout_weight="1"
-                        android:background="@color/couleur_3"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:paddingTop="5dp" >
-
-                        <View
-                            android:layout_width="20dip"
-                            android:layout_height="20dip"
-                            android:background="@drawable/phone"
-                            android:text="appeler"
-                            android:textColor="@android:color/white" />
-
-                        <TextView
-                            android:id="@+id/text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0606060606"
-                            android:textColor="@android:color/white" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/annonce_detail_telephone_secondaire"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="1dip"
-                        android:layout_weight="1"
-                        android:background="@color/couleur_3"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:paddingTop="5dp" >
-
-                        <View
-                            android:layout_width="20dip"
-                            android:layout_height="20dip"
-                            android:background="@drawable/phone"
-                            android:text="appeler"
-                            android:textColor="@android:color/white" />
-
-                        <TextView
-                            android:id="@+id/text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0606060606"
-                            android:textColor="@android:color/white" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/annonce_detail_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="1dip"
-                        android:layout_weight="1"
-                        android:background="@color/couleur_3"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:paddingTop="5dp" >
-
-                        <View
-                            android:layout_width="20dip"
-                            android:layout_height="20dip"
-                            android:layout_marginBottom="3dp"
-                            android:background="@drawable/mail"
-                            android:text="appeler"
-                            android:textColor="@android:color/white" />
-
-                        <TextView
-                            android:id="@+id/text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="youboat@youboat.com"
-                            android:textColor="@android:color/white"
-                            android:textSize="8sp" />
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

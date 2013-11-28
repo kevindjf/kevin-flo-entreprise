@@ -238,6 +238,11 @@ public class Constantes {
 	public static final String ON_DEMAND_MARQUE_POSSEDE = "listMarque2"; //F
 	public static final String ON_DEMAND_MODELE_POSSEDE = "listModele2"; //F
 	public static final String ON_DEMAND_PRIX_CESSION = "budget2"; //F
+	
+	public static final String URL_NB_ANNONCES = "nbannonce.php"; //F
+	public static final String URL_NB_ANNONCES_BATEAUX = "nbbateau.php"; //F
+	public static final String URL_NB_ANNONCES_MOTEURS = "nbmoteur.php"; //F
+	public static final String URL_NB_ANNONCES_DIVERS = "nbdivers.php"; //F
 
 	
 	
@@ -245,13 +250,14 @@ public class Constantes {
 	public static final String UPLOAD_PHOTO = "Filedata";
 	public static final String URL_ENVOIE_ANNONCE = "getAnnonce.php";
 	
-	public static final String URL_NB_ANNONCES = "xml-nbannonce.php";
-	public static final String NB_ANNONCES_BATEAUX = "bateau";
-	public static final String NB_ANNONCES_BATEAUX_MOTEURS = "bateaumot";
-	public static final String NB_ANNONCES_VOILIERS = "voile";
-	public static final String NB_ANNONCES_PNEUMATIQUES = "pneuma";
-	public static final String NB_ANNONCES_MOTEURS = "moteur";
-	public static final String NB_ANNONCES_DIVERS = "divers";
+	//elements du xml nbannonces
+	public static final String NB_ANNONCES_BATEAUX = "bateau"; //F
+	public static final String NB_ANNONCES_BATEAUX_MOTEURS = "bateaumot"; //F
+	public static final String NB_ANNONCES_VOILIERS = "voile"; //F
+	public static final String NB_ANNONCES_PNEUMATIQUES = "pneuma"; //F
+	public static final String NB_ANNONCES_MOTEURS = "moteur"; //F
+	public static final String NB_ANNONCES_DIVERS = "divers"; //F
+	
 	public static final String NB_ANNONCES_LOCATION = "location";
 	
 	public static final String URL_CREER_ALERTE = "alerte-action.php"; //F

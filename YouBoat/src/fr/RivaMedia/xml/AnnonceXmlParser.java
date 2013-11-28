@@ -24,27 +24,6 @@ public class AnnonceXmlParser extends XmlParser {
 		super(xpp);
 	}
 
-	public Map<String,Integer> getNbAnnonces() {
-		Map<String,Integer> nb = new HashMap<String,Integer>();
-		int eventType = XMLgetEventType();
-		XMLgetSuivant();
-		do{
-			if (eventType == XmlPullParser.START_TAG) {
-				try{
-					String tag = getXpp().getName();
-					String text = getString();
-					//Log.e("XML", tag+" : "+text);
-					nb.put(tag, Integer.parseInt(text));
-				}catch(Exception e){}
-			}
-			eventType = XMLgetSuivant();
-		}while (eventType != XmlPullParser.END_DOCUMENT);
-
-		Log.e("XML",nb.size()+" nombres d'annonces chargees");
-
-		return nb;
-	}
-
 	public List<Annonce> getListe() {
 		List<Annonce> annonces = new ArrayList<Annonce>();
 		int eventType = XMLgetEventType(); 
