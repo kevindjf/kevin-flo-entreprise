@@ -63,7 +63,8 @@ public class MagasineActivity extends Activity{
 			final List<Marque> marquesVoilier = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null);	
 			final List<Marque> marquesPneu = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null);
 			final List<Marque> marquesMoteur = NetChargement.chargerMarquesMoteurs(null);
-
+			Donnees.marquesDistribuees = NetChargement.chargerMarquesDistribuees();
+			Donnees.lieux = NetChargement.chargerLieux();
 
 			final Map<String,Integer> nbAnnonces = NetChargement.chargerNbAnnonces();
 

@@ -14,7 +14,7 @@ public class NetVendeur extends Net {
 
 	public static List<Vendeur> listeVendeurs(List<NameValuePair> donnees){
 
-		String xml = Net.requete(Constantes.URL_VENDEURS,donnees,true);
+		String xml = Net.requeteGet(Constantes.URL_VENDEURS,donnees);
 		Log.e("NetVendeur",xml);
 		return new VendeurXmlParser(xml).getListe();
 	}
@@ -25,6 +25,7 @@ public class NetVendeur extends Net {
 				Net.construireDonnes(
 				Constantes.VENDEUR_INFORMATIONS_ID_CLIENT,id)
 				);
+		
 		List<Vendeur> vendeurs = new VendeurXmlParser(xml).getListe();
 		if(vendeurs.size()>0)
 			return vendeurs.get(0);

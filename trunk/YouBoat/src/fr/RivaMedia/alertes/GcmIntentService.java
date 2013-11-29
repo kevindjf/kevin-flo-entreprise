@@ -135,13 +135,15 @@ public class GcmIntentService extends IntentService {
 				new NotificationCompat.Builder(this)
 		.setSmallIcon(R.drawable.logo_appli)
 		.setLargeIcon(large)
-		.setContentTitle(titre)
+		.setContentTitle(titre);
+		/*
 		.setStyle(new NotificationCompat.BigPictureStyle()
 		.setBigContentTitle(titre)
 		.setSummaryText(message)
 		.bigPicture(large)
 		.bigLargeIcon(large_100)
 				);
+				*/
 
 		mBuilder.setContentIntent(contentIntent);
 		Notification notif =  mBuilder.build();

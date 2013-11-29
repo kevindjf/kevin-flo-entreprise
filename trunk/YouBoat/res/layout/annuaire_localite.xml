@@ -45,49 +45,71 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dip"
-        android:paddingTop="20dip" >
+        android:layout_height="wrap_content" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:text="@string/dans_un_rayon_de"
-            android:textColor="@color/couleur_texte_noir" />
-
-        <EditText
-            android:id="@+id/annuaire_localite_rayon_texte"
+        <LinearLayout
+            android:id="@+id/annuaire_localite_liste_recherche_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dip"
-            android:layout_marginLeft="15dip"
-            android:background="@color/couleur_fond"
-            android:gravity="center"
-            android:hint="@string/indifferent"
-            android:textColor="@color/couleur_texte_noir"
-            android:textSize="15sp" />
-    </LinearLayout>
+            android:orientation="vertical"
+            android:visibility="gone" />
 
-    <SeekBar
-        android:id="@+id/annuaire_localite_rayon_valeur"
-        style="@style/CustomSeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dip"
-        android:max="500"
-        android:padding="15dip" />
+        <LinearLayout
+            android:id="@+id/annuaire_localite_rayon_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+             >
 
-    <RelativeLayout 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <Button
-        android:id="@+id/annuaire_localite_valider"
-        style="@style/bouton_rechercher"
-        android:layout_alignParentBottom="true"
-        android:text="@string/valider" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dip"
+                android:paddingTop="20dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:text="@string/dans_un_rayon_de"
+                    android:textColor="@color/couleur_texte_noir" />
+
+                <EditText
+                    android:id="@+id/annuaire_localite_rayon_texte"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dip"
+                    android:layout_marginLeft="15dip"
+                    android:background="@color/couleur_fond"
+                    android:gravity="center"
+                    android:hint="@string/indifferent"
+                    android:textColor="@color/couleur_texte_noir"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/annuaire_localite_rayon_valeur"
+                style="@style/CustomSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:max="490"
+                android:padding="15dip" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:id="@+id/annuaire_localite_valider"
+                style="@style/bouton_rechercher"
+                android:layout_alignParentBottom="true"
+                android:text="@string/valider" />
+        </RelativeLayout>
     </RelativeLayout>
 
 </LinearLayout>

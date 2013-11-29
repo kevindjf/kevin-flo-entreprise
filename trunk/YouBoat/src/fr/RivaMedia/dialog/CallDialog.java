@@ -33,7 +33,7 @@ public class CallDialog extends AlertDialog implements View.OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.call_holo);
+		setContentView(R.layout.dialog_appeller_holo);
 		ajouterVues();
 		ajouterListeners();
 

@@ -67,6 +67,7 @@
     <string name="energie_star">Energie *</string>
     <string name="essence">Essence</string>
     <string name="erreur_connexion">Une connexion à Internet est nécessaire pour utiliser YouBoat. Aucune n\'est disponible</string>
+    <string name="erreur_alerte">Impossible de créer l\'alerte</string>
     <string name="etape_suivante">ETAPE SUIVANTE</string>
     <string name="etat">Etat</string>
     <string name="facultatif">facultatif</string>

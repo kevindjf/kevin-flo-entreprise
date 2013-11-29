@@ -10,6 +10,7 @@ import org.apache.http.NameValuePair;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,9 +28,11 @@ import fr.RivaMedia.fragments.selector.MarqueSelector;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Etat;
+import fr.RivaMedia.model.Lieu;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.core.Donnees;
+import fr.RivaMedia.net.NetAlerte;
 import fr.RivaMedia.net.NetAnnonce;
 import fr.RivaMedia.net.core.Net;
 
@@ -241,8 +244,15 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	private void ajouterAlerte() {
-		// TODO Auto-generated method stub
-
+		if(this.recherche_type == null)
+			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
+		else if(this.recherche_categorie_id == null)
+			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
+		else{
+			task = new AjouterAlerteTask();
+			task.execute();
+		}
+		
 	}
 
 	protected void demanderType(){
@@ -314,11 +324,11 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 	protected void demanderLocalisation(){
 
-		List<Region> regions = Donnees.regions;
-		if(regions != null){
+		List<Lieu> lieux = Donnees.lieux;
+		if(lieux != null){
 			Map<String,String> donneesValeurs = new HashMap<String,String>();
-			for(Region region : regions){
-				donneesValeurs.put(region.getNom(), region.getId());
+			for(Lieu lieu : lieux){
+				donneesValeurs.put(lieu.getNom(), lieu.getId());
 			}
 
 			ajouterFragment(new DonneeValeurSelector(this,LOCALISATION,donneesValeurs));
@@ -627,4 +637,71 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		}
 	}
 
+	/* --------------------ALERTE-----------------------*/
+	
+	protected List<NameValuePair> recupererDonneesFormulaireAlerte(){
+		List<NameValuePair> donnees = Net.construireDonnes();
+		
+		String android_id = Secure.getString(getActivity().getContentResolver(),Secure.ANDROID_ID);
+		Net.add(donnees, Constantes.ALERTE_ID_SMARTPHONE,android_id);
+		
+		//TODO ajouter le md5 de la date
+
+		if(this.recherche_type != null)
+			Net.add(donnees, Constantes.ALERTE_ID_TYPE,recherche_type);
+
+		if(this.recherche_categorie_id != null)
+			Net.add(donnees, Constantes.ALERTE_ID_CATEGORIE,recherche_categorie_id);
+
+		if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
+			if(!this.recherche_longueur_max.equals(MinMaxDialog.PLUS))
+				Net.add(donnees, Constantes.ALERTE_MAX_LONG,recherche_longueur_max);
+			//if(!this.recherche_longueur_min.equals("0"))
+			Net.add(donnees, Constantes.ALERTE_MIN_LONG,recherche_longueur_min);
+		}
+
+		if(this.recherche_prix_min != null && this.recherche_prix_max != null){
+			if(!this.recherche_prix_max.equals(MinMaxDialog.PLUS))
+				Net.add(donnees, Constantes.ALERTE_MAX_PRIX,recherche_prix_max);
+			//if(!this.recherche_prix_max.equals("0"))
+			Net.add(donnees, Constantes.ALERTE_MIN_PRIX,recherche_prix_min);
+		}
+
+		return donnees;
+	}
+	
+	public void alerteAjoutee(){
+		Toast.makeText(getActivity(), R.string.alerte_ajoutee, Toast.LENGTH_LONG).show();
+		getFragmentManager().popBackStack();
+	}
+	
+	public void erreurAlerte(){
+		Toast.makeText(getActivity(), R.string.erreur_alerte, Toast.LENGTH_LONG).show();
+	}
+	
+	/* --------------------------------------------------------------------------- */
+
+	class AjouterAlerteTask extends AsyncTask<Void, Void, Void> {
+		protected Void doInBackground(Void...donnees) {
+			final Boolean reponse = NetAlerte.creerAlerte(recupererDonneesFormulaireAlerte());
+
+			getActivity().runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					if(reponse.booleanValue())
+						alerteAjoutee();
+					else
+						erreurAlerte();
+				}
+
+			});
+
+			return null;
+		}
+
+		protected void onPostExecute(){
+		}
+	}
+	
 }
