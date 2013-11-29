@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Departement;
 import fr.RivaMedia.model.Energie;
 import fr.RivaMedia.model.Etat;
+import fr.RivaMedia.model.Lieu;
 import fr.RivaMedia.model.Magazine;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Actualite;
@@ -16,6 +18,7 @@ import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.TypeAnnonce;
 import fr.RivaMedia.model.TypeCategories;
+import fr.RivaMedia.model.Ville;
 
 public class Donnees {
 
@@ -28,6 +31,15 @@ public class Donnees {
 		for(TypeCategories t : typeCategories){
 			if(t.getId().equals(type))
 				return t.getCategories();
+		}
+		return null;
+	}
+	
+	public static Categorie getCategorie(String id){
+		List<Categorie> categories = getCategories(Constantes.BATEAUX);
+		for(Categorie c : categories){
+			if(c.getId().equals(id))
+				return c;
 		}
 		return null;
 	}
@@ -48,5 +60,10 @@ public class Donnees {
 	public static List<Departement> departements = new ArrayList<Departement>();
 	public static List<Energie> energies = new ArrayList<Energie>();
 	public static Magazine magazine;
+	
+	public static String jeton = "";
+	public static List<Marque> marquesDistribuees;
+	public static List<Ville> villes = new ArrayList<Ville>();
+	public static List<Lieu> lieux;
 	
 }

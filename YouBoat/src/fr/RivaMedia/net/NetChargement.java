@@ -10,6 +10,7 @@ import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Departement;
 import fr.RivaMedia.model.Energie;
 import fr.RivaMedia.model.Etat;
+import fr.RivaMedia.model.Lieu;
 import fr.RivaMedia.model.Magazine;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Modele;
@@ -22,6 +23,7 @@ import fr.RivaMedia.xml.CategorieXmlParser;
 import fr.RivaMedia.xml.DepartementXmlParser;
 import fr.RivaMedia.xml.EnergieXmlParser;
 import fr.RivaMedia.xml.EtatXmlParser;
+import fr.RivaMedia.xml.LieuxXmlParser;
 import fr.RivaMedia.xml.MagazineXmlParser;
 import fr.RivaMedia.xml.MarqueXmlParser;
 import fr.RivaMedia.xml.ModeleXmlParser;
@@ -59,7 +61,7 @@ public class NetChargement extends Net{
 	}
 
 	public static List<Service> chargerServices(){
-		String xml = Net.requeteGet(Constantes.URL_SERVICES, null,true);
+		String xml = Net.requeteGet(Constantes.URL_SERVICES, null);
 		return new ServiceXmlParser(xml).getServices();
 	}
 	
@@ -128,6 +130,11 @@ public class NetChargement extends Net{
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
+	
+	public static List<Marque> chargerMarquesDistribuees() {
+		String xml = Net.requeteGet(Constantes.URL_MARQUES_DISTRIBUEES, null);
+		return new MarqueXmlParser(xml).getMarques();
+	}
 
 	public static List<Modele> chargerModeles(String idMarque, String idType, String idClient) {
 		List<NameValuePair> donnees = Net.construireDonnes(
@@ -166,5 +173,12 @@ public class NetChargement extends Net{
 
 		return new MagazineXmlParser(xml).getMagazine();
 	}
+
+	public static List<Lieu> chargerLieux() {
+		String xml = Net.requeteGet(Constantes.URL_LIEUX, null);
+		return new LieuxXmlParser(xml).getListe();
+	}
+
+	
 
 }

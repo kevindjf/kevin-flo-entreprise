@@ -131,7 +131,7 @@ public class Net {
 	}
 
 	public static String requete(String url, List<NameValuePair> donneesPost){
-		return requete(url, donneesPost);
+		return requete(url, donneesPost,false);
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -162,7 +162,7 @@ public class Net {
 			HttpPost requete = new HttpPost(urlRequete.replace("?", ""));
 			requete.setEntity(new UrlEncodedFormEntity(donneesPost,"UTF-8"));
 
-			Log.d("NET",SITE+url+"/");
+			Log.d("NET",SITE+url);
 			HttpResponse httpReponse = httpClient.execute(requete);
 
 			//StatusLine statusLine = httpReponse.getStatusLine();

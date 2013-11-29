@@ -183,7 +183,7 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 	@Override
 	public void onResume() {
 		super.onResume();
-		//TODO recharger les formulaires d'alerte
+		afficherProgress(afficherProgress);
 	}
 
 	

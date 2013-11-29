@@ -15,6 +15,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import fr.RivaMedia.Constantes;
+import fr.RivaMedia.model.core.Donnees;
+
 public class GcmInitializer{
 
 	public static final int tempsAttenteSecondes = 3;
@@ -22,7 +25,7 @@ public class GcmInitializer{
 	public static final String TAG = "PLAY";
 	
 	public static final String EXTRA_MESSAGE = "message";
-    public static final String PROPERTY_REG_ID = "AIzaSyB7IT3ndRmf9j_J94Y79Znyl1OptMp3e_s";
+    public static final String PROPERTY_REG_ID = Constantes.SERVER_GOOGLE_CLOUD_ID;
     private static final String PROPERTY_APP_VERSION = "1";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
@@ -214,6 +217,8 @@ public class GcmInitializer{
     private void sendRegistrationIdToBackend() {
     	// Your implementation here.
     	Log.d("PLAY_ID",regid);
+    	
+    	Donnees.jeton = regid;
     }
 
 }

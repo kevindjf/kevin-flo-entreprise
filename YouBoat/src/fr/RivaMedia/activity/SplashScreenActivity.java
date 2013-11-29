@@ -131,8 +131,7 @@ public class SplashScreenActivity extends Activity{
 
 			Donnees.energies = NetChargement.chargerEnergies();
 			
-			final List<Service> services = NetChargement.chargerServices();
-			Donnees.services = services;			
+			Donnees.services = NetChargement.chargerServices();
 
 			lancerDecompte();
 

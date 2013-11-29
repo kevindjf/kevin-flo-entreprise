@@ -25,6 +25,7 @@ import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.core.Donnees;
+import fr.RivaMedia.net.NetAlerte;
 import fr.RivaMedia.net.core.Net;
 
 public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener, OnMinMaxListener{
@@ -91,9 +92,11 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 	private void ajouterAlerte() {
 		if(this.recherche_type == null)
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
+		else if(this.recherche_categorie_id == null)
+			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
 		else{
-			List<NameValuePair> donnees = recupererDonneesFormulaire();
-			Net.requete(Constantes.URL_CREER_ALERTE, donnees);
+			task = new AjouterAlerteTask();
+			task.execute();
 		}
 	}
 
@@ -265,18 +268,24 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 		getFragmentManager().popBackStack();
 	}
 	
+	public void erreurAlerte(){
+		Toast.makeText(getActivity(), R.string.erreur_alerte, Toast.LENGTH_LONG).show();
+	}
+	
 	/* --------------------------------------------------------------------------- */
 
 	class AjouterAlerteTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			//tests
-			Net.requete(Constantes.URL_CREER_ALERTE, recupererDonneesFormulaire());
+			final Boolean reponse = NetAlerte.creerAlerte(recupererDonneesFormulaire());
 
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
 				public void run() {
-					alerteAjoutee();
+					if(reponse.booleanValue())
+						alerteAjoutee();
+					else
+						erreurAlerte();
 				}
 
 			});

@@ -19,6 +19,7 @@ import fr.RivaMedia.fragments.selector.AnnuaireLocaliteSelector;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Service;
+import fr.RivaMedia.model.Ville;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
 
@@ -39,8 +40,10 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 
 	String marque_id = null;
 	String service_id = null;
-	String localite = null;
+	Ville ville = null;
 	String rayon = null;
+	String longitude = null;
+	String latitude = null;
 
 	static Map<String,String> marques_id = null;
 	static Map<String,String> services_id = null;
@@ -55,7 +58,7 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 
 		if(marques_id == null){
 			marques_id = new HashMap<String,String>();
-			for(Marque m : Donnees.toutesMarques)
+			for(Marque m : Donnees.marquesDistribuees)
 				marques_id.put(m.getLibelle(),m.getId());
 		}
 		if(services_id == null){
@@ -73,7 +76,7 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		_services = _view.findViewById(R.id.annuaire_services);
 		_localite = _view.findViewById(R.id.annuaire_localite);
 		_rechercher = _view.findViewById(R.id.annuaire_rechercher);
-		
+
 		views = new View[]{
 				_distributeur_marque,
 				_services,
@@ -105,8 +108,10 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		}
 		marque_id = null;
 		service_id = null;
-		localite = null;
+		ville = null;
 		rayon = null;
+		longitude = null;
+		latitude = null;
 	}
 
 	@Override
@@ -133,10 +138,17 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		List<NameValuePair> donnees = Net.construireDonnes();
 
 		if(marque_id != null)
-			Net.add(donnees, Constantes.ANNURAIRE_MARQUE,marque_id);
+			Net.add(donnees, Constantes.VENDEURS_MARQUE_ID,marque_id);
 		if(service_id != null)
-			Net.add(donnees,Constantes.ANNURAIRE_SERVICE,service_id);
-		
+			Net.add(donnees,Constantes.VENDEURS_SERVICE_ID,service_id);
+		if(rayon != null)
+			Net.add(donnees,Constantes.VENDEURS_RAYON,rayon);
+		if(ville != null)
+			Net.add(donnees,Constantes.VENDEURS_VILLE_ID,ville.getId());
+		if(latitude != null)
+			Net.add(donnees,Constantes.VENDEURS_LATITUDE,latitude);
+		if(longitude != null)
+			Net.add(donnees,Constantes.VENDEURS_LONGITUDE,longitude);
 
 		return donnees;
 	}
@@ -176,19 +188,16 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 			service_id = item;
 			((TextView)_services.findViewById(R.id.text)).setText(value);
 		}
-		else if(idRetour == LOCALITE){
-			localite = item;
-			rayon = value;
-			String[] rp = rayon.split(";");
-			if(rp.length == 2){
-				String r = rp[0];
-				String p = rp[1];
+	}
 
-				String text = r+" "+getString(R.string.km_autour_de)+" "+p;
+	public void localiteSelected(Ville ville, String nomVille, String rayon, String longitude, String latitude){
+		this.ville = ville;
+		this.rayon = rayon;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		
+		String text = this.rayon+" "+getString(R.string.km_autour_de)+" "+nomVille;
 
-				((TextView)_localite.findViewById(R.id.text)).setText(text);
-			}
-		}
-
+		((TextView)_localite.findViewById(R.id.text)).setText(text);
 	}
 }
