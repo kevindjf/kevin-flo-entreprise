@@ -183,7 +183,7 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif"
-                    android:inputType="number" />
+                    android:inputType="numberDecimal" />
             </RelativeLayout>
 
             <RelativeLayout

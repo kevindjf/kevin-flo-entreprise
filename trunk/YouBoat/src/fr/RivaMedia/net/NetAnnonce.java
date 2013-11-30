@@ -63,7 +63,9 @@ public class NetAnnonce extends Net {
 		String url = recupererUrlAnnonce(type);
 		if(url != null){
 			String xml = Net.requeteGet(recupererUrlAnnonce(type),donnees);
-			return  new AnnonceXmlParser(xml).getAnnonce();
+			Annonce annonce = new AnnonceXmlParser(xml).getAnnonce();
+			annonce.setType(type);
+			return annonce;
 		}
 		return null;
 	}

@@ -30,7 +30,6 @@ import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Etat;
 import fr.RivaMedia.model.Lieu;
 import fr.RivaMedia.model.Marque;
-import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.NetAlerte;
 import fr.RivaMedia.net.NetAnnonce;
@@ -292,7 +291,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 				getActivity().getResources().getString(R.string.prix),
 				this,
 				recherche_prix_min,recherche_prix_max,
-				50000
+				300000
 				).show();
 	}
 	protected void demanderLongueur(){
@@ -683,13 +682,13 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	class AjouterAlerteTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			final Boolean reponse = NetAlerte.creerAlerte(recupererDonneesFormulaireAlerte());
+			final String reponse = NetAlerte.creerAlerte(recupererDonneesFormulaireAlerte());
 
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
 				public void run() {
-					if(reponse.booleanValue())
+					if(reponse.toLowerCase().trim().equals("true"))
 						alerteAjoutee();
 					else
 						erreurAlerte();

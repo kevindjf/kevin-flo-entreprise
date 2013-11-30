@@ -4,6 +4,7 @@ public class Ville {
 
 	private String id;
 	private String nom;
+	private String codePostal;
 
 	public String getId() {
 		return id;
@@ -16,5 +17,11 @@ public class Ville {
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	public String getCodePostal() {
+		return codePostal;
+	}
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
 	}
 }

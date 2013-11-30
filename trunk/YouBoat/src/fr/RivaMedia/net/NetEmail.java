@@ -9,11 +9,11 @@ import fr.RivaMedia.net.core.Net;
 
 public class NetEmail extends Net{
 
-	public Boolean envoyerEmailAnnonce(String email, String message, String annonceId, String idType){
+	public static Boolean envoyerEmailAnnonce(String email, String message, String annonceId, String idType){
 		return envoyerEmailAnnonce(email, message, annonceId, idType, null, null, null);
 	}
 	
-	public Boolean envoyerEmailAnnonce(String email, String message, String annonceId, String idType, String nom, String tel1, String departementId){
+	public static Boolean envoyerEmailAnnonce(String email, String message, String annonceId, String idType, String nom, String tel1, String departementId){
 		List<NameValuePair> donnees = Net.construireDonnes(
 				Constantes.ENVOIE_EMAIL_EMAIL, email,
 				Constantes.ENVOIE_EMAIL_MESSAGE, message,
@@ -37,11 +37,11 @@ public class NetEmail extends Net{
 		return Boolean.parseBoolean(requete(Constantes.URL_ENVOIE_EMAIL, donnees));
 	}
 	
-	public Boolean envoyerEmailClientDirect(String email, String message, String nom, String clientDirectId){
+	public static Boolean envoyerEmailClientDirect(String email, String message, String nom, String clientDirectId){
 		return envoyerEmailClientDirect(email, message, nom, clientDirectId, null, null);
 	}
 	
-	public Boolean envoyerEmailClientDirect(String email, String message, String nom, String clientDirectId, String tel1, String departementId){
+	public static Boolean envoyerEmailClientDirect(String email, String message, String nom, String clientDirectId, String tel1, String departementId){
 		List<NameValuePair> donnees = Net.construireDonnes(
 				Constantes.ENVOIE_EMAIL_EMAIL, email,
 				Constantes.ENVOIE_EMAIL_MESSAGE, message,

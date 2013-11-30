@@ -154,7 +154,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 			appeller(_vendeur.getTel2());
 			break;
 		case R.id.vendeur_detail_email:
-			envoyerEmail(_vendeur.getEmail());
+			envoyerEmailVendeur(_vendeur.getEmail(), _vendeur);
 			break;
 		}
 	}

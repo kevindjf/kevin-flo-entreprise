@@ -14,18 +14,19 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dip"
             android:layout_marginBottom="5dip"
             
-            android:src="@drawable/info_logo" />
+            android:src="@drawable/logo_youboat_slider" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dip"
             android:text="@string/achatetventebateaux"
             android:textColor="@color/couleur_texte_blanc"
             android:textSize="18sp"
+            android:gravity="center"
             android:textStyle="bold" />
 
         <TextView
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@string/informations_youboat_propose"
             android:textColor="@color/couleur_texte_noir"
-            android:textSize="13sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 
     <RelativeLayout

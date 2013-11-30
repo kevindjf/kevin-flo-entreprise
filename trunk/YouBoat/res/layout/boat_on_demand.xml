@@ -16,9 +16,9 @@
             android:layout_gravity="center"
             android:layout_marginBottom="5dip"
             android:layout_marginTop="5dip"
-            android:text="@string/on_demand"
+            android:text="@string/on_demand_big"
             android:textColor="@color/couleur_1"
-            android:textSize="18sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
@@ -185,6 +185,7 @@
                     <TextView
                         style="@style/formulaire_separator_titre"
                         android:text="@string/reprise_de_votre_bateau" />
+
                 </LinearLayout>
 
                 <LinearLayout style="@style/formulaire_separator" >

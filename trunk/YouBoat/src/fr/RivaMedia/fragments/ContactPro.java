@@ -29,7 +29,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 			break;
 			
 		case R.id.contact_pro_email :
-			super.envoyerEmail(getString(R.string.adresse_email_youboat));
+			super.envoyerEmailDirect(getString(R.string.EMAIL_RIVAMEDIA));
 			break;
 		}
 	}

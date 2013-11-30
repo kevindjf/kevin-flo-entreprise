@@ -276,13 +276,13 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 
 	class AjouterAlerteTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			final Boolean reponse = NetAlerte.creerAlerte(recupererDonneesFormulaire());
+			final String reponse = NetAlerte.creerAlerte(recupererDonneesFormulaire());
 
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
 				public void run() {
-					if(reponse.booleanValue())
+					if(reponse.toLowerCase().trim().equals("true"))
 						alerteAjoutee();
 					else
 						erreurAlerte();

@@ -216,8 +216,10 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				nbHeures.setVisibility(View.GONE);
 			}
 
-			if(_annonce.getPrix() != null && _annonce.getTaxePrix() != null)
-				((TextView)prix.findViewById(R.id.text)).setText(_annonce.getPrix() + " € " + _annonce.getTaxePrix());
+			if(_annonce.getPrix() != null && _annonce.getTaxePrix() != null){
+				String p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim();
+				((TextView)prix.findViewById(R.id.text)).setText(p + " € " + _annonce.getTaxePrix());
+			}
 			else
 				prix.setVisibility(View.GONE);
 
@@ -299,7 +301,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			super.appeller(((TextView)telephoneSecondaire.findViewById(R.id.text)).getText().toString());
 			break;
 		case R.id.annonce_detail_email:
-			super.envoyerEmail(((TextView)email.findViewById(R.id.text)).getText().toString());
+			super.envoyerEmailAnnonce(((TextView)email.findViewById(R.id.text)).getText().toString(),this._annonce);
 			break;
 		case R.id.header_favoris:
 			switchFavoris();
@@ -362,6 +364,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				ImageLoaderCache.load(getActivity());
 				try{
 					ImageLoaderCache.charger(_urlImage, _imageView);
+					System.err.println(_urlImage);
 				}catch(Exception e){
 					e.printStackTrace();
 				}

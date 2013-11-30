@@ -32,10 +32,10 @@ public class Credit extends FragmentNormal implements View.OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.credits_email:
-			envoyerEmail(getString(R.string.EMAIL_FLORENT_KEVIN));
+			envoyerEmailDirect(getString(R.string.EMAIL_FLORENT_KEVIN));
 			break;
 		case R.id.credits_email_rivamedia:
-			envoyerEmail(getString(R.string.EMAIL));
+			envoyerEmailDirect(getString(R.string.EMAIL));
 			break;
 		case R.id.credits_photo_petite:
 			afficherPhotoGrande();

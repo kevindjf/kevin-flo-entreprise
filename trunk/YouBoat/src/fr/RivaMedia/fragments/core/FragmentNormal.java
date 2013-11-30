@@ -3,6 +3,8 @@ package fr.RivaMedia.fragments.core;
 import fr.RivaMedia.R;
 import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.dialog.CallDialog;
+import fr.RivaMedia.model.Annonce;
+import fr.RivaMedia.model.Vendeur;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -75,8 +77,14 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		((MainActivity)getActivity()).ajouterFragment(fragment,back);
 	}
 	
-	public void envoyerEmail(String email){
-		((MainActivity)getActivity()).envoyerEmail(email);
+	public void envoyerEmailVendeur(String email, Vendeur vendeur){
+		((MainActivity)getActivity()).envoyerEmailVendeur(email, vendeur);
+	}
+	public void envoyerEmailAnnonce(String email, Annonce annonce){
+		((MainActivity)getActivity()).envoyerEmailAnnonce(email, annonce);
+	}
+	public void envoyerEmailDirect(String email){
+		((MainActivity)getActivity()).envoyerEmailDirect(email);
 	}
 	public void appeller(String phone){
 		new CallDialog(getActivity(), getString(R.string.telephoner), phone).show();

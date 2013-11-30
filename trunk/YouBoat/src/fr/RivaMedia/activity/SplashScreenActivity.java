@@ -1,7 +1,5 @@
 package fr.RivaMedia.activity;
 
-import java.util.List;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 import fr.RivaMedia.R;
 import fr.RivaMedia.alertes.GcmInitializer;
 import fr.RivaMedia.image.ImageLoaderCache;
-import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.NetChargement;
 import fr.RivaMedia.net.core.Net;
@@ -41,6 +38,7 @@ public class SplashScreenActivity extends Activity{
 			ImageLoaderCache.load(this);
 
 			new ChargementsTask().execute();
+			
 		}
 		else{
 			Toast.makeText(this, getString(R.string.erreur_connexion), Toast.LENGTH_LONG).show();
@@ -117,6 +115,16 @@ public class SplashScreenActivity extends Activity{
 
 	class ChargementsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
+			/*
+			Thread th = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					Donnees.getVilles(getApplicationContext());
+				}
+			});
+			th.start();
+			*/
 
 			Donnees.magazine = NetChargement.chargerMagazine();
 			chargerImage();
@@ -133,6 +141,14 @@ public class SplashScreenActivity extends Activity{
 			
 			Donnees.services = NetChargement.chargerServices();
 
+			/*
+			try {
+				th.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			*/
+			
 			lancerDecompte();
 
 			return null;

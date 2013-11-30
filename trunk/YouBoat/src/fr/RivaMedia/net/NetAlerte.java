@@ -13,11 +13,11 @@ import fr.RivaMedia.xml.AlerteXmlParser;
 
 public class NetAlerte extends Net{
 
-	public static Boolean creerAlerte(String categorieBateau){
+	public static String creerAlerte(String categorieBateau){
 		return creerAlerte(categorieBateau, null, null, null, null);
 	}
 	
-	public static Boolean creerAlerte(String categorieBateau, String minLong, String maxLong, String minPrix, String maxPrix){
+	public static String creerAlerte(String categorieBateau, String minLong, String maxLong, String minPrix, String maxPrix){
 		List<NameValuePair> donnees = Net.construireDonnes(
 				Constantes.ALERTE_ID_SMARTPHONE, Donnees.jeton,
 				Constantes.ALERTE_ID_CATEGORIE, categorieBateau
@@ -34,18 +34,18 @@ public class NetAlerte extends Net{
 		return creerAlerte(donnees);
 	}
 	
-	public static Boolean creerAlerte(List<NameValuePair> donnees){
-		return Boolean.parseBoolean(Net.requete(Constantes.URL_CREER_ALERTE, donnees));
+	public static String creerAlerte(List<NameValuePair> donnees){
+		return Net.requete(Constantes.URL_CREER_ALERTE, donnees);
 	}
 
-	public static Boolean supprimerAlerte(String alerteId){
+	public static String supprimerAlerte(String alerteId){
 		List<NameValuePair> donnees = Net.construireDonnes(
 				Constantes.ALERTE_ID_SMARTPHONE, Donnees.jeton,
 				Constantes.SUPPRIMER_ALERTE_ID, alerteId,
 				Constantes.SUPPRIMER_ALERTE_DELETE, "1"
 				);
 
-		return Boolean.parseBoolean(Net.requete(Constantes.URL_SUPPRIMER_ALERTE, donnees));
+		return Net.requete(Constantes.URL_SUPPRIMER_ALERTE, donnees);
 	}
 	
 	public static List<Alerte> getAlertes(){		
