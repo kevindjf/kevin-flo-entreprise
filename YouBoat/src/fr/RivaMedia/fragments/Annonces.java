@@ -33,7 +33,7 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.annonces,container, false);
 
-		_ajourdhuiAnnonces = (TextView)_view.findViewById(R.id.annonces_aujourd_hui);
+		_ajourdhuiAnnonces = (TextView)_view.findViewById(R.id.annonces_aujourd_hui_nombre);
 		_boutonBateauxVoiliers = _view.findViewById(R.id.annonces_bouton_bateaux_et_voiliers);
 		_boutonMoteurs = _view.findViewById(R.id.annonces_bouton_moteurs);
 		_boutonAccessoiresDivers = _view.findViewById(R.id.annonces_bouton_accessoires_et_divers);
@@ -72,7 +72,7 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 
 			String nbAnnoncesString = String.format("%,8d", nbAnnonces).trim();
 
-			_ajourdhuiAnnonces.setText(getString(R.string.aujourd_hui)+", "+nbAnnoncesString+" "+getString(R.string.annonces_small));
+			_ajourdhuiAnnonces.setText(nbAnnoncesString);
 			((TextView)_view.findViewById(R.id.annonces_nb_annonces_bateaux)).setText(nbBateaux.toString());
 			((TextView)_view.findViewById(R.id.annonces_nb_annonces_moteurs)).setText(nbMoteurs.toString());
 			((TextView)_view.findViewById(R.id.annonces_nb_annonces_accessoires)).setText(nbDivers.toString());

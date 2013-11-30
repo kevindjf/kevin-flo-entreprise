@@ -22,7 +22,8 @@
             android:layout_marginBottom="5dip"
             android:layout_marginTop="5dip"
             android:textColor="@color/couleur_fond"
-            android:textSize="17sp" />
+            android:textStyle="bold"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/annonce_detail_sous_titre"
@@ -135,7 +136,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingBottom="20dip" >
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/annonce_detail_image_pager"
@@ -172,6 +174,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dip"
                     android:layout_marginTop="10dip"
+                    android:textSize="15sp"
                     android:textColor="@color/couleur_texte_fonce" />
 
                 <LinearLayout

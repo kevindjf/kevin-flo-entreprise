@@ -64,31 +64,31 @@ public class NetChargement extends Net{
 		String xml = Net.requeteGet(Constantes.URL_SERVICES, null);
 		return new ServiceXmlParser(xml).getServices();
 	}
-	
+
 	public static List<Region> chargerRegions(){
 		String xml = Net.requeteGet(Constantes.URL_REGIONS, null);
 		return new RegionXmlParser(xml).getRegions();
 	}
-	
+
 	public static List<Etat> chargerEtats(){
 		String xml = Net.requeteGet(Constantes.URL_ETATS, null);
 		return new EtatXmlParser(xml).getEtats();
 	}
-	
+
 	public static List<Departement> chargerDepartements(){
 		String xml = Net.requeteGet(Constantes.URL_DEPARTEMENTS, null);
 		return new DepartementXmlParser(xml).getDepartements();
 	}
-	
+
 	public static List<Energie> chargerEnergies(){
 		String xml = Net.requeteGet(Constantes.URL_ENERGIES, null);
-		
+
 		return new EnergieXmlParser(xml).getEnergies();
 	}
-	
+
 	public static List<TypeAnnonce> chargerTypesAnnonces(){
 		String xml = Net.requeteGet(Constantes.URL_TYPES_ANNONCES, null);
-		
+
 		return new TypeAnnonceXmlParser(xml).getTypesAnnonces();
 	}
 
@@ -96,10 +96,9 @@ public class NetChargement extends Net{
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		if(idType != null || idClient != null)
-			Net.add(donnees, 
-					Constantes.MARQUES_POUR, "1"
-					);
+		Net.add(donnees, 
+				Constantes.MARQUES_POUR, "1"
+				);
 
 		if(idType != null)
 			Net.add(donnees, 
@@ -119,18 +118,18 @@ public class NetChargement extends Net{
 	public static List<Marque> chargerMarquesMoteurs(String idClient){
 
 		List<NameValuePair> donnees = Net.construireDonnes();
-		
+
+		Net.add(donnees, Constantes.MARQUES_POUR, "1");
+
 		if(idClient != null)
-			Net.add(donnees, 
-					Constantes.MARQUES_POUR, "1",
-					Constantes.MARQUES_POUR_CLIENT, idClient
+			Net.add(donnees, Constantes.MARQUES_POUR_CLIENT, idClient
 					);
-		
+
 		String xml = Net.requeteGet(Constantes.URL_MARQUES_MOTEUR, null);		
 
 		return new MarqueXmlParser(xml).getMarques();
 	}
-	
+
 	public static List<Marque> chargerMarquesDistribuees() {
 		String xml = Net.requeteGet(Constantes.URL_MARQUES_DISTRIBUEES, null);
 		return new MarqueXmlParser(xml).getMarques();
@@ -144,18 +143,18 @@ public class NetChargement extends Net{
 		if(idType != null || idClient != null)
 			Net.add(donnees, 
 					Constantes.MODELES_POUR, "1"
-			);
-		
+					);
+
 		if(idType != null)
 			Net.add(donnees, 
-				Constantes.MODELES_ID_TYPE, idType
-			);
-		
+					Constantes.MODELES_ID_TYPE, idType
+					);
+
 		if(idClient != null)
 			Net.add(donnees, 
-				Constantes.MODELES_ID_CLIENT, idClient
-			);
-		
+					Constantes.MODELES_ID_CLIENT, idClient
+					);
+
 
 		String xml = Net.requeteGet(Constantes.URL_MODELES, donnees);
 
@@ -179,6 +178,6 @@ public class NetChargement extends Net{
 		return new LieuxXmlParser(xml).getListe();
 	}
 
-	
+
 
 }

@@ -45,6 +45,8 @@ public class Annonce {
     private List<String> equipement = new ArrayList<String>();
     private List<String> electroniques = new ArrayList<String>();
     
+    private String apartirDe;
+    
 	public String getNumero() {
 		return numero;
 	}
@@ -257,6 +259,12 @@ public class Annonce {
 	}
 	public void setElectroniques(List<String> electroniques) {
 		this.electroniques = electroniques;
+	}
+	public String getApartirDe() {
+		return apartirDe;
+	}
+	public void setApartirDe(String apartirDe) {
+		this.apartirDe = apartirDe;
 	}
     
     

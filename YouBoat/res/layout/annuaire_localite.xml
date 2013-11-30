@@ -41,6 +41,7 @@
                 android:background="@color/couleur_fond"
                 android:hint="@string/localisation"
                 android:paddingLeft="5dp"
+                android:inputType="none"
                 android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>

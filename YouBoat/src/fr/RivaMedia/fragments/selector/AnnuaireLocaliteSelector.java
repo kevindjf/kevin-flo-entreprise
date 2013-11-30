@@ -14,6 +14,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
@@ -32,6 +34,7 @@ import fr.RivaMedia.fragments.Annuaire;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Ville;
 import fr.RivaMedia.model.core.Donnees;
+
 
 @SuppressLint("ValidFragment")
 public class AnnuaireLocaliteSelector extends FragmentNormal implements View.OnClickListener, OnSeekBarChangeListener{
@@ -96,7 +99,7 @@ public class AnnuaireLocaliteSelector extends FragmentNormal implements View.OnC
 	public void remplir() {
 		_rechercheVilleLayout.setVisibility(View.GONE);
 		
-		rechercheVille = new RechercheVille(getActivity(), _rechercheVilleLayout, Donnees.villes);
+		//rechercheVille = new RechercheVille(getActivity(), _rechercheVilleLayout, Donnees.getVilles(getActivity()));
 	}
 
 	@Override
@@ -105,6 +108,7 @@ public class AnnuaireLocaliteSelector extends FragmentNormal implements View.OnC
 		_boutonGPS.setOnClickListener(this);
 		_rayon_valeur.setOnSeekBarChangeListener(this);
 
+		/*
 		_texteLocalite.setOnFocusChangeListener(new OnFocusChangeListener() {
 			
 			@Override
@@ -120,6 +124,23 @@ public class AnnuaireLocaliteSelector extends FragmentNormal implements View.OnC
 			}
 		});
 		
+		_texteLocalite.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void afterTextChanged(Editable s) {}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				if(rechercheVille != null)
+					rechercheVille.chercher(s.toString());
+				else{
+					_texteLocalite.removeTextChangedListener(this);
+				}
+			}			
+		});
+		
 		rechercheVille.liste.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position,long arg3) {
@@ -132,6 +153,7 @@ public class AnnuaireLocaliteSelector extends FragmentNormal implements View.OnC
 				
 			}
 		});
+		*/
 	}
 
 	public void valider(){

@@ -164,12 +164,12 @@ public class TabMesAlertesFormulaires extends Tab {
 	class SupprimmerAlertesTask extends AsyncTask<String, Void, Void> {
 		protected Void doInBackground(String...alerteId) {
 			final String idAlerte = alerteId[0];
-			final Boolean ok = NetAlerte.supprimerAlerte(idAlerte);
+			final String ok = NetAlerte.supprimerAlerte(idAlerte);
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
 				public void run() {
-					if(ok.booleanValue())
+					if(ok.toLowerCase().equals("true"))
 						supprimmerAlerteDeListe(idAlerte);
 				}
 

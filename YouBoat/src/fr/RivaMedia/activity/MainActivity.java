@@ -26,6 +26,7 @@ import fr.RivaMedia.fragments.Annonces;
 import fr.RivaMedia.fragments.Annuaire;
 import fr.RivaMedia.fragments.ContactPro;
 import fr.RivaMedia.fragments.Credit;
+import fr.RivaMedia.fragments.EmailFragment;
 import fr.RivaMedia.fragments.Informations;
 import fr.RivaMedia.fragments.MesAlertes;
 import fr.RivaMedia.fragments.MesAnnonces;
@@ -33,6 +34,7 @@ import fr.RivaMedia.fragments.OnDemand;
 import fr.RivaMedia.fragments.Vendre;
 import fr.RivaMedia.fragments.core.Effaceable;
 import fr.RivaMedia.model.Annonce;
+import fr.RivaMedia.model.Vendeur;
 import fr.RivaMedia.net.core.Net;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener, OnBackStackChangedListener{
@@ -263,7 +265,20 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		transaction.commit();
 	}
 
-	public void envoyerEmail(String email){
+	public void envoyerEmailVendeur(String email, Vendeur vendeur){
+		envoyerEmail(email, EmailFragment.EMAIL_CLIENT, vendeur);
+	}
+	
+	public void envoyerEmailAnnonce(String email,  Annonce annonce){
+		envoyerEmail(email, EmailFragment.EMAIL_ANNNONCE, annonce);
+	}
+	
+	
+	private void envoyerEmail(String email, int type, Object objet){
+		ajouterFragment(new EmailFragment(type, objet));
+	}
+	
+	public void envoyerEmailDirect(String email){
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setData(Uri.parse("mailto:"+email));
 		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject));

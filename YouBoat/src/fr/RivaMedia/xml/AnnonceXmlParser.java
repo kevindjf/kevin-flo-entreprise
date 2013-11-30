@@ -52,7 +52,7 @@ public class AnnonceXmlParser extends XmlParser {
 		while (eventType != XmlPullParser.END_TAG) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				//Log.e("XML",tag);
+				Log.e("XML",tag);
 				if(tag.equals("detail")){
 				}
 				else if(tag.equals("id")){
@@ -151,6 +151,9 @@ public class AnnonceXmlParser extends XmlParser {
 					Log.e("RechercheXmlParser","Vendeur");
 					annonce.setVendeur(getVendeur());
 				}
+				else if(tag.equals("apartirde")){
+					annonce.setApartirDe(getString());
+				}
 				else
 					Log.e("XML INCONNU",tag);
 			}
@@ -237,7 +240,7 @@ public class AnnonceXmlParser extends XmlParser {
 				String tag = getXpp().getName();
 				//Log.e("XML",tag);
 
-				if(tag.equals("elecroniques")){
+				if(tag.equals("electronique")){
 					electroniques.add(getString());
 				}
 			}
