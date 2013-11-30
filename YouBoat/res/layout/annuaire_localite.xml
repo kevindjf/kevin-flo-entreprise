@@ -38,9 +38,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dip"
-                android:background="@color/couleur_fond"
                 android:hint="@string/localisation"
                 android:paddingLeft="5dp"
+                android:focusable="false"
+                android:background="@color/_gris_clair"
                 android:inputType="none"
                 android:textSize="15sp" />
         </LinearLayout>

@@ -168,7 +168,8 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    android:maxLength="4" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -198,7 +199,7 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:text="@string/facultatif" />
-                
+
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
@@ -259,6 +260,52 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/requis"
+                    android:inputType="number" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/nombre_cabine"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/cabines" />
+
+                <EditText
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:hint="@string/facultatif"
+                    android:inputType="number" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/nombre_couchage"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/couchettes" />
+
+                <EditText
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:hint="@string/facultatif"
+                    android:inputType="number" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/nombre_salle_de_bain
+"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/salle_de_bain" />
+
+                <EditText
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:hint="@string/facultatif"
                     android:inputType="number" />
             </RelativeLayout>
 

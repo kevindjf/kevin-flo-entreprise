@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:background="@drawable/onglet_blanc_select_bleu"
             android:orientation="vertical"
-            android:text="@string/mes_annonces"
+            android:text="@string/mes_recherches"
             android:textColor="@color/couleur_onglet_claire"
             android:textStyle="bold" >
         </Button>

@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/couleur_fond"
+        android:background="@color/couleur_3"
         android:orientation="vertical" >
 
         <TextView
@@ -17,7 +17,7 @@
             android:layout_marginBottom="5dip"
             android:layout_marginTop="5dip"
             android:text="@string/on_demand_big"
-            android:textColor="@color/couleur_1"
+            android:textColor="@color/_blanc"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -30,6 +30,11 @@
             android:text="@string/description_boat_on_demand"
             android:textColor="@color/couleur_texte_noir" />
 
+        <View 
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:background="@color/_gris_clair"
+            />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent" >

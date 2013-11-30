@@ -57,7 +57,8 @@
     <string name="description">DESCRIPTION</string>
     <string name="description_dots">Description :</string>
     <string name="description_maj">DESCRIPTION</string>
-    <string name="description_boat_on_demand">Décrivez les critères du bateau de vos rêves, celui que vous souhaitez acquérir ! Nous nous chargeons de transférer votre demande à nos clients partenaires qui vous contacteront avec la meilleure offre s’il possède l’unité qui vous correspond. \nEnsuite c’est à vous de jouer ! </string>
+    <string name="description_boat_on_demand">Décrivez les critères du bateau de vos rêves, celui que vous souhaitez acquérir ! Nous nous chargeons de transférer votre demande à nos clients partenaires qui vous contacteront avec la meilleure offre s’il possède l’unité qui vous correspond. \n\nEnsuite c’est à vous de jouer ! </string>
+    <string name="description_annuaire">Trouvez un professionel du Nautisme en sélectionnant les critères désirés</string>
     <string name="diesel">Diesel</string>
     <string name="distributeur_de_la_marque">Distributeur de la marque</string>
     <string name="distributeur_de_la_marque_dots">Distributeur de la marque :</string>
@@ -104,6 +105,7 @@
     <string name="marque_du_moteur">Marque du moteur</string>
     <string name="mes_annonces">Mes annonces</string>
     <string name="mes_alertes">Mes favoris</string>
+    <string name="mes_recherches">Mes recherches</string>
     <string name="max">Max :</string>
     <string name="min">Min :</string>
     <string name="moins">-</string>
@@ -159,7 +161,7 @@
     <string name="telephone_dots">Téléphone :</string>
     <string name="telephoner">Téléphoner</string>
     <string name="test_annonce_ventes">1055 annonces en vente</string>
-    <string name="trouvez_un_professionnel_du_nautisme">Trouvez un profesionnel du Nautisme</string>
+    <string name="trouvez_un_professionnel_du_nautisme">Trouvez un professionnel du Nautisme</string>
     <string name="type">Type</string>
     <string name="type_star">Type *</string>
     <string name="unite">Unité</string>

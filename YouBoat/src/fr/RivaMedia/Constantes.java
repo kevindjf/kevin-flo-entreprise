@@ -116,6 +116,9 @@ public class Constantes {
 	public static final String VENDRE_LONGUEUR_UNITE = "unites_long"; //F   -> 'm', 'ft' 
 	public static final String VENDRE_ANNEE = "annee"; //F
 	public static final String VENDRE_NOMBRE_MOTEUR = "nbmot"; //F
+	public static final String VENDRE_NOMBRE_CABINE = "nbcab";
+	public static final String VENDRE_NOMBRE_COUCHETTE = "nbcouch";
+	public static final String VENDRE_NOMBRE_SALLE_DE_BAIN = "nbsdb";
 	public static final String VENDRE_PUISSANCE_MOTEUR = "puissmot"; //F
 	public static final String VENDRE_MARQUE_MOTEUR_ID = "listMarqueMoteur"; //F
 	public static final String VENDRE_ANNEE_MOTEUR = "anneemot"; //F
