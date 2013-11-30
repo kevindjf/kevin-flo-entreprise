@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/couleur_fond"
     android:orientation="vertical" >
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/en_tete"
         android:layout_width="match_parent"
-        android:layout_height="70dip"
-        android:background="@color/couleur_1" >
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" 
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/couleur_3"
+        android:layout_marginBottom="0dip"
+        >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:text="@string/trouvez_un_professionnel_du_nautisme"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="4dip"
-            android:textSize="19sp" />
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:text="@string/annuaire"
+            android:textColor="@color/_blanc"
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:id="@+id/description_annuaire"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView1"
-            android:layout_below="@+id/textView1"
-            android:text="@string/selectionnez_les_criteres_desires"
-            android:textColor="@color/couleur_texte_blanc"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:layout_width="15dip"
-            android:layout_height="15dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dip"
-            android:src="@drawable/annuaire_logo_entete" />
-    </RelativeLayout>
+            android:layout_below="@+id/title"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="5dip"
+            android:gravity="center"
+            android:text="@string/description_annuaire"
+            android:textColor="@color/couleur_texte_noir" />
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/formulaire_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/en_tete"
         android:background="#EEE"
         android:orientation="vertical" >
 
@@ -65,8 +64,8 @@
 
             <TextView
                 android:id="@+id/text"
-                android:layout_marginLeft="180dip"
-                style="@style/formulaire_cellule_texte" />
+                style="@style/formulaire_cellule_texte"
+                android:layout_marginLeft="180dip" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
@@ -102,10 +101,12 @@
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
-
-        <Button
-            android:id="@+id/annuaire_rechercher"
-            style="@style/bouton_rechercher" />
     </LinearLayout>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/annuaire_rechercher"
+        style="@style/bouton_rechercher"
+        android:layout_height="40dip"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

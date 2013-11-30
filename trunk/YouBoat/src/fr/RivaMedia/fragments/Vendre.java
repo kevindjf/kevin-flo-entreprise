@@ -101,6 +101,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	View _longueur;
 	View _longueurUnite;
 	View _prix;
+	View _nombreCabines;
+	View _nombresCouchettes;
+	View _nombreSalleDeBain;
 	View _motorisation;
 	View _nombreMoteur;
 	View _puissanceCH;
@@ -134,6 +137,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	String vendre_marque = null; //aussi chantier/modele
 	String vendre_localisation = null;
 	String vendre_prix = null;
+	String nombre_couchette = null;
+	String nombre_cabine = null;
+	String nombre_salle_de_bain = null;
 	String vendre_nombre_moteur = null;
 	String vendre_puissance = null;
 	String vendre_marque_moteur_id = null;
@@ -188,6 +194,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_longueur = _view.findViewById(R.id.vendre_longueur);
 		_longueurUnite = _view.findViewById(R.id.vendre_unite_longueur);
 		_prix = _view.findViewById(R.id.vendre_prix);
+		_nombreCabines = _view.findViewById(R.id.nombre_cabine);
+		_nombresCouchettes = _view.findViewById(R.id.nombre_couchage);
+		_nombreSalleDeBain = _view.findViewById(R.id.nombre_salle_de_bain);
 		_motorisation = _view.findViewById(R.id.vendre_motorisation);
 		_nombreMoteur = _view.findViewById(R.id.vendre_nombre_moteur);
 		_puissanceCH = _view.findViewById(R.id.vendre_puissance_ch);
@@ -212,6 +221,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				_longueur,
 				_longueurUnite,
 				_prix,
+				_nombreCabines,
+				_nombresCouchettes,
+				_nombreSalleDeBain,
 				_motorisation,
 				_nombreMoteur,
 				_puissanceCH,
@@ -231,6 +243,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				_longueur,
 				_longueurUnite,
 				_prix,
+				_nombreCabines,
+				_nombresCouchettes,
+				_nombreSalleDeBain,
 				_motorisation,
 				_nombreMoteur,
 				_puissanceCH,
@@ -376,8 +391,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 			@Override
 			public void onFocusChange(View v, boolean hasFocus) {
-				if(!hasFocus)
-					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" €");
+				if(!hasFocus){
+					((EditText)(v.findViewById(R.id.text))).setText(((((EditText)v.findViewById(R.id.text))).getText().toString() +" €"));
+				}
 				else{
 					if(((EditText)(v.findViewById(R.id.text))).getText().toString().trim().equals("0")){
 						((EditText)(v.findViewById(R.id.text))).setText("");
@@ -698,7 +714,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				return null;
 			}
 
-			vendre_prix = ((TextView)_prix.findViewById(R.id.text)).getText().toString().replace(" €", "");;
+			vendre_prix = ((EditText)_prix.findViewById(R.id.text)).getText().toString().replace(" €", "");;
 			if(vendre_prix.length()==0){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
 				return null;
@@ -712,6 +728,21 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 					Constantes.VENDRE_PRIX,vendre_prix
 					);
 
+			nombre_couchette = ((EditText)_nombreCabines.findViewById(R.id.text)).getText().toString();
+			if(nombre_couchette != null && nombre_couchette.length()>0){
+				Net.add(donnees,Constantes.VENDRE_NOMBRE_COUCHETTE,nombre_couchette);
+			}
+			
+			nombre_cabine = ((EditText)_nombreCabines.findViewById(R.id.text)).getText().toString();
+			if(nombre_cabine != null && nombre_cabine.length()>0){
+				Net.add(donnees,Constantes.VENDRE_NOMBRE_CABINE,nombre_cabine);
+			}
+		
+			nombre_salle_de_bain = ((EditText)_nombreSalleDeBain.findViewById(R.id.text)).getText().toString();
+			if(nombre_salle_de_bain != null && nombre_salle_de_bain.length()>0){
+				Net.add(donnees,Constantes.VENDRE_NOMBRE_SALLE_DE_BAIN,nombre_salle_de_bain);
+			}
+			
 			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
 				Net.add(donnees,Constantes.VENDRE_ANNEE,((EditText)_annee.findViewById(R.id.text)).getText());
 
