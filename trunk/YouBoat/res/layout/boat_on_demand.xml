@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,35 +14,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="5dip"
+            android:paddingBottom="5dip"
             android:layout_marginTop="5dip"
             android:text="@string/on_demand_big"
-            android:textColor="@color/_blanc"
+            android:textColor="@color/couleur_texte_blanc"
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dip"
-            android:layout_marginTop="5dip"
-            android:gravity="center"
-            android:text="@string/description_boat_on_demand"
-            android:textColor="@color/couleur_texte_noir" />
-
-        <View 
-            android:layout_width="match_parent"
-            android:layout_height="2dip"
-            android:background="@color/_gris_clair"
-            />
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:background="@color/couleur_fond" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:gravity="center"
+                    android:text="@string/description_boat_on_demand"
+                    android:textColor="@color/couleur_texte_noir"
+                    android:background="@color/couleur_3"
+                     />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:background="@color/_gris_clair" />
 
                 <LinearLayout style="@style/formulaire_separator" >
 
@@ -167,7 +169,6 @@
                         style="@style/formulaire_cellule_texte"
                         android:hint="@string/requis"
                         android:inputType="number" />
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -182,7 +183,6 @@
                         android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
                         android:hint="@string/facultatif" />
-
                 </RelativeLayout>
 
                 <LinearLayout style="@style/formulaire_separator" >
@@ -190,7 +190,6 @@
                     <TextView
                         style="@style/formulaire_separator_titre"
                         android:text="@string/reprise_de_votre_bateau" />
-
                 </LinearLayout>
 
                 <LinearLayout style="@style/formulaire_separator" >
@@ -199,7 +198,7 @@
                         style="@style/formulaire_separator_sous_titre"
                         android:text="@string/decrivez_le_bateau_que_vous_possedez" />
                 </LinearLayout>
-                
+
                 <RelativeLayout
                     android:id="@+id/boat_on_demand_posseder_type"
                     style="@style/formulaire_cellule" >
@@ -215,7 +214,7 @@
 
                     <ImageView style="@style/formulaire_cellule_indicator" />
                 </RelativeLayout>
-                
+
                 <RelativeLayout
                     android:id="@+id/boat_on_demand_posseder_categorie"
                     style="@style/formulaire_cellule"
@@ -232,7 +231,7 @@
 
                     <ImageView style="@style/formulaire_cellule_indicator" />
                 </RelativeLayout>
-                
+
                 <RelativeLayout
                     android:id="@+id/boat_on_demand_posseder_chantier_modele"
                     style="@style/formulaire_cellule" >
@@ -248,7 +247,7 @@
 
                     <ImageView style="@style/formulaire_cellule_indicator" />
                 </RelativeLayout>
-                
+
                 <RelativeLayout
                     android:id="@+id/boat_on_demand_posseder_prix_cession"
                     style="@style/formulaire_cellule" >
@@ -262,12 +261,16 @@
                         style="@style/formulaire_cellule_texte"
                         android:hint="@string/facultatif"
                         android:inputType="number" />
-
                 </RelativeLayout>
 
-                <Button 
+                <RelativeLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom">
+                <Button
                     android:id="@+id/boat_on_demand_etape_suivante"
                     style="@style/bouton_rechercher" />
+                </RelativeLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
