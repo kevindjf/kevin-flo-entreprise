@@ -20,6 +20,7 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
 import fr.RivaMedia.comparator.AnnonceDateComparator;
 import fr.RivaMedia.comparator.AnnoncePrixComparator;
+import fr.RivaMedia.comparator.AnnoncePrixParLongueurComparator;
 import fr.RivaMedia.fragments.core.FragmentListe;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
@@ -156,6 +157,24 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		}
 	}
 
+
+	@Override
+	public void afficherLongueurCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixParLongueurComparator(true));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+
+
+	@Override
+	public void afficherLongueurDeCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixParLongueurComparator(false));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+	
 	/* --------------------------------------------------------------------------- */
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
@@ -183,5 +202,6 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		protected void onPostExecute(){
 		}
 	}
+
 
 }

@@ -170,6 +170,7 @@ public class Net {
 			//String response = responseToString(httpReponse.getEntity());
 			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim().replace("&aecute", "é");  
 			Log.d("NET",response);
+			Log.d("NET_REPONSE_TAILLE",""+response.length());
 			return response;
 			//}
 

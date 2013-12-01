@@ -154,6 +154,7 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 		ajouterFragment(new DonneeValeurSelector(
 				this,
 				TYPE,
+				false,
 				DonneeValeurSelector.creerDonneeValeur(
 						getString(R.string.bateau_a_moteur),Constantes.BATEAU_A_MOTEUR,
 						getString(R.string.voiliers),Constantes.VOILIER,
@@ -176,7 +177,7 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 					donneesValeurs.put(categorie.getLibelle(), categorie.getId());
 				}
 
-				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
+				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,false,donneesValeurs));
 			}
 		}
 	}
@@ -204,14 +205,15 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 	public void itemSelected(Object from, int idRetour, String item, String value) {
 		Log.e("ItemSelected", item+" | "+value);
 
-		if(idRetour == TYPE){
+		if(idRetour == TYPE ){
 			recherche_type = item;
 			((TextView)_type.findViewById(R.id.text)).setText(value);
 			recherche_categorie_id = null;
 			((TextView)_categorie.findViewById(R.id.text)).setText("");
 
 		}else if(idRetour == CATEGORIE){
-			recherche_categorie_id = item;
+			if(!item.equals("-1"))
+				recherche_categorie_id = item;
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
 	}
@@ -282,7 +284,7 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 
 				@Override
 				public void run() {
-					if(reponse.toLowerCase().trim().equals("true"))
+					if(!reponse.toLowerCase().trim().equals("false"))
 						alerteAjoutee();
 					else
 						erreurAlerte();

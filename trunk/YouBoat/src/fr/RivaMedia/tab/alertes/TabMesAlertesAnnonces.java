@@ -23,6 +23,7 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
 import fr.RivaMedia.comparator.AnnonceDateComparator;
 import fr.RivaMedia.comparator.AnnoncePrixComparator;
+import fr.RivaMedia.comparator.AnnoncePrixParLongueurComparator;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
@@ -148,24 +149,15 @@ public class TabMesAlertesAnnonces extends Tab {
 			}
 
 			@Override
-			public void onClickBackView(int position) {
-				int [] tabposition = {position};
-				onDismiss(tabposition);
+			public void onClickBackView(int position) {			
+				_alertesManager.retirer(_annonces.get(position).getNumero(), _annonces.get(position).getType());
+				_liste.dismiss(position);
+				_liste.dismissSelected();
+				_liste.unselectedChoiceStates();
 			}
 
 			@Override
 			public void onDismiss(int[] reverseSortedPositions) {
-				for (int position : reverseSortedPositions) {
-					_alertesManager.retirer(_annonces.get(position).getNumero(), _annonces.get(position).getType());
-					_liste.dismiss(position);
-					_liste.dismissSelected();
-					_liste.unselectedChoiceStates();
-					if(_annonces.size()==0){
-						((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_alerte);
-						_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
-					}
-				}
-				_adapter.notifyDataSetChanged();
 			}
 
 		});
@@ -234,6 +226,21 @@ public class TabMesAlertesAnnonces extends Tab {
 	public void afficherDateDeCroissant() {
 		if(_adapter != null && _annonces != null){
 			Collections.sort(_annonces,new AnnonceDateComparator(false));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+	
+	public void afficherLongueurCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixParLongueurComparator(true));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+
+
+	public void afficherLongueurDeCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixParLongueurComparator(false));
 			_adapter.notifyDataSetChanged();
 		}
 	}

@@ -17,10 +17,12 @@ import fr.RivaMedia.tab.core.Tab;
 public class TabVendeurDescription extends Tab {
 
 	Activity _activity;
-	
+
 	Vendeur _vendeur;
 	View _descriptionLabel;
 	TextView _description;
+	View _horairesLabel;
+	TextView _horaires;
 	View _servicesLabel;
 	ViewGroup _services;
 
@@ -34,16 +36,33 @@ public class TabVendeurDescription extends Tab {
 
 		View v = inflater.inflate(R.layout.vendeur_description, container, false);
 
+		
+
+		boolean av = true;
+
 		if(_vendeur != null){
 			_descriptionLabel = v.findViewById(R.id.vendeur_detail_description_label);
 			_description = (TextView)v.findViewById(R.id.vendeur_detail_description);
-			if(_vendeur.getDescription() != null)
+			if(_vendeur.getDescription() != null){
 				_description.setText(_vendeur.getDescription());
+				av = false;
+			}
 			else{
 				_descriptionLabel.setVisibility(View.GONE);
 				_description.setVisibility(View.GONE);
 			}
-			
+
+			_horairesLabel = v.findViewById(R.id.vendeur_detail_horaires_label);
+			_horaires = (TextView)v.findViewById(R.id.vendeur_detail_horaires);
+			if(_vendeur.getHoraires() != null){
+				_horaires.setText(_vendeur.getHoraires());
+				av = false;
+			}
+			else{
+				_horairesLabel.setVisibility(View.GONE);
+				_horaires.setVisibility(View.GONE);
+			}
+
 			_servicesLabel = v.findViewById(R.id.vendeur_detail_services_label);
 			_services = (ViewGroup)v.findViewById(R.id.vendeur_detail_services);
 			if(_vendeur.getServices() != null && _vendeur.getServices().size()>0){
@@ -53,11 +72,18 @@ public class TabVendeurDescription extends Tab {
 					service_text.setText(service);
 					_services.addView(layout_service);
 				}
+				av = false;
 			}
 			else{
 				_servicesLabel.setVisibility(View.GONE);
 				_services.setVisibility(View.GONE);
 			}
+			
+		}
+		
+		if(av){
+			v.findViewById(R.id.vide).setVisibility(View.VISIBLE);
+			((TextView)v.findViewById(R.id.vide_text)).setText(getString(R.string.vendeur_aucune_description));
 		}
 
 

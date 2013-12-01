@@ -88,6 +88,8 @@
     <string name="gerer_votre_recherche_directement_sur">Gérez votre recherche directement sur www.youboat.fr/recherche-bateau.html </string>
     <string name="gps_not_found_title">Aucun service GPS trouvé</string>
     <string name="gps_not_found_message">Activer le GPS ?</string>
+    <string name="horaires">Horaires</string>
+    <string name="horaires_dots">Horaires :</string>
     <string name="indifferent">-Indifférent-</string>
     <string name="informations">Informations</string>
     <string name="informations_youboat_propose">Youboat propose des milliers d\'annonces de bateaux à moteur, voiliers et pneumatiques mais aussi des moteurs et accessoires marins. Des essais et des articles sont disponibles pour vous aider dans votre futur achat. Vous pouvez égalment vendre votre bateau directement depuis votre smartphone. Retrouvez aussi le magazine YOUBOAT chez votre marchand de journaux !</string>
@@ -107,7 +109,7 @@
     <string name="marque_modele_star">Marque/Modèle *</string>
     <string name="marque_du_moteur">Marque du moteur</string>
     <string name="mes_annonces">Mes annonces</string>
-    <string name="mes_alertes">Mes favoris</string>
+    <string name="mes_alertes">Mes alertes</string>
     <string name="mes_recherches">Mes recherches</string>
     <string name="max">Max :</string>
     <string name="min">Min :</string>
@@ -173,6 +175,7 @@
     <string name="valider">Valider</string>
     <string name="vendre">Vendre</string>
     <string name="vendeur">LE VENDEUR</string>
+    <string name="vendeur_aucune_description">Ce vendeur n\'a renseigné aucune déscription</string>
     <string name="veuillez_choisir_un_budget">Veuillez choisir un budget</string>
   	<string name="veuillez_choisir_la_puissance">Veuillez choisir la puissance du moteur</string>
     <string name="veuillez_entrer_un_message">Veuillez entrer un message</string>
