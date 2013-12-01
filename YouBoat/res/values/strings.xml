@@ -55,6 +55,7 @@
     <string name="demande_postee">Votre demande sera mise en ligne prochainement</string>
     <string name="departement">Département</string>
     <string name="departement_dots">Département :</string>
+    <string name="departement_pays_star">Département ou pays *</string>
     <string name="description">DESCRIPTION</string>
     <string name="description_dots">Description :</string>
     <string name="description_maj">DESCRIPTION</string>
@@ -102,6 +103,7 @@
     <string name="longueur_dots">Longueur :</string>
     <string name="manche_bretagne">Manche/Bretagne</string>
     <string name="marque">Marque</string>
+    <string name="marque_star">Marque *</string>
     <string name="marque_modele_star">Marque/Modèle *</string>
     <string name="marque_du_moteur">Marque du moteur</string>
     <string name="mes_annonces">Mes annonces</string>
@@ -109,6 +111,7 @@
     <string name="mes_recherches">Mes recherches</string>
     <string name="max">Max :</string>
     <string name="min">Min :</string>
+    <string name="modele_star">Modèle *</string>
     <string name="moins">-</string>
     <string name="moteur">Moteur</string>
     <string name="moteurs">Moteurs</string>
@@ -160,6 +163,7 @@
     <string name="taille_star">Taille *</string>
     <string name="telephone">Téléphone</string>
     <string name="telephone_dots">Téléphone :</string>
+    <string name="telephone_star">Téléphone *</string>
     <string name="telephoner">Téléphoner</string>
     <string name="test_annonce_ventes">1055 annonces en vente</string>
     <string name="trouvez_un_professionnel_du_nautisme">Trouvez un professionnel du Nautisme</string>
@@ -170,9 +174,11 @@
     <string name="vendre">Vendre</string>
     <string name="vendeur">LE VENDEUR</string>
     <string name="veuillez_choisir_un_budget">Veuillez choisir un budget</string>
+  	<string name="veuillez_choisir_la_puissance">Veuillez choisir la puissance du moteur</string>
     <string name="veuillez_entrer_un_message">Veuillez entrer un message</string>
     <string name="veuillez_indiquer_votre_code_postale">Veuillez choisir un code postal</string>
     <string name="veuillez_indiquer_votre_nom">Veuillez indiquer votre nom</string>
+    <string name="veuillez_indiquer_votre_numero_telephone">Veuillez indiquez votre numéro de téléphone</string>
     <string name="veuillez_indiquer_votre_email">Veuillez indiquer votre email</string>
     <string name="veuillez_indiquer_votre_pays">Veuillez indiquer votre pays</string>
     <string name="veuillez_indiquer_votre_ville">Veuillez indiquer votre ville</string>

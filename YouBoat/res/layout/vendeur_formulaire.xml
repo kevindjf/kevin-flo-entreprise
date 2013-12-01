@@ -90,7 +90,7 @@
 
                     <TextView
                         style="@style/formulaire_cellule_titre"
-                        android:text="@string/telephone" />
+                        android:text="@string/telephone_star" />
 
                     <EditText
                         android:id="@id/text"
@@ -120,7 +120,7 @@
 
                     <TextView
                         style="@style/formulaire_cellule_titre"
-                        android:text="@string/pays_star" />
+                        android:text="@string/departement_pays_star" />
 
                     <TextView
                         android:id="@id/text"

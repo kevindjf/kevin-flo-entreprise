@@ -116,7 +116,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	View _etapeSuivante;
 
 	//Moteur
-	View _marqueModele;
+	View _marque;
+	View _modele;
 	View _energie;
 	View _puissance;
 
@@ -206,10 +207,11 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_description = _view.findViewById(R.id.vendre_description);
 
 		//Moteur
-		_marqueModele = _view.findViewById(R.id.vendre_marque_modele);
+		_marque = _view.findViewById(R.id.vendre_marque);
+		_modele = _view.findViewById(R.id.vendre_modele);
 		_energie = _view.findViewById(R.id.vendre_energie);
 		_puissance = _view.findViewById(R.id.vendre_puissance);
-
+		
 		//Divers
 		_intitule = _view.findViewById(R.id.vendre_intitule);
 
@@ -229,7 +231,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				_puissanceCH,
 				_marqueMoteur,
 				_anneeMoteur,
-				_marqueModele,
+				_marque,
+				_modele,
 				_energie,
 				_puissance,
 				_intitule
@@ -257,7 +260,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_vuesMoteurs = new View[]{
 				_type,
 				_categorie,
-				_marqueModele,
+				_marque,
+				_modele,
 				_annee,
 				_energie,
 				_puissance,
@@ -448,7 +452,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			demanderMarqueMoteur();
 			break;
 
-		case R.id.vendre_marque_modele:
+		case R.id.vendre_marque:
 			demanderMarqueModele();
 			break;
 		case R.id.vendre_energie:
@@ -611,7 +615,6 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	public void vendreMoteurs(){
 		typeVente = Constantes.MOTEURS;
 		vendre_type = Constantes.MOTEURS;
-
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(false);
 		_boutonMoteurs.setSelected(true);
@@ -625,7 +628,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_type.findViewById(R.id.indicator).setVisibility(View.GONE);
 
 		_categorie.setOnClickListener(this);
-		_marqueModele.setOnClickListener(this);
+		_marque.setOnClickListener(this);
 		_energie.setOnClickListener(this);
 	}
 	public void vendreDivers(){
@@ -653,7 +656,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	@Override
 	public void itemSelected(Object from, int idRetour, String item, String value) {
 		Log.e("ItemSelected", item+" | "+value);
-
+		Log.e("Id retour",idRetour+"");
 		if(idRetour == TYPE){
 			vendre_type = item;
 			((TextView)_type.findViewById(R.id.text)).setText(value);
@@ -662,7 +665,6 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			vendre_marque = null;
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(getString(R.string.requis));
 		}
-
 		else if(idRetour == CATEGORIE){
 			vendre_categorie = item;			
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
@@ -684,22 +686,22 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		}
 		else if(idRetour == MARQUE_MODELE){
 			vendre_marque = item;
-			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
+			((TextView)_marque.findViewById(R.id.text)).setText(value);
+		}
+		else if(typeVente.equals(Constantes.MOTEURS) && idRetour == MARQUE_MOTEUR){
+			vendre_marque = item;
+			((TextView)_marque.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == MARQUE_MOTEUR){
 			vendre_marque_moteur_id = item;
 			((TextView)_marqueMoteur.findViewById(R.id.text)).setText(value);
 		}
-		else if(typeVente.equals(Constantes.MOTEURS)){
-			vendre_marque = item;
-			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
-		}
-
 	}
 
 	private MultipartEntity recupererDonnees(){
 		MultipartEntity donnees = Net.construireDonnesMultiPart();
 
+		// Bateaux
 		if(typeVente.equals(Constantes.BATEAUX)){
 
 			if(vendre_type == null){
@@ -786,6 +788,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Net.add(donnees,Constantes.VENDRE_ANNEE_MOTEUR,((EditText)_anneeMoteur.findViewById(R.id.text)).getText());
 
 		}else if(typeVente.equals(Constantes.MOTEURS)){
+			
+			// MOTEUR
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 				return null;
@@ -794,12 +798,18 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			if(vendre_marque_moteur_id == null){
+			if(vendre_marque== null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_marque), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			if(vendre_energie_id == null){
-				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type_d_energie), Toast.LENGTH_SHORT).show();
+			
+			if(((EditText)(_modele.findViewById(R.id.text))).getText().toString().trim().equals("")){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_modele), Toast.LENGTH_SHORT).show();
+				return null;
+			}
+			
+			if(((EditText)(_puissance.findViewById(R.id.text))).getText().toString().trim().length() <= 0){
+				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_la_puissance), Toast.LENGTH_SHORT).show();
 				return null;
 			}
 
@@ -809,20 +819,23 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				return null;
 			}
 
+			String vendre_modele = ((EditText)_modele.findViewById(R.id.text)).getText().toString();
+			
 			//les requis
 			Net.add(donnees, 
 					Constantes.VENDRE_TYPE,vendre_type,
 					Constantes.VENDRE_CATEGORIE,vendre_categorie,
-					Constantes.VENDRE_MARQUE_MOTEUR_ID,vendre_marque_moteur_id,
-					Constantes.VENDRE_ENERGIE_ID,vendre_energie_id,
+					Constantes.VENDRE_MARQUE_MOTEUR_ID,vendre_marque+vendre_modele,
+					Constantes.VENDRE_PUISSANCE_MOTEUR,((EditText)_puissance.findViewById(R.id.text)).getText().toString().trim(),
 					Constantes.VENDRE_PRIX,vendre_prix
 					);
 
 			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
 				Net.add(donnees,Constantes.VENDRE_ANNEE,((EditText)_annee.findViewById(R.id.text)).getText());
 
-			if(((EditText)_puissance.findViewById(R.id.text)).getText().length() > 0)
-				Net.add(donnees,Constantes.VENDRE_PUISSANCE_MOTEUR,((EditText)_puissance.findViewById(R.id.text)).getText().toString().replace(" ch",""));
+			
+			if(vendre_energie_id!= null)
+				Net.add(donnees,Constantes.VENDRE_ENERGIE_ID,vendre_energie_id);
 
 		}else if(typeVente.equals(Constantes.ACCESSOIRES)){
 
