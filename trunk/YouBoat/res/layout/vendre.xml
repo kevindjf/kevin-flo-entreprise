@@ -7,9 +7,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dip"
+        android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pour_vendre"
+            android:orientation="vertical" >
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -134,12 +141,12 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/vendre_marque_modele"
+                android:id="@+id/vendre_marque"
                 style="@style/formulaire_cellule" >
 
                 <TextView
                     style="@style/formulaire_cellule_titre"
-                    android:text="@string/marque_modele_star" />
+                    android:text="@string/marque_star" />
 
                 <TextView
                     android:id="@id/text"
@@ -147,6 +154,21 @@
                     android:text="@string/requis" />
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/vendre_modele"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/modele_star" />
+
+                <EditText
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:hint="@string/requis"
+				/>
             </RelativeLayout>
 
             <LinearLayout style="@style/formulaire_separator" >
@@ -209,12 +231,12 @@
 
                 <TextView
                     style="@style/formulaire_cellule_titre"
-                    android:text="@string/energie_star" />
+                    android:text="@string/energie" />
 
                 <TextView
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:text="@string/requis" />
+                    android:text="@string/facultatif" />
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
@@ -224,6 +246,7 @@
                 style="@style/formulaire_cellule" >
 
                 <TextView
+                    android:id="@+id/label_puissance"
                     style="@style/formulaire_cellule_titre"
                     android:text="@string/puissance" />
 

@@ -187,6 +187,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_email), Toast.LENGTH_SHORT).show();
 		else if(((EditText)_codePostal.findViewById(R.id.text)).getText().toString().trim().equals(""))
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_code_postale), Toast.LENGTH_SHORT).show();
+		else if(((EditText)_telephone.findViewById(R.id.text)).getText().toString().trim().equals(""))
+			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_numero_telephone), Toast.LENGTH_SHORT).show();
 		else{
 			if(pour == VENDRE && idPays == null)
 				Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_pays), Toast.LENGTH_SHORT).show();
@@ -252,7 +254,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		Toast.makeText(getActivity(), R.string.demande_postee, Toast.LENGTH_LONG).show();
 		ajouterFragment(new Annonces(), false);
 	}
-	
+
 	class EnvoyerOnDemandTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
@@ -280,7 +282,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		Toast.makeText(getActivity(), R.string.annonce_postee, Toast.LENGTH_LONG).show();
 		ajouterFragment(new Annonces(), false);
 	}
-	
+
 	class EnvoyerVendreTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
