@@ -133,12 +133,12 @@ public class Net {
 	public static String requete(String url, List<NameValuePair> donneesPost){
 		return requete(url, donneesPost,false);
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public static String requete(String url, List<NameValuePair> donneesPost, boolean anciennesUrl){
 		if(donneesPost == null)
 			donneesPost = Net.construireDonnes();
-		
+
 		add(donneesPost,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
 
 		//HttpClient httpClient = new DefaultHttpClient();
@@ -152,13 +152,13 @@ public class Net {
 		CachingHttpClient httpClient = new CachingHttpClient(realClient, cacheConfig);
 
 		try {
-			
+
 			String urlRequete = "";
 			if(anciennesUrl)
 				urlRequete = Constantes.ANCIEN_URL_BASE+url;
 			else
 				urlRequete = SITE+url;
-			
+
 			HttpPost requete = new HttpPost(urlRequete.replace("?", ""));
 			requete.setEntity(new UrlEncodedFormEntity(donneesPost,"UTF-8"));
 
@@ -187,17 +187,17 @@ public class Net {
 		Log.e("NET","echec de la requete");
 		return NO; //en cas d'echec
 	}
-	
+
 	public static String requeteGet(String url, List<NameValuePair> donnees){
 		return requeteGet(url, donnees,false);
 	}
-
+	
 	public static String requeteGet(String url, List<NameValuePair> donnees, boolean anciennesUrl){
 
 		if(donnees == null)
 			donnees = Net.construireDonnes();
 		add(donnees,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
-		
+
 		StringBuilder sb = new StringBuilder();
 		if(!url.contains("?"))
 			sb.append("?");
@@ -213,7 +213,7 @@ public class Net {
 				sb.append(nvp.getValue());
 			}
 		}
-		
+
 		String urlRequete = "";
 		if(anciennesUrl)
 			urlRequete = Constantes.ANCIEN_URL_BASE+url+sb.toString();
@@ -234,6 +234,7 @@ public class Net {
 			//String response = responseToString(httpReponse.getEntity());
 			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim().replace("&aecute", "é");  
 			Log.d("NET",response);
+			Log.d("NET_REPONSE_TAILLE",""+response.length());
 			return response;
 			//}
 
@@ -255,27 +256,27 @@ public class Net {
 
 		if(donneesPost == null)
 			donneesPost = Net.construireDonnesMultiPart();
-		
+
 		add(donneesPost,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
-		
+
 		HttpClient httpClient = new DefaultHttpClient();
 		httpClient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 		try {
 
 			HttpPost requete = new HttpPost(SITE+url);
 			requete.setEntity(donneesPost);
+			
+			Log.d("NET",SITE+url);
 
 			HttpResponse httpReponse = httpClient.execute(requete);
 
-			StatusLine statusLine = httpReponse.getStatusLine();
+			//StatusLine statusLine = httpReponse.getStatusLine();
 			//Log.e("WYDEEZ",statusLine.toString());
 
-			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-				//String response = responseToString(httpReponse.getEntity());
-				String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim();
-				Log.d("NET",response);
-				return response.replace("<br>", "").replace("<br>", "").replace("<br/>", "").replace("<br />", "");
-			}
+			//String response = responseToString(httpReponse.getEntity());
+			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim();
+			Log.d("NET",response);
+			return response.replace("<br>", "").replace("<br>", "").replace("<br/>", "").replace("<br />", "");
 
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -313,5 +314,5 @@ public class Net {
 
 		return out.toString();
 	}
-	
+
 }
