@@ -251,19 +251,21 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			task = new AjouterAlerteTask();
 			task.execute();
 		}
-		
+
 	}
 
 	protected void demanderType(){
 		ajouterFragment(new DonneeValeurSelector(
 				this,
 				TYPE,
+				false,
 				DonneeValeurSelector.creerDonneeValeur(
 						getString(R.string.bateau_a_moteur),Constantes.BATEAU_A_MOTEUR,
 						getString(R.string.voiliers),Constantes.VOILIER,
 						getResources().getString(R.string.pneumatiques_semi_rigide),Constantes.PNEU
 						)
-				));
+				)
+				);
 
 	}
 	protected void demanderCategorie(){
@@ -460,10 +462,14 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		}
 
 		else if(idRetour == CHANTIER_MODELE){
-			String[] ids = item.split(";");
-			recherche_chantier_id = ids[0];
-			recherche_modele_id = ids[1];
-			Log.e("CHANTIER",recherche_chantier_id);
+			if(item.equals("-1")){
+				
+			}else{
+				String[] ids = item.split(";");
+				recherche_chantier_id = ids[0];
+				recherche_modele_id = ids[1];
+				Log.e("CHANTIER",recherche_chantier_id);
+			}
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == MARQUE){
@@ -544,10 +550,10 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			if(this.recherche_type != null)
 				Net.add(donnees, Constantes.ANNONCES_TYPE_ID,recherche_type);
 
-			if(this.recherche_categorie_id != null)
+			if(this.recherche_categorie_id != null && !this.recherche_categorie_id.equals("-1"))
 				Net.add(donnees, Constantes.ANNONCES_CATEGORIE_ID,recherche_categorie_id);
 
-			if(recherche_localisation_id != null)
+			if(recherche_localisation_id != null && !this.recherche_localisation_id.equals("-1"))
 				Net.add(donnees, Constantes.ANNONCES_REGION_ID,recherche_localisation_id);
 
 			if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
@@ -579,16 +585,16 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			}
 
 
-			if(recherche_etat_id != null)
+			if(recherche_etat_id != null && !this.recherche_etat_id.equals("-1"))
 				Net.add(donnees, Constantes.ANNONCES_ETAT,recherche_etat_id);
 
 			if(typeAnnonces.equals(Constantes.BATEAUX)){
-				if(recherche_modele_id != null)
+				if(recherche_modele_id != null  && !this.recherche_modele_id.equals("-1"))
 					Net.add(donnees,Constantes.ANNONCES_MODELE_ID,recherche_modele_id);
-				if(recherche_chantier_id != null)
+				if(recherche_chantier_id != null  && !this.recherche_chantier_id.equals("-1"))
 					Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_chantier_id);
 			}
-			else if(typeAnnonces.equals(Constantes.MOTEURS) && recherche_marque_id != null)
+			else if(typeAnnonces.equals(Constantes.MOTEURS) && recherche_marque_id != null && !this.recherche_marque_id.equals("-1"))
 				Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_marque_id);
 
 			return donnees;
@@ -637,19 +643,19 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	/* --------------------ALERTE-----------------------*/
-	
+
 	protected List<NameValuePair> recupererDonneesFormulaireAlerte(){
 		List<NameValuePair> donnees = Net.construireDonnes();
-		
+
 		String android_id = Secure.getString(getActivity().getContentResolver(),Secure.ANDROID_ID);
 		Net.add(donnees, Constantes.ALERTE_ID_SMARTPHONE,android_id);
-		
+
 		//TODO ajouter le md5 de la date
 
 		if(this.recherche_type != null)
 			Net.add(donnees, Constantes.ALERTE_ID_TYPE,recherche_type);
 
-		if(this.recherche_categorie_id != null)
+		if(this.recherche_categorie_id != null && !this.recherche_categorie_id.equals("-1"))
 			Net.add(donnees, Constantes.ALERTE_ID_CATEGORIE,recherche_categorie_id);
 
 		if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
@@ -668,16 +674,16 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		return donnees;
 	}
-	
+
 	public void alerteAjoutee(){
 		Toast.makeText(getActivity(), R.string.alerte_ajoutee, Toast.LENGTH_LONG).show();
 		getFragmentManager().popBackStack();
 	}
-	
+
 	public void erreurAlerte(){
 		Toast.makeText(getActivity(), R.string.erreur_alerte, Toast.LENGTH_LONG).show();
 	}
-	
+
 	/* --------------------------------------------------------------------------- */
 
 	class AjouterAlerteTask extends AsyncTask<Void, Void, Void> {
@@ -702,5 +708,5 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		protected void onPostExecute(){
 		}
 	}
-	
+
 }

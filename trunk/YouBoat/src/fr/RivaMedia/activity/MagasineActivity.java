@@ -6,8 +6,10 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
@@ -29,8 +31,22 @@ public class MagasineActivity extends Activity{
 		ImageLoaderCache.load(this);
 
 		_image = (ImageView)findViewById(R.id.magasine_image);
-		if(Donnees.magazine != null && Donnees.magazine.getImage() != null)
-			ImageLoaderCache.charger(Donnees.magazine.getImage(), _image);
+		if(Donnees.autoPromo != null && Donnees.autoPromo.getImage() != null){
+			ImageLoaderCache.charger(Donnees.autoPromo.getImage(), _image);
+			if(Donnees.autoPromo.getUrl() != null){
+				_image.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						String url = Donnees.autoPromo.getUrl();
+						Intent i = new Intent(Intent.ACTION_VIEW);
+						i.setData(Uri.parse(url));
+						startActivity(i);
+					}
+				});
+			}
+				
+		}
 
 		new ChargementsTask().execute();
 	}

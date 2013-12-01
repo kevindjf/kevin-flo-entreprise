@@ -23,6 +23,8 @@ public class MagazineXmlParser extends XmlParser {
 					magazine.setPeriode(getString());
 				else if(tag.equals("image"))
 					magazine.setImage(getString());
+				else if(tag.equals("url"))
+					magazine.setUrl(getString());
 				
 			}
 			eventType = XMLgetSuivant();

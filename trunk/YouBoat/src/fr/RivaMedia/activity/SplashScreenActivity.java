@@ -126,7 +126,8 @@ public class SplashScreenActivity extends Activity{
 			th.start();
 			*/
 
-			Donnees.magazine = NetChargement.chargerMagazine();
+			Donnees.autoPromo = NetChargement.chargerAutoPromo();
+			Donnees.magazine = NetChargement.chargerMagazineEnCours();
 			chargerImage();
 
 			Donnees.typesAnnonces = NetChargement.chargerTypesAnnonces();

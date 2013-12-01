@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="170dip"
+    android:layout_width="175dip"
     android:layout_height="match_parent"
     android:background="@color/couleur_slider"
     android:orientation="vertical" >
@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="5dip"
-        android:paddingRight="5dip" >
+        android:paddingLeft="4dip"
+        android:paddingRight="4dip" >
 
         <ScrollView
             android:layout_width="match_parent"
@@ -91,6 +91,43 @@
 
                 <LinearLayout
                     android:id="@+id/slider_droite_prix_decroissant"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/arrow_down" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="Décroissant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+                
+                 <LinearLayout
+                    android:id="@+id/slider_annuaire"
+                    style="@style/slider_element" >
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="Trier par longueur :" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_droite_longueur_croissant"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/arrow_up" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="Croissant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_droite_longueur_decroissant"
                     style="@style/slider_element" >
 
                     <ImageView

@@ -167,7 +167,13 @@ public class NetChargement extends Net{
 		return new NombreXmlParser(xml).getNombres();
 	}
 
-	public static Magazine chargerMagazine() {
+	public static Magazine chargerAutoPromo() {
+		String xml = Net.requeteGet(Constantes.URL_AUTO_PROMO, null);
+
+		return new MagazineXmlParser(xml).getMagazine();
+	}
+	
+	public static Magazine chargerMagazineEnCours() {
 		String xml = Net.requeteGet(Constantes.URL_MAGAZINE, null);
 
 		return new MagazineXmlParser(xml).getMagazine();

@@ -32,6 +32,8 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	View _derriere;
 	View _devant;
+	
+	View _apartirDe;
 
 	public AnnonceView(Annonce annonce, Context context, View view, int position, String type, boolean swipable) {
 		super(context, view);
@@ -54,6 +56,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_taille = (TextView)getView().findViewById(R.id.annonce_element_liste_taille);
 		_annee = (TextView)getView().findViewById(R.id.annonce_element_liste_annee);
 		_prix = (TextView)getView().findViewById(R.id.annonce_element_liste_prix);
+		_apartirDe = (TextView)getView().findViewById(R.id.annonce_element_liste_a_partir_de);
 
 		if(_swipable){
 			_devant = getView().findViewById(R.id.devant);
@@ -102,8 +105,15 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			else
 				_annee.setVisibility(View.GONE);
 
-			if(_annonce.getPrix() != null)
-				_prix.setText(_annonce.getPrix()+" €");
+			if(_annonce.getPrix() != null){
+				String p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim()+" € ";
+				if(_annonce.getTaxePrix() != null)
+					p += _annonce.getTaxePrix();
+				_prix.setText(p);
+			}
+			
+			if(_annonce.getApartirDe().trim().equals("1"))
+				_apartirDe.setVisibility(View.VISIBLE);
 
 		}
 

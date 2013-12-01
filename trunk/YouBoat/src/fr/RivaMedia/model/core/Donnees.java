@@ -64,6 +64,7 @@ public class Donnees {
 	public static List<Departement> departements = new ArrayList<Departement>();
 	public static List<Energie> energies = new ArrayList<Energie>();
 	public static Magazine magazine;
+	public static Magazine autoPromo;
 
 	public static String jeton = "";
 	public static List<Marque> marquesDistribuees;

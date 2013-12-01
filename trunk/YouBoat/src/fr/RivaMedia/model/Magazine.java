@@ -5,6 +5,7 @@ public class Magazine {
 	private String numero;
 	private String periode;
 	private String image;
+	private String url;
 	
 	public String getNumero() {
 		return numero;
@@ -23,6 +24,12 @@ public class Magazine {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }
