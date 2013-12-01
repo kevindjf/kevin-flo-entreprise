@@ -167,8 +167,7 @@
                 <EditText
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:hint="@string/requis"
-				/>
+                    android:hint="@string/requis" />
             </RelativeLayout>
 
             <LinearLayout style="@style/formulaire_separator" >
@@ -248,12 +247,12 @@
                 <TextView
                     android:id="@+id/label_puissance"
                     style="@style/formulaire_cellule_titre"
-                    android:text="@string/puissance" />
+                    android:text="@string/puissance_star" />
 
                 <EditText
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:hint="@string/facultatif"
+                    android:hint="@string/requis"
                     android:inputType="number" />
             </RelativeLayout>
 
@@ -283,6 +282,21 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/requis"
+                    android:inputType="number" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/nombre_heure"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/nombres_heures" />
+
+                <EditText
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:hint="@string/facultatif"
                     android:inputType="number" />
             </RelativeLayout>
 

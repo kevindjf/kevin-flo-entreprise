@@ -221,5 +221,6 @@ public class Constantes {
 	public static final String ALERTE_JETON = "jeton"; //F
 	
 	public static final String SERVER_GOOGLE_CLOUD_ID = "AIzaSyB7IT3ndRmf9j_J94Y79Znyl1OptMp3e_s";
+	public static final Object VENDRE_NOMBRE_HEURE = "nbhrmot";
 	
 }

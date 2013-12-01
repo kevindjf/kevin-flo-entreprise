@@ -120,7 +120,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	View _modele;
 	View _energie;
 	View _puissance;
-
+	View _nombreHeure;
+	
 	//Divers
 	View _intitule;
 
@@ -211,6 +212,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_modele = _view.findViewById(R.id.vendre_modele);
 		_energie = _view.findViewById(R.id.vendre_energie);
 		_puissance = _view.findViewById(R.id.vendre_puissance);
+		_nombreHeure = _view.findViewById(R.id.nombre_heure);
 		
 		//Divers
 		_intitule = _view.findViewById(R.id.vendre_intitule);
@@ -226,6 +228,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				_nombreCabines,
 				_nombresCouchettes,
 				_nombreSalleDeBain,
+				_nombreHeure,
 				_motorisation,
 				_nombreMoteur,
 				_puissanceCH,
@@ -266,7 +269,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				_energie,
 				_puissance,
 				_prix,
-				_description	
+				_description,
+				_nombreHeure
+				
 		};
 
 		_vuesDivers = new View[]{
@@ -818,8 +823,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_prix), Toast.LENGTH_SHORT).show();
 				return null;
 			}
+			
 
-			String vendre_modele = ((EditText)_modele.findViewById(R.id.text)).getText().toString();
+				String vendre_modele = ((EditText)_modele.findViewById(R.id.text)).getText().toString();
 			
 			//les requis
 			Net.add(donnees, 
@@ -833,6 +839,10 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
 				Net.add(donnees,Constantes.VENDRE_ANNEE,((EditText)_annee.findViewById(R.id.text)).getText());
 
+			String nombre_heure = ((EditText)_nombreHeure.findViewById(R.id.text)).getText().toString();
+			if(nombre_heure.length() > 0){
+				Net.add(donnees,Constantes.VENDRE_NOMBRE_HEURE,nombre_heure);
+			}
 			
 			if(vendre_energie_id!= null)
 				Net.add(donnees,Constantes.VENDRE_ENERGIE_ID,vendre_energie_id);

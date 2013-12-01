@@ -117,7 +117,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		if(pour == ON_DEMAND)
 			_pays.setVisibility(View.GONE);
 		else if(pour == VENDRE)
-			_ville.setVisibility(View.GONE);
+			_ville.setVisibility(View.VISIBLE);
 	}
 
 	public void reset(){

@@ -95,8 +95,22 @@
                     <EditText
                         android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
-                        android:hint="@string/facultatif"
+                        android:hint="@string/requis"
                         android:inputType="phone" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/vendeur_formulaire_ville"
+                    style="@style/formulaire_cellule_vendeur" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/ville_star" />
+
+                    <EditText
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/requis" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -130,20 +144,6 @@
                     <ImageView
                         android:id="@+id/indicator"
                         style="@style/formulaire_cellule_indicator" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/vendeur_formulaire_ville"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/ville_star" />
-
-                    <EditText
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:hint="@string/requis" />
                 </RelativeLayout>
 
                 <Button
