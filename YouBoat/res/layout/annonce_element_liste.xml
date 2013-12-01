@@ -18,11 +18,11 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/annonce_element_liste_image"
         android:layout_toRightOf="@+id/annonce_element_liste_image"
-        android:text="SKUTSHJE 15M"
-        android:textSize="15sp"
-        android:textStyle="bold"
         android:lines="1"
-        android:textColor="@color/couleur_texte_fonce" />
+        android:text="SKUTSHJE 15M"
+        android:textColor="@color/couleur_texte_fonce"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/annonce_element_liste_sous_titre"
@@ -31,38 +31,53 @@
         android:layout_alignRight="@+id/annonce_element_liste_titre"
         android:layout_below="@+id/annonce_element_liste_titre"
         android:layout_toRightOf="@+id/annonce_element_liste_image"
-        android:textColor="@color/couleur_texte_fonce"
-        android:text="69cv volvo pen Volvo Penta " />
+        android:text="69cv volvo pen Volvo Penta "
+        android:textColor="@color/couleur_texte_fonce" />
 
     <TextView
         android:id="@+id/annonce_element_liste_taille"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/couleur_texte_fonce"
         android:layout_alignLeft="@+id/annonce_element_liste_sous_titre"
         android:layout_alignRight="@+id/annonce_element_liste_sous_titre"
         android:layout_below="@+id/annonce_element_liste_sous_titre"
-        android:text="12.27m" />
-    
+        android:text="12.27m"
+        android:textColor="@color/couleur_texte_fonce" />
+
     <TextView
         android:id="@+id/annonce_element_liste_annee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/couleur_texte_fonce"
-        android:layout_marginLeft="220dip"
         android:layout_below="@+id/annonce_element_liste_sous_titre"
-        android:text="1990" />
+        android:layout_marginLeft="220dip"
+        android:text="1990"
+        android:textColor="@color/couleur_texte_fonce" />
 
-    <TextView
-        android:id="@+id/annonce_element_liste_prix"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/couleur_1"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:layout_alignBottom="@+id/annonce_element_liste_image"
         android:layout_alignLeft="@+id/annonce_element_liste_taille"
-        android:layout_alignRight="@+id/annonce_element_liste_prix"
-        android:text="74.500" />
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/annonce_element_liste_a_partir_de"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dip"
+            android:text="@string/apartirde"
+            android:textColor="@color/couleur_texte_fonce"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/annonce_element_liste_prix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="74.500"
+            android:textColor="@color/couleur_1"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </RelativeLayout>

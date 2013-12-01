@@ -29,7 +29,7 @@ public class AnnoncePrixComparator implements Comparator<Annonce>{
 				}else{
 					if(prix1==prix2)
 						return 0;
-					else if(prix2>prix2)
+					else if(prix2>prix1)
 						return 1;
 					else
 						return -1;

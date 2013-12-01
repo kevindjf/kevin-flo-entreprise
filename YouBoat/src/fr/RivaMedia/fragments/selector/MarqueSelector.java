@@ -27,9 +27,12 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 
 	String _type;
 	List<Marque> _marques;
+	List<String> libelles;
 
 	ItemSelectedListener _listener;
 	int _reponseId;
+
+	boolean afficherIndifferent = true;
 
 	public MarqueSelector (ItemSelectedListener listener, int reponseId, String type){
 		this._type = type;
@@ -57,10 +60,16 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 
 	public void remplir() {
 		_marques = Donnees.getMarques(_type);
-		
+
 		if(_marques != null && _marques.size()>0){
-			List<String> libelles =  new ArrayList<String>();
-			
+			libelles =  new ArrayList<String>();
+
+			if(afficherIndifferent){
+				String indifferent = getString(R.string.indifferent);
+				libelles.add(indifferent);
+			}
+
+
 			for(Marque m : _marques){
 				libelles.add(m.getLibelle());
 			}
@@ -80,7 +89,16 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-		ajouterFragment(new ModeleSelector(_listener, _reponseId, _type, _marques.get(position)));
+		String s = libelles.get(position);
+		String indifferent = getString(R.string.indifferent);
+		if(afficherIndifferent && s.equals(indifferent)){
+			String item = "-1";
+			String valeur = indifferent;
+			_listener.itemSelected(this,_reponseId,item,valeur);
+			getFragmentManager().popBackStack();
+		}else{
+			ajouterFragment(new ModeleSelector(_listener, _reponseId, _type, _marques.get(position)));
+		}
 	}
 
 }

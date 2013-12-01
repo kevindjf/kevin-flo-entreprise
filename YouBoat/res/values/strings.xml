@@ -20,6 +20,7 @@
     <string name="annonces_en_vente">annonces en vente</string>
     <string name="annonce_postee">Votre annonce sera mise en ligne prochainement</string>
     <string name="annuaire">Annuaire des pros</string>
+    <string name="apartirde">A partir de</string>
     <string name="appareil_photo">Appareil photo</string>
     <string name="app_name">YouBoat</string>
     <string name="appeller">Appeler</string>
@@ -86,7 +87,7 @@
     <string name="gerer_votre_recherche_directement_sur">Gérez votre recherche directement sur www.youboat.fr/recherche-bateau.html </string>
     <string name="gps_not_found_title">Aucun service GPS trouvé</string>
     <string name="gps_not_found_message">Activer le GPS ?</string>
-    <string name="indifferent">Indifférent</string>
+    <string name="indifferent">-Indifférent-</string>
     <string name="informations">Informations</string>
     <string name="informations_youboat_propose">Youboat propose des milliers d\'annonces de bateaux à moteur, voiliers et pneumatiques mais aussi des moteurs et accessoires marins. Des essais et des articles sont disponibles pour vous aider dans votre futur achat. Vous pouvez égalment vendre votre bateau directement depuis votre smartphone. Retrouvez aussi le magazine YOUBOAT chez votre marchand de journaux !</string>
     <string name="intitule">Intutilé</string>

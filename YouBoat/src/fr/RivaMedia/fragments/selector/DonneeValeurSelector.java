@@ -34,10 +34,17 @@ public class DonneeValeurSelector extends FragmentNormal implements OnItemClickL
 
 	int _idRetour; //indicateur de retour
 
-	public DonneeValeurSelector (ItemSelectedListener listener,  int idRetour, Map<String,String> types_valeurs){
+	boolean afficherIndifferent = true;
+
+	public DonneeValeurSelector (ItemSelectedListener listener,  int idRetour, boolean afficherIndifferent, Map<String,String> types_valeurs){
 		this._listener = listener;
 		this._types_valeurs = types_valeurs;
 		this._idRetour = idRetour;
+		this.afficherIndifferent = afficherIndifferent;
+	}
+
+	public DonneeValeurSelector (ItemSelectedListener listener,  int idRetour, Map<String,String> types_valeurs){
+		this(listener, idRetour, true, types_valeurs);
 	}
 
 	@Override
@@ -61,6 +68,16 @@ public class DonneeValeurSelector extends FragmentNormal implements OnItemClickL
 	public void remplir() {
 		_types = new ArrayList<String>(_types_valeurs.keySet());
 		Collections.sort(_types);
+
+		if(afficherIndifferent){
+			String indifferent = getString(R.string.indifferent);
+			_types_valeurs.put(indifferent, "-1");
+
+			ArrayList<String> vs = new ArrayList<String>();
+			vs.add(indifferent);
+			vs.addAll(_types);
+			_types = vs;
+		}
 
 		if(_types.size()==0)
 			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);

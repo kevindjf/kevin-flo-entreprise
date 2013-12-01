@@ -410,6 +410,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		ajouterFragment(new DonneeValeurSelector(
 				this,
 				TYPE,
+				false,
 				DonneeValeurSelector.creerDonneeValeur(
 						getString(R.string.bateau_a_moteur),Constantes.BATEAU_A_MOTEUR,
 						getString(R.string.voiliers),Constantes.VOILIER,

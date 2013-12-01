@@ -24,6 +24,7 @@ public class Constantes {
 	public static final String URL_BASE = "http://www.youboat.fr/xml/android/"; //F
 	
 	public static final String URL_MAGAZINE = "magazine.php"; //F
+	public static final String URL_AUTO_PROMO = "autopromo.php"; //F
 	
 	public static final String URL_TYPES_ANNONCES = "type.php"; //F
 	public static final String URL_REGIONS = "region.php"; //F
