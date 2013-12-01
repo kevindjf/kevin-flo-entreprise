@@ -139,7 +139,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 		_telephonePrincipal.setOnClickListener(this);
 		_telephoneSecondaire.setOnClickListener(this);
 		_email.setOnClickListener(this);
-		
+
 		if(_pages.size()>0)
 			_page.setOnPageChangeListener(this);
 	}
@@ -173,9 +173,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	protected void chargerTabs(){
 		_pages.clear();
 
-		if(_vendeur.getDescription() == null || _vendeur.getServices() == null || _vendeur.getServices().size()==0){}
-		else
-			_pages.add(new TabVendeurDescription("Vendeur",_vendeur,getActivity()));
+		_pages.add(new TabVendeurDescription("Vendeur",_vendeur,getActivity()));
 
 		if(_vendeur.getNbBateau() != null && !_vendeur.getNbBateau().equals("0"))
 			_pages.add(new TabVendeurAnnonces(getString(R.string.bateaux),_vendeur,Constantes.BATEAUX,getActivity()));
@@ -224,7 +222,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	@Override
 	public void onPageScrollStateChanged(int p) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -240,7 +238,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	@Override
 	public void onPageSelected(int arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

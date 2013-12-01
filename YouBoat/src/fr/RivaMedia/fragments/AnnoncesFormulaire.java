@@ -694,7 +694,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 				@Override
 				public void run() {
-					if(reponse.toLowerCase().trim().equals("true"))
+					if(!reponse.toLowerCase().trim().equals("false"))
 						alerteAjoutee();
 					else
 						erreurAlerte();

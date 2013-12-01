@@ -1,6 +1,7 @@
 package fr.RivaMedia.fragments;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.graphics.drawable.Drawable;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
+import fr.RivaMedia.comparator.AnnoncePrixParLongueurComparator;
 import fr.RivaMedia.fragments.core.FragmentListe;
 import fr.RivaMedia.tab.alertes.TabMesAlertesAnnonces;
 import fr.RivaMedia.tab.alertes.TabMesAlertesFormulaires;
@@ -85,6 +87,8 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 			_page.setAdapter(_pagesAdapter);
 		}else
 			_page.setVisibility(View.GONE);
+		
+		afficherProgress = false;
 	}
 	
 
@@ -178,7 +182,23 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 			_tabAnnonces.afficherDateDeCroissant();
 		}
 	}
+	
+	@Override
+	public void afficherLongueurCroissant() {
+		if(_tabAnnonces != null){
+			_tabAnnonces.afficherLongueurCroissant();
+		}
+	}
 
+
+	@Override
+	public void afficherLongueurDeCroissant() {
+		if(_tabAnnonces != null){
+			_tabAnnonces.afficherLongueurDeCroissant();
+		}
+	}
+
+	
 
 	@Override
 	public void onResume() {

@@ -24,6 +24,8 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 		getActivity().findViewById(R.id.slider_droite_date_decroissant).setOnClickListener(this);
 		getActivity().findViewById(R.id.slider_droite_prix_croissant).setOnClickListener(this);
 		getActivity().findViewById(R.id.slider_droite_prix_decroissant).setOnClickListener(this);
+		getActivity().findViewById(R.id.slider_droite_longueur_croissant).setOnClickListener(this);
+		getActivity().findViewById(R.id.slider_droite_longueur_decroissant).setOnClickListener(this);
 	}
 	
 	public void fermerSliderDroite(){
@@ -41,6 +43,8 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 	public abstract void afficherPrixDeCroissant();
 	public abstract void afficherDateCroissant();
 	public abstract void afficherDateDeCroissant();
+	public abstract void afficherLongueurCroissant();
+	public abstract void afficherLongueurDeCroissant();
 	
 	@Override
 	public void onClick(View v) {
@@ -65,6 +69,14 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 			break;
 		case R.id.slider_droite_prix_decroissant:
 			afficherPrixDeCroissant();
+			fermerSliderDroite();
+			break;
+		case R.id.slider_droite_longueur_croissant:
+			afficherLongueurCroissant();
+			fermerSliderDroite();
+			break;
+		case R.id.slider_droite_longueur_decroissant:
+			afficherLongueurDeCroissant();
 			fermerSliderDroite();
 			break;
 		}

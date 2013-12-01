@@ -17,6 +17,7 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
 import fr.RivaMedia.comparator.AnnonceDateComparator;
 import fr.RivaMedia.comparator.AnnoncePrixComparator;
+import fr.RivaMedia.comparator.AnnoncePrixParLongueurComparator;
 import fr.RivaMedia.fragments.core.FragmentListe;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
@@ -226,6 +227,23 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 	public void afficherDateDeCroissant() {
 		if(_adapter != null && _annonces != null){
 			Collections.sort(_annonces,new AnnonceDateComparator(false));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+	
+	@Override
+	public void afficherLongueurCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixParLongueurComparator(true));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+
+
+	@Override
+	public void afficherLongueurDeCroissant() {
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePrixParLongueurComparator(false));
 			_adapter.notifyDataSetChanged();
 		}
 	}

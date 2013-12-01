@@ -20,7 +20,8 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 
 	ImageView _image;
 	TextView _titre;
-	TextView _sousTitre;
+	TextView _adressePostale;
+	TextView _telephone;
 
 	public VendeurView(Vendeur vendeur, Context context, View view, int position) {
 		super(context, view);
@@ -37,7 +38,8 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 	public void charger() {
 		_image = (ImageView)getView().findViewById(R.id.vendeur_element_liste_image);
 		_titre = (TextView)getView().findViewById(R.id.vendeur_element_liste_titre);
-		_sousTitre = (TextView)getView().findViewById(R.id.vendeur_element_liste_sous_titre);
+		_adressePostale = (TextView)getView().findViewById(R.id.vendeur_element_liste_adresse_postale);
+		_telephone = (TextView)getView().findViewById(R.id.vendeur_element_liste_telephone);
 	}
 
 	@Override
@@ -47,8 +49,10 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 				ImageLoaderCache.charger(_vendeur.getLogo(),_image);
 			if(_vendeur.getNom() != null)
 				_titre.setText(_vendeur.getNom());
-			if(_vendeur.getVille() != null)
-				_sousTitre.setText(_vendeur.getVille());
+			if(_vendeur.getVille() != null && _vendeur.getCodePostal()!=null)
+				_adressePostale.setText(_vendeur.getCodePostal()+" "+_vendeur.getVille());
+			if(_vendeur.getTel1() != null)
+				_telephone.setText(_vendeur.getTel1());
 		}
 
 		afficherNormal();

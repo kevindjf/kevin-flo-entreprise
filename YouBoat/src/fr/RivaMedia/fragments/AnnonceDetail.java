@@ -42,6 +42,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	View titre;
 	View sousTitre;
+	View prixEntete;
 	View type;
 	View longeur;
 	View largeur;
@@ -65,6 +66,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	View email;
 	
 	View apartirDe;
+	View apartirDeEntete;
 
 	View _favoris;
 	FavorisManager _favorisManager;
@@ -111,6 +113,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		screen = _view.findViewById(R.id.screen);
 		titre = _view.findViewById(R.id.annonce_detail_titre);	
 		sousTitre = _view.findViewById(R.id.annonce_detail_sous_titre);
+		prixEntete = _view.findViewById(R.id.annonce_detail_prix_entete);
 		type =  _view.findViewById(R.id.annonce_detail_type);
 		longeur = _view.findViewById(R.id.annonce_detail_longueur);
 		largeur =  _view.findViewById(R.id.annonce_detail_largeur);
@@ -132,6 +135,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		telephoneSecondaire = _view.findViewById(R.id.annonce_detail_telephone_secondaire);
 		email = _view.findViewById(R.id.annonce_detail_email);
 		apartirDe = _view.findViewById(R.id.annonce_detail_prix_a_partir_de);
+		apartirDeEntete = _view.findViewById(R.id.annonce_detail_prix_entete_a_partir_de);
 
 		_page = (ViewPager) getView().findViewById(R.id.annonce_detail_image_pager);
 
@@ -222,9 +226,12 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			if(_annonce.getPrix() != null && _annonce.getTaxePrix() != null){
 				String p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim();
 				((TextView)prix.findViewById(R.id.text)).setText(p + " € " + _annonce.getTaxePrix());
+				((TextView)prixEntete.findViewById(R.id.text)).setText(p + " € " + _annonce.getTaxePrix());
 				
-				if(_annonce.getApartirDe() != null && _annonce.getApartirDe().trim().equals("1"))
+				if(_annonce.getApartirDe() != null && _annonce.getApartirDe().trim().equals("1")){
 					apartirDe.setVisibility(View.VISIBLE);
+					apartirDeEntete.setVisibility(View.VISIBLE);
+				}
 			}
 			else
 				prix.setVisibility(View.GONE);

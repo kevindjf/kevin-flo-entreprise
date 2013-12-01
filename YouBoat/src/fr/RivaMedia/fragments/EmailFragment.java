@@ -69,7 +69,7 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 
 		_view = inflater.inflate(R.layout.email, container, false);
 
-		afficherProgress(true);
+		afficherProgress(false);
 
 		charger();
 		remplir();

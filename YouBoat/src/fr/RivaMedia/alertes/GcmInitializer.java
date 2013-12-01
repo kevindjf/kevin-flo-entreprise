@@ -60,6 +60,8 @@ public class GcmInitializer{
             if (regid.length() == 0) {
                 registerInBackground();
             }
+            else
+            	Donnees.jeton = regid;
         } else {
             Log.i("PLAY", "No valid Google Play Services APK found.");
         }

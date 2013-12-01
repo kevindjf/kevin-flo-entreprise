@@ -18,22 +18,47 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/vendeur_element_liste_image"
         android:layout_toRightOf="@+id/vendeur_element_liste_image"
-        android:text="SKUTSHJE 15M"
-        android:layout_marginTop="10dip"
-        android:textSize="15sp"
-        android:textStyle="bold"
         android:lines="1"
-        android:textColor="@color/couleur_texte_noir" />
+        android:text="NomVendeur"
+        android:textColor="@color/couleur_texte_noir"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/vendeur_element_liste_sous_titre"
+        android:id="@+id/vendeur_element_liste_adresse_postale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/vendeur_element_liste_titre"
         android:layout_below="@+id/vendeur_element_liste_titre"
-        android:layout_toRightOf="@+id/vendeur_element_liste_image"
-        android:textColor="@color/couleur_texte_fonce"
         android:layout_marginTop="10dip"
-        android:text="69cv volvo pen Volvo Penta " />
+        android:layout_toRightOf="@+id/vendeur_element_liste_image"
+        android:text="Adresse postale"
+        android:textColor="@color/couleur_texte_fonce" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:layout_marginTop="10dip"
+        android:layout_alignRight="@+id/vendeur_element_liste_titre"
+        android:layout_below="@+id/vendeur_element_liste_adresse_postale"
+        android:layout_toRightOf="@+id/vendeur_element_liste_image"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/couleur_texte_fonce" 
+            android:text="@string/telephone_dots"
+            />
+        
+        <TextView
+            android:id="@+id/vendeur_element_liste_telephone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dip"
+            android:text="0000000"
+            android:textColor="@color/couleur_1" />
+    </LinearLayout>
 
 </RelativeLayout>
