@@ -55,7 +55,7 @@
     <string name="demande_postee">Votre demande sera mise en ligne prochainement</string>
     <string name="departement">Département</string>
     <string name="departement_dots">Département :</string>
-    <string name="departement_pays_star">Département ou pays *</string>
+    <string name="departement_pays_star">Département/pays *</string>
     <string name="description">DESCRIPTION</string>
     <string name="description_dots">Description :</string>
     <string name="description_maj">DESCRIPTION</string>
@@ -148,6 +148,7 @@
     <string name="principal_caracteristiques">CARACTERISTIQUES PRINCIPALES</string>
     <string name="propulsion">Propulsion</string>
     <string name="puissance">Puissance</string>
+    <string name="puissance_star">Puissance *</string>
     <string name="puissance_ch">Puissance (ch)</string>
     <string name="que_souhaitez_vous_vendre">Que souhaitez vous vendre ?</string>
     <string name="rechercher">Rechercher</string>
@@ -177,7 +178,7 @@
     <string name="vendeur">LE VENDEUR</string>
     <string name="vendeur_aucune_description">Ce vendeur n\'a renseigné aucune déscription</string>
     <string name="veuillez_choisir_un_budget">Veuillez choisir un budget</string>
-  	<string name="veuillez_choisir_la_puissance">Veuillez choisir la puissance du moteur</string>
+    <string name="veuillez_choisir_la_puissance">Veuillez choisir la puissance du moteur</string>
     <string name="veuillez_entrer_un_message">Veuillez entrer un message</string>
     <string name="veuillez_indiquer_votre_code_postale">Veuillez choisir un code postal</string>
     <string name="veuillez_indiquer_votre_nom">Veuillez indiquer votre nom</string>
