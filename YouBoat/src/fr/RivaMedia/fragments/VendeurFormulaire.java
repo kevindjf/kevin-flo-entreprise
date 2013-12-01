@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.NameValuePair;
 import org.apache.http.entity.mime.MultipartEntity;
 
 import android.annotation.SuppressLint;
@@ -52,15 +53,20 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	String idPays;
 
-	MultipartEntity _donnees;
+	MultipartEntity _donneesPost;
+	List<NameValuePair> _donneesGet;
+
 	List<Bitmap> _photos;
 
 	View[] views;
 	String[] valeurs;
 
-	public VendeurFormulaire(int pour, MultipartEntity donneesPrecedentes, List<Bitmap> photos) {
+	public VendeurFormulaire(int pour, MultipartEntity donneesPost, List<NameValuePair> donneesGet, List<Bitmap> photos) {
 		this.pour = pour;
-		_donnees = donneesPrecedentes;
+		_donneesPost = donneesPost;
+		_donneesGet = donneesGet;
+		if(_donneesGet == null)
+			_donneesGet = Net.construireDonnes();
 		_photos = photos;
 	}
 
@@ -165,7 +171,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 				donneesValeurs.put(departement.getNom(), departement.getId());
 			}
 
-			ajouterFragment(new DonneeValeurSelector(this,PAYS,donneesValeurs));
+			ajouterFragment(new DonneeValeurSelector(this,PAYS,false,donneesValeurs));
 		}
 	}
 
@@ -207,22 +213,28 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	protected void recupererDonnees(){
 
 		String nom = ((EditText)_nom.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
-		Net.add(_donnees, Constantes.VENDEUR_NOM,nom);
+		Net.add(_donneesGet, Constantes.VENDEUR_NOM,nom);
 
 		String prenom = ((EditText)_prenom.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
 		if(prenom.length() > 0)
-			Net.add(_donnees, Constantes.VENDEUR_PRENOM,prenom);
+			Net.add(_donneesGet, Constantes.VENDEUR_PRENOM,prenom);
 
-		Net.add(_donnees, Constantes.VENDEUR_EMAIL,((EditText)_email.findViewById(R.id.text)).getText().toString());
-		Net.add(_donnees, Constantes.VENDEUR_TEL_1,((EditText)_telephone.findViewById(R.id.text)).getText().toString().trim().replace(".", "").replace(",",""));
-		Net.add(_donnees, Constantes.VENDEUR_CODE_POSTAL,((EditText)_codePostal.findViewById(R.id.text)).getText().toString());
+		Net.add(_donneesGet, Constantes.VENDEUR_EMAIL,((EditText)_email.findViewById(R.id.text)).getText().toString());
+		Net.add(_donneesGet, Constantes.VENDEUR_TEL_1,((EditText)_telephone.findViewById(R.id.text)).getText().toString().trim().replace(".", "").replace(",",""));
+		Net.add(_donneesGet, Constantes.VENDEUR_CODE_POSTAL,((EditText)_codePostal.findViewById(R.id.text)).getText().toString());
 
 		if(pour == VENDRE && idPays != null)
-			Net.add(_donnees, Constantes.VENDEUR_PAYS,idPays);
+			Net.add(_donneesGet, Constantes.VENDEUR_PAYS,idPays);
 		else if(pour == ON_DEMAND){
 			String ville = ((TextView)_ville.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
 			if(ville.length() > 0)
-				Net.add(_donnees, Constantes.VENDEUR_VILLE,ville);
+				Net.add(_donneesGet, Constantes.VENDEUR_VILLE,ville);
+		}
+
+		if(pour == VENDRE){
+			for(NameValuePair e : _donneesGet){
+				Net.add(_donneesPost, e.getName(), e.getValue());
+			}
 		}
 	}
 
@@ -258,9 +270,10 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	class EnvoyerOnDemandTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
-			synchronized (_donnees) {
+			synchronized (_donneesGet) {
 
-				NetOnDemand.onDemand(_donnees, _photos);
+				String reponse = NetOnDemand.onDemand(_donneesGet);
+				System.out.println(reponse);
 			}
 
 			getActivity().runOnUiThread(new Runnable(){
@@ -286,8 +299,9 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	class EnvoyerVendreTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
-			synchronized (_donnees) {
-				NetVendre.vendre(_donnees, _photos);
+			synchronized (_donneesPost) {
+				String reponse = NetVendre.vendre(_donneesPost, _photos);
+				System.out.println(reponse);
 			}
 
 			getActivity().runOnUiThread(new Runnable(){

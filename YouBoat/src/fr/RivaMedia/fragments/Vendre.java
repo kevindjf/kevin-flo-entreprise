@@ -92,6 +92,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	private View _boutonBateaux;
 	private View _boutonMoteurs;
 	private View _boutonDivers;
+	
+	View _pub;
+	View _scroll;
 
 	//Bateau
 	View _type;
@@ -174,7 +177,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		ajouterListeners();
 		remplir();
 
-		vendreBateaux();
+		//vendreBateaux();
 
 
 		return _view;
@@ -187,7 +190,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_ajouterPhoto = _view.findViewById(R.id.vendre_ajouter_photo);
 		_etapeSuivante = _view.findViewById(R.id.vendre_etape_suivante);
 
-
+		_pub = _view.findViewById(R.id.vendre_pub);
+		_scroll = _view.findViewById(R.id.vendre_scroll);
 
 		_type = _view.findViewById(R.id.vendre_type);
 		_categorie = _view.findViewById(R.id.vendre_categorie);
@@ -322,6 +326,19 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			_indicator.setVisibility(View.GONE);
 	}
 
+	public void afficherPub(){
+		_pub.setVisibility(View.VISIBLE);
+		_scroll.setVisibility(View.GONE);
+		
+		_boutonBateaux.setSelected(false);
+		_boutonDivers.setSelected(false);
+		_boutonMoteurs.setSelected(false);
+	}
+	public void cacherPub(){
+		_pub.setVisibility(View.GONE);
+		_scroll.setVisibility(View.VISIBLE);
+	}
+	
 	public void ajouterListeners(){
 		_boutonBateaux.setOnClickListener(this);
 		_boutonMoteurs.setOnClickListener(this);
@@ -415,7 +432,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	public void remplir(){
-		_boutonBateaux.setSelected(true);
+		//_boutonBateaux.setSelected(true);
 	}
 
 
@@ -507,7 +524,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 					donneesValeurs.put(categorie.getLibelle(), categorie.getId());
 				}
 
-				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
+				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,false,donneesValeurs));
 			}
 		}
 	}
@@ -595,6 +612,12 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	public void vendreBateaux(){
+		if(_boutonBateaux.isSelected()){
+			afficherPub();
+			return;
+		}
+		cacherPub();
+		
 		typeVente = Constantes.BATEAUX;
 
 		_boutonBateaux.setSelected(true);
@@ -618,6 +641,12 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_longueurUnite.setOnClickListener(this);
 	}
 	public void vendreMoteurs(){
+		if(_boutonMoteurs.isSelected()){
+			afficherPub();
+			return;
+		}
+		cacherPub();
+		
 		typeVente = Constantes.MOTEURS;
 		vendre_type = Constantes.MOTEURS;
 		_boutonBateaux.setSelected(false);
@@ -637,6 +666,12 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_energie.setOnClickListener(this);
 	}
 	public void vendreDivers(){
+		if(_boutonDivers.isSelected()){
+			afficherPub();
+			return;
+		}
+		cacherPub();
+		 
 		typeVente = Constantes.ACCESSOIRES;
 		vendre_type = Constantes.ACCESSOIRES;
 
@@ -887,7 +922,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		if(donneesVente == null)
 			return;
 
-		ajouterFragment(new VendeurFormulaire(VendeurFormulaire.VENDRE,donneesVente,_photos));
+		ajouterFragment(new VendeurFormulaire(VendeurFormulaire.VENDRE,donneesVente,null,_photos));
 	}
 
 	@Override

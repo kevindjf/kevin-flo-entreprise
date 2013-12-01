@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.http.NameValuePair;
 import org.apache.http.entity.mime.MultipartEntity;
 
 import android.annotation.SuppressLint;
@@ -85,8 +86,8 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 
 	String budget_requis;
 	String taille_requis;
-	
-	
+
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -240,16 +241,16 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	private void demanderEtapeSuivante() {
-		MultipartEntity donneesVente = recupererDonnees();
+		List<NameValuePair> donneesVente = recupererDonnees();
 		if(donneesVente == null)
 			return;
 
-		ajouterFragment(new VendeurFormulaire(VendeurFormulaire.ON_DEMAND,donneesVente,null));
+		ajouterFragment(new VendeurFormulaire(VendeurFormulaire.ON_DEMAND,null,donneesVente,null));
 	}
 
-	private MultipartEntity recupererDonnees(){
+	private List<NameValuePair> recupererDonnees(){
 
-		MultipartEntity donnees = Net.construireDonnesMultiPart();
+		List<NameValuePair> donnees = Net.construireDonnes();
 
 		if(demand_type == null){
 			Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -272,13 +273,13 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_budget), Toast.LENGTH_SHORT).show();	
 			return null;
 		}
-		
-		
+
+
 
 		//les requis
 		Net.add(donnees, 
 				Constantes.ON_DEMAND_ORIGINE,Constantes.ON_DEMAND_ORIGINE_VALUE,				
-				
+
 				Constantes.ON_DEMAND_TYPE,demand_type,
 				Constantes.ON_DEMAND_CATEGORIE,demand_categorie_id,
 				//Constantes.ON_DEMAND_TAILLE,taille_requis,
@@ -363,7 +364,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	private void demanderLieu() {
-		
+
 		List<Region> regions = Donnees.regions;
 		if(regions != null){
 			Map<String,String> donneesValeurs = new HashMap<String,String>();
@@ -432,7 +433,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 					donneesValeurs.put(categorie.getLibelle(), categorie.getId());
 				}
 
-				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
+				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,false,donneesValeurs));
 			}
 		}
 	}
@@ -440,14 +441,16 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	@Override
 	public void itemSelected(Object from, int idRetour, String item, String value) {
 		if(idRetour == TYPE){
-			demand_type = item;
+			if(!item.equals("-1"))
+				demand_type = item;
 			((TextView)_type.findViewById(R.id.text)).setText(value);
 			demand_categorie_id = null;
 			((TextView)_categorie.findViewById(R.id.text)).setText(getResources().getString(R.string.requis));
 			_marques = Donnees.getMarques(item);
 
 		} else if(idRetour == CATEGORIE){
-			demand_categorie_id = item;
+			if(!item.equals("-1"))
+				demand_categorie_id = item;
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == CHANTIER_MODELE){
@@ -456,24 +459,31 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			demand_modele_id = ids[1];
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == ETAT){
+
 			((TextView)_etat.findViewById(R.id.text)).setText(value);
-			demand_etat_id = item;
+			if(!item.equals("-1"))
+				demand_etat_id = item;
 		}else if(idRetour == LOCALISATION){
 			((TextView)_lieu.findViewById(R.id.text)).setText(value);
-			demand_lieu_id = item;
+			if(!item.equals("-1"))
+				demand_lieu_id = item;
 		} else if(idRetour == TYPE_POSSEDER){
-			demand_type_posseder = item;
+			if(!item.equals("-1"))
+				demand_type_posseder = item;
 			((TextView)_typePosseder.findViewById(R.id.text)).setText(value);
 			demand_categorie_posseder_id = null;
 			((TextView)_categoriePosseder.findViewById(R.id.text)).setText(getResources().getString(R.string.facultatif));
 			_marques_posseder = Donnees.getMarques(item);
 		} else if(idRetour == CATEGORIE_POSSEDER){
-			demand_categorie_posseder_id = item;
+			if(!item.equals("-1"))
+				demand_categorie_posseder_id = item;
 			((TextView)_categoriePosseder.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == CHANTIER_MODELE_POSSEDER){
-			String[] ids = item.split(";");
-			demand_chantier_posseder_id = ids[0];
-			demand_modele_posseder_id = ids[1];
+			if(!item.equals("-1")){
+				String[] ids = item.split(";");
+				demand_chantier_posseder_id = ids[0];
+				demand_modele_posseder_id = ids[1];
+			}
 			((TextView)_chantierModelePosseder.findViewById(R.id.text)).setText(value);
 		}
 

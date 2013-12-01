@@ -16,12 +16,12 @@ public class NetVendre extends Net{
 		return MD5.getDateFormateeJMHMSMD5();
 	}
 	
-	public static void vendre(MultipartEntity donnees, List<Bitmap> photos) {
+	public static String vendre(MultipartEntity donnees, List<Bitmap> photos) {
 		
 		Net.add(donnees, Constantes.VENDRE_HASH,MD5.getDateFormateeMD5());
 		if(photos != null && photos.size()>0)
 			Net.addBitmap(donnees, Constantes.VENDRE_IMAGE, photos.get(0));
-		Net.requete(Constantes.URL_VENDRE, donnees);
+		return Net.requete(Constantes.URL_VENDRE, donnees);
 		
 	}
 
