@@ -52,7 +52,7 @@ public class AnnonceXmlParser extends XmlParser {
 		while (eventType != XmlPullParser.END_TAG) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				Log.e("XML",tag);
+				//Log.e("XML",tag);
 				if(tag.equals("detail")){
 				}
 				else if(tag.equals("id")){
