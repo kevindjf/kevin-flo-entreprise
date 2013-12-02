@@ -136,7 +136,8 @@ public class SplashScreenActivity extends Activity{
 
 			Donnees.typesAnnonces = NetChargement.chargerTypesAnnonces();
 
-			Donnees.typeCategories = NetChargement.chargerTypesCategories();
+			Donnees.typeCategories = NetChargement.chargerTypesCategories(true);
+			Donnees.typeCategoriesTOUTES = NetChargement.chargerTypesCategories(false);
 			Donnees.regions = NetChargement.chargerRegions();
 			Donnees.etats = NetChargement.chargerEtats();
 			Donnees.departements = NetChargement.chargerDepartements();

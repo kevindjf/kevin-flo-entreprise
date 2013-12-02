@@ -40,7 +40,7 @@ public class NetChargement extends Net{
 	//MOTEURS = "4";
 	//ACCESSOIRES = "5";
 	//PLACE_DE_PORT="6";
-	public static List<TypeCategories> chargerTypesCategories(){
+	public static List<TypeCategories> chargerTypesCategories(boolean WA){
 		List<TypeCategories> types = new ArrayList<TypeCategories>();
 		for(int i=1;i<=6;++i){
 
@@ -48,9 +48,11 @@ public class NetChargement extends Net{
 			type.setId(Integer.toString(i));
 
 			List<NameValuePair> donnees = Net.construireDonnes(
-					Constantes.CATEGORIES_TYPE_ID, Integer.valueOf(i),
-					Constantes.MARQUES_POUR, "1"
+					Constantes.CATEGORIES_TYPE_ID, Integer.valueOf(i)
 					);
+			if(WA)
+				Net.add(donnees,Constantes.MARQUES_POUR, "1");
+			
 			String xml = Net.requeteGet(Constantes.URL_TYPES_CATEGORIES, donnees);
 			type.setCategories(new CategorieXmlParser(xml).getCategoriesBateau());
 

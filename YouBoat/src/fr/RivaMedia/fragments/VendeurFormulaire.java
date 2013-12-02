@@ -245,9 +245,11 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		recupererDonnees();
 		if(task == null){
 			if(pour == ON_DEMAND){
+				afficherProgress(true);
 				task = new EnvoyerOnDemandTask();
 				task.execute();
 			}else if(pour == VENDRE){
+				afficherProgress(true);
 				task = new EnvoyerVendreTask();
 				task.execute();
 			}
@@ -267,6 +269,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	public void demande_envoyee(){
 		Toast.makeText(getActivity(), R.string.demande_postee, Toast.LENGTH_LONG).show();
+		afficherProgress(false);
 		ajouterFragment(new Annonces(), false);
 	}
 
@@ -296,6 +299,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	public void vendu(){
 		Toast.makeText(getActivity(), R.string.annonce_postee, Toast.LENGTH_LONG).show();
+		afficherProgress(false);
 		ajouterFragment(new Annonces(), false);
 	}
 
@@ -303,6 +307,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		protected Void doInBackground(Void...donnees) {
 
 			synchronized (_donneesPost) {
+				
 				String reponse = NetVendre.vendre(_donneesPost, _photos);
 				System.out.println(reponse);
 			}
@@ -311,6 +316,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 				@Override
 				public void run() {
+					afficherProgress(false);
 					vendu();
 				}
 

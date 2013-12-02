@@ -8,6 +8,7 @@ public class Alerte {
 	private String longueurMax;
 	private String prixMin;
 	private String prixMax;
+	private String etat;
 	
 	private String jeton;
 	private String date;
@@ -59,6 +60,12 @@ public class Alerte {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public String getEtat() {
+		return etat;
+	}
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 	
 	

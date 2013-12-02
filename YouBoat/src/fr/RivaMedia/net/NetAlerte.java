@@ -9,6 +9,7 @@ import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Alerte;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
+import fr.RivaMedia.utils.JetonManager;
 import fr.RivaMedia.xml.AlerteXmlParser;
 
 public class NetAlerte extends Net{
@@ -35,7 +36,11 @@ public class NetAlerte extends Net{
 	}
 	
 	public static String creerAlerte(List<NameValuePair> donnees){
-		return Net.requete(Constantes.URL_CREER_ALERTE, donnees);
+		String xml = Net.requete(Constantes.URL_CREER_ALERTE, donnees);
+		
+		String jeton = new AlerteXmlParser(xml).getJeton();
+		
+		return jeton;
 	}
 
 	public static String supprimerAlerte(String alerteId){
@@ -48,9 +53,9 @@ public class NetAlerte extends Net{
 		return Net.requete(Constantes.URL_SUPPRIMER_ALERTE, donnees);
 	}
 	
-	public static List<Alerte> getAlertes(){		
+	public static List<Alerte> getAlertes(String jeton){		
 		String xml = Net.requeteGet(Constantes.URL_ALERTES,
-				Net.construireDonnes(Constantes.ALERTE_JETON,Donnees.jeton)
+				Net.construireDonnes(Constantes.ALERTE_JETON,jeton)
 				);
 		return new AlerteXmlParser(xml).getListe();
 	}

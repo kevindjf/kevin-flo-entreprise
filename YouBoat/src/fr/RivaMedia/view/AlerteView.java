@@ -19,7 +19,7 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 
 	TextView _titre;
 	TextView _sousTitre;
-	
+
 	View _derriere;
 	View _devant;
 
@@ -38,7 +38,7 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 	public void charger() {
 		_titre = (TextView)getView().findViewById(R.id.alerte_element_liste_titre);
 		_sousTitre = (TextView)getView().findViewById(R.id.alerte_element_liste_sous_titre);
-		
+
 		if(_swipable){
 			_devant = getView().findViewById(R.id.devant);
 			_derriere = getView().findViewById(R.id.derriere);
@@ -49,11 +49,13 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 
 	@Override
 	public void remplir() {
-		Categorie c = Donnees.getCategorie(_alerte.getCategorie());
-		_titre.setText(c.getLibelle());
-		
+		Categorie c = Donnees.getCategorie(_alerte.getCategorie(),false);
+		if(c != null && c.getLibelle() != null)
+			_titre.setText(c.getLibelle());
+
 		//TODO prix+longueur
-		_sousTitre.setText(DateFrancais.convertirDate(_alerte.getDate()));
+		if(_alerte.getDate() != null )
+			_sousTitre.setText(_alerte.getDate());
 
 		afficherNormal();
 	}
