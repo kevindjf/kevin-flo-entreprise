@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AnnonceListAdapter;
 import fr.RivaMedia.comparator.AnnonceDateComparator;
@@ -54,6 +55,12 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 
 		task = new ChargerAnnoncesTask();
 		task.execute();
+		
+		if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU)){
+			super.afficherTriLongueur(true);
+		}
+		else
+			super.afficherTriLongueur(false);
 
 		return _view;
 	}

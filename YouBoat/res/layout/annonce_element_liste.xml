@@ -66,8 +66,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dip"
             android:text="@string/apartirde"
-            android:textColor="@color/couleur_texte_fonce"
-            android:textSize="15sp"
+            android:textColor="@color/couleur_1"
+            android:textSize="16sp"
+            android:textStyle="bold" 
             android:visibility="gone" />
 
         <TextView

@@ -9,6 +9,7 @@ import android.net.NetworkInfo;
 import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 import fr.RivaMedia.R;
@@ -30,6 +31,8 @@ public class SplashScreenActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 		Net.enableHttpResponseCache(this);
+		
+		findViewById(R.id.splash_progress).setVisibility(View.VISIBLE);
 
 		if(isOnline()){
 			gcmInitializer = new GcmInitializer(this);

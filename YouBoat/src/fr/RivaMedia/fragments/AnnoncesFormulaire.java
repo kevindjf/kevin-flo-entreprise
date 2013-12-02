@@ -463,7 +463,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		else if(idRetour == CHANTIER_MODELE){
 			if(item.equals("-1")){
-				
+				recherche_chantier_id = null;
+				recherche_modele_id = null;
 			}else{
 				String[] ids = item.split(";");
 				recherche_chantier_id = ids[0];

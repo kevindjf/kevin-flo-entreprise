@@ -97,7 +97,7 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 			_listener.itemSelected(this,_reponseId,item,valeur);
 			getFragmentManager().popBackStack();
 		}else{
-			ajouterFragment(new ModeleSelector(_listener, _reponseId, _type, _marques.get(position)));
+			ajouterFragment(new ModeleSelector(_listener, _reponseId, _type, _marques.get(position-1)));
 		}
 	}
 

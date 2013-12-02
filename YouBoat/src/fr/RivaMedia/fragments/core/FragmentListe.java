@@ -39,6 +39,13 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 		afficherTrier();
 	}
 	
+	public void afficherTriLongueur(boolean b){
+		if(b)
+			getActivity().findViewById(R.id.slider_droite_tri_longueur).setVisibility(View.VISIBLE);
+		else
+			getActivity().findViewById(R.id.slider_droite_tri_longueur).setVisibility(View.GONE);
+	}
+	
 	public abstract void afficherPrixCroissant();
 	public abstract void afficherPrixDeCroissant();
 	public abstract void afficherDateCroissant();
