@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.http.NameValuePair;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -195,6 +196,8 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		this.rayon = rayon;
 		this.longitude = longitude;
 		this.latitude = latitude;
+		
+		Log.e("LOCALITE",ville+" | "+rayon+" | "+longitude+" | "+latitude);
 		
 		String text = this.rayon+" "+getString(R.string.km_autour_de)+" "+nomVille;
 

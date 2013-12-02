@@ -33,6 +33,7 @@ public class SplashScreenActivity extends Activity{
 		Net.enableHttpResponseCache(this);
 		
 		findViewById(R.id.splash_progress).setVisibility(View.VISIBLE);
+		findViewById(R.id.splash_progress).setEnabled(true);
 
 		if(isOnline()){
 			gcmInitializer = new GcmInitializer(this);

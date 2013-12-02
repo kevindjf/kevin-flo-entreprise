@@ -125,8 +125,7 @@
                         android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
                         android:hint="@string/requis"
-                        android:maxLength="5"
-                        android:inputType="number" />
+                        />
                 </RelativeLayout>
 
                 <RelativeLayout

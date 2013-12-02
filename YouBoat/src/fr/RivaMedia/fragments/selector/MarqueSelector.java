@@ -33,6 +33,13 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 	int _reponseId;
 
 	boolean afficherIndifferent = true;
+	
+	public MarqueSelector (ItemSelectedListener listener, int reponseId, boolean afficherIndifferent, String type){
+		this._type = type;
+		this._listener = listener;
+		this._reponseId = reponseId;
+		this.afficherIndifferent = afficherIndifferent;
+	}
 
 	public MarqueSelector (ItemSelectedListener listener, int reponseId, String type){
 		this._type = type;
@@ -91,13 +98,19 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 		String s = libelles.get(position);
 		String indifferent = getString(R.string.indifferent);
+		
+		int p=position;
+		
+		if(afficherIndifferent)
+			p-=1;
+		
 		if(afficherIndifferent && s.equals(indifferent)){
 			String item = "-1";
 			String valeur = indifferent;
 			_listener.itemSelected(this,_reponseId,item,valeur);
 			getFragmentManager().popBackStack();
 		}else{
-			ajouterFragment(new ModeleSelector(_listener, _reponseId, _type, _marques.get(position-1)));
+			ajouterFragment(new ModeleSelector(_listener, _reponseId, _type, _marques.get(p)));
 		}
 	}
 

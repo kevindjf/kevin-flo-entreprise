@@ -46,9 +46,10 @@ public class NetChargement extends Net{
 
 			TypeCategories type = new TypeCategories();
 			type.setId(Integer.toString(i));
-
+			
 			List<NameValuePair> donnees = Net.construireDonnes(
-					Constantes.CATEGORIES_TYPE_ID, Integer.valueOf(i)
+					Constantes.CATEGORIES_TYPE_ID, Integer.valueOf(i),
+					Constantes.MARQUES_POUR, "1"
 					);
 			String xml = Net.requeteGet(Constantes.URL_TYPES_CATEGORIES, donnees);
 			type.setCategories(new CategorieXmlParser(xml).getCategoriesBateau());
@@ -140,10 +141,9 @@ public class NetChargement extends Net{
 				Constantes.MODELES_ID_MARQUE, idMarque
 				);
 
-		if(idType != null || idClient != null)
-			Net.add(donnees, 
-					Constantes.MODELES_POUR, "1"
-					);
+		Net.add(donnees, 
+				Constantes.MODELES_POUR, "1"
+				);
 
 		if(idType != null)
 			Net.add(donnees, 
@@ -172,7 +172,7 @@ public class NetChargement extends Net{
 
 		return new MagazineXmlParser(xml).getMagazine();
 	}
-	
+
 	public static Magazine chargerMagazineEnCours() {
 		String xml = Net.requeteGet(Constantes.URL_MAGAZINE, null);
 
