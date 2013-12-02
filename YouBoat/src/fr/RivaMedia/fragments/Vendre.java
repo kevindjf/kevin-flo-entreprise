@@ -346,9 +346,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_boutonBateaux.setOnClickListener(this);
 		_boutonMoteurs.setOnClickListener(this);
 		_boutonDivers.setOnClickListener(this);	
-		_boutonBateaux.setOnTouchListener(this);
-		_boutonMoteurs.setOnTouchListener(this);
-		_boutonDivers.setOnTouchListener(this);	
+		
 		_ajouterPhoto.setOnClickListener(this);
 		_etapeSuivante.setOnClickListener(this);
 		_longueurUnite.setOnClickListener(this);
@@ -1168,26 +1166,4 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		}
 	}
 
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		switch (v.getId()) {
-
-		case R.id.vendre_bateaux:
-		case R.id.vendre_moteurs:
-		case R.id.vendre_divers:
-			if (event.getAction() == MotionEvent.ACTION_DOWN)
-			{
-				v.setSelected(true);	        }
-			else if (event.getAction() == MotionEvent.ACTION_UP)
-			{
-				v.setSelected(false);
-			}
-
-			break;
-
-		default:
-			break;
-		}
-		return false;
-	}
 }
