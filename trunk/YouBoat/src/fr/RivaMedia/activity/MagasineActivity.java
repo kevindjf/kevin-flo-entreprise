@@ -21,7 +21,7 @@ import fr.RivaMedia.net.NetChargement;
 public class MagasineActivity extends Activity{
 
 	ImageView _image;
-	public static final int tempsAttenteSecondes = 3;
+	public static final int tempsAttenteSecondes = 2;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +53,31 @@ public class MagasineActivity extends Activity{
 
 
 	protected void etapeSuivante(){
-
-		runOnUiThread(new Runnable(){
+		
+		new Thread(new Runnable(){
 
 			@Override
 			public void run() {
-				Intent i = new Intent(MagasineActivity.this,MainActivity.class);
-				startActivity(i);
-				finish();
 
-				overridePendingTransition(R.anim.entrer, R.anim.sortir); 
+				try {
+					Thread.sleep(tempsAttenteSecondes*1000);
+
+					runOnUiThread(new Runnable(){
+
+						@Override
+						public void run() {
+							Intent i = new Intent(MagasineActivity.this,MainActivity.class);
+							startActivity(i);
+							finish();
+							overridePendingTransition(R.anim.entrer, R.anim.sortir); 
+						}
+					});
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+
 			}
-		});
-
+		}).start();
 
 	}
 

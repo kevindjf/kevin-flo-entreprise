@@ -103,6 +103,14 @@
                         android:textSize="13sp" />
                 </LinearLayout>
                 
+                <LinearLayout 
+                    android:id="@+id/slider_droite_tri_longueur"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    >
+                
                  <LinearLayout
                     android:id="@+id/slider_annuaire"
                     style="@style/slider_element" >
@@ -138,6 +146,7 @@
                         style="@style/slider_element_texte"
                         android:text="Décroissant"
                         android:textSize="13sp" />
+                </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
