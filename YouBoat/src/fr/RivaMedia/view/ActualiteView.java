@@ -1,6 +1,8 @@
 package fr.RivaMedia.view;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MotionEvent;
@@ -68,6 +70,9 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	private void afficherNormal(){
+		_titre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_noir));
+		_sousTitre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_noir));
+
 		if(_position%2==0){
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
 		}else{
@@ -75,6 +80,8 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 		}
 	}
 	private void afficherTouch(){
+		_titre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_blanc));
+		_sousTitre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_blanc));
 		getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_touch));
 	}
 
