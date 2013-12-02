@@ -339,7 +339,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			List<Categorie> categories = Donnees.getCategories(demand_type_posseder);
+			List<Categorie> categories = Donnees.getCategories(demand_type_posseder,false);
 			if(categories != null){
 				Map<String,String> donneesValeurs = new HashMap<String,String>();
 				for(Categorie categorie : categories){
@@ -426,7 +426,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			List<Categorie> categories = Donnees.getCategories(demand_type);
+			List<Categorie> categories = Donnees.getCategories(demand_type,false);
 			if(categories != null){
 				Map<String,String> donneesValeurs = new HashMap<String,String>();
 				for(Categorie categorie : categories){
@@ -443,6 +443,8 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		if(idRetour == TYPE){
 			if(!item.equals("-1"))
 				demand_type = item;
+			else 
+				demand_type	 = null;
 			((TextView)_type.findViewById(R.id.text)).setText(value);
 			demand_categorie_id = null;
 			((TextView)_categorie.findViewById(R.id.text)).setText(getResources().getString(R.string.requis));
@@ -451,25 +453,38 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		} else if(idRetour == CATEGORIE){
 			if(!item.equals("-1"))
 				demand_categorie_id = item;
+			else 
+				demand_categorie_id = null;
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == CHANTIER_MODELE){
-			String[] ids = item.split(";");
-			demand_chantier_id = ids[0];
-			demand_modele_id = ids[1];
+			if(item.equals("-1")){
+				demand_chantier_id = null;
+				demand_modele_id = null;
+			}else{
+				String[] ids = item.split(";");
+				demand_chantier_id = ids[0];
+				demand_modele_id = ids[1];
+			}
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == ETAT){
 
 			((TextView)_etat.findViewById(R.id.text)).setText(value);
 			if(!item.equals("-1"))
 				demand_etat_id = item;
+			else
+				demand_etat_id = null;
 		}else if(idRetour == LOCALISATION){
 			((TextView)_lieu.findViewById(R.id.text)).setText(value);
 			if(!item.equals("-1"))
 				demand_lieu_id = item;
+			else 
+				demand_etat_id = null;
 		} else if(idRetour == TYPE_POSSEDER){
 			if(!item.equals("-1"))
 				demand_type_posseder = item;
+			else 
+				demand_type_posseder = null;
 			((TextView)_typePosseder.findViewById(R.id.text)).setText(value);
 			demand_categorie_posseder_id = null;
 			((TextView)_categoriePosseder.findViewById(R.id.text)).setText(getResources().getString(R.string.facultatif));
@@ -477,13 +492,19 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		} else if(idRetour == CATEGORIE_POSSEDER){
 			if(!item.equals("-1"))
 				demand_categorie_posseder_id = item;
+			else 
+				demand_categorie_posseder_id = null;
 			((TextView)_categoriePosseder.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == CHANTIER_MODELE_POSSEDER){
 			if(!item.equals("-1")){
 				String[] ids = item.split(";");
 				demand_chantier_posseder_id = ids[0];
 				demand_modele_posseder_id = ids[1];
+			}else{
+				demand_chantier_posseder_id = null;
+				demand_modele_posseder_id = null;
 			}
+				
 			((TextView)_chantierModelePosseder.findViewById(R.id.text)).setText(value);
 		}
 

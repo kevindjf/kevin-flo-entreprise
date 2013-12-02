@@ -31,16 +31,20 @@ public class Donnees {
 	public static List<TypeAnnonce> typesAnnonces = new ArrayList<TypeAnnonce>();
 
 	public static List<TypeCategories> typeCategories = new ArrayList<TypeCategories>();
-	public static List<Categorie> getCategories(String type){
-		for(TypeCategories t : typeCategories){
+	public static List<TypeCategories> typeCategoriesTOUTES = new ArrayList<TypeCategories>();
+	public static List<Categorie> getCategories(String type, boolean WA){
+		List<TypeCategories> cs = typeCategories;
+		if(WA)
+			cs = typeCategoriesTOUTES;
+		for(TypeCategories t : cs){
 			if(t.getId().equals(type))
 				return t.getCategories();
 		}
 		return null;
 	}
 
-	public static Categorie getCategorie(String id){
-		List<Categorie> categories = getCategories(Constantes.BATEAUX);
+	public static Categorie getCategorie(String id, boolean WA){
+		List<Categorie> categories = getCategories(Constantes.BATEAUX, WA);
 		for(Categorie c : categories){
 			if(c.getId().equals(id))
 				return c;
@@ -54,9 +58,9 @@ public class Donnees {
 	public static List<Service> services;
 	public static List<Marque> getMarques(String type, boolean WA){
 		List<Marque> mqs;
-		if(WA)
-			mqs = marques.get(type);
-		else
+		//if(WA)
+		//	mqs = marques.get(type);
+		//else
 			mqs = TOUTESmarques.get(type);
 
 		return mqs;

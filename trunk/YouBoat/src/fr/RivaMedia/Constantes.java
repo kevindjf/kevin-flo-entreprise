@@ -109,6 +109,12 @@ public class Constantes {
 	
 	public static final String VENDRE_IMAGE = "Filedata"; //F
 	
+	public static final String VENDRE_TYPEGET = "typeget"; //F
+	public static final String VENDRE_TYPEGET_BATEAU = "bateau"; //F
+	public static final String VENDRE_TYPEGET_MOTEUR = "moteur"; //F
+	public static final String VENDRE_TYPEGET_DIVERS = "divers"; //F
+	
+	
 	//VENTE BATEAU
 	public static final String VENDRE_CATEGORIE = "listSsCat"; //F
 	public static final String VENDRE_MODELE = "listModele"; //F

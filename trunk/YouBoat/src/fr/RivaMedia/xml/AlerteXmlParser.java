@@ -73,6 +73,9 @@ public class AlerteXmlParser extends XmlParser {
 				else if(tag.equals("date")){
 					alerte.setDate(getString());
 				}
+				else if(tag.equals("etat")){
+					alerte.setEtat(getString());
+				}
 				else if(tag.equals("taille_min")){
 					alerte.setLongueurMin(getString());
 				}
@@ -97,30 +100,13 @@ public class AlerteXmlParser extends XmlParser {
 		Alerte alerte = new Alerte();
 
 		int eventType = XMLgetEventType(); 
-		while (eventType != XmlPullParser.END_TAG) { 
+		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
 				//Log.e("XML",tag);
-				if(tag.equals("id")){
-					getString();
-				}
-				else if(tag.equals("message")){
-					getString();
-				}
-				else if(tag.equals("idiphone")){
+				if(tag.equals("idiphone")){
 					return getString();
 				}
-				else if(tag.equals("listSsCat")){
-					getString();
-				}
-				else if(tag.equals("kh")){
-					alerte.setLongueurMin(getString());
-				}
-				else if(tag.equals("origine")){
-					getString();
-				}
-				alerte.setPrixMin(getString());
-
 			}
 			eventType = XMLgetSuivant();
 		}

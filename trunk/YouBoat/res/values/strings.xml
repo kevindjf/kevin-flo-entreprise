@@ -180,6 +180,7 @@
     <string name="valider">Valider</string>
     <string name="vendre">Vendre</string>
     <string name="vendeur">LE VENDEUR</string>
+    <string name="veuillez_ajouter_une_photo">Veuillez ajouter une photo</string>
     <string name="vendeur_aucune_description">Ce vendeur n\'a renseigné aucune déscription</string>
     <string name="veuillez_choisir_un_budget">Veuillez choisir un budget</string>
     <string name="veuillez_choisir_la_puissance">Veuillez choisir la puissance du moteur</string>

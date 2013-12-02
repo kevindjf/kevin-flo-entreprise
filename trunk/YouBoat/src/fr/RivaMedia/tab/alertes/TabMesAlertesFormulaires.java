@@ -24,6 +24,7 @@ import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Alerte;
 import fr.RivaMedia.net.NetAlerte;
 import fr.RivaMedia.tab.core.Tab;
+import fr.RivaMedia.utils.JetonManager;
 
 
 @SuppressLint("ValidFragment")
@@ -32,7 +33,7 @@ public class TabMesAlertesFormulaires extends Tab {
 	View  _view;
 	Activity _activity;
 	FragmentNormal _fragment;
-	
+
 	List<Alerte> _alertes = new ArrayList<Alerte>();
 	SwipeListView _liste = null;
 	AlerteListAdapter _adapter = null;
@@ -43,7 +44,7 @@ public class TabMesAlertesFormulaires extends Tab {
 		super(titre,activity.getResources().getDrawable(R.drawable.logo_vendre_blanc));
 		this._activity = activity;
 		this._fragment = fragment;
-		
+
 	}
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -51,10 +52,10 @@ public class TabMesAlertesFormulaires extends Tab {
 
 		task = new ChargerAlertesTask();
 		task.execute();
-		
+
 		return _view;
 	}
-	
+
 	public void chargerAlertes(){
 		charger();
 		remplir();
@@ -64,7 +65,7 @@ public class TabMesAlertesFormulaires extends Tab {
 			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
 		}
 	}
-	
+
 	public void charger(){
 		_liste = (SwipeListView) _view.findViewById(R.id.list);
 	}
@@ -72,7 +73,7 @@ public class TabMesAlertesFormulaires extends Tab {
 		_adapter = new AlerteListAdapter(getActivity(), _alertes, true);
 		_liste.setAdapter(_adapter);
 	}
-	
+
 	public void ajouterListeners(){
 		_liste.setSwipeListViewListener(null);
 
@@ -111,6 +112,7 @@ public class TabMesAlertesFormulaires extends Tab {
 			@Override
 			public void onClickBackView(int position) {
 				new SupprimmerAlertesTask().execute(_alertes.get(position).getId());
+				supprimerPosition(position);
 			}
 
 			@Override
@@ -120,14 +122,15 @@ public class TabMesAlertesFormulaires extends Tab {
 		});
 
 	}
-	
+
 	protected void supprimerPosition(int position){
 		_liste.dismiss(position);
 		_liste.dismissSelected();
 		_liste.unselectedChoiceStates();
 	}
-	
+
 	public void supprimmerAlerteDeListe(String idAlerte){
+		/*
 		int position = 0;
 		for(Alerte alerte : _alertes){
 			if(alerte.getId().equals(idAlerte)){
@@ -135,6 +138,7 @@ public class TabMesAlertesFormulaires extends Tab {
 			}
 			position++;
 		}
+		 */
 	}
 
 
@@ -142,7 +146,9 @@ public class TabMesAlertesFormulaires extends Tab {
 
 	class ChargerAlertesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			_alertes.addAll(NetAlerte.getAlertes());
+			JetonManager jm = new JetonManager(getActivity());
+			String jeton = jm.getJeton();
+			_alertes.addAll(NetAlerte.getAlertes(jeton));
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
@@ -158,22 +164,25 @@ public class TabMesAlertesFormulaires extends Tab {
 		protected void onPostExecute(){
 		}
 	}
-	
+
 	/* --------------------------------------------------------------------------- */
 
 	class SupprimmerAlertesTask extends AsyncTask<String, Void, Void> {
 		protected Void doInBackground(String...alerteId) {
 			final String idAlerte = alerteId[0];
 			final String ok = NetAlerte.supprimerAlerte(idAlerte);
-			getActivity().runOnUiThread(new Runnable(){
 
-				@Override
-				public void run() {
-					if(ok.toLowerCase().equals("true"))
-						supprimmerAlerteDeListe(idAlerte);
-				}
+			if(getActivity() != null){
+				getActivity().runOnUiThread(new Runnable(){
 
-			});
+					@Override
+					public void run() {
+						if(!ok.toLowerCase().equals("false"))
+							supprimmerAlerteDeListe(idAlerte);
+					}
+
+				});
+			}
 
 			return null;
 		}

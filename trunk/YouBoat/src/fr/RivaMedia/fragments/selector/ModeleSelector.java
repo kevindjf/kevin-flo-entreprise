@@ -34,12 +34,14 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 	int _reponseId;
 
 	boolean afficherProgress = true;
+	boolean WA = true;
 
-	public ModeleSelector (ItemSelectedListener listener, int reponseId, String type, Marque marque){
+	public ModeleSelector (ItemSelectedListener listener, int reponseId, String type, Marque marque, boolean WA){
 		this._type = type;
 		this._listener = listener;
 		this._reponseId = reponseId;
 		this._marque = marque;
+		this.WA = WA;
 	}
 
 	@Override

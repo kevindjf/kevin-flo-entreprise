@@ -34,6 +34,7 @@ import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.NetAlerte;
 import fr.RivaMedia.net.NetAnnonce;
 import fr.RivaMedia.net.core.Net;
+import fr.RivaMedia.utils.JetonManager;
 
 /**
  * Si 
@@ -275,7 +276,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		else{
 			String type = recherche_type;
 
-			List<Categorie> categories = Donnees.getCategories(type);
+			List<Categorie> categories = Donnees.getCategories(type,true);
 			if(categories != null){
 				Map<String,String> donneesValeurs = new HashMap<String,String>();
 				for(Categorie categorie : categories){
@@ -288,13 +289,13 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	protected void demanderPrix(){
-		
+
 		int prix = 300000;
 		if(typeAnnonces.equals(Constantes.MOTEURS))
 			prix=40000; 
 		if(typeAnnonces.equals(Constantes.ACCESSOIRES))
 			prix=40000; 
-		
+
 		new MinMaxDialog(
 				getActivity(), 
 				getActivity().getResources().getString(R.string.prix),
@@ -702,8 +703,11 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 				@Override
 				public void run() {
-					if(!reponse.toLowerCase().trim().equals("false"))
+					if(!reponse.toLowerCase().trim().equals("false")){
+						JetonManager jm = new JetonManager(getActivity());
+						jm.setJeton(reponse);
 						alerteAjoutee();
+					}
 					else
 						erreurAlerte();
 				}

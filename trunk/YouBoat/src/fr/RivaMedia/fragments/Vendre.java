@@ -521,7 +521,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			if(typeVente.equals(Constantes.BATEAUX))
 				type = vendre_type;
 
-			List<Categorie> categories = Donnees.getCategories(type);
+			List<Categorie> categories = Donnees.getCategories(type,false);
 			if(categories != null){
 				Map<String,String> donneesValeurs = new HashMap<String,String>();
 				for(Categorie categorie : categories){
@@ -745,8 +745,15 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	private MultipartEntity recupererDonnees(){
 		MultipartEntity donnees = Net.construireDonnesMultiPart();
 
+		if(_photos.size()==0){
+			Toast.makeText(getActivity(), getString(R.string.veuillez_ajouter_une_photo), Toast.LENGTH_SHORT).show();
+			return null;
+		}
+		
 		// Bateaux
 		if(typeVente.equals(Constantes.BATEAUX)){
+			
+			Net.add(donnees,Constantes.VENDRE_TYPEGET, Constantes.VENDRE_TYPEGET_BATEAU);
 
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -833,6 +840,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 		}else if(typeVente.equals(Constantes.MOTEURS)){
 
+			Net.add(donnees,Constantes.VENDRE_TYPEGET, Constantes.VENDRE_TYPEGET_MOTEUR);
+			
 			// MOTEUR
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -887,6 +896,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Net.add(donnees,Constantes.VENDRE_ENERGIE_ID,vendre_energie_id);
 
 		}else if(typeVente.equals(Constantes.ACCESSOIRES)){
+			
+			Net.add(donnees,Constantes.VENDRE_TYPEGET, Constantes.VENDRE_TYPEGET_DIVERS);
 
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();

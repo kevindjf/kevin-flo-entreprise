@@ -27,6 +27,7 @@ import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.NetAlerte;
 import fr.RivaMedia.net.core.Net;
+import fr.RivaMedia.utils.JetonManager;
 
 public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener, OnMinMaxListener{
 
@@ -170,7 +171,7 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 		else{
 			String type = recherche_type;
 
-			List<Categorie> categories = Donnees.getCategories(type);
+			List<Categorie> categories = Donnees.getCategories(type,false);
 			if(categories != null){
 				Map<String,String> donneesValeurs = new HashMap<String,String>();
 				for(Categorie categorie : categories){
@@ -284,8 +285,11 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 
 				@Override
 				public void run() {
-					if(!reponse.toLowerCase().trim().equals("false"))
+					if(!reponse.toLowerCase().trim().equals("false")){
+						JetonManager jm = new JetonManager(getActivity());
+						jm.setJeton(reponse);
 						alerteAjoutee();
+					}
 					else
 						erreurAlerte();
 				}
