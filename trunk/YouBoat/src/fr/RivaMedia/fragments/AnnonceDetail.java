@@ -264,15 +264,16 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 					telephonePrincipal.setVisibility(View.GONE);
 
 				if(_annonce.getVendeur() != null && _annonce.getVendeur().getNom() != null){
-					((TextView)vendeur.findViewById(R.id.text)).setText(_annonce.getVendeur().getNom());
+					//((TextView)vendeur.findViewById(R.id.text)).setText(_annonce.getVendeur().getNom());
 					if(_annonce.getVendeur().getLogo() != null)
 						ImageLoaderCache.charger(_annonce.getVendeur().getLogo(), ((ImageView)vendeur.findViewById(R.id.image)));
 				}
 				else
 					vendeur.setVisibility(View.GONE);
 
-				if(_annonce.getVendeur().getEmail() != null)
-					((TextView)email.findViewById(R.id.text)).setText(_annonce.getVendeur().getEmail());
+				if(_annonce.getVendeur().getEmail() != null){
+					//((TextView)email.findViewById(R.id.text)).setText(_annonce.getVendeur().getEmail());
+				}
 				else
 					email.setVisibility(View.GONE);
 
