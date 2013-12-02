@@ -211,7 +211,6 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_puissanceCH = _view.findViewById(R.id.vendre_puissance_ch);
 		_marqueMoteur = _view.findViewById(R.id.vendre_marque_moteur);
 		_anneeMoteur = _view.findViewById(R.id.vendre_annee_moteur);
-
 		_description = _view.findViewById(R.id.vendre_description);
 
 		//Moteur
@@ -503,7 +502,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	private void demanderChantierModele() {
 		if(vendre_type != null)
-			ajouterFragment( new MarqueSelector(this,CHANTIER_MODELE,false,vendre_type,true));
+			ajouterFragment( new MarqueSelector(this,CHANTIER_MODELE,false,vendre_type,false));
 		else
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_un_type, Toast.LENGTH_LONG).show();
 	}

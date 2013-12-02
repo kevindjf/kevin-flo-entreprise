@@ -42,7 +42,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/couleur_2_transparent"
+        android:background="@color/_blanc"
         android:padding="10dip" >
 
         <TextView
