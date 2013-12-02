@@ -62,9 +62,9 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	View adresseVendeur;
 	View postaleVendeur;
 	View telephonePrincipal;
-	View telephoneSecondaire;
+	View vendeur;
 	View email;
-	
+
 	View apartirDe;
 	View apartirDeEntete;
 
@@ -132,7 +132,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		adresseVendeur =  _view.findViewById(R.id.annonce_detail_adresse_vendeur);
 		postaleVendeur =  _view.findViewById(R.id.annonce_detail_code_postale_vendeur);
 		telephonePrincipal =  _view.findViewById(R.id.annonce_detail_telephone_principal);
-		telephoneSecondaire = _view.findViewById(R.id.annonce_detail_telephone_secondaire);
+		vendeur = _view.findViewById(R.id.annonce_detail_vendeur);
 		email = _view.findViewById(R.id.annonce_detail_email);
 		apartirDe = _view.findViewById(R.id.annonce_detail_prix_a_partir_de);
 		apartirDeEntete = _view.findViewById(R.id.annonce_detail_prix_entete_a_partir_de);
@@ -227,7 +227,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				String p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim();
 				((TextView)prix.findViewById(R.id.text)).setText(p + " € " + _annonce.getTaxePrix());
 				((TextView)prixEntete.findViewById(R.id.text)).setText(p + " € " + _annonce.getTaxePrix());
-				
+
 				if(_annonce.getApartirDe() != null && _annonce.getApartirDe().trim().equals("1")){
 					apartirDe.setVisibility(View.VISIBLE);
 					apartirDeEntete.setVisibility(View.VISIBLE);
@@ -235,7 +235,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			}
 			else
 				prix.setVisibility(View.GONE);
-			
+
 
 			if(_annonce.getCommentaire() != null)
 				((TextView)description).setText(_annonce.getCommentaire());
@@ -263,10 +263,13 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				else
 					telephonePrincipal.setVisibility(View.GONE);
 
-				if(_annonce.getVendeur().getTel2() != null)
-					((TextView)telephoneSecondaire.findViewById(R.id.text)).setText(_annonce.getVendeur().getTel2());
+				if(_annonce.getVendeur() != null && _annonce.getVendeur().getNom() != null){
+					((TextView)vendeur.findViewById(R.id.text)).setText(_annonce.getVendeur().getNom());
+					if(_annonce.getVendeur().getLogo() != null)
+						ImageLoaderCache.charger(_annonce.getVendeur().getLogo(), ((ImageView)vendeur.findViewById(R.id.image)));
+				}
 				else
-					telephoneSecondaire.setVisibility(View.GONE);
+					vendeur.setVisibility(View.GONE);
 
 				if(_annonce.getVendeur().getEmail() != null)
 					((TextView)email.findViewById(R.id.text)).setText(_annonce.getVendeur().getEmail());
@@ -287,7 +290,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	}
 	public void ajouterListeners(){
 		telephonePrincipal.setOnClickListener(this);
-		telephoneSecondaire.setOnClickListener(this);
+		vendeur.setOnClickListener(this);
 		email.setOnClickListener(this);
 
 
@@ -311,8 +314,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		case R.id.annonce_detail_telephone_principal:
 			super.appeller(((TextView)telephonePrincipal.findViewById(R.id.text)).getText().toString());
 			break;
-		case R.id.annonce_detail_telephone_secondaire:
-			super.appeller(((TextView)telephoneSecondaire.findViewById(R.id.text)).getText().toString());
+		case R.id.annonce_detail_vendeur:
+			afficherVendeur();
 			break;
 		case R.id.annonce_detail_email:
 			super.envoyerEmailAnnonce(((TextView)email.findViewById(R.id.text)).getText().toString(),this._annonce);
@@ -321,6 +324,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			switchFavoris();
 			break;
 		}
+	}
+
+	protected void afficherVendeur(){
+		if(_annonce != null && _annonce.getVendeur() != null && _annonce.getVendeur().getNumero() != null)
+			ajouterFragment(new VendeurDetail(_annonce.getVendeur().getNumero()));
 	}
 
 	protected void switchFavoris(){

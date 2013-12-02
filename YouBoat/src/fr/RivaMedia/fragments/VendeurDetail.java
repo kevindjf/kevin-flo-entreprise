@@ -9,6 +9,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.PagerTabStrip;
+import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.core.FragmentNormal;
@@ -45,6 +48,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 	View _email;
 
 	PagerAdapter _pagesAdapter;
+	PagerTabStrip _pageTitleStrip;
 	ViewPager _page;	
 	List<Tab> _pages = new ArrayList<Tab>();
 
@@ -92,6 +96,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 
 
 		_page = (ViewPager) _view.findViewById(R.id.vendeur_detail_pager);
+		_pageTitleStrip = (PagerTabStrip) _view.findViewById(R.id.pager_title_strip);
 	}
 	public void remplir(){
 		if(_vendeur != null){
@@ -140,8 +145,10 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 		_telephoneSecondaire.setOnClickListener(this);
 		_email.setOnClickListener(this);
 
-		if(_pages.size()>0)
+		if(_pages.size()>0){
 			_page.setOnPageChangeListener(this);
+		}
+		
 	}
 
 	@Override
@@ -236,9 +243,7 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 
 
 	@Override
-	public void onPageSelected(int arg0) {
-		// TODO Auto-generated method stub
-
+	public void onPageSelected(int i) {
 	}
 
 }

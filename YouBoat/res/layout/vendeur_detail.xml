@@ -162,7 +162,7 @@
             android:layout_below="@+id/vendeur_detail_layout_haut"
             android:background="@color/couleur_texte_blanc" >
 
-            <android.support.v4.view.PagerTitleStrip
+            <android.support.v4.view.PagerTabStrip
                 android:id="@+id/pager_title_strip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

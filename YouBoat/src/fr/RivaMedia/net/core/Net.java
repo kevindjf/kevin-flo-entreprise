@@ -168,6 +168,14 @@ public class Net {
 			//StatusLine statusLine = httpReponse.getStatusLine();
 			//if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
 			//String response = responseToString(httpReponse.getEntity());
+			
+			StatusLine statusLine = httpReponse.getStatusLine();
+			Log.e("NET_ST",statusLine.toString());
+			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+				Log.d("NET_STATUS","STATUS OK");
+			}else
+				Log.d("NET_STATUS","STATUS PAS OK");
+			
 			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim().replace("&aecute", "é");  
 			Log.d("NET",response);
 			Log.d("NET_REPONSE_TAILLE",""+response.length());
@@ -228,9 +236,13 @@ public class Net {
 
 			HttpResponse httpReponse = httpClient.execute(requete);
 
-			//StatusLine statusLine = httpReponse.getStatusLine();
-			//Log.e("NET",statusLine.toString());
-			//if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+			StatusLine statusLine = httpReponse.getStatusLine();
+			Log.e("NET_ST",statusLine.toString());
+			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+				Log.d("NET_STATUS","STATUS OK");
+			}else
+				Log.d("NET_STATUS","STATUS PAS OK");
+			
 			//String response = responseToString(httpReponse.getEntity());
 			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim().replace("&aecute", "é");  
 			Log.d("NET",response);
@@ -274,6 +286,14 @@ public class Net {
 			//Log.e("WYDEEZ",statusLine.toString());
 
 			//String response = responseToString(httpReponse.getEntity());
+			
+			StatusLine statusLine = httpReponse.getStatusLine();
+			Log.e("NET_ST",statusLine.toString());
+			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
+				Log.d("NET_STATUS","STATUS OK");
+			}else
+				Log.d("NET_STATUS","STATUS PAS OK");
+			
 			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim();
 			Log.d("NET",response);
 			return response.replace("<br>", "").replace("<br>", "").replace("<br/>", "").replace("<br />", "");
