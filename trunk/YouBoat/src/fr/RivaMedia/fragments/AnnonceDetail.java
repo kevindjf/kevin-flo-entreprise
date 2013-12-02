@@ -157,7 +157,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				sousTitre.setVisibility(View.GONE);
 
 			if(_annonce.getType() != null && _annonce.getCategorie() != null)
-				((TextView)type).setText(_annonce.getType() + " > " +_annonce.getCategorie());
+				((TextView)type).setText(_annonce.getCategorie());
 			else
 				type.setVisibility(View.GONE);
 
@@ -328,8 +328,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	}
 
 	protected void afficherVendeur(){
-		if(_annonce != null && _annonce.getVendeur() != null && _annonce.getVendeur().getNumero() != null)
-			ajouterFragment(new VendeurDetail(_annonce.getVendeur().getNumero()));
+		if(_annonce != null && _annonce.getIdClient() != null)
+			ajouterFragment(new VendeurDetail(_annonce.getIdClient()));
 	}
 
 	protected void switchFavoris(){

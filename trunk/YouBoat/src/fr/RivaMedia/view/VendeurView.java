@@ -1,5 +1,8 @@
 package fr.RivaMedia.view;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -51,8 +54,20 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 				_titre.setText(_vendeur.getNom());
 			if(_vendeur.getVille() != null && _vendeur.getCodePostal()!=null)
 				_adressePostale.setText(_vendeur.getCodePostal()+" "+_vendeur.getVille());
-			if(_vendeur.getTel1() != null)
-				_telephone.setText(_vendeur.getTel1());
+			
+			if(_vendeur.getTel1() != null){
+				
+				String num = _vendeur.getTel1().replace("+33", "0");
+				
+				DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+				dfs.setGroupingSeparator(' ');  // sometimes '.' is used
+				DecimalFormat decfmt = new DecimalFormat("0,0", dfs);  // enable grouping
+				decfmt.setMinimumIntegerDigits(10);  // we always have 10 digits
+				decfmt.setGroupingSize(2);  // necessary in order to group digits by 2 orders
+				String tel = decfmt.format(Integer.parseInt(num));  // outputs "01 44 55 66 77"
+				
+				_telephone.setText(tel);
+			}
 		}
 
 		afficherNormal();

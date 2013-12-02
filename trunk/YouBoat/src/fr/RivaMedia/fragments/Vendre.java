@@ -364,7 +364,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 						Calendar c = Calendar.getInstance(); 
 						int annee = c.get(Calendar.YEAR);
 						System.out.println(an+" "+annee);
-						if(an>=1990 && an<=annee)
+						if(an>=1900 && an<=annee+1)
 							((EditText)v.findViewById(R.id.text)).setText(a);
 						else{
 							((EditText)v.findViewById(R.id.text)).setText("");
@@ -388,7 +388,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 						int an = Integer.parseInt(a);
 						Calendar c = Calendar.getInstance(); 
 						int annee = c.get(Calendar.YEAR);
-						if(an>=1990 && an<=annee)
+						if(an>=1900 && an<=annee+1)
 							((EditText)v.findViewById(R.id.text)).setText(a);
 						else{
 							((EditText)v.findViewById(R.id.text)).setText("");
@@ -503,7 +503,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	private void demanderChantierModele() {
 		if(vendre_type != null)
-			ajouterFragment( new MarqueSelector(this,CHANTIER_MODELE,vendre_type));
+			ajouterFragment( new MarqueSelector(this,CHANTIER_MODELE,false,vendre_type));
 		else
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_un_type, Toast.LENGTH_LONG).show();
 	}
@@ -552,14 +552,14 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		}
 		else{
 			if(typeVente.equals(Constantes.BATEAUX))
-				ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,""+typeVente));
+				ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,false,""+typeVente));
 			else{
 				List<Marque> marques = Donnees.getMarques(Constantes.MOTEURS);
 				Map<String,String> donneesValeurs = new HashMap<String, String>();
 				for(Marque m : marques){
 					donneesValeurs.put(m.getLibelle(), m.getId());
 				}
-				ajouterFragment(new DonneeValeurSelector(this, MARQUE_MOTEUR, donneesValeurs));
+				ajouterFragment(new DonneeValeurSelector(this, MARQUE_MOTEUR,false, donneesValeurs));
 			}
 
 		}

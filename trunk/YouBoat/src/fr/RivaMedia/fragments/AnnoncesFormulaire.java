@@ -288,12 +288,19 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	protected void demanderPrix(){
+		
+		int prix = 300000;
+		if(typeAnnonces.equals(Constantes.MOTEURS))
+			prix=40000; 
+		if(typeAnnonces.equals(Constantes.ACCESSOIRES))
+			prix=40000; 
+		
 		new MinMaxDialog(
 				getActivity(), 
 				getActivity().getResources().getString(R.string.prix),
 				this,
 				recherche_prix_min,recherche_prix_max,
-				300000
+				prix
 				).show();
 	}
 	protected void demanderLongueur(){

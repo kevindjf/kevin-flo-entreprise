@@ -215,7 +215,7 @@ public class Constantes {
 	public static final String ENVOIE_EMAIL_DEPARTEMENT_ID = "iddept"; //F
 	public static final String ENVOIE_EMAIL_CLIENT_DIRECT_ID = "clidirect"; //F
 	
-	public static final String URL_ENVOIE_EMAIL = "envoi-mail.php"; //F
+	public static final String URL_ENVOIE_EMAIL = "email-envoi.php"; //F
 
 	public static final String URL_ALERTES = "alerte-listing.php"; //F
 	public static final String ALERTE_JETON = "jeton"; //F
