@@ -75,6 +75,7 @@
     <string name="energie">Diesel</string>
     <string name="energie">Energie</string>
     <string name="energie_star">Energie *</string>
+    <string name="envoyer_un_email">Envoyer un email</string>
     <string name="essence">Essence</string>
     <string name="erreur_connexion">Une connexion à Internet est nécessaire pour utiliser YouBoat. Aucune n\'est disponible</string>
     <string name="erreur_alerte">Impossible de créer l\'alerte</string>
@@ -98,6 +99,7 @@
     <string name="km_autour_de">km autour de</string>
     <string name="languedoc_roussillon">Languedoc/Roussillon</string>
     <string name="largeur">Largeur</string>
+    <string name="le_vendeur">Le vendeur</string>
     <string name="lieu">Lieu</string>
     <string name="localisation">Localisation</string>
     <string name="localite">Localite</string>

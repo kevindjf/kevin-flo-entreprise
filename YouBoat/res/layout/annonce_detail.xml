@@ -23,6 +23,8 @@
             android:layout_marginTop="5dip"
             android:textColor="@color/couleur_fond"
             android:textSize="20sp"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
             android:textStyle="bold" />
 
         <TextView
@@ -124,7 +126,8 @@
                     android:id="@+id/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="vendeur"
+                    android:text="@string/le_vendeur"
+                    android:gravity="center"
                     android:textColor="@android:color/white" />
             </LinearLayout>
 
@@ -142,7 +145,7 @@
                 <View
                     android:layout_width="20dip"
                     android:layout_height="20dip"
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginBottom="1dp"
                     android:background="@drawable/mail"
                     android:text="appeler"
                     android:textColor="@android:color/white" />
@@ -151,9 +154,9 @@
                     android:id="@+id/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="youboat@youboat.com"
+                    android:text="@string/envoyer_un_email"
                     android:textColor="@android:color/white"
-                    android:textSize="8sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
 
