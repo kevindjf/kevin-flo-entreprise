@@ -72,7 +72,7 @@ import fr.RivaMedia.net.core.Net;
  *         Caracteristiques=[Intitule,Prix]
  *         Photo&Description=[Description,AjouterPhoto]
  */
-public class Vendre extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener, Effaceable, OnFocusChangeListener,OnTouchListener{
+public class Vendre extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener, Effaceable, OnFocusChangeListener{
 
 	public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1111;
 	public static final int IMAGE_REQUEST = 2222;
