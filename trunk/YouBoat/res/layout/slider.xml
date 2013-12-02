@@ -112,7 +112,7 @@
 
                     <TextView
                         style="@style/slider_element_texte"
-                        android:text="@string/mes_annonces" />
+                        android:text="@string/mes_favoris" />
                 </LinearLayout>
 
                 <LinearLayout
