@@ -162,7 +162,7 @@ public class AnnuaireLocaliteSelector extends FragmentNormal implements View.OnC
 			String nomVille = _texteLocalite.getText().toString().trim();
 			
 			_annuaire.localiteSelected(ville,nomVille, rayon, 
-					Double.valueOf(longitude).toString(), Double.valueOf(latitude).toString());
+					""+longitude, ""+latitude);
 			
 			getFragmentManager().popBackStack();
 

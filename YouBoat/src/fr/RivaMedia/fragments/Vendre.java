@@ -553,6 +553,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			if(typeVente.equals(Constantes.BATEAUX))
 				ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,false,""+typeVente,false));
 			else{
+				Log.e("TAG", "MOTEUR");
 				List<Marque> marques = Donnees.getMarques(Constantes.MOTEURS,false);
 				Map<String,String> donneesValeurs = new HashMap<String, String>();
 				for(Marque m : marques){
@@ -732,7 +733,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			((TextView)_marque.findViewById(R.id.text)).setText(value);
 		}
 		else if(typeVente.equals(Constantes.MOTEURS) && idRetour == MARQUE_MOTEUR){
-			vendre_marque = item;
+			vendre_marque_moteur_id = item;
 			((TextView)_marque.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == MARQUE_MOTEUR){
@@ -777,7 +778,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Net.add(donnees, 
 					Constantes.VENDRE_TYPE,vendre_type,
 					Constantes.VENDRE_CATEGORIE,vendre_categorie,
-					//Constantes.VENDRE_MARQUE,vendre_marque,
+					Constantes.VENDRE_MARQUE_MOTEUR_ID,vendre_marque_moteur_id,
 					Constantes.VENDRE_PRIX,vendre_prix
 					);
 
@@ -850,7 +851,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_categorie), Toast.LENGTH_SHORT).show();
 				return null;
 			}
-			if(vendre_marque== null){
+			if(vendre_marque_moteur_id== null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_une_marque), Toast.LENGTH_SHORT).show();
 				return null;
 			}
@@ -878,10 +879,13 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Net.add(donnees, 
 					Constantes.VENDRE_TYPE,vendre_type,
 					Constantes.VENDRE_CATEGORIE,vendre_categorie,
-					Constantes.VENDRE_MARQUE_MOTEUR_ID,vendre_marque+vendre_modele,
+					Constantes.VENDRE_MARQUE_MOTEUR_ID,vendre_marque_moteur_id,
+					Constantes.VENDRE_MODELE_MOTEUR,vendre_modele,
 					Constantes.VENDRE_PUISSANCE_MOTEUR,((EditText)_puissance.findViewById(R.id.text)).getText().toString().trim(),
 					Constantes.VENDRE_PRIX,vendre_prix
 					);
+			
+			Log.e("MARQUE_MOTEUR :",vendre_marque_moteur_id);
 
 			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
 				Net.add(donnees,Constantes.VENDRE_ANNEE,((EditText)_annee.findViewById(R.id.text)).getText());

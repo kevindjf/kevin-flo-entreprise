@@ -17,6 +17,7 @@ import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.core.Donnees;
+import fr.RivaMedia.utils.JetonManager;
 
 public class GcmInitializer{
 
@@ -60,8 +61,12 @@ public class GcmInitializer{
             if (regid.length() == 0) {
                 registerInBackground();
             }
-            else
+            else{
             	Donnees.jeton = regid;
+            	JetonManager jm = new JetonManager(this.activity);
+        		jm.setJeton(regid);
+        		
+            }
         } else {
             Log.i("PLAY", "No valid Google Play Services APK found.");
         }
@@ -221,6 +226,8 @@ public class GcmInitializer{
     	Log.d("PLAY_ID",regid);
     	
     	Donnees.jeton = regid;
+    	JetonManager jm = new JetonManager(this.activity);
+		jm.setJeton(regid);
     }
 
 }
