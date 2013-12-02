@@ -330,7 +330,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else {
-			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE_POSSEDER,demand_type_posseder,false));
+			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE_POSSEDER,false,demand_type_posseder,false));
 		}
 	}
 
@@ -346,7 +346,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 					donneesValeurs.put(categorie.getLibelle(), categorie.getId());
 				}
 
-				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE_POSSEDER,donneesValeurs));
+				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE_POSSEDER,false,donneesValeurs));
 			}
 		}
 	}
@@ -355,6 +355,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		ajouterFragment(new DonneeValeurSelector(
 				this,
 				TYPE_POSSEDER,
+				false,
 				DonneeValeurSelector.creerDonneeValeur(
 						getString(R.string.bateau_a_moteur),Constantes.BATEAU_A_MOTEUR,
 						getString(R.string.voiliers),Constantes.VOILIER,
@@ -372,7 +373,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 				donneesValeurs.put(region.getNom(), region.getId());
 			}
 
-			ajouterFragment(new DonneeValeurSelector(this,LOCALISATION,donneesValeurs));
+			ajouterFragment(new DonneeValeurSelector(this,LOCALISATION,false,donneesValeurs));
 		}
 	}
 
@@ -394,7 +395,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 				donneesValeurs.put(etat.getNom(), etat.getId());
 			}
 
-			ajouterFragment(new DonneeValeurSelector(this,ETAT,donneesValeurs));
+			ajouterFragment(new DonneeValeurSelector(this,ETAT,false,donneesValeurs));
 		}
 	}
 
@@ -403,7 +404,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else {
-			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,demand_type,false));
+			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,false,demand_type,false));
 		}
 	}
 
