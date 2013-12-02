@@ -317,7 +317,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else if(typeAnnonces.equals(Constantes.BATEAUX))
-			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,recherche_type));
+			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,recherche_type,true));
 	}
 	protected void demanderEtat(){
 		List<Etat> etats = Donnees.etats;
@@ -357,14 +357,14 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		}
 		else{
 			if(typeAnnonces.equals(Constantes.MOTEURS)){
-				List<Marque> marques = Donnees.getMarques(""+typeAnnonces);
+				List<Marque> marques = Donnees.getMarques(""+typeAnnonces,true);
 				Map<String,String> donneesValeurs = new HashMap<String, String>();
 				for(Marque m : marques){
 					donneesValeurs.put(m.getLibelle(), m.getId());
 				}
 				ajouterFragment(new DonneeValeurSelector(this, MARQUE, donneesValeurs));
 			}else{
-				ajouterFragment(new MarqueSelector(this,MARQUE,""+typeAnnonces));
+				ajouterFragment(new MarqueSelector(this,MARQUE,""+typeAnnonces,true));
 			}
 		}
 	}
@@ -456,7 +456,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			recherche_categorie_id = null;
 			((TextView)_categorie.findViewById(R.id.text)).setText("");
 
-			_marques = Donnees.getMarques(item);
+			_marques = Donnees.getMarques(item,true);
 
 		}else if(idRetour == CATEGORIE){
 			recherche_categorie_id = item;

@@ -50,9 +50,14 @@ public class Donnees {
 
 	public static List<Marque> toutesMarques = new ArrayList<Marque>();
 	public static Map<String,List<Marque>> marques = new HashMap<String,List<Marque>>();
+	public static Map<String,List<Marque>> TOUTESmarques = new HashMap<String,List<Marque>>();
 	public static List<Service> services;
-	public static List<Marque> getMarques(String type){
-		List<Marque> mqs = marques.get(type);
+	public static List<Marque> getMarques(String type, boolean WA){
+		List<Marque> mqs;
+		if(WA)
+			mqs = marques.get(type);
+		else
+			mqs = TOUTESmarques.get(type);
 
 		return mqs;
 	}

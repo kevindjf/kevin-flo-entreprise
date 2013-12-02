@@ -46,7 +46,7 @@ public class NetChargement extends Net{
 
 			TypeCategories type = new TypeCategories();
 			type.setId(Integer.toString(i));
-			
+
 			List<NameValuePair> donnees = Net.construireDonnes(
 					Constantes.CATEGORIES_TYPE_ID, Integer.valueOf(i),
 					Constantes.MARQUES_POUR, "1"
@@ -93,13 +93,14 @@ public class NetChargement extends Net{
 		return new TypeAnnonceXmlParser(xml).getTypesAnnonces();
 	}
 
-	public static List<Marque> chargerMarquesBateauType(String idType, String idClient){
+	public static List<Marque> chargerMarquesBateauType(String idType, String idClient, boolean WA){
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		Net.add(donnees, 
-				Constantes.MARQUES_POUR, "1"
-				);
+		if(WA)
+			Net.add(donnees, 
+					Constantes.MARQUES_POUR, "1"
+					);
 
 		if(idType != null)
 			Net.add(donnees, 
@@ -116,11 +117,12 @@ public class NetChargement extends Net{
 		return new MarqueXmlParser(xml).getMarques();
 	}
 
-	public static List<Marque> chargerMarquesMoteurs(String idClient){
+	public static List<Marque> chargerMarquesMoteurs(String idClient, boolean WA){
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		Net.add(donnees, Constantes.MARQUES_POUR, "1");
+		if(WA)
+			Net.add(donnees, Constantes.MARQUES_POUR, "1");
 
 		if(idClient != null)
 			Net.add(donnees, Constantes.MARQUES_POUR_CLIENT, idClient
@@ -136,14 +138,15 @@ public class NetChargement extends Net{
 		return new MarqueXmlParser(xml).getMarques();
 	}
 
-	public static List<Modele> chargerModeles(String idMarque, String idType, String idClient) {
+	public static List<Modele> chargerModeles(String idMarque, String idType, String idClient, boolean WA) {
 		List<NameValuePair> donnees = Net.construireDonnes(
 				Constantes.MODELES_ID_MARQUE, idMarque
 				);
 
-		Net.add(donnees, 
-				Constantes.MODELES_POUR, "1"
-				);
+		if(WA)
+			Net.add(donnees, 
+					Constantes.MODELES_POUR, "1"
+					);
 
 		if(idType != null)
 			Net.add(donnees, 

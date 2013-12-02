@@ -68,9 +68,9 @@ public class DonneeValeurSelector extends FragmentNormal implements OnItemClickL
 	public void remplir() {
 		_types = new ArrayList<String>(_types_valeurs.keySet());
 		Collections.sort(_types);
+		String indifferent = getString(R.string.indifferent);
 
-		if(afficherIndifferent){
-			String indifferent = getString(R.string.indifferent);
+		if(afficherIndifferent && !_types.contains(indifferent)){
 			_types_valeurs.put(indifferent, "-1");
 
 			ArrayList<String> vs = new ArrayList<String>();

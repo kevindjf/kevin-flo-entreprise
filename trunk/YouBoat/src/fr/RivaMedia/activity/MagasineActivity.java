@@ -86,11 +86,11 @@ public class MagasineActivity extends Activity{
 	class ChargementsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 
-			final List<Marque> toutesMarques = NetChargement.chargerMarquesBateauType(null, null);
-			final List<Marque> marquesBateauxAMoteur = NetChargement.chargerMarquesBateauType(Constantes.BATEAU_A_MOTEUR,null);
-			final List<Marque> marquesVoilier = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null);	
-			final List<Marque> marquesPneu = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null);
-			final List<Marque> marquesMoteur = NetChargement.chargerMarquesMoteurs(null);
+			final List<Marque> toutesMarques = NetChargement.chargerMarquesBateauType(null, null,true);
+			final List<Marque> marquesBateauxAMoteur = NetChargement.chargerMarquesBateauType(Constantes.BATEAU_A_MOTEUR,null,true);
+			final List<Marque> marquesVoilier = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,true);	
+			final List<Marque> marquesPneu = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,true);
+			final List<Marque> marquesMoteur = NetChargement.chargerMarquesMoteurs(null,true);
 			Donnees.marquesDistribuees = NetChargement.chargerMarquesDistribuees();
 			Donnees.lieux = NetChargement.chargerLieux();
 
@@ -103,7 +103,19 @@ public class MagasineActivity extends Activity{
 			Donnees.marques.put(Constantes.PNEU, marquesPneu);
 			Donnees.marques.put(Constantes.MOTEURS, marquesMoteur);
 			Donnees.nbAnnonces = nbAnnonces;
-
+			
+			final List<Marque> TOUTESmarquesBateauxAMoteur = NetChargement.chargerMarquesBateauType(Constantes.BATEAU_A_MOTEUR,null,false);
+			final List<Marque> TOUTESmarquesVoilier = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,false);	
+			final List<Marque> TOUTESmarquesPneu = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,false);
+			final List<Marque> TOUTESmarquesMoteur = NetChargement.chargerMarquesMoteurs(null,false);
+			
+			Donnees.TOUTESmarques.put("0", toutesMarques);
+			Donnees.TOUTESmarques.put(Constantes.BATEAU_A_MOTEUR, TOUTESmarquesBateauxAMoteur);
+			Donnees.TOUTESmarques.put(Constantes.VOILIER, TOUTESmarquesVoilier);
+			Donnees.TOUTESmarques.put(Constantes.PNEU, TOUTESmarquesPneu);
+			Donnees.TOUTESmarques.put(Constantes.MOTEURS, TOUTESmarquesMoteur);
+			
+			
 			etapeSuivante();
 			
 			return null;
