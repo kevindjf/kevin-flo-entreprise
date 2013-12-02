@@ -47,9 +47,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dip"
                 android:text="@string/apartirde"
-                android:visibility="gone"
                 android:textColor="@color/couleur_texte_blanc"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@id/text"
@@ -64,91 +64,99 @@
     <LinearLayout
         android:id="@+id/annonce_detail_layout_bas"
         android:layout_width="fill_parent"
-        android:layout_height="50dip"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/couleur_fond"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/annonce_detail_telephone_principal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="1dip"
-            android:layout_weight="1"
-            android:background="@color/couleur_3"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingTop="5dp" >
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:gravity="center"
+            android:orientation="horizontal" >
 
-            <View
-                android:layout_width="20dip"
-                android:layout_height="20dip"
-                android:background="@drawable/phone"
-                android:text="appeler"
-                android:textColor="@android:color/white" />
+            <LinearLayout
+                android:id="@+id/annonce_detail_telephone_principal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dip"
+                android:layout_weight="1"
+                android:background="@color/couleur_3"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="5dp" >
 
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0606060606"
-                android:textColor="@android:color/white" />
+                <View
+                    android:layout_width="20dip"
+                    android:layout_height="20dip"
+                    android:background="@drawable/phone"
+                    android:text="appeler"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0606060606"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/annonce_detail_vendeur"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dip"
+                android:layout_weight="1"
+                android:background="@color/couleur_3"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="5dp" >
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="20dip"
+                    android:layout_height="20dip"
+                    android:src="@drawable/logo_vendeur_blanc"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="vendeur"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/annonce_detail_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dip"
+                android:layout_weight="1"
+                android:background="@color/couleur_3"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingTop="5dp" >
+
+                <View
+                    android:layout_width="20dip"
+                    android:layout_height="20dip"
+                    android:layout_marginBottom="3dp"
+                    android:background="@drawable/mail"
+                    android:text="appeler"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="youboat@youboat.com"
+                    android:textColor="@android:color/white"
+                    android:textSize="8sp" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/annonce_detail_telephone_secondaire"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="1dip"
-            android:layout_weight="1"
-            android:background="@color/couleur_3"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingTop="5dp" >
-
-            <View
-                android:layout_width="20dip"
-                android:layout_height="20dip"
-                android:background="@drawable/phone"
-                android:text="appeler"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0606060606"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/annonce_detail_email"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="1dip"
-            android:layout_weight="1"
-            android:background="@color/couleur_3"
-            android:gravity="center_horizontal"
-            android:orientation="vertical"
-            android:paddingTop="5dp" >
-
-            <View
-                android:layout_width="20dip"
-                android:layout_height="20dip"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/mail"
-                android:text="appeler"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="youboat@youboat.com"
-                android:textColor="@android:color/white"
-                android:textSize="8sp" />
-        </LinearLayout>
     </LinearLayout>
 
     <ScrollView
@@ -380,9 +388,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dip"
                         android:text="@string/apartirde"
-                        android:visibility="gone"
                         android:textColor="@color/couleur_texte_fonce"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:visibility="gone" />
 
                     <TextView
                         android:id="@id/text"

@@ -111,6 +111,13 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 					String urlImage = annonce.getPhotos().get(0).getUrl();
 					ImageLoaderCache.charger(urlImage, _image);
 				}
+				
+				if(annonce.getPrix() != null && annonce.getTitle() != null){
+					String contenu = getString(R.string.email_contenu);
+					contenu = contenu.replace("$nom$",annonce.getTitle());
+					contenu = contenu.replace("$prix$",annonce.getPrix());
+					_message.setText(contenu);
+				}
 			}
 
 		}else if(type == EMAIL_CLIENT){
@@ -181,8 +188,14 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 	}
 
 	public void emailEnvoye(){
-		Toast.makeText(getActivity(), R.string.email_envoye,Toast.LENGTH_SHORT).show();
-		getFragmentManager().popBackStack();
+		getActivity().runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				Toast.makeText(getActivity(), R.string.email_envoye,Toast.LENGTH_SHORT).show();
+				getFragmentManager().popBackStack();
+			}
+		});
 	}
 
 	/* --------------------------------------------------------------------------- */
@@ -204,6 +217,7 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 				if(vendeur != null)
 					NetEmail.envoyerEmailClientDirect(email, message, nom, vendeur.getNumero(),telephone,departementId);
 			}
+			emailEnvoye();
 
 			return null;
 		}

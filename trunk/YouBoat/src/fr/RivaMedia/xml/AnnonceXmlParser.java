@@ -261,6 +261,12 @@ public class AnnonceXmlParser extends XmlParser {
 
 				if(tag.equals("nom"))
 					vendeur.setNom(getString());
+				else if(tag.equals("numero"))
+					vendeur.setNumero(getString());
+				else if(tag.equals("id"))
+						vendeur.setNumero(getString());
+				else if(tag.equals("logo"))
+						vendeur.setLogo(getString());
 				else if(tag.equals("email"))
 					vendeur.setEmail(getString());
 				else if(tag.equals("adresse"))

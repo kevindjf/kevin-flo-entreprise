@@ -75,6 +75,7 @@ public class Credit extends FragmentNormal implements View.OnClickListener{
 	@Override
 	public void ajouterListeners() {
 		_email.setOnClickListener(this);
+		_emailRivamedia.setOnClickListener(this);
 		_photoPetite.setOnClickListener(this);
 		_photoGrande.setOnClickListener(this);
 	}

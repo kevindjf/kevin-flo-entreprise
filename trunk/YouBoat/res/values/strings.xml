@@ -68,6 +68,7 @@
     <string name="dom_tom">Dom-Tom</string>
     <string name="effacer">Effacer</string>
     <string name="email">E-Mail</string>
+    <string name="email_contenu">Bonjour,\n\nJe souhaiterai avoir des informations complémentaires concernant votre $nom$ à $prix$ €.\n\nMerci de me recontacter aux coordonnées indiquées.\n\nCordialement,</string>
     <string name="email_dots">E-Mail :</string>
     <string name="email_envoye">E-Mail envoyé</string>
     <string name="email_star">E-Mail *</string>

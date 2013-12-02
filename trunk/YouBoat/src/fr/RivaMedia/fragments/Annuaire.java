@@ -137,9 +137,9 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		if(marque_id != null)
+		if(marque_id != null && !marque_id.equals("-1"))
 			Net.add(donnees, Constantes.VENDEURS_MARQUE_ID,marque_id);
-		if(service_id != null)
+		if(service_id != null && !service_id.equals("-1"))
 			Net.add(donnees,Constantes.VENDEURS_SERVICE_ID,service_id);
 		if(rayon != null)
 			Net.add(donnees,Constantes.VENDEURS_RAYON,rayon);
