@@ -111,7 +111,7 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 	class ChargerModelesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
-			_marque.setModeles(NetChargement.chargerModeles(_marque.getId(),_type,null,true));
+			_marque.setModeles(NetChargement.chargerModeles(_marque.getId(),_type,null,WA));
 			afficherProgress = false;
 
 			getActivity().runOnUiThread(new Runnable(){

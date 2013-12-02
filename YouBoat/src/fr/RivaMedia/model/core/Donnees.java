@@ -58,9 +58,9 @@ public class Donnees {
 	public static List<Service> services;
 	public static List<Marque> getMarques(String type, boolean WA){
 		List<Marque> mqs;
-		//if(WA)
-		//	mqs = marques.get(type);
-		//else
+		if(WA)
+			mqs = marques.get(type);
+		else
 			mqs = TOUTESmarques.get(type);
 
 		return mqs;
