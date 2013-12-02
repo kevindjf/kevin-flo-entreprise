@@ -93,4 +93,39 @@ public class AlerteXmlParser extends XmlParser {
 		return alerte;
 	}
 
+	public String getJeton(){
+		Alerte alerte = new Alerte();
+
+		int eventType = XMLgetEventType(); 
+		while (eventType != XmlPullParser.END_TAG) { 
+			if (eventType == XmlPullParser.START_TAG) {
+				String tag = getXpp().getName();
+				//Log.e("XML",tag);
+				if(tag.equals("id")){
+					getString();
+				}
+				else if(tag.equals("message")){
+					getString();
+				}
+				else if(tag.equals("idiphone")){
+					return getString();
+				}
+				else if(tag.equals("listSsCat")){
+					getString();
+				}
+				else if(tag.equals("kh")){
+					alerte.setLongueurMin(getString());
+				}
+				else if(tag.equals("origine")){
+					getString();
+				}
+				alerte.setPrixMin(getString());
+
+			}
+			eventType = XMLgetSuivant();
+		}
+
+		return "";
+	}
+
 }

@@ -33,18 +33,21 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 	int _reponseId;
 
 	boolean afficherIndifferent = true;
+	boolean WA = true;
 	
-	public MarqueSelector (ItemSelectedListener listener, int reponseId, boolean afficherIndifferent, String type){
+	public MarqueSelector (ItemSelectedListener listener, int reponseId, boolean afficherIndifferent, String type, boolean WA){
 		this._type = type;
 		this._listener = listener;
 		this._reponseId = reponseId;
 		this.afficherIndifferent = afficherIndifferent;
+		this.WA = WA;
 	}
 
-	public MarqueSelector (ItemSelectedListener listener, int reponseId, String type){
+	public MarqueSelector (ItemSelectedListener listener, int reponseId, String type, boolean WA){
 		this._type = type;
 		this._listener = listener;
 		this._reponseId = reponseId;
+		this.WA = WA;
 	}
 
 	@Override
@@ -66,7 +69,7 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 	}
 
 	public void remplir() {
-		_marques = Donnees.getMarques(_type);
+		_marques = Donnees.getMarques(_type,WA);
 
 		if(_marques != null && _marques.size()>0){
 			libelles =  new ArrayList<String>();

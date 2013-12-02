@@ -330,7 +330,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else {
-			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE_POSSEDER,demand_type_posseder));
+			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE_POSSEDER,demand_type_posseder,false));
 		}
 	}
 
@@ -403,7 +403,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else {
-			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,demand_type));
+			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,demand_type,false));
 		}
 	}
 
@@ -446,7 +446,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			((TextView)_type.findViewById(R.id.text)).setText(value);
 			demand_categorie_id = null;
 			((TextView)_categorie.findViewById(R.id.text)).setText(getResources().getString(R.string.requis));
-			_marques = Donnees.getMarques(item);
+			_marques = Donnees.getMarques(item,false);
 
 		} else if(idRetour == CATEGORIE){
 			if(!item.equals("-1"))
@@ -473,7 +473,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			((TextView)_typePosseder.findViewById(R.id.text)).setText(value);
 			demand_categorie_posseder_id = null;
 			((TextView)_categoriePosseder.findViewById(R.id.text)).setText(getResources().getString(R.string.facultatif));
-			_marques_posseder = Donnees.getMarques(item);
+			_marques_posseder = Donnees.getMarques(item,false);
 		} else if(idRetour == CATEGORIE_POSSEDER){
 			if(!item.equals("-1"))
 				demand_categorie_posseder_id = item;

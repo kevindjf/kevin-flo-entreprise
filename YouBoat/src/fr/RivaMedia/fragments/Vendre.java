@@ -503,7 +503,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	private void demanderChantierModele() {
 		if(vendre_type != null)
-			ajouterFragment( new MarqueSelector(this,CHANTIER_MODELE,false,vendre_type));
+			ajouterFragment( new MarqueSelector(this,CHANTIER_MODELE,false,vendre_type,true));
 		else
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_un_type, Toast.LENGTH_LONG).show();
 	}
@@ -552,9 +552,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		}
 		else{
 			if(typeVente.equals(Constantes.BATEAUX))
-				ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,false,""+typeVente));
+				ajouterFragment( new MarqueSelector(this,MARQUE_MOTEUR,false,""+typeVente,false));
 			else{
-				List<Marque> marques = Donnees.getMarques(Constantes.MOTEURS);
+				List<Marque> marques = Donnees.getMarques(Constantes.MOTEURS,false);
 				Map<String,String> donneesValeurs = new HashMap<String, String>();
 				for(Marque m : marques){
 					donneesValeurs.put(m.getLibelle(), m.getId());
@@ -571,7 +571,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	}
 
 	private void demanderMarqueMoteur() {
-		List<Marque> marques = Donnees.getMarques(Constantes.MOTEURS);
+		List<Marque> marques = Donnees.getMarques(Constantes.MOTEURS,false);
 		Map<String,String> donneesValeurs = new HashMap<String, String>();
 		for(Marque m : marques){
 			donneesValeurs.put(m.getLibelle(), m.getId());
