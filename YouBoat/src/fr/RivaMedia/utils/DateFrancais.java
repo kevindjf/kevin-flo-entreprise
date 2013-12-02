@@ -27,7 +27,7 @@ public class DateFrancais {
 		if(mois.equals("Jan"))
 			return "Janvier";
 		if(mois.equals("Feb"))
-			return "Février";
+			return "F√©vrier";
 		if(mois.equals("Mar"))
 			return "Mars";
 		if(mois.equals("Apr"))
@@ -39,7 +39,7 @@ public class DateFrancais {
 		if(mois.equals("Jul"))
 			return "Juillet";
 		if(mois.equals("Aug"))
-			return "Août";
+			return "Ao√ªt";
 		if(mois.equals("Sep"))
 			return "Septembre";
 		if(mois.equals("Oct"))
@@ -47,7 +47,7 @@ public class DateFrancais {
 		if(mois.equals("Nov"))
 			return "Novembre";
 		if(mois.equals("Dec"))
-			return "Décembre";
+			return "D√©cembre";
 		return "Err";
 	}
 	@SuppressWarnings("unused")
@@ -55,7 +55,7 @@ public class DateFrancais {
 		String dateFr ="";
 		Log.e("Jour", dateEn.substring(0,3));
 		dateFr+= changerJour(dateEn.substring(0,3))+dateEn.substring(3,7) + " "
-				+ changerMois(dateEn.substring(8,11))+ dateEn.substring(11,17) + "à "+dateEn.substring(17,22);
+				+ changerMois(dateEn.substring(8,11))+ dateEn.substring(11,17) + "√† "+dateEn.substring(17,22);
 		Log.e("DateFr",dateFr);
 		return dateFr;
 	}
@@ -68,11 +68,11 @@ public class DateFrancais {
 				.replace("May", "Mai")
 				.replace("Jun", "Juin")
 				.replace("Jul", "Juillet")
-				.replace("Aug", "Août")
+				.replace("Aug", "Ao√ªt")
 				.replace("Sep", "Sep")
 				.replace("Oct", "Octobre")
 				.replace("Nov", "Novembre")
-				.replace("Dec", "Décembre")
+				.replace("Dec", "D√©cembre")
 
 				.replace("Mon", "Lundi")
 				.replace("Tue", "Mardi")
@@ -95,7 +95,7 @@ public class DateFrancais {
 		String h = hs[0];
 		String m = hs[1];
 
-		date = jourNom+" "+jour+" "+mois+" "+annee+" à "+h+"h"+m;
+		date = jourNom+" "+jour+" "+mois+" "+annee+" √† "+h+"h"+m;
 
 		return date;
 
