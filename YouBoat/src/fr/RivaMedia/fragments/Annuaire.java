@@ -162,6 +162,7 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		ajouterFragment( new DonneeValeurSelector(
 				this,
 				MARQUE,
+				false,
 				marques_id));
 	}
 

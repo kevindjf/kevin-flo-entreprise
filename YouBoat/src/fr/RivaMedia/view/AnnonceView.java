@@ -112,7 +112,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 				_prix.setText(p);
 			}
 			
-			if(_annonce.getApartirDe().trim().equals("1"))
+			if(_annonce.getApartirDe() != null && _annonce.getApartirDe().trim().equals("1"))
 				_apartirDe.setVisibility(View.VISIBLE);
 
 		}

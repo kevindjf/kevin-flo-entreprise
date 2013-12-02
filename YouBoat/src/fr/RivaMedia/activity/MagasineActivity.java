@@ -21,7 +21,7 @@ import fr.RivaMedia.net.NetChargement;
 public class MagasineActivity extends Activity{
 
 	ImageView _image;
-	public static final int tempsAttenteSecondes = 2;
+	public static final int tempsAttenteSecondes = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -98,22 +98,14 @@ public class MagasineActivity extends Activity{
 
 			Donnees.toutesMarques = toutesMarques;
 			Donnees.marques.put("0", toutesMarques);
+			Donnees.TOUTESmarques.put("0", toutesMarques);
 			Donnees.marques.put(Constantes.BATEAU_A_MOTEUR, marquesBateauxAMoteur);
 			Donnees.marques.put(Constantes.VOILIER, marquesVoilier);
 			Donnees.marques.put(Constantes.PNEU, marquesPneu);
 			Donnees.marques.put(Constantes.MOTEURS, marquesMoteur);
 			Donnees.nbAnnonces = nbAnnonces;
 			
-			final List<Marque> TOUTESmarquesBateauxAMoteur = NetChargement.chargerMarquesBateauType(Constantes.BATEAU_A_MOTEUR,null,false);
-			final List<Marque> TOUTESmarquesVoilier = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,false);	
-			final List<Marque> TOUTESmarquesPneu = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,false);
-			final List<Marque> TOUTESmarquesMoteur = NetChargement.chargerMarquesMoteurs(null,false);
-			
-			Donnees.TOUTESmarques.put("0", toutesMarques);
-			Donnees.TOUTESmarques.put(Constantes.BATEAU_A_MOTEUR, TOUTESmarquesBateauxAMoteur);
-			Donnees.TOUTESmarques.put(Constantes.VOILIER, TOUTESmarquesVoilier);
-			Donnees.TOUTESmarques.put(Constantes.PNEU, TOUTESmarquesPneu);
-			Donnees.TOUTESmarques.put(Constantes.MOTEURS, TOUTESmarquesMoteur);
+
 			
 			
 			etapeSuivante();

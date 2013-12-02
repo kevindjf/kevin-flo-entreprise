@@ -24,6 +24,7 @@ import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.model.Departement;
+import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.NetOnDemand;
 import fr.RivaMedia.net.NetVendre;
@@ -164,11 +165,11 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	}
 
 	protected void demanderPays(){
-		List<Departement> departements = Donnees.departements;
-		if(departements != null){
+		List<Region> regions = Donnees.regions;
+		if(regions != null){
 			Map<String,String> donneesValeurs = new HashMap<String,String>();
-			for(Departement departement : departements){
-				donneesValeurs.put(departement.getNom(), departement.getId());
+			for(Region region : regions){
+				donneesValeurs.put(region.getNom(), region.getId());
 			}
 
 			ajouterFragment(new DonneeValeurSelector(this,PAYS,false,donneesValeurs));
@@ -201,7 +202,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 			}else if(pour == VENDRE && ((EditText)_ville.findViewById(R.id.text)).getText().toString().trim().equals("")){
 				Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_ville), Toast.LENGTH_SHORT).show();
 			}
-				else if(pour == ON_DEMAND && 
+			else if(pour == ON_DEMAND && 
 					((TextView)_ville.findViewById(R.id.text)).getText().toString().trim().equals(getString(R.string.requis))
 					)
 				Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_ville), Toast.LENGTH_SHORT).show();
@@ -228,10 +229,11 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 		if(pour == VENDRE && idPays != null)
 			Net.add(_donneesGet, Constantes.VENDEUR_PAYS,idPays);
-		else if(pour == ON_DEMAND){
-			String ville = ((TextView)_ville.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
-			if(ville.length() > 0)
-				Net.add(_donneesGet, Constantes.VENDEUR_VILLE,ville);
+
+		String ville = ((TextView)_ville.findViewById(R.id.text)).getText().toString().trim().replace(" ", "%20");
+		if(ville.length() > 0){
+			Net.add(_donneesGet, Constantes.VENDEUR_VILLE,ville);
+			System.out.println("ajout ville : "+ville);
 		}
 
 		if(pour == VENDRE){
@@ -307,7 +309,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		protected Void doInBackground(Void...donnees) {
 
 			synchronized (_donneesPost) {
-				
+
 				String reponse = NetVendre.vendre(_donneesPost, _photos);
 				System.out.println(reponse);
 			}

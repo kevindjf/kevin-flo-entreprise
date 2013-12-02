@@ -1,5 +1,7 @@
 package fr.RivaMedia.activity;
 
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -12,16 +14,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.alertes.GcmInitializer;
 import fr.RivaMedia.image.ImageLoaderCache;
+import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.NetChargement;
 import fr.RivaMedia.net.core.Net;
 
 public class SplashScreenActivity extends Activity{
 
-	public static final int tempsAttenteSecondes = 2;
+	public static final int tempsAttenteSecondes = 0;
 
 	GcmInitializer gcmInitializer;
 
@@ -146,6 +150,16 @@ public class SplashScreenActivity extends Activity{
 			Donnees.energies = NetChargement.chargerEnergies();
 			
 			Donnees.services = NetChargement.chargerServices();
+			
+			final List<Marque> TOUTESmarquesBateauxAMoteur = NetChargement.chargerMarquesBateauType(Constantes.BATEAU_A_MOTEUR,null,false);
+			final List<Marque> TOUTESmarquesVoilier = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,false);	
+			final List<Marque> TOUTESmarquesPneu = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,false);
+			final List<Marque> TOUTESmarquesMoteur = NetChargement.chargerMarquesMoteurs(null,false);
+			
+			Donnees.TOUTESmarques.put(Constantes.BATEAU_A_MOTEUR, TOUTESmarquesBateauxAMoteur);
+			Donnees.TOUTESmarques.put(Constantes.VOILIER, TOUTESmarquesVoilier);
+			Donnees.TOUTESmarques.put(Constantes.PNEU, TOUTESmarquesPneu);
+			Donnees.TOUTESmarques.put(Constantes.MOTEURS, TOUTESmarquesMoteur);
 
 			/*
 			try {
