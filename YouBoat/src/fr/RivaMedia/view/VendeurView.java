@@ -57,6 +57,8 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 			
 			if(_vendeur.getTel1() != null){
 				
+				try{
+				
 				String num = _vendeur.getTel1().replace("+33", "0");
 				
 				DecimalFormatSymbols dfs = new DecimalFormatSymbols();
@@ -67,6 +69,8 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 				String tel = decfmt.format(Integer.parseInt(num));  // outputs "01 44 55 66 77"
 				
 				_telephone.setText(tel);
+				
+				}catch(Exception e){}
 			}
 		}
 

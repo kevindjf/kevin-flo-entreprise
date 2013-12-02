@@ -168,7 +168,7 @@
                     android:textSize="15sp" >
                 </EditText>
 
-                <ImageView style="@style/formulaire_cellule_indicator" />
+                <ImageView style="@style/formulaire_cellule_indicator" android:visibility="gone"/>
             </RelativeLayout>
 
             <View
