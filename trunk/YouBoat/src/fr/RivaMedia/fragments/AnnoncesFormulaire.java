@@ -656,8 +656,10 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	protected List<NameValuePair> recupererDonneesFormulaireAlerte(){
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		String android_id = Secure.getString(getActivity().getContentResolver(),Secure.ANDROID_ID);
-		Net.add(donnees, Constantes.ALERTE_ID_SMARTPHONE,android_id);
+		JetonManager jm = new JetonManager(this.getActivity());
+		String jeton = jm.getJeton();
+		
+		Net.add(donnees, Constantes.ALERTE_ID_SMARTPHONE,jeton);
 
 		//TODO ajouter le md5 de la date
 
