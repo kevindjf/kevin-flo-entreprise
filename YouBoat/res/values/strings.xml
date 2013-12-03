@@ -26,7 +26,7 @@
     <string name="appeller">Appeler</string>
     <string name="atlantique">Atlantique</string>
     <string name="aucun_favoris">Vous n\'avez aucune annonce favorite</string>
-    <string name="aucun_alerte">Vous n\'avez aucune alerte</string>
+    <string name="aucun_alerte">Pas d\'annonce correspondante\n à vos alertes aujourd\'hui !</string>
     <string name="aujourd_hui">Aujourd\'hui</string>
     <string name="bateaux">Bateaux</string>
     <string name="bateau_a_moteur">Bateaux à Moteur</string>
