@@ -128,12 +128,12 @@ public class GcmIntentService extends IntentService {
 
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, lancement, 0);
 
-		Bitmap large_100 = BitmapFactory.decodeResource(getResources(), R.drawable.logo_appli_100);
-		Bitmap large = BitmapFactory.decodeResource(getResources(), R.drawable.logo_appli);
+		Bitmap large_100 = BitmapFactory.decodeResource(getResources(), R.drawable.splash_screen_v2_logo_petit);
+		Bitmap large = BitmapFactory.decodeResource(getResources(), R.drawable.splash_screen_v2_logo);
 
 		NotificationCompat.Builder mBuilder =
 				new NotificationCompat.Builder(this)
-		.setSmallIcon(R.drawable.logo_appli)
+		.setSmallIcon(R.drawable.splash_screen_v2_logo_petit)
 		.setLargeIcon(large_100)
 		.setContentTitle(titre)
 		.setContentText(message)

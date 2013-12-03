@@ -95,6 +95,8 @@
     <string name="indifferent">-Indifférent-</string>
     <string name="informations">Informations</string>
     <string name="informations_youboat_propose">Youboat propose des milliers d\'annonces de bateaux à moteur, voiliers et pneumatiques mais aussi des moteurs et accessoires marins. Des essais et des articles sont disponibles pour vous aider dans votre futur achat. Vous pouvez égalment vendre votre bateau directement depuis votre smartphone. Retrouvez aussi le magazine YOUBOAT chez votre marchand de journaux !</string>
+    <string name="instant_match">Instant Match</string>
+    <string name="instant_match_chevron">Instant Match &gt;</string>
     <string name="intitule">Intutilé</string>
     <string name="km_autour_de">km autour de</string>
     <string name="languedoc_roussillon">Languedoc/Roussillon</string>
@@ -113,6 +115,7 @@
     <string name="marque_du_moteur">Marque du moteur</string>
     <string name="mes_annonces">Mes annonces</string>
     <string name="mes_alertes">Mes alertes</string>
+    <string name="mes_alertes_chevron">&lt; Mes alertes</string>
     <string name="mes_favoris">Mes favoris</string>
     <string name="mes_recherches">Mes recherches</string>
     <string name="max">Max :</string>
