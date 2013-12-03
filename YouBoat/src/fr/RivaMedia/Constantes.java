@@ -117,6 +117,7 @@ public class Constantes {
 	
 	//VENTE BATEAU
 	public static final String VENDRE_CATEGORIE = "listSsCat"; //F
+	public static final String VENDRE_MARQUE = "listMarque"; //F
 	public static final String VENDRE_MODELE = "listModele"; //F
 	public static final String VENDRE_LONGUEUR_AVANT_VIRGULE = "longueur_unit"; //F
 	public static final String VENDRE_LONGUEUR_APRES_VIRGULE = "longueur_deci"; //F

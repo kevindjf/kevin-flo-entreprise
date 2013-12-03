@@ -879,7 +879,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Net.add(donnees, 
 					Constantes.VENDRE_TYPE,vendre_type,
 					Constantes.VENDRE_CATEGORIE,vendre_categorie,
-					Constantes.VENDRE_MARQUE_MOTEUR_ID,vendre_marque_moteur_id,
+					Constantes.VENDRE_MARQUE,vendre_marque_moteur_id,
 					Constantes.VENDRE_MODELE_MOTEUR,vendre_modele,
 					Constantes.VENDRE_PUISSANCE_MOTEUR,((EditText)_puissance.findViewById(R.id.text)).getText().toString().trim(),
 					Constantes.VENDRE_PRIX,vendre_prix
