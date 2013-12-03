@@ -58,7 +58,7 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 	public void remplir() {
 		
 		try{
-		Categorie c = Donnees.getCategorie(_alerte.getCategorie(),false);
+		Categorie c = Donnees.getCategorieToutes(_alerte.getCategorie(),true);
 		if(c != null && c.getLibelle() != null)
 			_titre.setText(c.getLibelle());
 
@@ -87,7 +87,7 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 		
 		afficherNormal();
 		}catch(Exception e){
-			
+			e.printStackTrace();
 		}
 	}
 

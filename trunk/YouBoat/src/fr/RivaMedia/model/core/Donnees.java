@@ -52,6 +52,19 @@ public class Donnees {
 		return null;
 	}
 
+	public static Categorie getCategorieToutes(String id,boolean WA){
+		for(int i=0;i<=typeCategoriesTOUTES.size();++i){
+			try{
+				List<Categorie> categories = getCategories(""+i, WA);
+				for(Categorie c : categories){
+					if(c.getId().equals(id))
+						return c;
+				}
+			}catch(Exception e){}
+		}
+		return null;
+	}
+
 	public static List<Marque> toutesMarques = new ArrayList<Marque>();
 	public static Map<String,List<Marque>> marques = new HashMap<String,List<Marque>>();
 	public static Map<String,List<Marque>> TOUTESmarques = new HashMap<String,List<Marque>>();
@@ -86,7 +99,7 @@ public class Donnees {
 			villes = VillesChargeur.chargerVilles(context, R.raw.villes);
 		return villes;
 	}
-	*/
+	 */
 
 	public static List<Lieu> lieux;
 
