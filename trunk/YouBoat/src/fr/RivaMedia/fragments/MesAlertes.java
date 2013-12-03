@@ -204,6 +204,8 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
+		if(_tabFormulaires != null)
+			_tabFormulaires.onResume();
 	}
 
 	

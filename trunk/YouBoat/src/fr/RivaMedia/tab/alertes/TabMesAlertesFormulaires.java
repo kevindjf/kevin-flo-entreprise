@@ -22,6 +22,7 @@ import fr.RivaMedia.R;
 import fr.RivaMedia.adapter.AlerteListAdapter;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Alerte;
+import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAlerte;
 import fr.RivaMedia.tab.core.Tab;
 import fr.RivaMedia.utils.JetonManager;
@@ -50,8 +51,8 @@ public class TabMesAlertesFormulaires extends Tab {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.liste_swipe_views, container, false);
 
-		task = new ChargerAlertesTask();
-		task.execute();
+		//task = new ChargerAlertesTask();
+		//task.execute();
 
 		return _view;
 	}
@@ -64,6 +65,22 @@ public class TabMesAlertesFormulaires extends Tab {
 			((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_alerte);
 			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
 		}
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(getActivity() != null){
+			getActivity().runOnUiThread(new Runnable(){
+				public void run(){
+					if(task == null){
+						task = new ChargerAlertesTask();
+						task.execute();
+					}
+				}
+			});
+		}
+
 	}
 
 	public void charger(){
@@ -148,12 +165,14 @@ public class TabMesAlertesFormulaires extends Tab {
 		protected Void doInBackground(Void...donnees) {
 			JetonManager jm = new JetonManager(getActivity());
 			String jeton = jm.getJeton();
+			_alertes.clear();
 			_alertes.addAll(NetAlerte.getAlertes(jeton));
 			getActivity().runOnUiThread(new Runnable(){
 
 				@Override
 				public void run() {
 					chargerAlertes();
+					task = null;
 				}
 
 			});
@@ -179,6 +198,7 @@ public class TabMesAlertesFormulaires extends Tab {
 					public void run() {
 						if(!ok.toLowerCase().equals("false"))
 							supprimmerAlerteDeListe(idAlerte);
+						task = null;
 					}
 
 				});
