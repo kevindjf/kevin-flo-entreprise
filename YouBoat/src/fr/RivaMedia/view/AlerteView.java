@@ -35,6 +35,8 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 		charger();
 		remplir();
 		ajouterListeners();
+		
+		afficherNormal();
 	}
 
 	@Override
@@ -106,9 +108,9 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 
 	private void afficherNormal(){
 		if(_position%2==0){
-			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
+			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
 		}else{
-			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
+			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
 		}
 	}
 	private void afficherTouch(){
