@@ -227,7 +227,7 @@ public class Net {
 			urlRequete = Constantes.ANCIEN_URL_BASE+url+sb.toString();
 		else
 			urlRequete = SITE+url+sb.toString();
-		Log.d("NET",urlRequete);
+		Log.d("NET_GET",urlRequete);
 
 		HttpClient httpClient = new DefaultHttpClient();
 		try {

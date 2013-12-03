@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -153,13 +154,15 @@ public class SplashScreenActivity extends Activity{
 			
 			final List<Marque> TOUTESmarquesBateauxAMoteur = NetChargement.chargerMarquesBateauType(Constantes.BATEAU_A_MOTEUR,null,false);
 			final List<Marque> TOUTESmarquesVoilier = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,false);	
-			final List<Marque> TOUTESmarquesPneu = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,false);
+			final List<Marque> TOUTESmarquesPneu = NetChargement.chargerMarquesBateauType(Constantes.PNEU,null,false);
 			final List<Marque> TOUTESmarquesMoteur = NetChargement.chargerMarquesMoteurs(null,false);
 			
 			Donnees.TOUTESmarques.put(Constantes.BATEAU_A_MOTEUR, TOUTESmarquesBateauxAMoteur);
 			Donnees.TOUTESmarques.put(Constantes.VOILIER, TOUTESmarquesVoilier);
 			Donnees.TOUTESmarques.put(Constantes.PNEU, TOUTESmarquesPneu);
 			Donnees.TOUTESmarques.put(Constantes.MOTEURS, TOUTESmarquesMoteur);
+			
+			Log.e("marques moteur",""+TOUTESmarquesMoteur.size());
 
 			/*
 			try {
