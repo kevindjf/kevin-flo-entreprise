@@ -64,8 +64,9 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 
 		//TODO prix+longueur
 		if(_alerte.getDate() != null ){
+			
 			String date = _alerte.getDate();
-			_sousTitre.setText("Fait le " + date.substring(0,10)+ " à " + date.substring(10));			
+			_sousTitre.setText("Fait le " + DateFrancais.dateEnToFr(date.substring(0,10))+ " à " + date.substring(10));			
 		}
 		
 		if(_alerte.getPrixMin() != null && _alerte.getPrixMin().trim().length() > 0){

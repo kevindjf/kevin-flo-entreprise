@@ -64,6 +64,9 @@ public class TabMesAlertesFormulaires extends Tab {
 		if(_alertes.size()==0){
 			((TextView)_view.findViewById(R.id.vide).findViewById(R.id.vide_text)).setText(R.string.aucun_alerte);
 			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
+		}else{
+			_view.findViewById(R.id.vide).setVisibility(View.GONE);
+
 		}
 	}
 
