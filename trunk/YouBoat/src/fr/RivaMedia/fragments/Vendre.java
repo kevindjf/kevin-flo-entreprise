@@ -143,6 +143,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	String vendre_type = null;
 	String vendre_categorie = null;
 	String vendre_marque = null; //aussi chantier/modele
+	String vendre_modele = null; 
 	String vendre_localisation = null;
 	String vendre_prix = null;
 	String nombre_couchette = null;
@@ -725,7 +726,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			((TextView)_nombreMoteur.findViewById(R.id.text)).setText(vendre_nombre_moteur);
 		}
 		else if(idRetour == CHANTIER_MODELE){
-			vendre_marque = item;
+			String s[] = item.split(";");
+			vendre_marque = s[0];
+			vendre_modele = s[1];
 			((TextView)_chantierModele.findViewById(R.id.text)).setText(value);
 		}
 		else if(idRetour == MARQUE_MODELE){
@@ -778,9 +781,12 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Net.add(donnees, 
 					Constantes.VENDRE_TYPE,vendre_type,
 					Constantes.VENDRE_CATEGORIE,vendre_categorie,
-					Constantes.VENDRE_MARQUE_MOTEUR_ID,vendre_marque_moteur_id,
+					Constantes.VENDRE_MARQUE,vendre_marque,
+					Constantes.VENDRE_MODELE,CHANTIER_MODELE,
 					Constantes.VENDRE_PRIX,vendre_prix
 					);
+			
+			
 
 			nombre_couchette = ((EditText)_nombreCabines.findViewById(R.id.text)).getText().toString();
 			if(nombre_couchette != null && nombre_couchette.length()>0){
