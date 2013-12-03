@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.entity.mime.MultipartEntity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.fragments.selector.MarqueSelector;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Etat;
+import fr.RivaMedia.model.Lieu;
 import fr.RivaMedia.model.Marque;
 import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.core.Donnees;
@@ -366,11 +366,11 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 
 	private void demanderLieu() {
 
-		List<Region> regions = Donnees.regions;
-		if(regions != null){
+		List<Lieu> lieux = Donnees.lieux;
+		if(lieux != null){
 			Map<String,String> donneesValeurs = new HashMap<String,String>();
-			for(Region region : regions){
-				donneesValeurs.put(region.getNom(), region.getId());
+			for(Lieu lieu : lieux){
+				donneesValeurs.put(lieu.getNom(), lieu.getId());
 			}
 
 			ajouterFragment(new DonneeValeurSelector(this,LOCALISATION,false,donneesValeurs));
