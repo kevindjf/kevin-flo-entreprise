@@ -165,11 +165,11 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	}
 
 	protected void demanderPays(){
-		List<Region> regions = Donnees.regions;
-		if(regions != null){
+		List<Departement> departements = Donnees.departements;
+		if(departements != null){
 			Map<String,String> donneesValeurs = new HashMap<String,String>();
-			for(Region region : regions){
-				donneesValeurs.put(region.getNom(), region.getId());
+			for(Departement departement : departements){
+				donneesValeurs.put(departement.getNom(), departement.getId());
 			}
 
 			ajouterFragment(new DonneeValeurSelector(this,PAYS,false,donneesValeurs));
