@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.http.NameValuePair;
 
+import android.util.Log;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Departement;
 import fr.RivaMedia.model.Energie;
@@ -123,14 +124,16 @@ public class NetChargement extends Net{
 
 		List<NameValuePair> donnees = Net.construireDonnes();
 
-		if(WA)
-			Net.add(donnees, Constantes.MARQUES_POUR, "1");
-
 		if(idClient != null)
 			Net.add(donnees, Constantes.MARQUES_POUR_CLIENT, idClient
 					);
+		
+		if(WA)
+			Net.add(donnees, Constantes.MARQUES_POUR, "1");
+		
+		Log.e("MARQUE_MOTEUR",""+WA);
 
-		String xml = Net.requeteGet(Constantes.URL_MARQUES_MOTEUR, null);		
+		String xml = Net.requeteGet(Constantes.URL_MARQUES_MOTEUR, donnees);		
 
 		return new MarqueXmlParser(xml).getMarques();
 	}

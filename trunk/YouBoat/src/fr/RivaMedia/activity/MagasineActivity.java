@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import fr.RivaMedia.Constantes;
@@ -103,6 +104,7 @@ public class MagasineActivity extends Activity{
 			Donnees.marques.put(Constantes.VOILIER, marquesVoilier);
 			Donnees.marques.put(Constantes.PNEU, marquesPneu);
 			Donnees.marques.put(Constantes.MOTEURS, marquesMoteur);
+			Log.e("marques moteur",""+marquesMoteur.size());
 			Donnees.nbAnnonces = nbAnnonces;
 			
 
