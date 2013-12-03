@@ -60,6 +60,10 @@ public class DateFrancais {
 		return dateFr;
 	}
 
+	public static String dateEnToFr(String date){
+		
+		return date.substring(8)+"-"+date.substring(5,7)+"-"+date.substring(0,4);
+	}
 	public static String convertirDate(String date){
 
 		date = date.replace("Jan", "Janvier")
