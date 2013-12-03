@@ -198,6 +198,20 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 		this.longitude = longitude;
 		this.latitude = latitude;
 		
+		try{
+			Double f = Double.parseDouble(longitude);
+			Double f2 = Double.parseDouble(latitude);
+			double longitudeF = f.doubleValue();
+			double latitudeF = f2.doubleValue();
+			
+			double longitudeRadian = longitudeF * Math.PI / 180;
+			double latitudeRadian = latitudeF * Math.PI / 180;
+			
+			this.longitude = ""+longitudeRadian;
+			this.latitude = ""+latitudeRadian;
+			
+		}catch(Exception e){}
+		
 		Log.e("LOCALITE",ville+" | "+rayon+" | "+longitude+" | "+latitude);
 		
 		String text = this.rayon+" "+getString(R.string.km_autour_de)+" "+nomVille;
