@@ -9,9 +9,9 @@ public class Alerte {
 	private String prixMin;
 	private String prixMax;
 	private String etat;
-	
-	private String jeton;
 	private String date;
+
+	private String jeton;
 	
 	public String getId() {
 		return id;

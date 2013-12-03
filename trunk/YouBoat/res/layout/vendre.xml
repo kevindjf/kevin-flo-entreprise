@@ -410,6 +410,7 @@
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif"
+                    android:maxLength="4"
                     android:inputType="date" />
             </RelativeLayout>
 

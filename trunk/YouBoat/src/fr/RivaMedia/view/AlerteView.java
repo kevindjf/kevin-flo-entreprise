@@ -19,7 +19,10 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 
 	TextView _titre;
 	TextView _sousTitre;
-
+	TextView _prixMin;
+	TextView _prixMax;
+	TextView _longueurMin;
+	TextView _longueurMax;
 	View _derriere;
 	View _devant;
 
@@ -38,7 +41,11 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 	public void charger() {
 		_titre = (TextView)getView().findViewById(R.id.alerte_element_liste_titre);
 		_sousTitre = (TextView)getView().findViewById(R.id.alerte_element_liste_sous_titre);
-
+		_prixMin = (TextView)getView().findViewById(R.id.prix_min);
+		_prixMax = (TextView)getView().findViewById(R.id.prix_max);
+		_longueurMin = (TextView)getView().findViewById(R.id.longueur_min);
+		_longueurMax = (TextView)getView().findViewById(R.id.longueur_max);
+		
 		if(_swipable){
 			_devant = getView().findViewById(R.id.devant);
 			_derriere = getView().findViewById(R.id.derriere);
@@ -49,15 +56,38 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 
 	@Override
 	public void remplir() {
+		
+		try{
 		Categorie c = Donnees.getCategorie(_alerte.getCategorie(),false);
 		if(c != null && c.getLibelle() != null)
 			_titre.setText(c.getLibelle());
 
 		//TODO prix+longueur
-		if(_alerte.getDate() != null )
-			_sousTitre.setText(_alerte.getDate());
-
+		if(_alerte.getDate() != null ){
+			String date = _alerte.getDate();
+			_sousTitre.setText("Fait le " + date.substring(0,10)+ " à " + date.substring(10));			
+		}
+		
+		if(_alerte.getPrixMin() != null && _alerte.getPrixMin().trim().length() > 0){
+			_prixMin.setText("Prix min : " + _alerte.getPrixMin());
+		}
+		
+		if(_alerte.getPrixMax() != null && _alerte.getPrixMax().trim().length() > 0){
+			_prixMax.setText("Prix max : " + _alerte.getPrixMax());
+		}
+		
+		if(_alerte.getLongueurMin() != null && _alerte.getLongueurMin().trim().length() > 0){
+			_longueurMin.setText("Longueur min : " + _alerte.getLongueurMin());
+		}
+		
+		if(_alerte.getLongueurMax() != null && _alerte.getLongueurMax().trim().length() > 0){
+			_longueurMax.setText("Longueur max : " + _alerte.getLongueurMax());
+		}
+		
 		afficherNormal();
+		}catch(Exception e){
+			
+		}
 	}
 
 	@Override
