@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:background="@drawable/onglet_blanc_select_bleu"
             android:orientation="vertical"
-            android:text="@string/mes_alertes"
+            android:text="@string/instant_match_chevron"
             android:textColor="@color/couleur_onglet_claire"
             android:textStyle="bold" >
         </Button>
@@ -35,7 +35,7 @@
             android:layout_weight="1"
             android:background="@drawable/onglet_bleu_select_blanc"
             android:orientation="vertical"
-            android:text="@string/mes_recherches"
+            android:text="@string/mes_alertes_chevron"
             android:textColor="@color/couleur_onglet_blanc"
             android:textStyle="bold" >
         </Button>
