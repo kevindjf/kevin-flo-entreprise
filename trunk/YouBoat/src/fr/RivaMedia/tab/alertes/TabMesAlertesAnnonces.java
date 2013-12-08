@@ -25,7 +25,6 @@ import fr.RivaMedia.comparator.AnnonceDateComparator;
 import fr.RivaMedia.comparator.AnnoncePrixComparator;
 import fr.RivaMedia.comparator.AnnoncePrixParLongueurComparator;
 import fr.RivaMedia.fragments.MesAlertes;
-import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
 import fr.RivaMedia.net.core.Net;

@@ -9,7 +9,6 @@ import fr.RivaMedia.Constantes;
 import fr.RivaMedia.model.Alerte;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
-import fr.RivaMedia.utils.JetonManager;
 import fr.RivaMedia.xml.AlerteXmlParser;
 
 public class NetAlerte extends Net{

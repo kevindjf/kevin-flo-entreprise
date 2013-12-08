@@ -9,7 +9,7 @@ import fr.RivaMedia.R;
 import android.app.Application;
 
 @ReportsCrashes(formKey = "", // will not be used
-mailTo = "crash@youboat.com",
+mailTo = "support@youboat.fr",
 mode = ReportingInteractionMode.TOAST,
 resToastText = R.string.crash_toast_text)
 public class MyApplication extends Application {

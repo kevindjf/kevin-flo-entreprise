@@ -24,7 +24,6 @@ import fr.RivaMedia.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.model.Departement;
-import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.NetOnDemand;
 import fr.RivaMedia.net.NetVendre;

@@ -27,7 +27,6 @@ import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Etat;
 import fr.RivaMedia.model.Lieu;
 import fr.RivaMedia.model.Marque;
-import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.core.Donnees;
 import fr.RivaMedia.net.core.Net;
 

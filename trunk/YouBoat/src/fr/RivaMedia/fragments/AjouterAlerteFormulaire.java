@@ -8,7 +8,6 @@ import org.apache.http.NameValuePair;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

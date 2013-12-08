@@ -19,12 +19,9 @@ import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
 
 import fr.RivaMedia.R;
-import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.AlerteListAdapter;
 import fr.RivaMedia.fragments.MesAlertes;
-import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Alerte;
-import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAlerte;
 import fr.RivaMedia.tab.core.Tab;
 import fr.RivaMedia.utils.JetonManager;
@@ -70,7 +67,7 @@ public class TabMesAlertesFormulaires extends Tab {
 			_view.findViewById(R.id.vide).setVisibility(View.GONE);
 
 		}
-		
+
 	}
 
 	@Override
@@ -95,8 +92,10 @@ public class TabMesAlertesFormulaires extends Tab {
 		_liste = (SwipeListView) _view.findViewById(R.id.list);
 	}
 	public void remplir(){
-		_adapter = new AlerteListAdapter(getActivity(), _alertes, true);
-		_liste.setAdapter(_adapter);
+		if(getActivity() != null){
+			_adapter = new AlerteListAdapter(getActivity(), _alertes, true);
+			_liste.setAdapter(_adapter);
+		}
 	}
 
 	public void ajouterListeners(){
@@ -202,6 +201,7 @@ public class TabMesAlertesFormulaires extends Tab {
 			if(getActivity() != null){
 				getActivity().runOnUiThread(new Runnable(){
 
+					@SuppressLint("DefaultLocale")
 					@Override
 					public void run() {
 						if(!ok.toLowerCase().equals("false"))

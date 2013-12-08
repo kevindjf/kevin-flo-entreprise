@@ -1,7 +1,6 @@
 package fr.RivaMedia.fragments;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import android.graphics.drawable.Drawable;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
-import fr.RivaMedia.comparator.AnnoncePrixParLongueurComparator;
 import fr.RivaMedia.fragments.core.FragmentListe;
 import fr.RivaMedia.tab.alertes.TabMesAlertesAnnonces;
 import fr.RivaMedia.tab.alertes.TabMesAlertesFormulaires;
