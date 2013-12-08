@@ -27,7 +27,15 @@ public class AlerteListAdapter extends BaseAdapter  {
 		this._alertes = alertes;
 		this._swipable = swipable;
 
-		inflater = (LayoutInflater)_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		try{
+
+			if(_context != null){
+				inflater = (LayoutInflater)_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			}
+
+		}catch(Exception e){
+
+		}
 	}
 
 	public AlerteListAdapter(Context context, List<Alerte> alertes){
@@ -60,9 +68,11 @@ public class AlerteListAdapter extends BaseAdapter  {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view=null;
 
-		view = inflater.inflate(R.layout.alerte_element_liste_swipable, null);
-		AlerteView av = new AlerteView(_alertes.get(position),_context,view,position,_swipable);
-		_views.add(position,av);
+		if(inflater != null){
+			view = inflater.inflate(R.layout.alerte_element_liste_swipable, null);
+			AlerteView av = new AlerteView(_alertes.get(position),_context,view,position,_swipable);
+			_views.add(position,av);
+		}
 
 		return view;
 	}

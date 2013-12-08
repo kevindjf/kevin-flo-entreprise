@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Context;
 
 import fr.RivaMedia.Constantes;
-import fr.RivaMedia.R;
 import fr.RivaMedia.model.Categorie;
 import fr.RivaMedia.model.Departement;
 import fr.RivaMedia.model.Energie;
@@ -21,8 +19,6 @@ import fr.RivaMedia.model.Region;
 import fr.RivaMedia.model.Service;
 import fr.RivaMedia.model.TypeAnnonce;
 import fr.RivaMedia.model.TypeCategories;
-import fr.RivaMedia.model.Ville;
-import fr.RivaMedia.utils.VillesChargeur;
 
 public class Donnees {
 

@@ -97,7 +97,6 @@ public class AlerteXmlParser extends XmlParser {
 	}
 
 	public String getJeton(){
-		Alerte alerte = new Alerte();
 
 		int eventType = XMLgetEventType(); 
 		while (eventType != XmlPullParser.END_DOCUMENT) { 

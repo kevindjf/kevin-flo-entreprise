@@ -14,15 +14,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -33,7 +27,6 @@ import fr.RivaMedia.adapter.RechercheVille;
 import fr.RivaMedia.fragments.Annuaire;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Ville;
-import fr.RivaMedia.model.core.Donnees;
 
 
 @SuppressLint("ValidFragment")

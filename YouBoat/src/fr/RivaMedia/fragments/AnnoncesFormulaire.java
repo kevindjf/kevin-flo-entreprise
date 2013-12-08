@@ -10,7 +10,6 @@ import org.apache.http.NameValuePair;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings.Secure;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -703,6 +702,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 			getActivity().runOnUiThread(new Runnable(){
 
+				@SuppressLint("DefaultLocale")
 				@Override
 				public void run() {
 					if(!reponse.toLowerCase().trim().equals("false")){
