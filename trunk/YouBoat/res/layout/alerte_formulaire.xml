@@ -36,12 +36,12 @@
 
             <TextView
                 style="@style/formulaire_cellule_titre"
-                android:text="@string/categorie" />
+                android:text="@string/categorie_star" />
 
             <TextView
                 android:id="@id/text"
                 style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
+                android:hint="@string/requis" />
 
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>

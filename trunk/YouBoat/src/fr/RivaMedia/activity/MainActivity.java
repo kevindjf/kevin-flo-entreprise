@@ -362,12 +362,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onBackPressed() {
 
 		if(!_slider.isClosed()){
-			_slider.toggleDrawer();
+			fermerSlider();
 		}else{
 			FragmentManager manager = getSupportFragmentManager();
 
@@ -387,7 +386,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public boolean onKeyDown(int keycode, KeyEvent event ) {
 		if(keycode == KeyEvent.KEYCODE_MENU){
 			if(_slider != null)
-				_slider.toggleLeftDrawer();
+				ouvrirSlider();
 		}
 		return super.onKeyDown(keycode,event);  
 	}

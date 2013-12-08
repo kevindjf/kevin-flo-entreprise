@@ -19,7 +19,9 @@ import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
 
 import fr.RivaMedia.R;
+import fr.RivaMedia.activity.MainActivity;
 import fr.RivaMedia.adapter.AlerteListAdapter;
+import fr.RivaMedia.fragments.MesAlertes;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Alerte;
 import fr.RivaMedia.model.Annonce;
@@ -33,7 +35,7 @@ public class TabMesAlertesFormulaires extends Tab {
 
 	View  _view;
 	Activity _activity;
-	FragmentNormal _fragment;
+	MesAlertes _fragment;
 
 	List<Alerte> _alertes = new ArrayList<Alerte>();
 	SwipeListView _liste = null;
@@ -41,7 +43,7 @@ public class TabMesAlertesFormulaires extends Tab {
 
 	AsyncTask<Void, Void, Void> task = null;
 
-	public TabMesAlertesFormulaires(String titre, Activity activity, FragmentNormal fragment){
+	public TabMesAlertesFormulaires(String titre, Activity activity, MesAlertes fragment){
 		super(titre,activity.getResources().getDrawable(R.drawable.logo_vendre_blanc));
 		this._activity = activity;
 		this._fragment = fragment;
@@ -68,18 +70,21 @@ public class TabMesAlertesFormulaires extends Tab {
 			_view.findViewById(R.id.vide).setVisibility(View.GONE);
 
 		}
+		
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 		if(getActivity() != null){
+			_fragment.afficherProgressFormulaires(true);
 			getActivity().runOnUiThread(new Runnable(){
 				public void run(){
 					if(task == null){
 						task = new ChargerAlertesTask();
 						task.execute();
 					}
+					_fragment.afficherProgressFormulaires(false);
 				}
 			});
 		}

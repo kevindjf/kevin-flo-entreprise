@@ -245,7 +245,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				_modele,
 				_energie,
 				_puissance,
-				_intitule
+				_intitule,
+				
+				_description
 		};
 
 		_vuesBateaux = new View[]{
@@ -304,16 +306,20 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				vendre_type,
 				vendre_categorie,
 				vendre_marque,
-				vendre_annee,
+				vendre_modele ,
 				vendre_localisation,
 				vendre_prix,
+				nombre_couchette,
+				nombre_cabine,
+				nombre_salle_de_bain,
 				vendre_nombre_moteur,
 				vendre_puissance,
 				vendre_marque_moteur_id,
 				vendre_annee_moteur,
 				vendre_description,
 				vendre_energie_id,
-				vendre_intitule
+				vendre_intitule,
+				vendre_annee
 		};
 
 
@@ -346,7 +352,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_boutonBateaux.setOnClickListener(this);
 		_boutonMoteurs.setOnClickListener(this);
 		_boutonDivers.setOnClickListener(this);	
-		
+
 		_ajouterPhoto.setOnClickListener(this);
 		_etapeSuivante.setOnClickListener(this);
 		_longueurUnite.setOnClickListener(this);
@@ -605,15 +611,21 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_pagesAdapter.notifyDataSetChanged();
 		System.gc();
 		_layoutPhotos.setVisibility(View.GONE);
+		
+		_boutonBateaux.setSelected(false);
+		_boutonDivers.setSelected(false);
+		_boutonMoteurs.setSelected(false);
 	}
 
 	public void afficherTypeVente(){
-		if(typeVente.equals(Constantes.BATEAUX))
-			vendreBateaux();
-		if(typeVente.equals(Constantes.MOTEURS))
-			vendreMoteurs();
-		if(typeVente.equals(Constantes.ACCESSOIRES))
-			vendreDivers();
+		if(typeVente != null){
+			if(typeVente.equals(Constantes.BATEAUX))
+				vendreBateaux();
+			if(typeVente.equals(Constantes.MOTEURS))
+				vendreMoteurs();
+			if(typeVente.equals(Constantes.ACCESSOIRES))
+				vendreDivers();
+		}
 	}
 
 	public void vendreBateaux(){
@@ -752,10 +764,10 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 			Toast.makeText(getActivity(), getString(R.string.veuillez_ajouter_une_photo), Toast.LENGTH_SHORT).show();
 			return null;
 		}
-		
+
 		// Bateaux
 		if(typeVente.equals(Constantes.BATEAUX)){
-			
+
 			Net.add(donnees,Constantes.VENDRE_TYPEGET, Constantes.VENDRE_TYPEGET_BATEAU);
 
 			if(vendre_type == null){
@@ -785,8 +797,8 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 					Constantes.VENDRE_MODELE,CHANTIER_MODELE,
 					Constantes.VENDRE_PRIX,vendre_prix
 					);
-			
-			
+
+
 
 			nombre_couchette = ((EditText)_nombreCabines.findViewById(R.id.text)).getText().toString();
 			if(nombre_couchette != null && nombre_couchette.length()>0){
@@ -847,7 +859,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		}else if(typeVente.equals(Constantes.MOTEURS)){
 
 			Net.add(donnees,Constantes.VENDRE_TYPEGET, Constantes.VENDRE_TYPEGET_MOTEUR);
-			
+
 			// MOTEUR
 			if(vendre_type == null){
 				Toast.makeText(getActivity(), getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -890,7 +902,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 					Constantes.VENDRE_PUISSANCE_MOTEUR,((EditText)_puissance.findViewById(R.id.text)).getText().toString().trim(),
 					Constantes.VENDRE_PRIX,vendre_prix
 					);
-			
+
 			Log.e("MARQUE_MOTEUR :",vendre_marque_moteur_id);
 
 			if(((EditText)_annee.findViewById(R.id.text)).getText().length() > 0)
@@ -905,7 +917,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				Net.add(donnees,Constantes.VENDRE_ENERGIE_ID,vendre_energie_id);
 
 		}else if(typeVente.equals(Constantes.ACCESSOIRES)){
-			
+
 			Net.add(donnees,Constantes.VENDRE_TYPEGET, Constantes.VENDRE_TYPEGET_DIVERS);
 
 			if(vendre_type == null){
@@ -951,9 +963,11 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	@Override
 	public void effacer() {
+		typeVente = null;
 		reset();
-		afficherTypeVente();
+		//afficherTypeVente();
 		ajouterListeners();
+		afficherPub();
 	}
 
 	@Override

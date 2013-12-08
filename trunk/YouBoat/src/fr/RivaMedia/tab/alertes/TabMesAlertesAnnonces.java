@@ -24,6 +24,7 @@ import fr.RivaMedia.adapter.AnnonceListAdapter;
 import fr.RivaMedia.comparator.AnnonceDateComparator;
 import fr.RivaMedia.comparator.AnnoncePrixComparator;
 import fr.RivaMedia.comparator.AnnoncePrixParLongueurComparator;
+import fr.RivaMedia.fragments.MesAlertes;
 import fr.RivaMedia.fragments.core.FragmentNormal;
 import fr.RivaMedia.model.Annonce;
 import fr.RivaMedia.net.NetAnnonce;
@@ -37,7 +38,7 @@ public class TabMesAlertesAnnonces extends Tab {
 
 	View  _view;
 	Activity _activity;
-	FragmentNormal _fragment;
+	MesAlertes _fragment;
 
 	private AlertesManager _alertesManager;
 	View _bouton_supprimer;
@@ -49,7 +50,7 @@ public class TabMesAlertesAnnonces extends Tab {
 
 	AsyncTask<Void, Void, Void> task = null;
 
-	public TabMesAlertesAnnonces(String titre, Activity activity, FragmentNormal fragment){
+	public TabMesAlertesAnnonces(String titre, Activity activity, MesAlertes fragment){
 		super(titre,activity.getResources().getDrawable(R.drawable.logo_vendre_blanc));
 		this._activity = activity;
 		this._fragment = fragment;
@@ -62,6 +63,7 @@ public class TabMesAlertesAnnonces extends Tab {
 		_view = inflater.inflate(R.layout.liste_swipe_views, container, false);
 
 		if(task == null){
+			_fragment.afficherProgressAnnonces(true);
 			task = new ChargerAnnoncesTask();
 			task.execute();
 		}
@@ -188,6 +190,7 @@ public class TabMesAlertesAnnonces extends Tab {
 					chargerAnnonces();
 					afficherProgress = false;
 					_fragment.afficherProgress(afficherProgress);
+					_fragment.afficherProgressAnnonces(false);
 				}
 
 			});
