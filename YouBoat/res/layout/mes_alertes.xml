@@ -16,29 +16,57 @@
         android:layout_height="50dip"
         android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/mes_alertes_bouton_annonces"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/onglet_blanc_select_bleu"
-            android:orientation="vertical"
-            android:text="@string/instant_match_chevron"
-            android:textColor="@color/couleur_onglet_claire"
-            android:textStyle="bold" >
-        </Button>
+            android:layout_weight="1" >
 
-        <Button
-            android:id="@+id/mes_alertes_bouton_formulaires"
+            <Button
+                android:id="@+id/mes_alertes_bouton_annonces"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/onglet_blanc_select_bleu"
+                android:orientation="vertical"
+                android:text="@string/instant_match_chevron"
+                android:textColor="@color/couleur_onglet_claire"
+                android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/mes_alertes_bouton_annonces_progress"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dip" />
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/onglet_bleu_select_blanc"
-            android:orientation="vertical"
-            android:text="@string/mes_alertes_chevron"
-            android:textColor="@color/couleur_onglet_blanc"
-            android:textStyle="bold" >
-        </Button>
+            android:layout_weight="1" >
+
+            <Button
+                android:id="@+id/mes_alertes_bouton_formulaires"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/onglet_bleu_select_blanc"
+                android:orientation="vertical"
+                android:text="@string/mes_alertes_chevron"
+                android:textColor="@color/couleur_onglet_blanc"
+                android:textStyle="bold" />
+
+            <ProgressBar
+                android:id="@+id/mes_alertes_bouton_formulaires_progress"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="5dip" />
+        </RelativeLayout>
     </LinearLayout>
 
     <RelativeLayout
