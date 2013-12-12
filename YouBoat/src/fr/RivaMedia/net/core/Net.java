@@ -141,15 +141,18 @@ public class Net {
 
 		add(donneesPost,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
 
-		//HttpClient httpClient = new DefaultHttpClient();
+		HttpClient httpClient = new DefaultHttpClient();
 
+		/*
 		CacheConfig cacheConfig = new CacheConfig();  
 		cacheConfig.setMaxCacheEntries(1000);
 		cacheConfig.setMaxObjectSizeBytes(8192);
+		
 
 		DefaultHttpClient realClient = new DefaultHttpClient();
 		realClient.addResponseInterceptor(MakeCacheable.INSTANCE, 0); // This goes first
 		CachingHttpClient httpClient = new CachingHttpClient(realClient, cacheConfig);
+		*/
 
 		try {
 

@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.http.HttpResponseCache;
+//import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,7 +35,7 @@ public class SplashScreenActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
-		Net.enableHttpResponseCache(this);
+		//Net.enableHttpResponseCache(this);
 		
 		findViewById(R.id.splash_progress).setVisibility(View.VISIBLE);
 		findViewById(R.id.splash_progress).setEnabled(true);
@@ -190,9 +190,10 @@ public class SplashScreenActivity extends Activity{
 	@SuppressLint("NewApi")
 	protected void onStop() {
 		super.onStop();
-		HttpResponseCache cache = HttpResponseCache.getInstalled();
+		/*HttpResponseCache cache = HttpResponseCache.getInstalled();
 		if (cache != null) {
 			cache.flush();
 		}
+		*/
 	}
 }
