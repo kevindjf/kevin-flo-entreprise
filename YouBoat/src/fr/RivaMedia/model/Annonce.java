@@ -47,6 +47,8 @@ public class Annonce {
     
     private String apartirDe;
     
+    private String logoVendeur;
+    
 	public String getNumero() {
 		return numero;
 	}
@@ -265,6 +267,12 @@ public class Annonce {
 	}
 	public void setApartirDe(String apartirDe) {
 		this.apartirDe = apartirDe;
+	}
+	public String getLogoVendeur() {
+		return logoVendeur;
+	}
+	public void setLogoVendeur(String logoVendeur) {
+		this.logoVendeur = logoVendeur;
 	}
     
     

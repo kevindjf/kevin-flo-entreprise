@@ -88,6 +88,9 @@ public class AnnonceXmlParser extends XmlParser {
 				else if(tag.equals("idclient")){
 					annonce.setIdClient(getString());
 				}
+				else if(tag.equals("logo")){
+					annonce.setLogoVendeur(getString());
+				}
 				else if(tag.equals("typeclient")){
 					annonce.setTypeClient(getString());
 				}
