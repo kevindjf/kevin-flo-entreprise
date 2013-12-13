@@ -284,11 +284,6 @@ public class Net {
 			Log.d("NET",SITE+url);
 
 			HttpResponse httpReponse = httpClient.execute(requete);
-
-			//StatusLine statusLine = httpReponse.getStatusLine();
-			//Log.e("WYDEEZ",statusLine.toString());
-
-			//String response = responseToString(httpReponse.getEntity());
 			
 			StatusLine statusLine = httpReponse.getStatusLine();
 			Log.e("NET_ST",statusLine.toString());
