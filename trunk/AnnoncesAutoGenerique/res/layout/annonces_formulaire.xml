@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/couleur_fond"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EEE"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_type"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/type_star" />
+
+            <TextView
+                android:id="@+id/text"
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/requis" />
+
+            <ImageView
+                android:id="@+id/indicator"
+                style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_categorie"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/categorie" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_prix"
+            style="@style/formulaire_cellule"
+            android:layout_marginTop="10dip" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/prix" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_longueur"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/longueur" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_chantier_modele"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/chantier_modele" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_puissance"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/puissance" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_marque"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/marque" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_etat"
+            style="@style/formulaire_cellule"
+            android:layout_marginTop="10dip" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/etat" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_localisation"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/localisation" />
+
+            <TextView
+                android:id="@id/text"
+                style="@style/formulaire_cellule_texte"
+                android:hint="@string/facultatif" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!--
+        <Button
+            android:id="@+id/annonces_formulaire_bouton_rechercher"
+            style="@style/bouton_rechercher"
+            android:visibility="gone" />
+    -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dip" >
+
+        <View
+            android:id="@+id/annonces_formulaire_centre"
+            android:layout_width="0dip"
+            android:layout_height="0dip"
+            android:layout_centerInParent="true" />
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_bouton_rechercher"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/annonces_formulaire_centre"
+            android:background="@drawable/fond_bleu_select_bleu"
+            android:text="@string/rechercher"
+            android:textColor="@color/couleur_texte_blanc" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/annonces_formulaire_bouton_rechercher_image"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/loupe" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/annonces_formulaire_bouton_rechercher_image"
+                    android:layout_marginTop="5dip"
+                    android:gravity="center"
+                    android:text="@string/rechercher"
+                    android:textColor="@color/couleur_texte_blanc"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_bouton_alertes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/annonces_formulaire_centre"
+            android:background="@drawable/fond_bleu_select_bleu2"
+            android:text="@string/rechercher"
+            android:textColor="@color/couleur_texte_blanc" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/annonces_formulaire_bouton_alertes_image"
+                    android:layout_width="30dip"
+                    android:layout_height="30dip"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/clock_blanc" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/annonces_formulaire_bouton_alertes_image"
+                    android:layout_marginTop="5dip"
+                    android:gravity="center"
+                    android:text="Ajouter à mes alertes"
+                    android:textColor="@color/couleur_texte_blanc"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_formulaire_ou"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_centerInParent="true" >
+
+            <TextView
+                android:id="@+id/annonces_formulaire_nombre_annonces"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                 android:background="@drawable/cercle_bleu"
+                android:paddingBottom="2dip"
+                android:paddingTop="2dip"
+                android:text=""
+                android:textSize="10sp"
+                android:textColor="@color/couleur_texte_blanc"
+                 />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

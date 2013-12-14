@@ -1,0 +1,9 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/custom_thum_state_pressed" 
+        android:state_pressed="true"/>
+
+    <item android:drawable="@drawable/multiple_thumb" 
+        android:state_selected="false" />
+
+</selector>

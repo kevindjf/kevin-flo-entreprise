@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/couleur_fond"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/email_layout_haut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dip"
+                android:background="@color/couleur_3"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/email_image"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/splash_screen_v2_logo_petit" />
+
+                <TextView
+                    android:id="@+id/email_texte"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="5dip"
+                    android:text="texte"
+                    android:textColor="@color/couleur_texte_blanc"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.7dp"
+                android:background="@color/couleur_gris_supprimer_swipe" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:orientation="horizontal"
+                android:paddingLeft="10dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/email_dots"
+                    android:textColor="@color/couleur_texte_noir" />
+
+                <EditText
+                    android:id="@+id/email_adresse_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="55dip"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/votre_adresse_email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="10dip"
+                    android:textColor="@color/couleur_3"
+                    android:textSize="15sp" >
+                </EditText>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.7dp"
+                android:background="@color/couleur_gris_supprimer_swipe" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:orientation="horizontal"
+                android:paddingLeft="10dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/nom_dots"
+                    android:textColor="@color/couleur_texte_noir" />
+
+                <EditText
+                    android:id="@+id/email_nom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="55dip"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/nom"
+                    android:paddingLeft="10dip"
+                    android:textColor="@color/couleur_3"
+                    android:textSize="15sp" >
+                </EditText>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.7dp"
+                android:background="@color/couleur_gris_supprimer_swipe" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:orientation="horizontal"
+                android:paddingLeft="10dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/telephone_dots"
+                    android:textColor="@color/couleur_texte_noir" />
+
+                <EditText
+                    android:id="@+id/email_telephone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dip"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/telephone"
+                    android:inputType="phone"
+                    android:paddingLeft="10dip"
+                    android:textColor="@color/couleur_3"
+                    android:textSize="15sp" >
+                </EditText>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.7dp"
+                android:background="@color/couleur_gris_supprimer_swipe" />
+
+            <RelativeLayout
+                android:id="@+id/email_departement"
+                android:layout_width="match_parent"
+                android:layout_height="40dip"
+                android:orientation="horizontal"
+                android:paddingLeft="10dip"
+                android:paddingRight="10dip" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/departement_dots"
+                    android:textColor="@color/couleur_texte_noir" />
+
+                <EditText
+                    android:id="@+id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dip"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/departement"
+                    android:inputType="none"
+                    android:paddingLeft="10dip"
+                    android:textColor="@color/couleur_3"
+                    android:textSize="15sp" >
+                </EditText>
+
+                <ImageView style="@style/formulaire_cellule_indicator" android:visibility="gone"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0.7dp"
+                android:background="@color/couleur_gris_supprimer_swipe" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/email_bouton_envoyer"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/fond_bleu_select_bleu"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:text="Envoyer"
+            android:textColor="@color/couleur_texte_blanc"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/email_layout_haut"
+            android:layout_above="@+id/email_bouton_envoyer"
+            android:padding="10dip" >
+
+            <EditText
+                android:id="@+id/email_message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:gravity="top"
+                android:hint="..."
+                android:inputType="textMultiLine"
+                android:minHeight="150dip"
+                android:textColor="@color/couleur_texte_noir"
+                
+                 >
+            </EditText>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>

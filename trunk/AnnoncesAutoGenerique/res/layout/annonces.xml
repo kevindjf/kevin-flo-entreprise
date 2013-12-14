@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/couleur_1"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:minHeight="180dip"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/annonces_aujourd_hui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" 
+            android:layout_alignParentBottom="true"
+            android:padding="3dip"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/actuellement"
+                android:textColor="@color/_blanc"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/annonces_aujourd_hui_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:layout_marginBottom="4dip"
+                android:gravity="center"
+                android:text="00000000"
+                android:textColor="@color/_blanc"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/annonces_small"
+                android:textColor="@color/_blanc"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/annonces_layout_logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/annonces_aujourd_hui"
+            android:padding="30dip" >
+
+            <ImageView
+                android:id="@+id/annonces_logo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:src="@drawable/spash_screen_cercle" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_bloc"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/_gris_clair"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="3dip" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:id="@+id/annonces_bouton_bateaux_et_voiliers"
+                style="@style/annonces_menu" >
+
+                <ImageView
+                    style="@style/annonces_menu_image"
+                    android:src="@drawable/logo_annonces_bateaux_2" />
+
+                <TextView
+                    style="@style/annonces_menu_texte"
+                    android:text="@string/bateaux_et_voiliers" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/annonces_menu_cerlce_layout" >
+
+                <RelativeLayout style="@style/annonces_menu_cerlce" >
+
+                    <TextView
+                        android:id="@+id/annonces_nb_annonces_bateaux"
+                        style="@style/annonces_menu_cerlce_texte" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="3dip"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:id="@+id/annonces_bouton_moteurs"
+                style="@style/annonces_menu" >
+
+                <ImageView
+                    style="@style/annonces_menu_image"
+                    android:src="@drawable/logo_moteur_2" />
+
+                <TextView
+                    style="@style/annonces_menu_texte"
+                    android:text="@string/moteurs_hb_lb" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/annonces_menu_cerlce_layout" >
+
+                <RelativeLayout style="@style/annonces_menu_cerlce" >
+
+                    <TextView
+                        android:id="@+id/annonces_nb_annonces_moteurs"
+                        style="@style/annonces_menu_cerlce_texte" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="3dip"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:id="@+id/annonces_bouton_accessoires_et_divers"
+                style="@style/annonces_menu" >
+
+                <ImageView
+                    style="@style/annonces_menu_image"
+                    android:src="@drawable/logo_accessoires_2" />
+
+                <TextView
+                    style="@style/annonces_menu_texte"
+                    android:text="@string/accessoires_et_divers" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/annonces_menu_cerlce_layout" >
+
+                <RelativeLayout style="@style/annonces_menu_cerlce" >
+
+                    <TextView
+                        android:id="@+id/annonces_nb_annonces_accessoires"
+                        style="@style/annonces_menu_cerlce_texte" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

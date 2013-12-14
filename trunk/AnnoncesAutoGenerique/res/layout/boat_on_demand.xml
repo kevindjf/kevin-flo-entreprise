@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/couleur_3"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:text="@string/on_demand_big"
+            android:textColor="@color/couleur_texte_blanc"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/couleur_fond" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:gravity="center"
+                    android:text="@string/description_boat_on_demand"
+                    android:textColor="@color/couleur_texte_noir"
+                    android:background="@color/couleur_3"
+                    android:paddingBottom="5dip"
+                     />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dip"
+                    android:background="@color/_gris_clair" />
+
+                <LinearLayout style="@style/formulaire_separator" >
+
+                    <TextView
+                        style="@style/formulaire_separator_titre"
+                        android:text="@string/generalites" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_type"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/type_star" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/requis" />
+
+                    <ImageView style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_categorie"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/categorie_star" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/requis" />
+
+                    <ImageView style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_chantier_modele"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/chantier_modele" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/facultatif" />
+
+                    <ImageView style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_etat"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/etat" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/facultatif" />
+
+                    <ImageView style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <LinearLayout style="@style/formulaire_separator" >
+
+                    <TextView
+                        style="@style/formulaire_separator_titre"
+                        android:text="@string/caracteristiques" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_taille"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/taille_star" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/requis" />
+
+                    <ImageView style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_lieu"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/lieu" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/facultatif" />
+
+                    <ImageView style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_budget"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/budget_star" />
+
+                    <EditText
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/requis"
+                        android:inputType="number" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_commentaire"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/commentaire" />
+
+                    <EditText
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/facultatif" />
+                </RelativeLayout>
+
+                <LinearLayout style="@style/formulaire_separator" >
+
+                    <TextView
+                        style="@style/formulaire_separator_titre"
+                        android:text="@string/reprise_de_votre_bateau" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/formulaire_separator" >
+
+                    <TextView
+                        style="@style/formulaire_separator_sous_titre"
+                        android:text="@string/decrivez_le_bateau_que_vous_possedez" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_posseder_type"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/type" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/facultatif" />
+
+                    <ImageView style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_posseder_categorie"
+                    style="@style/formulaire_cellule"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/categorie" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/facultatif" />
+
+                    <ImageView style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_posseder_chantier_modele"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/chantier_modele" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/facultatif" />
+
+                    <ImageView style="@style/formulaire_cellule_indicator" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/boat_on_demand_posseder_prix_cession"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/prix_de_cession" />
+
+                    <EditText
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:hint="@string/facultatif"
+                        android:inputType="number" />
+                </RelativeLayout>
+
+                <RelativeLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom">
+                <Button
+                    android:id="@+id/boat_on_demand_etape_suivante"
+                    style="@style/bouton_rechercher" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>
