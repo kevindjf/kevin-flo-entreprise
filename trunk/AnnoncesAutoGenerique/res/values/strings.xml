@@ -33,11 +33,16 @@
     <string name="bateaux">Bateaux</string>
     <string name="bateau_a_moteur">Bateaux à Moteur</string>
     <string name="bateaux_et_voiliers">BATEAUX &amp; VOILIERS</string>
+    <string name="boite_de_vitesse">Boîte de vitesses</string>
     <string name="budget">Budget</string>
     <string name="budget_star">Budget *</string>
     <string name="cabines">Cabines</string>
     <string name="cancel">Cancel</string>
     <string name="caracteristiques">CARACTERISTIQUES</string>
+    <string name="caracteristiques_vehicule">CARACTERISTIQUES DU VEHICULE</string>
+    <string name="caracteristiques_vehicule_supplementaire">CARACTERISTIQUES SUPPLEMENTAIRES</string>
+    <string name="caracteristiques_annonce">CARACTERISTIQUES DE L\'ANNONCE</string>
+    <string name="carrosserie">Carrosserie</string>
     <string name="categorie">Catégorie </string>
     <string name="categorie_star">Catégorie *</string>
     <string name="chantier_modele">Chantier / Modele</string>
@@ -74,7 +79,7 @@
     <string name="email_dots">E-Mail :</string>
     <string name="email_envoye">E-Mail envoyé</string>
     <string name="email_star">E-Mail *</string>
-    <string name="energie">Diesel</string>
+    <string name="diesel">Diesel</string>
     <string name="energie">Energie</string>
     <string name="energie_star">Energie *</string>
     <string name="envoyer_un_email">Envoyer un email</string>
@@ -102,6 +107,7 @@
     <string name="instant_match_chevron">Instant Match &gt;</string>
     <string name="intitule">Intutilé</string>
     <string name="km_autour_de">km autour de</string>
+    <string name="km_max">Km Max</string>
     <string name="languedoc_roussillon">Languedoc/Roussillon</string>
     <string name="largeur">Largeur</string>
     <string name="le_vendeur">Le vendeur</string>
@@ -115,6 +121,7 @@
     <string name="marque">Marque</string>
     <string name="marque_star">Marque *</string>
     <string name="marque_modele_star">Marque/Modèle *</string>
+    <string name="marque_modele">Marque/Modèle</string>
     <string name="marque_du_moteur">Marque du moteur</string>
     <string name="mes_annonces">Mes annonces</string>
     <string name="mes_alertes">Mes alertes</string>
@@ -125,6 +132,7 @@
     <string name="min">Min :</string>
     <string name="modele_star">Modèle *</string>
     <string name="moins">-</string>
+    <string name="monGarage">Mon garage</string>
     <string name="moteur">Moteur</string>
     <string name="moteurs">Moteurs</string>
     <string name="moteurs_hb_lb">MOTEURS HB / IB</string>
@@ -136,6 +144,7 @@
     <string name="nom_star">Nom *</string>
     <string name="nombres_heures">Nb Heures</string>
     <string name="nombre_moteur">Nombre Moteur</string>
+    <string name="nombre_porte">Nb Portes</string>
     <string name="nomsociete">Rivamedia</string>
     <string name="non">Non</string>
     <string name="nous_contacter">Nous contacter</string>

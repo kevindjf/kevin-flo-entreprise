@@ -18,8 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/logo_youboat_slider"
-            android:padding="15dip" />
+            android:padding="15dip"
+            android:src="@drawable/logo_youboat_slider" />
     </RelativeLayout>
 
     <LinearLayout
@@ -44,7 +44,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_annonces_blanc" />
+                        android:src="@drawable/home" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -57,7 +57,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_annonces_blanc" />
+                        android:src="@drawable/car" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -100,7 +100,20 @@
 
                     <TextView
                         style="@style/slider_element_texte"
-                        android:text="@string/favoris" />
+                        android:text="@string/monGarage" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_mes_alertes"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/logo_mes_alertes_blanc" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/mes_alertes" />
                 </LinearLayout>
 
                 <LinearLayout

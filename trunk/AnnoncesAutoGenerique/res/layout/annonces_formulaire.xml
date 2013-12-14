@@ -2,173 +2,189 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/couleur_fond"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EEE"
-        android:orientation="vertical"
-        android:padding="10dip" >
+        android:background="@color/couleur_fond" >
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_type"
-            style="@style/formulaire_cellule" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/type_star" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dip"
+                android:background="@color/_gris_clair" />
 
-            <TextView
-                android:id="@+id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/requis" />
+            <LinearLayout style="@style/formulaire_separator" >
 
-            <ImageView
-                android:id="@+id/indicator"
-                style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
+                <TextView
+                    style="@style/formulaire_separator_titre"
+                    android:text="@string/caracteristiques_vehicule" />
+            </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_categorie"
-            style="@style/formulaire_cellule" >
+            <RelativeLayout
+                android:id="@+id/annonces_formulaire_carrosserie"
+                style="@style/formulaire_cellule" >
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/categorie" />
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/carrosserie" />
 
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
+                <TextView
+                    android:id="@+id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
 
-            <ImageView style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_prix"
-            style="@style/formulaire_cellule"
-            android:layout_marginTop="10dip" >
+            <RelativeLayout
+                android:id="@+id/annonces_formulaire_marque_modele"
+                style="@style/formulaire_cellule" >
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/prix" />
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/marque_modele" />
 
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
 
-            <ImageView style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_longueur"
-            style="@style/formulaire_cellule" >
+            <RelativeLayout
+                android:id="@+id/annonces_formulaire_energie"
+                style="@style/formulaire_cellule" >
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/longueur" />
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/energie" />
 
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
 
-            <ImageView style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_chantier_modele"
-            style="@style/formulaire_cellule" >
+            <LinearLayout style="@style/formulaire_separator" >
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/chantier_modele" />
+                <TextView
+                    style="@style/formulaire_separator_titre"
+                    android:text="@string/caracteristiques_vehicule_supplementaire" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
+            <RelativeLayout
+                android:id="@+id/annonces_formulaire_boite_vitesse"
+                style="@style/formulaire_cellule" >
 
-            <ImageView style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/boite_de_vitesse" />
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_puissance"
-            style="@style/formulaire_cellule" >
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/puissance" />
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
+            <RelativeLayout
+                android:id="@+id/annonces_formulaire_nb_porte"
+                style="@style/formulaire_cellule" >
 
-            <ImageView style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/nombre_porte" />
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_marque"
-            style="@style/formulaire_cellule" >
+                <EditText
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:hint="@string/requis"
+                    android:inputType="number" />
+            </RelativeLayout>
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/marque" />
+            <RelativeLayout
+                android:id="@+id/annonces_formulaires_annee"
+                style="@style/formulaire_cellule" >
 
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/annee" />
 
-            <ImageView style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_etat"
-            style="@style/formulaire_cellule"
-            android:layout_marginTop="10dip" >
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/etat" />
+            <RelativeLayout
+                android:id="@+id/annonces_formulaires_km_max"
+                style="@style/formulaire_cellule" >
 
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/km_max" />
 
-            <ImageView style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_localisation"
-            style="@style/formulaire_cellule" >
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>            
 
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/localisation" />
+			<LinearLayout style="@style/formulaire_separator" >
 
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
+                <TextView
+                    style="@style/formulaire_separator_titre"
+                    android:text="@string/caracteristiques_annonce" />
+            </LinearLayout>
 
-            <ImageView style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
-    </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/annonces_formulaires_prix"
+                style="@style/formulaire_cellule" >
 
-    <!--
-        <Button
-            android:id="@+id/annonces_formulaire_bouton_rechercher"
-            style="@style/bouton_rechercher"
-            android:visibility="gone" />
-    -->
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/prix" />
 
-    <RelativeLayout
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
+
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
+
+              <RelativeLayout
+                android:id="@+id/annonces_formulaires_departement"
+                style="@style/formulaire_cellule" >
+
+                <TextView
+                    style="@style/formulaire_cellule_titre"
+                    android:text="@string/departement" />
+
+                <TextView
+                    android:id="@id/text"
+                    style="@style/formulaire_cellule_texte"
+                    android:text="@string/facultatif" />
+
+                <ImageView style="@style/formulaire_cellule_indicator" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+  <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dip"
         android:layout_alignParentBottom="true"
@@ -258,14 +274,13 @@
                 android:id="@+id/annonces_formulaire_nombre_annonces"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/cercle_bleu"
                 android:gravity="center"
-                 android:background="@drawable/cercle_bleu"
                 android:paddingBottom="2dip"
                 android:paddingTop="2dip"
                 android:text=""
-                android:textSize="10sp"
                 android:textColor="@color/couleur_texte_blanc"
-                 />
+                android:textSize="10sp" />
         </RelativeLayout>
     </RelativeLayout>
 </RelativeLayout>
