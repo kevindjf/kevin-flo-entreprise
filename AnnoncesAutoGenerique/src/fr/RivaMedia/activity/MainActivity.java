@@ -21,8 +21,10 @@ import android.view.View;
 import com.navdrawer.SimpleSideDrawer;
 
 import fr.RivaMedia.R;
+import fr.RivaMedia.fragments.Accueil;
 import fr.RivaMedia.fragments.Actualites;
 import fr.RivaMedia.fragments.Annonces;
+import fr.RivaMedia.fragments.AnnoncesFormulaire;
 import fr.RivaMedia.fragments.Annuaire;
 import fr.RivaMedia.fragments.ContactPro;
 import fr.RivaMedia.fragments.Credit;
@@ -41,10 +43,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _header_effacer;
 	View _header_favoris;
 	View _header_trier;
-
+	
+	View _slider_accueil;
 	View _slider_annonces;
 	View _slider_vendre;
-	View _slider_on_demand;
+	View _slider_autotheque;
 	View _slider_actualites;
 	View _slider_annuaire;
 	View _slider_mes_annonces;
@@ -66,8 +69,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		ajouterVues();
 		charger();
 		ajouterListeners();
-
-		Net.enableHttpResponseCache(this);
 	}
 	public void afficherProgress(boolean afficher){
 		if(afficher)
@@ -85,6 +86,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_favoris = findViewById(R.id.header_favoris);
 		_header_trier = findViewById(R.id.header_tri);
 
+		_slider_accueil = findViewById(R.id.slider_accueil);
 		_slider_annonces = findViewById(R.id.slider_annonces);
 		_slider_actualites = findViewById(R.id.slider_actualites);
 		_slider_annuaire = findViewById(R.id.slider_annuaire);
@@ -93,9 +95,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_credits = findViewById(R.id.slider_credits);
 
 		_slider_elements = new View[]{
+				_slider_accueil,
 				_slider_annonces,
 				_slider_vendre,
-				_slider_on_demand,
+				_slider_autotheque,
 				_slider_actualites,
 				_slider_annuaire,
 				_slider_mes_annonces,
@@ -131,14 +134,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	@Override
 	public void onClick(View v) {
-
-		Log.d("ID",""+v.getId());
-
+		
 		switch(v.getId()){
 		case R.id.header_menu:
 			ouvrirSlider();
 			break;
 
+		case R.id.slider_accueil:
+			fermerSlider();
+			afficherAccueil();
+			break;
 		case R.id.slider_annonces:
 			fermerSlider();	
 			afficherAnnonces();
@@ -146,6 +151,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		case R.id.slider_actualites:
 			fermerSlider();		
 			afficherActualites();
+			break;
+		case R.id.slider_autotheque:
+			fermerSlider();
+			afficherAuthoteque();
 			break;
 		case R.id.slider_annuaire:
 			fermerSlider();		
@@ -168,12 +177,18 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 
-
+	public void afficherAccueil(){
+		ajouterFragment(new Accueil(),false);
+	}
+	
 	public void afficherAnnonces(){
-		ajouterFragment(new Annonces(),false);
+		ajouterFragment(new AnnoncesFormulaire(),false);
 	}
 	public void afficherActualites(){
 		ajouterFragment(new Actualites(),false);
+	}
+	public void afficherAuthoteque(){
+		ajouterFragment(new Authoteque(),false);
 	}
 	public void afficherAnnuaire(){
 		ajouterFragment(new Annuaire(),false);
