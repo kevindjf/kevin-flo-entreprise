@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/couleur_3"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/informations_layout_haut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dip" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            android:layout_marginBottom="5dip"
+            
+            android:src="@drawable/logo_youboat_slider" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:text="@string/achatetventebateaux"
+            android:textColor="@color/couleur_texte_blanc"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/informations_youboat_propose"
+            android:textColor="@color/couleur_texte_noir"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/informations_layout_bas"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/_blanc"
+        android:padding="10dip" >
+
+        <TextView
+            android:id="@+id/societe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="100dip"
+            android:text="@string/societe"
+            android:textColor="@color/couleur_texte_noir"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/nomsociete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/societe"
+            android:text="@string/nomsociete"
+            android:textColor="@color/couleur_texte_noir"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/societe"
+            android:layout_marginRight="100dip"
+            android:text="@string/version"
+            android:textColor="@color/couleur_texte_noir"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/numeroversion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/societe"
+            android:layout_toRightOf="@+id/version"
+            android:text="@string/numversion"
+            android:textColor="@color/couleur_texte_noir"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/couverture_magasine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/informations_layout_bas"
+        android:layout_below="@+id/informations_layout_haut"
+        android:src="@drawable/image_journal_pixelisee" 
+        
+       	android:layout_margin="10dip"/>
+
+</RelativeLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="localisation">
+        <item>@string/indifferent</item>
+        <item>@string/manche_bretagne</item>
+        <item>@string/atlantique</item>
+        <item>@string/paca</item>
+        <item>@string/languedoc_roussillon</item>
+        <item>@string/dom_tom</item>
+        <item>@string/france_autre_region</item>
+    </string-array>
+
+</resources>

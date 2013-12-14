@@ -1,0 +1,148 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="270dip"
+    android:layout_height="match_parent"
+    android:background="@color/couleur_slider"
+    android:orientation="vertical" >
+
+    <!-- android:background="#383C3F" -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dip"
+        android:layout_marginBottom="10dip"
+        android:background="@color/couleur_slider" >
+
+        <ImageView
+            android:id="@+id/slider_image_entete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo_youboat_slider"
+            android:padding="15dip" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/slider_accueil"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/logo_annonces_blanc" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/accueil" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_annonces"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/logo_annonces_blanc" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/annonces" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_actualites"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/logo_actualites_blanc" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/actualites" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_autotheque"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/logo_annuaire_blanc" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/autotheque" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_favoris"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/logo_mes_annonces_blanc" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/favoris" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_informations"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/logo_informations_blanc" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/informations" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_contact_pro"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/logo_contact_pro_blanc" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/contact_pro" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/slider_credits"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/smartphone" />
+
+                    <TextView
+                        style="@style/slider_element_texte"
+                        android:text="@string/credit" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>

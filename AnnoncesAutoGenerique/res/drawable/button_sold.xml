@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- pressed -->
+    <item android:state_pressed="true" android:color="@color/couleur_texte_blanc">
+        <color android:color="@color/couleur_1"/>
+    </item>
+    <!-- focused -->
+    <item android:state_focused="true" android:color="@color/couleur_texte_blanc"> <color android:color="@color/couleur_1"/>
+    </item>
+        <!-- selected -->
+    <item android:state_selected="true" android:color="@color/couleur_texte_blanc"> <color android:color="@color/couleur_1"/>
+    </item>
+    <!-- hovered -->
+    <item android:state_hovered="true" android:color="@color/couleur_texte_blanc"> <color android:color="@color/couleur_1"/>
+    </item>
+    <!-- checked -->
+    <item android:state_checked="true" android:color="@color/couleur_texte_blanc"> <color android:color="@color/couleur_1"/>
+    </item>
+    <!-- default -->
+    <item android:drawable="@color/_gris_clair" android:color="@color/couleur_texte_noir"/>
+
+</selector>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/_blanc" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/_blanc"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dip" >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dip"
+                    android:scaleType="center"
+                    android:src="@drawable/fond_credits" />
+
+                <ImageView
+                    android:id="@+id/credits_photo_petite"
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="150dip"
+                    android:src="@drawable/logo_rivamedia" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="RivaMedia, votre solution Web !"
+                android:textColor="#737373"
+                android:textSize="18dip" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dip"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip" >
+
+                <LinearLayout
+                    android:id="@+id/credits_email_rivamedia"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dip"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="1dip"
+                    android:background="@drawable/fond_bleu_select_bleu"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp" >
+
+                    <View
+                        android:layout_width="20dip"
+                        android:layout_height="20dip"
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/mail"
+                        android:text="appeler"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nous_contacter"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <SlidingDrawer
+        android:id="@+id/slidingDrawer1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:content="@+id/content"
+        android:handle="@+id/handle" >
+
+        <LinearLayout
+            android:id="@+id/handle"
+            android:layout_width="match_parent"
+            android:layout_height="40dip"
+            android:gravity="center_horizontal"
+            android:background="@color/_blanc"
+            android:orientation="vertical" >
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="@color/_gris_clair" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Les développeurs" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <include layout="@layout/credit" />
+        </LinearLayout>
+    </SlidingDrawer>
+
+</RelativeLayout>

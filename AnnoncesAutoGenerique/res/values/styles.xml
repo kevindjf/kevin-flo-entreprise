@@ -1,0 +1,218 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="formulaire_cellule">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dip</item>
+        <item name="android:background">@drawable/fond_blanc_select_bleu</item>
+        <item name="android:padding">5dip</item>
+    </style>
+
+    <style name="formulaire_cellule_vendeur">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:background">@color/couleur_fond</item>
+        <item name="android:padding">5dip</item>
+    </style>
+
+    <style name="formulaire_cellule_titre">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/couleur_texte_noir</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="formulaire_cellule_texte">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/couleur_texte_fonce</item>
+        <item name="android:layout_marginLeft">150dip</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="annonce_cellule">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:background">@drawable/fond_blanc_select_bleu</item>
+    </style>
+
+    <style name="annonce_cellule_texte">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/couleur_texte_fonce</item>
+        <item name="android:layout_marginLeft">110dip</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="formulaire_cellule_indicator">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@drawable/fleche_bleu</item>
+    </style>
+
+    <style name="formulaire_separator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/couleur_fond_claire</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">10dip</item>
+    </style>
+
+    <style name="formulaire_separator_titre">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/_gris_clair</item>
+        <item name="android:textColor">@color/couleur_texte_noir</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="formulaire_separator_sous_titre">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/couleur_texte_noir</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="bouton_rechercher">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dip</item>
+        <item name="android:layout_marginTop">10dip</item>
+        <item name="android:background">@drawable/button_fond_bleu</item>
+        <item name="android:text">@string/rechercher</item>
+        <item name="android:textColor">@color/couleur_texte_blanc</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="more_line">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="more_cell">
+        <item name="android:layout_width">100dip</item>
+        <item name="android:layout_height">80dip</item>
+        <item name="android:background">@drawable/buttonmore</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_margin">1dip</item>
+    </style>
+
+    <style name="more_cell_image">
+        <item name="android:layout_width">25dip</item>
+        <item name="android:layout_height">25dip</item>
+        <item name="android:layout_marginBottom">8dip</item>
+    </style>
+
+    <style name="more_cell_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/couleur_texte_blanc</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="slider_element">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">15dip</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/fond_noir_select_gris</item>
+    </style>
+
+    <style name="slider_element_texte">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/couleur_texte_claire</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="slider_element_image">
+        <item name="android:layout_width">20dip</item>
+        <item name="android:layout_height">20dip</item>
+        <item name="android:layout_marginRight">10dip</item>
+    </style>
+
+    <style name="CustomSeekBar" parent="android:Widget.SeekBar">
+        <item name="android:progressDrawable">@drawable/progressbar</item>
+        <item name="android:minHeight">2dip</item>
+        <item name="android:maxHeight">2dip</item>
+        <item name="android:thumb">@drawable/thumb_custom</item>
+        <item name="android:thumbOffset">0dip</item>
+    </style>
+
+    <style name="annonces_menu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/fond_blanc_select_vide</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="annonces_menu_image">
+        <item name="android:layout_width">60dip</item>
+        <item name="android:layout_height">60dip</item>
+        <item name="android:layout_marginLeft">10dip</item>
+    </style>
+
+    <style name="annonces_menu_texte">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/couleur_1</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_marginLeft">15dip</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="annonces_menu_cerlce">
+        <item name="android:layout_width">30dip</item>
+        <item name="android:layout_height">30dip</item>
+        <item name="android:layout_marginLeft">50dip</item>
+        <item name="android:layout_marginBottom">50dip</item>
+        <item name="android:background">@drawable/cercle_rouge</item>
+    </style>
+    
+        <style name="annonces_menu_cerlce_layout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="annonces_menu_cerlce_texte">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginTop">2dip</item>
+        <item name="android:text">1055</item>
+        <item name="android:textColor">@color/couleur_texte_blanc</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+</resources>
