@@ -285,7 +285,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 
 	public void afficherAnnoncesListe(List<NameValuePair> donneesFormulaire){
-		ajouterFragment(new AnnoncesListe(donneesFormulaire));
+	//	ajouterFragment(new AnnoncesListe(donneesFormulaire));
 	}
 
 	public void reset(){

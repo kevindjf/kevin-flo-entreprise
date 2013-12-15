@@ -27,10 +27,9 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		
 		ajouterListeners();
 		charger();
-
-		return _view;
-	}
 	
+		return _view;
+	}	
 	
 	@Override
 	public void charger() {
