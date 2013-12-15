@@ -1,254 +1,41 @@
 package fr.RivaMedia.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Annonce {
-	private String typeAnnonce;
+    
+	String id;
+	String idClient;
+	String categorie;
+	String marque;
+	String serie;
+	String finition;
+	String energie;
+	String annee;
+	String km;
+	String prix;
+	String departement;
+	String departementNum;
+	String photo;
 	
+	String transmission;
+	String puissanceDin;
+	String puissanceFisc;
+	String co2;
+	String nbPortes;
+	String couleurExt;
+	String couleurInt;
+	String garantie;
+	String reference;
+	String descriptif;
+	Client client;
+	List<String> photos;
 	
-	private String numero;
-	private String idClient;
-	private String title;
-	private String nomMoteur;
-	private String longueur;
-	private String annee;
-	private String categorie;
-	private String gpsLatitude;
-	private String gpsLongtitude;
-	private String typeClient;
-	private List<Lien> photos; //le nombre de photos
-	private String prix;
-    private String taxePrix;
-    private String pubDate;
-    private Lien lien;
-    private String type;
-    // utilise dans le tris des annonces
-    private int prixNumber;
-    private double tailleNumber;
-    
-    
-    private String lienAnnonce;
-    private String numeroVendeur;
-    private Moteur moteur;
-    private String etat;
-    private String largeur;
-    private String nbCabines;
-    private String nbCouchettes;
-    private String nbSallesDeBain;
-    private String garantie;
-    private String commentaire;
-    private String placeDePort;
-    private String taxe;
-    private String nbPhotos;
-    private Vendeur vendeur;
-    private List<String> equipement = new ArrayList<String>();
-    private List<String> electroniques = new ArrayList<String>();
-    
-    private String apartirDe;
-    
-    private String logoVendeur;
-    
-	public String getNumero() {
-		return numero;
-	}
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getNomMoteur() {
-		return nomMoteur;
-	}
-	public void setNomMoteur(String nomMoteur) {
-		this.nomMoteur = nomMoteur;
-	}
-	public String getLongueur() {
-		return longueur;
-	}
-	public void setLongueur(String longueur) {
-		this.longueur = longueur;
-	}
-	public String getAnnee() {
-		return annee;
-	}
-	public void setAnnee(String annee) {
-		this.annee = annee;
-	}
-	public String getCategorie() {
-		return categorie;
-	}
-	public void setCategorie(String categorie) {
-		this.categorie = categorie;
-	}
-	public String getGpsLatitude() {
-		return gpsLatitude;
-	}
-	public void setGpsLatitude(String gpsLatitude) {
-		this.gpsLatitude = gpsLatitude;
-	}
-	public String getGpsLongtitude() {
-		return gpsLongtitude;
-	}
-	public void setGpsLongtitude(String gpsLongtitude) {
-		this.gpsLongtitude = gpsLongtitude;
-	}
-	public String getTypeClient() {
-		return typeClient;
-	}
-	public void setTypeClient(String typeClient) {
-		this.typeClient = typeClient;
-	}
-	public List<Lien> getPhotos() {
-		return photos;
-	}
-	public void setPhotos(List<Lien> photos) {
-		this.photos = photos;
-	}
-	public String getPrix() {
-		return prix;
-	}
-	public void setPrix(String prix) {
-		this.prix = prix;
-	}
-	public String getTaxePrix() {
-		return taxePrix;
-	}
-	public void setTaxePrix(String taxePrix) {
-		this.taxePrix = taxePrix;
-	}
-	public String getPubDate() {
-		return pubDate;
-	}
-	public void setPubDate(String pubDate) {
-		this.pubDate = pubDate;
-	}
-	public Lien getLien() {
-		return lien;
-	}
-	public void setLien(Lien lien) {
-		this.lien = lien;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public int getPrixNumber() {
-		return prixNumber;
-	}
-	public void setPrixNumber(int prixNumber) {
-		this.prixNumber = prixNumber;
-	}
-	public double getTailleNumber() {
-		return tailleNumber;
-	}
-	public void setTailleNumber(double tailleNumber) {
-		this.tailleNumber = tailleNumber;
-	}
-	public String getLienAnnonce() {
-		return lienAnnonce;
-	}
-	public void setLienAnnonce(String lienAnnonce) {
-		this.lienAnnonce = lienAnnonce;
-	}
-	public String getNumeroVendeur() {
-		return numeroVendeur;
-	}
-	public void setNumeroVendeur(String numeroVendeur) {
-		this.numeroVendeur = numeroVendeur;
-	}
-	public Moteur getMoteur() {
-		return moteur;
-	}
-	public void setMoteur(Moteur moteur) {
-		this.moteur = moteur;
-	}
-	public String getEtat() {
-		return etat;
-	}
-	public void setEtat(String etat) {
-		this.etat = etat;
-	}
-	public String getLargeur() {
-		return largeur;
-	}
-	public void setLargeur(String largeur) {
-		this.largeur = largeur;
-	}
-	public String getNbCabines() {
-		return nbCabines;
-	}
-	public void setNbCabines(String nbCabines) {
-		this.nbCabines = nbCabines;
-	}
-	public String getNbCouchettes() {
-		return nbCouchettes;
-	}
-	public void setNbCouchettes(String nbCouchettes) {
-		this.nbCouchettes = nbCouchettes;
-	}
-	public String getNbSallesDeBain() {
-		return nbSallesDeBain;
-	}
-	public void setNbSallesDeBain(String nbSallesDeBain) {
-		this.nbSallesDeBain = nbSallesDeBain;
-	}
-	public String getGarantie() {
-		return garantie;
-	}
-	public void setGarantie(String garantie) {
-		this.garantie = garantie;
-	}
-	public String getCommentaire() {
-		return commentaire;
-	}
-	public void setCommentaire(String commentaire) {
-		this.commentaire = commentaire;
-	}
-	public String getPlaceDePort() {
-		return placeDePort;
-	}
-	public void setPlaceDePort(String placeDePort) {
-		this.placeDePort = placeDePort;
-	}
-	public String getTaxe() {
-		return taxe;
-	}
-	public void setTaxe(String taxe) {
-		this.taxe = taxe;
-	}
-	public String getNbPhotos() {
-		return nbPhotos;
-	}
-	public void setNbPhotos(String nbPhotos) {
-		this.nbPhotos = nbPhotos;
-	}
-	public Vendeur getVendeur() {
-		return vendeur;
-	}
-	public void setVendeur(Vendeur vendeur) {
-		this.vendeur = vendeur;
-	}
-	public List<String> getEquipement() {
-		return equipement;
-	}
-	public void getEquipement(List<String> equipement) {
-		this.equipement = equipement;
-	}
-	public String getTypeAnnonce() {
-		return typeAnnonce;
-	}
-	public void setTypeAnnonce(String typeAnnonce) {
-		this.typeAnnonce = typeAnnonce;
-	}
-	public void setEquipement(List<String> equipement) {
-		this.equipement = equipement;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getIdClient() {
 		return idClient;
@@ -256,24 +43,143 @@ public class Annonce {
 	public void setIdClient(String idClient) {
 		this.idClient = idClient;
 	}
-	public List<String> getElectroniques() {
-		return electroniques;
+	public String getCategorie() {
+		return categorie;
 	}
-	public void setElectroniques(List<String> electroniques) {
-		this.electroniques = electroniques;
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
 	}
-	public String getApartirDe() {
-		return apartirDe;
+	public String getMarque() {
+		return marque;
 	}
-	public void setApartirDe(String apartirDe) {
-		this.apartirDe = apartirDe;
+	public void setMarque(String marque) {
+		this.marque = marque;
 	}
-	public String getLogoVendeur() {
-		return logoVendeur;
+	public String getSerie() {
+		return serie;
 	}
-	public void setLogoVendeur(String logoVendeur) {
-		this.logoVendeur = logoVendeur;
+	public void setSerie(String serie) {
+		this.serie = serie;
 	}
-    
+	public String getFinition() {
+		return finition;
+	}
+	public void setFinition(String finition) {
+		this.finition = finition;
+	}
+	public String getEnergie() {
+		return energie;
+	}
+	public void setEnergie(String energie) {
+		this.energie = energie;
+	}
+	public String getAnnee() {
+		return annee;
+	}
+	public void setAnnee(String annee) {
+		this.annee = annee;
+	}
+	public String getKm() {
+		return km;
+	}
+	public void setKm(String km) {
+		this.km = km;
+	}
+	public String getPrix() {
+		return prix;
+	}
+	public void setPrix(String prix) {
+		this.prix = prix;
+	}
+	public String getDepartement() {
+		return departement;
+	}
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
+	public String getDepartementNum() {
+		return departementNum;
+	}
+	public void setDepartementNum(String departementNum) {
+		this.departementNum = departementNum;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getTransmission() {
+		return transmission;
+	}
+	public void setTransmission(String transmission) {
+		this.transmission = transmission;
+	}
+	public String getPuissanceDin() {
+		return puissanceDin;
+	}
+	public void setPuissanceDin(String puissanceDin) {
+		this.puissanceDin = puissanceDin;
+	}
+	public String getPuissanceFisc() {
+		return puissanceFisc;
+	}
+	public void setPuissanceFisc(String puissanceFisc) {
+		this.puissanceFisc = puissanceFisc;
+	}
+	public String getCo2() {
+		return co2;
+	}
+	public void setCo2(String co2) {
+		this.co2 = co2;
+	}
+	public String getNbPortes() {
+		return nbPortes;
+	}
+	public void setNbPortes(String nbPortes) {
+		this.nbPortes = nbPortes;
+	}
+	public String getCouleurExt() {
+		return couleurExt;
+	}
+	public void setCouleurExt(String couleurExt) {
+		this.couleurExt = couleurExt;
+	}
+	public String getCouleurInt() {
+		return couleurInt;
+	}
+	public void setCouleurInt(String couleurInt) {
+		this.couleurInt = couleurInt;
+	}
+	public String getGarantie() {
+		return garantie;
+	}
+	public void setGarantie(String garantie) {
+		this.garantie = garantie;
+	}
+	public String getReference() {
+		return reference;
+	}
+	public void setReference(String reference) {
+		this.reference = reference;
+	}
+	public String getDescriptif() {
+		return descriptif;
+	}
+	public void setDescriptif(String descriptif) {
+		this.descriptif = descriptif;
+	}
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	public List<String> getPhotos() {
+		return photos;
+	}
+	public void setPhotos(List<String> photos) {
+		this.photos = photos;
+	}
     
 }

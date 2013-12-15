@@ -1,76 +1,61 @@
 package fr.RivaMedia.model;
 
-import java.util.List;
-
 public class Actualite {
-	private String id;
-    private String title;
-    private String link;
-    private String imageAdress;
-    private String pubDate;
-    private String description;
-    private List<Lien> liens;
-    private String dateFormattee;
-    private String heureFormattee;
-    
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getLink() {
-		return link;
-	}
-	public void setLink(String link) {
-		this.link = link;
-	}
-	public String getImageAdress() {
-		return imageAdress;
-	}
-	public void setImageAdress(String imageAdress) {
-		this.imageAdress = imageAdress;
-	}
-	public String getPubDate() {
-		return pubDate;
-	}
-	public void setPubDate(String pubDate) {
-		this.pubDate = pubDate;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public List<Lien> getContener() {
-		return liens;
-	}
-	public void setContener(List<Lien> liens) {
-		this.liens = liens;
-	}
-	public String getDateFormattee() {
-		return dateFormattee;
-	}
-	public void setDateFormattee(String dateFormattee) {
-		this.dateFormattee = dateFormattee;
-	}
-	public String getHeureFormattee() {
-		return heureFormattee;
-	}
-	public void setHeureFormattee(String heureFormattee) {
-		this.heureFormattee = heureFormattee;
-	}
+	String id;
+	String titre;
+	String texte;
+	String tags;
+	String date;
+	String photo;
+	String categorie;
+	String video;
+	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public List<Lien> getLiens() {
-		return liens;
+	public String getTitre() {
+		return titre;
 	}
-	public void setLiens(List<Lien> liens) {
-		this.liens = liens;
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+	public String getTexte() {
+		return texte;
+	}
+	public void setTexte(String texte) {
+		this.texte = texte;
+	}
+	public String getTags() {
+		return tags;
+	}
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+	public String getVideo() {
+		return video;
+	}
+	public void setVideo(String video) {
+		this.video = video;
 	}
 }

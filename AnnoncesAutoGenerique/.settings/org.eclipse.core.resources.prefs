@@ -14,3 +14,5 @@ encoding//src/fr/RivaMedia/view/AlerteView.java=UTF-8
 encoding//src/fr/RivaMedia/view/AnnonceView.java=UTF-8
 encoding//src/fr/RivaMedia/view/VendeurView.java=UTF-8
 encoding//src/fr/RivaMedia/xml/ActualiteXmlParser.java=UTF-8
+encoding//src/fr/RivaMedia/xml/ClientParametreXmlParser.java=UTF-8
+encoding//src/fr/RivaMedia/xml/ClientXmlParser.java=UTF-8

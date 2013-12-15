@@ -238,6 +238,8 @@ public class Constantes {
 	public static final String URL_BASE = "http://www.annonces-automobile.com/script/xml/";
 	public static final String KEY = "key";
 	public static final String KEY_VALUE = "aA$Xm1";
+	public static final String KEY_CLIENT= "client";
+	public static final String CLIENT_VALUE= "639"; 
 	
 	public static final String URL_MARQUES = "marques.php";
 	public static final String MARQUES_TOUTES = "all";
@@ -250,8 +252,32 @@ public class Constantes {
 	public static final String MODELES_MARQUE_ID = "marque";
 	
 	public static final String URL_ANNONCES = "annonces.php";
+	public static final String URL_DERNIERES_ANNONCES = "dernieres-annonces";
+	public static final String URL_ANNONCE_DETAIL = "annonce.php";
+	public static final String ANNONCE_DETAIL_ID = "annonce";
 	
-	public static final String URL_ACTUALITES = "actualites.php";
+	public static final String ANNONCES_CATEGORIE_ID = "categorie";
+	public static final String ANNONCES_SERIE_ID = "serie";
+	public static final String ANNONCES_PRIX_MIN = "prix_min";
+	public static final String ANNONCES_PRIX_MAX = "prix_max";
+	public static final String ANNONCES_ENERGIE = "energie";
+	public static final String ANNONCES_TRANSMISSION = "transmision"; //« Inconnu », « Mecanique » ou « Automatique »
+	public static final String ANNONCES_TRANSMISSION_VALUE_INCONNU = "Inconnu"; 
+	public static final String ANNONCES_TRANSMISSION_VALUE_MECANIQUE = "Mecanique"; 
+	public static final String ANNONCES_TRANSMISSION_VALUE_AUTOMATIQUE = "Automatique"; 
+	public static final String ANNONCES_NB_PORTES = "nb_portes";
+	public static final String ANNONCES_ANNEE_MIN = "annee_min";
+	public static final String ANNONCES_ANNEE_MAX = "annee_max";
+	public static final String ANNONCES_KM = "km";
+	public static final String ANNONCES_DEPARTEMENT_ID = "departement";
+	public static final String ANNONCES_DEPARTEMENT_LIMITROPHE = "departement_limitrophe"; //true
+	public static final String ANNONCES_DEPARTEMENT_LIMITROPHE_VALUE = "true"; 
+	public static final String ANNONCES_FINITION = "finition"; 
+	
+	
+	public static final String URL_ACTUALITES_CLIENT = "actualites_client.php";
+	public static final String ACTUALITES_CLIENT_LIMIT_FROM = "limit_from";
+	public static final String ACTUALITES_CLIENT_LIMIT = "limit";
 	public static final String URL_ACTUALITE_DETAIL = "actualite.php";
 	public static final String ACTUALITE_DETAIL_ID = "actualite";
 	
@@ -259,6 +285,15 @@ public class Constantes {
 	public static final String URL_CLIENT_DETAIL = "client.php";
 	public static final String CLIENT_DETAIL_ID = "client";
 	
-	public static final String URL_DERNIERES_ANNONCES = "dernieres-annonces";
-	public static final String URL_PUB_AUTO_PROMO = "autopromo";
+	public static final String URL_AUTO_PROMO = "autopromo";
+	
+	
+	
+	public static final String URL_CLIENT_PARAMETRE = "client_parametre.php";
+	
+	
+	public static final String URL_EMAIL = "email_envoi_client.php";
+	
+	
+	
 }
