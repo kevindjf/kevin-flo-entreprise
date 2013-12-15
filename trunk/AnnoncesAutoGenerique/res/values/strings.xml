@@ -29,6 +29,7 @@
     <string name="aucun_favoris">Vous n\'avez aucune annonce favorite</string>
     <string name="aucun_alerte">Pas d\'annonce correspondante\n à vos alertes aujourd\'hui !</string>
     <string name="autotheque">Autothèque</string>
+    <string name="autotheque_capitalize">AUTOTHEQUE</string>
     <string name="aujourd_hui">Aujourd\'hui</string>
     <string name="bateaux">Bateaux</string>
     <string name="bateau_a_moteur">Bateaux à Moteur</string>
@@ -43,6 +44,7 @@
     <string name="caracteristiques_vehicule_supplementaire">CARACTERISTIQUES SUPPLEMENTAIRES</string>
     <string name="caracteristiques_annonce">CARACTERISTIQUES DE L\'ANNONCE</string>
     <string name="carrosserie">Carrosserie</string>
+    <string name="carrosserie_star">Carrosserie *</string>
     <string name="categorie">Catégorie </string>
     <string name="categorie_star">Catégorie *</string>
     <string name="chantier_modele">Chantier / Modele</string>
@@ -55,6 +57,8 @@
     <string name="contact_pro">Contact PRO</string>
     <string name="coordonnees">Coordonnées</string>
     <string name="couchettes">Couchettes</string>
+    <string name="couleur_exterieure">Couleur extérieur</string>
+    <string name="couleur_interieur">Couleur intérieur</string>
     <string name="crash_toast_text">Une erreur est survenue, aidez nous à améliorer cette application en ous envoyant le rapport de bug</string>
     <string name="credit">Crédits</string>
     <string name="dans_un_rayon_de">Dans un rayon de :</string>
@@ -66,7 +70,7 @@
     <string name="description">DESCRIPTION</string>
     <string name="description_dots">Description :</string>
     <string name="description_maj">DESCRIPTION</string>
-    <string name="description_boat_on_demand">Décrivez les critères du bateau de vos rêves, celui que vous souhaitez acquérir ! Nous nous chargeons de transférer votre demande à nos clients partenaires qui vous contacteront avec la meilleure offre s’il possède l’unité qui vous correspond. \n\nEnsuite c’est à vous de jouer ! </string>
+    <string name="description_autoteque">Décrivez les critères de la voiture de vos rêves, celui que vous souhaitez acquérir ! Nous nous chargeons de transférer votre demande à nos clients partenaires qui vous contacteront avec la meilleure offre s’il possède l’unité qui vous correspond. \n\nEnsuite c’est à vous de jouer ! </string>
     <string name="description_annuaire">Trouvez un professionnel du Nautisme en sélectionnant les critères désirés</string>
     <string name="diesel">Diesel</string>
     <string name="distributeur_de_la_marque">Distributeur de la marque</string>
@@ -92,6 +96,7 @@
     <string name="favoris">Favoris</string>
     <string name="favoris_ajoutee">L\'annonce a été ajoutée à vos favoris</string>
     <string name="favoris_retiree">L\'annonce a été retirée de vos favoris</string>
+    <string name="finition">Finition</string>
     <string name="france_autre_region">France/Autre region</string>
     <string name="generalites">GENERALITES</string>
     <string name="geolocalisez_vous_ou_recherchez_une_localite">Géolocalisez vous ou recherchez une localité :</string>
@@ -102,10 +107,12 @@
     <string name="horaires_dots">Horaires :</string>
     <string name="indifferent">-Indifférent-</string>
     <string name="informations">Informations</string>
+    <string name="informations_complementaires">INFORMATIONS COMPLEMENTAIRE</string>
     <string name="informations_youboat_propose">Youboat propose des milliers d\'annonces de bateaux à moteur, voiliers et pneumatiques mais aussi des moteurs et accessoires marins. Des essais et des articles sont disponibles pour vous aider dans votre futur achat. Vous pouvez égalment vendre votre bateau directement depuis votre smartphone. Retrouvez aussi le magazine YOUBOAT chez votre marchand de journaux !</string>
     <string name="instant_match">Instant Match</string>
     <string name="instant_match_chevron">Instant Match &gt;</string>
     <string name="intitule">Intutilé</string>
+    <string name="kilometrage">Kilométrage</string>
     <string name="km_autour_de">km autour de</string>
     <string name="km_max">Km Max</string>
     <string name="languedoc_roussillon">Languedoc/Roussillon</string>

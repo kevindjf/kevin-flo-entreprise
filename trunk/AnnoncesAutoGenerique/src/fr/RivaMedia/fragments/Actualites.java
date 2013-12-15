@@ -23,9 +23,7 @@ public class Actualites extends FragmentNormal{
 
 	View _view;
 	PullAndLoadListView _liste = null;
-
 	ActualiteListAdapter _adapter = null;
-
 	List<Actualite> _actualites = new ArrayList<Actualite>();
 
 	boolean afficherProgress = true;
