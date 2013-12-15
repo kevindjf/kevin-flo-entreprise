@@ -7,9 +7,6 @@ import org.xmlpull.v1.XmlPullParser;
 
 import android.util.Log;
 import fr.RivaMedia.model.Annonce;
-import fr.RivaMedia.model.Lien;
-import fr.RivaMedia.model.Moteur;
-import fr.RivaMedia.model.Vendeur;
 import fr.RivaMedia.xml.core.XmlParser;
 
 public class AnnonceXmlParser extends XmlParser {
@@ -22,30 +19,26 @@ public class AnnonceXmlParser extends XmlParser {
 		super(xpp);
 	}
 
-	public List<Annonce> getListe() {
+	public List<Annonce> getAnnonces() {
 		List<Annonce> annonces = new ArrayList<Annonce>();
 		int eventType = XMLgetEventType(); 
 		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				if(tag.equals("ad")){
-					Annonce annonce = getAnnonce(true);
+				if(tag.equals("annonce")){
+					Annonce annonce = getAnnonce();
 					annonces.add(annonce);
 				}
 			}
 			eventType = XMLgetSuivant();
 		}
 
-		Log.e("XML",annonces.size()+" elements chargees");
+		Log.e("XML",annonces.size()+" annonces chargees");
 
 		return annonces;
 	}
 
 	public Annonce getAnnonce(){
-		return getAnnonce(false);
-	}
-	
-	public Annonce getAnnonce(boolean item){
 		Annonce annonce = new Annonce();
 
 		int eventType = XMLgetEventType(); 
@@ -53,244 +46,88 @@ public class AnnonceXmlParser extends XmlParser {
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
 				//Log.e("XML",tag);
-				if(tag.equals("detail")){
-				}
-				else if(tag.equals("id")){
-					annonce.setNumero(getString());
-				}
-				else if(tag.equals("title")){
-					annonce.setTitle(getString());
-				}
-				else if(tag.equals("moteur")){
-					if(item)
-						annonce.setNomMoteur(getString());
-					else
-						annonce.setMoteur(getMoteur());
-				}
-				else if(tag.equals("longueur")){
-					annonce.setLongueur(getString());
-				}
-				else if(tag.equals("annee")){
-					annonce.setAnnee(getString());
-				}
-				else if(tag.equals("categorie")){
-					annonce.setCategorie(getString());
-				}
-				else if(tag.equals("gpslatitude")){
-					annonce.setGpsLatitude(getString());
-				}
-				else if(tag.equals("gpslongitude")){
-					annonce.setGpsLongtitude(getString());
-				}
-				else if(tag.equals("type")){
-					annonce.setType(getString());
-				}
-				else if(tag.equals("idclient")){
+				if(tag.equals("id"))
+					annonce.setId(getString());
+				else if(tag.equals("id_client"))
 					annonce.setIdClient(getString());
-				}
-				else if(tag.equals("logo")){
-					annonce.setLogoVendeur(getString());
-				}
-				else if(tag.equals("typeclient")){
-					annonce.setTypeClient(getString());
-				}
-				else if(tag.equals("enclosure")){
-					Lien lien = new Lien();
-					lien.setType(getXpp().getAttributeValue(null, "type"));
-					lien.setUrl(getXpp().getAttributeValue(null, "url"));
-					annonce.setLien(lien);
-					getString();
-				}
-				else if(tag.equals("prix")){
+				else if(tag.equals("categorie"))
+					annonce.setCategorie(getString());
+				else if(tag.equals("marque"))
+					annonce.setMarque(getString());
+				else if(tag.equals("serie"))
+					annonce.setSerie(getString());
+				else if(tag.equals("finition"))
+					annonce.setFinition(getString());
+				else if(tag.equals("energie"))
+					annonce.setEnergie(getString());
+				else if(tag.equals("annee"))
+					annonce.setAnnee(getString());
+				else if(tag.equals("km"))
+					annonce.setKm(getString());
+				else if(tag.equals("prix"))
 					annonce.setPrix(getString());
-				}
-				else if(tag.equals("taxeprix")){
-					annonce.setTaxePrix(getString());
-				}
-				else if(tag.equals("pubDate")){
-					annonce.setPubDate(getString());
-				}
-				else if(tag.equals("lien_annonce")){
-					annonce.setLienAnnonce(getString());
-				}
-				else if(tag.equals("numero_vendeur"))
-					annonce.setNumeroVendeur(getString());
-				else if(tag.equals("etat"))
-					annonce.setEtat(getString());
-				else if(tag.equals("largeur"))
-					annonce.setLargeur(getString());
-				else if(tag.equals("nb_cabine"))
-					annonce.setNbCabines(getString());
-				else if(tag.equals("nb_couch"))
-					annonce.setNbCouchettes(getString());
-				else if(tag.equals("nb_sdb"))
-					annonce.setNbSallesDeBain(getString());
+				else if(tag.equals("departement"))
+					annonce.setDepartement(getString());
+				else if(tag.equals("departement_num"))
+					annonce.setDepartementNum(getString());
+				else if(tag.equals("photo"))
+					annonce.setPhoto(getString());
+				
+				else if(tag.equals("transmission"))
+					annonce.setTransmission(getString());
+				else if(tag.equals("puissance_din"))
+					annonce.setPuissanceDin(getString());
+				else if(tag.equals("puissance_fisc"))
+					annonce.setPuissanceFisc(getString());
+				else if(tag.equals("co2"))
+					annonce.setCo2(getString());
+				else if(tag.equals("nb_portes"))
+					annonce.setNbPortes(getString());
+				else if(tag.equals("couleur_ext"))
+					annonce.setCouleurExt(getString());
+				else if(tag.equals("couleur_int"))
+					annonce.setCouleurInt(getString());
 				else if(tag.equals("garantie"))
 					annonce.setGarantie(getString());
-				else if(tag.equals("commentaire"))
-					annonce.setCommentaire(getString());
-				else if(tag.equals("place_de_port"))
-					annonce.setPlaceDePort(getString());
-				else if(tag.equals("taxe"))
-					annonce.setTaxePrix(getString());
-
-				else if(tag.equals("equipements"))
-					annonce.getEquipement().addAll(getEquipements());
-				
-				else if(tag.equals("electroniques"))
-					annonce.getElectroniques().addAll(getElectroniques());
+				else if(tag.equals("reference"))
+					annonce.setReference(getString());
+				else if(tag.equals("descriptif"))
+					annonce.setDescriptif(getString());
 				
 				
-				else if(tag.equals("equipement"))
-					annonce.getEquipement().add(getString());
-				else if(tag.equals("electronique"))
-					annonce.getElectroniques().add(getString());
-
-				else if(tag.equals("nb_photos"))
-					annonce.setNbPhotos(getString());
-				else if(tag.equals("photos"))
+				else if(tag.equals("client")){
+					annonce.setClient(new ClientXmlParser(getXpp()).getClient());
+				}
+				else if(tag.equals("photo")){
 					annonce.setPhotos(getPhotos());
-				else if(tag.equals("vendeur")){
-					Log.e("RechercheXmlParser","Vendeur");
-					annonce.setVendeur(getVendeur());
 				}
-				else if(tag.equals("apartirde")){
-					annonce.setApartirDe(getString());
-				}
+				
+				
 				else
 					Log.e("XML INCONNU",tag);
+				
+				
+				
+				
 			}
 			eventType = XMLgetSuivant();
 		}
 
 		return annonce;
 	}
-
-	public Moteur getMoteur(){
-		Moteur moteur = new Moteur();
-
-		int eventType = XMLgetEventType(); 
-		while (eventType != XmlPullParser.END_TAG) { 
-			if (eventType == XmlPullParser.START_TAG) {
-				String tag = getXpp().getName();
-				//Log.e("XML",tag);
-
-				if(tag.equals("info_moteur"))
-					moteur.setInfoMoteur(getString());
-				else if(tag.equals("propulsion"))
-					moteur.setPropulsion(getString());
-				else if(tag.equals("heure_moteur"))
-					moteur.setHeureMoteur(getString());
-				else if(tag.equals("marque_moteur"))
-					moteur.setMarqueMoteur(getString());
-				else if(tag.equals("puissance_moteur"))
-					moteur.setPuissanceMoteur(getString());
-			}
-
-			eventType = XMLgetSuivant();
-		}
-		return moteur;
-	}
-
-	public List<Lien> getPhotos(){
-		List<Lien> liens = new ArrayList<Lien>();
-
-		int eventType = XMLgetEventType(); 
-		while (eventType != XmlPullParser.END_TAG) { 
-			if (eventType == XmlPullParser.START_TAG) {
-				String tag = getXpp().getName();
-				//Log.e("XML",tag);
-
-				if(tag.equals("enclosure")){
-					Lien lien = new Lien();
-					lien.setType(getXpp().getAttributeValue(null, "type"));
-					lien.setUrl(getXpp().getAttributeValue(null, "url"));
-					liens.add(lien);
-					getString();
-				}
-			}
-
-			eventType = XMLgetSuivant();
-		}
-		return liens;
-	}
 	
-	public List<String> getEquipements(){
-		List<String> equipements = new ArrayList<String>();
-
-		int eventType = XMLgetEventType(); 
+	public List<String> getPhotos() {
+		List<String> photos = new ArrayList<String>();
+		int eventType = XMLgetSuivant(); 
 		while (eventType != XmlPullParser.END_TAG) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				//Log.e("XML",tag);
-
-				if(tag.equals("equipement")){
-					equipements.add(getString());
-				}
+				if(tag.equals("photo"))
+					photos.add(getString());
 			}
-
 			eventType = XMLgetSuivant();
 		}
-		return equipements;
-	}
-	
-	public List<String> getElectroniques(){
-		List<String> electroniques = new ArrayList<String>();
 
-		int eventType = XMLgetEventType(); 
-		while (eventType != XmlPullParser.END_TAG) { 
-			if (eventType == XmlPullParser.START_TAG) {
-				String tag = getXpp().getName();
-				//Log.e("XML",tag);
-
-				if(tag.equals("electronique")){
-					electroniques.add(getString());
-				}
-			}
-
-			eventType = XMLgetSuivant();
-		}
-		return electroniques;
-	}
-
-	public Vendeur getVendeur(){
-		Vendeur vendeur = new Vendeur();
-
-		int eventType = XMLgetEventType(); 
-		do { 
-			if (eventType == XmlPullParser.START_TAG) {
-				String tag = getXpp().getName();
-				//Log.e("XML",tag);
-
-				if(tag.equals("nom"))
-					vendeur.setNom(getString());
-				else if(tag.equals("numero"))
-					vendeur.setNumero(getString());
-				else if(tag.equals("id"))
-						vendeur.setNumero(getString());
-				else if(tag.equals("logo"))
-						vendeur.setLogo(getString());
-				else if(tag.equals("email"))
-					vendeur.setEmail(getString());
-				else if(tag.equals("adresse"))
-					vendeur.setAdresse(getString());
-				else if(tag.equals("cp"))
-					vendeur.setCodePostal(getString());
-				else if(tag.equals("ville"))
-					vendeur.setVille(getString());
-				else if(tag.equals("tel1"))
-					vendeur.setTel1(getString());
-				else if(tag.equals("tel2"))
-					vendeur.setTel2(getString());
-				else if(tag.equals("type"))
-					vendeur.setType(getString());
-				else if(tag.equals("siteweb"))
-					vendeur.setSiteWeb(getString());
-			}
-
-			eventType = XMLgetSuivant();
-
-		}while (eventType != XmlPullParser.END_TAG);
-		return vendeur;
+		return photos;
 	}
 }

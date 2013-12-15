@@ -133,6 +133,7 @@ public class Net {
 			donneesPost = Net.construireDonnes();
 
 		add(donneesPost,Constantes.KEY, Constantes.KEY_VALUE);
+		add(donneesPost,Constantes.KEY_CLIENT, Constantes.CLIENT_VALUE);
 
 		HttpClient httpClient = new DefaultHttpClient();
 
@@ -194,6 +195,7 @@ public class Net {
 		if(donnees == null)
 			donnees = Net.construireDonnes();
 		add(donnees,Constantes.KEY, Constantes.KEY_VALUE);
+		add(donnees,Constantes.KEY_CLIENT, Constantes.CLIENT_VALUE);
 
 		StringBuilder sb = new StringBuilder();
 		if(!url.contains("?"))
