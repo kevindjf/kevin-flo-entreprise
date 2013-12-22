@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/emplacement_fragment"
-        class="fr.RivaMedia.fragments.Annonces"
+        class="fr.RivaMedia.AnnoncesAutoGenerique.fragments.Annonces"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
     </fragment>
