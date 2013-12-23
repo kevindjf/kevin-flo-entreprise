@@ -50,6 +50,7 @@ public class Actualites extends FragmentNormal{
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
+		setTitre(getString(R.string.actualites));
 	}
 
 
@@ -108,10 +109,10 @@ public class Actualites extends FragmentNormal{
 	class ChargerActualitesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			List<Actualite> actus = NetActualite.chargerListeActualites(debut, nombre);
-			
+
 			nombre = actus.size();
 			debut+=nombre;
-			
+
 			_actualites.addAll(actus);
 
 			getActivity().runOnUiThread(new Runnable(){
@@ -136,5 +137,7 @@ public class Actualites extends FragmentNormal{
 		protected void onPostExecute(){
 		}
 	}
+
+
 
 }

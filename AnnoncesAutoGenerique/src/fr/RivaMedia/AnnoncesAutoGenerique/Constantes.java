@@ -278,17 +278,17 @@ public class Constantes {
 	public static final String ANNONCES_FINITION = "finition"; 
 	
 	
-	public static final String URL_ACTUALITES_CLIENT = "actualites_client.php";
+	public static final String URL_ACTUALITES_CLIENT = "client_actualites.php";
 	public static final String ACTUALITES_CLIENT_LIMIT_FROM = "limit_from";
 	public static final String ACTUALITES_CLIENT_LIMIT = "limit";
-	public static final String URL_ACTUALITE_DETAIL = "actualite.php";
+	public static final String URL_ACTUALITE_DETAIL = "client_actualite.php";
 	public static final String ACTUALITE_DETAIL_ID = "actualite";
 	
 	public static final String URL_CLIENTS_PRO = "clients.php";
 	public static final String URL_CLIENT_DETAIL = "client.php";
 	public static final String CLIENT_DETAIL_ID = "client";
 	
-	public static final String URL_AUTO_PROMO = "autopromo";
+	public static final String URL_AUTO_PROMO = "autopromo.php";
 	
 	
 	

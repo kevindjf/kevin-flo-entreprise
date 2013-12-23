@@ -12,6 +12,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Actualite;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetActualite;
 	
 /**
@@ -32,6 +33,8 @@ public class ActualiteDetail extends FragmentNormal{
 	TextView _texte;
 
 	boolean afficherProgress = true;
+	
+	View _actualiteDetailTitreLayout;
 
 	public ActualiteDetail(String id){
 		this._id = id;
@@ -70,8 +73,8 @@ public class ActualiteDetail extends FragmentNormal{
 		_titre = (TextView)_view.findViewById(R.id.actualite_detail_titre);
 		_date  = (TextView)_view.findViewById(R.id.actualite_detail_date);
 		_texte = (TextView)_view.findViewById(R.id.actualite_detail_texte);
-
-
+		
+		_actualiteDetailTitreLayout = _view.findViewById(R.id.actualite_detail_titre_layout);
 	}
 
 	public void remplir(){
@@ -88,6 +91,8 @@ public class ActualiteDetail extends FragmentNormal{
 			if(_actualite.getTexte() != null)
 				_texte.setText(_actualite.getTexte());
 		}
+		
+		_actualiteDetailTitreLayout.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
 	}
 	public void ajouterListeners(){
 	}
