@@ -32,5 +32,10 @@ public class NetAnnonce extends Net {
 		
 		return new AnnonceXmlParser(xml).getAnnonce();
 	}
+
+	public static String nombreAnnonces(List<NameValuePair> donnees) {
+		Net.add(donnees,Constantes.ANNONCES_MODE,Constantes.ANNONCES_MODE_COUNT);
+		return Net.requeteGet(Constantes.URL_ANNONCES, donnees);
+	}
 	
 }
