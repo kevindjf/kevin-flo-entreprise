@@ -84,8 +84,13 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		
 		for(View v : _slider_elements){
 			((TextView)(v.findViewById(R.id.text))).setTextColor(Color.parseColor(TEXT_ELEMENT_COLOR));
+			if(v.isSelected() ||v.isPressed() ||v.isFocused()){
+				v.setBackgroundColor(Color.parseColor(FOND_HEADER));
+			}
 			
 		}
+		
+		
 	}
 	protected void ajouterVues(){
 		_slider = new SimpleSideDrawer( this );
