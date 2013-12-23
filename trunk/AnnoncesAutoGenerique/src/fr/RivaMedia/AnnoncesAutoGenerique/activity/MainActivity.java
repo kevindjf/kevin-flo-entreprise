@@ -41,6 +41,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _header_trier;
 	
 	View _slider_accueil;
+	View _slider_annonces;
 	View _slider_autotheque;
 	View _slider_actualites;
 	View _slider_informations;
@@ -82,9 +83,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_informations = findViewById(R.id.slider_informations);
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
 		_slider_credits = findViewById(R.id.slider_credits);
+		_slider_annonces = findViewById(R.id.slider_annonces);
 
 		_slider_elements = new View[]{
 				_slider_accueil,
+				_slider_annonces,
 				_slider_actualites,
 				_slider_informations,
 				_slider_contact_pro,
@@ -95,7 +98,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	protected void charger(){
-		afficherAnnonces();
+		afficherAccueil();
 	}
 
 	protected void ajouterListeners(){
