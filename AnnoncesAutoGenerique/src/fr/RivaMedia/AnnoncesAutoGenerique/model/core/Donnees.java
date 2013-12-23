@@ -9,6 +9,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
 
 public class Donnees {
+	public static ClientParametres parametres = new ClientParametres();
 
 	public static String jeton = "";
 	
@@ -19,5 +20,5 @@ public class Donnees {
 	public static List<Categorie> categories = new ArrayList<Categorie>();
 	public static List<Energie> energies = new ArrayList<Energie>();
 	
-
+	
 }
