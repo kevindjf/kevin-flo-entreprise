@@ -437,7 +437,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			synchronized (donnees) {
 				donnees.clear();
 				donnees.addAll(recupererDonnees());
-				String nombre = ""; // NetAnnonce.nombreAnnonces(recherche_type, donnees);
+				String nombre = NetAnnonce.nombreAnnonces(donnees);
 				afficherNombreAnnonces(nombre);
 			}
 

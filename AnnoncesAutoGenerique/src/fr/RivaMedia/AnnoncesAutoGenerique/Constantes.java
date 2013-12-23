@@ -278,6 +278,9 @@ public class Constantes {
 	public static final String ANNONCES_DEPARTEMENT_LIMITROPHE_VALUE = "true"; 
 	public static final String ANNONCES_FINITION = "finition"; 
 	
+	public static final String ANNONCES_MODE = "mode"; 
+	public static final String ANNONCES_MODE_COUNT = "count"; 
+	
 	
 	public static final String URL_ACTUALITES_CLIENT = "client_actualites.php";
 	public static final String ACTUALITES_CLIENT_LIMIT_FROM = "limit_from";
