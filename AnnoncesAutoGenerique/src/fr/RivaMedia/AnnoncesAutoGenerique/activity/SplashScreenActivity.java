@@ -120,6 +120,10 @@ public class SplashScreenActivity extends Activity{
 			//TODO charger les donnees 
 			//afficher le magasine AutoPromo
 			
+			Donnees.transmission.add("Inconnu");
+			Donnees.transmission.add("Mecanique");
+			Donnees.transmission.add("Automatique");
+			
 			Donnees.parametres = NetChargement.chargerClientParametres();
 			Donnees.autoPromo = NetChargement.chargerAutoPromo();
 			chargerImage();

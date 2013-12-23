@@ -24,7 +24,9 @@ import fr.RivaMedia.AnnoncesAutoGenerique.dialog.OnMinMaxListener;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.DonneeValeurSelector;
+import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.ValeurSelector;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Categorie;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Etat;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Lieu;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
@@ -43,6 +45,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	public static int ETAT = 4;
 	public static int LOCALISATION = 5;
+
+	public static int ENERGIE = 6;
+	public static int BOITE_VITESSE = 7;
 
 	View _view;
 	View _rechercher;
@@ -69,6 +74,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	String recherche_type = null;
 	String recherche_categorie_id = null;
 	String recherche_marque_id = null;
+
+	String recherche_energie_id = null;
 
 	String recherche_chantier_id = null;
 	String recherche_modele_id = null;
@@ -182,7 +189,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	private void demanderMarqueModele() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void demanderKmMax() {
@@ -191,18 +198,23 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	private void demanderAnnee() {
-		// TODO Auto-generated method stub
 
 	}
 
 	private void demanderBoiteVitesse() {
-		// TODO Auto-generated method stub
-
+		ajouterFragment(new ValeurSelector(this, BOITE_VITESSE, Donnees.transmission));
 	}
 
 	private void demanderEnergie() {
-		// TODO Auto-generated method stub
+		List<Energie> energies = Donnees.energies;
+		if(energies != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Energie energie : energies){
+				donneesValeurs.put(energie.getNom(), energie.getId());
+			}
 
+			ajouterFragment(new DonneeValeurSelector(this,ENERGIE,donneesValeurs));
+		}
 	}
 
 	private void ajouterAlerte() {
@@ -243,7 +255,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	public void afficherAnnoncesListe(List<NameValuePair> donneesFormulaire){
-	//	ajouterFragment(new AnnoncesListe(donneesFormulaire));
+		//	ajouterFragment(new AnnoncesListe(donneesFormulaire));
 	}
 
 	public void reset(){
@@ -260,6 +272,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		recherche_type = null;
 		recherche_categorie_id = null;
+
+		recherche_energie_id = null;
 
 		recherche_chantier_id = null;
 		recherche_modele_id = null;
@@ -286,6 +300,13 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		Log.e("ItemSelected", item+" | "+value);
 
+		if(idRetour == ENERGIE){
+			recherche_energie_id = item;
+			((TextView)_energie.findViewById(R.id.text)).setText(value);
+		}else if(idRetour == BOITE_VITESSE){
+			((TextView)_boite_de_vitesse.findViewById(R.id.text)).setText(value);
+		}
+
 		//TODO recupérer les retours des champs
 		rechercherNombre();
 	}
@@ -299,7 +320,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 			((TextView)_prix.findViewById(R.id.text)).setText("de "+min+" € à "+max+" €");
 		}
-		
+
 		//TODO Mettre les min max
 
 		rechercherNombre();

@@ -37,6 +37,14 @@ public class ValeurSelector extends FragmentNormal implements OnItemClickListene
 		this._stringArray = stringArray;
 		this._idRetour = idRetour;
 	}
+	
+	public ValeurSelector (ItemSelectedListener listener, int idRetour, List<String> strings){
+		this._listener = listener;
+		_stringArray = new String[strings.size()];
+		for(int i=0;i<strings.size();++i)
+			_stringArray[i] = strings.get(i);
+		this._idRetour = idRetour;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
