@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.model.AutoPromo;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Categorie;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.Departement;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
 
@@ -20,6 +21,8 @@ public class Donnees {
 	public static List<Marque> marquesPubliees = new ArrayList<Marque>();
 	public static List<Categorie> categories = new ArrayList<Categorie>();
 	public static List<Energie> energies = new ArrayList<Energie>();
+	public static List<Departement> departements  = new ArrayList<Departement>();
+
 	
 	
 }

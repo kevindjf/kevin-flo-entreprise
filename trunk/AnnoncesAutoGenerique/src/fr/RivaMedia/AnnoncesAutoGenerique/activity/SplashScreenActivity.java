@@ -128,10 +128,11 @@ public class SplashScreenActivity extends Activity{
 			Donnees.autoPromo = NetChargement.chargerAutoPromo();
 			chargerImage();
 			
-			Donnees.categories = NetChargement.charcherCategories();
-			Donnees.marques = NetChargement.charcherMarques();
-			Donnees.marquesPubliees = NetChargement.charcherMarquesPubliees();
+			Donnees.categories = NetChargement.chargerCategories();
+			Donnees.marques = NetChargement.chargerMarques();
+			Donnees.marquesPubliees = NetChargement.chargerMarquesPubliees();
 			Donnees.energies = NetChargement.chargerEnergies();
+			Donnees.departements = NetChargement.chargerDepartements();
 			
 			lancerDecompte();
 

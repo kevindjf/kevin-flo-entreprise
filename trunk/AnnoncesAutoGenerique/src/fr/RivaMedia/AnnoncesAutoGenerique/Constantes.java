@@ -250,6 +250,7 @@ public class Constantes {
 	
 	public static final String URL_CATEGORIES = "categories.php";
 	public static final String URL_ENERGIES = "energies.php";
+	public static final String URL_DEPARTEMENTS = "departements.php";
 	
 	public static final String URL_MODELES = "series.php";
 	public static final String MODELES_MARQUE_ID = "marque";

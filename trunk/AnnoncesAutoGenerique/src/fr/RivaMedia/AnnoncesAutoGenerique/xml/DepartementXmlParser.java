@@ -6,51 +6,51 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 
 import android.util.Log;
-import fr.RivaMedia.AnnoncesAutoGenerique.model.Modele;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.Departement;
 import fr.RivaMedia.AnnoncesAutoGenerique.xml.core.XmlParser;
 
-public class ModeleXmlParser extends XmlParser {
+public class DepartementXmlParser extends XmlParser {
 
-	public ModeleXmlParser(String xml) {
+	public DepartementXmlParser(String xml) {
 		super(xml);	
 	}
 
-	public ModeleXmlParser(XmlPullParser xpp) {
+	public DepartementXmlParser(XmlPullParser xpp) {
 		super(xpp);
 	}
 
-	public List<Modele> getModeles() {
-		List<Modele> modeles = new ArrayList<Modele>();
+	public List<Departement> getDepartements() {
+		List<Departement> departments = new ArrayList<Departement>();
 		int eventType = XMLgetEventType(); 
 		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				if(tag.equals("serie")){
-					modeles.add(getModele());
+				if(tag.equals("department")){
+					departments.add(getDepartement());
 				}
 			}
 			eventType = XMLgetSuivant();
 		}
-		Log.e("XML",modeles.size()+" modeles chargees");
+		Log.e("XML",departments.size()+" departements chargees");
 
-		return modeles;
+		return departments;
 	}
-	
-	public Modele getModele() {
-		Modele modele = new Modele();
+
+	public Departement getDepartement() {
+		Departement departement = new Departement();
 		int eventType = XMLgetSuivant(); 
 		while (eventType != XmlPullParser.END_TAG) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
 				if(tag.equals("id"))
-					modele.setId(getString());
+					departement.setId(getString());
 				else if(tag.equals("nom"))
-					modele.setNom(getString());
+					departement.setNom(getString());
 			}
 			eventType = XMLgetSuivant();
 		}
 
-		return modele;
+		return departement;
 	}
-
+	
 }
