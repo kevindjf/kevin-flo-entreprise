@@ -8,14 +8,21 @@ import fr.RivaMedia.AnnoncesAutoGenerique.model.Categorie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Modele;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.ClientParametres;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.core.Net;
 import fr.RivaMedia.AnnoncesAutoGenerique.xml.AutoPromoXmlParser;
 import fr.RivaMedia.AnnoncesAutoGenerique.xml.CategorieXmlParser;
+import fr.RivaMedia.AnnoncesAutoGenerique.xml.ClientParametreXmlParser;
 import fr.RivaMedia.AnnoncesAutoGenerique.xml.EnergieXmlParser;
 import fr.RivaMedia.AnnoncesAutoGenerique.xml.MarqueXmlParser;
 import fr.RivaMedia.AnnoncesAutoGenerique.xml.ModeleXmlParser;
 
 public class NetChargement extends Net{	
+	
+	public static ClientParametres chargerClientParametres(){
+		String xml = Net.requeteGet(Constantes.URL_CLIENT_PARAMETRE, null);
+		return new ClientParametreXmlParser(xml).getClientParametres();
+	}
 	
 	public static List<Marque> charcherMarques(){
 		String xml = Net.requeteGet(Constantes.URL_MARQUES, null);
