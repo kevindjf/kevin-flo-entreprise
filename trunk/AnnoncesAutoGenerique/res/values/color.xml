@@ -38,8 +38,8 @@
     <color name="couleur_fond">@color/_blanc</color>
     <color name="couleur_fond_claire">@color/_gris_claire</color>
     <color name="couleur_menu">@color/_gris_menu</color>
-    <color name="couleur_header">@color/_noir</color>
-    <color name="couleur_slider">@color/_noir</color>
+    <color name="couleur_header">#f8f8f8</color>
+    <color name="couleur_slider">@color/_blanc</color>
     <color name="couleur_fond_gallery">@color/_noir</color>
     <color name="couleur_bouton_effacer">@color/_rouge</color>
     <color name="couleur_bouton_effacer_hover">@color/_rouge_claire</color>

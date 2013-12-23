@@ -9,12 +9,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <ImageView
+        <TextView
+            android:id="@+id/header_titre"
             android:layout_width="wrap_content"
-            android:layout_height="50dip"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:padding="15dip"
-            android:src="@drawable/logo_youboat_slider" />
+            android:text="@string/accueil"
+            android:textSize="20sp"
+            android:textColor="@color/couleur_texte_noir"
+             />
 
         <RelativeLayout
             android:id="@+id/header_menu_layout"

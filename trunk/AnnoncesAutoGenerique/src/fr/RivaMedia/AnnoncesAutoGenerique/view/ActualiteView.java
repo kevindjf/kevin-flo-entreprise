@@ -11,6 +11,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.ActualiteDetail;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Actualite;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.view.core.YouBoatView;
 
 public class ActualiteView extends YouBoatView implements View.OnTouchListener{
@@ -80,7 +81,7 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	private void afficherTouch(){
 		_titre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_blanc));
 		_sousTitre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_blanc));
-		getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_touch));
+		getView().setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
 	}
 
 	@Override

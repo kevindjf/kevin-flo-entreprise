@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 
 public abstract class FragmentNormal extends Fragment implements IFragment, OnClickListener{
 
@@ -43,12 +44,11 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		((MainActivity)getActivity()).cacherEffacer();
 		((MainActivity)getActivity()).cacherTrier();
 		((MainActivity)getActivity()).cacherFavoris();
-
+		
 		afficherProgress(afficherProgress);
 		super.onResume();
 		getView().setOnClickListener(this);
 	}
-	
 	
 	@Override
 	public void onViewStateRestored(){
@@ -101,6 +101,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	
 	public void cacherFavoris(){
 		((MainActivity)getActivity()).cacherFavoris();
+	}
+	
+	public void setTitre(String titre){
+		((MainActivity)getActivity()).setTitre(titre);
 	}
 	
 	

@@ -11,6 +11,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.AnnonceDetail;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.view.core.YouBoatView;
 
 public class AnnonceView extends YouBoatView implements View.OnTouchListener{
@@ -113,7 +114,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		}
 	}
 	private void afficherTouch(){
-		_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_touch));
+		_devant.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
 	}
 
 	@Override

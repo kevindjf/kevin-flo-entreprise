@@ -56,6 +56,8 @@ public class ActualiteXmlParser extends XmlParser {
 					actualite.setDate(getString());
 				else if(tag.equals("photo"))
 					actualite.setPhoto(getString());
+				else if(tag.equals("image"))
+					actualite.setPhoto(getString());
 				else if(tag.equals("video"))
 					actualite.setVideo(getString());
 				else if(tag.equals("categorie"))

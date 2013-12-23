@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:padding="15dip"
-            android:src="@drawable/logo_youboat_slider" />
+             />
     </RelativeLayout>
 
     <LinearLayout
@@ -45,7 +45,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/home" />
+                        android:src="@drawable/logo_accueil_noir" />
 
                     <TextView
                         android:id="@+id/text"
@@ -59,7 +59,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/car" />
+                        android:src="@drawable/logo_annonces_noir" />
 
                     <TextView
                         android:id="@+id/text"
@@ -73,7 +73,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_actualites_blanc" />
+                        android:src="@drawable/logo_actualites_noir" />
 
                     <TextView
                         android:id="@+id/text"
@@ -87,7 +87,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_annuaire_blanc" />
+                        android:src="@drawable/logo_annuaire_noir" />
 
                     <TextView
                         android:id="@+id/text"
@@ -101,7 +101,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_mes_annonces_blanc" />
+                        android:src="@drawable/logo_mes_annonces_noir" />
 
                     <TextView
                         android:id="@+id/text"
@@ -115,7 +115,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_mes_alertes_blanc" />
+                        android:src="@drawable/logo_mes_alertes_noir" />
 
                     <TextView
                         android:id="@+id/text"
@@ -129,7 +129,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_informations_blanc" />
+                        android:src="@drawable/logo_informations_noir" />
 
                     <TextView
                         android:id="@+id/text"
@@ -143,7 +143,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_contact_pro_blanc" />
+                        android:src="@drawable/logo_contact_pro_noir" />
 
                     <TextView
                         android:id="@+id/text"

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Alerte;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.view.core.YouBoatView;
 
 public class AlerteView extends YouBoatView implements View.OnTouchListener{
@@ -80,7 +81,7 @@ public class AlerteView extends YouBoatView implements View.OnTouchListener{
 		}
 	}
 	private void afficherTouch(){
-		getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_touch));
+		_devant.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.net.http.HttpResponseCache;
 import android.os.Bundle;
@@ -17,6 +16,7 @@ import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.navdrawer.SimpleSideDrawer;
@@ -31,14 +31,12 @@ import fr.RivaMedia.AnnoncesAutoGenerique.fragments.Credit;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.EmailFragment;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.MonGarage;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.Effaceable;
+import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Vendeur;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener, OnBackStackChangedListener{
-
-	public static final String FOND_HEADER = "#C5C5C5";
-	public static final String FOND_SLIDER = "#C5C5C5";
-	public static final String TEXT_ELEMENT_COLOR = "#000000";
 
 	SimpleSideDrawer _slider;
 	View _header;
@@ -61,6 +59,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _progress;
 
 	Annonce _annoncePourFavoris;
+	
+	ImageView _slider_logo;
+	TextView _header_titre;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		ajouterVues();
 		charger();
 		ajouterListeners();
-		changerCouleur();
 	}
 	public void afficherProgress(boolean afficher){
 		if(afficher)
@@ -78,20 +78,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			_progress.setVisibility(View.GONE);
 	}
 
-	protected void changerCouleur(){
-		_header.setBackgroundColor(Color.parseColor(FOND_HEADER));
-		_slider_background.setBackgroundColor(Color.parseColor(FOND_SLIDER));
-		
-		for(View v : _slider_elements){
-			((TextView)(v.findViewById(R.id.text))).setTextColor(Color.parseColor(TEXT_ELEMENT_COLOR));
-			if(v.isSelected() ||v.isPressed() ||v.isFocused()){
-				v.setBackgroundColor(Color.parseColor(FOND_HEADER));
-			}
-			
-		}
-		
-		
-	}
 	protected void ajouterVues(){
 		_slider = new SimpleSideDrawer( this );
 		_slider.setLeftBehindContentView( R.layout.slider);
@@ -102,6 +88,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_effacer = findViewById(R.id.header_effacer);
 		_header_favoris = findViewById(R.id.header_favoris);
 		_header_trier = findViewById(R.id.header_tri);
+		
+		_header_titre = (TextView)findViewById(R.id.header_titre);
 
 		_slider_background = findViewById(R.id.slider_background);
 		_slider_accueil = findViewById(R.id.slider_accueil);
@@ -110,6 +98,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
 		_slider_credits = findViewById(R.id.slider_credits);
 		_slider_annonces = findViewById(R.id.slider_annonces);
+		_slider_logo = (ImageView)findViewById(R.id.slider_image_entete);
 
 		_slider_elements = new View[]{
 				_slider_accueil,
@@ -124,6 +113,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	protected void charger(){
+		
+		ImageLoaderCache.load(this);
+		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _slider_logo);
+		
 		afficherAccueil();
 	}
 
@@ -368,6 +361,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 				ouvrirSlider();
 		}
 		return super.onKeyDown(keycode,event);  
+	}
+	
+	public void setTitre(String titre){
+		_header_titre.setText(titre);
 	}
 
 
