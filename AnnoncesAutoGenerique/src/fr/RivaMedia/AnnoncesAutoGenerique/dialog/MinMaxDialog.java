@@ -46,7 +46,7 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 		_tmpMax = max;
 		_valeurMax = valeurMax;
 	}
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
