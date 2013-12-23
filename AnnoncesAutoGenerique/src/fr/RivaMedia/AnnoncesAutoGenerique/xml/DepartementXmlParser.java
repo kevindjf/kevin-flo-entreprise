@@ -46,6 +46,8 @@ public class DepartementXmlParser extends XmlParser {
 					departement.setId(getString());
 				else if(tag.equals("nom"))
 					departement.setNom(getString());
+				else if(tag.equals("num"))
+					departement.setNum(getString());
 			}
 			eventType = XMLgetSuivant();
 		}
