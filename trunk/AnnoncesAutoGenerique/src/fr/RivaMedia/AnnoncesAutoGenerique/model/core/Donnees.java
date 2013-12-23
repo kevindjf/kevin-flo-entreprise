@@ -15,6 +15,7 @@ public class Donnees {
 	
 	public static AutoPromo autoPromo;
 	
+	public static List<String> transmission = new ArrayList<String>();
 	public static List<Marque> marques = new ArrayList<Marque>();
 	public static List<Marque> marquesPubliees = new ArrayList<Marque>();
 	public static List<Categorie> categories = new ArrayList<Categorie>();
