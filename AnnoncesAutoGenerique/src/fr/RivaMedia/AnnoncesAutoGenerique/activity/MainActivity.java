@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.net.http.HttpResponseCache;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.navdrawer.SimpleSideDrawer;
 
@@ -34,12 +36,18 @@ import fr.RivaMedia.AnnoncesAutoGenerique.model.Vendeur;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener, OnBackStackChangedListener{
 
+	public static final String FOND_HEADER = "#C5C5C5";
+	public static final String FOND_SLIDER = "#C5C5C5";
+	public static final String TEXT_ELEMENT_COLOR = "#000000";
+
 	SimpleSideDrawer _slider;
+	View _header;
 	View _header_menu;
 	View _header_effacer;
 	View _header_favoris;
 	View _header_trier;
 	
+	View _slider_background;
 	View _slider_accueil;
 	View _slider_annonces;
 	View _slider_autotheque;
@@ -61,6 +69,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		ajouterVues();
 		charger();
 		ajouterListeners();
+		changerCouleur();
 	}
 	public void afficherProgress(boolean afficher){
 		if(afficher)
@@ -69,15 +78,25 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			_progress.setVisibility(View.GONE);
 	}
 
+	protected void changerCouleur(){
+		_header.setBackgroundColor(Color.parseColor(FOND_HEADER));
+		_slider_background.setBackgroundColor(Color.parseColor(FOND_SLIDER));
+		
+		for(View v : _slider_elements)
+			((TextView)(v.findViewById(R.id.text))).setTextColor(Color.parseColor(TEXT_ELEMENT_COLOR));
+	}
 	protected void ajouterVues(){
 		_slider = new SimpleSideDrawer( this );
 		_slider.setLeftBehindContentView( R.layout.slider);
 		_slider.setRightBehindContentView( R.layout.slider_right);
+				
+		_header = findViewById(R.id.header);
 		_header_menu = findViewById(R.id.header_menu);
 		_header_effacer = findViewById(R.id.header_effacer);
 		_header_favoris = findViewById(R.id.header_favoris);
 		_header_trier = findViewById(R.id.header_tri);
 
+		_slider_background = findViewById(R.id.slider_background);
 		_slider_accueil = findViewById(R.id.slider_accueil);
 		_slider_actualites = findViewById(R.id.slider_actualites);
 		_slider_informations = findViewById(R.id.slider_informations);
