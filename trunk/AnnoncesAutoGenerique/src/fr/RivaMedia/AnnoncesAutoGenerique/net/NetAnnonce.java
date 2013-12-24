@@ -10,7 +10,8 @@ import fr.RivaMedia.AnnoncesAutoGenerique.net.core.Net;
 import fr.RivaMedia.AnnoncesAutoGenerique.xml.AnnonceXmlParser;
 
 public class NetAnnonce extends Net {	
-
+	
+	
 	public static List<Annonce> getAnnonces(List<NameValuePair> donnees){
 
 		String xml = Net.requeteGet(Constantes.URL_ANNONCES,donnees);
@@ -35,7 +36,7 @@ public class NetAnnonce extends Net {
 
 	public static String nombreAnnonces(List<NameValuePair> donnees) {
 		Net.add(donnees,Constantes.ANNONCES_MODE,Constantes.ANNONCES_MODE_COUNT);
-		return Net.requeteGet(Constantes.URL_ANNONCES, donnees);
+		return new AnnonceXmlParser(Net.requeteGet(Constantes.URL_ANNONCES, donnees)).getNombreAnnonces();
 	}
 	
 }

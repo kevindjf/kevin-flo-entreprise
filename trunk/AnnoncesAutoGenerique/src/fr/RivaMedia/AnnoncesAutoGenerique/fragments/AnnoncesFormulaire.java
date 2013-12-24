@@ -73,7 +73,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	List<NameValuePair> donnees = new ArrayList<NameValuePair>();
 
 
-	String recherche_type = null;
 	String recherche_carrosserie_id = null;
 	String recherche_marque_id = null;
 	String recherche_modele_id = null;
@@ -104,6 +103,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		charger();
 		remplir();
 		ajouterListeners();
+		
+		rechercherNombre();
 
 		return _view;
 	}
@@ -231,9 +232,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	private void ajouterAlerte() {
-		if(this.recherche_type == null)
-			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
-		else if(this.recherche_carrosserie_id == null)
+		if(this.recherche_carrosserie_id == null)
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_une_carrosserie), Toast.LENGTH_SHORT).show();
 		else{
 			task = new AjouterAlerteTask();
@@ -283,7 +282,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			//spinners, etc
 		}
 
-		recherche_type = null;
 		recherche_carrosserie_id = null;
 
 		recherche_energie_id = null;
@@ -361,11 +359,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	public void rechercherNombre(){
-
-		if(this.recherche_type != null){
-			task = new RechercherNombreAnnoncesTask();
-			task.execute();
-		}
+		task = new RechercherNombreAnnoncesTask();
+		task.execute();
 	}
 
 
@@ -382,7 +377,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Net.add(donnees,Constantes.ANNONCES_ENERGIE,recherche_energie_id);
 
 		String boiteVitesse = ((TextView) _boite_de_vitesse.findViewById(R.id.text)).getText().toString();
-		if(boiteVitesse.length()>0)
+		if(boiteVitesse.length()>0 && !boiteVitesse.equals("facultatif"))
 			Net.add(donnees,Constantes.ANNONCES_TRANSMISSION,boiteVitesse);
 
 		String nbPortes = ((TextView) _nb_portes.findViewById(R.id.text)).getText().toString();

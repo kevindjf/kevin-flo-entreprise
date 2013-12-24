@@ -46,10 +46,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _header_trier;
 	
 	View _slider_background;
+	
 	View _slider_accueil;
 	View _slider_annonces;
-	View _slider_autotheque;
 	View _slider_actualites;
+	View _slider_autotheque;
+	View _slider_mon_garage;
 	View _slider_informations;
 	View _slider_contact_pro;
 	View _slider_credits;
@@ -94,6 +96,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_background = findViewById(R.id.slider_background);
 		_slider_accueil = findViewById(R.id.slider_accueil);
 		_slider_actualites = findViewById(R.id.slider_actualites);
+		_slider_mon_garage = findViewById(R.id.slider_mon_garage);
 		_slider_informations = findViewById(R.id.slider_informations);
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
 		_slider_credits = findViewById(R.id.slider_credits);
@@ -104,6 +107,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 				_slider_accueil,
 				_slider_annonces,
 				_slider_actualites,
+				_slider_mon_garage,
 				_slider_informations,
 				_slider_contact_pro,
 				_slider_credits
@@ -157,6 +161,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			fermerSlider();		
 			afficherActualites();
 			break;
+		case R.id.slider_mon_garage:
+			fermerSlider();		
+			afficherMonGarage();
+			break;
 		case R.id.slider_autotheque:
 			fermerSlider();
 			afficherAuthoteque();
@@ -187,10 +195,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void afficherAuthoteque(){
 		ajouterFragment(new Authotheque(),false);
 	}
-	public void afficherMesAnnonces(){
+	public void afficherMonGarage(){
 		ajouterFragment(new MonGarage(),false);
 	}
-
+	
 	public void afficherContactPro(){
 		ajouterFragment(new ContactPro(),false);
 	}
