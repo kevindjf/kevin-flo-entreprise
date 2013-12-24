@@ -39,6 +39,18 @@ public class AnnonceXmlParser extends XmlParser {
 
 		return annonces;
 	}
+	
+	public String getNombreAnnonces() {
+		int eventType = XMLgetEventType(); 
+		while (eventType != XmlPullParser.END_DOCUMENT) { 
+			if (eventType == XmlPullParser.START_TAG) {
+				return getString().trim();
+			}
+			eventType = XMLgetSuivant();
+		}
+
+		return "";
+	}
 
 	public Annonce getAnnonce(){
 		Annonce annonce = new Annonce();
@@ -49,7 +61,7 @@ public class AnnonceXmlParser extends XmlParser {
 
 			if (eventType == XmlPullParser.START_TAG) {
 				tag = getXpp().getName();
-				Log.e("XML ANNONCE",tag);
+				//Log.e("XML ANNONCE",tag);
 
 				if(tag.equals("id"))
 					annonce.setId(getString());

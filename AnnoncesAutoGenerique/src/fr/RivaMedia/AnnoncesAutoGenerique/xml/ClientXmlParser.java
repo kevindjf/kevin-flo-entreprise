@@ -43,7 +43,7 @@ public class ClientXmlParser extends XmlParser {
 		while (eventType != XmlPullParser.END_TAG) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				Log.e("XML CLIENT",tag);
+				//Log.e("XML CLIENT",tag);
 				if(tag.equals("id"))
 					client.setId(getString());
 				else if(tag.equals("contrat"))

@@ -152,8 +152,10 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		protected Void doInBackground(Void...donnees) {
 			List<Annonce> annonces = NetAnnonce.getAnnonces(_donneesFormulaire);
 			
-			nombre = annonces.size();
-			debut += nombre;
+			nombre = 0;
+			
+			//nombre = annonces.size();
+			//debut += nombre;
 			
 			_annonces.addAll(annonces);
 

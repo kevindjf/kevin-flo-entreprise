@@ -96,7 +96,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/slider_favoris"
+                    android:id="@+id/slider_mon_garage"
                     style="@style/slider_element" >
 
                     <ImageView
