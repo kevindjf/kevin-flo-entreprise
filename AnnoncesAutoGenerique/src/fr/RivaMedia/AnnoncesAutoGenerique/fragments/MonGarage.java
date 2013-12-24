@@ -89,7 +89,7 @@ public class MonGarage extends FragmentListe implements View.OnClickListener{
 
 	}
 	public void remplir(){
-		_adapter = new AnnonceListAdapter(getActivity(), _annonces,null,true);
+		_adapter = new AnnonceListAdapter(getActivity(), _annonces,true);
 		_liste.setAdapter(_adapter);
 	}
 	public void ajouterListeners(){

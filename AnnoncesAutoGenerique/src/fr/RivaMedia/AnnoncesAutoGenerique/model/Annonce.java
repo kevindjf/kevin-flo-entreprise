@@ -1,5 +1,6 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Annonce {
@@ -29,7 +30,7 @@ public class Annonce {
 	String reference;
 	String descriptif;
 	Client client;
-	List<String> photos;
+	List<String> photos = new ArrayList<String>();
 	
 	public String getId() {
 		return id;

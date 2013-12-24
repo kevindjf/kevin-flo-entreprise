@@ -1,9 +1,11 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.xml;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.util.Log;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
@@ -41,11 +43,14 @@ public class AnnonceXmlParser extends XmlParser {
 	public Annonce getAnnonce(){
 		Annonce annonce = new Annonce();
 
-		int eventType = XMLgetEventType(); 
+		int eventType = XMLgetEventType();
+		String tag = "";
 		while (eventType != XmlPullParser.END_TAG) { 
+
 			if (eventType == XmlPullParser.START_TAG) {
-				String tag = getXpp().getName();
-				//Log.e("XML",tag);
+				tag = getXpp().getName();
+				Log.e("XML ANNONCE",tag);
+
 				if(tag.equals("id"))
 					annonce.setId(getString());
 				else if(tag.equals("id_client"))
@@ -72,15 +77,17 @@ public class AnnonceXmlParser extends XmlParser {
 					annonce.setDepartementNum(getString());
 				else if(tag.equals("photo"))
 					annonce.setPhoto(getString());
-				
+
 				else if(tag.equals("transmission"))
 					annonce.setTransmission(getString());
 				else if(tag.equals("puissance_din"))
-					annonce.setPuissanceDin(getString());
+					XMLgetSuivant();
+					//annonce.setPuissanceDin(getString());
 				else if(tag.equals("puissance_fisc"))
 					annonce.setPuissanceFisc(getString());
 				else if(tag.equals("co2"))
-					annonce.setCo2(getString());
+					XMLgetSuivant();
+					//annonce.setCo2(getString());
 				else if(tag.equals("nb_portes"))
 					annonce.setNbPortes(getString());
 				else if(tag.equals("couleur_ext"))
@@ -93,30 +100,31 @@ public class AnnonceXmlParser extends XmlParser {
 					annonce.setReference(getString());
 				else if(tag.equals("descriptif"))
 					annonce.setDescriptif(getString());
-				
-				
-				else if(tag.equals("client")){
+
+
+				else if(tag.equals("client"))
 					annonce.setClient(new ClientXmlParser(getXpp()).getClient());
-				}
-				else if(tag.equals("photo")){
+				else if(tag.equals("photos"))
 					annonce.setPhotos(getPhotos());
-				}
-				
-				
+
+
 				else
 					Log.e("XML INCONNU",tag);
-				
-				
-				
-				
+
+
+
+
 			}
 			eventType = XMLgetSuivant();
 		}
 
 		return annonce;
 	}
-	
+
 	public List<String> getPhotos() {
+
+		System.err.println("photos");
+
 		List<String> photos = new ArrayList<String>();
 		int eventType = XMLgetSuivant(); 
 		while (eventType != XmlPullParser.END_TAG) { 
@@ -125,6 +133,7 @@ public class AnnonceXmlParser extends XmlParser {
 				if(tag.equals("photo"))
 					photos.add(getString());
 			}
+			System.err.println("photos :"+photos);
 			eventType = XMLgetSuivant();
 		}
 

@@ -43,9 +43,11 @@ public class ClientXmlParser extends XmlParser {
 		while (eventType != XmlPullParser.END_TAG) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				//Log.e("XML",tag);
+				Log.e("XML CLIENT",tag);
 				if(tag.equals("id"))
 					client.setId(getString());
+				else if(tag.equals("contrat"))
+					client.setContrat(getString());
 				else if(tag.equals("nom"))
 					client.setNom(getString());
 				else if(tag.equals("adresse"))
@@ -75,7 +77,8 @@ public class ClientXmlParser extends XmlParser {
 					client.setServices(getString());
 				else if(tag.equals("distributeur"))
 					client.setDistributeur(getString());
-
+				else
+					Log.e("XML INCONNU",tag);
 			}
 			eventType = XMLgetSuivant();
 		}

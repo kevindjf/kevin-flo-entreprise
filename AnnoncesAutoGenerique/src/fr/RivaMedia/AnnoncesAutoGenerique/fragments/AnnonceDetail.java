@@ -167,7 +167,9 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_pagesAdapter = new ImagePagesAdapter();
 		_page.setAdapter(_pagesAdapter);
 		_indicator.setViewPager(_page);
-		//_page.getAdapter().notifyDataSetChanged();
+		_page.getAdapter().notifyDataSetChanged();
+		
+		System.out.println(_annonce.getPhotos());
 
 	}
 	public void ajouterListeners(){
@@ -232,21 +234,14 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	public class ImagePagesAdapter extends PagerAdapter {
 
-
-		public ArrayList<String> getListeUrls(List<Lien> ls){
-			ArrayList<String> urls = new ArrayList<String>();
-			for(Lien lien : ls){
-				urls.add(lien.getUrl());
-			}
-			return urls;
-		}
-
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
 
 			if(_annonce != null){
 
 				String _urlImage = _annonce.getPhotos().get(position);
+				
+				System.out.println(_urlImage);
 
 				View	_layout = _inflater.inflate(R.layout.pager_image, container, false);
 				ImageView	_imageView = (ImageView)_layout.findViewById(R.id.image);

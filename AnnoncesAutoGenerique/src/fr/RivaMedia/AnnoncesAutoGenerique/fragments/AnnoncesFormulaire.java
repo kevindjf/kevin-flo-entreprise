@@ -229,7 +229,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			ajouterFragment(new DonneeValeurSelector(this,DEPARTEMENT,donneesValeurs));
 		}
 	}
-	
+
 	private void ajouterAlerte() {
 		if(this.recherche_type == null)
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -268,7 +268,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	public void afficherAnnoncesListe(List<NameValuePair> donneesFormulaire){
-		//	ajouterFragment(new AnnoncesListe(donneesFormulaire));
+		ajouterFragment(new AnnoncesListe(donneesFormulaire));
 	}
 
 	public void reset(){
@@ -357,12 +357,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	public void rechercher(){
-
-		if(this.recherche_type == null)
-			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
-		else{
-			afficherAnnoncesListe(recupererDonnees());
-		}
+		afficherAnnoncesListe(recupererDonnees());
 	}
 
 	public void rechercherNombre(){
