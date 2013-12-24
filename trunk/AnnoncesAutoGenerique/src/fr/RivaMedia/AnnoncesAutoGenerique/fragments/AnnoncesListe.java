@@ -30,16 +30,14 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	List<Annonce> _annonces = new ArrayList<Annonce>();
 
 	List<NameValuePair> _donneesFormulaire;
-	String _type;
 
 	int debut = 0;
 	int nombre = 10;
 
 	String idClient = null; 
 
-	public AnnoncesListe(List<NameValuePair> donneesFormulaire, String type){
+	public AnnoncesListe(List<NameValuePair> donneesFormulaire){
 		this._donneesFormulaire = donneesFormulaire;
-		this._type = type;
 	}
 
 
@@ -66,7 +64,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
 		else{
 			if(_adapter == null){
-				_adapter = new AnnonceListAdapter(getActivity(), _annonces,_type);
+				_adapter = new AnnonceListAdapter(getActivity(), _annonces);
 				_liste.setAdapter(_adapter);
 			}else
 				_adapter.notifyDataSetChanged();

@@ -3,6 +3,7 @@ package fr.RivaMedia.AnnoncesAutoGenerique.model;
 public class Client {
 
 	String id;
+	String contrat;
 	String nom;
 	String adresse;
 	String cp;
@@ -108,6 +109,12 @@ public class Client {
 	}
 	public void setDistributeur(String distributeur) {
 		this.distributeur = distributeur;
+	}
+	public String getContrat() {
+		return contrat;
+	}
+	public void setContrat(String contrat) {
+		this.contrat = contrat;
 	}
 	
 }

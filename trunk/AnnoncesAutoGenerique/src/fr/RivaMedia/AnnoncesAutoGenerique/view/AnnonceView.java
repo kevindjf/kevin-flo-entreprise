@@ -18,7 +18,6 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	Object _element;
 	int _position;
-	String _type;
 	boolean _swipable;
 
 	ImageView _image;
@@ -35,13 +34,12 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	View _apartirDe;
 
-	public AnnonceView(Annonce annonce, Context context, View view, int position, String type, boolean swipable) {
+	public AnnonceView(Annonce annonce, Context context, View view, int position, boolean swipable) {
 		super(context, view);
 		ImageLoaderCache.load(getContext());
 
 		this._annonce = annonce;
 		this._position = position;
-		this._type = type;
 		this._swipable = swipable;
 		charger();
 		remplir();

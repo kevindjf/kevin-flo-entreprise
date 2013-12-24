@@ -28,7 +28,7 @@ public abstract class XmlParser {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public int XMLgetEventType(){
 		int eventType = -1;
 		try {
@@ -38,7 +38,7 @@ public abstract class XmlParser {
 		}
 		return eventType;
 	}
-	
+
 	public int XMLgetSuivant(){
 		int eventType = -1;
 		try {
@@ -48,7 +48,7 @@ public abstract class XmlParser {
 		} 
 		return eventType;
 	}
-	
+
 	public XmlParser(XmlPullParser xpp) {
 		this._xpp = xpp;
 	}
@@ -76,20 +76,17 @@ public abstract class XmlParser {
 	protected String getString() {
 		String s = "";
 		try {
-			getXpp().next(); //passe au contenu
+			if(getXpp().getEventType() == getXpp().START_TAG)
+				getXpp().next(); //passe au contenu
+			if(getXpp().getEventType() == getXpp().TEXT){
+				s = getXpp().getText();
+				if(s != null)
+					s = s.trim().replaceAll("&amp;","&");
+				getXpp().next(); //passe le tag de fermeture
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-
-		s = getXpp().getText();
-		if(s != null)
-			s = s.trim().replaceAll("&amp;","&");
-
-		try{
-			getXpp().next(); //passe le tag de fermeture
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 
 		return s;
 	}
@@ -105,7 +102,7 @@ public abstract class XmlParser {
 			try {
 				d = formatter.parse(s);
 			} catch (ParseException e) {
-				
+
 				SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd");
 				try {
 					d = formatter2.parse(s);
