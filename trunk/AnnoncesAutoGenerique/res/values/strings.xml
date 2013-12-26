@@ -190,6 +190,7 @@
     <string name="reprise_de_votre_bateau">REPRISE DE VOTRE ?</string>
     <string name="requis">requis</string>
         <string name="resultats">Résultats</string>
+        <string name="resultats_petit">résultats</string>
     
     <string name="retour">Retour</string>
     <string name="salle_de_bain">Salle de bain</string>
