@@ -123,10 +123,8 @@ public class Actualites extends FragmentNormal{
 					afficherProgress = false;
 					afficherProgress(afficherProgress);
 
-					if(debut == 0)
-						_liste.onRefreshComplete();
-					else
-						_liste.onLoadMoreComplete();
+					_liste.onRefreshComplete();
+					_liste.onLoadMoreComplete();
 				}
 
 			});

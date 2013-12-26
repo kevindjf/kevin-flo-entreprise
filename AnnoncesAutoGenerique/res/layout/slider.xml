@@ -110,20 +110,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/slider_mes_alertes"
-                    style="@style/slider_element" >
-
-                    <ImageView
-                        style="@style/slider_element_image"
-                        android:src="@drawable/logo_mes_alertes_noir" />
-
-                    <TextView
-                        android:id="@+id/text"
-                        style="@style/slider_element_texte"
-                        android:text="@string/mes_alertes" />
-                </LinearLayout>
-
-                <LinearLayout
                     android:id="@+id/slider_informations"
                     style="@style/slider_element" >
 
