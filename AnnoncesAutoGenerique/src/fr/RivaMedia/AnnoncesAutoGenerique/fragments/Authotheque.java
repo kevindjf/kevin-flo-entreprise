@@ -21,6 +21,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.MarqueSelector;
+import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.ValeurSelector;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Categorie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
@@ -32,7 +33,8 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 	private static final int CARROSSERIE = 1;
 	private static final int MARQUE_MODELE = 2;
 	private static final int ENERGIE = 3;
-	
+	private static final int BOITE_VITESSE = 4;
+
 	View _view;
 
 	View[] _views;
@@ -55,6 +57,10 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 	List<Marque> _marques = null;
 	List<Marque> _marques_posseder = null;
 
+	String energie_id;
+	String marque_id;
+	String modele_id;
+	String carrosserie_id;
 	String budget_requis;
 	String taille_requis;
 
@@ -121,7 +127,6 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		_marqueModele.setOnClickListener(this);
 		_energie.setOnClickListener(this);
 		_annee.setOnClickListener(this);
-		_kilometrage.setOnClickListener(this);
 		_couleurExterieur.setOnClickListener(this);
 		_couleurInterieur.setOnClickListener(this);
 		_boiteDeVitesse.setOnClickListener(this);
@@ -160,7 +165,14 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		case R.id.autotheque_annee:
 			demanderAnneeMinMax();
 			break;
+		case R.id.autotheque_boite_de_vitesse:
+			demanderBoiteDeVitesse();
+			break;
 		}
+	}
+
+	private void demanderBoiteDeVitesse() {
+		ajouterFragment(new ValeurSelector(this, BOITE_VITESSE, Donnees.transmission));
 	}
 
 	private void demanderAnneeMinMax() {
@@ -215,9 +227,25 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 
 	@Override
 	public void itemSelected(Object from, int idRetour, String item, String value) {
-
-		//TODO TEST SUR LES ID DE RETOUR
-
+		if(idRetour == BOITE_VITESSE)
+			((TextView)_boiteDeVitesse.findViewById(R.id.text)).setText(value);
+		else if(idRetour == ENERGIE){
+			energie_id = item;
+			((TextView)_energie.findViewById(R.id.text)).setText(value);
+		}else if(idRetour == MARQUE_MODELE){
+			if(item.equals("-1")){
+				marque_id = null;
+				modele_id = null;
+			}else{
+				String[] ids = item.split(";");
+				marque_id = ids[0];
+				modele_id = ids[1];
+			}
+			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
+		}else if(idRetour == CARROSSERIE){
+			carrosserie_id = item;
+			((TextView)_carrosserie.findViewById(R.id.text)).setText(value);
+		}
 	}
 
 	@Override
@@ -233,6 +261,12 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 
 	@Override
 	public void reset() {
+
+		energie_id = null;
+		marque_id = null;
+		modele_id = null;
+		carrosserie_id = null;
+
 		int i=0;
 		for(View v : _views){
 			//v.setOnClickListener(null);
@@ -240,8 +274,10 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 			Object o = v.findViewById(R.id.text);
 			if(o instanceof TextView)
 				((TextView)o).setText(_texteInitial[i]);
-			else if(o instanceof EditText)
+			else if(o instanceof EditText){
+				((EditText)o).setText("");
 				((EditText)o).setHint(_texteInitial[i]);
+			}
 			//spinners, etc
 			++i;
 		}

@@ -29,6 +29,7 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 	String _tmpMin = null;
 	String _tmpMax = null;
 	int _valeurMax;
+	int _valeurMin = 0;
 
 	public static final String PLUS = "+";
 
@@ -45,6 +46,16 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 		_tmpMin = min;
 		_tmpMax = max;
 		_valeurMax = valeurMax;
+	}
+	
+
+	public MinMaxDialog(Context context, String titre, OnMinMaxListener listener, String min, String max, int valeurMin, int valeurMax) {
+		this(context,titre,listener);
+
+		_tmpMin = min;
+		_tmpMax = max;
+		_valeurMax = valeurMax;
+		_valeurMin = valeurMin;
 	}
 	
 	@Override
@@ -65,27 +76,31 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 
 		_minValeur = (TextView)findViewById(R.id.min_valeur);
 		_maxValeur = (TextView)findViewById(R.id.max_valeur);
-
+		
 		_ok = findViewById(R.id.ok);
 		_cancel = findViewById(R.id.cancel);
+
 		
 		_titreView.setText(_titre);
 
 		_min.setMax(_valeurMax);
 		_max.setMax(_valeurMax);
 		if(_tmpMin != null){
-			_min.setProgress(Integer.parseInt(_tmpMin));
+			_min.setProgress(Integer.parseInt(_tmpMin)-_valeurMin);
 			_minValeur.setText(_tmpMin);
-		}
+		}else
+			_minValeur.setText(""+_valeurMin);
 		if(_tmpMax != null){
 			if(_tmpMax.equals(PLUS)){
-				_max.setProgress(_valeurMax);
+				_max.setProgress(_valeurMax-_valeurMin);
 				_maxValeur.setText(_tmpMax);
 			}else{
-				_max.setProgress(Integer.parseInt(_tmpMax));
+				_max.setProgress(Integer.parseInt(_tmpMax)-_valeurMin);
 				_maxValeur.setText(_tmpMax);
 			}
-		}
+		}else
+			_maxValeur.setText(""+_valeurMin);
+			
 	}
 
 	protected void ajouterListeners(){
@@ -101,10 +116,10 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 		case R.id.ok:
 			int min, max;
 
-			min = _min.getProgress();
-			max = _max.getProgress();
+			min = (_valeurMin+_min.getProgress());
+			max = (_valeurMin+_max.getProgress());
 
-			if(min==max && max==0)
+			if(min==max && max==_valeurMin)
 				this.dismiss();
 			else{
 				String sMax = ""+max;
@@ -113,7 +128,7 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 					sMax = "+";
 
 				if(min>max)
-					min=0;
+					min=_valeurMin;
 
 				_listener.onMinMaxSelected(_titre, ""+min, sMax);
 				this.dismiss();
@@ -135,13 +150,13 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 	@Override
 	public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
 		if(seekBar.equals(_min)){
-			_minValeur.setText(""+progress);			
+			_minValeur.setText(""+(_valeurMin+progress));			
 		}
 
 		else if(seekBar.equals(_max)){
-			_maxValeur.setText(""+progress);
+			_maxValeur.setText(""+(_valeurMin+progress));
 
-			if(_maxValeur.getText().toString().equals(""+_valeurMax)){
+			if(_maxValeur.getText().toString().equals(""+(_valeurMin+_valeurMax))){
 				_maxValeur.setText("+");
 			}
 		}

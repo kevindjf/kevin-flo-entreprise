@@ -1,6 +1,7 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,6 +80,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	String recherche_energie_id = null;
 
+	String recherche_annee_min = null;
+	String recherche_annee_max = null;
+
 	String recherche_prix_min = null;
 	String recherche_prix_max = null;
 
@@ -103,7 +107,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		charger();
 		remplir();
 		ajouterListeners();
-		
+
 		rechercherNombre();
 
 		return _view;
@@ -149,7 +153,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		_energie.setOnClickListener(this);
 		_boite_de_vitesse.setOnClickListener(this);
 		_annee.setOnClickListener(this);
-		_km_max.setOnClickListener(this);
 		_prix.setOnClickListener(this);
 		_departement.setOnClickListener(this);
 	}
@@ -179,9 +182,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		case R.id.annonces_formulaires_annee:
 			demanderAnnee();
 			break;
-		case R.id.annonces_formulaires_km_max:
-			demanderKmMax();
-			break;
 		case R.id.annonces_formulaires_prix:
 			demanderPrix();
 			break;
@@ -195,12 +195,19 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		ajouterFragment(new MarqueSelector(this, MARQUE_MODELE, true));
 	}
 
-	private void demanderKmMax() {
-		// TODO Auto-generated method stub
-
-	}
-
+	@SuppressWarnings("deprecation")
 	private void demanderAnnee() {
+		int anneeMin = 1900;
+		int anneeMax = new Date().getYear();
+
+		new MinMaxDialog(
+				getActivity(), 
+				getActivity().getResources().getString(R.string.annee),
+				this,
+				recherche_annee_min,recherche_annee_max,
+				anneeMin,
+				anneeMax
+				).show();	
 	}
 
 	private void demanderBoiteVitesse() {
@@ -295,6 +302,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		recherche_prix_min = null;
 		recherche_prix_max = null;
 
+		recherche_annee_min = null;
+		recherche_annee_max = null;
+
 		recherche_longueur_min = null;
 		recherche_longueur_max = null;
 
@@ -347,8 +357,12 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 			((TextView)_prix.findViewById(R.id.text)).setText("de "+min+" € à "+max+" €");
 		}
+		else if(titre.equals(getActivity().getResources().getString(R.string.annee))){
+			recherche_annee_min = min;
+			recherche_annee_max = max;
 
-		//TODO Mettre les min max
+			((TextView)_annee.findViewById(R.id.text)).setText("de "+min+" à "+max);
+		}
 
 		rechercherNombre();
 
@@ -388,6 +402,17 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Net.add(donnees,
 					Constantes.ANNONCES_PRIX_MIN,recherche_prix_min,
 					Constantes.ANNONCES_PRIX_MAX,recherche_prix_max
+					);
+		
+		if(recherche_annee_min != null && recherche_annee_max != null)
+			Net.add(donnees,
+					Constantes.ANNONCES_ANNEE_MIN,recherche_annee_min,
+					Constantes.ANNONCES_ANNEE_MAX,recherche_annee_max
+					);
+		
+		String km = ((TextView) _km_max.findViewById(R.id.text)).getText().toString();
+			Net.add(donnees,
+					Constantes.ANNONCES_KM,km
 					);
 
 		if(recherche_departement_id != null)
