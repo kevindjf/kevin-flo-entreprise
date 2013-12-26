@@ -150,7 +150,7 @@
     <style name="slider_element_texte">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/couleur_texte_noir</item>
+        <item name="android:textColor">@color/couleur_texte_blanc</item>
         <item name="android:textSize">16sp</item>
     </style>
 

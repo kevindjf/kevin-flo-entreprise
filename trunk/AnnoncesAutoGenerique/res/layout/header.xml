@@ -3,7 +3,7 @@
     android:id="@+id/header"
     android:layout_width="match_parent"
     android:layout_height="50dip"
-    android:background="@drawable/ribbon" >
+    android:background="@drawable/cuir" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +16,7 @@
             android:layout_centerInParent="true"
             android:text="@string/accueil"
             android:textSize="20sp"
-            android:textColor="@color/couleur_texte_noir"
+            android:textColor="@color/couleur_texte_blanc"
              />
 
         <RelativeLayout
