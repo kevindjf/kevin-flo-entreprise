@@ -1,6 +1,7 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
+import fr.RivaMedia.AnnoncesAutoGenerique.dialog.MinMaxDialog;
 import fr.RivaMedia.AnnoncesAutoGenerique.dialog.OnMinMaxListener;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.ItemSelectedListener;
@@ -63,6 +65,9 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 	String carrosserie_id;
 	String budget_requis;
 	String taille_requis;
+	
+	String annee_min;
+	String annee_max;
 
 
 
@@ -175,9 +180,19 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		ajouterFragment(new ValeurSelector(this, BOITE_VITESSE, Donnees.transmission));
 	}
 
+	@SuppressWarnings("deprecation")
 	private void demanderAnneeMinMax() {
-		// TODO Auto-generated method stub
+		int anneeMin = 1900;
+		int anneeMax = new Date().getYear();
 
+		new MinMaxDialog(
+				getActivity(), 
+				getActivity().getResources().getString(R.string.annee),
+				this,
+				annee_min,annee_max,
+				anneeMin,
+				anneeMax
+				).show();	
 	}
 
 	private void demanderEnergie() {
@@ -250,7 +265,12 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 
 	@Override
 	public void onMinMaxSelected(String titre, String min, String max) {
-		//TODO Annee for example
+		if(titre.equals(getActivity().getResources().getString(R.string.annee))){
+			annee_min = min;
+			annee_max = max;
+
+			((TextView)_annee.findViewById(R.id.text)).setText("de "+min+" à "+max);
+		}
 	}
 
 	@Override
