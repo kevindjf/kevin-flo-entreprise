@@ -1,10 +1,18 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
+import java.util.List;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +57,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 			break;
 
 		case R.id.contact_pro_email :
-			super.envoyerEmailDirect(getString(R.string.EMAIL_RIVAMEDIA));
+			super.envoyerEmailDirect(((TextView)(contact_pro_email.findViewById(R.id.text))).getText().toString());
 			break;
 		}
 	}
@@ -58,6 +66,8 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	public void charger() {
 		mMapFragment = ((SupportMapFragment)getFragmentManager().findFragmentById(R.id.map));
 		mMap = mMapFragment.getMap();
+
+
 		contact_pro_telephone = view.findViewById(R.id.contact_pro_telephone);
 		contact_pro_email = view.findViewById(R.id.contact_pro_email);
 		image_entreprise = (ImageView) view.findViewById(R.id.logo_entreprise);
@@ -69,12 +79,42 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 	@Override
 	public void remplir() {
-		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(),image_entreprise );
+		
+		if(Donnees.parametres.getImageLogo() != null)
+		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(),image_entreprise);
+		
+		if(Donnees.client.getTel1() != null)
 		((TextView)(contact_pro_telephone.findViewById(R.id.text))).setText(Donnees.client.getTel1());
+		
+		if(Donnees.client.getEmail() != null)
 		((TextView)(contact_pro_email.findViewById(R.id.text))).setText(Donnees.client.getEmail());
+		
+		if(Donnees.client.getHoraires() != null)
 		_horaire.setText(Donnees.client.getHoraires());
+		
+		if(Donnees.client.getAdresse() != null)
 		_adresse.setText(Donnees.client.getAdresse());
-		_adresse_postale.setText(Donnees.client.getDepartement() + " " + Donnees.client.getVille());
+		
+		if(Donnees.client.getDepartementNum() != null && Donnees.client.getVille() != null)
+		_adresse_postale.setText(Donnees.client.getDepartementNum() + " " + Donnees.client.getVille());
+
+		Geocoder coder = new Geocoder(getActivity());
+		List<Address> address;
+
+		try {
+			address = coder.getFromLocationName(Donnees.client.getVille(),5);
+			Address location = address.get(0);
+			LatLng position = new LatLng(location.getLatitude(),location.getLongitude());
+
+			mMap.addMarker(new MarkerOptions()
+			.position(position)
+
+			.title("JPV")
+			.snippet("Population: 2,074,200")
+			.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+		}catch(Exception e){
+			Log.e("Error", e.toString());
+		}
 	}
 
 	@Override
