@@ -68,9 +68,10 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	public void remplir() {
 		if(_annonce != null){
 
-			if(_annonce.getPhoto() != null){
+			if(_annonce.getPhoto() != null && _annonce.getPhoto().length()>0){
 				ImageLoaderCache.charger(_annonce.getPhoto(),_image);
-			}
+			}else
+				_image.setImageDrawable(getContext().getResources().getDrawable(R.drawable.camera));
 
 			if(_annonce.getFinition() != null)
 				_titre.setText(_annonce.getFinition());
