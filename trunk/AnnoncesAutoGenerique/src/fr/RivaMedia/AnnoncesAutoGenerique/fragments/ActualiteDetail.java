@@ -58,6 +58,7 @@ public class ActualiteDetail extends FragmentNormal{
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
+		setTitre(getResources().getString(R.string.actualite));
 	}
 
 

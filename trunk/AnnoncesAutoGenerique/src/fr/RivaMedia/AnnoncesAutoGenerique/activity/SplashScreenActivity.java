@@ -83,7 +83,7 @@ public class SplashScreenActivity extends Activity{
 
 	protected void etapeSuivante(){
 
-		Intent i = new Intent(this,MagasineActivity.class);
+		Intent i = new Intent(this,MainActivity.class);
 		startActivity(i);
 		finish();
 
