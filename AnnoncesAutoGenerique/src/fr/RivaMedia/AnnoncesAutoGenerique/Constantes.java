@@ -30,9 +30,18 @@ public class Constantes {
 	public static final String URL_DERNIERES_ANNONCES = "dernieres-annonces";
 	public static final String URL_ANNONCE_DETAIL = "annonce.php";
 	public static final String ANNONCE_DETAIL_ID = "annonce";
+	
+	public static final String ANNONCES_ORDER = "order";
+	public static final String ANNONCES_ORDER_OPTION = "order_option";
+	public static final String ANNONCES_ORDER_OPTION_PRIX = "prix";
+	public static final String ANNONCES_ORDER_OPTION_KM = "km";
+	public static final String ANNONCES_ORDER_OPTION_ANNEE = "annee";
+	public static final String ANNONCES_ORDER_OPTION_CROISSANT = "asc";
+	public static final String ANNONCES_ORDER_OPTION_DECROISSANT = "desc";
 
 	public static final String ANNONCES_LIMIT_FROM = "limit_from";
 	public static final String ANNONCES_LIMIT = "limit";
+	
 	public static final String ANNONCES_CATEGORIE_ID = "categorie";
 	public static final String ANNONCES_SERIE_ID = "serie";
 	public static final String ANNONCES_PRIX_MIN = "prix_min";

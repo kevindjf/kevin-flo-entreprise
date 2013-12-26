@@ -116,6 +116,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		};
 
 		_progress = findViewById(R.id.header_progress);
+		
+		
 	}
 
 	protected void charger(){

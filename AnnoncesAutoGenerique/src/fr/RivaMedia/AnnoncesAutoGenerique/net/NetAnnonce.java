@@ -12,12 +12,21 @@ import fr.RivaMedia.AnnoncesAutoGenerique.xml.AnnonceXmlParser;
 
 public class NetAnnonce extends Net {	
 	
-	public static List<Annonce> getAnnonces(List<NameValuePair> donnees,String debut, String nombre){
+	public static List<Annonce> getAnnonces(List<NameValuePair> donnees,String debut, String nombre,String order,String order_option){
 
 		List<NameValuePair> d = new ArrayList<NameValuePair>(donnees);
 		Net.add(d, 
 				Constantes.ANNONCES_LIMIT_FROM,debut,
 				Constantes.ANNONCES_LIMIT,nombre
+				);
+		
+		if(order != null)
+			Net.add(d,
+					Constantes.ANNONCES_ORDER,order
+					);
+		
+		Net.add(d,
+				Constantes.ANNONCES_ORDER_OPTION,order_option
 				);
 		
 		return getAnnonces(d);
