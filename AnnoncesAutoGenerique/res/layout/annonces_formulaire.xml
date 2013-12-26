@@ -7,7 +7,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/couleur_fond" >
+        android:background="@color/couleur_fond"
+        android:paddingBottom="50dip" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -141,10 +142,9 @@
                     style="@style/formulaire_cellule_texte"
                     android:hint="@string/facultatif"
                     android:inputType="number" />
+            </RelativeLayout>
 
-            </RelativeLayout>            
-
-			<LinearLayout style="@style/formulaire_separator" >
+            <LinearLayout style="@style/formulaire_separator" >
 
                 <TextView
                     style="@style/formulaire_separator_titre"
@@ -167,7 +167,7 @@
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
 
-              <RelativeLayout
+            <RelativeLayout
                 android:id="@+id/annonces_formulaires_departement"
                 style="@style/formulaire_cellule" >
 
@@ -182,9 +182,13 @@
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
+
+            <LinearLayout style="@style/formulaire_separator" >
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
-  <RelativeLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dip"
         android:layout_alignParentBottom="true"
@@ -283,4 +287,5 @@
                 android:textSize="10sp" />
         </RelativeLayout>
     </RelativeLayout>
+
 </RelativeLayout>
