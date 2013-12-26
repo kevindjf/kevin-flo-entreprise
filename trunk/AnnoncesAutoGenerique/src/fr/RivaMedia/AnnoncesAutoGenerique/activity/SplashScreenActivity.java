@@ -18,6 +18,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetChargement;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetClient;
+import fr.RivaMedia.AnnoncesAutoGenerique.net.NetInscriptionActualite;
 
 public class SplashScreenActivity extends Activity{
 
@@ -136,6 +137,9 @@ public class SplashScreenActivity extends Activity{
 			Donnees.energies = NetChargement.chargerEnergies();
 			Donnees.departements = NetChargement.chargerDepartements();
 			Donnees.client = NetClient.getClient(Constantes.CLIENT_VALUE);
+			
+			NetInscriptionActualite.inscrireActualites(Donnees.jeton);
+			
 			lancerDecompte();
 
 			return null;

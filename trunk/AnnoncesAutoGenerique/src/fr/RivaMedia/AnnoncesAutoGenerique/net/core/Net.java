@@ -136,7 +136,7 @@ public class Net {
 		if(donneesPost == null)
 			donneesPost = Net.construireDonnes();
 
-		add(donneesPost,Constantes.KEY, Constantes.KEY_VALUE);
+		add(donneesPost,Constantes.POST_KEY, Constantes.POST_KEY_VALUE);
 		add(donneesPost,Constantes.KEY_CLIENT, Constantes.CLIENT_VALUE);
 
 		HttpClient httpClient = new DefaultHttpClient();
