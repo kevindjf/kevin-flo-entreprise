@@ -93,12 +93,11 @@
                         style="@style/formulaire_cellule_titre"
                         android:text="@string/finition" />
 
-                    <TextView
+                    <EditText
                         android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
-                        android:text="@string/facultatif" />
+                        android:hint="@string/facultatif" />
 
-                    <ImageView style="@style/formulaire_cellule_indicator" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -157,12 +156,11 @@
                         style="@style/formulaire_cellule_titre"
                         android:text="@string/budget_star" />
 
-                    <TextView
+                    <EditText
                         android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
-                        android:text="@string/requis" />
+                        android:hint="@string/requis" />
 
-                    <ImageView style="@style/formulaire_cellule_indicator" />
                 </RelativeLayout>
 
                 <LinearLayout style="@style/formulaire_separator" >
@@ -180,12 +178,11 @@
                         style="@style/formulaire_cellule_titre"
                         android:text="@string/couleur_exterieure" />
 
-                    <TextView
+                    <EditText
                         android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
-                        android:text="@string/facultatif" />
+                        android:hint="@string/facultatif" />
 
-                    <ImageView style="@style/formulaire_cellule_indicator" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -196,12 +193,11 @@
                         style="@style/formulaire_cellule_titre"
                         android:text="@string/couleur_interieur" />
 
-                    <TextView
+                    <EditText
                         android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
-                        android:text="@string/facultatif" />
+                        android:hint="@string/facultatif" />
 
-                    <ImageView style="@style/formulaire_cellule_indicator" />
                 </RelativeLayout>
 
                 <RelativeLayout

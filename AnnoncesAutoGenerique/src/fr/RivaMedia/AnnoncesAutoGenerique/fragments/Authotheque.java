@@ -1,7 +1,9 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 
@@ -17,11 +19,20 @@ import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.dialog.OnMinMaxListener;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.ItemSelectedListener;
+import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.DonneeValeurSelector;
+import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.MarqueSelector;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.Categorie;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 
 @SuppressLint("ValidFragment")
 public class Authotheque extends FragmentFormulaire implements ItemSelectedListener , OnMinMaxListener{
 
+	private static final int CARROSSERIE = 1;
+	private static final int MARQUE_MODELE = 2;
+	private static final int ENERGIE = 3;
+	
 	View _view;
 
 	View[] _views;
@@ -108,7 +119,6 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 	public void ajouterListeners(){
 		_carrosserie.setOnClickListener(this);
 		_marqueModele.setOnClickListener(this);
-		_finition.setOnClickListener(this);
 		_energie.setOnClickListener(this);
 		_annee.setOnClickListener(this);
 		_kilometrage.setOnClickListener(this);
@@ -127,7 +137,7 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 							((EditText)(v.findViewById(R.id.text))).getText().toString().trim().equals("0")){
 						((EditText)(v.findViewById(R.id.text))).setText("");
 					}else{
-						((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText().toString().replace(" ���", ""));
+						((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText().toString().replace(" €", ""));
 					}
 				}
 
@@ -144,58 +154,46 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		case R.id.autotheque_marque_modele:
 			demanderMarqueModele();
 			break;
-		case R.id.autotheque_finition:
-			demanderFinition();
-			break;
 		case R.id.autotheque_energie:
 			demanderEnergie();
 			break;
 		case R.id.autotheque_annee:
 			demanderAnneeMinMax();
 			break;
-		case R.id.autotheque_couleur_exterieur:
-			demanderCouleurExterieur();
-			break;
-		case R.id.autotheque_couleur_interieur:
-			demanderCouleurInterieur();
-			break;
 		}
-	}
-
-	private void demanderCouleurInterieur() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void demanderCouleurExterieur() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	private void demanderAnneeMinMax() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void demanderEnergie() {
-		// TODO Auto-generated method stub
-		
-	}
+		List<Energie> energies = Donnees.energies;
+		if(energies != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Energie energie : energies){
+				donneesValeurs.put(energie.getNom(), energie.getId());
+			}
 
-	private void demanderFinition() {
-		// TODO Auto-generated method stub
-		
+			ajouterFragment(new DonneeValeurSelector(this,ENERGIE,donneesValeurs));
+		}
 	}
 
 	private void demanderMarqueModele() {
-		// TODO Auto-generated method stub
-		
+		ajouterFragment(new MarqueSelector(this, MARQUE_MODELE, false));
 	}
 
 	private void demanderCarrosserie() {
-		// TODO Auto-generated method stub
-		
-	}
+		List<Categorie> categories = Donnees.categories;
+		if(categories != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Categorie categorie : categories){
+				donneesValeurs.put(categorie.getNom(), categorie.getId());
+			}
+
+			ajouterFragment(new DonneeValeurSelector(this,CARROSSERIE,donneesValeurs));
+		}	}
 
 	private void demanderEtapeSuivante() {
 		List<NameValuePair> donneesVente = recupererDonnees();
@@ -217,14 +215,14 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 
 	@Override
 	public void itemSelected(Object from, int idRetour, String item, String value) {
-		
-//TODO TEST SUR LES ID DE RETOUR
+
+		//TODO TEST SUR LES ID DE RETOUR
 
 	}
 
 	@Override
 	public void onMinMaxSelected(String titre, String min, String max) {
-//TODO Année for example
+		//TODO Annee for example
 	}
 
 	@Override

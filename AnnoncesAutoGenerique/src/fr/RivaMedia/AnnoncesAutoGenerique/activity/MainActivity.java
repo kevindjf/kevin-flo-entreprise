@@ -44,9 +44,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _header_effacer;
 	View _header_favoris;
 	View _header_trier;
-	
+
 	View _slider_background;
-	
+
 	View _slider_accueil;
 	View _slider_annonces;
 	View _slider_actualites;
@@ -61,7 +61,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _progress;
 
 	Annonce _annoncePourFavoris;
-	
+
 	ImageView _slider_logo;
 	TextView _header_titre;
 
@@ -84,18 +84,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider = new SimpleSideDrawer( this );
 		_slider.setLeftBehindContentView( R.layout.slider);
 		_slider.setRightBehindContentView( R.layout.slider_right);
-				
+
 		_header = findViewById(R.id.header);
 		_header_menu = findViewById(R.id.header_menu);
 		_header_effacer = findViewById(R.id.header_effacer);
 		_header_favoris = findViewById(R.id.header_favoris);
 		_header_trier = findViewById(R.id.header_tri);
-		
+
 		_header_titre = (TextView)findViewById(R.id.header_titre);
 
 		_slider_background = findViewById(R.id.slider_background);
 		_slider_accueil = findViewById(R.id.slider_accueil);
 		_slider_actualites = findViewById(R.id.slider_actualites);
+		_slider_autotheque = findViewById(R.id.slider_autotheque);
 		_slider_mon_garage = findViewById(R.id.slider_mon_garage);
 		_slider_informations = findViewById(R.id.slider_informations);
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
@@ -108,6 +109,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 				_slider_annonces,
 				_slider_actualites,
 				_slider_mon_garage,
+				_slider_autotheque,
 				_slider_informations,
 				_slider_contact_pro,
 				_slider_credits
@@ -117,10 +119,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	protected void charger(){
-		
+
 		ImageLoaderCache.load(this);
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _slider_logo);
-		
+
 		afficherAccueil();
 	}
 
@@ -143,7 +145,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	@Override
 	public void onClick(View v) {
-		
+
 		switch(v.getId()){
 		case R.id.header_menu:
 			ouvrirSlider();
@@ -185,7 +187,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void afficherAccueil(){
 		ajouterFragment(new Accueil(),false);
 	}
-	
+
 	public void afficherAnnonces(){
 		ajouterFragment(new AnnoncesFormulaire(),false);
 	}
@@ -198,7 +200,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void afficherMonGarage(){
 		ajouterFragment(new MonGarage(),false);
 	}
-	
+
 	public void afficherContactPro(){
 		ajouterFragment(new ContactPro(),false);
 	}
@@ -248,16 +250,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void envoyerEmailVendeur(String email, Vendeur vendeur){
 		envoyerEmail(email, EmailFragment.EMAIL_CLIENT, vendeur);
 	}
-	
+
 	public void envoyerEmailAnnonce(String email,  Annonce annonce){
 		envoyerEmail(email, EmailFragment.EMAIL_ANNNONCE, annonce);
 	}
-	
-	
+
+
 	private void envoyerEmail(String email, int type, Object objet){
 		ajouterFragment(new EmailFragment(type, objet));
 	}
-	
+
 	public void envoyerEmailDirect(String email){
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setData(Uri.parse("mailto:"+email));
@@ -370,7 +372,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		}
 		return super.onKeyDown(keycode,event);  
 	}
-	
+
 	public void setTitre(String titre){
 		_header_titre.setText(titre);
 	}
