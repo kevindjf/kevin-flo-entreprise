@@ -16,6 +16,8 @@ import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.dialog.MinMaxDialog;
 import fr.RivaMedia.AnnoncesAutoGenerique.dialog.OnMinMaxListener;
@@ -28,6 +30,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.model.Categorie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
+import fr.RivaMedia.AnnoncesAutoGenerique.net.core.Net;
 
 @SuppressLint("ValidFragment")
 public class Authotheque extends FragmentFormulaire implements ItemSelectedListener , OnMinMaxListener{
@@ -234,6 +237,80 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 	private List<NameValuePair> recupererDonnees(){
 
 		List<NameValuePair> donnees = new ArrayList<NameValuePair>();
+		
+		if(marque_id == null)
+			Net.add(donnees,Constantes.RECHERCHE_MARQUE_ID,marque_id);
+		else{
+			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_marque, Toast.LENGTH_SHORT).show();
+			return null;
+		}
+		
+		if(modele_id == null)
+			Net.add(donnees,Constantes.RECHERCHE_SERIE_ID,modele_id);
+		else{
+			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_serie, Toast.LENGTH_SHORT).show();
+			return null;
+		}
+		
+		if(carrosserie_id == null)
+			Net.add(donnees,Constantes.RECHERCHE_CATEGORIE_ID,carrosserie_id);
+		else{
+			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_carrosserie, Toast.LENGTH_SHORT).show();
+			return null;
+		}
+		
+		String budget = ((EditText)_budget.findViewById(R.id.text)).getText().toString();
+		if(budget.length()>0)
+			Net.add(donnees,Constantes.RECHERCHE_BUDGET,budget);
+		else{
+			Toast.makeText(getActivity(), R.string.veuillez_indiquer_un_budget, Toast.LENGTH_SHORT).show();
+			return null;
+		}
+		
+		if(energie_id == null)
+			Net.add(donnees,Constantes.RECHERCHE_ENERGIE,energie_id);
+		else{
+			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_energie, Toast.LENGTH_SHORT).show();
+			return null;
+		}
+		
+		////////////////////OPTIIONNELS////////////////////
+		
+		String finition = ((EditText)_finition.findViewById(R.id.text)).getText().toString();
+		if(finition.length()>0)
+			Net.add(donnees,Constantes.RECHERCHE_FINITION,finition);
+		
+		String couleur_ext = ((EditText)_couleurExterieur.findViewById(R.id.text)).getText().toString();
+		if(couleur_ext.length()>0)
+			Net.add(donnees,Constantes.RECHERCHE_COULEUR_EXT,couleur_ext);
+		
+		String couleur_int = ((EditText)_couleurInterieur.findViewById(R.id.text)).getText().toString();
+		if(couleur_int.length()>0)
+			Net.add(donnees,Constantes.RECHERCHE_COULEUR_INT,couleur_int);
+		
+		String transmission = ((TextView)_boiteDeVitesse.findViewById(R.id.text)).getText().toString();
+		if(transmission.length()>0)
+			Net.add(donnees,Constantes.RECHERCHE_TRANSMISSION,transmission);
+		
+		String km = ((EditText)_kilometrage.findViewById(R.id.text)).getText().toString();
+		if(km.length()>0)
+			Net.add(donnees,Constantes.RECHERCHE_KM,km);
+		
+		String nb_portes = ((EditText)_kilometrage.findViewById(R.id.text)).getText().toString();
+		if(nb_portes.length()>0)
+			Net.add(donnees,Constantes.RECHERCHE_NB_PORTES,nb_portes);
+		
+		if(annee_min != null && annee_max != null){
+			Net.add(donnees,
+					Constantes.RECHERCHE_ANNEE_MIN,annee_min,
+					Constantes.RECHERCHE_ANNEE_MAX,annee_max
+					);
+		}
+		
+		String commentaire = ((EditText)_commentaire.findViewById(R.id.text)).getText().toString();
+		if(commentaire.length()>0)
+			Net.add(donnees,Constantes.RECHERCHE_COMMENTAIRE,commentaire);
+		
 		return donnees;
 	}
 
@@ -286,6 +363,9 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		marque_id = null;
 		modele_id = null;
 		carrosserie_id = null;
+		
+		annee_min = null;
+		annee_max = null;
 
 		int i=0;
 		for(View v : _views){
@@ -294,10 +374,9 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 			Object o = v.findViewById(R.id.text);
 			if(o instanceof TextView)
 				((TextView)o).setText(_texteInitial[i]);
-			else if(o instanceof EditText){
+			else if(o instanceof EditText)
 				((EditText)o).setText("");
-				((EditText)o).setHint(_texteInitial[i]);
-			}
+			
 			//spinners, etc
 			++i;
 		}
