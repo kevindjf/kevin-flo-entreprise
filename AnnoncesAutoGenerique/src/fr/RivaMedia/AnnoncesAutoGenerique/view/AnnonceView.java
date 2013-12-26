@@ -73,8 +73,17 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			}else
 				_image.setImageDrawable(getContext().getResources().getDrawable(R.drawable.camera));
 
+			String titre = "";
+			if(_annonce.getMarque() != null)
+				titre +=_annonce.getMarque();
+			
+			if(_annonce.getSerie() != null)
+				titre += _annonce.getSerie();
+			
+			_titre.setText(titre);
+			
 			if(_annonce.getFinition() != null)
-				_titre.setText(_annonce.getFinition());
+				_sousTitre.setText(_annonce.getFinition());
 
 			if(_annonce.getAnnee() != null)
 				_annee.setText(_annonce.getAnnee());
