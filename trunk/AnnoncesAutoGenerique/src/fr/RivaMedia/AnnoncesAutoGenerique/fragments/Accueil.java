@@ -19,6 +19,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 	ImageView  _logo;
 	ImageView  _imageEntreprise;
 	TextView _text_entreprise;
+	
 	ImageView _fond;
 
 	@Override
@@ -40,6 +41,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		_imageEntreprise = (ImageView) _view.findViewById(R.id.image_entreprise);
 		_text_entreprise = (TextView) _view.findViewById(R.id.text_entreprise);
 		_fond = (ImageView) _view.findViewById(R.id.fond);
+		
 	}
 
 	@Override

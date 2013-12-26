@@ -13,6 +13,10 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 	SimpleSideDrawer _slider;
 	protected boolean afficherProgress = true;
 	
+	public void cacherTrier(){
+		((MainActivity)getActivity()).cacherTrier();
+	}
+	
 	public void afficherTrier(){
 		 _slider = ((MainActivity)getActivity()).getSliderDroite();
 		((MainActivity)getActivity()).afficherTrier().setOnClickListener(this);
@@ -24,8 +28,10 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 		getActivity().findViewById(R.id.slider_droite_date_decroissant).setOnClickListener(this);
 		getActivity().findViewById(R.id.slider_droite_prix_croissant).setOnClickListener(this);
 		getActivity().findViewById(R.id.slider_droite_prix_decroissant).setOnClickListener(this);
-		getActivity().findViewById(R.id.slider_droite_longueur_croissant).setOnClickListener(this);
-		getActivity().findViewById(R.id.slider_droite_longueur_decroissant).setOnClickListener(this);
+		getActivity().findViewById(R.id.slider_droite_annee_croissant).setOnClickListener(this);
+		getActivity().findViewById(R.id.slider_droite_annee_decroissant).setOnClickListener(this);
+		getActivity().findViewById(R.id.slider_droite_kilometrage_croissant).setOnClickListener(this);
+		getActivity().findViewById(R.id.slider_droite_kilometrage_decroissant).setOnClickListener(this);
 	}
 	
 	public void fermerSliderDroite(){
@@ -39,19 +45,14 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 		afficherTrier();
 	}
 	
-	public void afficherTriLongueur(boolean b){
-		if(b)
-			getActivity().findViewById(R.id.slider_droite_tri_longueur).setVisibility(View.VISIBLE);
-		else
-			getActivity().findViewById(R.id.slider_droite_tri_longueur).setVisibility(View.GONE);
-	}
-	
 	public abstract void afficherPrixCroissant();
 	public abstract void afficherPrixDeCroissant();
 	public abstract void afficherDateCroissant();
 	public abstract void afficherDateDeCroissant();
-	public abstract void afficherLongueurCroissant();
-	public abstract void afficherLongueurDeCroissant();
+	public abstract void afficherKilometrageCroissant();
+	public abstract void afficherKilometrageDeCroissant();
+	public abstract void afficherAnneeCroissant();
+	public abstract void afficherAnneeDeCroissant();
 	
 	@Override
 	public void onClick(View v) {
@@ -78,12 +79,20 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 			afficherPrixDeCroissant();
 			fermerSliderDroite();
 			break;
-		case R.id.slider_droite_longueur_croissant:
-			afficherLongueurCroissant();
+		case R.id.slider_droite_annee_croissant:
+			afficherAnneeCroissant();
 			fermerSliderDroite();
 			break;
-		case R.id.slider_droite_longueur_decroissant:
-			afficherLongueurDeCroissant();
+		case R.id.slider_droite_annee_decroissant:
+			afficherAnneeDeCroissant();
+			fermerSliderDroite();
+			break;
+		case R.id.slider_droite_kilometrage_croissant:
+			afficherKilometrageCroissant();
+			fermerSliderDroite();
+			break;
+		case R.id.slider_droite_kilometrage_decroissant:
+			afficherKilometrageDeCroissant();
 			fermerSliderDroite();
 			break;
 		}

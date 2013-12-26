@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.adapter.AnnonceListAdapter;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentListe;
@@ -35,7 +36,13 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	int nombre = 10;
 
 	String idClient = null; 
-
+	
+	String order = null;
+	String order_option = Constantes.ANNONCES_ORDER_OPTION_DECROISSANT;
+	
+	boolean vider = false;
+	
+	
 	public AnnoncesListe(List<NameValuePair> donneesFormulaire){
 		this._donneesFormulaire = donneesFormulaire;
 	}
@@ -46,12 +53,17 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		_view = inflater.inflate(R.layout.liste_annonces,container, false);
 		afficherProgress(afficherProgress);
 
-		task = new ChargerAnnoncesTask();
-		task.execute();
-		
-		//TODO gerer type
+		lancerChargement();
 
 		return _view;
+	}
+	
+	public void lancerChargement(){
+		vider = true;
+		debut=0;
+		nombre=10;
+		task = new ChargerAnnoncesTask();
+		task.execute();
 	}
 
 	public void charger(){
@@ -119,43 +131,83 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 
 	@Override
 	public void afficherPrixCroissant() {
+		order = Constantes.ANNONCES_ORDER_OPTION_PRIX;
+		order_option = Constantes.ANNONCES_ORDER_OPTION_CROISSANT;
+		lancerChargement();
 	}
 
 
 	@Override
 	public void afficherPrixDeCroissant() {
+		order = Constantes.ANNONCES_ORDER_OPTION_PRIX;
+		order_option = Constantes.ANNONCES_ORDER_OPTION_DECROISSANT;
+		lancerChargement();
 	}
 
 
 	@Override
 	public void afficherDateCroissant() {
+		order = null;
+		order_option = Constantes.ANNONCES_ORDER_OPTION_CROISSANT;
+		lancerChargement();
 	}
 
 
 	@Override
 	public void afficherDateDeCroissant() {
+		order = null;
+		order_option = Constantes.ANNONCES_ORDER_OPTION_DECROISSANT;
+		lancerChargement();
+	}
+
+	@Override
+	public void afficherKilometrageCroissant() {
+		order = Constantes.ANNONCES_ORDER_OPTION_KM;
+		order_option = Constantes.ANNONCES_ORDER_OPTION_CROISSANT;
+		lancerChargement();
 	}
 
 
 	@Override
-	public void afficherLongueurCroissant() {
+	public void afficherKilometrageDeCroissant() {
+		order = Constantes.ANNONCES_ORDER_OPTION_KM;
+		order_option = Constantes.ANNONCES_ORDER_OPTION_DECROISSANT;
+		lancerChargement();
 	}
 
 
 	@Override
-	public void afficherLongueurDeCroissant() {
+	public void afficherAnneeCroissant() {
+		order = Constantes.ANNONCES_ORDER_OPTION_ANNEE;
+		order_option = Constantes.ANNONCES_ORDER_OPTION_CROISSANT;
+		lancerChargement();
 	}
+
+
+	@Override
+	public void afficherAnneeDeCroissant() {
+		order = Constantes.ANNONCES_ORDER_OPTION_ANNEE;
+		order_option = Constantes.ANNONCES_ORDER_OPTION_DECROISSANT;
+		lancerChargement();
+	}
+
 	
 	/* --------------------------------------------------------------------------- */
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			List<Annonce> annonces = NetAnnonce.getAnnonces(_donneesFormulaire,""+debut,""+nombre);
+			List<Annonce> annonces = NetAnnonce.getAnnonces(_donneesFormulaire,""+debut,""+nombre,order,order_option);
 			
 			nombre = annonces.size();
 			debut += nombre;
 			
-			_annonces.addAll(annonces);
+			if(vider){
+				_annonces.clear();
+				_annonces.addAll(annonces);
+				_adapter = null;
+				vider = false;
+			}else
+				_annonces.addAll(annonces);
 
 			getActivity().runOnUiThread(new Runnable(){
 
@@ -182,4 +234,5 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		super.onResume();
 		setTitre(getString(R.string.resultats));
 	}
+
 }

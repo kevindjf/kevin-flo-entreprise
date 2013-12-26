@@ -43,6 +43,8 @@ public class MonGarage extends FragmentListe implements View.OnClickListener{
 
 		task = new ChargerAnnoncesTask();
 		task.execute();
+		
+		cacherTrier();
 
 		return _view;
 	}
@@ -206,14 +208,22 @@ public class MonGarage extends FragmentListe implements View.OnClickListener{
 	@Override
 	public void afficherDateDeCroissant() {
 	}
+
+	@Override
+	public void afficherKilometrageCroissant() {
+	}
+
+	@Override
+	public void afficherKilometrageDeCroissant() {
+	}
+
+	@Override
+	public void afficherAnneeCroissant() {
+	}
+
+	@Override
+	public void afficherAnneeDeCroissant() {
+	}
 	
-	@Override
-	public void afficherLongueurCroissant() {
-	}
-
-
-	@Override
-	public void afficherLongueurDeCroissant() {
-	}
 
 }
