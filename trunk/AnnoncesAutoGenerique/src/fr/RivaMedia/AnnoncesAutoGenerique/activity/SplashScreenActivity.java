@@ -11,11 +11,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.alertes.GcmInitializer;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetChargement;
+import fr.RivaMedia.AnnoncesAutoGenerique.net.NetClient;
 
 public class SplashScreenActivity extends Activity{
 
@@ -133,7 +135,7 @@ public class SplashScreenActivity extends Activity{
 			Donnees.marquesPubliees = NetChargement.chargerMarquesPubliees();
 			Donnees.energies = NetChargement.chargerEnergies();
 			Donnees.departements = NetChargement.chargerDepartements();
-			
+			Donnees.client = NetClient.getClient(Constantes.CLIENT_VALUE);
 			lancerDecompte();
 
 			return null;

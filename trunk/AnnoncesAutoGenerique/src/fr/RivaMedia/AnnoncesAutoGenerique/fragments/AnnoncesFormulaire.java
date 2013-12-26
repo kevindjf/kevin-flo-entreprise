@@ -54,7 +54,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	View _view;
 	View _rechercher;
-	View _ajouterAlerte;
 	TextView _nombreAnnonces;
 
 	View _carrosserie;
@@ -114,7 +113,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	public void charger(){
 		_rechercher = _view.findViewById(R.id.annonces_formulaire_bouton_rechercher);	
-		_ajouterAlerte = _view.findViewById(R.id.annonces_formulaire_bouton_alertes);	
 		_nombreAnnonces = (TextView)_view.findViewById(R.id.annonces_formulaire_nombre_annonces);	
 
 		_carrosserie = _view.findViewById(R.id.annonces_formulaire_carrosserie);
@@ -148,7 +146,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	public void ajouterListeners(){
 		_rechercher.setOnClickListener(this);
-		_ajouterAlerte.setOnClickListener(this);
 		_carrosserie.setOnClickListener(this);
 		_marqueModele.setOnClickListener(this);
 		_energie.setOnClickListener(this);
@@ -163,9 +160,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		switch(v.getId()){
 		case R.id.annonces_formulaire_bouton_rechercher:
 			rechercher();
-			break;
-		case R.id.annonces_formulaire_bouton_alertes:
-			ajouterAlerte();
 			break;
 
 		case R.id.annonces_formulaire_carrosserie:
@@ -229,9 +223,11 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	private void demanderDepartement() {
 		List<Departement> departements = Donnees.departements;
+		
 		if(departements != null){
 			Map<String,String> donneesValeurs = new HashMap<String,String>();
 			for(Departement departement : departements){
+				Log.e("Departement","je passe");
 				donneesValeurs.put(departement.getNom(), departement.getId());
 			}
 
