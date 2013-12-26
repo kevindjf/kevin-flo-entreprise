@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.model.AutoPromo;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Categorie;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.Client;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Departement;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
@@ -15,7 +16,7 @@ public class Donnees {
 	public static String jeton = "";
 	
 	public static AutoPromo autoPromo;
-	
+	public static Client client;
 	public static List<String> transmission = new ArrayList<String>();
 	public static List<Marque> marques = new ArrayList<Marque>();
 	public static List<Marque> marquesPubliees = new ArrayList<Marque>();
