@@ -59,7 +59,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_annonces_noir" />
+                        android:src="@drawable/loupe_black" />
 
                     <TextView
                         android:id="@+id/text"

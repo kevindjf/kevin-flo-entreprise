@@ -105,7 +105,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		_view = inflater.inflate(R.layout.annonces_formulaire,container, false);
 
 		charger();
-		remplir();
 		ajouterListeners();
 
 		rechercherNombre();
@@ -142,12 +141,14 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	public void remplir(){
+		charger();
+		for(View v : _views)
+			v.setVisibility(View.VISIBLE);	
 	}
 
 	public void ajouterListeners(){
 		_rechercher.setOnClickListener(this);
 		_ajouterAlerte.setOnClickListener(this);
-
 		_carrosserie.setOnClickListener(this);
 		_marqueModele.setOnClickListener(this);
 		_energie.setOnClickListener(this);
@@ -283,10 +284,9 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			v.setVisibility(View.GONE);
 			Object o = v.findViewById(R.id.text);
 			if(o instanceof TextView)
-				((TextView)o).setText("");
+				((TextView)o).setText("facultatif");
 			else if(o instanceof EditText)
 				((EditText)o).setText("");
-			//spinners, etc
 		}
 
 		recherche_carrosserie_id = null;
@@ -395,7 +395,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Net.add(donnees,Constantes.ANNONCES_TRANSMISSION,boiteVitesse);
 
 		String nbPortes = ((TextView) _nb_portes.findViewById(R.id.text)).getText().toString();
-		if(nbPortes.length()>0)
+		if(nbPortes.length()>0 && !nbPortes.equals("facultatif"))
 			Net.add(donnees,Constantes.ANNONCES_NB_PORTES,nbPortes);
 
 		if(recherche_prix_min != null && recherche_prix_max != null)
@@ -403,17 +403,19 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 					Constantes.ANNONCES_PRIX_MIN,recherche_prix_min,
 					Constantes.ANNONCES_PRIX_MAX,recherche_prix_max
 					);
-		
+
 		if(recherche_annee_min != null && recherche_annee_max != null)
 			Net.add(donnees,
 					Constantes.ANNONCES_ANNEE_MIN,recherche_annee_min,
 					Constantes.ANNONCES_ANNEE_MAX,recherche_annee_max
 					);
-		
+
 		String km = ((TextView) _km_max.findViewById(R.id.text)).getText().toString();
+		if(km.length() > 0 && !km.equals("facultatif")){
 			Net.add(donnees,
 					Constantes.ANNONCES_KM,km
 					);
+		}
 
 		if(recherche_departement_id != null)
 			Net.add(donnees,Constantes.ANNONCES_DEPARTEMENT_ID,recherche_departement_id);
@@ -427,6 +429,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		reset();
 		remplir();
 		ajouterListeners();
+		rechercherNombre();
 	}
 
 
