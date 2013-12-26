@@ -3,7 +3,7 @@
     android:id="@+id/slider_background"
     android:layout_width="270dip"
     android:layout_height="match_parent"
-    android:background="@drawable/ribbon"
+    android:background="@drawable/cuir"
     android:orientation="vertical" >
 
     <!-- android:background="#383C3F" -->
