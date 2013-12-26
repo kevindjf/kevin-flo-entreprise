@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/couleur_fond"
     android:orientation="vertical"
+            android:clickable="false"
+    
     android:visibility="gone" >
 
     <LinearLayout
@@ -12,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/couleur_3"
+        android:clickable="false"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -104,32 +107,6 @@
                     android:textColor="@android:color/white" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/annonce_detail_vendeur"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dip"
-                android:layout_weight="1"
-                android:background="@color/couleur_3"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingTop="5dp" >
-
-                <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="20dip"
-                    android:layout_height="20dip"
-                    android:src="@drawable/logo_vendeur_blanc"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/le_vendeur"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/annonce_detail_email"
@@ -204,6 +181,7 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:id="@+id/annonce_details_categorie"
                     style="@style/formulaire_cellule"
                     android:layout_marginLeft="5dip" >
 
@@ -216,169 +194,203 @@
                         style="@style/annonce_cellule_texte" />
                 </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:orientation="horizontal" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_marque"
+                    style="@style/formulaire_cellule" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/marque" />
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_longueur"
-                            style="@style/formulaire_cellule" >
+                    <TextView
+                        android:id="@+id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
+                
+                     <RelativeLayout
+                    android:id="@+id/annonce_detail_modele"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/longueur" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/modele" />
 
-                            <TextView
-                                android:id="@+id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@+id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_largeur"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_finition"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/largeur" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/finition" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_cabines"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_energie"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/cabines" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/energie" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_couchettes"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_kilometrage"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/couchettes" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/kilometrage" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_salle_de_bain"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_puissance_fiscal"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/salle_de_bain" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/puissance_fiscal" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_annee"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_puissance_din"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/annee" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/puissance_din" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
-                    </LinearLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_departement"
+                    style="@style/formulaire_cellule" >
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_etat"
-                            style="@style/formulaire_cellule" >
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/departement" />
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/etat" />
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+           
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_moteur"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_emission"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/moteur" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/emission_co2" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_puissance"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_nb_porte"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/puissance" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/nombre_porte" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_propulsion"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_boite_vitesse"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/propulsion" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/boite_de_vitesse" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_nombre_heures"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_couleur_exterieure"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/nombres_heures" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/couleur_exterieure" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
-                    </LinearLayout>
-                </LinearLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_couleur_interieure"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/couleur_interieur" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_garantie"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/garantie" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_annee"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/mise_en_circulation" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte"
+                        android:layout_marginLeft="150dip" />
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/annonce_detail_prix"

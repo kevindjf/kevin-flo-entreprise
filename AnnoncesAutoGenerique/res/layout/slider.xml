@@ -157,7 +157,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/smartphone" />
+                        android:src="@drawable/smartphone_black" />
 
                     <TextView
                         android:id="@+id/text"

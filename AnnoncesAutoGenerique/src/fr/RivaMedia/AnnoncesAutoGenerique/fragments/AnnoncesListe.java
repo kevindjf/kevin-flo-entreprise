@@ -179,5 +179,9 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		}
 	}
 
-
+	@Override
+	public void onResume() {
+		super.onResume();
+		setTitre(getString(R.string.resultats));
+	}
 }

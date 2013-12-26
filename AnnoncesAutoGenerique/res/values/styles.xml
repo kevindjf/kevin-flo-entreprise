@@ -21,7 +21,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dip</item>
         <item name="android:background">@drawable/fond_blanc_select_bleu</item>
-        <item name="android:padding">5dip</item>
+        <item name="android:padding">10dip</item>
     </style>
 
     <style name="formulaire_cellule_vendeur">
@@ -58,11 +58,11 @@
     </style>
 
     <style name="annonce_cellule_texte">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/couleur_texte_fonce</item>
-        <item name="android:layout_marginLeft">110dip</item>
         <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
         <item name="android:textSize">12sp</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
@@ -198,8 +198,8 @@
         <item name="android:layout_marginBottom">50dip</item>
         <item name="android:background">@drawable/cercle_rouge</item>
     </style>
-    
-        <style name="annonces_menu_cerlce_layout">
+
+    <style name="annonces_menu_cerlce_layout">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
