@@ -3,7 +3,7 @@
     android:id="@+id/slider_background"
     android:layout_width="270dip"
     android:layout_height="match_parent"
-    android:background="@color/couleur_slider"
+    android:background="@drawable/ribbon"
     android:orientation="vertical" >
 
     <!-- android:background="#383C3F" -->
@@ -11,8 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dip"
-        android:layout_marginBottom="10dip"
-        android:background="@color/couleur_slider" >
+        android:layout_marginBottom="10dip">
 
         <ImageView
             android:id="@+id/slider_image_entete"

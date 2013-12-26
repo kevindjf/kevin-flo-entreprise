@@ -3,7 +3,7 @@
     android:id="@+id/header"
     android:layout_width="match_parent"
     android:layout_height="50dip"
-    android:background="@color/couleur_header" >
+    android:background="@drawable/ribbon" >
 
     <RelativeLayout
         android:layout_width="match_parent"
