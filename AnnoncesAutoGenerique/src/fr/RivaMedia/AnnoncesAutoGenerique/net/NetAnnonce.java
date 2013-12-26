@@ -1,5 +1,6 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.net;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -11,6 +12,16 @@ import fr.RivaMedia.AnnoncesAutoGenerique.xml.AnnonceXmlParser;
 
 public class NetAnnonce extends Net {	
 	
+	public static List<Annonce> getAnnonces(List<NameValuePair> donnees,String debut, String nombre){
+
+		List<NameValuePair> d = new ArrayList<NameValuePair>(donnees);
+		Net.add(d, 
+				Constantes.ANNONCES_LIMIT_FROM,debut,
+				Constantes.ANNONCES_LIMIT,nombre
+				);
+		
+		return getAnnonces(d);
+	}
 	
 	public static List<Annonce> getAnnonces(List<NameValuePair> donnees){
 

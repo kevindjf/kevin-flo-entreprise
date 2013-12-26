@@ -150,12 +150,10 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			List<Annonce> annonces = NetAnnonce.getAnnonces(_donneesFormulaire);
+			List<Annonce> annonces = NetAnnonce.getAnnonces(_donneesFormulaire,""+debut,""+nombre);
 			
-			nombre = 0;
-			
-			//nombre = annonces.size();
-			//debut += nombre;
+			nombre = annonces.size();
+			debut += nombre;
 			
 			_annonces.addAll(annonces);
 
