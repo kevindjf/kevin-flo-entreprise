@@ -140,8 +140,8 @@
                 <EditText
                     android:id="@id/text"
                     style="@style/formulaire_cellule_texte"
-                    android:hint="@string/facultatif"
-              android:inputType="number" />
+                    android:inputType="number"
+                    android:hint="@string/facultatif" />
             </RelativeLayout>
 
             <LinearLayout style="@style/formulaire_separator" >
@@ -204,87 +204,37 @@
             android:id="@+id/annonces_formulaire_bouton_rechercher"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toLeftOf="@+id/annonces_formulaire_centre"
             android:background="@drawable/fond_bleu_select_bleu"
             android:text="@string/rechercher"
+            android:gravity="center_horizontal"
             android:textColor="@color/couleur_texte_blanc" >
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="vertical" >
-
-                <ImageView
-                    android:id="@+id/annonces_formulaire_bouton_rechercher_image"
-                    android:layout_width="30dip"
-                    android:layout_height="30dip"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/loupe" />
+                android:orientation="horizontal" >
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/annonces_formulaire_nombre_annonces"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/annonces_formulaire_bouton_rechercher_image"
-                    android:layout_marginTop="5dip"
                     android:gravity="center"
-                    android:text="@string/rechercher"
+                    android:paddingBottom="2dip"
+                    android:paddingTop="2dip"
+                    android:layout_marginRight="5dip"
+                    android:text="0"
                     android:textColor="@color/couleur_texte_blanc"
-                    android:textSize="12sp" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_bouton_alertes"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/annonces_formulaire_centre"
-            android:background="@drawable/fond_bleu_select_bleu2"
-            android:text="@string/rechercher"
-            android:textColor="@color/couleur_texte_blanc" >
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical" >
-
-                <ImageView
-                    android:id="@+id/annonces_formulaire_bouton_alertes_image"
-                    android:layout_width="30dip"
-                    android:layout_height="30dip"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/clock_blanc" />
-
+                    android:textSize="20sp" />
+                
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/annonces_formulaire_bouton_alertes_image"
-                    android:layout_marginTop="5dip"
                     android:gravity="center"
-                    android:text="Ajouter à mes alertes"
+                    android:text="@string/resultats_petit"
                     android:textColor="@color/couleur_texte_blanc"
-                    android:textSize="10sp" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_ou"
-            android:layout_width="35dip"
-            android:layout_height="35dip"
-            android:layout_centerInParent="true" >
-
-            <TextView
-                android:id="@+id/annonces_formulaire_nombre_annonces"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/cercle_bleu"
-                android:gravity="center"
-                android:paddingBottom="2dip"
-                android:paddingTop="2dip"
-                android:text=""
-                android:textColor="@color/couleur_texte_blanc"
-                android:textSize="10sp" />
+                    android:textSize="20sp" />
+            </LinearLayout>
         </RelativeLayout>
     </RelativeLayout>
 

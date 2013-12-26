@@ -49,8 +49,8 @@
     <color name="couleur_texte_fonce">@color/_gris_menu</color>
     <color name="couleur_texte_noir">@color/_noir</color>
     <color name="couleur_texte_blanc">@color/_blanc	</color>
-    <color name="couleur_cellule_paire">@color/_blanc</color>
-    <color name="couleur_cellule_impaire">@color/_gris_clair</color>
+    <color name="couleur_cellule_impaire">@color/_blanc</color>
+    <color name="couleur_cellule_paire">@color/_gris_clair</color>
     <color name="couleur_cellule_touch">@color/_bleu</color>
     <color name="couleur_gris_supprimer_swipe">@color/_gris_swipe</color>
     
