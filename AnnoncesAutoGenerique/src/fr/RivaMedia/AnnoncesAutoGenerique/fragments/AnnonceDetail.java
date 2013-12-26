@@ -36,7 +36,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	String _id;
 	View screen;
 	View layout_haut;
-	
+
 	View titre;
 	View sousTitre;
 	View prixEntete;
@@ -252,7 +252,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				_couleurInterieure.setVisibility(View.GONE);
 			}
 
-			if(_annonce.getGarantie() != null && !_annonce.getGarantie().isEmpty()){
+			if(_annonce.getGarantie() != null && _annonce.getGarantie().length() != 0){
 				((TextView)_garantie.findViewById(R.id.text)).setText(_annonce.getGarantie());
 
 			}else{
@@ -280,25 +280,26 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			afficherLogoFavoris();
 
 
+			if(_annonce.getClient() != null){
+				if(_annonce.getClient().getNom() != null)
+					((TextView)nomVendeur).setText(_annonce.getClient().getNom());
+				else
+					nomVendeur.setVisibility(View.GONE);
 
-			if(_annonce.getClient().getNom() != null)
-				((TextView)nomVendeur).setText(_annonce.getClient().getNom());
-			else
-				nomVendeur.setVisibility(View.GONE);
-			
-			if(_annonce.getClient().getAdresse() != null)
-				((TextView)adresseVendeur).setText(_annonce.getClient().getAdresse());
-			else
-				adresseVendeur.setVisibility(View.GONE);
-			
-			if(_annonce.getClient().getDepartement() != null)
-				((TextView)postaleVendeur).setText(_annonce.getClient().getDepartementNum());
-			else
-				postaleVendeur.setVisibility(View.GONE);
-			
-			if(_annonce.getClient().getVille() != null)
-				((TextView)postaleVendeur).setText(((TextView)postaleVendeur).getText().toString() + " " + _annonce.getClient().getVille());
-			
+				if(_annonce.getClient().getAdresse() != null)
+					((TextView)adresseVendeur).setText(_annonce.getClient().getAdresse());
+				else
+					adresseVendeur.setVisibility(View.GONE);
+
+				if(_annonce.getClient().getDepartement() != null)
+					((TextView)postaleVendeur).setText(_annonce.getClient().getDepartementNum());
+				else
+					postaleVendeur.setVisibility(View.GONE);
+
+				if(_annonce.getClient().getVille() != null)
+					((TextView)postaleVendeur).setText(((TextView)postaleVendeur).getText().toString() + " " + _annonce.getClient().getVille());
+			}
+
 			if(_annonce.getCategorie() != null){
 				((TextView)sousTitre).setText(((TextView)sousTitre).getText() + " - " +_annonce.getCategorie());
 				((TextView)type).setText(_annonce.getCategorie());
@@ -307,7 +308,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				_categorie.setVisibility(View.GONE);
 			}
 		}
-		
+
 
 		screen.setVisibility(View.VISIBLE);
 
