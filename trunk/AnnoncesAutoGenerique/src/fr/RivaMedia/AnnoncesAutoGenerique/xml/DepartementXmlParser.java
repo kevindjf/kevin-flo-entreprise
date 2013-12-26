@@ -25,7 +25,7 @@ public class DepartementXmlParser extends XmlParser {
 		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				if(tag.equals("department")){
+				if(tag.equals("departement")){
 					departments.add(getDepartement());
 				}
 			}
