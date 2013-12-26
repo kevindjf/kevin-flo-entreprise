@@ -261,7 +261,7 @@ public class Net {
 		if(donneesPost == null)
 			donneesPost = Net.construireDonnesMultiPart();
 
-		add(donneesPost,Constantes.KEY, Constantes.KEY_VALUE);
+		add(donneesPost,Constantes.POST_KEY, Constantes.POST_KEY_VALUE);
 
 		HttpClient httpClient = new DefaultHttpClient();
 		httpClient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
