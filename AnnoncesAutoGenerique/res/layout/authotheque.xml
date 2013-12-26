@@ -140,12 +140,12 @@
                         style="@style/formulaire_cellule_titre"
                         android:text="@string/kilometrage" />
 
-                    <TextView
+                    <EditText
                         android:id="@id/text"
                         style="@style/formulaire_cellule_texte"
-                        android:text="@string/facultatif" />
+                        android:hint="@string/facultatif"
+                        android:inputType="number" />
 
-                    <ImageView style="@style/formulaire_cellule_indicator" />
                 </RelativeLayout>
 
                 <RelativeLayout
