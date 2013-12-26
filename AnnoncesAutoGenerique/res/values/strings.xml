@@ -217,7 +217,10 @@
     <string name="vendeur_aucune_description">Ce vendeur n\'a renseigné aucune déscription</string>
     <string name="veuillez_choisir_un_budget">Veuillez choisir un budget</string>
     <string name="veuillez_choisir_la_puissance">Veuillez choisir la puissance du moteur</string>
+    <string name="veuillez_choisir_une_energie">Veuillez choisir une energie</string>
+    <string name="veuillez_choisir_une_serie">Veuillez choisir une serie</string>
     <string name="veuillez_entrer_un_message">Veuillez entrer un message</string>
+    <string name="veuillez_indiquer_un_budget">Veuillez choisir un budget</string>
     <string name="veuillez_indiquer_votre_code_postale">Veuillez choisir un code postal</string>
     <string name="veuillez_indiquer_votre_nom">Veuillez indiquer votre nom</string>
     <string name="veuillez_indiquer_votre_numero_telephone">Veuillez indiquez votre numéro de téléphone</string>
