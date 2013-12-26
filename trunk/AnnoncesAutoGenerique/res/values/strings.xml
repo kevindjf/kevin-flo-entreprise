@@ -16,7 +16,9 @@
     <string name="album">Album</string>
     <string name="annee">Année</string>
     <string name="annee_du_moteur">Année du moteur</string>
+    <string name="annonce">Annonce</string>
     <string name="annonces">Annonces</string>
+    <string name="annonce_details">Détails Annonce</string>
     <string name="annonces_small">annonces</string>
     <string name="annonces_en_vente">annonces en vente</string>
     <string name="annonce_postee">Votre annonce sera mise en ligne prochainement</string>
@@ -68,6 +70,7 @@
     <string name="departement_dots">Département :</string>
     <string name="departement_pays_star">Département/pays *</string>
     <string name="description">DESCRIPTION</string>
+    <string name="description_pas_renseigne">Aucune description pour se véhicule</string>
     <string name="description_dots">Description :</string>
     <string name="description_maj">DESCRIPTION</string>
     <string name="description_autoteque">Décrivez les critères de la voiture de vos rêves, celle que vous souhaitez acquérir ! Nous nous chargeons de transférer votre demande à nos clients partenaires qui vous contacteront avec la meilleure offre s’il possède l’unité qui vous correspond. \n\nEnsuite c’est à vous de jouer ! </string>
@@ -83,6 +86,7 @@
     <string name="email_dots">E-Mail :</string>
     <string name="email_envoye">E-Mail envoyé</string>
     <string name="email_star">E-Mail *</string>
+    <string name="emission_co2">Emission co2</string>
     <string name="diesel">Diesel</string>
     <string name="energie">Energie</string>
     <string name="energie_star">Energie *</string>
@@ -99,6 +103,7 @@
     <string name="finition">Finition</string>
     <string name="france_autre_region">France/Autre region</string>
     <string name="generalites">GENERALITES</string>
+    <string name="garantie">Garantie</string>
     <string name="geolocalisez_vous_ou_recherchez_une_localite">Géolocalisez vous ou recherchez une localité :</string>
     <string name="gerer_votre_recherche_directement_sur">Gérez votre recherche directement sur www.youboat.fr/recherche-bateau.html </string>
     <string name="gps_not_found_title">Aucun service GPS trouvé</string>
@@ -137,7 +142,9 @@
     <string name="mes_recherches">Mes recherches</string>
     <string name="max">Max :</string>
     <string name="min">Min :</string>
+    <string name="mise_en_circulation">Mise en circulation</string>
     <string name="modele_star">Modèle *</string>
+    <string name="modele">Modèle</string>
     <string name="moins">-</string>
     <string name="monGarage">Mon garage</string>
     <string name="moteur">Moteur</string>
@@ -174,12 +181,16 @@
     <string name="principal_caracteristiques">CARACTERISTIQUES PRINCIPALES</string>
     <string name="propulsion">Propulsion</string>
     <string name="puissance">Puissance</string>
+    <string name="puissance_fiscal">Puissance fisc</string>
+    <string name="puissance_din">Puissance din</string>
     <string name="puissance_star">Puissance *</string>
     <string name="puissance_ch">Puissance (ch)</string>
     <string name="que_souhaitez_vous_vendre">Que souhaitez vous vendre ?</string>
     <string name="rechercher">Rechercher</string>
     <string name="reprise_de_votre_bateau">REPRISE DE VOTRE ?</string>
     <string name="requis">requis</string>
+        <string name="resultats">Résultats</string>
+    
     <string name="retour">Retour</string>
     <string name="salle_de_bain">Salle de bain</string>
     <string name="selectionnez_les_criteres_desires">Selectionnez les critères desirés</string>

@@ -79,7 +79,7 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		charger();
 		remplir();
 		ajouterListeners();
-
+		setTitre(getString(R.string.autotheque));
 		return _view;
 	}
 

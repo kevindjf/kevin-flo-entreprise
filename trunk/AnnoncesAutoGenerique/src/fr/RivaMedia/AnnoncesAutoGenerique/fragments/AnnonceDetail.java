@@ -2,7 +2,6 @@ package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -25,7 +24,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.activity.Gallery;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
-import fr.RivaMedia.AnnoncesAutoGenerique.model.Lien;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetAnnonce;
 import fr.RivaMedia.AnnoncesAutoGenerique.utils.FavorisManager;
 
@@ -36,30 +35,39 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	Annonce _annonce;
 	String _id;
 	View screen;
-
+	View layout_haut;
+	
 	View titre;
 	View sousTitre;
 	View prixEntete;
 	View type;
-	View longeur;
-	View largeur;
 
-	View cabines;
-	View couchettes;
-	View salleDeBain;
-	View annee;
-	View etat;
-	View moteur;
-	View puissance;
-	View propulsion;
-	View nbHeures;
-	View prix;
+	View prix;	
+
+
+	View _categorie;
+	View _marque;
+	View _modele;
+	View _finition;
+	View _energie;
+	View _miseCirculation;
+	View _kilometrage;
+	View _puissanceFiscal;
+	View _puissanceDin;
+	View _emmission;
+	View _nombrePorte;
+	View _boiteVitesse;
+	View _couleurExterieure;
+	View _couleurInterieure;
+	View _garantie;
+	View _departement;
+
 	View description;
+
 	View nomVendeur;
 	View adresseVendeur;
 	View postaleVendeur;
 	View telephonePrincipal;
-	View vendeur;
 	View email;
 
 	View apartirDe;
@@ -102,33 +110,43 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		super.onResume();
 		afficherProgress(afficherProgress);
 		afficherLogoFavoris();
-	}
+		setTitre(getString(R.string.annonce_details));
+	}	
+
 
 
 	public void charger(){
+
 		screen = _view.findViewById(R.id.screen);
+		layout_haut = _view.findViewById(R.id.annonce_detail_layout_haut);
 		titre = _view.findViewById(R.id.annonce_detail_titre);	
 		sousTitre = _view.findViewById(R.id.annonce_detail_sous_titre);
 		prixEntete = _view.findViewById(R.id.annonce_detail_prix_entete);
 		type =  _view.findViewById(R.id.annonce_detail_type);
-		longeur = _view.findViewById(R.id.annonce_detail_longueur);
-		largeur =  _view.findViewById(R.id.annonce_detail_largeur);
-		cabines =  _view.findViewById(R.id.annonce_detail_cabines);
-		couchettes =  _view.findViewById(R.id.annonce_detail_couchettes);
-		salleDeBain = _view.findViewById(R.id.annonce_detail_salle_de_bain);
-		annee =  _view.findViewById(R.id.annonce_detail_annee);
-		etat =  _view.findViewById(R.id.annonce_detail_etat);
-		moteur =  _view.findViewById(R.id.annonce_detail_moteur);
-		puissance =  _view.findViewById(R.id.annonce_detail_puissance);
-		propulsion =  _view.findViewById(R.id.annonce_detail_propulsion);
-		nbHeures =  _view.findViewById(R.id.annonce_detail_nombre_heures);
+		_categorie = _view.findViewById(R.id.annonce_details_categorie);
+		_marque = _view.findViewById(R.id.annonce_detail_marque);
+		_modele = _view.findViewById(R.id.annonce_detail_modele);
+
+		_finition = _view.findViewById(R.id.annonce_detail_finition);
+		_energie = _view.findViewById(R.id.annonce_detail_energie);
+		_miseCirculation = _view.findViewById(R.id.annonce_detail_annee);
+		_kilometrage = _view.findViewById(R.id.annonce_detail_kilometrage);
+		_puissanceFiscal = _view.findViewById(R.id.annonce_detail_puissance_fiscal);
+		_puissanceDin = _view.findViewById(R.id.annonce_detail_puissance_din);
+		_emmission = _view.findViewById(R.id.annonce_detail_emission);
+		_nombrePorte = _view.findViewById(R.id.annonce_detail_nb_porte);
+		_boiteVitesse = _view.findViewById(R.id.annonce_detail_boite_vitesse);
+		_couleurExterieure = _view.findViewById(R.id.annonce_detail_couleur_exterieure);
+		_couleurInterieure  = _view.findViewById(R.id.annonce_detail_couleur_interieure);
+		_garantie = _view.findViewById(R.id.annonce_detail_garantie);
+		_departement = _view.findViewById(R.id.annonce_detail_departement);
+
 		prix =  _view.findViewById(R.id.annonce_detail_prix);
 		description = _view.findViewById(R.id.annonce_detail_description);
 		nomVendeur = _view.findViewById(R.id.annonce_detail_nom_vendeur);
 		adresseVendeur =  _view.findViewById(R.id.annonce_detail_adresse_vendeur);
 		postaleVendeur =  _view.findViewById(R.id.annonce_detail_code_postale_vendeur);
 		telephonePrincipal =  _view.findViewById(R.id.annonce_detail_telephone_principal);
-		vendeur = _view.findViewById(R.id.annonce_detail_vendeur);
 		email = _view.findViewById(R.id.annonce_detail_email);
 		apartirDe = _view.findViewById(R.id.annonce_detail_prix_a_partir_de);
 		apartirDeEntete = _view.findViewById(R.id.annonce_detail_prix_entete_a_partir_de);
@@ -140,17 +158,111 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	}
 	public void remplir(){
+
 		if(_annonce != null){
 
-			if(_annonce.getFinition() != null)
+
+
+			if(_annonce.getMarque() != null){
+				((TextView)sousTitre).setText(_annonce.getMarque());
+				((TextView)_marque.findViewById(R.id.text)).setText(_annonce.getMarque());
+			}else{
+				_marque.setVisibility(View.GONE);
+			}
+
+			/*
+			if(_annonce.getModele() != null){
+				((TextView)_marque.findViewById(R.id.text)).setText(_annonce..getModele());
+			}else{
+				_modele.setVisibility(View.GONE);
+			}
+
+			 */
+			_modele.setVisibility(View.GONE);
+
+			if(_annonce.getEnergie() != null){
+				((TextView)_energie.findViewById(R.id.text)).setText(_annonce.getEnergie());
+			}else{
+				_energie.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getKm() != null){
+				((TextView)_kilometrage.findViewById(R.id.text)).setText(_annonce.getKm());
+			}else{
+				_kilometrage.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getPuissanceFisc() != null){
+				((TextView)_puissanceFiscal.findViewById(R.id.text)).setText(_annonce.getPuissanceFisc());
+			}else{
+				_puissanceFiscal.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getPuissanceDin() != null){
+				((TextView)_puissanceDin.findViewById(R.id.text)).setText(_annonce.getPuissanceDin());
+			}else{
+				_puissanceDin.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getDepartement() != null){
+				((TextView)_departement.findViewById(R.id.text)).setText(_annonce.getDepartement());
+			}else{
+				_departement.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getCo2() != null){
+				((TextView)_emmission.findViewById(R.id.text)).setText(_annonce.getCo2());
+			}else{
+				_emmission.setVisibility(View.GONE);
+			}
+			if(_annonce.getFinition() != null){
 				((TextView)titre).setText(_annonce.getFinition());
-			else
+				((TextView)_finition.findViewById(R.id.text)).setText(_annonce.getFinition());
+
+			}else{
 				titre.setVisibility(View.GONE);
+				_finition.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getNbPortes() != null){
+				((TextView)_nombrePorte.findViewById(R.id.text)).setText(_annonce.getFinition());
+
+			}else{
+				_nombrePorte.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getTransmission() != null){
+				((TextView)_boiteVitesse.findViewById(R.id.text)).setText(_annonce.getTransmission());
+
+			}else{
+				_boiteVitesse.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getCouleurExt() != null){
+				((TextView)_couleurExterieure.findViewById(R.id.text)).setText(_annonce.getCouleurExt());
+
+			}else{
+				_couleurExterieure.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getCouleurInt() != null){
+				((TextView)_couleurInterieure.findViewById(R.id.text)).setText(_annonce.getCouleurInt());
+
+			}else{
+				_couleurInterieure.setVisibility(View.GONE);
+			}
+
+			if(_annonce.getGarantie() != null && !_annonce.getGarantie().isEmpty()){
+				((TextView)_garantie.findViewById(R.id.text)).setText(_annonce.getGarantie());
+
+			}else{
+				_garantie.setVisibility(View.GONE);
+			}
 
 			if(_annonce.getAnnee() != null)
-				((TextView)annee.findViewById(R.id.text)).setText(_annonce.getAnnee());
+				((TextView)_miseCirculation.findViewById(R.id.text)).setText(_annonce.getAnnee());
 			else
-				annee.setVisibility(View.GONE);
+				_miseCirculation.setVisibility(View.GONE);
 
 			if(_annonce.getPrix() != null){
 				String p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim();
@@ -160,21 +272,55 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			else
 				prix.setVisibility(View.GONE);
 
+			if(_annonce.getDescriptif() != null)
+				((TextView)description).setText(_annonce.getDescriptif());
+			else
+				((TextView)description).setText(getResources().getString(R.string.description_pas_renseigne));
+
 			afficherLogoFavoris();
+
+
+
+			if(_annonce.getClient().getNom() != null)
+				((TextView)nomVendeur).setText(_annonce.getClient().getNom());
+			else
+				nomVendeur.setVisibility(View.GONE);
+			
+			if(_annonce.getClient().getAdresse() != null)
+				((TextView)adresseVendeur).setText(_annonce.getClient().getAdresse());
+			else
+				adresseVendeur.setVisibility(View.GONE);
+			
+			if(_annonce.getClient().getDepartement() != null)
+				((TextView)postaleVendeur).setText(_annonce.getClient().getDepartementNum());
+			else
+				postaleVendeur.setVisibility(View.GONE);
+			
+			if(_annonce.getClient().getVille() != null)
+				((TextView)postaleVendeur).setText(((TextView)postaleVendeur).getText().toString() + " " + _annonce.getClient().getVille());
+			
+			if(_annonce.getCategorie() != null){
+				((TextView)sousTitre).setText(((TextView)sousTitre).getText() + " - " +_annonce.getCategorie());
+				((TextView)type).setText(_annonce.getCategorie());
+			}else{
+				sousTitre.setVisibility(View.GONE);
+				_categorie.setVisibility(View.GONE);
+			}
 		}
+		
+
 		screen.setVisibility(View.VISIBLE);
 
 		_pagesAdapter = new ImagePagesAdapter();
 		_page.setAdapter(_pagesAdapter);
 		_indicator.setViewPager(_page);
 		_page.getAdapter().notifyDataSetChanged();
-		
+
 		System.out.println(_annonce.getPhotos());
 
 	}
 	public void ajouterListeners(){
 		telephonePrincipal.setOnClickListener(this);
-		vendeur.setOnClickListener(this);
 		email.setOnClickListener(this);
 
 
@@ -198,9 +344,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		case R.id.annonce_detail_telephone_principal:
 			super.appeller(((TextView)telephonePrincipal.findViewById(R.id.text)).getText().toString());
 			break;
-		case R.id.annonce_detail_vendeur:
-			afficherVendeur();
-			break;
 		case R.id.annonce_detail_email:
 			super.envoyerEmailAnnonce(((TextView)email.findViewById(R.id.text)).getText().toString(),this._annonce);
 			break;
@@ -208,9 +351,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			switchFavoris();
 			break;
 		}
-	}
-
-	protected void afficherVendeur(){
 	}
 
 	protected void switchFavoris(){
@@ -240,7 +380,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			if(_annonce != null){
 
 				String _urlImage = _annonce.getPhotos().get(position);
-				
+
 				System.out.println(_urlImage);
 
 				View	_layout = _inflater.inflate(R.layout.pager_image, container, false);
@@ -315,10 +455,17 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	protected void chargerAnnonce(){
 		charger();
+		changerCouleur();
 		remplir();
 		ajouterListeners();
 	}
 
+	protected void changerCouleur(){
+		email.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
+		telephonePrincipal.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
+		layout_haut.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
+
+	}
 
 
 	protected void chargerDetailAnnonce(){
