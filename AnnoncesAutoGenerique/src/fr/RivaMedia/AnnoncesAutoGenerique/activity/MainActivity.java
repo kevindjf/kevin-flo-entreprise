@@ -64,7 +64,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	ImageView _slider_logo;
 	TextView _header_titre;
-	
+
 	ContactPro _contactPro = null;
 
 	@Override
@@ -118,8 +118,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		};
 
 		_progress = findViewById(R.id.header_progress);
-		
-		
+
+
 	}
 
 	protected void charger(){
@@ -299,11 +299,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		alert.show();
 
 	}
-	
+
 	public void ajouterContactPro(){
-		if(_contactPro == null)
-			_contactPro = new ContactPro();
-		ajouterFragment(_contactPro,false);
+
+		if(getSupportFragmentManager().getFragments().contains(_contactPro)){
+			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+			transaction.remove(_contactPro);
+			transaction.add(R.id.main_fragment,_contactPro);
+			transaction.commit();
+		}else{
+			ajouterFragment((_contactPro = new ContactPro()));
+		}
 	}
 
 	public View afficherFavoris(){
@@ -379,15 +385,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	@Override
-	  public void onStart() {
-	    super.onStart();
-	    EasyTracker.getInstance(this).activityStart(this); 
-	  }
+	public void onStart() {
+		super.onStart();
+		EasyTracker.getInstance(this).activityStart(this); 
+	}
 
-	  @Override
-	  public void onStop() {
-	    super.onStop();
-	    EasyTracker.getInstance(this).activityStop(this); 
-	  }
+	@Override
+	public void onStop() {
+		super.onStop();
+		EasyTracker.getInstance(this).activityStop(this); 
+	}
 
 }
