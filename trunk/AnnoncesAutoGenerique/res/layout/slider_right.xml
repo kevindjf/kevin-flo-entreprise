@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="175dip"
     android:layout_height="match_parent"
-    android:background="@color/couleur_slider"
+        android:background="@drawable/cuir"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -36,7 +36,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/arrow_up_black" />
+                        android:src="@drawable/arrow_up" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -50,7 +50,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/arrow_down_black" />
+                        android:src="@drawable/arrow_down" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -73,7 +73,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/arrow_up_black" />
+                        android:src="@drawable/arrow_up" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -87,7 +87,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/arrow_down_black" />
+                        android:src="@drawable/arrow_down" />
 
                     <TextView
                         style="@style/slider_element_texte"
@@ -114,7 +114,7 @@
 
                         <ImageView
                             style="@style/slider_element_image"
-                            android:src="@drawable/arrow_up_black" />
+                            android:src="@drawable/arrow_up" />
 
                         <TextView
                             style="@style/slider_element_texte"
@@ -128,7 +128,7 @@
 
                         <ImageView
                             style="@style/slider_element_image"
-                            android:src="@drawable/arrow_down_black" />
+                            android:src="@drawable/arrow_down" />
 
                         <TextView
                             style="@style/slider_element_texte"
@@ -156,7 +156,7 @@
 
                         <ImageView
                             style="@style/slider_element_image"
-                            android:src="@drawable/arrow_up_black" />
+                            android:src="@drawable/arrow_up" />
 
                         <TextView
                             style="@style/slider_element_texte"
@@ -170,7 +170,7 @@
 
                         <ImageView
                             style="@style/slider_element_image"
-                            android:src="@drawable/arrow_down_black" />
+                            android:src="@drawable/arrow_down" />
 
                         <TextView
                             style="@style/slider_element_texte"

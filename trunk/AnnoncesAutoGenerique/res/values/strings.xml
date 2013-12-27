@@ -31,8 +31,8 @@
     <string name="atlantique">Atlantique</string>
     <string name="aucun_favoris">Vous n\'avez aucune annonce favorite</string>
     <string name="aucun_alerte">Pas d\'annonce correspondante\n à vos alertes aujourd\'hui !</string>
-    <string name="autotheque">Autothèque</string>
-    <string name="autotheque_capitalize">AUTOTHEQUE</string>
+    <string name="autotheque">Ma recherche</string>
+    <string name="autotheque_capitalize">MA RECHERCHE</string>
     <string name="aujourd_hui">Aujourd\'hui</string>
     <string name="bateaux">Bateaux</string>
     <string name="bateau_a_moteur">Bateaux à Moteur</string>
