@@ -74,7 +74,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dip"
-            android:background="@drawable/trier_noir"
+            android:background="@drawable/trier"
             android:visibility="gone" />
     </RelativeLayout>
 
