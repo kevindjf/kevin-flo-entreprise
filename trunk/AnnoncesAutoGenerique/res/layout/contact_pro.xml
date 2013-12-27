@@ -62,13 +62,14 @@
             android:textColor="@color/couleur_texte_blanc" >
 
             <LinearLayout
-                android:id="@+id/annonce_detail_telephone_principal"
+                android:id="@+id/contact_pro_button_telephone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/couleur_3"
-                android:gravity="center_horizontal"
+                android:background="@color/_bleu_fonce"
+                android:gravity="center"
                 android:orientation="vertical"
+                android:paddingRight="30dip"
                 android:paddingTop="5dp" >
 
                 <View
@@ -82,7 +83,7 @@
                     android:id="@+id/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0606060606"
+                    android:text="Appeler"
                     android:textColor="@android:color/white" />
             </LinearLayout>
         </RelativeLayout>
@@ -97,13 +98,14 @@
             android:textColor="@color/couleur_texte_blanc" >
 
             <LinearLayout
-                android:id="@+id/annonce_detail_email"
+                android:id="@+id/contact_pro_button_email"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/couleur_3"
-                android:gravity="center_horizontal"
+                android:background="@color/_bleu_fonce"
+                android:gravity="center"
                 android:orientation="vertical"
+                android:paddingLeft="30dip"
                 android:paddingTop="5dp" >
 
                 <View
@@ -118,6 +120,7 @@
                     android:id="@+id/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/envoyer_un_email"
                     android:textColor="@android:color/white"
                     android:textSize="12sp" />
@@ -126,27 +129,28 @@
 
         <RelativeLayout
             android:id="@+id/annonces_formulaire_ou"
-            android:layout_width="35dip"
-            android:layout_height="35dip"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_centerInParent="true" >
 
-            <TextView
-                android:id="@+id/annonces_formulaire_nombre_annonces"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/cercle_bleu"
-                android:gravity="center"
-                android:paddingBottom="2dip"
-                android:paddingTop="2dip"
-                android:text=""
-                android:textColor="@color/couleur_texte_blanc"
-                android:textSize="10sp" />
+            <View
+                android:id="@+id/contact_pro_shape_oval"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@drawable/circle" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/contact" />
         </RelativeLayout>
     </RelativeLayout>
 
-    	<fragment
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            class="com.google.android.gms.maps.SupportMapFragment" />
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.SupportMapFragment" />
+
 </LinearLayout>
