@@ -192,6 +192,8 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		case R.id.autotheque_boite_de_vitesse:
 			demanderBoiteDeVitesse();
 			break;
+		case R.id.boat_on_demand_etape_suivante:
+			afficherCouleurNormal(v);
 		}
 	}
 

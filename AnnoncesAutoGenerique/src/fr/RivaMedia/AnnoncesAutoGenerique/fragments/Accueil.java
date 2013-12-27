@@ -1,5 +1,9 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,6 +26,14 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 	
 	ImageView _fond;
 
+	@Override
+	public void onStart() {
+	    super.onStart();
+	    EasyTracker tracker = EasyTracker.getInstance(getActivity());
+	    tracker.set(Fields.SCREEN_NAME, "Accueil");
+	    tracker.send(MapBuilder.createAppView().build());
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.accueil,container, false);
