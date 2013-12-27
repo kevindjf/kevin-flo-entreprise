@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.navdrawer.SimpleSideDrawer;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
@@ -63,6 +64,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	ImageView _slider_logo;
 	TextView _header_titre;
+	
+	ContactPro _contactPro = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -203,7 +206,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	public void afficherContactPro(){
-		ajouterFragment(new ContactPro(),false);
+		ajouterContactPro();
 	}
 
 	public void afficherCredits(){
@@ -296,6 +299,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		alert.show();
 
 	}
+	
+	public void ajouterContactPro(){
+		if(_contactPro == null)
+			_contactPro = new ContactPro();
+		ajouterFragment(_contactPro,false);
+	}
 
 	public View afficherFavoris(){
 		_header_favoris.setVisibility(View.VISIBLE);
@@ -336,11 +345,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider.closeRightSide();
 	}
 
-	@SuppressLint("NewApi")
-	protected void onStop() {
-		super.onStop();
-	}
-
 	@Override
 	public void onBackPressed() {
 
@@ -374,6 +378,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_titre.setText(titre);
 	}
 
+	@Override
+	  public void onStart() {
+	    super.onStart();
+	    EasyTracker.getInstance(this).activityStart(this); 
+	  }
 
+	  @Override
+	  public void onStop() {
+	    super.onStop();
+	    EasyTracker.getInstance(this).activityStop(this); 
+	  }
 
 }

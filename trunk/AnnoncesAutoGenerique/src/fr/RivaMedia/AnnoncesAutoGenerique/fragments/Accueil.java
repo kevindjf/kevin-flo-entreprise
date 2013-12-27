@@ -40,7 +40,6 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		_logo = (ImageView)_view.findViewById(R.id.logo_entreprise);
 		_imageEntreprise = (ImageView) _view.findViewById(R.id.image_entreprise);
 		_text_entreprise = (TextView) _view.findViewById(R.id.text_entreprise);
-		_fond = (ImageView) _view.findViewById(R.id.fond);
 		
 	}
 
@@ -49,7 +48,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _logo);
 		ImageLoaderCache.charger(Donnees.parametres.getImageAccueil(), _imageEntreprise);
-		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), _fond);
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		_text_entreprise.setText(Donnees.parametres.getTexteIntro());
 	}
 

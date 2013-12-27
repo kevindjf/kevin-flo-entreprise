@@ -15,7 +15,7 @@
             android:adjustViewBounds="true"
             android:fitsSystemWindows="true"
             android:scaleType="fitXY" />
-
+        
         <ImageView
             android:id="@+id/logo_entreprise"
             android:layout_width="fill_parent"
@@ -23,13 +23,6 @@
             android:layout_centerInParent="true"
             android:adjustViewBounds="true" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="150dip"
-            android:adjustViewBounds="true"
-            android:fitsSystemWindows="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/cercle" />
     </RelativeLayout>
 
     <RelativeLayout

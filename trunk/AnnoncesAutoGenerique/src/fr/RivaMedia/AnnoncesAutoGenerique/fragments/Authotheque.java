@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
@@ -26,6 +27,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.MarqueSelector;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.ValeurSelector;
+import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Categorie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
@@ -82,6 +84,7 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		charger();
 		remplir();
 		ajouterListeners();
+		chargerCouleurs();
 		setTitre(getString(R.string.autotheque));
 		return _view;
 	}
@@ -128,6 +131,19 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 
 	public void remplir(){
 
+	}
+	
+	public void chargerCouleurs(){
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		
+		afficherCouleurNormal(_view.findViewById(R.id.autotheque_entete_1));
+		afficherCouleurNormal(_view.findViewById(R.id.autotheque_entete_2));
+		afficherCouleurNormal(_view.findViewById(R.id.autotheque_separator_1));
+		afficherCouleurNormal(_view.findViewById(R.id.autotheque_separator_2));
+		
+		
+		afficherCouleurNormal(_boat_on_demand_etape_suivante);
+		selector(_boat_on_demand_etape_suivante);
 	}
 
 	public void ajouterListeners(){

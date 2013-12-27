@@ -1,6 +1,5 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.google.analytics.tracking.android.EasyTracker;
+
 import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.alertes.GcmInitializer;
@@ -155,13 +157,15 @@ public class SplashScreenActivity extends Activity{
 		super.onBackPressed();
 	}
 
-	@SuppressLint("NewApi")
-	protected void onStop() {
-		super.onStop();
-		/*HttpResponseCache cache = HttpResponseCache.getInstalled();
-		if (cache != null) {
-			cache.flush();
-		}
-		*/
-	}
+	@Override
+	  public void onStart() {
+	    super.onStart();
+	    EasyTracker.getInstance(this).activityStart(this); 
+	  }
+
+	  @Override
+	  public void onStop() {
+	    super.onStop();
+	    EasyTracker.getInstance(this).activityStop(this); 
+	  }
 }

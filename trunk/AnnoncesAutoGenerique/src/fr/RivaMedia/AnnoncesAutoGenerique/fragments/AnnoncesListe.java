@@ -15,11 +15,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.adapter.AnnonceListAdapter;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentListe;
+import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetAnnonce;
 
 @SuppressLint("ValidFragment")
@@ -54,6 +57,8 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		afficherProgress(afficherProgress);
 
 		lancerChargement();
+		
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 
 		return _view;
 	}

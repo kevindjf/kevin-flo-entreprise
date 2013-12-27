@@ -129,14 +129,14 @@
 
         <RelativeLayout
             android:id="@+id/annonces_formulaire_ou"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_centerInParent="true" >
 
             <View
                 android:id="@+id/contact_pro_shape_oval"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:background="@drawable/circle" />
 
             <ImageView

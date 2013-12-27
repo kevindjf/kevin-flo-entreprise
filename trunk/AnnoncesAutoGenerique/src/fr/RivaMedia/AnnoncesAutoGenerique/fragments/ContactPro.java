@@ -18,6 +18,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +50,18 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	View contact_pro_email;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.contact_pro,container, false);
+		
+		if (view != null) {
+	        ViewGroup parent = (ViewGroup) view.getParent();
+	        if (parent != null)
+	            parent.removeView(view);
+	    }
+	    try {
+	    	view = inflater.inflate(R.layout.contact_pro,container, false);
+	    } catch (InflateException e) {
+	        /* map is already there, just return view as it is */
+	    }
+		
 		charger();
 		remplir();
 		changerCouleur();
@@ -61,16 +73,20 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.contact_pro_telephone :
+			afficherCouleurNormal(v);
 			if(Donnees.client.getTel1() != null)
-			super.appeller(Donnees.client.getTel1());
+				super.appeller(Donnees.client.getTel1());
 			break;
 
 		case R.id.contact_pro_email :
+			afficherCouleurNormal(v);
 			if(Donnees.client.getEmail() != null)
-			super.envoyerEmailDirect(Donnees.client.getEmail());
+				super.envoyerEmailDirect(Donnees.client.getEmail());
 			break;
 		}
 	}
+
+
 
 	@Override
 	public void charger() {
@@ -127,14 +143,17 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	}
 
 	public void changerCouleur(){
-		button_email.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
-		button_telephone.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
+		afficherCouleurNormal(button_email);
+		selector(button_email);
+
+		afficherCouleurNormal(button_telephone);
+		selector(button_telephone);
 
 		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
 		drawable.setColor(Donnees.parametres.getCouleurSecondaire());
-		drawable.setStroke(4, Color.WHITE);
+		drawable.setStroke(4 , Color.WHITE);
 		drawable.setCornerRadius(270);
-		shape_ovale.setBackground(drawable);
+		shape_ovale.setBackgroundDrawable(drawable);
 
 	}
 
@@ -142,6 +161,13 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	public void ajouterListeners() {
 		contact_pro_telephone.setOnClickListener(this);
 		contact_pro_email.setOnClickListener(this);	
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		if(Donnees.client!= null && Donnees.client.getNom() != null)
+			setTitre(Donnees.client.getNom());
 	}
 
 }

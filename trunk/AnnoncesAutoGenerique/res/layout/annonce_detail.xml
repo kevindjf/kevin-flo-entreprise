@@ -4,10 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/couleur_fond"
-    android:orientation="vertical"
-            android:clickable="false"
-    
-    android:visibility="gone" >
+    android:clickable="false"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/fond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:id="@+id/annonce_detail_layout_haut"
@@ -26,7 +30,7 @@
             android:layout_marginTop="5dip"
             android:paddingLeft="5dip"
             android:paddingRight="5dip"
-            android:textColor="@color/couleur_fond"
+            android:textColor="@color/couleur_texte_blanc"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -34,27 +38,18 @@
             android:id="@+id/annonce_detail_sous_titre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dip"
+            android:layout_centerVertical="true"
+            android:gravity="center"
             android:textColor="@color/couleur_texte_fonce"
             android:textSize="15sp" />
 
         <LinearLayout
             android:id="@+id/annonce_detail_prix_entete"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dip"
             android:gravity="center"
             android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/annonce_detail_prix_entete_a_partir_de"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dip"
-                android:text="@string/apartirde"
-                android:textColor="@color/couleur_texte_blanc"
-                android:textSize="15sp"
-                android:visibility="gone" />
 
             <TextView
                 android:id="@id/text"
@@ -67,6 +62,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/annonce_detail_layout_bas"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -75,67 +75,108 @@
         android:gravity="center"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="50dip"
-            android:gravity="center"
-            android:orientation="horizontal" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dip" >
 
-            <LinearLayout
-                android:id="@+id/annonce_detail_telephone_principal"
+            <View
+                android:id="@+id/annonces_formulaire_centre"
+                android:layout_width="0dip"
+                android:layout_height="0dip"
+                android:layout_centerInParent="true" />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="1dip"
-                android:layout_weight="1"
-                android:background="@color/couleur_3"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingTop="5dp" >
+                android:layout_toLeftOf="@+id/annonces_formulaire_centre"
+                android:background="@android:color/white"
+                android:text="@string/rechercher"
+                android:textColor="@color/couleur_texte_blanc" >
 
-                <View
-                    android:layout_width="20dip"
-                    android:layout_height="20dip"
-                    android:background="@drawable/phone"
-                    android:text="appeler"
-                    android:textColor="@android:color/white" />
+                <LinearLayout
+                    android:id="@+id/annonce_detail_telephone_principal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/_bleu_fonce"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingRight="30dip"
+                    android:paddingTop="5dp" >
 
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0606060606"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
+                    <View
+                        android:layout_width="20dip"
+                        android:layout_height="20dip"
+                        android:background="@drawable/phone"
+                        android:text="appeler"
+                        android:textColor="@android:color/white" />
 
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Appeler"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/annonce_detail_email"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="1dip"
-                android:layout_weight="1"
-                android:background="@color/couleur_3"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingTop="5dp" >
+                android:layout_toRightOf="@+id/annonces_formulaire_centre"
+                android:background="@android:color/white"
+                android:text="@string/rechercher"
+                android:textColor="@color/couleur_texte_blanc" >
+
+                <LinearLayout
+                    android:id="@+id/annonce_detail_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/_bleu_fonce"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="30dip"
+                    android:paddingTop="5dp" >
+
+                    <View
+                        android:layout_width="20dip"
+                        android:layout_height="20dip"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/mail"
+                        android:text="appeler"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/envoyer_un_email"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/annonce_detail_rond"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true" >
 
                 <View
-                    android:layout_width="20dip"
-                    android:layout_height="20dip"
-                    android:layout_marginBottom="1dp"
-                    android:background="@drawable/mail"
-                    android:text="appeler"
-                    android:textColor="@android:color/white" />
+                    android:id="@+id/contact_pro_shape_oval"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/circle" />
 
-                <TextView
-                    android:id="@+id/text"
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/envoyer_un_email"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/contact" />
+            </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <ScrollView
@@ -151,19 +192,36 @@
             android:orientation="vertical"
             android:paddingBottom="20dip" >
 
-            <android.support.v4.view.ViewPager
+            <LinearLayout
                 android:id="@+id/annonce_detail_image_pager"
                 android:layout_width="match_parent"
-                android:layout_height="250dip"
-                android:background="@color/couleur_3" >
-            </android.support.v4.view.ViewPager>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
 
-            <com.viewpagerindicator.CirclePageIndicator
-                android:id="@+id/annonce_detail_image_pager_indicator"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="@color/couleur_3"
-                android:padding="3dip" />
+                <ImageView
+                    android:id="@+id/annonce_detail_image_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dip"
+                    android:layout_weight="1"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/annonce_detail_image_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dip"
+                    android:layout_weight="1"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/annonce_detail_image_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dip"
+                    android:layout_weight="1"
+                    android:visibility="gone" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,8 +230,8 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
-                    style="@style/formulaire_separator"
-                    android:layout_marginTop="10dip" >
+                    android:id="@+id/annonce_detail_separator_1"
+                    style="@style/formulaire_separator" >
 
                     <TextView
                         style="@style/formulaire_separator_titre"
@@ -206,8 +264,8 @@
                         android:id="@+id/text"
                         style="@style/annonce_cellule_texte" />
                 </RelativeLayout>
-                
-                     <RelativeLayout
+
+                <RelativeLayout
                     android:id="@+id/annonce_detail_modele"
                     style="@style/formulaire_cellule" >
 
@@ -297,8 +355,6 @@
                         android:id="@id/text"
                         style="@style/annonce_cellule_texte" />
                 </RelativeLayout>
-
-           
 
                 <RelativeLayout
                     android:id="@+id/annonce_detail_emission"
@@ -420,6 +476,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/annonce_detail_separator_2"
                     style="@style/formulaire_separator"
                     android:layout_marginTop="15dip" >
 
@@ -436,6 +493,7 @@
                     android:textColor="@color/couleur_texte_noir" />
 
                 <LinearLayout
+                    android:id="@+id/annonce_detail_separator_3"
                     style="@style/formulaire_separator"
                     android:layout_marginTop="10dip" >
 

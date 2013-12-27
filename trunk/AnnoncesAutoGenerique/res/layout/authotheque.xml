@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:background="@color/couleur_fond" >
+
+    <ImageView
+        android:id="@+id/fond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/couleur_3"
         android:orientation="vertical" >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/autotheque_entete_1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dip"
+            android:background="@color/couleur_3"
+            android:gravity="center"
             android:paddingBottom="5dip"
             android:text="@string/autotheque_capitalize"
             android:textColor="@color/couleur_texte_blanc"
@@ -23,8 +29,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/couleur_fond" >
+            android:layout_height="match_parent" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,203 +37,205 @@
                 android:orientation="vertical" >
 
                 <TextView
+                    android:id="@+id/autotheque_entete_2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dip"
                     android:background="@color/couleur_3"
                     android:gravity="center"
                     android:paddingBottom="5dip"
                     android:text="@string/description_autoteque"
                     android:textColor="@color/couleur_texte_noir" />
 
-                <View
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="2dip"
-                    android:background="@color/_gris_clair" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="3dip" >
 
-                <LinearLayout style="@style/formulaire_separator" >
+                    <LinearLayout
+                        android:id="@+id/autotheque_separator_1"
+                        style="@style/formulaire_separator" >
 
-                    <TextView
-                        style="@style/formulaire_separator_titre"
-                        android:text="@string/caracteristiques" />
+                        <TextView
+                            style="@style/formulaire_separator_titre"
+                            android:text="@string/caracteristiques" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_carrosserie"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/carrosserie_star" />
+
+                        <TextView
+                            android:id="@+id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/requis" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_marque_modele"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/marque_modele_star" />
+
+                        <TextView
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/requis" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_finition"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/finition" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_energie"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/energie_star" />
+
+                        <TextView
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/requis" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_annee"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/annee" />
+
+                        <TextView
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/facultatif" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_kilometrage"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/kilometrage" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif"
+                            android:inputType="number" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_budget"
+                        style="@style/formulaire_cellule"
+                        android:layout_marginBottom="15dip" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/budget_star" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/requis" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/autotheque_separator_2"
+                        style="@style/formulaire_separator" >
+
+                        <TextView
+                            style="@style/formulaire_separator_titre"
+                            android:text="@string/informations_complementaires" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_couleur_exterieur"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/couleur_exterieure" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_couleur_interieur"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/couleur_interieur" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_boite_de_vitesse"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/boite_de_vitesse" />
+
+                        <TextView
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/facultatif" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/autotheque_commentaire"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/commentaire" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif" />
+                    </RelativeLayout>
                 </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_carrosserie"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/carrosserie_star" />
-
-                    <TextView
-                        android:id="@+id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:text="@string/requis" />
-
-                    <ImageView style="@style/formulaire_cellule_indicator" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_marque_modele"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/marque_modele_star" />
-
-                    <TextView
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:text="@string/requis" />
-
-                    <ImageView style="@style/formulaire_cellule_indicator" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_finition"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/finition" />
-
-                    <EditText
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:hint="@string/facultatif" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_energie"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/energie_star" />
-
-                    <TextView
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:text="@string/requis" />
-
-                    <ImageView style="@style/formulaire_cellule_indicator" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_annee"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/annee" />
-
-                    <TextView
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:text="@string/facultatif" />
-
-                    <ImageView style="@style/formulaire_cellule_indicator" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_kilometrage"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/kilometrage" />
-
-                    <EditText
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:hint="@string/facultatif"
-                        android:inputType="number" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_budget"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/budget_star" />
-
-                    <EditText
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:hint="@string/requis" />
-
-                </RelativeLayout>
-
-                <LinearLayout style="@style/formulaire_separator" >
-
-                    <TextView
-                        style="@style/formulaire_separator_titre"
-                        android:text="@string/informations_complementaires" />
-                </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_couleur_exterieur"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/couleur_exterieure" />
-
-                    <EditText
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:hint="@string/facultatif" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_couleur_interieur"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/couleur_interieur" />
-
-                    <EditText
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:hint="@string/facultatif" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_boite_de_vitesse"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/boite_de_vitesse" />
-
-                    <TextView
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:text="@string/facultatif" />
-
-                    <ImageView style="@style/formulaire_cellule_indicator" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/autotheque_commentaire"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/commentaire" />
-
-                    <EditText
-                        android:id="@id/text"
-                        style="@style/formulaire_cellule_texte"
-                        android:hint="@string/facultatif" />
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -237,10 +244,11 @@
 
                     <Button
                         android:id="@+id/boat_on_demand_etape_suivante"
-                        style="@style/bouton_rechercher" />
+                        style="@style/bouton_rechercher"
+                        android:layout_height="60dip" />
                 </RelativeLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

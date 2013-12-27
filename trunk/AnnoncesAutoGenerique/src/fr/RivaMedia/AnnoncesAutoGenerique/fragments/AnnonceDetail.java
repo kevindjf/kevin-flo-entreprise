@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -21,6 +23,7 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.activity.Gallery;
+import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivity;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
@@ -71,14 +74,16 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	View email;
 
 	View apartirDe;
-	View apartirDeEntete;
+	
+	View contact_rond;
 
 	View _favoris;
 	FavorisManager _favorisManager;
 
-	PagerAdapter _pagesAdapter;
-	ViewPager _page;	
-	CirclePageIndicator _indicator;
+	View _page;
+	ImageView _image1;
+	ImageView _image2;
+	ImageView _image3;
 
 	LayoutInflater _inflater;
 
@@ -149,24 +154,28 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		telephonePrincipal =  _view.findViewById(R.id.annonce_detail_telephone_principal);
 		email = _view.findViewById(R.id.annonce_detail_email);
 		apartirDe = _view.findViewById(R.id.annonce_detail_prix_a_partir_de);
-		apartirDeEntete = _view.findViewById(R.id.annonce_detail_prix_entete_a_partir_de);
 
-		_page = (ViewPager) getView().findViewById(R.id.annonce_detail_image_pager);
+		_page = getView().findViewById(R.id.annonce_detail_image_pager);
+		_image1 = (ImageView)getView().findViewById(R.id.annonce_detail_image_1);
+		_image2 = (ImageView)getView().findViewById(R.id.annonce_detail_image_2);
+		_image3 = (ImageView)getView().findViewById(R.id.annonce_detail_image_3);
 
-		_indicator = (CirclePageIndicator)getView().findViewById(R.id.annonce_detail_image_pager_indicator);
-
+		contact_rond = _view.findViewById(R.id.annonce_detail_rond);
 
 	}
+
 	public void remplir(){
+
 
 		if(_annonce != null){
 
 
 
-			if(_annonce.getMarque() != null){
-				((TextView)sousTitre).setText(_annonce.getMarque());
+			if(_annonce.getMarque() != null && _annonce.getSerie() != null){
+				((TextView)titre).setText(_annonce.getMarque()+" / "+_annonce.getSerie());
 				((TextView)_marque.findViewById(R.id.text)).setText(_annonce.getMarque());
 			}else{
+				titre.setVisibility(View.GONE);
 				_marque.setVisibility(View.GONE);
 			}
 
@@ -216,11 +225,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				_emmission.setVisibility(View.GONE);
 			}
 			if(_annonce.getFinition() != null){
-				((TextView)titre).setText(_annonce.getFinition());
+				((TextView)sousTitre).setText(_annonce.getFinition());
 				((TextView)_finition.findViewById(R.id.text)).setText(_annonce.getFinition());
 
 			}else{
-				titre.setVisibility(View.GONE);
+				sousTitre.setVisibility(View.GONE);
 				_finition.setVisibility(View.GONE);
 			}
 
@@ -307,15 +316,25 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				sousTitre.setVisibility(View.GONE);
 				_categorie.setVisibility(View.GONE);
 			}
+			
+			if(_annonce.getPhotos() != null){
+				if(_annonce.getPhotos().size()>0){
+					_image1.setVisibility(View.VISIBLE);
+					ImageLoaderCache.charger(_annonce.getPhotos().get(0), _image1);
+				}
+				if(_annonce.getPhotos().size()>1){
+					_image2.setVisibility(View.VISIBLE);
+					ImageLoaderCache.charger(_annonce.getPhotos().get(1), _image2);
+				}
+				if(_annonce.getPhotos().size()>2){
+					_image3.setVisibility(View.VISIBLE);
+					ImageLoaderCache.charger(_annonce.getPhotos().get(2), _image3);
+				}
+			}
 		}
 
 
 		screen.setVisibility(View.VISIBLE);
-
-		_pagesAdapter = new ImagePagesAdapter();
-		_page.setAdapter(_pagesAdapter);
-		_indicator.setViewPager(_page);
-		_page.getAdapter().notifyDataSetChanged();
 
 		System.out.println(_annonce.getPhotos());
 
@@ -323,6 +342,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	public void ajouterListeners(){
 		telephonePrincipal.setOnClickListener(this);
 		email.setOnClickListener(this);
+		contact_rond.setOnClickListener(this);
+		_page.setOnClickListener(this);
 
 
 		if(_favoris != null)
@@ -343,13 +364,25 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.annonce_detail_telephone_principal:
+			afficherCouleurNormal(v);
 			super.appeller(((TextView)telephonePrincipal.findViewById(R.id.text)).getText().toString());
 			break;
 		case R.id.annonce_detail_email:
+			afficherCouleurNormal(v);
 			super.envoyerEmailAnnonce(((TextView)email.findViewById(R.id.text)).getText().toString(),this._annonce);
+			break;
+		case R.id.annonce_detail_rond:
+			((MainActivity) getActivity()).ajouterContactPro();
 			break;
 		case R.id.header_favoris:
 			switchFavoris();
+			break;
+		case R.id.annonce_detail_image_pager:
+			Intent intent = new Intent(AnnonceDetail.this.getActivity(),Gallery.class);
+			if(_annonce.getFinition() != null)
+				intent.putExtra(Gallery.TEXTE, _annonce.getFinition());
+			intent.putStringArrayListExtra(Gallery.IMAGES, (ArrayList<String>)_annonce.getPhotos());
+			getActivity().startActivity(intent);
 			break;
 		}
 	}
@@ -372,88 +405,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		}
 	}
 
-
-	public class ImagePagesAdapter extends PagerAdapter {
-
-		@Override
-		public Object instantiateItem(ViewGroup container, int position) {
-
-			if(_annonce != null){
-
-				String _urlImage = _annonce.getPhotos().get(position);
-
-				System.out.println(_urlImage);
-
-				View	_layout = _inflater.inflate(R.layout.pager_image, container, false);
-				ImageView	_imageView = (ImageView)_layout.findViewById(R.id.image);
-
-				_imageView.setOnClickListener(new View.OnClickListener() {
-
-					@Override
-					public void onClick(View arg0) {
-						Intent intent = new Intent(AnnonceDetail.this.getActivity(),Gallery.class);
-						if(_annonce.getFinition() != null)
-							intent.putExtra(Gallery.TEXTE, _annonce.getFinition());
-						intent.putStringArrayListExtra(Gallery.IMAGES, (ArrayList<String>)_annonce.getPhotos());
-						getActivity().startActivity(intent);
-					}
-				});
-
-				ImageLoaderCache.load(getActivity());
-				try{
-					ImageLoaderCache.charger(_urlImage, _imageView);
-					System.err.println(_urlImage);
-				}catch(Exception e){
-					e.printStackTrace();
-				}
-
-				((ViewPager) container).addView(_layout,position);
-				return _layout;
-
-			}
-
-			return null;
-		}
-
-		@Override
-		public int getCount() {
-			if(_annonce != null){
-				if(_annonce.getPhotos() != null)
-					return _annonce.getPhotos().size();
-
-			}
-			return 0;
-		}
-
-		@Override
-		public CharSequence getPageTitle(int position) {
-			return "";
-		}
-
-		@Override
-		public boolean isViewFromObject(View view, Object object) {
-			return view==((View)object);
-		}
-
-		@Override
-		public int getItemPosition(Object object) {
-			return POSITION_NONE;
-		}
-
-		@Override
-		public void destroyItem(View container, int position, Object object) {
-			// TODO Auto-generated method stub
-			//super.destroyItem(container, position, object);
-		}
-
-		@Override
-		public void destroyItem(ViewGroup container, int position, Object object) {
-			// TODO Auto-generated method stub
-			//super.destroyItem(container, position, object);
-		}
-	}
-
-
 	protected void chargerAnnonce(){
 		charger();
 		changerCouleur();
@@ -462,9 +413,24 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	}
 
 	protected void changerCouleur(){
-		email.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
-		telephonePrincipal.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
-		layout_haut.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
+		afficherCouleurNormal(_page);
+		afficherCouleurNormal(email);
+		afficherCouleurNormal(telephonePrincipal);
+		afficherCouleurNormal(layout_haut);
+
+		selector(email);
+		selector(telephonePrincipal);
+
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_1));
+		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_2));
+		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_3));
+		
+		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
+		drawable.setColor(Donnees.parametres.getCouleurSecondaire());
+		drawable.setStroke(4 , Color.WHITE);
+		drawable.setCornerRadius(270);
+		contact_rond.setBackgroundDrawable(drawable);
 
 	}
 

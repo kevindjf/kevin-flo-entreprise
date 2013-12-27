@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     android:background="@color/couleur_fond" 
     >
+    
+    <ImageView
+        android:id="@+id/fond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
 
     <include layout="@layout/vide" />
     
