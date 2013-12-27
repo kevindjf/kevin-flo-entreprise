@@ -121,11 +121,27 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				if(event.getAction() == MotionEvent.ACTION_DOWN){
+				Log.e("Je touche",MotionEvent.ACTION_HOVER_ENTER +"");
+				Log.e("Je touche", "Je vais ou ?" + event.getAction());
+				switch (event.getAction()) {
+				case MotionEvent.ACTION_DOWN:
 					afficherCouleurTouch(v);
-				}
-				else
+					Log.e("Je touche", "Down");
+
+					break;
+
+		
+				case MotionEvent.ACTION_CANCEL:
 					afficherCouleurNormal(v);
+					break;
+					
+				case MotionEvent.ACTION_UP:
+					afficherCouleurNormal(v);
+					Log.e("Je touche", "Up");
+
+					break;
+					
+				}
 
 				return false;
 			}

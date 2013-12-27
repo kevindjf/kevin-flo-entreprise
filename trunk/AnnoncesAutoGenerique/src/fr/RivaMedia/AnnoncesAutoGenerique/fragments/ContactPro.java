@@ -58,14 +58,15 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	    }
 	    try {
 	    	view = inflater.inflate(R.layout.contact_pro,container, false);
+	    	charger();
+			remplir();
+			ajouterListeners();
+			changerCouleur();
 	    } catch (InflateException e) {
 	        /* map is already there, just return view as it is */
 	    }
 		
-		charger();
-		remplir();
-		changerCouleur();
-		ajouterListeners();
+		
 		return view;
 	}
 

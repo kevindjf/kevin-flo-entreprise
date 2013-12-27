@@ -65,6 +65,7 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 
 		charger();
 		remplir();
+		changerCouleur();
 		ajouterListeners();
 
 		ImageLoaderCache.load(getActivity());
@@ -85,9 +86,7 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 		_telephone = (EditText)_view.findViewById(R.id.email_telephone);
 		_departement = _view.findViewById(R.id.email_departement);
 		_message = (EditText)_view.findViewById(R.id.email_message);
-
 		_envoyer = _view.findViewById(R.id.email_bouton_envoyer);
-
 		_image = (ImageView)_view.findViewById(R.id.email_image);
 		_texte = (TextView)_view.findViewById(R.id.email_texte);
 	}
@@ -166,6 +165,11 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 		*/
 	}
 
+	
+	public void changerCouleur(){
+		afficherCouleurNormal(_texte);
+		selector(_envoyer);
+	}
 	public void envoyerEmail(){
 
 		if(_adresseEmail.getText().length() == 0)

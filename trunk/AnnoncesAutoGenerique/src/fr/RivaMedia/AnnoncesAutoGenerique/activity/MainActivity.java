@@ -1,7 +1,6 @@
 
 package fr.RivaMedia.AnnoncesAutoGenerique.activity;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -302,7 +301,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	public void ajouterContactPro(){
 
-		if(getSupportFragmentManager().getFragments().contains(_contactPro)){
+		if(getSupportFragmentManager().getFragments().contains(_contactPro) && _contactPro != null){
 			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 			transaction.remove(_contactPro);
 			transaction.add(R.id.main_fragment,_contactPro);

@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	String _id;
 	View screen;
 	View layout_haut;
-
 	View titre;
 	View sousTitre;
 	View prixEntete;
@@ -281,8 +281,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			else
 				prix.setVisibility(View.GONE);
 
-			if(_annonce.getDescriptif() != null)
-				((TextView)description).setText(_annonce.getDescriptif());
+			if(_annonce.getDescriptif() != null){
+				String inter = _annonce.getDescriptif().replace("&lt;", "<");
+				String interp = inter.replace("&gt;", ">");
+				((TextView)description).setText(Html.fromHtml(interp));
+			}
 			else
 				((TextView)description).setText(getResources().getString(R.string.description_pas_renseigne));
 
@@ -365,11 +368,13 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		switch(v.getId()){
 		case R.id.annonce_detail_telephone_principal:
 			afficherCouleurNormal(v);
-			super.appeller(((TextView)telephonePrincipal.findViewById(R.id.text)).getText().toString());
+			if(Donnees.client.getTel1() != null)
+			super.appeller(Donnees.client.getTel1());
 			break;
 		case R.id.annonce_detail_email:
 			afficherCouleurNormal(v);
-			super.envoyerEmailAnnonce(((TextView)email.findViewById(R.id.text)).getText().toString(),this._annonce);
+			if(Donnees.client.getEmail() != null)
+			super.envoyerEmailAnnonce(Donnees.client.getEmail(),this._annonce);
 			break;
 		case R.id.annonce_detail_rond:
 			((MainActivity) getActivity()).ajouterContactPro();
