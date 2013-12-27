@@ -80,4 +80,13 @@ public class Credit extends FragmentNormal implements View.OnClickListener{
 		_photoGrande.setOnClickListener(this);
 	}
 
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		setTitre(getActivity().getString(R.string.credit));
+	}
+	
+	
+
 }

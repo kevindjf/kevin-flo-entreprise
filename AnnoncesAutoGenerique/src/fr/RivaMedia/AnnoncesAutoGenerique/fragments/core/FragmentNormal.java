@@ -5,9 +5,11 @@ import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivity;
 import fr.RivaMedia.AnnoncesAutoGenerique.dialog.CallDialog;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Vendeur;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -107,6 +109,28 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		((MainActivity)getActivity()).setTitre(titre);
 	}
 	
+	public static void afficherCouleurNormal(View v){
+		v.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
+	}
+	public static void afficherCouleurTouch(View v){
+		v.setBackgroundColor(Donnees.parametres.getCouleurSecondaire());
+	}
+
+	public static void selector(View v){
+		v.setOnTouchListener(new View.OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if(event.getAction() == MotionEvent.ACTION_DOWN){
+					afficherCouleurTouch(v);
+				}
+				else
+					afficherCouleurNormal(v);
+
+				return false;
+			}
+		});
+	}
 	
 
 }

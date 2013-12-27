@@ -9,13 +9,16 @@ import java.util.Map;
 import org.apache.http.NameValuePair;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.StateListDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
@@ -27,11 +30,10 @@ import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.MarqueSelector;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.ValeurSelector;
+import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Categorie;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Departement;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Energie;
-import fr.RivaMedia.AnnoncesAutoGenerique.model.Etat;
-import fr.RivaMedia.AnnoncesAutoGenerique.model.Lieu;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetAlerte;
@@ -105,6 +107,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		charger();
 		ajouterListeners();
+		chargerCouleurs();
 
 		rechercherNombre();
 
@@ -136,6 +139,21 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 				_prix,
 				_departement,
 		};
+		
+		
+	}
+
+	
+
+	public void chargerCouleurs(){
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		
+		afficherCouleurNormal(_rechercher);
+		selector(_rechercher);
+		
+		afficherCouleurNormal(_view.findViewById(R.id.annonces_formulaire_separator_1));
+		afficherCouleurNormal(_view.findViewById(R.id.annonces_formulaire_separator_2));
+		afficherCouleurNormal(_view.findViewById(R.id.annonces_formulaire_separator_3));
 	}
 
 	public void remplir(){
@@ -223,7 +241,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	private void demanderDepartement() {
 		List<Departement> departements = Donnees.departements;
-		
+
 		if(departements != null){
 			Map<String,String> donneesValeurs = new HashMap<String,String>();
 			for(Departement departement : departements){
@@ -366,6 +384,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	public void rechercher(){
 		afficherAnnoncesListe(recupererDonnees());
+		afficherCouleurNormal(_rechercher);
 	}
 
 	public void rechercherNombre(){

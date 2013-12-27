@@ -93,7 +93,7 @@ public class ActualiteDetail extends FragmentNormal{
 				_texte.setText(_actualite.getTexte());
 		}
 		
-		_actualiteDetailTitreLayout.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
+		afficherCouleurNormal(_actualiteDetailTitreLayout);
 	}
 	public void ajouterListeners(){
 	}

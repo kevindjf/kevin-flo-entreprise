@@ -12,11 +12,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.adapter.ActualiteListAdapter;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
+import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Actualite;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetActualite;
 
 public class Actualites extends FragmentNormal{
@@ -58,6 +61,11 @@ public class Actualites extends FragmentNormal{
 		charger();
 		remplir();
 		ajouterListeners();
+		chargerCouleurs();
+	}
+	
+	public void chargerCouleurs(){
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 	}
 
 	public void charger(){
