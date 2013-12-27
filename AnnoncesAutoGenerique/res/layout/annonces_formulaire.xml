@@ -19,12 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="3dip" >
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dip"
-                android:background="@color/_gris_clair" />
+       >
 
             <LinearLayout
                 android:id="@+id/annonces_formulaire_separator_1"

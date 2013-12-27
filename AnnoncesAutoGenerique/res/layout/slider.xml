@@ -44,7 +44,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_accueil_noir" />
+                        android:src="@drawable/home_logo" />
 
                     <TextView
                         android:id="@+id/text"
@@ -58,7 +58,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/loupe_black" />
+                        android:src="@drawable/search_logo" />
 
                     <TextView
                         android:id="@+id/text"
@@ -72,7 +72,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_actualites_noir" />
+                        android:src="@drawable/actuality_logo" />
 
                     <TextView
                         android:id="@+id/text"
@@ -86,7 +86,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_annuaire_noir" />
+                        android:src="@drawable/autotheque_logo" />
 
                     <TextView
                         android:id="@+id/text"
@@ -100,7 +100,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_mes_annonces_noir" />
+                        android:src="@drawable/favoris_logo" />
 
                     <TextView
                         android:id="@+id/text"
@@ -110,7 +110,8 @@
 
                 <LinearLayout
                     android:id="@+id/slider_informations"
-                    style="@style/slider_element" >
+                    style="@style/slider_element"
+                    android:visibility="gone" >
 
                     <ImageView
                         style="@style/slider_element_image"
@@ -128,7 +129,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/logo_contact_pro_noir" />
+                        android:src="@drawable/contact_logo" />
 
                     <TextView
                         android:id="@+id/text"
@@ -142,7 +143,7 @@
 
                     <ImageView
                         style="@style/slider_element_image"
-                        android:src="@drawable/smartphone_black" />
+                        android:src="@drawable/smartphone" />
 
                     <TextView
                         android:id="@+id/text"
