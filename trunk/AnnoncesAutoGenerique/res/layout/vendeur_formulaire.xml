@@ -56,7 +56,8 @@
 
                 <RelativeLayout
                     android:id="@+id/vendeur_formulaire_prenom"
-                    style="@style/formulaire_cellule_vendeur" >
+                    style="@style/formulaire_cellule_vendeur"
+                    android:visibility="gone" >
 
                     <TextView
                         style="@style/formulaire_cellule_titre"
@@ -101,7 +102,8 @@
 
                 <RelativeLayout
                     android:id="@+id/vendeur_formulaire_ville"
-                    style="@style/formulaire_cellule_vendeur" >
+                    style="@style/formulaire_cellule_vendeur" 
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/formulaire_cellule_titre"
@@ -115,7 +117,8 @@
 
                 <RelativeLayout
                     android:id="@+id/vendeur_formulaire_code_postal"
-                    style="@style/formulaire_cellule_vendeur" >
+                    style="@style/formulaire_cellule_vendeur"
+                    android:visibility="gone" >
 
                     <TextView
                         style="@style/formulaire_cellule_titre"
