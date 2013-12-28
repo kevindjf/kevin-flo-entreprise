@@ -157,6 +157,7 @@ public class SplashScreenActivity extends Activity{
 		super.onBackPressed();
 	}
 
+	/*
 	@Override
 	  public void onStart() {
 	    super.onStart();
@@ -168,4 +169,6 @@ public class SplashScreenActivity extends Activity{
 	    super.onStop();
 	    EasyTracker.getInstance(this).activityStop(this); 
 	  }
+	  
+	  */
 }

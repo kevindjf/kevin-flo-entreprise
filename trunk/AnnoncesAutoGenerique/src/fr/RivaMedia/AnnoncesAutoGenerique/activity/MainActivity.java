@@ -1,6 +1,8 @@
 
 package fr.RivaMedia.AnnoncesAutoGenerique.activity;
 
+import java.util.HashMap;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -18,6 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.navdrawer.SimpleSideDrawer;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
@@ -65,12 +71,23 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	TextView _header_titre;
 
 	ContactPro _contactPro = null;
-
+	
+	public static Tracker tracker;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		ajouterVues();
+		tracker = GoogleAnalytics.getInstance(this).getTracker("UA-46725109-1");
+	  
+	    
+		/*
+		instance = GoogleAnalytics.getInstance(this);
+		tracker =  instance.getTracker("UA-46725109-1");
+	    tracker.set(Fields.SCREEN_NAME, "Accueil");
+	    tracker.send(MapBuilder.createAppView().build());
+	    */
+	    ajouterVues();
 		charger();
 		ajouterListeners();
 	}
@@ -382,17 +399,23 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void setTitre(String titre){
 		_header_titre.setText(titre);
 	}
+	
+	/*
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		EasyTracker.getInstance(this).activityStart(this); 
+		tracker = EasyTracker.getInstance(this); 
+		tracker.activityStart(this);
+		
 	}
 
 	@Override
 	public void onStop() {
 		super.onStop();
-		EasyTracker.getInstance(this).activityStop(this); 
+		tracker.activityStop(this);
 	}
+	
+	*/
 
 }
