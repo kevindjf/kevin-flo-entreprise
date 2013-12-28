@@ -1,5 +1,10 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.fragments.core;
 
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
+
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivity;
 import fr.RivaMedia.AnnoncesAutoGenerique.dialog.CallDialog;
@@ -19,12 +24,13 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	protected AsyncTask<Void, Void, Void> task;
 	protected boolean visible = false;
 	protected boolean afficherProgress = false;
-	
+
+
 	public void afficherProgress(boolean afficher){
 		this.afficherProgress = afficher;
 		((MainActivity)getActivity()).afficherProgress(afficher);
 	}
-	
+
 	@Override
 	public void onPause() {
 		((MainActivity)getActivity()).cacherEffacer();
@@ -40,45 +46,58 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	}
 
 
+	public void trackerEcran(String title){
 
+		if(MainActivity.tracker == null)
+			MainActivity.tracker = GoogleAnalytics.getInstance(getActivity()).getTracker("UA-46725109-1");
+
+		// Set screen name on the tracker to be sent with all hits.
+		MainActivity.tracker.set(Fields.SCREEN_NAME, title);
+
+		MainActivity.tracker.send(MapBuilder
+				.createAppView()
+				.build()
+				);
+	}
+	
 	@Override
 	public void onResume() {
 		((MainActivity)getActivity()).cacherEffacer();
 		((MainActivity)getActivity()).cacherTrier();
 		((MainActivity)getActivity()).cacherFavoris();
-		
+
 		afficherProgress(afficherProgress);
 		super.onResume();
 		getView().setOnClickListener(this);
 	}
-	
+
 	@Override
 	public void onViewStateRestored(){
 		Log.e("FragmentNormal","Refresh");
 	}
-	
+
 	@Override
 	public void setUserVisibleHint(boolean isVisibleToUser) {
-	    super.setUserVisibleHint(isVisibleToUser);
+		super.setUserVisibleHint(isVisibleToUser);
 
-	    if (isVisibleToUser == true) { 
-	        Log.d("VISIBLE", "this fragment is now visible");
-	        visible = true;
-	    }
+		if (isVisibleToUser == true) { 
+			Log.d("VISIBLE", "this fragment is now visible");
+			visible = true;
+		}
 
-	    else if (isVisibleToUser == false) {  
-	        Log.d("VISIBLE", "this fragment is now invisible");
-	        visible = false;
-	    }
+		else if (isVisibleToUser == false) {  
+			Log.d("VISIBLE", "this fragment is now invisible");
+			visible = false;
+		}
 	}
-	
+
 	public void ajouterFragment(Fragment fragment){
 		ajouterFragment( fragment, true);
 	}
 	public void ajouterFragment(Fragment fragment, boolean back){
 		((MainActivity)getActivity()).ajouterFragment(fragment,back);
 	}
-	
+
 	public void envoyerEmailVendeur(String email, Vendeur vendeur){
 		((MainActivity)getActivity()).envoyerEmailVendeur(email, vendeur);
 	}
@@ -94,21 +113,21 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 	@Override
 	public void onClick(View v) {
-		
+
 	}
-	
+
 	public View afficherFavoris(){
 		return ((MainActivity)getActivity()).afficherFavoris();
 	}
-	
+
 	public void cacherFavoris(){
 		((MainActivity)getActivity()).cacherFavoris();
 	}
-	
+
 	public void setTitre(String titre){
 		((MainActivity)getActivity()).setTitre(titre);
 	}
-	
+
 	public static void afficherCouleurNormal(View v){
 		v.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
 	}
@@ -130,23 +149,23 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 					break;
 
-		
+
 				case MotionEvent.ACTION_CANCEL:
 					afficherCouleurNormal(v);
 					break;
-					
+
 				case MotionEvent.ACTION_UP:
 					afficherCouleurNormal(v);
 					Log.e("Je touche", "Up");
 
 					break;
-					
+
 				}
 
 				return false;
 			}
 		});
 	}
-	
+
 
 }

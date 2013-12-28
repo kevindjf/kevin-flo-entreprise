@@ -103,6 +103,16 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		_boiteDeVitesse = _view.findViewById(R.id.autotheque_boite_de_vitesse);
 		_boat_on_demand_etape_suivante = _view.findViewById(R.id.boat_on_demand_etape_suivante);
 
+		energie_id = null;
+		marque_id = null;
+		modele_id = null;
+		carrosserie_id = null;
+		budget_requis = null;
+		taille_requis = null;
+		
+		annee_min = null;
+		annee_max = null;
+		
 		_views = new View[]{
 				_carrosserie,
 				_marqueModele,
@@ -177,6 +187,8 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
+	
+			
 		case R.id.autotheque_carrosserie:
 			demanderCarrosserie();
 			break;
@@ -194,6 +206,8 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 			break;
 		case R.id.boat_on_demand_etape_suivante:
 			afficherCouleurNormal(v);
+			demanderEtapeSuivante();
+			break;
 		}
 	}
 
@@ -249,7 +263,7 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 			return;
 
 		//TODO Envoyer vers le formulaire vendeur
-		//ajouterFragment(new VendeurFormulaire(VendeurFormulaire.ON_DEMAND,null,donneesVente,null));
+		ajouterFragment(new VendeurFormulaire(donneesVente));
 	}
 
 	private List<NameValuePair> recupererDonnees(){

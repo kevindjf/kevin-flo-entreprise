@@ -8,6 +8,12 @@ import java.util.Map;
 
 import org.apache.http.NameValuePair;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
+
 import android.annotation.SuppressLint;
 import android.graphics.drawable.StateListDrawable;
 import android.os.AsyncTask;
@@ -104,7 +110,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.annonces_formulaire,container, false);
-
 		charger();
 		ajouterListeners();
 		chargerCouleurs();
@@ -467,7 +472,10 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	public void onResume() {
 		super.onResume();
 		setTitre(getString(R.string.annonces));
-	}
+	    Tracker tracker = GoogleAnalytics.getInstance(getActivity()).getTracker("UA-46725109-2");	    
+	    tracker.set(Fields.SCREEN_NAME, "Annonces formulaire");
+	    tracker.send(MapBuilder.createAppView().build());	
+	    }
 
 	/* --------------------------------------------------------------------------- */
 
@@ -535,5 +543,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		protected void onPostExecute(){
 		}
 	}
+	
 
 }

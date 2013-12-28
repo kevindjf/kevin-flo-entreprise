@@ -238,6 +238,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void onResume() {
 		super.onResume();
 		setTitre(getString(R.string.resultats));
+		trackerEcran("Ecran Annonce Liste");
 	}
 
 }
