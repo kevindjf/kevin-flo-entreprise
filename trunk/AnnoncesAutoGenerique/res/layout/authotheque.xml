@@ -167,7 +167,8 @@
                         <EditText
                             android:id="@id/text"
                             style="@style/formulaire_cellule_texte"
-                            android:hint="@string/requis" />
+                            android:hint="@string/requis"
+                            android:inputType="number" />
                     </RelativeLayout>
 
                     <LinearLayout

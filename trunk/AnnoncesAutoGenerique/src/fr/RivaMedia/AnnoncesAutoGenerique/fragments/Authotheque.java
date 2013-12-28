@@ -270,21 +270,23 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 
 		List<NameValuePair> donnees = new ArrayList<NameValuePair>();
 		
-		if(marque_id == null)
+		System.out.println("marque :"+marque_id);
+		
+		if(marque_id != null)
 			Net.add(donnees,Constantes.RECHERCHE_MARQUE_ID,marque_id);
 		else{
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_marque, Toast.LENGTH_SHORT).show();
 			return null;
 		}
 		
-		if(modele_id == null)
+		if(modele_id != null)
 			Net.add(donnees,Constantes.RECHERCHE_SERIE_ID,modele_id);
 		else{
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_serie, Toast.LENGTH_SHORT).show();
 			return null;
 		}
 		
-		if(carrosserie_id == null)
+		if(carrosserie_id != null)
 			Net.add(donnees,Constantes.RECHERCHE_CATEGORIE_ID,carrosserie_id);
 		else{
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_carrosserie, Toast.LENGTH_SHORT).show();
@@ -299,7 +301,7 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 			return null;
 		}
 		
-		if(energie_id == null)
+		if(energie_id != null)
 			Net.add(donnees,Constantes.RECHERCHE_ENERGIE,energie_id);
 		else{
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_energie, Toast.LENGTH_SHORT).show();
@@ -364,8 +366,8 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 				String[] ids = item.split(";");
 				marque_id = ids[0];
 				modele_id = ids[1];
+				((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
 			}
-			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == CARROSSERIE){
 			carrosserie_id = item;
 			((TextView)_carrosserie.findViewById(R.id.text)).setText(value);
