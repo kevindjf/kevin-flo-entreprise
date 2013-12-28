@@ -45,7 +45,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	View _telephone;
 	View _ville;
 	View _codePostal;
-	
+
 	View _departement;
 
 	String departementId;
@@ -82,7 +82,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		_telephone = _view.findViewById(R.id.vendeur_formulaire_telephone);	
 		_codePostal = _view.findViewById(R.id.vendeur_formulaire_code_postal);	
 		_ville = _view.findViewById(R.id.vendeur_formulaire_ville);	
-		
+
 		_departement = _view.findViewById(R.id.vendeur_formulaire_departement);	
 
 		views = new View[]{
@@ -140,7 +140,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	public void onClick(View v) {
 		switch(v.getId()){
 		case R.id.vendeur_formulaire_valider:
-			valider();
+			validerVendeur();
 			break;
 		case R.id.vendeur_formulaire_departement:
 			demanderDepartement();
@@ -170,27 +170,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		}
 	}
 
-	public void valider(){
+	protected void recupererDonneesEtEnvoyer(){
 
-		if(((EditText)_nom.findViewById(R.id.text)).getText().toString().equals(""))
-			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_nom), Toast.LENGTH_SHORT).show();
-		else if(((EditText)_email.findViewById(R.id.text)).getText().toString().trim().equals(""))
-			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_email), Toast.LENGTH_SHORT).show();
-		else if(((EditText)_codePostal.findViewById(R.id.text)).getText().toString().trim().equals(""))
-			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_code_postale), Toast.LENGTH_SHORT).show();
-		else if(((EditText)_telephone.findViewById(R.id.text)).getText().toString().trim().equals(""))
-			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_indiquer_votre_numero_telephone), Toast.LENGTH_SHORT).show();
-		else{
-		
-				validerVendeur();	
-			
-		}
-
-
-	}
-
-	protected void recupererDonnees(){
-		
 		String nom = ((EditText)_nom.findViewById(R.id.text)).getText().toString().trim();
 		String email = ((EditText)_email.findViewById(R.id.text)).getText().toString().trim();
 		if(nom.length() == 0)
@@ -202,26 +183,28 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 					Constantes.RECHERCHE_NOM,nom,
 					Constantes.RECHERCHE_EMAIL,email
 					);
-		
-		
+
+
 			String telephone = ((EditText)_telephone.findViewById(R.id.text)).getText().toString().trim();
 			if(telephone.length()>0)
 				Net.add(_donnees, Constantes.RECHERCHE_TELEPHONE,telephone);
-			
+
 			if(departementId != null)
 				Net.add(_donnees, Constantes.RECHERCHE_DEPARTEMENT,departementId);
+
+
+			if(task == null){
+				afficherProgress(true);
+				task = new EnvoyerRechercheTask();
+				task.execute();
+			}
 
 		}
 
 	}
 
 	private void validerVendeur() {
-		recupererDonnees();
-		if(task == null){
-				afficherProgress(true);
-				task = new EnvoyerRechercheTask();
-				task.execute();
-		}
+		recupererDonneesEtEnvoyer();
 	}
 
 	@Override
@@ -241,19 +224,22 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	class EnvoyerRechercheTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-
+			
 			synchronized (_donnees) {
-				String reponse = NetRecherche.recherche(_donnees);
+				final String reponse = NetRecherche.recherche(_donnees);
+				getActivity().runOnUiThread(new Runnable(){
+
+					@Override
+					public void run() {
+						if("1".equals(reponse.trim()))
+							demande_envoyee();
+						else
+							Toast.makeText(getActivity(), reponse, Toast.LENGTH_LONG).show();
+					}
+
+				});
 			}
 
-			getActivity().runOnUiThread(new Runnable(){
-
-				@Override
-				public void run() {
-					demande_envoyee();
-				}
-
-			});
 			return null;
 		}
 
@@ -264,7 +250,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	@Override
 	public void remplir() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
