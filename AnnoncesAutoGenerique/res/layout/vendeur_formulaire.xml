@@ -126,6 +126,19 @@
                         style="@style/formulaire_cellule_texte"
                         android:hint="@string/requis" />
                 </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/vendeur_formulaire_departement"
+                    style="@style/formulaire_cellule_vendeur" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/departement_pays_star" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/formulaire_cellule_texte"
+                        android:text="@string/requis" />
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

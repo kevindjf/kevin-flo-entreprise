@@ -32,8 +32,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	public static int AUTHOTHEQUE = 1;
 
-
-	public static final int PAYS = 0;
+	public static final int DEPARTEMENT = 0;
 
 	View _view;
 	View _valider;
@@ -42,12 +41,12 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	View _prenom;
 	View _email;
 	View _telephone;
-	View _codePostal;
-
-	View _pays;
 	View _ville;
+	View _codePostal;
+	
+	View _departement;
 
-	String idPays;
+	String idDepartement;
 
 	MultipartEntity _donneesPost;
 	List<NameValuePair> _donneesGet;
@@ -82,6 +81,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		_telephone = _view.findViewById(R.id.vendeur_formulaire_telephone);	
 		_codePostal = _view.findViewById(R.id.vendeur_formulaire_code_postal);	
 		_ville = _view.findViewById(R.id.vendeur_formulaire_ville);	
+		
+		_departement = _view.findViewById(R.id.vendeur_formulaire_departement);	
 
 		views = new View[]{
 				_nom,
@@ -89,7 +90,6 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 				_email,
 				_telephone,
 				_codePostal,
-				_pays,
 				_ville
 		};
 
@@ -126,13 +126,13 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 			i++;
 		}
 
-		idPays = null;
+		idDepartement = null;
 	}
 
 	public void ajouterListeners(){
 		_valider.setOnClickListener(this);
 
-		_pays.setOnClickListener(this);
+		_departement.setOnClickListener(this);
 	}
 
 	@Override
@@ -141,10 +141,13 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		case R.id.vendeur_formulaire_valider:
 			valider();
 			break;
+		case R.id.vendeur_formulaire_departement:
+			demanderDepartement();
+			break;
 		}
 	}
 
-	protected void demanderPays(){
+	protected void demanderDepartement(){
 		List<Departement> departements = Donnees.departements;
 		if(departements != null){
 			Map<String,String> donneesValeurs = new HashMap<String,String>();
@@ -152,17 +155,17 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 				donneesValeurs.put(departement.getNom(), departement.getId());
 			}
 
-			ajouterFragment(new DonneeValeurSelector(this,PAYS,false,donneesValeurs));
+			ajouterFragment(new DonneeValeurSelector(this,DEPARTEMENT,false,donneesValeurs));
 		}
 	}
 
 	@Override
 	public void itemSelected(Object from, int idRetour, String item, String value) {	
-		if(idRetour == PAYS){
+		if(idRetour == DEPARTEMENT){
 			Log.e("ItemSelected", item+" | "+value);
 
-			((TextView)_pays.findViewById(R.id.text)).setText(value);
-			idPays = item;
+			((TextView)_departement.findViewById(R.id.text)).setText(value);
+			idDepartement = item;
 		}
 	}
 
