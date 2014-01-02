@@ -191,6 +191,7 @@
 
                 <ImageView style="@style/formulaire_cellule_indicator" />
             </RelativeLayout>
+            
         </LinearLayout>
     </ScrollView>
 

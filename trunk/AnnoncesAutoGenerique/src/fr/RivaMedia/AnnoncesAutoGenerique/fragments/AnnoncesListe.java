@@ -111,7 +111,6 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		switch(v.getId()){
 		case R.id.header_plus:
 			ajouterFragment(new AnnoncesFormulaire(), true);
-			cacherPlus();
 			break;
 		}
 	}
@@ -245,16 +244,9 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		setTitre(getString(R.string.resultats));
 		trackerEcran("Ecran Annonce Liste");
 
+		
+		super.afficherTrier();
 		super.afficherPlus().setOnClickListener(this);
 	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-
-		super.cacherPlus();
-	}
-
-
 
 }
