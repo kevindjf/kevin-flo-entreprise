@@ -55,4 +55,7 @@ public class ClientParametres {
 		this.imageLogo = imageLogo;
 	}
 	
+	public void setImageSlider(String imageLogo) {
+		this.imageLogo = imageLogo;
+	}
 }

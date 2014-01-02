@@ -3,7 +3,7 @@ package fr.RivaMedia.AnnoncesAutoGenerique.xml;
 import org.xmlpull.v1.XmlPullParser;
 
 import android.graphics.Color;
-
+import android.util.Log;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.ClientParametres;
 import fr.RivaMedia.AnnoncesAutoGenerique.xml.core.XmlParser;
 
@@ -24,7 +24,7 @@ public class ClientParametreXmlParser extends XmlParser {
 		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				//Log.e("XML",tag)
+				Log.e("XML",tag)
 				;
 				if(tag.equals("id"))
 					clientParametres.setId(getString());
@@ -36,10 +36,12 @@ public class ClientParametreXmlParser extends XmlParser {
 					clientParametres.setCouleurSecondaire(Color.parseColor(getString()));
 				else if(tag.equals("image_fond"))
 					clientParametres.setImageFond(getString());
-				else if(tag.equals("image_accueil"))
+				else if(tag.equals("image_slide1"))
 					clientParametres.setImageAccueil(getString());
 				else if(tag.equals("image_logo"))
 					clientParametres.setImageLogo(getString());
+				else if(tag.equals("image_slide2")|| tag.equals("image_slide3"))
+					clientParametres.setImageSlider(getString());
 			}
 			eventType = XMLgetSuivant();
 		}
