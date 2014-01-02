@@ -39,6 +39,10 @@ public class ActualiteDetail extends FragmentNormal{
 	public ActualiteDetail(String id){
 		this._id = id;
 	}
+	
+	public void chargerCouleurs(){
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -50,6 +54,8 @@ public class ActualiteDetail extends FragmentNormal{
 
 		task = new ChargerNewsTask();
 		task.execute();
+		
+		chargerCouleurs();
 
 		return _view;
 	}
