@@ -23,74 +23,74 @@
 
                 <LinearLayout
                     android:id="@+id/slider_annonces"
-                    style="@style/slider_element" >
+                    style="@style/slider_element_right" >
 
                     <TextView
-                        style="@style/slider_element_texte"
+                        style="@style/slider_element_texte_right"
                         android:text="Trier par date:" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/slider_droite_date_croissant"
-                    style="@style/slider_element" >
+                    style="@style/slider_element_right" >
 
                     <ImageView
-                        style="@style/slider_element_image"
+                        style="@style/slider_element_image_right"
                         android:src="@drawable/arrow_up" />
 
                     <TextView
-                        style="@style/slider_element_texte"
+                        style="@style/slider_element_texte_right"
                         android:text="Croissant"
                         android:textSize="13sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/slider_droite_date_decroissant"
-                    style="@style/slider_element" >
+                    style="@style/slider_element_right" >
 
                     <ImageView
-                        style="@style/slider_element_image"
+                        style="@style/slider_element_image_right"
                         android:src="@drawable/arrow_down" />
 
                     <TextView
-                        style="@style/slider_element_texte"
+                        style="@style/slider_element_texte_right"
                         android:text="Décroissant"
                         android:textSize="13sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/slider_annuaire"
-                    style="@style/slider_element" >
+                    style="@style/slider_element_right" >
 
                     <TextView
-                        style="@style/slider_element_texte"
+                        style="@style/slider_element_texte_right"
                         android:text="Trier par prix :" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/slider_droite_prix_croissant"
-                    style="@style/slider_element" >
+                    style="@style/slider_element_right" >
 
                     <ImageView
-                        style="@style/slider_element_image"
+                        style="@style/slider_element_image_right"
                         android:src="@drawable/arrow_up" />
 
                     <TextView
-                        style="@style/slider_element_texte"
+                        style="@style/slider_element_texte_right"
                         android:text="Croissant"
                         android:textSize="13sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/slider_droite_prix_decroissant"
-                    style="@style/slider_element" >
+                    style="@style/slider_element_right" >
 
                     <ImageView
-                        style="@style/slider_element_image"
+                        style="@style/slider_element_image_right"
                         android:src="@drawable/arrow_down" />
 
                     <TextView
-                        style="@style/slider_element_texte"
+                        style="@style/slider_element_texte_right"
                         android:text="Décroissant"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -101,37 +101,37 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical" >
 
-                    <LinearLayout style="@style/slider_element" >
+                    <LinearLayout style="@style/slider_element_right" >
 
                         <TextView
-                            style="@style/slider_element_texte"
+                            style="@style/slider_element_texte_right"
                             android:text="Trier par kilometrage :" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/slider_droite_kilometrage_croissant"
-                        style="@style/slider_element" >
+                        style="@style/slider_element_right" >
 
                         <ImageView
-                            style="@style/slider_element_image"
+                            style="@style/slider_element_image_right"
                             android:src="@drawable/arrow_up" />
 
                         <TextView
-                            style="@style/slider_element_texte"
+                            style="@style/slider_element_texte_right"
                             android:text="Croissant"
                             android:textSize="13sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/slider_droite_kilometrage_decroissant"
-                        style="@style/slider_element" >
+                        style="@style/slider_element_right" >
 
                         <ImageView
-                            style="@style/slider_element_image"
+                            style="@style/slider_element_image_right"
                             android:src="@drawable/arrow_down" />
 
                         <TextView
-                            style="@style/slider_element_texte"
+                            style="@style/slider_element_texte_right"
                             android:text="Décroissant"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -143,37 +143,37 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical" >
 
-                    <LinearLayout style="@style/slider_element" >
+                    <LinearLayout style="@style/slider_element_right" >
 
                         <TextView
-                            style="@style/slider_element_texte"
+                            style="@style/slider_element_texte_right"
                             android:text="Trier par année :" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/slider_droite_annee_croissant"
-                        style="@style/slider_element" >
+                        style="@style/slider_element_right" >
 
                         <ImageView
-                            style="@style/slider_element_image"
+                            style="@style/slider_element_image_right"
                             android:src="@drawable/arrow_up" />
 
                         <TextView
-                            style="@style/slider_element_texte"
+                            style="@style/slider_element_texte_right"
                             android:text="Croissant"
                             android:textSize="13sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/slider_droite_annee_decroissant"
-                        style="@style/slider_element" >
+                        style="@style/slider_element_right" >
 
                         <ImageView
-                            style="@style/slider_element_image"
+                            style="@style/slider_element_image_right"
                             android:src="@drawable/arrow_down" />
 
                         <TextView
-                            style="@style/slider_element_texte"
+                            style="@style/slider_element_texte_right"
                             android:text="Décroissant"
                             android:textSize="13sp" />
                     </LinearLayout>

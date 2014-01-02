@@ -36,6 +36,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		((MainActivity)getActivity()).cacherEffacer();
 		((MainActivity)getActivity()).cacherTrier();
 		((MainActivity)getActivity()).cacherFavoris();
+		((MainActivity)getActivity()).cacherPlus();
 		afficherProgress(afficherProgress);
 		try{
 			if(task != null)
@@ -65,6 +66,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		((MainActivity)getActivity()).cacherEffacer();
 		((MainActivity)getActivity()).cacherTrier();
 		((MainActivity)getActivity()).cacherFavoris();
+		((MainActivity)getActivity()).cacherPlus();
 
 		afficherProgress(afficherProgress);
 		super.onResume();

@@ -158,6 +158,18 @@
         <item name="android:layout_height">20dip</item>
         <item name="android:layout_marginRight">10dip</item>
     </style>
+    
+     <style name="slider_element_right" parent="slider_element">
+        <item name="android:padding">10dip</item>
+    </style>
+
+    <style name="slider_element_texte_right" parent="slider_element_texte">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="slider_element_image_right" parent="slider_element_image">
+        <item name="android:layout_marginRight">5dip</item>
+    </style>
 
     <style name="CustomSeekBar" parent="android:Widget.SeekBar">
         <item name="android:progressDrawable">@drawable/progressbar</item>
