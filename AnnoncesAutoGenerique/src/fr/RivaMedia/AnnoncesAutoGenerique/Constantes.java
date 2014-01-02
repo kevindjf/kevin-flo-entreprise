@@ -95,7 +95,7 @@ public class Constantes {
 	//////////////////////////////POSTS//////////////////////////////
 
 	public static final String URL_RECHERCHE = "client_recherche_insertion.php";
-
+	public static final String URL_REPRISE= "client_reprise_insertion.php";
 	//////////////////////////////OBLIGATOIRES//////////////////////////////
 
 	public static final String RECHERCHE_CLIENT_ID = "client";

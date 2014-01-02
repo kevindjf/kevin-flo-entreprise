@@ -189,11 +189,12 @@
     <string name="que_souhaitez_vous_vendre">Que souhaitez vous vendre ?</string>
     <string name="recherche_postee">Votre recherche a été postée</string>
     <string name="rechercher">Rechercher</string>
+    <string name="reprise">Reprise Véhicule</string>
+    <string name="reprise_capitalize">REPRISE</string>
     <string name="reprise_de_votre_bateau">REPRISE DE VOTRE ?</string>
     <string name="requis">requis</string>
-        <string name="resultats">Résultats</string>
-        <string name="resultats_petit">résultats</string>
-    
+    <string name="resultats">Résultats</string>
+    <string name="resultats_petit">résultats</string>
     <string name="retour">Retour</string>
     <string name="salle_de_bain">Salle de bain</string>
     <string name="selectionnez_les_criteres_desires">Selectionnez les critères desirés</string>

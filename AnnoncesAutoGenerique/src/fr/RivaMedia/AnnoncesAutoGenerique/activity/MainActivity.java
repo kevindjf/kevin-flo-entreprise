@@ -45,6 +45,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _slider_annonces;
 	View _slider_actualites;
 	View _slider_autotheque;
+	View _slider_reprise;
 	View _slider_mon_garage;
 	View _slider_informations;
 	View _slider_contact_pro;
@@ -60,23 +61,23 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	TextView _header_titre;
 
 	ContactPro _contactPro = null;
-	
+
 	public static Tracker tracker;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		tracker = GoogleAnalytics.getInstance(this).getTracker("UA-46725109-1");
-	  
-	    
+
+
 		/*
 		instance = GoogleAnalytics.getInstance(this);
 		tracker =  instance.getTracker("UA-46725109-1");
 	    tracker.set(Fields.SCREEN_NAME, "Accueil");
 	    tracker.send(MapBuilder.createAppView().build());
-	    */
-	    ajouterVues();
+		 */
+		ajouterVues();
 		charger();
 		ajouterListeners();
 	}
@@ -105,6 +106,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_accueil = findViewById(R.id.slider_accueil);
 		_slider_actualites = findViewById(R.id.slider_actualites);
 		_slider_autotheque = findViewById(R.id.slider_autotheque);
+		_slider_reprise = findViewById(R.id.slider_reprise);
 		_slider_mon_garage = findViewById(R.id.slider_mon_garage);
 		_slider_informations = findViewById(R.id.slider_informations);
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
@@ -118,6 +120,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 				_slider_actualites,
 				_slider_mon_garage,
 				_slider_autotheque,
+				_slider_reprise,
 				_slider_informations,
 				_slider_contact_pro,
 				_slider_credits
@@ -181,6 +184,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			fermerSlider();
 			afficherAuthoteque();
 			break;
+
+		case R.id.slider_reprise:
+			fermerSlider();
+			afficherReprise();
+			break;
 		case R.id.slider_contact_pro:
 			fermerSlider();	
 			afficherContactPro();
@@ -206,6 +214,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 	public void afficherAuthoteque(){
 		ajouterFragment(new Authotheque(),false);
+	}
+	public void afficherReprise(){
+		ajouterFragment(new Reprise(),false);
 	}
 	public void afficherMonGarage(){
 		ajouterFragment(new MonGarage(),false);
@@ -328,7 +339,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_favoris.setOnClickListener(null);
 		_annoncePourFavoris = null;
 	}
-	
+
 	public View afficherPlus(){
 		_header_plus.setVisibility(View.VISIBLE);
 		return _header_plus;
@@ -399,7 +410,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void setTitre(String titre){
 		_header_titre.setText(titre);
 	}
-	
+
 	/*
 
 	@Override
@@ -407,7 +418,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		super.onStart();
 		tracker = EasyTracker.getInstance(this); 
 		tracker.activityStart(this);
-		
+
 	}
 
 	@Override
@@ -415,7 +426,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		super.onStop();
 		tracker.activityStop(this);
 	}
-	
-	*/
+
+	 */
 
 }

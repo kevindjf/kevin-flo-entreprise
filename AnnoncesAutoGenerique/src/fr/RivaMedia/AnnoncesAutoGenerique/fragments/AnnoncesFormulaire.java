@@ -339,12 +339,16 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	public void itemSelected(Object from,int idRetour, String item, String value) {	
 
 		Log.e("ItemSelected", item+" | "+value);
-
 		if(idRetour == ENERGIE){
+			if(!item.equals("-1"))
 			recherche_energie_id = item;
+			
 			((TextView)_energie.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == DEPARTEMENT){
+			
+			if(!item.equals("-1"))
 			recherche_departement_id = item;
+			
 			((TextView)_departement.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == BOITE_VITESSE){
 			((TextView)_boite_de_vitesse.findViewById(R.id.text)).setText(value);
@@ -359,10 +363,13 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			}
 			((TextView)_marqueModele.findViewById(R.id.text)).setText(value);
 		}else if(idRetour == CARROSSERIE){
+
+			if(!item.equals("-1"))
 			recherche_carrosserie_id = item;
+			
 			((TextView)_carrosserie.findViewById(R.id.text)).setText(value);
 		}
-
+		
 		//TODO recupérer les retours des champs
 		rechercherNombre();
 	}
