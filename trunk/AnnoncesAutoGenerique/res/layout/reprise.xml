@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/couleur_fond" >
+
+    <ImageView
+        android:id="@+id/fond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/reprise_entete_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/couleur_3"
+            android:gravity="center"
+            android:paddingBottom="5dip"
+            android:text="@string/reprise_capitalize"
+            android:textColor="@color/couleur_texte_blanc"
+            android:textSize="30sp"
+            android:visibility="gone"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/reprise_entete_2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/couleur_3"
+                    android:gravity="center"
+                    android:paddingBottom="5dip"
+                    android:text="@string/description_autoteque"
+                    android:textColor="@color/couleur_texte_noir" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                   >
+
+                    <LinearLayout
+                        android:id="@+id/reprise_separator_1"
+                        style="@style/formulaire_separator" >
+
+                        <TextView
+                            style="@style/formulaire_separator_titre"
+                            android:text="@string/caracteristiques" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_carrosserie"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/carrosserie_star" />
+
+                        <TextView
+                            android:id="@+id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/requis" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_marque_modele"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/marque_modele_star" />
+
+                        <TextView
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/requis" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_finition"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/finition" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_energie"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/energie_star" />
+
+                        <TextView
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/requis" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_annee"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/annee" />
+
+                        <TextView
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/facultatif" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_kilometrage"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/kilometrage" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif"
+                            android:inputType="number" />
+                    </RelativeLayout>
+
+                    
+
+                    <LinearLayout
+                        android:id="@+id/reprise_separator_2"
+                        style="@style/formulaire_separator" >
+
+                        <TextView
+                            style="@style/formulaire_separator_titre"
+                            android:text="@string/informations_complementaires" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_couleur_exterieur"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/couleur_exterieure" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_couleur_interieur"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/couleur_interieur" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_boite_de_vitesse"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/boite_de_vitesse" />
+
+                        <TextView
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:text="@string/facultatif" />
+
+                        <ImageView style="@style/formulaire_cellule_indicator" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/reprise_commentaire"
+                        style="@style/formulaire_cellule" >
+
+                        <TextView
+                            style="@style/formulaire_cellule_titre"
+                            android:text="@string/commentaire" />
+
+                        <EditText
+                            android:id="@id/text"
+                            style="@style/formulaire_cellule_texte"
+                            android:hint="@string/facultatif" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom" >
+
+                    <Button
+                        android:id="@+id/reprise_etape_suivante"
+                        style="@style/bouton_rechercher"
+                        android:layout_height="60dip" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

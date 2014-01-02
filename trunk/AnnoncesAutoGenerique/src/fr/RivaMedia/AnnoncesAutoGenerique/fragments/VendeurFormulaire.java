@@ -13,6 +13,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.DonneeValeurSelecto
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Departement;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetRecherche;
+import fr.RivaMedia.AnnoncesAutoGenerique.net.NetReprise;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.core.Net;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
@@ -33,9 +34,11 @@ import fr.RivaMedia.AnnoncesAutoGenerique.R;
 public class VendeurFormulaire extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener{
 
 	public static int AUTHOTHEQUE = 1;
+	public static int REPRISE = 2;
 
 	public static final int DEPARTEMENT = 0;
 
+	public int type;
 	View _view;
 	View _valider;
 
@@ -57,11 +60,13 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	View[] views;
 	String[] valeurs;
 
-	public VendeurFormulaire(List<NameValuePair> donnees) {
+	public VendeurFormulaire(int type,List<NameValuePair> donnees) {
 		_donnees = donnees;
+		this.type = type;
+
 		if(_donnees == null)
 			_donnees = Net.construireDonnes();
-	}
+		}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -226,7 +231,15 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		protected Void doInBackground(Void...donnees) {
 			
 			synchronized (_donnees) {
-				final String reponse = NetRecherche.recherche(_donnees);
+			
+				final String reponse;
+				if(type == VendeurFormulaire.AUTHOTHEQUE){
+				reponse = NetRecherche.recherche(_donnees);
+				}else{
+					//TOTO Mettre la requete pour reprise
+					reponse = NetReprise.reprise(_donnees);
+				}
+				
 				getActivity().runOnUiThread(new Runnable(){
 
 					@Override

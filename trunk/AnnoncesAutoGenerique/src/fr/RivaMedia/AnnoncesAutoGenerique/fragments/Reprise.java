@@ -35,7 +35,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.core.Net;
 
 @SuppressLint("ValidFragment")
-public class Authotheque extends FragmentFormulaire implements ItemSelectedListener , OnMinMaxListener{
+public class Reprise extends FragmentFormulaire implements ItemSelectedListener , OnMinMaxListener{
 
 	private static final int CARROSSERIE = 1;
 	private static final int MARQUE_MODELE = 2;
@@ -54,12 +54,11 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 	View _annee;
 	View _kilometrage;
 	View _commentaire;
-	View _budget;
 	View _couleurExterieur;
 	View _couleurInterieur;
 	View _boiteDeVitesse;
 
-	View _boat_on_demand_etape_suivante;
+	View _reprise_etape_suivante;
 
 	List<Marque> _marques = null;
 	List<Marque> _marques_posseder = null;
@@ -79,29 +78,28 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
-		_view = inflater.inflate(R.layout.authotheque, container, false);
+		_view = inflater.inflate(R.layout.reprise, container, false);
 
 		charger();
 		remplir();
 		ajouterListeners();
 		chargerCouleurs();
-		setTitre(getString(R.string.autotheque));
+		setTitre(getString(R.string.reprise));
 		return _view;
 	}
 
 	public void charger(){
-		_carrosserie = _view.findViewById(R.id.autotheque_carrosserie);
-		_marqueModele = _view.findViewById(R.id.autotheque_marque_modele);
-		_finition = _view.findViewById(R.id.autotheque_finition);
-		_energie = _view.findViewById(R.id.autotheque_energie);
-		_annee = _view.findViewById(R.id.autotheque_annee);
-		_kilometrage = _view.findViewById(R.id.autotheque_kilometrage);
-		_commentaire = _view.findViewById(R.id.autotheque_commentaire);
-		_budget = _view.findViewById(R.id.autotheque_budget);
-		_couleurExterieur = _view.findViewById(R.id.autotheque_couleur_exterieur);
-		_couleurInterieur = _view.findViewById(R.id.autotheque_couleur_interieur);
-		_boiteDeVitesse = _view.findViewById(R.id.autotheque_boite_de_vitesse);
-		_boat_on_demand_etape_suivante = _view.findViewById(R.id.boat_on_demand_etape_suivante);
+		_carrosserie = _view.findViewById(R.id.reprise_carrosserie);
+		_marqueModele = _view.findViewById(R.id.reprise_marque_modele);
+		_finition = _view.findViewById(R.id.reprise_finition);
+		_energie = _view.findViewById(R.id.reprise_energie);
+		_annee = _view.findViewById(R.id.reprise_annee);
+		_kilometrage = _view.findViewById(R.id.reprise_kilometrage);
+		_commentaire = _view.findViewById(R.id.reprise_commentaire);
+		_couleurExterieur = _view.findViewById(R.id.reprise_couleur_exterieur);
+		_couleurInterieur = _view.findViewById(R.id.reprise_couleur_interieur);
+		_boiteDeVitesse = _view.findViewById(R.id.reprise_boite_de_vitesse);
+		_reprise_etape_suivante = _view.findViewById(R.id.reprise_etape_suivante);
 
 		energie_id = null;
 		marque_id = null;
@@ -121,7 +119,6 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 				_annee,
 				_kilometrage,
 				_commentaire,
-				_budget,
 				_couleurExterieur,
 				_couleurInterieur,
 				_boiteDeVitesse,
@@ -146,14 +143,14 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 	public void chargerCouleurs(){
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		
-		afficherCouleurNormal(_view.findViewById(R.id.autotheque_entete_1));
-		afficherCouleurNormal(_view.findViewById(R.id.autotheque_entete_2));
-		afficherCouleurNormal(_view.findViewById(R.id.autotheque_separator_1));
-		afficherCouleurNormal(_view.findViewById(R.id.autotheque_separator_2));
+		afficherCouleurNormal(_view.findViewById(R.id.reprise_entete_1));
+		afficherCouleurNormal(_view.findViewById(R.id.reprise_entete_2));
+		afficherCouleurNormal(_view.findViewById(R.id.reprise_separator_1));
+		afficherCouleurNormal(_view.findViewById(R.id.reprise_separator_2));
 		
 		
-		afficherCouleurNormal(_boat_on_demand_etape_suivante);
-		selector(_boat_on_demand_etape_suivante);
+		afficherCouleurNormal(_reprise_etape_suivante);
+		selector(_reprise_etape_suivante);
 	}
 
 	public void ajouterListeners(){
@@ -164,24 +161,7 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		_couleurExterieur.setOnClickListener(this);
 		_couleurInterieur.setOnClickListener(this);
 		_boiteDeVitesse.setOnClickListener(this);
-		_boat_on_demand_etape_suivante.setOnClickListener(this);
-		_budget.findViewById(R.id.text).setOnFocusChangeListener(new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				if(!hasFocus){
-					((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText()+" €");
-				}else{
-					if(
-							((EditText)(v.findViewById(R.id.text))).getText().toString().trim().equals("0")){
-						((EditText)(v.findViewById(R.id.text))).setText("");
-					}else{
-						((EditText)(v.findViewById(R.id.text))).setText(((EditText)(v.findViewById(R.id.text))).getText().toString().replace(" €", ""));
-					}
-				}
-
-			}
-		});
+		_reprise_etape_suivante.setOnClickListener(this);
 	}
 
 	@Override
@@ -189,22 +169,22 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		switch(v.getId()){
 	
 			
-		case R.id.autotheque_carrosserie:
+		case R.id.reprise_carrosserie:
 			demanderCarrosserie();
 			break;
-		case R.id.autotheque_marque_modele:
+		case R.id.reprise_marque_modele:
 			demanderMarqueModele();
 			break;
-		case R.id.autotheque_energie:
+		case R.id.reprise_energie:
 			demanderEnergie();
 			break;
-		case R.id.autotheque_annee:
+		case R.id.reprise_annee:
 			demanderAnneeMinMax();
 			break;
-		case R.id.autotheque_boite_de_vitesse:
+		case R.id.reprise_boite_de_vitesse:
 			demanderBoiteDeVitesse();
 			break;
-		case R.id.boat_on_demand_etape_suivante:
+		case R.id.reprise_etape_suivante:
 			afficherCouleurNormal(v);
 			demanderEtapeSuivante();
 			break;
@@ -263,7 +243,7 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 			return;
 
 		//TODO Envoyer vers le formulaire vendeur
-		ajouterFragment(new VendeurFormulaire(VendeurFormulaire.AUTHOTHEQUE,donneesVente));
+		ajouterFragment(new VendeurFormulaire(VendeurFormulaire.REPRISE,donneesVente));
 	}
 
 	private List<NameValuePair> recupererDonnees(){
@@ -293,13 +273,6 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 			return null;
 		}
 		
-		String budget = ((EditText)_budget.findViewById(R.id.text)).getText().toString();
-		if(budget.length()>0)
-			Net.add(donnees,Constantes.RECHERCHE_BUDGET,budget);
-		else{
-			Toast.makeText(getActivity(), R.string.veuillez_indiquer_un_budget, Toast.LENGTH_SHORT).show();
-			return null;
-		}
 		
 		if(energie_id != null)
 			Net.add(donnees,Constantes.RECHERCHE_ENERGIE,energie_id);
@@ -308,7 +281,7 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 			return null;
 		}
 		
-		////////////////////OPTIIONNELS////////////////////
+		////////////////////OPTIONNELS////////////////////
 		
 		String finition = ((EditText)_finition.findViewById(R.id.text)).getText().toString();
 		if(finition.length()>0)

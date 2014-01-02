@@ -93,6 +93,20 @@
                         style="@style/slider_element_texte"
                         android:text="@string/autotheque" />
                 </LinearLayout>
+                
+                <LinearLayout
+                    android:id="@+id/slider_reprise"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/autotheque_logo" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        style="@style/slider_element_texte"
+                        android:text="@string/reprise" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/slider_mon_garage"
