@@ -33,19 +33,20 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	AnnonceListAdapter _adapter = null;
 	List<Annonce> _annonces = new ArrayList<Annonce>();
 
-	List<NameValuePair> _donneesFormulaire;
+	List<NameValuePair> _donneesFormulaire = new ArrayList<NameValuePair>();;
 
 	int debut = 0;
 	int nombre = 10;
 
 	String idClient = null; 
-	
+
 	String order = null;
 	String order_option = Constantes.ANNONCES_ORDER_OPTION_DECROISSANT;
-	
+
 	boolean vider = false;
-	
-	
+
+	public AnnoncesListe(){}
+
 	public AnnoncesListe(List<NameValuePair> donneesFormulaire){
 		this._donneesFormulaire = donneesFormulaire;
 	}
@@ -57,12 +58,12 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		afficherProgress(afficherProgress);
 
 		lancerChargement();
-		
+
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 
 		return _view;
 	}
-	
+
 	public void lancerChargement(){
 		vider = true;
 		debut=0;
@@ -108,6 +109,10 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void onClick(View v) {
 		super.onClick(v);
 		switch(v.getId()){
+		case R.id.header_plus:
+			ajouterFragment(new AnnoncesFormulaire(), true);
+			cacherPlus();
+			break;
 		}
 	}
 
@@ -196,16 +201,16 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		lancerChargement();
 	}
 
-	
+
 	/* --------------------------------------------------------------------------- */
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			List<Annonce> annonces = NetAnnonce.getAnnonces(_donneesFormulaire,""+debut,""+nombre,order,order_option);
-			
+
 			nombre = annonces.size();
 			debut += nombre;
-			
+
 			if(vider){
 				_annonces.clear();
 				_annonces.addAll(annonces);
@@ -239,6 +244,17 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		super.onResume();
 		setTitre(getString(R.string.resultats));
 		trackerEcran("Ecran Annonce Liste");
+
+		super.afficherPlus().setOnClickListener(this);
 	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+
+		super.cacherPlus();
+	}
+
+
 
 }

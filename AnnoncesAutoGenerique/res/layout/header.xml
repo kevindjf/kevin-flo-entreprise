@@ -45,7 +45,9 @@
             android:text="@string/effacer"
             android:textColor="@android:color/white"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone"
+             />
 
         <ProgressBar
             android:id="@+id/header_progress"
@@ -76,6 +78,18 @@
             android:layout_marginRight="15dip"
             android:background="@drawable/trier"
             android:visibility="gone" />
+        
+        <View
+            android:id="@+id/header_plus"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dip"
+            android:background="@drawable/plus"
+            android:visibility="gone"
+            />
+        
     </RelativeLayout>
 
 </LinearLayout>
