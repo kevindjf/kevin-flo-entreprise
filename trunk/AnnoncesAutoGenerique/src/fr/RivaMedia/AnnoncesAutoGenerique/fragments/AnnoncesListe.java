@@ -8,6 +8,11 @@ import org.apache.http.NameValuePair;
 
 import com.costum.android.widget.LoadMoreListView;
 import com.costum.android.widget.LoadMoreListView.OnLoadMoreListener;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
@@ -18,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
+import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivity;
 import fr.RivaMedia.AnnoncesAutoGenerique.adapter.AnnonceListAdapter;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentListe;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
@@ -47,6 +53,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 
 	public AnnoncesListe(){}
 
+	Tracker tracker;
 	public AnnoncesListe(List<NameValuePair> donneesFormulaire){
 		this._donneesFormulaire = donneesFormulaire;
 	}
@@ -60,6 +67,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		lancerChargement();
 
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		trackerEcran("Ecran Annonce Liste Android");
 
 		return _view;
 	}
@@ -242,9 +250,9 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void onResume() {
 		super.onResume();
 		setTitre(getString(R.string.resultats));
-		trackerEcran("Ecran Annonce Liste");
+		trackerEcran("Ecran Annonce Liste Android");
 
-		
+
 		super.afficherTrier();
 		super.afficherPlus().setOnClickListener(this);
 	}

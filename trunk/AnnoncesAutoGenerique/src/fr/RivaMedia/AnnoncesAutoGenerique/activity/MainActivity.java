@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.Tracker;
 import com.navdrawer.SimpleSideDrawer;
@@ -411,22 +412,22 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_titre.setText(titre);
 	}
 
-	/*
+	
 
 	@Override
 	public void onStart() {
 		super.onStart();
-		tracker = EasyTracker.getInstance(this); 
-		tracker.activityStart(this);
+	    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+
 
 	}
 
 	@Override
 	public void onStop() {
 		super.onStop();
-		tracker.activityStop(this);
+	    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
 	}
 
-	 */
+	 
 
 }

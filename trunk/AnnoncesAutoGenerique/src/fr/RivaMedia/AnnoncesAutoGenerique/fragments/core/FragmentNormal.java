@@ -1,5 +1,6 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.fragments.core;
 
+import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.MapBuilder;
@@ -49,16 +50,17 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 	public void trackerEcran(String title){
 
-		if(MainActivity.tracker == null)
-			MainActivity.tracker = GoogleAnalytics.getInstance(getActivity()).getTracker("UA-46725109-1");
+		Tracker easyTracker = EasyTracker.getInstance(getActivity());
 
-		// Set screen name on the tracker to be sent with all hits.
-		MainActivity.tracker.set(Fields.SCREEN_NAME, title);
+		// This screen name value will remain set on the tracker and sent with
+		// hits until it is set to a new value or to null.
+		easyTracker.set(Fields.SCREEN_NAME, title);
 
-		MainActivity.tracker.send(MapBuilder
-				.createAppView()
-				.build()
-				);
+		// Now this event hit will not include a screen name value.
+		easyTracker.send(MapBuilder
+		  .createEvent("UX", "touch", "menuButton", null)
+		  .build()
+		);
 	}
 	
 	@Override

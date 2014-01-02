@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import android.content.Context;
@@ -57,6 +61,8 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		task = new AccueilImagesMoverTask();
 		timer.scheduleAtFixedRate(task, 3000, 3000);
 
+		trackerEcran("Ecran Accueil Android");
+		
 		return _view;
 	}	
 
@@ -122,6 +128,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		super.onResume();
 		setTitre(getString(R.string.accueil));
 		trackerEcran("Ecran Accueil Android");
+
 	}
 
 	public class ImagePagesAdapter extends PagerAdapter {

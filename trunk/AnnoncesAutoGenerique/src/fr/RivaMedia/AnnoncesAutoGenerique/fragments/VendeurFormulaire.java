@@ -73,6 +73,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		_view = inflater.inflate(R.layout.vendeur_formulaire,container, false);
 
 		charger();
+		changerCouleur();
 		remplir();
 		ajouterListeners();
 
@@ -101,6 +102,11 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 		recupererValeursInitiales();
 
+	}
+	
+	public void changerCouleur(){
+		afficherCouleurNormal(_valider);
+		selector(_valider);
 	}
 
 	protected void recupererValeursInitiales(){
