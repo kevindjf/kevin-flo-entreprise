@@ -2,7 +2,6 @@ package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -10,7 +9,6 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -25,9 +23,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.activity.Gallery;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
-import fr.RivaMedia.AnnoncesAutoGenerique.model.Actualite;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
-import fr.RivaMedia.AnnoncesAutoGenerique.net.NetActualite;
 
 public class Accueil extends FragmentNormal implements View.OnClickListener, OnTouchListener{
 

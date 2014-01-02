@@ -42,7 +42,15 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
-		afficherTrier();
+		//afficherTrier();
+	}
+	
+	public View afficherPlus(){
+		return ((MainActivity)getActivity()).afficherPlus();
+	}
+	
+	public void cacherPlus(){
+		((MainActivity)getActivity()).cacherPlus();
 	}
 	
 	public abstract void afficherPrixCroissant();

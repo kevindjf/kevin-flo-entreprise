@@ -1,8 +1,6 @@
 
 package fr.RivaMedia.AnnoncesAutoGenerique.activity;
 
-import java.util.HashMap;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -19,22 +17,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.EasyTracker;
-import com.google.analytics.tracking.android.Fields;
 import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.Tracker;
 import com.navdrawer.SimpleSideDrawer;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
-import fr.RivaMedia.AnnoncesAutoGenerique.fragments.Accueil;
-import fr.RivaMedia.AnnoncesAutoGenerique.fragments.Actualites;
-import fr.RivaMedia.AnnoncesAutoGenerique.fragments.AnnoncesFormulaire;
-import fr.RivaMedia.AnnoncesAutoGenerique.fragments.Authotheque;
-import fr.RivaMedia.AnnoncesAutoGenerique.fragments.ContactPro;
-import fr.RivaMedia.AnnoncesAutoGenerique.fragments.Credit;
-import fr.RivaMedia.AnnoncesAutoGenerique.fragments.EmailFragment;
-import fr.RivaMedia.AnnoncesAutoGenerique.fragments.MonGarage;
+import fr.RivaMedia.AnnoncesAutoGenerique.fragments.*;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.Effaceable;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
@@ -49,6 +37,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _header_effacer;
 	View _header_favoris;
 	View _header_trier;
+	View _header_plus;
 
 	View _slider_background;
 
@@ -108,6 +97,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_effacer = findViewById(R.id.header_effacer);
 		_header_favoris = findViewById(R.id.header_favoris);
 		_header_trier = findViewById(R.id.header_tri);
+		_header_plus = findViewById(R.id.header_plus);
 
 		_header_titre = (TextView)findViewById(R.id.header_titre);
 
@@ -209,7 +199,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	public void afficherAnnonces(){
-		ajouterFragment(new AnnoncesFormulaire(),false);
+		ajouterFragment(new AnnoncesListe(),false);
 	}
 	public void afficherActualites(){
 		ajouterFragment(new Actualites(),false);
@@ -337,6 +327,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_favoris.setVisibility(View.GONE);
 		_header_favoris.setOnClickListener(null);
 		_annoncePourFavoris = null;
+	}
+	
+	public View afficherPlus(){
+		_header_plus.setVisibility(View.VISIBLE);
+		return _header_plus;
+	}
+
+	public void cacherPlus(){
+		_header_plus.setVisibility(View.GONE);
+		_header_plus.setOnClickListener(null);
 	}
 
 	public void onBackStackChanged() 

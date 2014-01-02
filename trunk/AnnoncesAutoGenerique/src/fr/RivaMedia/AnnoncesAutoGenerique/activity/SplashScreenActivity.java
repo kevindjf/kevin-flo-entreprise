@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.analytics.tracking.android.EasyTracker;
-
 import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.alertes.GcmInitializer;
