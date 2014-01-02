@@ -36,8 +36,11 @@ public class ClientParametreXmlParser extends XmlParser {
 					clientParametres.setCouleurSecondaire(Color.parseColor(getString()));
 				else if(tag.equals("image_fond"))
 					clientParametres.setImageFond(getString());
-				else if(tag.equals("image_slide1"))
-					clientParametres.setImageAccueil(getString());
+				else if(tag.equals("image_slide1")){
+					String image = getString();
+					clientParametres.setImageAccueil(image);
+					clientParametres.setImageSlider(image);
+				}
 				else if(tag.equals("image_logo"))
 					clientParametres.setImageLogo(getString());
 				else if(tag.equals("image_slide2")|| tag.equals("image_slide3"))

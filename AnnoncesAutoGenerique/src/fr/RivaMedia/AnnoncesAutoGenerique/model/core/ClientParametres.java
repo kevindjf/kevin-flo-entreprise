@@ -1,5 +1,8 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.model.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Color;
 
 public class ClientParametres {
@@ -11,6 +14,7 @@ public class ClientParametres {
 	String imageFond = "";
 	String imageAccueil = "";
 	String imageLogo = "";
+	List<String> image_slider = new ArrayList<String>();
 	
 	public String getId() {
 		return id;
@@ -55,7 +59,7 @@ public class ClientParametres {
 		this.imageLogo = imageLogo;
 	}
 	
-	public void setImageSlider(String imageLogo) {
-		this.imageLogo = imageLogo;
+	public void setImageSlider(String imageSlider) {
+		this.image_slider.add(imageSlider);
 	}
 }
