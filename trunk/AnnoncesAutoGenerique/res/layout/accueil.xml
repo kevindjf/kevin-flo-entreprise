@@ -8,21 +8,27 @@
         android:layout_width="match_parent"
         android:layout_height="150dip" >
 
-        <ImageView
-            android:id="@+id/image_entreprise"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/image_entreprise_pager"
             android:layout_width="match_parent"
-            android:layout_height="150dip"
-            android:adjustViewBounds="true"
-            android:fitsSystemWindows="true"
-            android:scaleType="fitXY" />
-        
+            android:layout_height="140dip"
+            android:background="@color/couleur_3" >
+        </android.support.v4.view.ViewPager>
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/image_entreprise_pager_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/image_entreprise_pager"
+            android:background="@color/couleur_3"
+            android:padding="3dip" />
+
         <ImageView
             android:id="@+id/logo_entreprise"
             android:layout_width="fill_parent"
             android:layout_height="100dip"
             android:layout_centerInParent="true"
             android:adjustViewBounds="true" />
-
     </RelativeLayout>
 
     <RelativeLayout

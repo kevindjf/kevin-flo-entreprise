@@ -3,6 +3,9 @@ package fr.RivaMedia.AnnoncesAutoGenerique.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.RivaMedia.AnnoncesAutoGenerique.R;
+import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -15,8 +18,6 @@ import android.widget.TextView;
 
 import uk.co.senab.photoview.PhotoView;
 
-import fr.RivaMedia.AnnoncesAutoGenerique.R;
-import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 
 public class Gallery extends Activity{
 	
