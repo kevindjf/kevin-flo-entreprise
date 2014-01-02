@@ -14,7 +14,7 @@ public class ClientParametres {
 	String imageFond = "";
 	String imageAccueil = "";
 	String imageLogo = "";
-	List<String> image_slider = new ArrayList<String>();
+	List<String> imageSlider = new ArrayList<String>();
 	
 	public String getId() {
 		return id;
@@ -58,8 +58,12 @@ public class ClientParametres {
 	public void setImageLogo(String imageLogo) {
 		this.imageLogo = imageLogo;
 	}
-	
-	public void setImageSlider(String imageSlider) {
-		this.image_slider.add(imageSlider);
+	public List<String> getImageSlider() {
+		return imageSlider;
 	}
+	public void setImageSlider(List<String> imageSlider) {
+		this.imageSlider = imageSlider;
+	}
+	
+	
 }

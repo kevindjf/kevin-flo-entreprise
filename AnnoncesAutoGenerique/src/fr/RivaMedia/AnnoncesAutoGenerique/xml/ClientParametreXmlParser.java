@@ -36,15 +36,14 @@ public class ClientParametreXmlParser extends XmlParser {
 					clientParametres.setCouleurSecondaire(Color.parseColor(getString()));
 				else if(tag.equals("image_fond"))
 					clientParametres.setImageFond(getString());
-				else if(tag.equals("image_slide1")){
+				else if(tag.contains("image_slide")){
 					String image = getString();
-					clientParametres.setImageAccueil(image);
-					clientParametres.setImageSlider(image);
+					if(clientParametres.getImageSlider().size()==0)
+						clientParametres.setImageAccueil(image);
+					clientParametres.getImageSlider().add(image);
 				}
 				else if(tag.equals("image_logo"))
 					clientParametres.setImageLogo(getString());
-				else if(tag.equals("image_slide2")|| tag.equals("image_slide3"))
-					clientParametres.setImageSlider(getString());
 			}
 			eventType = XMLgetSuivant();
 		}
