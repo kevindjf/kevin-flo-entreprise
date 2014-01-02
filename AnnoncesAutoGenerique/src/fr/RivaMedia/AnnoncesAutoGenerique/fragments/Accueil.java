@@ -2,11 +2,15 @@ package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -21,7 +25,9 @@ import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.activity.Gallery;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.Actualite;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
+import fr.RivaMedia.AnnoncesAutoGenerique.net.NetActualite;
 
 public class Accueil extends FragmentNormal implements View.OnClickListener, OnTouchListener{
 
@@ -36,6 +42,10 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 	CirclePageIndicator _indicator;
 	LayoutInflater _inflater;
 
+	Timer timer = new Timer();
+	AccueilImagesMoverTask task;
+	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		_view = inflater.inflate(R.layout.accueil,container, false);
@@ -47,6 +57,9 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		charger();	
 		remplir();
 		ajouterListeners();
+		
+		task = new AccueilImagesMoverTask();
+		timer.scheduleAtFixedRate(task, 3000, 3000);
 
 		return _view;
 	}	
@@ -75,10 +88,21 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 	}
 
 	private void chargerSlider(){
-		
+
 		_pagesAdapter = new ImagePagesAdapter();
 		_page.setAdapter(_pagesAdapter);
 		_indicator.setViewPager(_page);
+	}
+
+	public void avancerSlider(){
+		if(_page != null){
+			int position = _page.getCurrentItem();
+			int newPosition = position + 1;
+			if(position == Donnees.parametres.getImageSlider().size()-1)
+				newPosition = 0;
+
+			_page.setCurrentItem(newPosition,true);
+		}
 	}
 
 	@Override
@@ -103,9 +127,17 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 	}
 
 	@Override
-	public void onStart() {
-		super.onStart();
+	public void onStop() {
+		try{
+			if(task != null)
+				task.cancel();
+			timer.cancel();
+		}catch(Exception e){}
+		super.onStop();
 	}
+	
+
+
 
 	public class ImagePagesAdapter extends PagerAdapter {
 
@@ -139,7 +171,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 			return _layout;
 
 		}
-		
+
 		@Override
 		public int getCount() {
 			return Donnees.parametres.getImageSlider().size();
@@ -172,6 +204,26 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 			//super.destroyItem(container, position, object);
 		}
 	}
+
+	/* --------------------------------------------------------------------------- */
+
+	class AccueilImagesMoverTask extends TimerTask {
+
+		@Override
+		public void run() {
+			getActivity().runOnUiThread(new Runnable(){
+
+				@Override
+				public void run() {
+					avancerSlider();
+				}
+
+			});
+		}
+
+	}
+
+
 
 
 
