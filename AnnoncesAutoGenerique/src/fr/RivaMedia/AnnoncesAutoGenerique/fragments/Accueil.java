@@ -44,7 +44,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 
 	Timer timer = new Timer();
 	AccueilImagesMoverTask task;
-	
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		charger();	
 		remplir();
 		ajouterListeners();
-		
+
 		task = new AccueilImagesMoverTask();
 		timer.scheduleAtFixedRate(task, 3000, 3000);
 
@@ -95,14 +95,16 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 	}
 
 	public void avancerSlider(){
-		if(_page != null){
-			int position = _page.getCurrentItem();
-			int newPosition = position + 1;
-			if(position == Donnees.parametres.getImageSlider().size()-1)
-				newPosition = 0;
+		try{
+			if(_page != null){
+				int position = _page.getCurrentItem();
+				int newPosition = position + 1;
+				if(position == Donnees.parametres.getImageSlider().size()-1)
+					newPosition = 0;
 
-			_page.setCurrentItem(newPosition,true);
-		}
+				_page.setCurrentItem(newPosition,true);
+			}
+		}catch(Exception e){}
 	}
 
 	@Override
@@ -125,19 +127,6 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		setTitre(getString(R.string.accueil));
 		trackerEcran("Ecran Accueil Android");
 	}
-
-	@Override
-	public void onStop() {
-		try{
-			if(task != null)
-				task.cancel();
-			timer.cancel();
-		}catch(Exception e){}
-		super.onStop();
-	}
-	
-
-
 
 	public class ImagePagesAdapter extends PagerAdapter {
 
@@ -211,14 +200,16 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 
 		@Override
 		public void run() {
-			getActivity().runOnUiThread(new Runnable(){
+			try{
+				getActivity().runOnUiThread(new Runnable(){
 
-				@Override
-				public void run() {
-					avancerSlider();
-				}
+					@Override
+					public void run() {
+						avancerSlider();
+					}
 
-			});
+				});
+			}catch(Exception e){}
 		}
 
 	}
