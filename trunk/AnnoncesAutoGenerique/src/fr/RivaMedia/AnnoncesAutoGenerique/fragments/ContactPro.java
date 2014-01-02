@@ -27,6 +27,7 @@ import android.widget.TextView;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.Client;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 
 public class ContactPro extends FragmentNormal implements View.OnClickListener{
@@ -48,41 +49,48 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	View button_telephone;
 	View contact_pro_telephone;
 	View contact_pro_email;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		
+
 		if (view != null) {
-	        ViewGroup parent = (ViewGroup) view.getParent();
-	        if (parent != null)
-	            parent.removeView(view);
-	    }
-	    try {
-	    	view = inflater.inflate(R.layout.contact_pro,container, false);
-	    	charger();
+			ViewGroup parent = (ViewGroup) view.getParent();
+			if (parent != null)
+				parent.removeView(view);
+		}
+		try {
+			view = inflater.inflate(R.layout.contact_pro,container, false);
+			charger();
 			remplir();
 			ajouterListeners();
 			changerCouleur();
-	    } catch (InflateException e) {
-	        /* map is already there, just return view as it is */
-	    }
-		
-		
+		} catch (InflateException e) {
+			/* map is already there, just return view as it is */
+		}
+
+
 		return view;
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
-		case R.id.contact_pro_telephone :
+		case R.id.contact_pro_button_telephone :
+			afficherCouleurNormal(button_telephone);
 			afficherCouleurNormal(v);
+
 			if(Donnees.client.getTel1() != null)
+
 				super.appeller(Donnees.client.getTel1());
+
 			break;
 
-		case R.id.contact_pro_email :
+		case R.id.contact_pro_button_email :
+			afficherCouleurNormal(button_email);
 			afficherCouleurNormal(v);
 			if(Donnees.client.getEmail() != null)
 				super.envoyerEmailDirect(Donnees.client.getEmail());
+
 			break;
 		}
 	}
@@ -129,12 +137,17 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 			address = coder.getFromLocationName(Donnees.client.getVille(),5);
 			Address location = address.get(0);
 			LatLng position = new LatLng(location.getLatitude(),location.getLongitude());
-			mMap.addMarker(new MarkerOptions()
-			.position(position)
-			.title("JPV")
-			.snippet("Population: 2,074,200")
-			.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-
+			if(Donnees.client.getDistributeur() != null && Donnees.client.getNom() != null){
+				mMap.addMarker(new MarkerOptions()
+				.position(position)
+				.title(Donnees.client.getNom())
+				.snippet(Donnees.client.getDistributeur())
+				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+			}else{
+				mMap.addMarker(new MarkerOptions()
+				.position(position)
+				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+			}
 			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15));
 
 			mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
@@ -145,10 +158,18 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 	public void changerCouleur(){
 		afficherCouleurNormal(button_email);
-		selector(button_email);
+		afficherCouleurNormal(contact_pro_email);
 
 		afficherCouleurNormal(button_telephone);
+		afficherCouleurNormal(contact_pro_telephone);
+
+		selector(button_email);
+		selector(contact_pro_email);
+
+
+
 		selector(button_telephone);
+		selector(contact_pro_telephone);
 
 		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
 		drawable.setColor(Donnees.parametres.getCouleurSecondaire());
@@ -160,15 +181,15 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 	@Override
 	public void ajouterListeners() {
-		contact_pro_telephone.setOnClickListener(this);
-		contact_pro_email.setOnClickListener(this);	
+		button_email.setOnClickListener(this);
+		button_telephone.setOnClickListener(this);	
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 		if(Donnees.client!= null && Donnees.client.getNom() != null)
-			setTitre(Donnees.client.getNom());
+			setTitre(Donnees.client.getNom());	
 	}
 
 }
