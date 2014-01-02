@@ -58,7 +58,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 		// Now this event hit will not include a screen name value.
 		easyTracker.send(MapBuilder
-		  .createEvent("UX", "touch", "menuButton", null)
+		  .createAppView()
 		  .build()
 		);
 	}
