@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/couleur_fond_claire"
+    android:background="@color/_blanc"
     android:orientation="vertical" >
 
     <ScrollView
@@ -150,6 +150,8 @@
         android:id="@+id/vendeur_formulaire_valider"
         style="@style/bouton_rechercher"
         android:layout_alignParentBottom="true"
-        android:text="@string/valider" />
+        android:text="@string/valider" 
+        android:layout_height="60dip" 
+        />
 
 </RelativeLayout>

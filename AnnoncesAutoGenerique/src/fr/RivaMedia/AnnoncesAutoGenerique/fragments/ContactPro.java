@@ -68,6 +68,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 			/* map is already there, just return view as it is */
 		}
 
+		trackerEcran("Ecran Contact Pro Android");
 
 		return view;
 	}
@@ -188,6 +189,9 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	@Override
 	public void onResume() {
 		super.onResume();
+		
+		trackerEcran("Ecran Contact Pro Android");
+
 		if(Donnees.client!= null && Donnees.client.getNom() != null)
 			setTitre(Donnees.client.getNom());	
 	}
