@@ -14,32 +14,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/logo_entreprise"
+            android:layout_width="fill_parent"
+            android:layout_height="100dip"
+            android:layout_gravity="center_horizontal"
+            android:adjustViewBounds="true" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/image_entreprise_pager"
             android:layout_width="match_parent"
-            android:layout_height="150dip" >
+            android:layout_height="150dip"
+            android:background="@android:color/transparent" />
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/image_entreprise_pager"
-                android:layout_width="match_parent"
-                android:layout_height="150dip"
-                android:background="@android:color/transparent" />
-
-            <com.viewpagerindicator.CirclePageIndicator
-                android:id="@+id/image_entreprise_pager_indicator"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_below="@+id/image_entreprise_pager"
-                android:background="@android:color/transparent"
-                android:padding="3dip"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/logo_entreprise"
-                android:layout_width="fill_parent"
-                android:layout_height="100dip"
-                android:layout_centerInParent="true"
-                android:adjustViewBounds="true" />
-        </RelativeLayout>
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/image_entreprise_pager_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/image_entreprise_pager"
+            android:background="@android:color/transparent"
+            android:padding="3dip"
+            android:visibility="gone" />
 
         <ScrollView
             android:layout_width="match_parent"

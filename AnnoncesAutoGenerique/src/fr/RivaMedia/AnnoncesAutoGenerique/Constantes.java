@@ -1,6 +1,8 @@
 package fr.RivaMedia.AnnoncesAutoGenerique;
 
 public class Constantes {	
+	
+	public static final String CLIENT_VALUE= "639";
 
 	/*				ANNONCES AUTO 				*/
 
@@ -10,7 +12,6 @@ public class Constantes {
 	public static final String POST_KEY = "key";
 	public static final String POST_KEY_VALUE = "aA$!n5ert";
 	public static final String KEY_CLIENT= "client";
-	public static final String CLIENT_VALUE= "639"; 
 
 	//utile pour les PUSH
 	public static final String SERVER_GOOGLE_CLOUD_ID = "AIzaSyB7IT3ndRmf9j_J94Y79Znyl1OptMp3e_s";
