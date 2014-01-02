@@ -129,6 +129,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	}
 
 	public static void afficherCouleurNormal(View v){
+		Log.e("Je color","normalement");
 		v.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
 	}
 	public static void afficherCouleurTouch(View v){
@@ -140,15 +141,12 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				Log.e("Je touche",MotionEvent.ACTION_HOVER_ENTER +"");
 				Log.e("Je touche", "Je vais ou ?" + event.getAction());
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
 					afficherCouleurTouch(v);
 					Log.e("Je touche", "Down");
-
 					break;
-
 
 				case MotionEvent.ACTION_CANCEL:
 					afficherCouleurNormal(v);
