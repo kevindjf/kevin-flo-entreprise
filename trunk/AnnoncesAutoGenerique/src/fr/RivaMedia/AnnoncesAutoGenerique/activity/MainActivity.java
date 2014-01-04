@@ -143,17 +143,17 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _slider_logo);
 
 		afficherAccueil();
-		
+
 		chargerCouleurs();
 	}
-	
+
 	public void chargerCouleurs(){
-		
+
 		BitmapDrawable favorisHover = (BitmapDrawable) getResources().getDrawable(R.drawable.favoris_hover);
 		Bitmap bitmap = favorisHover.getBitmap();
 		Bitmap newBitmap = ImageColorChanger.changerCouleurBitmap(bitmap, Color.BLUE, Donnees.parametres.getCouleurSecondaire());
 		BitmapDrawable newFavorisHover = new BitmapDrawable(newBitmap);
-		
+
 		StateListDrawable states = new StateListDrawable();
 		states.addState(new int[] {android.R.attr.state_pressed},
 				newFavorisHover);
@@ -164,9 +164,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		states.addState(new int[] {android.R.attr.state_selected},
 				newFavorisHover);
 		states.addState(new int[] { },
-		    getResources().getDrawable(R.drawable.favoris));
+				getResources().getDrawable(R.drawable.favoris));
 		_header_favoris.setBackgroundDrawable(states);
-		
+
 	}
 
 	protected void ajouterListeners(){
@@ -348,15 +348,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	public void ajouterContactPro(){
-
-		if(getSupportFragmentManager().getFragments().contains(_contactPro) && _contactPro != null){
-			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-			transaction.remove(_contactPro);
-			transaction.add(R.id.main_fragment,_contactPro);
-			transaction.commit();
-		}else{
-			ajouterFragment((_contactPro = new ContactPro()));
-		}
+		try{
+			if(getSupportFragmentManager().getFragments().contains(_contactPro) && _contactPro != null){
+				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+				transaction.remove(_contactPro);
+				transaction.add(R.id.main_fragment,_contactPro);
+				transaction.commit();
+			}else{
+				ajouterFragment((_contactPro = new ContactPro()));
+			}
+		}catch(Exception e){}
 	}
 
 	public View afficherFavoris(){
@@ -441,12 +442,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_titre.setText(titre);
 	}
 
-	
+
 
 	@Override
 	public void onStart() {
 		super.onStart();
-	    EasyTracker.getInstance(this).activityStart(this);  // Add this method.
+		EasyTracker.getInstance(this).activityStart(this);  // Add this method.
 
 
 	}
@@ -454,9 +455,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	@Override
 	public void onStop() {
 		super.onStop();
-	    EasyTracker.getInstance(this).activityStop(this);  // Add this method.
+		EasyTracker.getInstance(this).activityStop(this);  // Add this method.
 	}
 
-	 
+
 
 }
