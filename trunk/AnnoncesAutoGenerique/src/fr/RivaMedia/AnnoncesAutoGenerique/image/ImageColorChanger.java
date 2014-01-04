@@ -33,6 +33,8 @@ public class ImageColorChanger {
 		Bitmap newBitmap = bitmap.copy(bitmap.getConfig(), true);
 
 		bitmap.getPixels(allpixels, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(),bitmap.getHeight());
+		bitmap.recycle();
+		System.gc();
 
 		for(int i =0; i<bitmap.getHeight()*bitmap.getWidth();i++){
 

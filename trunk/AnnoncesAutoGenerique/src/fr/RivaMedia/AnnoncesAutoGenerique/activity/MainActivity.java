@@ -166,7 +166,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		states.addState(new int[] { },
 				getResources().getDrawable(R.drawable.favoris));
 		_header_favoris.setBackgroundDrawable(states);
-
+		
 	}
 
 	protected void ajouterListeners(){
