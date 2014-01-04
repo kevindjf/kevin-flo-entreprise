@@ -63,6 +63,7 @@
         <item name="android:textColor">@color/couleur_texte_fonce</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_alignParentRight">true</item>
+        <item name="android:gravity">right</item>
         <item name="android:textSize">12sp</item>
         <item name="android:lines">1</item>
         <item name="android:background">@android:color/transparent</item>

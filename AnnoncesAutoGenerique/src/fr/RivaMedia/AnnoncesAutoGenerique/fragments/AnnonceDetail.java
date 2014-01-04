@@ -436,6 +436,10 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		drawable.setStroke(4 , Color.WHITE);
 		drawable.setCornerRadius(270);
 		contact_rond.setBackgroundDrawable(drawable);
+		
+		((TextView)prix.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurSecondaire());
+		((TextView)prixEntete.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurSecondaire());
+		((TextView)nomVendeur).setTextColor(Donnees.parametres.getCouleurSecondaire());
 
 	}
 
