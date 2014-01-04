@@ -2,7 +2,8 @@ package fr.RivaMedia.AnnoncesAutoGenerique;
 
 public class Constantes {	
 	
-	public static final String CLIENT_VALUE= "639";
+	public static final String CLIENT_VALUE= "4501";
+	//public static final String CLIENT_VALUE= "639";
 
 	/*				ANNONCES AUTO 				*/
 

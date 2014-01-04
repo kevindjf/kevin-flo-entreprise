@@ -44,6 +44,10 @@ public class ClientParametreXmlParser extends XmlParser {
 				}
 				else if(tag.equals("image_logo"))
 					clientParametres.setImageLogo(getString());
+				else if(tag.equals("image_start_640x1136"))
+					clientParametres.setImageStart640x1136(getString());
+				else if(tag.equals("image_start_640x960"))
+					clientParametres.setImageStart640x960(getString());
 			}
 			eventType = XMLgetSuivant();
 		}
