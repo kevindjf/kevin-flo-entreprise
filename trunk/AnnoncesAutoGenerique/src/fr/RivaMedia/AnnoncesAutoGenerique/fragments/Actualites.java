@@ -40,6 +40,7 @@ public class Actualites extends FragmentNormal{
 		_view = inflater.inflate(R.layout.actualites, container, false);
 
 		afficherProgress(true);
+		((TextView)_view.findViewById(R.id.vide_text)).setText(getActivity().getString(R.string.vous_n_avez_aucune_actualite));
 
 		if(task == null){
 			task = new ChargerActualitesTask();

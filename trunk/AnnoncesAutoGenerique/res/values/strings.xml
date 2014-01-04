@@ -241,6 +241,7 @@
     <string name="veuillez_choisir_un_type_d_energie">Veuillez choisir un type d\'energie</string>
     <string name="veuillez_preciser_votre_adresse_email">Veuillez préciser votre adresse e-mail</string>
     <string name="votre_adresse_email">Votre adresse e-mail</string>
+    <string name="vous_n_avez_aucune_actualite">Aucune actualité disponible</string>
     <string name="vous_devez_entrer_une_annee_entre_1990_et_maintenant">Vous devez entrer une annee entre 1990 et maintenant</string>
     <string name="version">Version</string>
     <string name="vide">Aucun résultat</string>
