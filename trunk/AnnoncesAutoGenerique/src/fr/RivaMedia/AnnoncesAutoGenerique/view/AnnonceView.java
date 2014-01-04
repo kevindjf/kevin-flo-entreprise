@@ -44,6 +44,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		charger();
 		remplir();
 		ajouterListeners();
+		changerCouleurs();
 	}
 
 	@Override
@@ -64,6 +65,10 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			_devant = getView();
 	}
 
+	public void changerCouleurs(){
+		_prix.setTextColor(Donnees.parametres.getCouleurSecondaire());
+	}
+	
 	@Override
 	public void remplir() {
 		if(_annonce != null){

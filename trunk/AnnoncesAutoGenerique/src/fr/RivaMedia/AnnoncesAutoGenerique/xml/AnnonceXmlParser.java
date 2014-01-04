@@ -61,7 +61,7 @@ public class AnnonceXmlParser extends XmlParser {
 
 			if (eventType == XmlPullParser.START_TAG) {
 				tag = getXpp().getName();
-				//Log.e("XML ANNONCE",tag);
+				Log.e("XML ANNONCE",tag);
 
 				if(tag.equals("id"))
 					annonce.setId(getString());
@@ -93,13 +93,13 @@ public class AnnonceXmlParser extends XmlParser {
 				else if(tag.equals("transmission"))
 					annonce.setTransmission(getString());
 				else if(tag.equals("puissance_din"))
-					XMLgetSuivant();
-					//annonce.setPuissanceDin(getString());
+					//XMLgetSuivant();
+					annonce.setPuissanceDin(getString());
 				else if(tag.equals("puissance_fisc"))
 					annonce.setPuissanceFisc(getString());
 				else if(tag.equals("co2"))
-					XMLgetSuivant();
-					//annonce.setCo2(getString());
+					//XMLgetSuivant();
+					annonce.setCo2(getString());
 				else if(tag.equals("nb_portes"))
 					annonce.setNbPortes(getString());
 				else if(tag.equals("couleur_ext"))
