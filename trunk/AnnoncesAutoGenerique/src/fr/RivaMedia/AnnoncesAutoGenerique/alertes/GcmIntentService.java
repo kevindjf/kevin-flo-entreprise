@@ -87,28 +87,11 @@ public class GcmIntentService extends IntentService {
                 Log.i(TAG, "Completed work @ " + SystemClock.elapsedRealtime());
 				 */
 
+				String titre = extras.getString("titre");
 				String message = extras.getString("message");
-				String annonces = extras.getString("annonces");
-				
-				AlertesManager alertManager = new AlertesManager(getApplicationContext());
-				
-				try{
-					JSONArray arrayAnnonces = new JSONArray(annonces);
-					for(int i=0;i<arrayAnnonces.length();++i){
-						JSONObject objectAnnonce = arrayAnnonces.getJSONObject(i);
-						String id = objectAnnonce.getString("id");
-						
-						alertManager.ajouter(id);
-					}
-				}catch(Exception e){}
-
-
-				Log.i(TAG, "Received: " + extras.toString());
-				Log.e(TAG, "ReceivedMessage: " + message.toString());
-				Log.e(TAG, "ReceivedAnnonces: " + annonces.toString());
 				
 				// Post notification of received message.
-				sendNotification(message, "Cliquez ici pour les consulter");
+				sendNotification(titre, message);
 			}
 		}
 		// Release the wake lock provided by the WakefulBroadcastReceiver.
@@ -127,12 +110,12 @@ public class GcmIntentService extends IntentService {
 
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, lancement, 0);
 
-		Bitmap large_100 = BitmapFactory.decodeResource(getResources(), R.drawable.splash_screen_v2_logo_petit);
-		Bitmap large = BitmapFactory.decodeResource(getResources(), R.drawable.splash_screen_v2_logo);
+		Bitmap large_100 = BitmapFactory.decodeResource(getResources(), R.drawable.app_icon);
+		Bitmap large = BitmapFactory.decodeResource(getResources(), R.drawable.app_icon);
 
 		NotificationCompat.Builder mBuilder =
 				new NotificationCompat.Builder(this)
-		.setSmallIcon(R.drawable.splash_screen_v2_logo_petit)
+		.setSmallIcon(R.drawable.app_icon)
 		.setLargeIcon(large_100)
 		.setContentTitle(titre)
 		.setContentText(message)
