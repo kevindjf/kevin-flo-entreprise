@@ -240,7 +240,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 			
 				final String reponse;
 				if(type == VendeurFormulaire.AUTHOTHEQUE){
-				reponse = NetRecherche.recherche(_donnees);
+					reponse = NetRecherche.recherche(_donnees);
 				}else{
 					//TOTO Mettre la requete pour reprise
 					reponse = NetReprise.reprise(_donnees);
