@@ -233,6 +233,7 @@
                     <Button
                         android:id="@+id/reprise_etape_suivante"
                         style="@style/bouton_rechercher"
+                        android:text="@string/reprise"
                         android:layout_height="60dip" />
                 </RelativeLayout>
             </LinearLayout>
