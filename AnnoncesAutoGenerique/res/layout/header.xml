@@ -15,9 +15,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/accueil"
-            android:textSize="20sp"
             android:textColor="@color/couleur_texte_blanc"
-             />
+            android:textSize="20sp" />
 
         <RelativeLayout
             android:id="@+id/header_menu_layout"
@@ -46,8 +45,7 @@
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:visibility="gone"
-             />
+            android:visibility="gone" />
 
         <ProgressBar
             android:id="@+id/header_progress"
@@ -55,11 +53,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/header_titre"
             android:layout_marginLeft="5dip"
-             />
+            android:layout_toRightOf="@+id/header_titre" />
 
-        <View
+        <ImageView
             android:id="@+id/header_favoris"
             android:layout_width="30dip"
             android:layout_height="30dip"
@@ -67,33 +64,27 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dip"
             android:background="@drawable/favoris_select"
-            android:visibility="gone" />
+             />
 
-            <View
+        <View
             android:id="@+id/header_tri"
             android:layout_width="30dip"
             android:layout_height="35dip"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dip"
             android:background="@drawable/trier"
-            android:layout_alignParentRight="true"
             android:visibility="gone" />
-        
-         <View
+
+        <View
             android:id="@+id/header_plus"
             android:layout_width="30dip"
             android:layout_height="30dip"
-            android:layout_toLeftOf="@+id/header_tri"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dip"
+            android:layout_toLeftOf="@+id/header_tri"
             android:background="@drawable/plus"
-            android:visibility="gone"
-            />
-        
-    
-        
-       
-        
+            android:visibility="gone" />
     </RelativeLayout>
 
 </LinearLayout>
