@@ -23,7 +23,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	ImageView _image;
 	TextView _titre;
 	TextView _sousTitre;
-	TextView _taille;
+	TextView _km;
 	TextView _annee;
 	TextView _prix;
 
@@ -53,7 +53,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_image = (ImageView)getView().findViewById(R.id.annonce_element_liste_image);
 		_titre = (TextView)getView().findViewById(R.id.annonce_element_liste_titre);
 		_sousTitre = (TextView)getView().findViewById(R.id.annonce_element_liste_sous_titre);
-		_taille = (TextView)getView().findViewById(R.id.annonce_element_liste_taille);
+		_km = (TextView)getView().findViewById(R.id.annonce_element_liste_taille);
 		_annee = (TextView)getView().findViewById(R.id.annonce_element_liste_annee);
 		_prix = (TextView)getView().findViewById(R.id.annonce_element_liste_prix);
 		_apartirDe = (TextView)getView().findViewById(R.id.annonce_element_liste_a_partir_de);
@@ -97,6 +97,11 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 				_annee.setText(_annonce.getAnnee());
 			else
 				_annee.setVisibility(View.GONE);
+			
+			if(_annonce.getKm() != null)
+				_km.setText(_annonce.getKm()+" km");
+			else
+				_km.setVisibility(View.GONE);
 
 			if(_annonce.getPrix() != null){
 				String p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim()+" € ";
