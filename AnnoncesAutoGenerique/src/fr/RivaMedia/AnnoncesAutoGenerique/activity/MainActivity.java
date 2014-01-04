@@ -5,6 +5,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,6 +29,7 @@ import com.navdrawer.SimpleSideDrawer;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.*;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.Effaceable;
+import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageColorChanger;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Vendeur;
@@ -138,6 +143,30 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _slider_logo);
 
 		afficherAccueil();
+		
+		chargerCouleurs();
+	}
+	
+	public void chargerCouleurs(){
+		
+		BitmapDrawable favorisHover = (BitmapDrawable) getResources().getDrawable(R.drawable.favoris_hover);
+		Bitmap bitmap = favorisHover.getBitmap();
+		Bitmap newBitmap = ImageColorChanger.changerCouleurBitmap(bitmap, Color.BLUE, Donnees.parametres.getCouleurSecondaire());
+		BitmapDrawable newFavorisHover = new BitmapDrawable(newBitmap);
+		
+		StateListDrawable states = new StateListDrawable();
+		states.addState(new int[] {android.R.attr.state_pressed},
+				newFavorisHover);
+		states.addState(new int[] {android.R.attr.state_focused},
+				newFavorisHover);
+		states.addState(new int[] {android.R.attr.state_hovered},
+				newFavorisHover);
+		states.addState(new int[] {android.R.attr.state_selected},
+				newFavorisHover);
+		states.addState(new int[] { },
+		    getResources().getDrawable(R.drawable.favoris));
+		_header_favoris.setBackgroundDrawable(states);
+		
 	}
 
 	protected void ajouterListeners(){

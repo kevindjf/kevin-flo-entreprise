@@ -58,11 +58,11 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 		// Now this event hit will not include a screen name value.
 		easyTracker.send(MapBuilder
-		  .createAppView()
-		  .build()
-		);
+				.createAppView()
+				.build()
+				);
 	}
-	
+
 	@Override
 	public void onResume() {
 		((MainActivity)getActivity()).cacherEffacer();
@@ -141,6 +141,9 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	}
 
 	public static void selector(View v){
+		selector(v,true);
+	}
+	public static void selector(View v, final boolean primaire){
 		v.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
@@ -148,16 +151,25 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 				Log.e("Je touche", "Je vais ou ?" + event.getAction());
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
-					afficherCouleurTouch(v);
+					if(primaire)
+						afficherCouleurTouch(v);
+					else
+						afficherCouleurNormal(v);
 					Log.e("Je touche", "Down");
 					break;
 
 				case MotionEvent.ACTION_CANCEL:
-					afficherCouleurNormal(v);
+					if(primaire)
+						afficherCouleurNormal(v);
+					else 
+						afficherCouleurTouch(v);
 					break;
 
 				case MotionEvent.ACTION_UP:
-					afficherCouleurNormal(v);
+					if(primaire)
+						afficherCouleurNormal(v);
+					else 
+						afficherCouleurTouch(v);
 					Log.e("Je touche", "Up");
 
 					break;

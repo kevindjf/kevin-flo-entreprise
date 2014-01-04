@@ -153,7 +153,8 @@
 
                 <LinearLayout
                     android:id="@+id/slider_credits"
-                    style="@style/slider_element" >
+                    style="@style/slider_element"
+                    android:visibility="gone" >
 
                     <ImageView
                         style="@style/slider_element_image"

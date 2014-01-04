@@ -153,8 +153,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	public void chargerCouleurs(){
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		
-		afficherCouleurNormal(_rechercher);
-		selector(_rechercher);
+		afficherCouleurTouch(_rechercher);
+		selector(_rechercher,false);
 		
 		afficherCouleurNormal(_view.findViewById(R.id.annonces_formulaire_separator_1));
 		afficherCouleurNormal(_view.findViewById(R.id.annonces_formulaire_separator_2));

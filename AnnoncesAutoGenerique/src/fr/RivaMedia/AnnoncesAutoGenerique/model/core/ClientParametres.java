@@ -15,6 +15,8 @@ public class ClientParametres {
 	String imageAccueil = "";
 	String imageLogo = "";
 	List<String> imageSlider = new ArrayList<String>();
+	String imageStart640x1136;
+	String imageStart640x960;
 	
 	public String getId() {
 		return id;
@@ -63,6 +65,18 @@ public class ClientParametres {
 	}
 	public void setImageSlider(List<String> imageSlider) {
 		this.imageSlider = imageSlider;
+	}
+	public String getImageStart640x1136() {
+		return imageStart640x1136;
+	}
+	public void setImageStart640x1136(String imageStart640x1136) {
+		this.imageStart640x1136 = imageStart640x1136;
+	}
+	public String getImageStart640x960() {
+		return imageStart640x960;
+	}
+	public void setImageStart640x960(String imageStart640x960) {
+		this.imageStart640x960 = imageStart640x960;
 	}
 	
 	
