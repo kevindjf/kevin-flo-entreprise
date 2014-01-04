@@ -77,6 +77,7 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
+		setTitre("Email");
 	}
 
 	@Override
@@ -168,7 +169,9 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 	
 	public void changerCouleur(){
 		afficherCouleurNormal(_texte);
-		selector(_envoyer);
+		afficherCouleurNormal(_image);
+		afficherCouleurTouch(_envoyer);
+		selector(_envoyer,false);
 	}
 	public void envoyerEmail(){
 
