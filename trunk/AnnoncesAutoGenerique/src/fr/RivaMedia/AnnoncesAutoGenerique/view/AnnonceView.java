@@ -45,6 +45,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		remplir();
 		ajouterListeners();
 		changerCouleurs();
+		afficherNormal();
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	public void changerCouleurs(){
 		_prix.setTextColor(Donnees.parametres.getCouleurSecondaire());
 	}
-	
+
 	@Override
 	public void remplir() {
 		if(_annonce != null){
@@ -83,12 +84,12 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			String titre = "";
 			if(_annonce.getMarque() != null)
 				titre +=_annonce.getMarque();
-			
+
 			if(_annonce.getSerie() != null)
 				titre += _annonce.getSerie();
-			
+
 			_titre.setText(titre);
-			
+
 			if(_annonce.getFinition() != null)
 				_sousTitre.setText(_annonce.getFinition());
 
@@ -122,14 +123,19 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	private void afficherNormal(){
-		if(_position%2==0){
+		if(_swipable)
 			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
-		}else{
-			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
+		else
+		{
+			if(_position%2==0){
+				_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
+			}else{
+				_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
+			}
 		}
 	}
 	private void afficherTouch(){
-		_devant.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
+		_devant.setBackgroundColor(Donnees.parametres.getCouleurSecondaire());
 	}
 
 	@Override
