@@ -27,15 +27,15 @@ public class NetChargement extends Net{
 	}
 	
 	public static List<Marque> chargerMarques(){
-		String xml = Net.requeteGet(Constantes.URL_MARQUES, null);
+		String xml = Net.requeteGet(Constantes.URL_MARQUES, Net.construireDonnes(
+				Constantes.MARQUES_TOUTES, Constantes.MARQUES_TOUTES_VALUE
+				));
 		return new MarqueXmlParser(xml).getMarques();
 	}
 	
 	public static List<Marque> chargerMarquesPubliees(){
-		String xml = Net.requeteGet(Constantes.URL_MARQUES, 
-				Net.construireDonnes(
-						Constantes.MARQUES_TOUTES, Constantes.MARQUES_TOUTES_VALUE
-						));
+		String xml = Net.requeteGet(Constantes.URL_MARQUES, null);
+				
 		return new MarqueXmlParser(xml).getMarques();
 	}
 	

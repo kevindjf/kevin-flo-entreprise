@@ -222,7 +222,7 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 	}
 
 	private void demanderMarqueModele() {
-		ajouterFragment(new MarqueSelector(this, MARQUE_MODELE, false));
+		ajouterFragment(new MarqueSelector(this, MARQUE_MODELE, false, false));
 	}
 
 	private void demanderCarrosserie() {
