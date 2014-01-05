@@ -210,7 +210,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	private void demanderMarqueModele() { 
-		ajouterFragment(new MarqueSelector(this, MARQUE_MODELE, true));
+		ajouterFragment(new MarqueSelector(this, MARQUE_MODELE, true, true));
 	}
 
 	@SuppressWarnings("deprecation")

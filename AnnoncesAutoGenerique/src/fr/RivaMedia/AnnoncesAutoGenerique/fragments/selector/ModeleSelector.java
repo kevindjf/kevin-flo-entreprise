@@ -60,6 +60,7 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 		charger();
 		remplir();
 		ajouterListeners();
+		afficherProgress(false);
 	}
 
 	public void charger() {
