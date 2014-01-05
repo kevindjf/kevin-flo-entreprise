@@ -142,8 +142,11 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 	
 	public void chargerCouleurs(){
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), (ImageView)_view.findViewById(R.id.reprise_entete_logo));
 		
 		afficherCouleurNormal(_view.findViewById(R.id.reprise_entete_1));
+		afficherCouleurNormal(_view.findViewById(R.id.reprise_entete_2));
+		afficherCouleurNormal(_view.findViewById(R.id.reprise_entete_logo));
 		afficherCouleurNormal(_view.findViewById(R.id.reprise_separator_1));
 		afficherCouleurNormal(_view.findViewById(R.id.reprise_separator_2));
 		

@@ -74,8 +74,9 @@
     <string name="description_pas_renseigne">Aucune description pour se véhicule</string>
     <string name="description_dots">Description :</string>
     <string name="description_maj">DESCRIPTION</string>
-    <string name="description_autoteque">Décrivez les critères de la voiture de vos rêves, celle que vous souhaitez acquérir ! Nous nous chargeons de transférer votre demande à nos clients partenaires qui vous contacteront avec la meilleure offre s’il possède l’unité qui vous correspond. \n\nEnsuite c’est à vous de jouer ! </string>
+    <string name="description_autoteque">Vous pouvez nous déposer une recherche personnalisée de voiture en utilisant le formulaire ci-dessous.\nNous nous répondrons dans les meilleurs délais</string>
     <string name="description_annuaire">Trouvez un professionnel du Nautisme en sélectionnant les critères désirés</string>
+    <string name="description_reprise">Vous souhaitez nous confier la reprise de votre ancien véhicule. Décrivez votre voiture avec le formulaire ci-dessous.\nNous nous répondrons dans les meilleurs délais.</string>
     <string name="diesel">Diesel</string>
     <string name="distributeur_de_la_marque">Distributeur de la marque</string>
     <string name="distributeur_de_la_marque_dots">Distributeur de la marque :</string>
