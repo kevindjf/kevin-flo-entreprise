@@ -2,8 +2,8 @@ package fr.RivaMedia.AnnoncesAutoGenerique;
 
 public class Constantes {	
 	
-	public static final String CLIENT_VALUE= "4501";
-	//public static final String CLIENT_VALUE= "639";
+	//public static final String CLIENT_VALUE= "4501";
+	public static final String CLIENT_VALUE= "639";
 
 	/*				ANNONCES AUTO 				*/
 
@@ -49,7 +49,7 @@ public class Constantes {
 	public static final String ANNONCES_PRIX_MIN = "prix_min";
 	public static final String ANNONCES_PRIX_MAX = "prix_max";
 	public static final String ANNONCES_ENERGIE = "energie";
-	public static final String ANNONCES_TRANSMISSION = "transmision"; //« Inconnu », « Mecanique » ou « Automatique »
+	public static final String ANNONCES_TRANSMISSION = "transmision"; //�� Inconnu ��, �� Mecanique �� ou �� Automatique ��
 	public static final String ANNONCES_TRANSMISSION_VALUE_INCONNU = "Inconnu"; 
 	public static final String ANNONCES_TRANSMISSION_VALUE_MECANIQUE = "Mecanique"; 
 	public static final String ANNONCES_TRANSMISSION_VALUE_AUTOMATIQUE = "Automatique"; 
