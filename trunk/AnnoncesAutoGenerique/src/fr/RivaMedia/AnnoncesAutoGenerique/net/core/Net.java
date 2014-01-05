@@ -195,11 +195,18 @@ public class Net {
 	}
 
 	public static String requeteGet(String url, List<NameValuePair> donnees){
+		return requeteGet(url, donnees, true);
+	}
+
+	public static String requeteGet(String url, List<NameValuePair> donnees, boolean ajouterClient){
 
 		if(donnees == null)
 			donnees = Net.construireDonnes();
+		
+		if(ajouterClient){
+			add(donnees,Constantes.KEY_CLIENT, Constantes.CLIENT_VALUE);
+		}
 		add(donnees,Constantes.KEY, Constantes.KEY_VALUE);
-		add(donnees,Constantes.KEY_CLIENT, Constantes.CLIENT_VALUE);
 
 		StringBuilder sb = new StringBuilder();
 		if(!url.contains("?"))

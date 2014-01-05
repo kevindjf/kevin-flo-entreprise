@@ -39,11 +39,11 @@ public class NetChargement extends Net{
 		return new MarqueXmlParser(xml).getMarques();
 	}
 	
-	public static List<Modele> chargerModeles(String marqueId){
+	public static List<Modele> chargerModeles(String marqueId, boolean tout){
 		String xml = Net.requeteGet(Constantes.URL_MODELES, 
 				Net.construireDonnes(
 						Constantes.MODELES_MARQUE_ID, marqueId
-						));
+						),tout);
 		return new ModeleXmlParser(xml).getModeles();
 	}
 	
