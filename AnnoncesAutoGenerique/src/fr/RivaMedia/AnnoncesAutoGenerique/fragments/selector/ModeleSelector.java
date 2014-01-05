@@ -33,11 +33,13 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 	int _reponseId;
 
 	boolean afficherProgress = true;
+	boolean publiees = false;
 
-	public ModeleSelector (ItemSelectedListener listener, int reponseId, Marque marque){
+	public ModeleSelector (ItemSelectedListener listener, int reponseId, Marque marque, boolean publiees){
 		this._listener = listener;
 		this._reponseId = reponseId;
 		this._marque = marque;
+		this.publiees = publiees;
 	}
 
 	@Override
@@ -108,7 +110,7 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 	class ChargerModelesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
-			_marque.setModeles(NetChargement.chargerModeles(_marque.getId()));
+			_marque.setModeles(NetChargement.chargerModeles(_marque.getId(),publiees));
 			afficherProgress = false;
 
 			getActivity().runOnUiThread(new Runnable(){
