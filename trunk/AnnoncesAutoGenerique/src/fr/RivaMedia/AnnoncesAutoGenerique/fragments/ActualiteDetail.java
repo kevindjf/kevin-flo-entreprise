@@ -3,6 +3,7 @@ package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,8 +87,11 @@ public class ActualiteDetail extends FragmentNormal{
 
 	public void remplir(){
 		if(_actualite != null){
-			if(_actualite.getPhoto() != null)
-				ImageLoaderCache.charger(_actualite.getPhoto(), _image);
+			if(_actualite.getPhoto() != null){
+				String url = _actualite.getPhoto();
+				Log.e("ACTU_PHOTO",_actualite.getPhoto());
+				ImageLoaderCache.charger(url, _image);
+			}
 
 			if(_actualite.getTitre() != null)
 				_titre.setText(_actualite.getTitre());
