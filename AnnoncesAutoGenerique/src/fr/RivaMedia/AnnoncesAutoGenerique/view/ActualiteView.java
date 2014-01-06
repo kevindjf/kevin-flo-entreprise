@@ -3,6 +3,7 @@ package fr.RivaMedia.AnnoncesAutoGenerique.view;
 import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -44,11 +45,14 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	@Override
 	public void remplir() {
 		if(_element instanceof Actualite){
-			Actualite news = (Actualite)_element;
+			Actualite actualite = (Actualite)_element;
 
-			ImageLoaderCache.charger(news.getPhoto(),_image);
-			_titre.setText(news.getTitre());
-			_sousTitre.setText(news.getTexte());
+			Log.e("ACTU_PHOTO",actualite.getPhoto());
+			
+			ImageLoaderCache.charger(actualite.getPhoto(),_image);
+			
+			_titre.setText(actualite.getTitre());
+			_sousTitre.setText(actualite.getTexte());
 		}
 
 		afficherNormal();
