@@ -3,7 +3,7 @@
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/couleur_fond"
+    android:background="@android:color/transparent"
     android:clickable="false"
     android:orientation="vertical"
     android:visibility="gone" >
@@ -18,7 +18,7 @@
         android:id="@+id/annonce_detail_layout_haut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/couleur_3"
+        android:background="@android:color/transparent"
         android:clickable="false"
         android:gravity="center"
         android:orientation="vertical" >
@@ -31,7 +31,7 @@
             android:layout_marginTop="5dip"
             android:paddingLeft="5dip"
             android:paddingRight="5dip"
-            android:textColor="@color/couleur_texte_blanc"
+            android:textColor="@color/_noir"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -72,7 +72,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/couleur_fond"
+        android:background="@android:color/transparent"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -242,29 +242,19 @@
                 <RelativeLayout
                     android:id="@+id/annonce_details_categorie"
                     style="@style/formulaire_cellule"
-                    android:layout_marginLeft="5dip" >
+                     >
 
                     <TextView
                         style="@style/formulaire_cellule_titre"
-                        android:text="@string/categorie" />
+                        android:text="@string/categorie"
+                         />
 
                     <TextView
                         android:id="@+id/annonce_detail_type"
                         style="@style/annonce_cellule_texte" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/annonce_detail_marque"
-                    style="@style/formulaire_cellule" >
 
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/marque" />
-
-                    <TextView
-                        android:id="@+id/text"
-                        style="@style/annonce_cellule_texte" />
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/annonce_detail_modele"
@@ -279,19 +269,7 @@
                         style="@style/annonce_cellule_texte" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/annonce_detail_finition"
-                    style="@style/formulaire_cellule" >
-
-                    <TextView
-                        style="@style/formulaire_cellule_titre"
-                        android:text="@string/finition" />
-
-                    <TextView
-                        android:id="@id/text"
-                        style="@style/annonce_cellule_texte" />
-                </RelativeLayout>
-
+               
                 <RelativeLayout
                     android:id="@+id/annonce_detail_energie"
                     style="@style/formulaire_cellule" >
@@ -493,41 +471,8 @@
                     android:layout_margin="10dip"
                     android:textColor="@color/couleur_texte_noir" />
 
-                <LinearLayout
-                    android:id="@+id/annonce_detail_separator_3"
-                    style="@style/formulaire_separator"
-                    android:layout_marginTop="10dip" >
 
-                    <TextView
-                        style="@style/formulaire_separator_titre"
-                        android:text="@string/vendeur" />
-                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/annonce_detail_nom_vendeur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginTop="10dip"
-                    android:textColor="@color/couleur_3"
-                    android:textSize="19sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/annonce_detail_adresse_vendeur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"
-                    android:textColor="@color/couleur_texte_noir"
-                    android:textSize="17sp" />
-
-                <TextView
-                    android:id="@+id/annonce_detail_code_postale_vendeur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"
-                    android:textColor="@color/couleur_texte_noir"
-                    android:textSize="17sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
