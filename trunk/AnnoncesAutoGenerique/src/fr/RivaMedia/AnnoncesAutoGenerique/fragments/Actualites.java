@@ -3,9 +3,8 @@ package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.costum.android.widget.PullAndLoadListView;
-import com.costum.android.widget.PullAndLoadListView.OnLoadMoreListener;
-import com.costum.android.widget.PullToRefreshListView.OnRefreshListener;
+import com.costum.android.widget.LoadMoreListView;
+import com.costum.android.widget.LoadMoreListView.OnLoadMoreListener;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -25,7 +24,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.net.NetActualite;
 public class Actualites extends FragmentNormal{
 
 	View _view;
-	PullAndLoadListView _liste = null;
+	LoadMoreListView _liste = null;
 	ActualiteListAdapter _adapter = null;
 	List<Actualite> _actualites = new ArrayList<Actualite>();
 
@@ -71,7 +70,7 @@ public class Actualites extends FragmentNormal{
 
 	public void charger(){
 		if(_liste == null)
-			_liste = (PullAndLoadListView)_view.findViewById(R.id.actualites_liste_listview);		
+			_liste = (LoadMoreListView)_view.findViewById(R.id.actualites_liste_listview);		
 	}
 	public void remplir(){
 		if(_adapter == null){
@@ -90,6 +89,7 @@ public class Actualites extends FragmentNormal{
 
 	}
 	public void ajouterListeners(){
+		/*
 		_liste.setOnRefreshListener(new OnRefreshListener() {
 			public void onRefresh() {
 				debut = 0;
@@ -100,6 +100,7 @@ public class Actualites extends FragmentNormal{
 				task.execute();
 			}
 		});
+		*/
 
 		if(debut > 0)
 			_liste.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -132,7 +133,7 @@ public class Actualites extends FragmentNormal{
 					afficherProgress = false;
 					afficherProgress(afficherProgress);
 
-					_liste.onRefreshComplete();
+					//_liste.onRefreshComplete();
 					_liste.onLoadMoreComplete();
 				}
 
