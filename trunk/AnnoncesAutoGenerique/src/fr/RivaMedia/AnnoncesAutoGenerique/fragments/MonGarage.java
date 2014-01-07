@@ -167,6 +167,7 @@ public class MonGarage extends FragmentListe implements View.OnClickListener{
 				@Override
 				public void run() {
 					chargerAnnonces();
+					onResume();
 				}
 
 			});
