@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/couleur_fond" >
+    android:background="@android:color/transparent" >
 
     <ImageView
         android:id="@+id/fond"
@@ -19,7 +19,7 @@
             android:id="@+id/autotheque_entete_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/couleur_3"
+            android:background="@android:color/transparent"
             android:gravity="center"
             android:paddingBottom="5dip"
             android:text="@string/autotheque_capitalize"
@@ -40,17 +40,18 @@
                 <ImageView
                     android:id="@+id/autotheque_entete_logo"
                     android:layout_width="match_parent"
-                    android:layout_height="100dip" />
+                    android:layout_height="100dip"
+                    android:layout_marginTop="15dip" />
 
                 <TextView
                     android:id="@+id/autotheque_entete_2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/couleur_3"
+                    android:background="@android:color/transparent"
                     android:gravity="center"
                     android:paddingBottom="5dip"
                     android:text="@string/description_autoteque"
-                    android:textColor="@color/couleur_texte_blanc" />
+                    android:textColor="@color/_noir" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

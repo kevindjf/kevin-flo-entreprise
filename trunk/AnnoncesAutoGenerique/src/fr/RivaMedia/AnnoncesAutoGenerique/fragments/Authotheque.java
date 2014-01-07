@@ -147,10 +147,6 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), (ImageView)_view.findViewById(R.id.autotheque_entete_logo));
 		
-		afficherCouleurNormal(_view.findViewById(R.id.autotheque_entete_logo));
-		
-		afficherCouleurNormal(_view.findViewById(R.id.autotheque_entete_1));
-		afficherCouleurNormal(_view.findViewById(R.id.autotheque_entete_2));
 		afficherCouleurNormal(_view.findViewById(R.id.autotheque_separator_1));
 		afficherCouleurNormal(_view.findViewById(R.id.autotheque_separator_2));
 		
