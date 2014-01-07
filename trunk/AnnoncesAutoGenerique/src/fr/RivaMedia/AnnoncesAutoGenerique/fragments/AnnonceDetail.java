@@ -49,9 +49,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 
 	View _categorie;
-	View _marque;
 	View _modele;
-	View _finition;
 	View _energie;
 	View _miseCirculation;
 	View _kilometrage;
@@ -67,9 +65,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	View description;
 
-	View nomVendeur;
-	View adresseVendeur;
-	View postaleVendeur;
+	
 	View telephonePrincipal;
 	View email;
 
@@ -129,10 +125,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		prixEntete = _view.findViewById(R.id.annonce_detail_prix_entete);
 		type =  _view.findViewById(R.id.annonce_detail_type);
 		_categorie = _view.findViewById(R.id.annonce_details_categorie);
-		_marque = _view.findViewById(R.id.annonce_detail_marque);
 		_modele = _view.findViewById(R.id.annonce_detail_modele);
 
-		_finition = _view.findViewById(R.id.annonce_detail_finition);
 		_energie = _view.findViewById(R.id.annonce_detail_energie);
 		_miseCirculation = _view.findViewById(R.id.annonce_detail_annee);
 		_kilometrage = _view.findViewById(R.id.annonce_detail_kilometrage);
@@ -148,9 +142,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 		prix =  _view.findViewById(R.id.annonce_detail_prix);
 		description = _view.findViewById(R.id.annonce_detail_description);
-		nomVendeur = _view.findViewById(R.id.annonce_detail_nom_vendeur);
-		adresseVendeur =  _view.findViewById(R.id.annonce_detail_adresse_vendeur);
-		postaleVendeur =  _view.findViewById(R.id.annonce_detail_code_postale_vendeur);
 		telephonePrincipal =  _view.findViewById(R.id.annonce_detail_telephone_principal);
 		email = _view.findViewById(R.id.annonce_detail_email);
 		apartirDe = _view.findViewById(R.id.annonce_detail_prix_a_partir_de);
@@ -173,10 +164,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 			if(_annonce.getMarque() != null && _annonce.getSerie() != null){
 				((TextView)titre).setText(_annonce.getMarque()+" / "+_annonce.getSerie());
-				((TextView)_marque.findViewById(R.id.text)).setText(_annonce.getMarque());
 			}else{
 				titre.setVisibility(View.GONE);
-				_marque.setVisibility(View.GONE);
 			}
 
 			/*
@@ -226,15 +215,13 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			}
 			if(_annonce.getFinition() != null){
 				((TextView)sousTitre).setText(_annonce.getFinition());
-				((TextView)_finition.findViewById(R.id.text)).setText(_annonce.getFinition());
 
 			}else{
 				sousTitre.setVisibility(View.GONE);
-				_finition.setVisibility(View.GONE);
 			}
 
 			if(_annonce.getNbPortes() != null){
-				((TextView)_nombrePorte.findViewById(R.id.text)).setText(_annonce.getFinition());
+				((TextView)_nombrePorte.findViewById(R.id.text)).setText(_annonce.getNbPortes());
 
 			}else{
 				_nombrePorte.setVisibility(View.GONE);
@@ -292,25 +279,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			afficherLogoFavoris();
 
 
-			if(_annonce.getClient() != null){
-				if(_annonce.getClient().getNom() != null)
-					((TextView)nomVendeur).setText(_annonce.getClient().getNom());
-				else
-					nomVendeur.setVisibility(View.GONE);
-
-				if(_annonce.getClient().getAdresse() != null)
-					((TextView)adresseVendeur).setText(_annonce.getClient().getAdresse());
-				else
-					adresseVendeur.setVisibility(View.GONE);
-
-				if(_annonce.getClient().getDepartement() != null)
-					((TextView)postaleVendeur).setText(_annonce.getClient().getDepartementNum());
-				else
-					postaleVendeur.setVisibility(View.GONE);
-
-				if(_annonce.getClient().getVille() != null)
-					((TextView)postaleVendeur).setText(((TextView)postaleVendeur).getText().toString() + " " + _annonce.getClient().getVille());
-			}
 
 			if(_annonce.getCategorie() != null){
 				((TextView)sousTitre).setText(((TextView)sousTitre).getText() + " - " +_annonce.getCategorie());
@@ -418,10 +386,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	}
 
 	protected void changerCouleur(){
-		afficherCouleurNormal(_page);
 		afficherCouleurNormal(email);
 		afficherCouleurNormal(telephonePrincipal);
-		afficherCouleurNormal(layout_haut);
 
 		selector(email);
 		selector(telephonePrincipal);
@@ -429,7 +395,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_1));
 		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_2));
-		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_3));
 		
 		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
 		drawable.setColor(Donnees.parametres.getCouleurSecondaire());
@@ -439,7 +404,6 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		
 		((TextView)prix.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurSecondaire());
 		((TextView)prixEntete.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurSecondaire());
-		((TextView)nomVendeur).setTextColor(Donnees.parametres.getCouleurSecondaire());
 
 	}
 

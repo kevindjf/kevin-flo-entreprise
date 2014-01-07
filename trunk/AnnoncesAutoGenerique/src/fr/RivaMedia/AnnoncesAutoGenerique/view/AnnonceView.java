@@ -83,7 +83,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 			String titre = "";
 			if(_annonce.getMarque() != null)
-				titre +=_annonce.getMarque();
+				titre +=_annonce.getMarque() + " ";
 
 			if(_annonce.getSerie() != null)
 				titre += _annonce.getSerie();

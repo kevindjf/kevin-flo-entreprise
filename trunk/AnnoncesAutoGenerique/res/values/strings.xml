@@ -37,7 +37,7 @@
     <string name="bateaux">Bateaux</string>
     <string name="bateau_a_moteur">Bateaux à Moteur</string>
     <string name="bateaux_et_voiliers">BATEAUX &amp; VOILIERS</string>
-    <string name="boite_de_vitesse">Boîte de vitesses</string>
+    <string name="boite_de_vitesse">Boîte de vitesse</string>
     <string name="budget">Budget</string>
     <string name="budget_star">Budget *</string>
     <string name="cabines">Cabines</string>
@@ -60,8 +60,8 @@
     <string name="contact_pro">Contact PRO</string>
     <string name="coordonnees">Coordonnées</string>
     <string name="couchettes">Couchettes</string>
-    <string name="couleur_exterieure">Couleur extérieur</string>
-    <string name="couleur_interieur">Couleur intérieur</string>
+    <string name="couleur_exterieure">Couleur extérieure</string>
+    <string name="couleur_interieur">Couleur intérieure</string>
     <string name="crash_toast_text">Une erreur est survenue, aidez nous à améliorer cette application en ous envoyant le rapport de bug</string>
     <string name="credit">Crédits</string>
     <string name="dans_un_rayon_de">Dans un rayon de :</string>
