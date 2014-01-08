@@ -157,6 +157,7 @@ public class MonGarage extends FragmentListe implements View.OnClickListener{
 			List<String> fav = _favorisManager.getAll();
 			for(String favoris : fav){
 				try{
+					Log.d("FAVORIS",favoris);
 					String id = favoris;
 					Annonce annonce = NetAnnonce.getAnnonce(id);
 					_annonces.add(annonce);
