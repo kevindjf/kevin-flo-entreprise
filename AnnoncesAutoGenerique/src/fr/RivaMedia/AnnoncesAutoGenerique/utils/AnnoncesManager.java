@@ -28,8 +28,10 @@ public class AnnoncesManager {
 		if(lesIds != null){
 			String[] ids = lesIds.split(" ");
 			for(String id : ids){
-				System.out.println(id);
-				liste.add(id.replace("[","").replace("]",""));
+				Log.e(KEY,id);
+				String idAjout = (id.replace("[","").replace("]",""));
+				if(idAjout != null && !idAjout.equals("null") && !idAjout.equals(""))
+					liste.add(idAjout);
 			}
 		}else{
 			//Toast.makeText(_context, "Aucune "+KEY, Toast.LENGTH_SHORT).show();
