@@ -42,12 +42,23 @@ public class ClientParametreXmlParser extends XmlParser {
 						clientParametres.setImageAccueil(image);
 					clientParametres.getImageSlider().add(image);
 				}
+				
+				else if(tag.equals("maj_interval"))
+					clientParametres.setMajInterval(getString());
+				
+				else if(tag.equals("couleur_titre"))
+					clientParametres.setCouleurTitre(getString());
+				else if(tag.equals("couleur_texte"))
+					clientParametres.setCouleurTexte(getString());
+				
 				else if(tag.equals("image_logo"))
 					clientParametres.setImageLogo(getString());
 				else if(tag.equals("image_start_640x1136"))
 					clientParametres.setImageStart640x1136(getString());
 				else if(tag.equals("image_start_640x960"))
 					clientParametres.setImageStart640x960(getString());
+				else if(tag.equals("image_start_320x480"))
+					getString();
 			}
 			eventType = XMLgetSuivant();
 		}

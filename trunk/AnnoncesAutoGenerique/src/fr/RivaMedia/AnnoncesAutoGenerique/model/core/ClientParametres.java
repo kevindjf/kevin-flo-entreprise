@@ -18,6 +18,10 @@ public class ClientParametres {
 	String imageStart640x1136;
 	String imageStart640x960;
 	
+	String majInterval;
+	String couleurTitre;
+	String couleurTexte;
+	
 	public String getId() {
 		return id;
 	}
@@ -77,6 +81,24 @@ public class ClientParametres {
 	}
 	public void setImageStart640x960(String imageStart640x960) {
 		this.imageStart640x960 = imageStart640x960;
+	}
+	public String getMajInterval() {
+		return majInterval;
+	}
+	public void setMajInterval(String majInterval) {
+		this.majInterval = majInterval;
+	}
+	public String getCouleurTitre() {
+		return couleurTitre;
+	}
+	public void setCouleurTitre(String couleurTitre) {
+		this.couleurTitre = couleurTitre;
+	}
+	public String getCouleurTexte() {
+		return couleurTexte;
+	}
+	public void setCouleurTexte(String couleurTexte) {
+		this.couleurTexte = couleurTexte;
 	}
 	
 	
