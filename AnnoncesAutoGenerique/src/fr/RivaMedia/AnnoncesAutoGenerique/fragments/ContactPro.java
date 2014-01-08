@@ -123,13 +123,19 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		if(Donnees.client.getDepartementNum() != null && Donnees.client.getVille() != null)
 			_adresse_postale.setText(Donnees.client.getDepartementNum() + " " + Donnees.client.getVille());
 
-		Geocoder coder = new Geocoder(getActivity());
-		List<Address> address;
+		
+		
+		
+		//Geocoder coder = new Geocoder(getActivity());
+		//List<Address> address;
 
 		try {
-			address = coder.getFromLocationName(Donnees.client.getVille(),5);
-			Address location = address.get(0);
-			LatLng position = new LatLng(location.getLatitude(),location.getLongitude());
+			//address = coder.getFromLocationName(Donnees.client.getVille(),5);
+			//Address location = address.get(0);
+			//LatLng position = new LatLng(location.getLatitude(),location.getLongitude());
+			
+			LatLng position = new LatLng(Double.parseDouble(Donnees.client.getLat()), Double.parseDouble(Donnees.client.getLng()));
+			
 			if(Donnees.client.getDistributeur() != null && Donnees.client.getNom() != null){
 				mMap.addMarker(new MarkerOptions()
 				.position(position)
@@ -147,6 +153,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		}catch(Exception e){
 			Log.e("Error", e.toString());
 		}
+		
 	}
 
 	@SuppressWarnings("deprecation")

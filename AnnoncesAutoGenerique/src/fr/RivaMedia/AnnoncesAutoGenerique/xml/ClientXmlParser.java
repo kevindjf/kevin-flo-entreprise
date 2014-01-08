@@ -77,6 +77,12 @@ public class ClientXmlParser extends XmlParser {
 					client.setServices(getString());
 				else if(tag.equals("distributeur"))
 					client.setDistributeur(getString());
+				
+				else if(tag.equals("lat"))
+					client.setLat(getString());
+				else if(tag.equals("long"))
+					client.setLng(getString());
+				
 				else
 					Log.e("XML INCONNU",tag);
 			}
