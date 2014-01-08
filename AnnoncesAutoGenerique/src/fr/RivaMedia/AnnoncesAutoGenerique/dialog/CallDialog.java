@@ -57,17 +57,14 @@ public class CallDialog extends AlertDialog implements View.OnClickListener {
 	}
 
 	public void onClick(View v){
-		switch(v.getId()){
-		case R.id.ok:
+		int id = v.getId();
+		if (id == R.id.ok) {
 			Intent callIntent = new Intent(Intent.ACTION_CALL);
 			callIntent.setData(Uri.parse("tel:"+_numeroTel));
 			_context.startActivity(callIntent);
 			this.dismiss();
-			break;
-
-		case R.id.cancel:
+		} else if (id == R.id.cancel) {
 			this.dismiss();
-			break;
 		}
 	}
 }

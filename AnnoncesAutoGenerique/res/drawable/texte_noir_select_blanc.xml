@@ -11,9 +11,6 @@
         <!-- selected -->
     <item android:state_selected="true" android:color="@color/couleur_texte_blanc"> <color android:color="@color/couleur_1"/>
     </item>
-    <!-- hovered -->
-    <item android:state_hovered="true" android:color="@color/couleur_texte_blanc"> <color android:color="@color/couleur_texte_blanc"/>
-    </item>
     <!-- checked -->
     <item android:state_checked="true" android:color="@color/couleur_texte_blanc"> <color android:color="@color/couleur_texte_blanc"/>
     </item>

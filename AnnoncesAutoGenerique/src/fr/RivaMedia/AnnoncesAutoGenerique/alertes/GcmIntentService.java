@@ -16,15 +16,6 @@
 
 package fr.RivaMedia.AnnoncesAutoGenerique.alertes;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-
-import fr.RivaMedia.AnnoncesAutoGenerique.R;
-import fr.RivaMedia.AnnoncesAutoGenerique.activity.SplashScreenActivity;
-import fr.RivaMedia.AnnoncesAutoGenerique.utils.AlertesManager;
-
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -35,7 +26,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import fr.RivaMedia.AnnoncesAutoGenerique.R;
+import fr.RivaMedia.AnnoncesAutoGenerique.activity.*;
 
 /**
  * This {@code IntentService} does the actual handling of the GCM message.

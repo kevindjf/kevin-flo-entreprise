@@ -12,7 +12,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -69,7 +68,7 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 	String carrosserie_id;
 	String budget_requis;
 	String taille_requis;
-	
+
 	String annee_min;
 	String annee_max;
 
@@ -107,10 +106,10 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 		carrosserie_id = null;
 		budget_requis = null;
 		taille_requis = null;
-		
+
 		annee_min = null;
 		annee_max = null;
-		
+
 		_views = new View[]{
 				_carrosserie,
 				_marqueModele,
@@ -139,16 +138,16 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 	public void remplir(){
 
 	}
-	
+
 	public void chargerCouleurs(){
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), (ImageView)_view.findViewById(R.id.reprise_entete_logo));
-		
+
 
 		afficherCouleurNormal(_view.findViewById(R.id.reprise_separator_1));
 		afficherCouleurNormal(_view.findViewById(R.id.reprise_separator_2));
-		
-		
+
+
 		afficherCouleurTouch(_reprise_etape_suivante);
 		selector(_reprise_etape_suivante,false);
 	}
@@ -166,28 +165,20 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-	
-			
-		case R.id.reprise_carrosserie:
+		int id = v.getId();
+		if(id == R.id.reprise_carrosserie){
 			demanderCarrosserie();
-			break;
-		case R.id.reprise_marque_modele:
+		}else if(id == R.id.reprise_marque_modele){
 			demanderMarqueModele();
-			break;
-		case R.id.reprise_energie:
+		}else if(id == R.id.reprise_energie){
 			demanderEnergie();
-			break;
-		case R.id.reprise_annee:
+		}else if(id == R.id.reprise_annee){
 			demanderAnneeMinMax();
-			break;
-		case R.id.reprise_boite_de_vitesse:
+		}else if(id == R.id.reprise_boite_de_vitesse){
 			demanderBoiteDeVitesse();
-			break;
-		case R.id.reprise_etape_suivante:
+		}else if(id == R.id.reprise_etape_suivante){
 			afficherCouleurNormal(v);
 			demanderEtapeSuivante();
-			break;
 		}
 	}
 
@@ -249,75 +240,75 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 	private List<NameValuePair> recupererDonnees(){
 
 		List<NameValuePair> donnees = new ArrayList<NameValuePair>();
-		
+
 		System.out.println("marque :"+marque_id);
-		
+
 		if(marque_id != null)
 			Net.add(donnees,Constantes.RECHERCHE_MARQUE_ID,marque_id);
 		else{
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_marque, Toast.LENGTH_SHORT).show();
 			return null;
 		}
-		
+
 		if(modele_id != null)
 			Net.add(donnees,Constantes.RECHERCHE_SERIE_ID,modele_id);
 		else{
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_serie, Toast.LENGTH_SHORT).show();
 			return null;
 		}
-		
+
 		if(carrosserie_id != null)
 			Net.add(donnees,Constantes.RECHERCHE_CATEGORIE_ID,carrosserie_id);
 		else{
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_carrosserie, Toast.LENGTH_SHORT).show();
 			return null;
 		}
-		
-		
+
+
 		if(energie_id != null)
 			Net.add(donnees,Constantes.RECHERCHE_ENERGIE,energie_id);
 		else{
 			Toast.makeText(getActivity(), R.string.veuillez_choisir_une_energie, Toast.LENGTH_SHORT).show();
 			return null;
 		}
-		
+
 		////////////////////OPTIONNELS////////////////////
-		
+
 		String finition = ((EditText)_finition.findViewById(R.id.text)).getText().toString();
 		if(finition.length()>0)
 			Net.add(donnees,Constantes.RECHERCHE_FINITION,finition);
-		
+
 		String couleur_ext = ((EditText)_couleurExterieur.findViewById(R.id.text)).getText().toString();
 		if(couleur_ext.length()>0)
 			Net.add(donnees,Constantes.RECHERCHE_COULEUR_EXT,couleur_ext);
-		
+
 		String couleur_int = ((EditText)_couleurInterieur.findViewById(R.id.text)).getText().toString();
 		if(couleur_int.length()>0)
 			Net.add(donnees,Constantes.RECHERCHE_COULEUR_INT,couleur_int);
-		
+
 		String transmission = ((TextView)_boiteDeVitesse.findViewById(R.id.text)).getText().toString();
 		if(transmission.length()>0)
 			Net.add(donnees,Constantes.RECHERCHE_TRANSMISSION,transmission);
-		
+
 		String km = ((EditText)_kilometrage.findViewById(R.id.text)).getText().toString();
 		if(km.length()>0)
 			Net.add(donnees,Constantes.RECHERCHE_KM,km);
-		
+
 		String nb_portes = ((EditText)_kilometrage.findViewById(R.id.text)).getText().toString();
 		if(nb_portes.length()>0)
 			Net.add(donnees,Constantes.RECHERCHE_NB_PORTES,nb_portes);
-		
+
 		if(annee_min != null && annee_max != null){
 			Net.add(donnees,
 					Constantes.RECHERCHE_ANNEE_MIN,annee_min,
 					Constantes.RECHERCHE_ANNEE_MAX,annee_max
 					);
 		}
-		
+
 		String commentaire = ((EditText)_commentaire.findViewById(R.id.text)).getText().toString();
 		if(commentaire.length()>0)
 			Net.add(donnees,Constantes.RECHERCHE_COMMENTAIRE,commentaire);
-		
+
 		return donnees;
 	}
 
@@ -370,7 +361,7 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 		marque_id = null;
 		modele_id = null;
 		carrosserie_id = null;
-		
+
 		annee_min = null;
 		annee_max = null;
 
@@ -383,7 +374,7 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 				((TextView)o).setText(_texteInitial[i]);
 			else if(o instanceof EditText)
 				((EditText)o).setText("");
-			
+
 			//spinners, etc
 			++i;
 		}

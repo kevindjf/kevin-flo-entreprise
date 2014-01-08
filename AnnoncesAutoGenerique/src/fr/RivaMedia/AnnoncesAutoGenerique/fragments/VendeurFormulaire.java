@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.entity.mime.MultipartEntity;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.ItemSelectedListener;
@@ -149,13 +148,11 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.vendeur_formulaire_valider:
+		int id = v.getId();
+		if (id == R.id.vendeur_formulaire_valider) {
 			validerVendeur();
-			break;
-		case R.id.vendeur_formulaire_departement:
+		} else if (id == R.id.vendeur_formulaire_departement) {
 			demanderDepartement();
-			break;
 		}
 	}
 

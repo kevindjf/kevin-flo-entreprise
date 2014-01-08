@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore.Images.ImageColumns;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -23,6 +22,8 @@ import fr.RivaMedia.AnnoncesAutoGenerique.net.NetInscriptionActualite;
 
 public class SplashScreenActivity extends Activity{
 
+	public static String CLIENT = "CLIENT";
+	
 	public static final int tempsAttenteSecondes = 0;
 
 	GcmInitializer gcmInitializer;
@@ -33,7 +34,11 @@ public class SplashScreenActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		Constantes.CLIENT_VALUE = getIntent().getExtras().getString(CLIENT);
+		
 		setContentView(R.layout.splash);
+		
 		//Net.enableHttpResponseCache(this);
 		
 		splash_image = (ImageView)findViewById(R.id.splash_image);

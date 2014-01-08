@@ -54,7 +54,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
                         android:layout_marginTop="5dip"
-                        android:textAlignment="center"
                         android:gravity="center_horizontal"
                         android:textColor="@color/couleur_texte_blanc"
                         android:textSize="19sp"
@@ -73,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dip"
                         android:layout_marginTop="5dip"
-                        android:textAlignment="center"
+                        android:gravity="center"
                         android:textColor="@color/couleur_texte_noir" />
                 </LinearLayout>
             </LinearLayout>
