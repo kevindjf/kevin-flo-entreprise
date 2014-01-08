@@ -9,7 +9,7 @@
         android:targetSdkVersion="17" />
 
     <permission
-        android:name="fr.RivaMedia.AnnoncesAutoGenerique.permission.MAPS_RECEIVE"
+        android:name="fr.RivaMedia.permission.MAPS_RECEIVE"
         android:protectionLevel="signature" />
 
     <uses-feature
@@ -48,7 +48,7 @@
         android:largeScreens="true"
         android:normalScreens="true"
         android:resizeable="true"
-        android:smallScreens="true"/>
+        android:smallScreens="true" />
 
     <permission
         android:name="fr.RivaMedia.AnnoncesAutoGenerique.permission.C2D_MESSAGE"
@@ -79,14 +79,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCd6No3qiXofWG9JPKcbXJhjkCRt_SZBVo" />
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-
         <activity
             android:name="fr.RivaMedia.AnnoncesAutoGenerique.activity.SplashScreenActivity"
             android:label="@string/app_name"

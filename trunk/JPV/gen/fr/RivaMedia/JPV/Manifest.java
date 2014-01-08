@@ -10,6 +10,6 @@ package fr.RivaMedia.JPV;
 public final class Manifest {
     public static final class permission {
         public static final String C2D_MESSAGE="fr.RivaMedia.AnnoncesAutoGenerique.permission.C2D_MESSAGE";
-        public static final String MAPS_RECEIVE="fr.RivaMedia.AnnoncesAutoGenerique.permission.MAPS_RECEIVE";
+        public static final String MAPS_RECEIVE="fr.RivaMedia.permission.MAPS_RECEIVE";
     }
 }
