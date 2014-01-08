@@ -1,6 +1,7 @@
 
 package fr.RivaMedia.AnnoncesAutoGenerique.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -147,6 +148,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		chargerCouleurs();
 	}
 
+	@SuppressLint("InlinedApi")
+	@SuppressWarnings("deprecation")
 	public void chargerCouleurs(){
 
 		BitmapDrawable favorisHover = (BitmapDrawable) getResources().getDrawable(R.drawable.favoris_hover);
@@ -189,44 +192,33 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	@Override
 	public void onClick(View v) {
 
-		switch(v.getId()){
-		case R.id.header_menu:
+		int id = v.getId();
+		if (id == R.id.header_menu) {
 			ouvrirSlider();
-			break;
-
-		case R.id.slider_accueil:
+		} else if (id == R.id.slider_accueil) {
 			fermerSlider();
 			afficherAccueil();
-			break;
-		case R.id.slider_annonces:
-			fermerSlider();	
+		} else if (id == R.id.slider_annonces) {
+			fermerSlider();
 			afficherAnnonces();
-			break;
-		case R.id.slider_actualites:
-			fermerSlider();		
+		} else if (id == R.id.slider_actualites) {
+			fermerSlider();
 			afficherActualites();
-			break;
-		case R.id.slider_mon_garage:
-			fermerSlider();		
+		} else if (id == R.id.slider_mon_garage) {
+			fermerSlider();
 			afficherMonGarage();
-			break;
-		case R.id.slider_autotheque:
+		} else if (id == R.id.slider_autotheque) {
 			fermerSlider();
 			afficherAuthoteque();
-			break;
-
-		case R.id.slider_reprise:
+		} else if (id == R.id.slider_reprise) {
 			fermerSlider();
 			afficherReprise();
-			break;
-		case R.id.slider_contact_pro:
-			fermerSlider();	
+		} else if (id == R.id.slider_contact_pro) {
+			fermerSlider();
 			afficherContactPro();
-			break;
-		case R.id.slider_credits:
-			fermerSlider();	
+		} else if (id == R.id.slider_credits) {
+			fermerSlider();
 			afficherCredits();
-			break;
 		}
 
 	}

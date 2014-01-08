@@ -8,10 +8,6 @@ import org.apache.http.NameValuePair;
 
 import com.costum.android.widget.LoadMoreListView;
 import com.costum.android.widget.LoadMoreListView.OnLoadMoreListener;
-import com.google.analytics.tracking.android.EasyTracker;
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.Tracker;
 
 import android.annotation.SuppressLint;
@@ -23,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
-import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivity;
 import fr.RivaMedia.AnnoncesAutoGenerique.adapter.AnnonceListAdapter;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentListe;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
@@ -116,10 +111,9 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	@Override
 	public void onClick(View v) {
 		super.onClick(v);
-		switch(v.getId()){
-		case R.id.header_plus:
+		int id = v.getId();
+		if (id == R.id.header_plus) {
 			ajouterFragment(new AnnoncesFormulaire(), true);
-			break;
 		}
 	}
 

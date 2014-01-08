@@ -1,7 +1,6 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.image;
 
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;

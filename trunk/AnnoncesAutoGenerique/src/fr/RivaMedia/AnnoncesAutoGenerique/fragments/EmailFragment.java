@@ -142,13 +142,11 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 	public void onClick(View v) {
 		super.onClick(v);
 
-		switch(v.getId()){
-		case R.id.email_departement:
+		int id = v.getId();
+		if (id == R.id.email_departement) {
 			demanderDepartement();
-			break;
-		case R.id.email_bouton_envoyer:
+		} else if (id == R.id.email_bouton_envoyer) {
 			envoyerEmail();
-			break;
 		}
 	}
 

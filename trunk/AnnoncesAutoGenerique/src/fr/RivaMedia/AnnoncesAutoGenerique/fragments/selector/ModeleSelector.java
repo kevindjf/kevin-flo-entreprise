@@ -14,7 +14,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
-import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivity;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Marque;
@@ -48,7 +47,7 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 		_view = inflater.inflate(R.layout.liste_selector, container, false);
 
 		if(_marque.getModeles() == null){
-			((MainActivity)getActivity()).afficherProgress(true);
+			super.afficherProgress(true);
 			task = new ChargerModelesTask();
 			task.execute();
 		}else{

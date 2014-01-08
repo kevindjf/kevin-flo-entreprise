@@ -10,8 +10,6 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,11 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.viewpagerindicator.CirclePageIndicator;
-
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.activity.Gallery;
-import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivity;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
@@ -32,7 +27,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetAnnonce;
 import fr.RivaMedia.AnnoncesAutoGenerique.utils.FavorisManager;
 
-@SuppressLint("ValidFragment")
+@SuppressLint({ "ValidFragment", "DefaultLocale" })
 public class AnnonceDetail extends FragmentNormal implements View.OnClickListener{
 
 	View _view;
@@ -155,6 +150,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	}
 
+	@SuppressLint("DefaultLocale")
 	public void remplir(){
 
 
@@ -333,30 +329,25 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.annonce_detail_telephone_principal:
+		int id = v.getId();
+		if (id == R.id.annonce_detail_telephone_principal) {
 			afficherCouleurNormal(v);
 			if(Donnees.client.getTel1() != null)
 			super.appeller(Donnees.client.getTel1());
-			break;
-		case R.id.annonce_detail_email:
+		} else if (id == R.id.annonce_detail_email) {
 			afficherCouleurNormal(v);
 			if(Donnees.client.getEmail() != null)
 			super.envoyerEmailAnnonce(Donnees.client.getEmail(),this._annonce);
-			break;
-		case R.id.annonce_detail_rond:
-			((MainActivity) getActivity()).ajouterContactPro();
-			break;
-		case R.id.header_favoris:
+		} else if (id == R.id.annonce_detail_rond) {
+			super.ajouterContactPro();
+		} else if (id == R.id.header_favoris) {
 			switchFavoris();
-			break;
-		case R.id.annonce_detail_image_pager:
+		} else if (id == R.id.annonce_detail_image_pager) {
 			Intent intent = new Intent(AnnonceDetail.this.getActivity(),Gallery.class);
 			if(_annonce.getFinition() != null)
 				intent.putExtra(Gallery.TEXTE, _annonce.getFinition());
 			intent.putStringArrayListExtra(Gallery.IMAGES, (ArrayList<String>)_annonce.getPhotos());
 			getActivity().startActivity(intent);
-			break;
 		}
 	}
 
@@ -385,6 +376,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		ajouterListeners();
 	}
 
+	@SuppressWarnings("deprecation")
 	protected void changerCouleur(){
 		afficherCouleurNormal(email);
 		afficherCouleurNormal(telephonePrincipal);

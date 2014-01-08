@@ -5,12 +5,6 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.google.analytics.tracking.android.EasyTracker;
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.MapBuilder;
-import com.google.analytics.tracking.android.Tracker;
-import com.viewpagerindicator.CirclePageIndicator;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +17,9 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.viewpagerindicator.CirclePageIndicator;
+
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.activity.Gallery;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;

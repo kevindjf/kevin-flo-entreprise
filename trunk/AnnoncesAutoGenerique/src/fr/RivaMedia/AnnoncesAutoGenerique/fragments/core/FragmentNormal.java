@@ -2,12 +2,10 @@ package fr.RivaMedia.AnnoncesAutoGenerique.fragments.core;
 
 import com.google.analytics.tracking.android.EasyTracker;
 import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.GoogleAnalytics;
 import com.google.analytics.tracking.android.MapBuilder;
 import com.google.analytics.tracking.android.Tracker;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
-import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivity;
 import fr.RivaMedia.AnnoncesAutoGenerique.dialog.CallDialog;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Annonce;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Vendeur;
@@ -18,7 +16,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
+
+import fr.RivaMedia.AnnoncesAutoGenerique.activity.*;
 
 public abstract class FragmentNormal extends Fragment implements IFragment, OnClickListener{
 
@@ -131,6 +130,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	public void setTitre(String titre){
 		((MainActivity)getActivity()).setTitre(titre);
 	}
+	
+	public void ajouterContactPro() {
+		((MainActivity)getActivity()).ajouterContactPro();
+	}
 
 	public static void afficherCouleurNormal(View v){
 		Log.e("Je color","normalement");
@@ -180,6 +183,8 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 			}
 		});
 	}
+
+	
 
 
 }

@@ -73,6 +73,7 @@ public abstract class XmlParser {
 		return d;
 	}
 
+	@SuppressWarnings("static-access")
 	protected String getString() {
 		String s = "";
 		try {

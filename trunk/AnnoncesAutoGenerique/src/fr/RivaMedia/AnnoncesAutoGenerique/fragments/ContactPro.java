@@ -2,17 +2,7 @@ package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
 import java.util.List;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import android.graphics.Color;
-import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.location.Address;
 import android.location.Geocoder;
@@ -24,10 +14,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
-import fr.RivaMedia.AnnoncesAutoGenerique.model.Client;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 
 public class ContactPro extends FragmentNormal implements View.OnClickListener{
@@ -75,24 +73,18 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.contact_pro_button_telephone :
+		int id = v.getId();
+		if(id == R.id.contact_pro_button_telephone){
 			afficherCouleurNormal(button_telephone);
 			afficherCouleurNormal(v);
-
 			if(Donnees.client.getTel1() != null)
-
 				super.appeller(Donnees.client.getTel1());
-
-			break;
-
-		case R.id.contact_pro_button_email :
+		}
+		else if(id==R.id.contact_pro_button_email){
 			afficherCouleurNormal(button_email);
 			afficherCouleurNormal(v);
 			if(Donnees.client.getEmail() != null)
 				super.envoyerEmailDirect(Donnees.client.getEmail());
-
-			break;
 		}
 	}
 
@@ -157,6 +149,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public void changerCouleur(){
 		afficherCouleurNormal(button_email);
 		afficherCouleurNormal(contact_pro_email);

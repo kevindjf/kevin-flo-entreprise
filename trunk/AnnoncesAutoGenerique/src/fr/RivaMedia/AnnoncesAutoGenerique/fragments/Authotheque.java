@@ -185,28 +185,20 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-	
-			
-		case R.id.autotheque_carrosserie:
+		int id = v.getId();
+		if (id == R.id.autotheque_carrosserie) {
 			demanderCarrosserie();
-			break;
-		case R.id.autotheque_marque_modele:
+		} else if (id == R.id.autotheque_marque_modele) {
 			demanderMarqueModele();
-			break;
-		case R.id.autotheque_energie:
+		} else if (id == R.id.autotheque_energie) {
 			demanderEnergie();
-			break;
-		case R.id.autotheque_annee:
+		} else if (id == R.id.autotheque_annee) {
 			demanderAnneeMinMax();
-			break;
-		case R.id.autotheque_boite_de_vitesse:
+		} else if (id == R.id.autotheque_boite_de_vitesse) {
 			demanderBoiteDeVitesse();
-			break;
-		case R.id.boat_on_demand_etape_suivante:
+		} else if (id == R.id.boat_on_demand_etape_suivante) {
 			afficherCouleurNormal(v);
 			demanderEtapeSuivante();
-			break;
 		}
 	}
 

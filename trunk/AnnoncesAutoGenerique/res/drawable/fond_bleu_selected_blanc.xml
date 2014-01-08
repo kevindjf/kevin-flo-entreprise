@@ -8,9 +8,6 @@
     <!-- focused -->
     <item android:state_focused="true"> <color android:color="@color/_blanc"/>
     </item>
-    <!-- hovered -->
-    <item android:state_hovered="true"> <color android:color="@color/_blanc"/>
-    </item>
     <!-- checked -->
     <item android:state_checked="true"> <color android:color="@color/_blanc"/>
     </item>

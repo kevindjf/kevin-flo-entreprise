@@ -8,25 +8,23 @@ import java.util.Map;
 
 import org.apache.http.NameValuePair;
 
-import com.google.analytics.tracking.android.EasyTracker;
-import com.google.analytics.tracking.android.Fields;
-import com.google.analytics.tracking.android.GoogleAnalytics;
-import com.google.analytics.tracking.android.MapBuilder;
-import com.google.analytics.tracking.android.Tracker;
-
 import android.annotation.SuppressLint;
-import android.graphics.drawable.StateListDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.analytics.tracking.android.Fields;
+import com.google.analytics.tracking.android.GoogleAnalytics;
+import com.google.analytics.tracking.android.MapBuilder;
+import com.google.analytics.tracking.android.Tracker;
+
 import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.dialog.MinMaxDialog;
@@ -180,32 +178,23 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.annonces_formulaire_bouton_rechercher:
+		int id = v.getId();
+		if (id == R.id.annonces_formulaire_bouton_rechercher) {
 			rechercher();
-			break;
-
-		case R.id.annonces_formulaire_carrosserie:
+		} else if (id == R.id.annonces_formulaire_carrosserie) {
 			demanderCarrosserie();
-			break;
-		case R.id.annonces_formulaire_marque_modele:
+		} else if (id == R.id.annonces_formulaire_marque_modele) {
 			demanderMarqueModele();
-			break;
-		case R.id.annonces_formulaire_energie:
+		} else if (id == R.id.annonces_formulaire_energie) {
 			demanderEnergie();
-			break;
-		case R.id.annonces_formulaire_boite_vitesse:
+		} else if (id == R.id.annonces_formulaire_boite_vitesse) {
 			demanderBoiteVitesse();
-			break;
-		case R.id.annonces_formulaires_annee:
+		} else if (id == R.id.annonces_formulaires_annee) {
 			demanderAnnee();
-			break;
-		case R.id.annonces_formulaires_prix:
+		} else if (id == R.id.annonces_formulaires_prix) {
 			demanderPrix();
-			break;
-		case R.id.annonces_formulaires_departement:
+		} else if (id == R.id.annonces_formulaires_departement) {
 			demanderDepartement();
-			break;
 		}
 	}
 
@@ -258,6 +247,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void ajouterAlerte() {
 		if(this.recherche_carrosserie_id == null)
 			Toast.makeText(getActivity(), getActivity().getString(R.string.veuillez_choisir_une_carrosserie), Toast.LENGTH_SHORT).show();
@@ -508,6 +498,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		List<NameValuePair> donnees = Net.construireDonnes();
 
 		JetonManager jm = new JetonManager(this.getActivity());
+		@SuppressWarnings("unused")
 		String jeton = jm.getJeton();
 
 		return donnees;
