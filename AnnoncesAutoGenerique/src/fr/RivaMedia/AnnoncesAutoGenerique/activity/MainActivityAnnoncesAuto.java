@@ -254,7 +254,7 @@ public class MainActivityAnnoncesAuto extends FragmentActivity implements View.O
 	}
 
 	public void afficherCredits(){
-		ajouterFragment(new Credit(),false);
+		ajouterFragment(new CreditMoche(),false);
 	}
 
 	public void afficherEffacer(final Effaceable effaceable){
