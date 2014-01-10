@@ -201,6 +201,8 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 
 	class EnvoyerEmailTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
+			
+			try{
 
 			String email = _adresseEmail.getText().toString();
 			String message = _message.getText().toString();
@@ -217,6 +219,10 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 					NetEmail.envoyerEmailClient(nom, telephone, email, nom, message, client.getId());
 			}
 			emailEnvoye();
+			
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 
 			return null;
 		}

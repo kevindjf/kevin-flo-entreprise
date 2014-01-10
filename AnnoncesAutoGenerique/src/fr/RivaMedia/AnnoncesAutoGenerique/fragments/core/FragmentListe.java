@@ -15,16 +15,16 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 	protected boolean afficherProgress = true;
 	
 	public void cacherTrier(){
-		((MainActivity)getActivity()).cacherTrier();
+		((MainActivityAnnoncesAuto)getActivity()).cacherTrier();
 	}
 	
 	public void afficherTrier(){
-		 _slider = ((MainActivity)getActivity()).getSliderDroite();
-		((MainActivity)getActivity()).afficherTrier().setOnClickListener(this);
+		 _slider = ((MainActivityAnnoncesAuto)getActivity()).getSliderDroite();
+		((MainActivityAnnoncesAuto)getActivity()).afficherTrier().setOnClickListener(this);
 	}
 	
 	public void afficherSliderDroite(){	
-		((MainActivity)getActivity()).afficherSliderDroite();
+		((MainActivityAnnoncesAuto)getActivity()).afficherSliderDroite();
 		getActivity().findViewById(R.id.slider_droite_date_croissant).setOnClickListener(this);
 		getActivity().findViewById(R.id.slider_droite_date_decroissant).setOnClickListener(this);
 		getActivity().findViewById(R.id.slider_droite_prix_croissant).setOnClickListener(this);
@@ -36,7 +36,7 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 	}
 	
 	public void fermerSliderDroite(){
-		((MainActivity)getActivity()).fermerSliderDroite();
+		((MainActivityAnnoncesAuto)getActivity()).fermerSliderDroite();
 	}
 	
 	@Override
@@ -47,11 +47,11 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 	}
 	
 	public View afficherPlus(){
-		return ((MainActivity)getActivity()).afficherPlus();
+		return ((MainActivityAnnoncesAuto)getActivity()).afficherPlus();
 	}
 	
 	public void cacherPlus(){
-		((MainActivity)getActivity()).cacherPlus();
+		((MainActivityAnnoncesAuto)getActivity()).cacherPlus();
 	}
 	
 	public abstract void afficherPrixCroissant();

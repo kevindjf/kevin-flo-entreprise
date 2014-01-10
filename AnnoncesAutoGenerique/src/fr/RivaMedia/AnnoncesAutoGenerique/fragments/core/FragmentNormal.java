@@ -28,15 +28,15 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 	public void afficherProgress(boolean afficher){
 		this.afficherProgress = afficher;
-		((MainActivity)getActivity()).afficherProgress(afficher);
+		((MainActivityAnnoncesAuto)getActivity()).afficherProgress(afficher);
 	}
 
 	@Override
 	public void onPause() {
-		((MainActivity)getActivity()).cacherEffacer();
-		((MainActivity)getActivity()).cacherTrier();
-		((MainActivity)getActivity()).cacherFavoris();
-		((MainActivity)getActivity()).cacherPlus();
+		((MainActivityAnnoncesAuto)getActivity()).cacherEffacer();
+		((MainActivityAnnoncesAuto)getActivity()).cacherTrier();
+		((MainActivityAnnoncesAuto)getActivity()).cacherFavoris();
+		((MainActivityAnnoncesAuto)getActivity()).cacherPlus();
 		afficherProgress(afficherProgress);
 		try{
 			if(task != null)
@@ -64,10 +64,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 	@Override
 	public void onResume() {
-		((MainActivity)getActivity()).cacherEffacer();
-		((MainActivity)getActivity()).cacherTrier();
-		((MainActivity)getActivity()).cacherFavoris();
-		((MainActivity)getActivity()).cacherPlus();
+		((MainActivityAnnoncesAuto)getActivity()).cacherEffacer();
+		((MainActivityAnnoncesAuto)getActivity()).cacherTrier();
+		((MainActivityAnnoncesAuto)getActivity()).cacherFavoris();
+		((MainActivityAnnoncesAuto)getActivity()).cacherPlus();
 
 		afficherProgress(afficherProgress);
 		super.onResume();
@@ -98,17 +98,17 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		ajouterFragment( fragment, true);
 	}
 	public void ajouterFragment(Fragment fragment, boolean back){
-		((MainActivity)getActivity()).ajouterFragment(fragment,back);
+		((MainActivityAnnoncesAuto)getActivity()).ajouterFragment(fragment,back);
 	}
 
 	public void envoyerEmailVendeur(String email, Vendeur vendeur){
-		((MainActivity)getActivity()).envoyerEmailVendeur(email, vendeur);
+		((MainActivityAnnoncesAuto)getActivity()).envoyerEmailVendeur(email, vendeur);
 	}
 	public void envoyerEmailAnnonce(String email, Annonce annonce){
-		((MainActivity)getActivity()).envoyerEmailAnnonce(email, annonce);
+		((MainActivityAnnoncesAuto)getActivity()).envoyerEmailAnnonce(email, annonce);
 	}
 	public void envoyerEmailDirect(String email){
-		((MainActivity)getActivity()).envoyerEmailDirect(email);
+		((MainActivityAnnoncesAuto)getActivity()).envoyerEmailDirect(email);
 	}
 	public void appeller(String phone){
 		new CallDialog(getActivity(), getString(R.string.telephoner), phone).show();
@@ -120,19 +120,19 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	}
 
 	public View afficherFavoris(){
-		return ((MainActivity)getActivity()).afficherFavoris();
+		return ((MainActivityAnnoncesAuto)getActivity()).afficherFavoris();
 	}
 
 	public void cacherFavoris(){
-		((MainActivity)getActivity()).cacherFavoris();
+		((MainActivityAnnoncesAuto)getActivity()).cacherFavoris();
 	}
 
 	public void setTitre(String titre){
-		((MainActivity)getActivity()).setTitre(titre);
+		((MainActivityAnnoncesAuto)getActivity()).setTitre(titre);
 	}
 	
 	public void ajouterContactPro() {
-		((MainActivity)getActivity()).ajouterContactPro();
+		((MainActivityAnnoncesAuto)getActivity()).ajouterContactPro();
 	}
 
 	public static void afficherCouleurNormal(View v){

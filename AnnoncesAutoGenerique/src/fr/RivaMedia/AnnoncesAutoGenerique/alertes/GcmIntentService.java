@@ -22,6 +22,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -101,26 +102,17 @@ public class GcmIntentService extends IntentService {
 
 		//TODO: remplir
 		//Intent de lancement
-		Intent lancement = new Intent(this, SplashScreenActivity.class);
-
+		
+		PackageManager pm = getPackageManager();
+	    Intent lancement = pm.getLaunchIntentForPackage(getPackageName());
+		
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, lancement, 0);
-
-		Bitmap large_100 = BitmapFactory.decodeResource(getResources(), R.drawable.app_icon);
-		Bitmap large = BitmapFactory.decodeResource(getResources(), R.drawable.app_icon);
 
 		NotificationCompat.Builder mBuilder =
 				new NotificationCompat.Builder(this)
 		.setSmallIcon(R.drawable.app_icon)
-		.setLargeIcon(large_100)
 		.setContentTitle(titre)
-		.setContentText(message)
-		
-		.setStyle(new NotificationCompat.BigPictureStyle()
-		.setBigContentTitle(titre)
-		.setSummaryText(message)
-		.bigPicture(large)
-		.bigLargeIcon(large_100)
-				);
+		.setContentText(message);
 
 		mBuilder.setContentIntent(contentIntent);
 		Notification notif =  mBuilder.build();

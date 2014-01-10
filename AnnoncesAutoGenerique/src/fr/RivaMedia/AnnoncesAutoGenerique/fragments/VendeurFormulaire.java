@@ -233,6 +233,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	class EnvoyerRechercheTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			
+			try{
+			
 			synchronized (_donnees) {
 			
 				final String reponse;
@@ -254,6 +256,9 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 					}
 
 				});
+			}
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 
 			return null;
