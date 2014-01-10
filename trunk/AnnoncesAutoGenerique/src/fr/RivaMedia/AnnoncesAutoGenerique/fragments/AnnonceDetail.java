@@ -331,11 +331,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.annonce_detail_telephone_principal) {
-			afficherCouleurNormal(v);
+			afficherCouleurTouch(v);
 			if(Donnees.client.getTel1() != null)
 			super.appeller(Donnees.client.getTel1());
 		} else if (id == R.id.annonce_detail_email) {
-			afficherCouleurNormal(v);
+			afficherCouleurTouch(v);
 			if(Donnees.client.getEmail() != null)
 			super.envoyerEmailAnnonce(Donnees.client.getEmail(),this._annonce);
 		} else if (id == R.id.annonce_detail_rond) {
@@ -378,18 +378,18 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	@SuppressWarnings("deprecation")
 	protected void changerCouleur(){
-		afficherCouleurNormal(email);
-		afficherCouleurNormal(telephonePrincipal);
+		afficherCouleurTouch(email);
+		afficherCouleurTouch(telephonePrincipal);
 
-		selector(email);
-		selector(telephonePrincipal);
+		selector(email,false);
+		selector(telephonePrincipal,false);
 
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_1));
 		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_2));
 		
 		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
-		drawable.setColor(Donnees.parametres.getCouleurSecondaire());
+		drawable.setColor(Donnees.parametres.getCouleurPrincipale());
 		drawable.setStroke(4 , Color.WHITE);
 		drawable.setCornerRadius(270);
 		contact_rond.setBackgroundDrawable(drawable);

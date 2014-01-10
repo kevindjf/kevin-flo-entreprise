@@ -75,14 +75,12 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	public void onClick(View v) {
 		int id = v.getId();
 		if(id == R.id.contact_pro_button_telephone){
-			afficherCouleurNormal(button_telephone);
-			afficherCouleurNormal(v);
+			afficherCouleurTouch(v);
 			if(Donnees.client.getTel1() != null)
 				super.appeller(Donnees.client.getTel1());
 		}
 		else if(id==R.id.contact_pro_button_email){
-			afficherCouleurNormal(button_email);
-			afficherCouleurNormal(v);
+			afficherCouleurTouch(v);
 			if(Donnees.client.getEmail() != null)
 				super.envoyerEmailDirect(Donnees.client.getEmail());
 		}
@@ -158,22 +156,22 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 	@SuppressWarnings("deprecation")
 	public void changerCouleur(){
-		afficherCouleurNormal(button_email);
+		afficherCouleurTouch(button_email);
 		afficherCouleurNormal(contact_pro_email);
 
-		afficherCouleurNormal(button_telephone);
+		afficherCouleurTouch(button_telephone);
 		afficherCouleurNormal(contact_pro_telephone);
 
-		selector(button_email);
+		selector(button_email,false);
 		selector(contact_pro_email);
 
 
 
-		selector(button_telephone);
+		selector(button_telephone,false);
 		selector(contact_pro_telephone);
 
 		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
-		drawable.setColor(Donnees.parametres.getCouleurSecondaire());
+		drawable.setColor(Donnees.parametres.getCouleurPrincipale());
 		drawable.setStroke(4 , Color.WHITE);
 		drawable.setCornerRadius(270);
 		shape_ovale.setBackgroundDrawable(drawable);

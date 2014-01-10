@@ -161,7 +161,9 @@ public class MonGarage extends FragmentListe implements View.OnClickListener{
 					String id = favoris;
 					Annonce annonce = NetAnnonce.getAnnonce(id);
 					_annonces.add(annonce);
-				}catch(Exception e){}
+				}catch(Exception e){
+					_favorisManager.retirer(favoris);
+				}
 			}
 			getActivity().runOnUiThread(new Runnable(){
 
