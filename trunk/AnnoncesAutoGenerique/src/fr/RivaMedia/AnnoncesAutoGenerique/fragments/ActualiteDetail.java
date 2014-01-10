@@ -115,6 +115,7 @@ public class ActualiteDetail extends FragmentNormal{
 	class ChargerNewsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
+			try{
 			_actualite = NetActualite.getActualite(_id);
 
 			getActivity().runOnUiThread(new Runnable(){
@@ -128,6 +129,9 @@ public class ActualiteDetail extends FragmentNormal{
 				}
 
 			});
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 
 			return null;
 		}

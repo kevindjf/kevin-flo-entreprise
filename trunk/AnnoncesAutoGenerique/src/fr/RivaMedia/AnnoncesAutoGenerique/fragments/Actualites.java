@@ -63,7 +63,7 @@ public class Actualites extends FragmentNormal{
 		ajouterListeners();
 		chargerCouleurs();
 	}
-	
+
 	public void chargerCouleurs(){
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 	}
@@ -100,7 +100,7 @@ public class Actualites extends FragmentNormal{
 				task.execute();
 			}
 		});
-		*/
+		 */
 
 		if(debut > 0)
 			_liste.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -118,26 +118,30 @@ public class Actualites extends FragmentNormal{
 
 	class ChargerActualitesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			List<Actualite> actus = NetActualite.chargerListeActualites(debut, nombre);
+			try{
+				List<Actualite> actus = NetActualite.chargerListeActualites(debut, nombre);
 
-			nombre = actus.size();
-			debut+=nombre;
+				nombre = actus.size();
+				debut+=nombre;
 
-			_actualites.addAll(actus);
+				_actualites.addAll(actus);
 
-			getActivity().runOnUiThread(new Runnable(){
+				getActivity().runOnUiThread(new Runnable(){
 
-				@Override
-				public void run() {
-					chargerNews();
-					afficherProgress = false;
-					afficherProgress(afficherProgress);
+					@Override
+					public void run() {
+						chargerNews();
+						afficherProgress = false;
+						afficherProgress(afficherProgress);
 
-					//_liste.onRefreshComplete();
-					_liste.onLoadMoreComplete();
-				}
+						//_liste.onRefreshComplete();
+						_liste.onLoadMoreComplete();
+					}
 
-			});
+				});
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 
 			return null;
 		}

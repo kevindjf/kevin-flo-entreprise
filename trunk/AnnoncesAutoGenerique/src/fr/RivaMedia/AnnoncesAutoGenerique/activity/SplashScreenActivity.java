@@ -93,7 +93,7 @@ public class SplashScreenActivity extends Activity{
 
 	protected void etapeSuivante(){
 
-		Intent i = new Intent(this,MainActivity.class);
+		Intent i = new Intent(this,MainActivityAnnoncesAuto.class);
 		startActivity(i);
 		finish();
 
@@ -132,6 +132,9 @@ public class SplashScreenActivity extends Activity{
 			//TODO charger les donnees 
 			//afficher le magasine AutoPromo
 			
+			
+			try{
+			
 			Donnees.transmission.add("Inconnu");
 			Donnees.transmission.add("Mecanique");
 			Donnees.transmission.add("Automatique");
@@ -159,6 +162,10 @@ public class SplashScreenActivity extends Activity{
 			NetInscriptionActualite.inscrireActualites(Donnees.jeton);
 			
 			lancerDecompte();
+			
+			}catch(Exception e){
+				finish();
+			}
 
 			return null;
 		}

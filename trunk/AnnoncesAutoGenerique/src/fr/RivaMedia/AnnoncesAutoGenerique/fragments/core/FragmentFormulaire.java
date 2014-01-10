@@ -1,6 +1,6 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.fragments.core;
 
-import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivity;
+import fr.RivaMedia.AnnoncesAutoGenerique.activity.MainActivityAnnoncesAuto;
 
 
 //TODO: n'arriche pas "effacer" en cas de popStack
@@ -10,13 +10,13 @@ public abstract class FragmentFormulaire extends FragmentNormal implements Effac
 	@Override
 	public void onPause() {
 		super.onPause();
-		((MainActivity)getActivity()).cacherEffacer();
+		((MainActivityAnnoncesAuto)getActivity()).cacherEffacer();
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		((MainActivity)getActivity()).afficherEffacer(this);
+		((MainActivityAnnoncesAuto)getActivity()).afficherEffacer(this);
 	}
 	
 }

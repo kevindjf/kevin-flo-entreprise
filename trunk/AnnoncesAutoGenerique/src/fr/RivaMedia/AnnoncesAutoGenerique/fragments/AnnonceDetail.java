@@ -410,6 +410,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	class ChargerAnnonceTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
+			
+			try{
 
 			chargerDetailAnnonce();
 
@@ -423,6 +425,10 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				}
 
 			});
+			
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 
 			return null;
 		}
