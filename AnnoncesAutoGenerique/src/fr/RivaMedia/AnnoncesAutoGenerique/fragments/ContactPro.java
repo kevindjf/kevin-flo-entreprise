@@ -30,7 +30,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	private SupportMapFragment mMapFragment;
 	Marker localMarker = null;
 
-	View view;
+	static View view;
 
 	ImageView image_entreprise;
 
@@ -51,6 +51,10 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 			ViewGroup parent = (ViewGroup) view.getParent();
 			if (parent != null)
 				parent.removeView(view);
+			
+			trackerEcran("Ecran Contact Pro Android");
+			
+			return view;
 		}
 		try {
 			view = inflater.inflate(R.layout.contact_pro,container, false);
@@ -117,9 +121,9 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		if(Donnees.client.getDepartementNum() != null && Donnees.client.getVille() != null)
 			_adresse_postale.setText(Donnees.client.getDepartementNum() + " " + Donnees.client.getVille());
 
-		
-		
-		
+
+
+
 		//Geocoder coder = new Geocoder(getActivity());
 		//List<Address> address;
 
@@ -127,9 +131,9 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 			//address = coder.getFromLocationName(Donnees.client.getVille(),5);
 			//Address location = address.get(0);
 			//LatLng position = new LatLng(location.getLatitude(),location.getLongitude());
-			
+
 			LatLng position = new LatLng(Double.parseDouble(Donnees.client.getLat()), Double.parseDouble(Donnees.client.getLng()));
-			
+
 			if(Donnees.client.getDistributeur() != null && Donnees.client.getNom() != null){
 				mMap.addMarker(new MarkerOptions()
 				.position(position)
@@ -147,7 +151,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		}catch(Exception e){
 			Log.e("Error", e.toString());
 		}
-		
+
 	}
 
 	@SuppressWarnings("deprecation")
@@ -182,12 +186,16 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 	@Override
 	public void onResume() {
-		super.onResume();
-		
-		trackerEcran("Ecran Contact Pro Android");
+		try{
+			super.onResume();
 
-		if(Donnees.client!= null && Donnees.client.getNom() != null)
-			setTitre(Donnees.client.getNom());	
+			trackerEcran("Ecran Contact Pro Android");
+
+			if(Donnees.client!= null && Donnees.client.getNom() != null)
+				setTitre(Donnees.client.getNom());	
+		}catch(Exception e){
+			
+		}
 	}
 
 }
