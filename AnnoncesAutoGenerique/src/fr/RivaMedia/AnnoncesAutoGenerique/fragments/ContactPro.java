@@ -1,11 +1,7 @@
 package fr.RivaMedia.AnnoncesAutoGenerique.fragments;
 
-import java.util.List;
-
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.InflateException;

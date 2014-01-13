@@ -37,21 +37,21 @@ public final class R {
 		public static final int choice = 0x7f05000a;
 		public static final int dismiss = 0x7f050009;
 		public static final int left = 0x7f050007;
-		public static final int load_more_footer = 0x7f0500b9;
-		public static final int load_more_progressBar = 0x7f0500bb;
+		public static final int load_more_footer = 0x7f0500bb;
+		public static final int load_more_progressBar = 0x7f0500bd;
 		public static final int none = 0x7f050000;
-		public static final int pull_to_refresh_header = 0x7f0500c0;
-		public static final int pull_to_refresh_image = 0x7f0500c2;
-		public static final int pull_to_refresh_progress = 0x7f0500c1;
-		public static final int pull_to_refresh_text = 0x7f0500c3;
-		public static final int pull_to_refresh_updated_at = 0x7f0500c4;
+		public static final int pull_to_refresh_header = 0x7f0500c2;
+		public static final int pull_to_refresh_image = 0x7f0500c4;
+		public static final int pull_to_refresh_progress = 0x7f0500c3;
+		public static final int pull_to_refresh_text = 0x7f0500c5;
+		public static final int pull_to_refresh_updated_at = 0x7f0500c6;
 		public static final int reveal = 0x7f050008;
 		public static final int right = 0x7f050006;
-		public static final int top_line = 0x7f0500ba;
+		public static final int top_line = 0x7f0500bc;
 	}
 	public static final class layout {
-		public static final int load_more_footer = 0x7f03001e;
-		public static final int pull_to_refresh_header = 0x7f030023;
+		public static final int load_more_footer = 0x7f03001f;
+		public static final int pull_to_refresh_header = 0x7f030024;
 	}
 	public static final class string {
 		public static final int app_name = 0x7f0b0001;

@@ -292,10 +292,11 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			v.setOnClickListener(null);
 			v.setVisibility(View.GONE);
 			Object o = v.findViewById(R.id.text);
-			if(o instanceof TextView)
-				((TextView)o).setText("facultatif");
-			else if(o instanceof EditText)
+			if(o instanceof EditText)
 				((EditText)o).setText("");
+			else if(o instanceof TextView)
+				((TextView)o).setText("facultatif");
+			
 		}
 
 		recherche_carrosserie_id = null;

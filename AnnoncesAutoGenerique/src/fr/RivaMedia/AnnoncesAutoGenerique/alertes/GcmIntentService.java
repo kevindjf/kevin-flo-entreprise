@@ -23,15 +23,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
-import fr.RivaMedia.AnnoncesAutoGenerique.activity.*;
 
 /**
  * This {@code IntentService} does the actual handling of the GCM message.
