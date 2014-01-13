@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.RivaMedia"
-    android:versionCode="6"
-    android:versionName="1.0.5" >
+    android:versionCode="7"
+    android:versionName="1.0.6" >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -12,43 +12,50 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" android:required="false"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:required="false"/>
-    <uses-permission android:name="android.permission.CALL_PHONE" android:required="false" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.CALL_PHONE"
+        android:required="false" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" android:required="false"/>
-    <uses-permission android:name="android.permission.VIBRATE" android:required="false" />
-
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.VIBRATE"
+        android:required="false" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-    
-    <supports-screens android:resizeable="true"
-                  android:smallScreens="true"
-                  android:normalScreens="true"
-                  android:largeScreens="true"
-                  android:xlargeScreens="true"
-                  android:anyDensity="true"
-                  />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
 
     <permission
         android:name="fr.RivaMedia.YouBoat.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
-    <uses-permission android:name="fr.RivaMedia.YouBoat.permission.permission.C2D_MESSAGE" />
 
+    <uses-permission android:name="fr.RivaMedia.YouBoat.permission.permission.C2D_MESSAGE" />
 
     <application
         android:name="fr.RivaMedia.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar" 
-        >
-        
-        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-        
-        
+        android:theme="@android:style/Theme.NoTitleBar" >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
             android:name="fr.RivaMedia.activity.SplashScreenActivity"
             android:label="@string/app_name"
@@ -66,12 +73,11 @@
         <activity
             android:name="fr.RivaMedia.activity.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" 
-            android:windowSoftInputMode="adjustPan"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="fr.RivaMedia.activity.Gallery"
-            android:label="@string/app_name"
-         />
+            android:label="@string/app_name" />
         <activity
             android:name="org.acra.CrashReportDialog"
             android:excludeFromRecents="true"
@@ -91,8 +97,6 @@
         </receiver>
 
         <service android:name="fr.RivaMedia.alertes.GcmIntentService" />
-        
-        
     </application>
 
 </manifest>
