@@ -64,6 +64,7 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 		this.getView().setOnTouchListener(this);
 	}
 
+	
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){
@@ -73,8 +74,8 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	private void afficherNormal(){
-		_titre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_noir));
-		_sousTitre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_noir));
+		_titre.setTextColor(Donnees.parametres.getCouleurTexte());
+		_sousTitre.setTextColor(Donnees.parametres.getCouleurTexte());
 
 		if(_position%2==0){
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));

@@ -147,6 +147,7 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 		afficherCouleurNormal(_view.findViewById(R.id.reprise_separator_1));
 		afficherCouleurNormal(_view.findViewById(R.id.reprise_separator_2));
 
+		afficherTexteCouleurTexte(_view.findViewById(R.id.reprise_entete_1));
 
 		afficherCouleurTouch(_reprise_etape_suivante);
 		selector(_reprise_etape_suivante,false);

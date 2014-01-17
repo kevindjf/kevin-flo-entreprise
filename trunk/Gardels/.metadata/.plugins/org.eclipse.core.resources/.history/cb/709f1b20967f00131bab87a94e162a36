@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    tools:context=".MainActivity" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="40dip"
+        android:paddingRight="40dip" >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dip"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/gardelsclub_white" />
+
+        <RelativeLayout
+            android:id="@+id/layout_image"
+            android:layout_width="wrap_content"
+            android:layout_height="200dip" >
+
+                <com.edmodo.cropper.CropImageView
+                    xmlns:custom="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    android:visibility="invisible"
+                    android:padding="5dip"
+                    android:background="@android:color/white"
+                    custom:imageResource="@drawable/test" />
+
+            <LinearLayout
+                android:id="@+id/ajouter_photo_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:padding="5dip" >
+
+                <ImageView
+                    android:id="@+id/ajouter_photo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="#AAA"
+                    android:padding="60dip"
+                    android:src="@drawable/photo_selector" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/layout_image" >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center" >
+
+                <Button
+                    android:layout_width="150dip"
+                    android:layout_height="150dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="110dip"
+                    android:background="@drawable/cercle_vert"
+                    android:text="Visionner"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:layout_width="170dip"
+                    android:layout_height="170dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="110dip"
+                    android:background="@drawable/cercle_rose"
+                    android:text="Envoyer"
+                    android:textColor="@android:color/white" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

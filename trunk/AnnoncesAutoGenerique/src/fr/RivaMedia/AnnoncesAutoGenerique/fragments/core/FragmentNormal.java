@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import fr.RivaMedia.AnnoncesAutoGenerique.activity.*;
 
@@ -130,7 +131,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	public void setTitre(String titre){
 		((MainActivityAnnoncesAuto)getActivity()).setTitre(titre);
 	}
-	
+
 	public void ajouterContactPro() {
 		((MainActivityAnnoncesAuto)getActivity()).ajouterContactPro();
 	}
@@ -141,6 +142,37 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	}
 	public static void afficherCouleurTouch(View v){
 		v.setBackgroundColor(Donnees.parametres.getCouleurSecondaire());
+	}
+
+	public static void afficherTexteCouleurTexte(View v){
+			try{
+				((TextView)v).setTextColor(Donnees.parametres.getCouleurTexte());
+			}catch(Exception e){
+			}
+			try{
+				((TextView)v.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurTexte());
+			}catch(Exception e){
+			}
+	}
+	public static void afficherTexteCouleurTexte(View...views){
+		for(View v : views){
+			afficherTexteCouleurTexte(v);
+		}
+	}
+	public static void afficherTexteCouleurTitre(View v){
+			try{
+				((TextView)v).setTextColor(Donnees.parametres.getCouleurTitre());
+			}catch(Exception e){
+			}
+			try{
+				((TextView)v.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurTitre());
+			}catch(Exception e){
+			}
+	}
+	public static void afficherTexteCouleurTitre(View...views){
+		for(View v : views){
+			afficherTexteCouleurTitre(v);
+		}
 	}
 
 	public static void selector(View v){
@@ -184,7 +216,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		});
 	}
 
-	
+
 
 
 }

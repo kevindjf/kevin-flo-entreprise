@@ -153,6 +153,7 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 		
 		afficherCouleurTouch(_boat_on_demand_etape_suivante);
 		selector(_boat_on_demand_etape_suivante,false);
+		afficherTexteCouleurTitre(_view.findViewById(R.id.autotheque_entete_1));
 	}
 
 	public void ajouterListeners(){

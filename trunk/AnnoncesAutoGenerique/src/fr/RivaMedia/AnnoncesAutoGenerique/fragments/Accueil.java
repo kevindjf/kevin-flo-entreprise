@@ -54,6 +54,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		charger();	
 		remplir();
 		ajouterListeners();
+		chargerCouleurs();
 
 		task = new AccueilImagesMoverTask();
 		timer.scheduleAtFixedRate(task, 3000, 3000);
@@ -84,6 +85,10 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 		_text_entreprise.setText(Donnees.parametres.getTexteIntro());
 
 		chargerSlider();
+	}
+	
+	private void chargerCouleurs(){
+		afficherTexteCouleurTexte(_text_entreprise);
 	}
 
 	private void chargerSlider(){

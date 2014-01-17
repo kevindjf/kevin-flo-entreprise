@@ -165,7 +165,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		selector(button_email,false);
 		selector(contact_pro_email);
 
-
+		afficherTexteCouleurTexte(_horaire,_adresse,_adresse_postale);
 
 		selector(button_telephone,false);
 		selector(contact_pro_telephone);
