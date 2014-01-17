@@ -14,12 +14,14 @@ import android.provider.MediaStore;
 import android.view.View;
 
 import com.edmodo.cropper.CropImageView;
+import com.snapyou.utils.BitmapDecoder;
+import com.snapyou.utils.ImageResizer;
 
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
-	String key = null;
-	Bitmap photo = null;
+	private String key = null;
+	private Bitmap photo = null;
 
 	View _ajouterImage;
 	View _ajouterImageLayout;
@@ -29,31 +31,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1;
 	private File _photoCamera;
 	
-    // Static final constants
-    private static final int DEFAULT_ASPECT_RATIO_VALUES = 10;
-    private static final String ASPECT_RATIO_X = "ASPECT_RATIO_X";
-    private static final String ASPECT_RATIO_Y = "ASPECT_RATIO_Y";
-
-    // Instance variables
-    private int _aspectRatioX = DEFAULT_ASPECT_RATIO_VALUES;
-    private int _aspectRatioY = DEFAULT_ASPECT_RATIO_VALUES;
-	
-    // Saves the state upon rotating the screen/restarting the activity
-    @Override
-    protected void onSaveInstanceState(Bundle bundle) {
-        super.onSaveInstanceState(bundle);
-        bundle.putInt(ASPECT_RATIO_X, _aspectRatioX);
-        bundle.putInt(ASPECT_RATIO_Y, _aspectRatioY);
-    }
-
-    // Restores the state upon rotating the screen/restarting the activity
-    @Override
-    protected void onRestoreInstanceState(Bundle bundle) {
-        super.onRestoreInstanceState(bundle);
-        _aspectRatioX = bundle.getInt(ASPECT_RATIO_X);
-        _aspectRatioY = bundle.getInt(ASPECT_RATIO_Y);
-    }
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,7 +50,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	}
 
 	private void remplir(){
-		_image.setAspectRatio(DEFAULT_ASPECT_RATIO_VALUES, DEFAULT_ASPECT_RATIO_VALUES);
 	}
 
 	private void ajouterListeners(){
@@ -101,22 +77,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		_envoyer.setOnClickListener(this);
 	}
 
-	private void recupererPhoto(String path){
-		try{
-			photo = BitmapFactory.decodeFile(path);
-			_ajouterImageLayout.setVisibility(View.GONE);
-
-			_image.setImageBitmap(photo);
-			_image.setVisibility(View.VISIBLE);
-			
-			activerEnvoyer();
-
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-
-
 	public void onActivityResult(int requestCode, int resultCode, Intent data) 
 	{ 
 		super.onActivityResult(requestCode, resultCode, data);
@@ -124,8 +84,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		if(resultCode == Activity.RESULT_OK){  
 			switch(requestCode){
 			case CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE:
-				if(_photoCamera != null && !_photoCamera.equals(""))
-					recupererPhoto(_photoCamera.getAbsolutePath());		
+				if(_photoCamera != null && !_photoCamera.equals("")){
+					this.photo = BitmapDecoder.getBitmap(_photoCamera.getAbsolutePath());
+					_ajouterImageLayout.setVisibility(View.GONE);
+
+					_image.setImageBitmap(photo);
+					_image.setVisibility(View.VISIBLE);
+					
+					activerEnvoyer();
+				}
+					
 				break;
 			}
 		}
