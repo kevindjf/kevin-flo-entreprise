@@ -11,4 +11,6 @@
 <fullyQualifiedTypeName name="com.snapyou.R.id"/>
 <fullyQualifiedTypeName name="android.widget.ImageView"/>
 <fullyQualifiedTypeName name="com.edmodo.cropper.CropImageView"/>
+<fullyQualifiedTypeName name="com.snapyou.utils.ImageResizer"/>
+<fullyQualifiedTypeName name="com.snapyou.utils.BitmapDecoder"/>
 </qualifiedTypeNameHistroy>
