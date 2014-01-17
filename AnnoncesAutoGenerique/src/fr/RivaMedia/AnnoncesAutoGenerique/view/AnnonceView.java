@@ -68,6 +68,11 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	public void changerCouleurs(){
 		_prix.setTextColor(Donnees.parametres.getCouleurSecondaire());
+		
+		_titre.setTextColor(Donnees.parametres.getCouleurTexte());
+		_sousTitre.setTextColor(Donnees.parametres.getCouleurTexte());
+		_km.setTextColor(Donnees.parametres.getCouleurTexte());
+		_annee.setTextColor(Donnees.parametres.getCouleurTexte());
 	}
 
 	@Override

@@ -104,6 +104,9 @@ public class ActualiteDetail extends FragmentNormal{
 		}
 		
 		afficherCouleurNormal(_actualiteDetailTitreLayout);
+		afficherTexteCouleurTexte(_texte);
+		afficherTexteCouleurTitre(_titre);
+		afficherTexteCouleurTitre(_date);
 	}
 	public void ajouterListeners(){
 	}

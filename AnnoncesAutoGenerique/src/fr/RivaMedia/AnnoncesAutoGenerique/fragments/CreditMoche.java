@@ -49,7 +49,6 @@ public class CreditMoche extends FragmentNormal implements View.OnClickListener{
 	public void ajouterListeners() {
 	}
 
-
 	@Override
 	public void onResume() {
 		super.onResume();

@@ -47,9 +47,9 @@ public class ClientParametreXmlParser extends XmlParser {
 					clientParametres.setMajInterval(getString());
 				
 				else if(tag.equals("couleur_titre"))
-					clientParametres.setCouleurTitre(getString());
+					clientParametres.setCouleurTitre(Color.parseColor(getString()));
 				else if(tag.equals("couleur_texte"))
-					clientParametres.setCouleurTexte(getString());
+					clientParametres.setCouleurTexte(Color.parseColor(getString()));
 				
 				else if(tag.equals("image_logo"))
 					clientParametres.setImageLogo(getString());
