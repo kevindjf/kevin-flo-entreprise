@@ -9,6 +9,7 @@ import org.apache.http.NameValuePair;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.selector.DonneeValeurSelector;
+import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Departement;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetRecherche;
@@ -23,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.AnnoncesAutoGenerique.Constantes;
@@ -96,7 +98,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 				_email,
 				_telephone,
 				_codePostal,
-				_ville
+				_ville,
+				_departement
 		};
 
 		recupererValeursInitiales();
@@ -104,8 +107,13 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	}
 	
 	public void changerCouleur(){
-		afficherCouleurNormal(_valider);
-		selector(_valider);
+		afficherCouleurTouch(_valider);
+		selector(_valider,false);
+		
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		
+		
+		afficherTexteCouleurTexte(views);
 	}
 
 	protected void recupererValeursInitiales(){
@@ -151,6 +159,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		int id = v.getId();
 		if (id == R.id.vendeur_formulaire_valider) {
 			validerVendeur();
+			afficherCouleurTouch(v);
 		} else if (id == R.id.vendeur_formulaire_departement) {
 			demanderDepartement();
 		}

@@ -74,18 +74,20 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	private void afficherNormal(){
-		_titre.setTextColor(Donnees.parametres.getCouleurTexte());
-		_sousTitre.setTextColor(Donnees.parametres.getCouleurTexte());
+		//_titre.setTextColor(Donnees.parametres.getCouleurTexte());
+		//_sousTitre.setTextColor(Donnees.parametres.getCouleurTexte());
 
 		if(_position%2==0){
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
 		}else{
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
+			_titre.setTextColor(Donnees.parametres.getCouleurTexte());
+			_sousTitre.setTextColor(Donnees.parametres.getCouleurTexte());
 		}
 	}
 	private void afficherTouch(){
-		_titre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_blanc));
-		_sousTitre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_blanc));
+		//_titre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_blanc));
+		//_sousTitre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_blanc));
 		getView().setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
 	}
 

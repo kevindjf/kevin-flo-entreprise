@@ -44,7 +44,6 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		charger();
 		remplir();
 		ajouterListeners();
-		changerCouleurs();
 		afficherNormal();
 	}
 
@@ -66,9 +65,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			_devant = getView();
 	}
 
-	public void changerCouleurs(){
-		_prix.setTextColor(Donnees.parametres.getCouleurSecondaire());
-		
+	public void changerCouleurs(){		
 		_titre.setTextColor(Donnees.parametres.getCouleurTexte());
 		_sousTitre.setTextColor(Donnees.parametres.getCouleurTexte());
 		_km.setTextColor(Donnees.parametres.getCouleurTexte());
@@ -133,6 +130,9 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	private void afficherNormal(){
+		
+		_prix.setTextColor(Donnees.parametres.getCouleurSecondaire());
+		
 		if(_swipable)
 			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
 		else
@@ -140,6 +140,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			if(_position%2==0){
 				_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
 			}else{
+				changerCouleurs();
 				_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
 			}
 		}

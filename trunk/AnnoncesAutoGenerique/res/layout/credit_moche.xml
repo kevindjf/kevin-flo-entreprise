@@ -29,6 +29,7 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/credits_nom_entreprise_titre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Propriétaire :"
@@ -55,6 +56,7 @@
             android:layout_marginBottom="20dip" >
 
             <TextView
+                android:id="@+id/distributeur_titre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Distributeur :"
@@ -65,6 +67,7 @@
                 />
 
             <TextView
+                android:id="@+id/distributeur_texte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="RivaMedia"
@@ -80,6 +83,7 @@
             android:orientation="vertical" >
 
             <TextView
+                android:id="@+id/developpeurs_titre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Développeurs :"
@@ -89,6 +93,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/developpeurs_texte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Antoine Cointepas\nFlorent Champigny\n Kevin De Jesus"

@@ -136,6 +136,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		((MainActivityAnnoncesAuto)getActivity()).ajouterContactPro();
 	}
 
+	public static void afficherCouleurNormal(View...vs){
+		for(View v : vs)
+			afficherCouleurNormal(v);
+	}
 	public static void afficherCouleurNormal(View v){
 		Log.e("Je color","normalement");
 		v.setBackgroundColor(Donnees.parametres.getCouleurPrincipale());
@@ -153,6 +157,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 				((TextView)v.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurTexte());
 			}catch(Exception e){
 			}
+			try{
+				((TextView)v.findViewById(R.id.titre)).setTextColor(Donnees.parametres.getCouleurTexte());
+			}catch(Exception e){
+			}
 	}
 	public static void afficherTexteCouleurTexte(View...views){
 		for(View v : views){
@@ -168,6 +176,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 				((TextView)v.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurTitre());
 			}catch(Exception e){
 			}
+			try{
+				((TextView)v.findViewById(R.id.titre)).setTextColor(Donnees.parametres.getCouleurTitre());
+			}catch(Exception e){
+			}
 	}
 	public static void afficherTexteCouleurTitre(View...views){
 		for(View v : views){
@@ -179,6 +191,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		selector(v,true);
 	}
 	public static void selector(View v, final boolean primaire){
+		afficherTexteCouleurTitre(v);
 		v.setOnTouchListener(new View.OnTouchListener() {
 
 			@Override
