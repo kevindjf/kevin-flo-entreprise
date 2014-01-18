@@ -27,6 +27,7 @@ public class CreditMoche extends FragmentNormal implements View.OnClickListener{
 		charger();
 		remplir();
 		ajouterListeners();
+		chargerCouleurs();
 
 		return _view;
 	}
@@ -45,6 +46,17 @@ public class CreditMoche extends FragmentNormal implements View.OnClickListener{
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _logo);
 	}
 
+	public void chargerCouleurs(){
+		afficherTexteCouleurTexte(
+				_view.findViewById(R.id.developpeurs_titre),
+				_view.findViewById(R.id.developpeurs_texte),
+				_view.findViewById(R.id.distributeur_titre),
+				_view.findViewById(R.id.distributeur_texte),
+				_view.findViewById(R.id.credits_nom_entreprise_titre),
+				_view.findViewById(R.id.credits_nom_entreprise)
+				);
+	}
+	
 	@Override
 	public void ajouterListeners() {
 	}

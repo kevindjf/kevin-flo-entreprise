@@ -6,7 +6,8 @@
     android:background="@android:color/transparent"
     android:clickable="false"
     android:orientation="vertical"
-    android:visibility="gone" >
+    android:visibility="gone" 
+    >
 
     <ImageView
         android:id="@+id/fond"

@@ -154,9 +154,15 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		afficherCouleurTouch(_rechercher);
 		selector(_rechercher,false);
 		
-		afficherCouleurNormal(_view.findViewById(R.id.annonces_formulaire_separator_1));
-		afficherCouleurNormal(_view.findViewById(R.id.annonces_formulaire_separator_2));
-		afficherCouleurNormal(_view.findViewById(R.id.annonces_formulaire_separator_3));
+		afficherCouleurNormal(_view.findViewById(R.id.annonces_formulaire_separator_1),
+				_view.findViewById(R.id.annonces_formulaire_separator_2),
+				_view.findViewById(R.id.annonces_formulaire_separator_3));
+		
+		afficherTexteCouleurTitre(_view.findViewById(R.id.annonces_formulaire_separator_1),
+				_view.findViewById(R.id.annonces_formulaire_separator_2),
+				_view.findViewById(R.id.annonces_formulaire_separator_3));
+		
+		afficherTexteCouleurTexte(_views);
 	}
 
 	public void remplir(){

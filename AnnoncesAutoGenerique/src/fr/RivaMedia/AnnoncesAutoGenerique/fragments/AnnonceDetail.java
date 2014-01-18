@@ -59,6 +59,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	View _departement;
 
 	View description;
+	
+	View[] _views;
 
 	
 	View telephonePrincipal;
@@ -147,6 +149,23 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_image3 = (ImageView)getView().findViewById(R.id.annonce_detail_image_3);
 
 		contact_rond = _view.findViewById(R.id.annonce_detail_rond);
+		
+		_views = new View[]{
+			_categorie,
+			_modele,
+			_energie,
+			_miseCirculation,
+			_kilometrage,
+			_puissanceFiscal,
+			_puissanceDin,
+			_emmission,
+			_nombrePorte,
+			_boiteVitesse,
+			_couleurExterieure,
+			_couleurInterieure,
+			_garantie,
+			_departement,
+			description};
 
 	}
 
@@ -267,6 +286,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			if(_annonce.getDescriptif() != null){
 				String inter = _annonce.getDescriptif().replace("&lt;", "<");
 				String interp = inter.replace("&gt;", ">");
+				interp = interp.replace("\n", "<br/>");
+				interp = inter.replace("\r", "<br/>");
 				((TextView)description).setText(Html.fromHtml(interp));
 			}
 			else
@@ -385,8 +406,19 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		selector(telephonePrincipal,false);
 
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
-		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_1));
-		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_2));
+		
+		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_1),
+		_view.findViewById(R.id.annonce_detail_separator_2));
+		
+		afficherTexteCouleurTitre(
+				_view.findViewById(R.id.annonce_detail_titre),
+				_view.findViewById(R.id.annonce_detail_sous_titre),
+				_view.findViewById(R.id.annonce_detail_separator_1),
+				_view.findViewById(R.id.annonce_detail_separator_2)
+				);
+		
+		afficherTexteCouleurTexte(_views);
+		afficherTexteCouleurTexte(_categorie.findViewById(R.id.annonce_detail_type));
 		
 		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
 		drawable.setColor(Donnees.parametres.getCouleurPrincipale());

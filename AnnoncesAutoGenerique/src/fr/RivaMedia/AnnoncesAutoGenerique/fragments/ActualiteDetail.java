@@ -13,6 +13,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Actualite;
+import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetActualite;
 	
 /**
@@ -43,6 +44,11 @@ public class ActualiteDetail extends FragmentNormal{
 	public void chargerCouleurs(){
 		//ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		_view.findViewById(R.id.fond).setVisibility(View.GONE);
+		afficherCouleurNormal(_actualiteDetailTitreLayout);
+		
+		//afficherTexteCouleurTexte(_texte);
+		afficherTexteCouleurTitre(_titre);
+		afficherTexteCouleurTitre(_date);
 	}
 
 	@Override
@@ -55,8 +61,6 @@ public class ActualiteDetail extends FragmentNormal{
 
 		task = new ChargerNewsTask();
 		task.execute();
-		
-		chargerCouleurs();
 
 		return _view;
 	}
@@ -103,10 +107,8 @@ public class ActualiteDetail extends FragmentNormal{
 				_texte.setText(_actualite.getTexte());
 		}
 		
-		afficherCouleurNormal(_actualiteDetailTitreLayout);
-		afficherTexteCouleurTexte(_texte);
-		afficherTexteCouleurTitre(_titre);
-		afficherTexteCouleurTitre(_date);
+		chargerCouleurs();
+		
 	}
 	public void ajouterListeners(){
 	}
