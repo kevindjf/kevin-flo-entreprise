@@ -1,9 +1,0 @@
-INDEX VERSION 1.126+/Users/florentchampigny/Dropbox/Youboat/kevin-flo-entreprise/Gardels/.metadata/.plugins/org.eclipse.jdt.core
-1166757641.index
-2890417769.index
-2139554910.index
-2922941512.index
-196946710.index
-4098935583.index
-3211609017.index
-3189345819.index
