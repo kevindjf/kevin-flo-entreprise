@@ -34,7 +34,7 @@
                 android:id="@+id/layout_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" >
+                android:layout_weight="1">
 
                 <com.edmodo.cropper.CropImageView
                     xmlns:custom="http://schemas.android.com/apk/res-auto"
@@ -47,6 +47,13 @@
                     android:scaleType="centerCrop"
                     android:visibility="gone"
                     custom:imageResource="@drawable/test" />
+
+                <Button
+                    android:id="@+id/image_supprimer"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:background="@drawable/cercle_delete"
+                    android:layout_alignRight="@+id/image" />
 
                 <LinearLayout
                     android:id="@+id/ajouter_photo_layout"
