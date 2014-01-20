@@ -16,9 +16,12 @@
 @property (strong, nonatomic) IBOutlet UIImageView *logo;
 @property (strong, nonatomic) IBOutlet NLImageCropperView *imageCropView;
 @property (strong, nonatomic) IBOutlet UIView *ajouterPhotoLayout;
+@property (strong, nonatomic) IBOutlet UIButton *boutonSupprimer;
 
 - (IBAction)visionner;
 - (IBAction)envoyer;
 - (IBAction)ajouterPhoto;
+- (IBAction)supprimerImage;
+
 
 @end

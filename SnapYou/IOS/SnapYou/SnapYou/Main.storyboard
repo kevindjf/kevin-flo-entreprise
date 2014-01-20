@@ -72,11 +72,25 @@
                                     <action selector="envoyer" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3eQ-Nf-xs0"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FHY-IW-Wp4" userLabel="ButtonSupprimer">
+                                <rect key="frame" x="267" y="73" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="cercle_delete.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" backgroundImage="cercle_delete_fonce.png"/>
+                                <state key="highlighted" backgroundImage="cercle_delete_fonce.png"/>
+                                <connections>
+                                    <action selector="supprimerImage" destination="vXZ-lx-hvc" eventType="touchUpInside" id="o79-gR-aND"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="ajouterPhotoLayout" destination="9X7-fo-Fr1" id="BGT-fV-vYA"/>
+                        <outlet property="boutonSupprimer" destination="FHY-IW-Wp4" id="jbl-sd-6zs"/>
                         <outlet property="imageCropView" destination="FdL-Lv-Cf7" id="QH0-e6-IhY"/>
                         <outlet property="logo" destination="7CX-SS-foq" id="VlG-aD-vyo"/>
                     </connections>
@@ -89,6 +103,8 @@
         <image name="background.png" width="1280" height="720"/>
         <image name="cercle_bleu.png" width="600" height="600"/>
         <image name="cercle_bleu_fonce.png" width="600" height="600"/>
+        <image name="cercle_delete.png" width="600" height="600"/>
+        <image name="cercle_delete_fonce.png" width="600" height="600"/>
         <image name="cercle_rose.png" width="600" height="600"/>
         <image name="cercle_rose_fonce.png" width="600" height="600"/>
         <image name="gardelsclub_white.png" width="288" height="67"/>
