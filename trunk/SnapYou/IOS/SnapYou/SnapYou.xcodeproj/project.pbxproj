@@ -12,6 +12,8 @@
 		E5064075188A93F7000E232E /* NLImageCropperView.m in Sources */ = {isa = PBXBuildFile; fileRef = E5064073188A93F7000E232E /* NLImageCropperView.m */; };
 		E5064077188AB10A000E232E /* corner.png in Resources */ = {isa = PBXBuildFile; fileRef = E5064076188AB10A000E232E /* corner.png */; };
 		E5064079188AB1E3000E232E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5064078188AB1E3000E232E /* QuartzCore.framework */; };
+		E53F0B84188D1ED1004F8AF2 /* cercle_delete_fonce.png in Resources */ = {isa = PBXBuildFile; fileRef = E53F0B82188D1ED1004F8AF2 /* cercle_delete_fonce.png */; };
+		E53F0B85188D1ED1004F8AF2 /* cercle_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = E53F0B83188D1ED1004F8AF2 /* cercle_delete.png */; };
 		E5AF70AA1889F07500B34D7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AF70A91889F07400B34D7B /* Foundation.framework */; };
 		E5AF70AC1889F07500B34D7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AF70AB1889F07500B34D7B /* CoreGraphics.framework */; };
 		E5AF70AE1889F07500B34D7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5AF70AD1889F07500B34D7B /* UIKit.framework */; };
@@ -62,6 +64,8 @@
 		E5064073188A93F7000E232E /* NLImageCropperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLImageCropperView.m; sourceTree = "<group>"; };
 		E5064076188AB10A000E232E /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
 		E5064078188AB1E3000E232E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E53F0B82188D1ED1004F8AF2 /* cercle_delete_fonce.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cercle_delete_fonce.png; sourceTree = "<group>"; };
+		E53F0B83188D1ED1004F8AF2 /* cercle_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cercle_delete.png; sourceTree = "<group>"; };
 		E5AF70A61889F07400B34D7B /* SnapYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5AF70A91889F07400B34D7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E5AF70AB1889F07500B34D7B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -201,6 +205,8 @@
 		E5AF70E21889F1B800B34D7B /* drawable-hdpi */ = {
 			isa = PBXGroup;
 			children = (
+				E53F0B82188D1ED1004F8AF2 /* cercle_delete_fonce.png */,
+				E53F0B83188D1ED1004F8AF2 /* cercle_delete.png */,
 				E5AF70E31889F1B800B34D7B /* background.png */,
 				E5AF70E41889F1B800B34D7B /* background2.jpg */,
 				E5AF70E51889F1B800B34D7B /* cercle.png */,
@@ -340,9 +346,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E53F0B84188D1ED1004F8AF2 /* cercle_delete_fonce.png in Resources */,
 				E5AF71001889F1B800B34D7B /* gardelsclub_white.png in Resources */,
 				E5AF70FE1889F1B800B34D7B /* cercle_vert_fonce.png in Resources */,
 				E5AF70E11889F13000B34D7B /* Main.storyboard in Resources */,
+				E53F0B85188D1ED1004F8AF2 /* cercle_delete.png in Resources */,
 				E5AF70FB1889F1B800B34D7B /* cercle_rose_claire.png in Resources */,
 				E5AF70F41889F1B800B34D7B /* background.png in Resources */,
 				E5064077188AB10A000E232E /* corner.png in Resources */,

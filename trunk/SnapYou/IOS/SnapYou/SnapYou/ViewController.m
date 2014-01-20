@@ -64,7 +64,18 @@
     [self.imageCropView  setCropRegionRect:
      CGRectMake(10, 10, 620, 440)];
     [self.imageCropView reLayoutView];
+    
+    [self.view bringSubviewToFront: self.boutonSupprimer];
+    self.boutonSupprimer.hidden = NO;
+}
 
+- (IBAction)supprimerImage
+{
+    self.ajouterPhotoLayout.hidden = NO;
+    self.imageCropView.hidden = YES;
+    self.boutonSupprimer.hidden = YES;
+    
+    self.image = nil;
 }
 
 #pragma mark - UIImagePickerControllerDelegate
