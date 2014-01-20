@@ -26,6 +26,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	View _ajouterImage;
 	View _ajouterImageLayout;
 	CropImageView _image;
+	View _imageSupprimer;
 	View _envoyer;
 
 	public static final int CAPTURE_IMAGE_FULLSIZE_ACTIVITY_REQUEST_CODE = 1;
@@ -47,6 +48,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		_envoyer = findViewById(R.id.envoyer);
 		_ajouterImageLayout = findViewById(R.id.ajouter_photo_layout);
 		_image = (CropImageView)findViewById(R.id.image);
+		_imageSupprimer = findViewById(R.id.image_supprimer);
 	}
 
 	private void remplir(){
@@ -54,6 +56,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 	private void ajouterListeners(){
 		_ajouterImage.setOnClickListener(this);
+		_imageSupprimer.setOnClickListener(this);
 	}
 
 	@Override
@@ -62,6 +65,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			getPhotoFromCamera();
 		}else if(v.getId() == R.id.envoyer){
 			envoyer();
+		}else if(v.getId() == R.id.image_supprimer){
+			supprimerImage();
 		}
 	}
 
@@ -90,6 +95,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
 					_image.setImageBitmap(photo);
 					_image.setVisibility(View.VISIBLE);
+					_imageSupprimer.setVisibility(View.VISIBLE);
 					
 					activerEnvoyer();
 				}
@@ -101,5 +107,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	
 	private void envoyer(){
 		
+	}
+	
+	
+	private void supprimerImage(){
+		_image.setVisibility(View.GONE);
+		_imageSupprimer.setVisibility(View.GONE);
+		_ajouterImageLayout.setVisibility(View.VISIBLE);
+		this.photo.recycle();
+		this.photo = null;
 	}
 }

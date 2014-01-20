@@ -59,7 +59,7 @@
                                     <action selector="visionner" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Z4u-H0-0dE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9Uj-Oe-vL3" userLabel="BoutonEnvoyer">
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9Uj-Oe-vL3" userLabel="BoutonEnvoyer">
                                 <rect key="frame" x="137" y="300" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -67,7 +67,6 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="disabled" backgroundImage="cercle_rose_claire.png"/>
                                 <state key="highlighted" backgroundImage="cercle_rose_fonce.png"/>
                                 <connections>
                                     <action selector="envoyer" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3eQ-Nf-xs0"/>
@@ -91,7 +90,6 @@
         <image name="cercle_bleu.png" width="600" height="600"/>
         <image name="cercle_bleu_fonce.png" width="600" height="600"/>
         <image name="cercle_rose.png" width="600" height="600"/>
-        <image name="cercle_rose_claire.png" width="600" height="600"/>
         <image name="cercle_rose_fonce.png" width="600" height="600"/>
         <image name="gardelsclub_white.png" width="288" height="67"/>
         <image name="photo_blanc.png" width="456" height="362"/>
