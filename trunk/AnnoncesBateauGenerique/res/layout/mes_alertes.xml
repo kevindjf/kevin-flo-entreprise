@@ -73,13 +73,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <fr.RivaMedia.tab.NonSwipeableViewPager
+        <fr.RivaMedia.AnnoncesBateauGenerique.tab.NonSwipeableViewPager
             android:id="@+id/mes_alertes_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/mes_alertes_boutons_bas"
-            android:background="@color/couleur_texte_blanc" >
-        </fr.RivaMedia.tab.NonSwipeableViewPager>
+            android:background="@color/couleur_texte_blanc" />
 
         <RelativeLayout
             android:id="@+id/mes_alertes_boutons_bas"
