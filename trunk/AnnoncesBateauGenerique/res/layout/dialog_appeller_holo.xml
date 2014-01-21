@@ -1,0 +1,95 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/couleur_fond"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/titre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:layout_marginLeft="15dip"
+            android:layout_marginTop="10dip"
+            android:textColor="#46B9E4"
+            android:textSize="23sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dip"
+            android:layout_below="@+id/titre"
+            android:background="#46B9E4" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dip" >
+
+        <TextView
+            android:id="@+id/num_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:gravity="center"
+            android:text="@string/appeller"
+            android:textColor="@color/_noir"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/num_valeur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:layout_toRightOf="@+id/num_label"
+            android:gravity="center"
+            android:textColor="@color/_noir"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:background="#EAEAEA" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/separator"
+            android:background="@drawable/fond_blanc_select_bleu"
+            android:text="@string/ok"
+            android:textColor="@drawable/text_color_button" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="1dip"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:background="#EAEAEA" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/separator"
+            android:background="@drawable/fond_blanc_select_bleu"
+            android:text="@string/cancel"
+            android:textColor="@drawable/text_color_button" />
+    </RelativeLayout>
+
+</LinearLayout>
