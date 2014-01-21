@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/couleur_fond"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/en_tete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" 
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/couleur_3"
+        android:layout_marginBottom="0dip"
+        >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:layout_marginTop="5dip"
+            android:text="@string/annuaire"
+            android:textColor="@color/_blanc"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/description_annuaire"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginBottom="10dip"
+            android:layout_marginTop="5dip"
+            android:gravity="center"
+            android:text="@string/description_annuaire"
+            android:textColor="@color/couleur_texte_noir" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/formulaire_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/en_tete"
+        android:background="#EEE"
+        android:orientation="vertical" >
+
+        <LinearLayout style="@style/formulaire_separator" >
+
+            <TextView
+                style="@style/formulaire_separator_titre"
+                android:text="@string/choix_des_criteres" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/annuaire_distributeur_de_la_marque"
+            style="@style/formulaire_cellule" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/distributeur_de_la_marque_dots" />
+
+            <TextView
+                android:id="@+id/text"
+                style="@style/formulaire_cellule_texte"
+                android:layout_marginLeft="180dip" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annuaire_services"
+            style="@style/formulaire_cellule"
+            android:layout_marginTop="0.8dp" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/services_dots" />
+
+            <TextView
+                android:id="@+id/text"
+                style="@style/formulaire_cellule_texte" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/annuaire_localite"
+            style="@style/formulaire_cellule"
+            android:layout_marginTop="0.8dp" >
+
+            <TextView
+                style="@style/formulaire_cellule_titre"
+                android:text="@string/localite_dots" />
+
+            <TextView
+                android:id="@+id/text"
+                style="@style/formulaire_cellule_texte" />
+
+            <ImageView style="@style/formulaire_cellule_indicator" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/annuaire_rechercher"
+        style="@style/bouton_rechercher"
+        android:layout_height="40dip"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
