@@ -447,48 +447,33 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.vendre_bateaux:
+		int id = v.getId();
+		if (id == R.id.vendre_bateaux) {
 			vendreBateaux();
-			break;
-		case R.id.vendre_moteurs:
+		} else if (id == R.id.vendre_moteurs) {
 			vendreMoteurs();
-			break;
-		case R.id.vendre_divers:
+		} else if (id == R.id.vendre_divers) {
 			vendreDivers();
-			break;
-
-		case R.id.vendre_ajouter_photo:
+		} else if (id == R.id.vendre_ajouter_photo) {
 			ajouterPhoto();
-			break;
-		case R.id.vendre_etape_suivante:
+		} else if (id == R.id.vendre_etape_suivante) {
 			etapeSuivante();
-			break;
-		case R.id.vendre_type:
+		} else if (id == R.id.vendre_type) {
 			demanderType();
-			break;
-		case R.id.vendre_categorie:
+		} else if (id == R.id.vendre_categorie) {
 			demanderCategorie();
-			break;
-		case R.id.vendre_unite_longueur:
+		} else if (id == R.id.vendre_unite_longueur) {
 			demanderUniteLongueur();
-			break;
-		case R.id.vendre_chantier_modele:
+		} else if (id == R.id.vendre_chantier_modele) {
 			demanderChantierModele();
-			break;
-		case R.id.vendre_nombre_moteur:
+		} else if (id == R.id.vendre_nombre_moteur) {
 			demanderNombreMoteur();
-			break;
-		case R.id.vendre_marque_moteur:
+		} else if (id == R.id.vendre_marque_moteur) {
 			demanderMarqueMoteur();
-			break;
-
-		case R.id.vendre_marque:
+		} else if (id == R.id.vendre_marque) {
 			demanderMarqueModele();
-			break;
-		case R.id.vendre_energie:
+		} else if (id == R.id.vendre_energie) {
 			demanderEnergie();
-			break;
 		}
 
 	}
@@ -1186,16 +1171,10 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	@Override
 	public void onFocusChange(View v, boolean hasFocus) {
-		switch(v.getId()){
-		case R.id.vendre_prix:
-
-			break;
-		case R.id.vendre_annee:
-
-			break;
-		case R.id.vendre_puissance:
-
-			break;
+		int id = v.getId();
+		if (id == R.id.vendre_prix) {
+		} else if (id == R.id.vendre_annee) {
+		} else if (id == R.id.vendre_puissance) {
 		}
 	}
 

@@ -117,19 +117,15 @@ public class Annuaire extends FragmentFormulaire implements View.OnClickListener
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.annuaire_distributeur_de_la_marque:
+		int id = v.getId();
+		if (id == R.id.annuaire_distributeur_de_la_marque) {
 			demanderDistributeurDeLaMarque();
-			break;
-		case R.id.annuaire_services:
+		} else if (id == R.id.annuaire_services) {
 			demanderServices();
-			break;
-		case R.id.annuaire_localite:
+		} else if (id == R.id.annuaire_localite) {
 			demanderLocalite();
-			break;
-		case R.id.annuaire_rechercher:
+		} else if (id == R.id.annuaire_rechercher) {
 			rechercher();
-			break;
 		}
 
 	}

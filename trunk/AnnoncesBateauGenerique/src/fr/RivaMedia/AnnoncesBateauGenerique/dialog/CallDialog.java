@@ -20,7 +20,7 @@ public class CallDialog extends AlertDialog implements View.OnClickListener {
 
 	View _ok;
 	View _cancel;
-	
+
 
 
 	public CallDialog(Context context, String titre,String numeroTel) {
@@ -57,17 +57,14 @@ public class CallDialog extends AlertDialog implements View.OnClickListener {
 	}
 
 	public void onClick(View v){
-		switch(v.getId()){
-		case R.id.ok:
+		if(v.getId() == R.id.ok){
 			Intent callIntent = new Intent(Intent.ACTION_CALL);
 			callIntent.setData(Uri.parse("tel:"+_numeroTel));
 			_context.startActivity(callIntent);
 			this.dismiss();
-			break;
-
-		case R.id.cancel:
+		}
+		else if(v.getId() ==  R.id.cancel){
 			this.dismiss();
-			break;
 		}
 	}
 }

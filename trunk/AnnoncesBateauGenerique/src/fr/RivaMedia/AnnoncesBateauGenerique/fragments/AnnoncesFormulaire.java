@@ -203,42 +203,29 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.annonces_formulaire_bouton_rechercher:
+		int id = v.getId();
+		if (id == R.id.annonces_formulaire_bouton_rechercher) {
 			rechercher();
-			break;
-		case R.id.annonces_formulaire_bouton_alertes:
+		} else if (id == R.id.annonces_formulaire_bouton_alertes) {
 			ajouterAlerte();
-			break;
-
-		case R.id.annonces_formulaire_type:
+		} else if (id == R.id.annonces_formulaire_type) {
 			demanderType();
-			break;
-		case R.id.annonces_formulaire_categorie:
+		} else if (id == R.id.annonces_formulaire_categorie) {
 			demanderCategorie();
-			break;
-		case R.id.annonces_formulaire_prix:
+		} else if (id == R.id.annonces_formulaire_prix) {
 			demanderPrix();
-			break;
-		case R.id.annonces_formulaire_longueur:
+		} else if (id == R.id.annonces_formulaire_longueur) {
 			demanderLongueur();
-			break;
-		case R.id.annonces_formulaire_chantier_modele:
+		} else if (id == R.id.annonces_formulaire_chantier_modele) {
 			demanderChantierModele();
-			break;
-		case R.id.annonces_formulaire_etat:
+		} else if (id == R.id.annonces_formulaire_etat) {
 			demanderEtat();
-			break;
-		case R.id.annonces_formulaire_localisation:
+		} else if (id == R.id.annonces_formulaire_localisation) {
 			demanderLocalisation();
-			break;
-		case R.id.annonces_formulaire_puissance:
+		} else if (id == R.id.annonces_formulaire_puissance) {
 			demanderPuissance();
-			break;
-		case R.id.annonces_formulaire_marque:
+		} else if (id == R.id.annonces_formulaire_marque) {
 			demanderMarque();
-			break;
-
 		}
 	}
 

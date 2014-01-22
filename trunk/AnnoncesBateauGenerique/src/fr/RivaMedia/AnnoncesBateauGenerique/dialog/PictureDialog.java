@@ -54,14 +54,10 @@ public class PictureDialog extends AlertDialog implements View.OnClickListener {
 	}
 
 	public void onClick(View v){
-		switch(v.getId()){
-		case R.id.from_camera:
+		if(v.getId() == R.id.from_camera){
 			getPhotoFromCamera();
-			break;
-
-		case R.id.from_gallery:
+		}else if(v.getId() == R.id.from_gallery){
 			getPhotoFromAlbum();
-			break;
 		}
 	}
 	

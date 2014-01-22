@@ -115,29 +115,25 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 	@Override
 	public void onClick(View v) {
 		super.onClick(v);
-		switch(v.getId()){
-		case R.id.mes_alertes_bouton_annonces:
+		int id = v.getId();
+		if (id == R.id.mes_alertes_bouton_annonces) {
 			if(!_boutonAnnonces.isSelected()){
 				_boutonAnnonces.setSelected(true);
 				_boutonFragments.setSelected(false);
 				inverserTabs();
 				_page.setCurrentItem(0);
 			}
-			break;
-		case R.id.mes_alertes_bouton_formulaires:
+		} else if (id == R.id.mes_alertes_bouton_formulaires) {
 			if(!_boutonFragments.isSelected()){
 				_boutonFragments.setSelected(true);
 				_boutonAnnonces.setSelected(false);
 				inverserTabs();
 				_page.setCurrentItem(1);
 			}
-			break;
-		case R.id.mes_alertes_bouton_rechercher:
+		} else if (id == R.id.mes_alertes_bouton_rechercher) {
 			rechercher();
-			break;
-		case R.id.mes_alertes_bouton_alertes:
+		} else if (id == R.id.mes_alertes_bouton_alertes) {
 			ajouterAlerte();
-			break;
 		}
 	}
 

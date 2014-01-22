@@ -23,14 +23,11 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.contact_pro_telephone :
+		int id = v.getId();
+		if (id == R.id.contact_pro_telephone) {
 			super.appeller(((TextView)(contact_pro_telephone.findViewById(R.id.text))).getText().toString());
-			break;
-			
-		case R.id.contact_pro_email :
+		} else if (id == R.id.contact_pro_email) {
 			super.envoyerEmailDirect(getString(R.string.EMAIL_RIVAMEDIA));
-			break;
 		}
 	}
 

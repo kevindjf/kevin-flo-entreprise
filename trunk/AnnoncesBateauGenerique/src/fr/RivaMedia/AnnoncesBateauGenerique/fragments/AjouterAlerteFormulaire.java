@@ -70,22 +70,17 @@ public class AjouterAlerteFormulaire extends FragmentFormulaire implements View.
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.alerte_formulaire_type:
+		int id = v.getId();
+		if (id == R.id.alerte_formulaire_type) {
 			demanderType();
-			break;
-		case R.id.alerte_formulaire_categorie:
+		} else if (id == R.id.alerte_formulaire_categorie) {
 			demanderCategorie();
-			break;
-		case R.id.alerte_formulaire_prix:
+		} else if (id == R.id.alerte_formulaire_prix) {
 			demanderPrix();
-			break;
-		case R.id.alerte_formulaire_longueur:
+		} else if (id == R.id.alerte_formulaire_longueur) {
 			demanderLongueur();
-			break;
-		case R.id.alerte_formulaire_bouton_alertes:
+		} else if (id == R.id.alerte_formulaire_bouton_alertes) {
 			ajouterAlerte();
-			break;
 		}
 	}
 

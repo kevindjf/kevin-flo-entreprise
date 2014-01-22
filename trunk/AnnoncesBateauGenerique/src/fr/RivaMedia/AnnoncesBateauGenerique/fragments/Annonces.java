@@ -92,16 +92,13 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.annonces_bouton_bateaux_et_voiliers:
+		int id = v.getId();
+		if (id == R.id.annonces_bouton_bateaux_et_voiliers) {
 			afficherFormulaireBateaux(Constantes.BATEAUX);
-			break;
-		case R.id.annonces_bouton_moteurs:
+		} else if (id == R.id.annonces_bouton_moteurs) {
 			afficherFormulaireBateaux(Constantes.MOTEURS);
-			break;
-		case R.id.annonces_bouton_accessoires_et_divers:
+		} else if (id == R.id.annonces_bouton_accessoires_et_divers) {
 			afficherFormulaireBateaux(Constantes.ACCESSOIRES);
-			break;
 		}
 	}
 

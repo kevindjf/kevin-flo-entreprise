@@ -7,9 +7,6 @@
     <!-- focused -->
     <item android:state_focused="true"><bitmap android:src="@drawable/favoris_hover" />
     </item>
-    <!-- hovered -->
-    <item android:state_hovered="true"><bitmap android:src="@drawable/favoris_hover" />
-    </item>
     <!-- checked -->
     <item android:state_checked="true"><bitmap android:src="@drawable/favoris_hover" />
     </item>

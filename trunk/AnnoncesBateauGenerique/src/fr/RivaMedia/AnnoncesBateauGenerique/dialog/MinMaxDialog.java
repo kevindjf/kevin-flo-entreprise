@@ -68,7 +68,7 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 
 		_ok = findViewById(R.id.ok);
 		_cancel = findViewById(R.id.cancel);
-		
+
 		_titreView.setText(_titre);
 
 		_min.setMax(_valeurMax);
@@ -97,8 +97,7 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 	}
 
 	public void onClick(View v){
-		switch(v.getId()){
-		case R.id.ok:
+		if (v.getId() == R.id.ok){
 			int min, max;
 
 			min = _min.getProgress();
@@ -118,11 +117,10 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 				_listener.onMinMaxSelected(_titre, ""+min, sMax);
 				this.dismiss();
 			}
-			break;
-			
-		case R.id.cancel:
+		}
+
+		else if(v.getId() ==  R.id.cancel){
 			this.dismiss();
-			break;
 		}
 	}
 
