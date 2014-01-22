@@ -2,12 +2,12 @@ package com.snapyou.rest;
 
 import org.codegist.crest.annotate.*;
 
-@EndPoint("http://api.example.com")
-@Path("/rest/myservice")
+@EndPoint("172.16.210.25")
+@Path("web/app_dev.php/api")
 public interface SnapYouService {
 
 	@POST
-	@Path("ajouterPhoto")
+	@Path("images")
 	public String ajouterPhoto(
 			@QueryParam("key") String key,
 			@MultiPartParam("photo") byte[] photo);

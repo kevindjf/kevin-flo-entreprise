@@ -7,6 +7,7 @@ import org.codegist.crest.CRest;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class EnvoyerPhotoTask extends AsyncTask<Object, Void, Void> {
 
@@ -24,7 +25,7 @@ public class EnvoyerPhotoTask extends AsyncTask<Object, Void, Void> {
 		SnapYouService serviceRest = crest.build(SnapYouService.class);
 		
 		String response = serviceRest.ajouterPhoto(key, compresser(photo));
-		System.out.println(response);
+		Log.e("REPONSE", response);
 	}	
 
 	@Override

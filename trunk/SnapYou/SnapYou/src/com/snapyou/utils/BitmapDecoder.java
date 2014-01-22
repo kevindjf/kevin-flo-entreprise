@@ -134,10 +134,10 @@ public class BitmapDecoder {
 	        o.inJustDecodeBounds = true;
 	        // Find the correct scale value. It should be the power of 2.
 	        
-	        final int REQUIRED_SIZE = 500;
+	        final int REQUIRED_SIZE = 1000;
 	       
 	        int width_tmp = o.outWidth, height_tmp = o.outHeight;
-	        int scale = 8;
+	        int scale = 1;
 	        while (true) {
 	            if (width_tmp / 2 < REQUIRED_SIZE
 	                    || height_tmp / 2 < REQUIRED_SIZE)
