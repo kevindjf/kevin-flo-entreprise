@@ -14,6 +14,7 @@ import android.provider.MediaStore;
 import android.view.View;
 
 import com.edmodo.cropper.CropImageView;
+import com.snapyou.rest.EnvoyerPhotoTask;
 import com.snapyou.utils.BitmapDecoder;
 import com.snapyou.utils.ImageResizer;
 
@@ -106,7 +107,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	}
 	
 	private void envoyer(){
-		
+		String key = "key";
+		Bitmap image = this.photo;
+		new EnvoyerPhotoTask().execute(key,image);
 	}
 	
 	
@@ -117,4 +120,5 @@ public class MainActivity extends Activity implements View.OnClickListener{
 		this.photo.recycle();
 		this.photo = null;
 	}
+	
 }

@@ -29,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 
 import com.edmodo.cropper.cropwindow.CropOverlayView;
 import com.edmodo.cropper.cropwindow.edge.Edge;
@@ -473,6 +474,8 @@ public class CropImageView extends FrameLayout {
         final View v = inflater.inflate(R.layout.crop_image_view, this, true);
 
         mImageView = (ImageView) v.findViewById(R.id.ImageView_image);
+        
+        mImageView.setScaleType(ScaleType.CENTER_CROP);
 
         setImageResource(mImageResource);
         mCropOverlayView = (CropOverlayView) v.findViewById(R.id.CropOverlayView);

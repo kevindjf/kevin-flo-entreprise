@@ -14,27 +14,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="20dip"
-        android:paddingRight="20dip" >
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dip"
-            android:layout_marginTop="13dp"
-            android:src="@drawable/gardelsclub_white" />
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dip"
+                android:layout_marginTop="13dp"
+                android:src="@drawable/gardelsclub_white" />
 
             <RelativeLayout
                 android:id="@+id/layout_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                 >
 
                 <com.edmodo.cropper.CropImageView
                     xmlns:custom="http://schemas.android.com/apk/res-auto"
@@ -42,31 +42,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:adjustViewBounds="true"
-                    android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
-                    android:visibility="gone"
-                    custom:imageResource="@drawable/test" />
+                    custom:imageResource="@drawable/test"
+                     android:visibility="gone" />
 
                 <Button
                     android:id="@+id/image_supprimer"
                     android:layout_width="50dip"
                     android:layout_height="50dip"
+                    android:layout_alignRight="@+id/image"
                     android:background="@drawable/cercle_delete"
-                    android:layout_alignRight="@+id/image" />
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/ajouter_photo_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/white"
-                    android:padding="5dip" >
+                     >
 
                     <LinearLayout
                         android:id="@+id/ajouter_photo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#AAA"
                         android:gravity="center" >
 
                         <ImageView
@@ -80,35 +76,31 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/boutons"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" >
+                android:gravity="center"
+                android:layout_weight="2"
+                android:padding="10dip" >
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center" >
+                <Button
+                    android:layout_width="100dip"
+                    android:layout_height="100dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="80dip"
+                    android:background="@drawable/cercle_bleu_selector"
+                    android:text="Visionner"
+                    android:textColor="@android:color/white" />
 
-                    <Button
-                        android:layout_width="120dip"
-                        android:layout_height="120dip"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="80dip"
-                        android:background="@drawable/cercle_bleu_selector"
-                        android:text="Visionner"
-                        android:textColor="@android:color/white" />
-
-                    <Button
-                        android:id="@+id/envoyer"
-                        android:layout_width="140dip"
-                        android:layout_height="140dip"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="80dip"
-                        android:background="@drawable/cercle_rose_claire"
-                        android:text="Envoyer"
-                        android:textColor="@android:color/white" />
-                </RelativeLayout>
+                <Button
+                    android:id="@+id/envoyer"
+                    android:layout_width="120dip"
+                    android:layout_height="120dip"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80dip"
+                    android:background="@drawable/cercle_rose_claire"
+                    android:text="Envoyer"
+                    android:textColor="@android:color/white" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
