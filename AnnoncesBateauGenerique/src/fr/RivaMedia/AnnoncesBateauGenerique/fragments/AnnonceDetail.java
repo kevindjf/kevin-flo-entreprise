@@ -311,19 +311,15 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.annonce_detail_telephone_principal:
+		int id = v.getId();
+		if (id == R.id.annonce_detail_telephone_principal) {
 			super.appeller(((TextView)telephonePrincipal.findViewById(R.id.text)).getText().toString());
-			break;
-		case R.id.annonce_detail_vendeur:
+		} else if (id == R.id.annonce_detail_vendeur) {
 			afficherVendeur();
-			break;
-		case R.id.annonce_detail_email:
+		} else if (id == R.id.annonce_detail_email) {
 			super.envoyerEmailAnnonce(((TextView)email.findViewById(R.id.text)).getText().toString(),this._annonce);
-			break;
-		case R.id.header_favoris:
+		} else if (id == R.id.header_favoris) {
 			switchFavoris();
-			break;
 		}
 	}
 

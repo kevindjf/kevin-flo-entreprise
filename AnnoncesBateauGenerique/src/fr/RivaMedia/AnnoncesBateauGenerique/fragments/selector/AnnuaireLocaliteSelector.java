@@ -168,13 +168,11 @@ public class AnnuaireLocaliteSelector extends FragmentNormal implements View.OnC
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.annuaire_localite_valider:
+		int id = v.getId();
+		if (id == R.id.annuaire_localite_valider) {
 			valider();
-			break;
-		case R.id.annuaire_localite_gps:
+		} else if (id == R.id.annuaire_localite_gps) {
 			getLocation();
-			break;
 		}
 	}
 

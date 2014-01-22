@@ -151,15 +151,11 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.vendeur_formulaire_valider:
+		int id = v.getId();
+		if (id == R.id.vendeur_formulaire_valider) {
 			valider();
-			break;
-
-		case R.id.vendeur_formulaire_pays:
+		} else if (id == R.id.vendeur_formulaire_pays) {
 			demanderPays();
-			break;
-
 		}
 	}
 

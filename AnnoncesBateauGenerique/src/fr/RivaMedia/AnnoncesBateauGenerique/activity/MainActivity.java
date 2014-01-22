@@ -113,9 +113,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	protected void charger(){
-		
+
 		afficherAccueil();
-//		afficherAnnonces();
+		//		afficherAnnonces();
 	}
 
 	protected void ajouterListeners(){
@@ -140,50 +140,48 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 		Log.d("ID",""+v.getId());
 
-		switch(v.getId()){
-		case R.id.header_menu:
+		if(v.getId() == R.id.header_menu){
 			ouvrirSlider();
-			break;
-		case R.id.slider_annonces:
+		}
+		else if(v.getId() ==  R.id.slider_annonces){
 			fermerSlider();	
 			afficherAnnonces();
-			break;
-		case R.id.slider_vendre:
+		}
+		else if(v.getId() == R.id.slider_vendre){
 			fermerSlider();	
 			afficherVendre();
-			break;
-		case R.id.slider_on_demand:
+		}
+		else if(v.getId() == R.id.slider_on_demand){
 			fermerSlider();		
 			afficherBoatOnDemand();
-			break;
-		case R.id.slider_actualites:
+		}
+		else if(v.getId() == R.id.slider_actualites){
 			fermerSlider();		
 			afficherActualites();
-			break;
-		case R.id.slider_annuaire:
+		}
+		else if(v.getId() == R.id.slider_annuaire){
 			fermerSlider();		
 			afficherAnnuaire();
-			break;
-		case R.id.slider_mes_annonces:
+		}
+		else if(v.getId() == R.id.slider_mes_annonces){
 			fermerSlider();	
 			afficherMesAnnonces();
-			break;
-		case R.id.slider_mes_alertes:
+		}
+		else if(v.getId() == R.id.slider_mes_alertes){
 			fermerSlider();		
 			afficherMesAlertes();
-			break;
-		case R.id.slider_informations:
+		}
+		else if(v.getId() == R.id.slider_informations){
 			fermerSlider();	
 			afficherInformations();
-			break;
-		case R.id.slider_contact_pro:
+		}
+		else if(v.getId() ==  R.id.slider_contact_pro){
 			fermerSlider();	
 			afficherContactPro();
-			break;
-		case R.id.slider_credits:
+		}
+		else if(v.getId() ==  R.id.slider_credits){
 			fermerSlider();	
 			afficherCredits();
-			break;
 		}
 
 	}

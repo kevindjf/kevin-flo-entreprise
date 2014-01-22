@@ -35,7 +35,6 @@
         android:gravity="left|center_vertical"
         android:paddingLeft="10dip"
         android:text="@string/appareil_photo"
-        android:textAlignment="textStart"
         android:textColor="@drawable/text_color_button" />
 
     <View

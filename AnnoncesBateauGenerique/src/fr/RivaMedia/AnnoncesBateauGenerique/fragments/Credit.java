@@ -30,19 +30,15 @@ public class Credit extends FragmentNormal implements View.OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.credits_email:
+		int id = v.getId();
+		if (id == R.id.credits_email) {
 			envoyerEmailDirect(getString(R.string.EMAIL_FLORENT_KEVIN));
-			break;
-		case R.id.credits_email_rivamedia:
+		} else if (id == R.id.credits_email_rivamedia) {
 			envoyerEmailDirect(getString(R.string.EMAIL));
-			break;
-		case R.id.credits_photo_petite:
+		} else if (id == R.id.credits_photo_petite) {
 			afficherPhotoGrande();
-			break;
-		case R.id.credits_photo_grande:
+		} else if (id == R.id.credits_photo_grande) {
 			cacherPhotoGrande();
-			break;
 		}
 
 	}

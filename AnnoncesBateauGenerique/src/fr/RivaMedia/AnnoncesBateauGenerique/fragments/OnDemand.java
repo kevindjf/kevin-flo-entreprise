@@ -195,47 +195,27 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.boat_on_demand_type:
+		int id = v.getId();
+		if (id == R.id.boat_on_demand_type) {
 			demanderType();
-			break;
-
-		case R.id.boat_on_demand_categorie:
+		} else if (id == R.id.boat_on_demand_categorie) {
 			demanderCategorie();
-			break;
-
-		case R.id.boat_on_demand_chantier_modele:
+		} else if (id == R.id.boat_on_demand_chantier_modele) {
 			demanderChantierModele();
-			break;
-
-		case R.id.boat_on_demand_etat:
+		} else if (id == R.id.boat_on_demand_etat) {
 			demanderEtat();
-			break;
-
-		case R.id.boat_on_demand_taille:
+		} else if (id == R.id.boat_on_demand_taille) {
 			demanderTaille();
-			break;
-
-		case R.id.boat_on_demand_lieu:
+		} else if (id == R.id.boat_on_demand_lieu) {
 			demanderLieu();
-			break;
-
-		case R.id.boat_on_demand_posseder_type:
+		} else if (id == R.id.boat_on_demand_posseder_type) {
 			demanderTypePosseder();
-			break;
-
-		case R.id.boat_on_demand_posseder_categorie:
+		} else if (id == R.id.boat_on_demand_posseder_categorie) {
 			demanderCategoriePosseder();
-			break;
-
-		case R.id.boat_on_demand_posseder_chantier_modele:
+		} else if (id == R.id.boat_on_demand_posseder_chantier_modele) {
 			demanderChantierModelePosseder();
-			break;
-
-		case R.id.boat_on_demand_etape_suivante:
+		} else if (id == R.id.boat_on_demand_etape_suivante) {
 			demanderEtapeSuivante();
-			break;
-
 		}
 	}
 

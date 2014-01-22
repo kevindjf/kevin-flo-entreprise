@@ -55,37 +55,30 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 	
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.header_tri:
+		int id = v.getId();
+		if (id == R.id.header_tri) {
 			if(_slider.isClosed())
 				afficherSliderDroite();
 			else
 				fermerSliderDroite();
-			break;
-		case R.id.slider_droite_date_croissant:
+		} else if (id == R.id.slider_droite_date_croissant) {
 			afficherDateCroissant();
 			fermerSliderDroite();
-			break;
-		case R.id.slider_droite_date_decroissant:
+		} else if (id == R.id.slider_droite_date_decroissant) {
 			afficherDateDeCroissant();
 			fermerSliderDroite();
-			break;
-		case R.id.slider_droite_prix_croissant:
+		} else if (id == R.id.slider_droite_prix_croissant) {
 			afficherPrixCroissant();
 			fermerSliderDroite();
-			break;
-		case R.id.slider_droite_prix_decroissant:
+		} else if (id == R.id.slider_droite_prix_decroissant) {
 			afficherPrixDeCroissant();
 			fermerSliderDroite();
-			break;
-		case R.id.slider_droite_longueur_croissant:
+		} else if (id == R.id.slider_droite_longueur_croissant) {
 			afficherLongueurCroissant();
 			fermerSliderDroite();
-			break;
-		case R.id.slider_droite_longueur_decroissant:
+		} else if (id == R.id.slider_droite_longueur_decroissant) {
 			afficherLongueurDeCroissant();
 			fermerSliderDroite();
-			break;
 		}
 	}
 	

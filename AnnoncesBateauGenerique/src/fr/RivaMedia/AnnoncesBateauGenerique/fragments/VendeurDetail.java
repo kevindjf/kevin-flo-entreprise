@@ -151,16 +151,13 @@ public class VendeurDetail extends FragmentNormal implements View.OnClickListene
 
 	@Override
 	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.vendeur_detail_telephone_principal:
+		int id = v.getId();
+		if (id == R.id.vendeur_detail_telephone_principal) {
 			appeller(_vendeur.getTel1());
-			break;
-		case R.id.vendeur_detail_telephone_secondaire:
+		} else if (id == R.id.vendeur_detail_telephone_secondaire) {
 			appeller(_vendeur.getTel2());
-			break;
-		case R.id.vendeur_detail_email:
+		} else if (id == R.id.vendeur_detail_email) {
 			envoyerEmailVendeur(_vendeur.getEmail(), _vendeur);
-			break;
 		}
 	}
 

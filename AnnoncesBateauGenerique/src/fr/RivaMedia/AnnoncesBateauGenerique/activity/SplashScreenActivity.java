@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+import fr.RivaMedia.AnnoncesBateauGenerique.ConstantesClient;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.alertes.GcmInitializer;
@@ -26,6 +27,8 @@ import fr.RivaMedia.AnnoncesBateauGenerique.net.core.Net;
 
 public class SplashScreenActivity extends Activity{
 
+	public static final String CLIENT = "000";
+	
 	public static final int tempsAttenteSecondes = 0;
 
 	GcmInitializer gcmInitializer;
@@ -36,6 +39,8 @@ public class SplashScreenActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 		//Net.enableHttpResponseCache(this);
+		
+		ConstantesClient.ID_CLIENT = getIntent().getExtras().getString(CLIENT);
 		
 		findViewById(R.id.splash_progress).setVisibility(View.VISIBLE);
 		findViewById(R.id.splash_progress).setEnabled(true);
