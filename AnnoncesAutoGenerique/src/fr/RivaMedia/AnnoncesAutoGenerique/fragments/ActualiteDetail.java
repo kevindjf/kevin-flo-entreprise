@@ -15,7 +15,7 @@ import fr.RivaMedia.AnnoncesAutoGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.Actualite;
 import fr.RivaMedia.AnnoncesAutoGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesAutoGenerique.net.NetActualite;
-	
+
 /**
  * TODO: Afficher dans des onglets (viewpager)
  */
@@ -32,20 +32,20 @@ public class ActualiteDetail extends FragmentNormal{
 	TextView _titre;
 	TextView _date;
 	TextView _texte;
-
-	boolean afficherProgress = true;
 	
+	boolean afficherProgress = true;
+
 	View _actualiteDetailTitreLayout;
 
 	public ActualiteDetail(String id){
 		this._id = id;
 	}
-	
+
 	public void chargerCouleurs(){
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		_view.findViewById(R.id.fond).setVisibility(View.GONE);
 		afficherCouleurNormal(_actualiteDetailTitreLayout);
-		
+
 		afficherTexteCouleurTexte(_texte);
 		afficherTexteCouleurTitre(_titre);
 		afficherTexteCouleurTitre(_date);
@@ -56,7 +56,7 @@ public class ActualiteDetail extends FragmentNormal{
 
 		_view = inflater.inflate(R.layout.actualite_details, container, false);
 		_view.setVisibility(View.GONE);
-		
+
 		ImageLoaderCache.load(getActivity());
 
 		task = new ChargerNewsTask();
@@ -64,16 +64,16 @@ public class ActualiteDetail extends FragmentNormal{
 
 		return _view;
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
 		setTitre(getResources().getString(R.string.actualites));
 		try{
-		trackerEcran("Ecran Actualité détail Android");
+			trackerEcran("Ecran Actualité détail Android");
 		}catch(Exception e){
-			
+
 		}
 	}
 
@@ -89,7 +89,7 @@ public class ActualiteDetail extends FragmentNormal{
 		_titre = (TextView)_view.findViewById(R.id.actualite_detail_titre);
 		_date  = (TextView)_view.findViewById(R.id.actualite_detail_date);
 		_texte = (TextView)_view.findViewById(R.id.actualite_detail_texte);
-		
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		_actualiteDetailTitreLayout = _view.findViewById(R.id.actualite_detail_titre_layout);
 	}
 
@@ -110,9 +110,9 @@ public class ActualiteDetail extends FragmentNormal{
 			if(_actualite.getTexte() != null)
 				_texte.setText(_actualite.getTexte());
 		}
-		
+
 		chargerCouleurs();
-		
+
 	}
 	public void ajouterListeners(){
 	}
@@ -124,19 +124,19 @@ public class ActualiteDetail extends FragmentNormal{
 		protected Void doInBackground(Void...donnees) {
 			//tests
 			try{
-			_actualite = NetActualite.getActualite(_id);
+				_actualite = NetActualite.getActualite(_id);
 
-			getActivity().runOnUiThread(new Runnable(){
+				getActivity().runOnUiThread(new Runnable(){
 
-				@Override
-				public void run() {
-					chargerNews();
-					afficherProgress = false;
-					afficherProgress(afficherProgress);
-					_view.setVisibility(View.VISIBLE);
-				}
+					@Override
+					public void run() {
+						chargerNews();
+						afficherProgress = false;
+						afficherProgress(afficherProgress);
+						_view.setVisibility(View.VISIBLE);
+					}
 
-			});
+				});
 			}catch(Exception e){
 				e.printStackTrace();
 			}

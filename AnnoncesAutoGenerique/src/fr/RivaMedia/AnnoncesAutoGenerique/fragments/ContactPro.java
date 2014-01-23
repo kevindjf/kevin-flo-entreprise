@@ -112,14 +112,17 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		if(Donnees.parametres.getImageLogo() != null)
 			ImageLoaderCache.charger(Donnees.parametres.getImageLogo(),image_entreprise);
 
-		if(Donnees.client.getHoraires() != null)
-			_horaire.setText(Donnees.client.getHoraires());
+		if(Donnees.client.getHoraires() != null){
+			
+			String horaire = Donnees.client.getHoraires();
+			_horaire.setText(horaire.replace("&gt;", ">"));
+		}
 
 		if(Donnees.client.getAdresse() != null)
 			_adresse.setText(Donnees.client.getAdresse());
 
 		if(Donnees.client.getDepartementNum() != null && Donnees.client.getVille() != null)
-			_adresse_postale.setText(Donnees.client.getDepartementNum() + " " + Donnees.client.getVille());
+			_adresse_postale.setText(Donnees.client.getCp() + " " + Donnees.client.getVille());
 
 
 
