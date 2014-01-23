@@ -54,6 +54,11 @@ public class Actualites extends FragmentNormal{
 		super.onResume();
 		afficherProgress(afficherProgress);
 		setTitre(getString(R.string.actualites));
+		try{
+		trackerEcran("Ecran Liste Actualite Android");
+		}catch(Exception e){
+			
+		}
 	}
 
 

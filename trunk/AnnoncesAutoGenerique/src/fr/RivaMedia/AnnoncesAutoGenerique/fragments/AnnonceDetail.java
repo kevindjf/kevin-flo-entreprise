@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import fr.RivaMedia.AnnoncesAutoGenerique.R;
 import fr.RivaMedia.AnnoncesAutoGenerique.activity.Gallery;
 import fr.RivaMedia.AnnoncesAutoGenerique.fragments.core.FragmentNormal;
@@ -109,6 +108,10 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		afficherProgress(afficherProgress);
 		afficherLogoFavoris();
 		setTitre(getString(R.string.annonce_details));
+		try{
+		trackerEcran("Ecran Annonce Détail Android");
+		}catch(Exception e){			
+		}
 	}	
 
 

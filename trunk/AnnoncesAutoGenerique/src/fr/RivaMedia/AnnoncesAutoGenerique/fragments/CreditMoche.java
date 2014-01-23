@@ -65,6 +65,11 @@ public class CreditMoche extends FragmentNormal implements View.OnClickListener{
 	public void onResume() {
 		super.onResume();
 		setTitre(getActivity().getString(R.string.credit));
+		try{
+		trackerEcran("Ecran Credits Android");
+		}catch(Exception e){
+			
+		}
 	}
 	
 	

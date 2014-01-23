@@ -70,8 +70,12 @@ public class ActualiteDetail extends FragmentNormal{
 		super.onResume();
 		afficherProgress(afficherProgress);
 		setTitre(getResources().getString(R.string.actualites));
+		try{
+		trackerEcran("Ecran Actualité détail Android");
+		}catch(Exception e){
+			
+		}
 	}
-
 
 	protected void chargerNews(){
 		charger();

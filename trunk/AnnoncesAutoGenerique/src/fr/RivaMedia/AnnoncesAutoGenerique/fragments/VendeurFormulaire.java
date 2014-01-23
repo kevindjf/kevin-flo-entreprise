@@ -283,4 +283,13 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	}
 
+	@Override
+	public void onResume(){
+		super.onResume();		
+		try{
+			trackerEcran("Ecran Vendeur Formulaire Android");
+			}catch(Exception e){
+				
+			}
+	}
 }

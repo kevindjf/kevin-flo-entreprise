@@ -129,8 +129,11 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 	public void onResume() {
 		super.onResume();
 		setTitre(getString(R.string.accueil));
+		try{
 		trackerEcran("Ecran Accueil Android");
-
+		}catch(Exception e){
+			
+		}
 	}
 
 	public class ImagePagesAdapter extends PagerAdapter {

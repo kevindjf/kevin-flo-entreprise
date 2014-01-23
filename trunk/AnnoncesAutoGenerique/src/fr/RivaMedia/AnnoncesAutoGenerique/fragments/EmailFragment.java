@@ -78,6 +78,11 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 		super.onResume();
 		afficherProgress(afficherProgress);
 		setTitre("Email");
+		try{
+		trackerEcran("Ecran Email Android");
+		}catch(Exception e){
+			
+		}
 	}
 
 	@Override
