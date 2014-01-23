@@ -58,15 +58,15 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	View _departement;
 
 	View description;
-	
+
 	View[] _views;
 
-	
+
 	View telephonePrincipal;
 	View email;
 
 	View apartirDe;
-	
+
 	View contact_rond;
 
 	View _favoris;
@@ -109,7 +109,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		afficherLogoFavoris();
 		setTitre(getString(R.string.annonce_details));
 		try{
-		trackerEcran("Ecran Annonce Détail Android");
+			trackerEcran("Ecran Annonce Détail Android");
 		}catch(Exception e){			
 		}
 	}	
@@ -152,23 +152,23 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_image3 = (ImageView)getView().findViewById(R.id.annonce_detail_image_3);
 
 		contact_rond = _view.findViewById(R.id.annonce_detail_rond);
-		
+
 		_views = new View[]{
-			_categorie,
-			_modele,
-			_energie,
-			_miseCirculation,
-			_kilometrage,
-			_puissanceFiscal,
-			_puissanceDin,
-			_emmission,
-			_nombrePorte,
-			_boiteVitesse,
-			_couleurExterieure,
-			_couleurInterieure,
-			_garantie,
-			_departement,
-			description};
+				_categorie,
+				_modele,
+				_energie,
+				_miseCirculation,
+				_kilometrage,
+				_puissanceFiscal,
+				_puissanceDin,
+				_emmission,
+				_nombrePorte,
+				_boiteVitesse,
+				_couleurExterieure,
+				_couleurInterieure,
+				_garantie,
+				_departement,
+				description};
 
 	}
 
@@ -307,7 +307,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				sousTitre.setVisibility(View.GONE);
 				_categorie.setVisibility(View.GONE);
 			}
-			
+
 			if(_annonce.getPhotos() != null){
 				if(_annonce.getPhotos().size()>0){
 					_image1.setVisibility(View.VISIBLE);
@@ -357,11 +357,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		if (id == R.id.annonce_detail_telephone_principal) {
 			afficherCouleurTouch(v);
 			if(Donnees.client.getTel1() != null)
-			super.appeller(Donnees.client.getTel1());
+				super.appeller(Donnees.client.getTel1());
 		} else if (id == R.id.annonce_detail_email) {
 			afficherCouleurTouch(v);
 			if(Donnees.client.getEmail() != null)
-			super.envoyerEmailAnnonce(Donnees.client.getEmail(),this._annonce);
+				super.envoyerEmailAnnonce(Donnees.client.getEmail(),this._annonce);
 		} else if (id == R.id.annonce_detail_rond) {
 			super.ajouterContactPro();
 		} else if (id == R.id.header_favoris) {
@@ -409,28 +409,28 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		selector(telephonePrincipal,false);
 
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
-		
+
 		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_1),
 				_view.findViewById(R.id.annonce_detail_layout_haut),
-				_view.findViewById(R.id.annonce_detail_image_pager),
-		_view.findViewById(R.id.annonce_detail_separator_2));
-		
+
+				_view.findViewById(R.id.annonce_detail_separator_2));
+
 		afficherTexteCouleurTitre(
 				_view.findViewById(R.id.annonce_detail_titre),
 				_view.findViewById(R.id.annonce_detail_sous_titre),
 				_view.findViewById(R.id.annonce_detail_separator_1),
 				_view.findViewById(R.id.annonce_detail_separator_2)
 				);
-		
+
 		afficherTexteCouleurTexte(_views);
 		afficherTexteCouleurTexte(_categorie.findViewById(R.id.annonce_detail_type));
-		
+
 		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
 		drawable.setColor(Donnees.parametres.getCouleurPrincipale());
 		drawable.setStroke(4 , Color.WHITE);
 		drawable.setCornerRadius(270);
 		contact_rond.setBackgroundDrawable(drawable);
-		
+
 		((TextView)prix.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurSecondaire());
 		((TextView)prixEntete.findViewById(R.id.text)).setTextColor(Donnees.parametres.getCouleurSecondaire());
 
@@ -447,22 +447,22 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	class ChargerAnnonceTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
 			//tests
-			
+
 			try{
 
-			chargerDetailAnnonce();
+				chargerDetailAnnonce();
 
-			getActivity().runOnUiThread(new Runnable(){
+				getActivity().runOnUiThread(new Runnable(){
 
-				@Override
-				public void run() {
-					chargerAnnonce();
-					afficherProgress = false;
-					afficherProgress(afficherProgress);
-				}
+					@Override
+					public void run() {
+						chargerAnnonce();
+						afficherProgress = false;
+						afficherProgress(afficherProgress);
+					}
 
-			});
-			
+				});
+
 			}catch(Exception e){
 				e.printStackTrace();
 			}
