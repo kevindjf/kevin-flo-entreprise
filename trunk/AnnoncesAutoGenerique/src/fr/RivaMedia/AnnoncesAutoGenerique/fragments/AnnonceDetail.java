@@ -411,6 +411,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		
 		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_1),
+				_view.findViewById(R.id.annonce_detail_layout_haut),
+				_view.findViewById(R.id.annonce_detail_image_pager),
 		_view.findViewById(R.id.annonce_detail_separator_2));
 		
 		afficherTexteCouleurTitre(
