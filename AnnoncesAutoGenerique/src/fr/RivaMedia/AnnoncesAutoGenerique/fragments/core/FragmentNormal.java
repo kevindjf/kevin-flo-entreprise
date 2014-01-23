@@ -54,7 +54,7 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 		// This screen name value will remain set on the tracker and sent with
 		// hits until it is set to a new value or to null.
-		easyTracker.set(Fields.SCREEN_NAME, title);
+		easyTracker.set(Fields.SCREEN_NAME, title + getResources().getString(R.string.app_name));
 
 		// Now this event hit will not include a screen name value.
 		easyTracker.send(MapBuilder

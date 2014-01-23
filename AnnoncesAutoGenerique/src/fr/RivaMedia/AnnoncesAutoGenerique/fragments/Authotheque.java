@@ -410,4 +410,14 @@ public class Authotheque extends FragmentFormulaire implements ItemSelectedListe
 			++i;
 		}
 	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		try{
+		trackerEcran("Ecran Ma recherche Android");
+		}catch(Exception e){
+			
+		}
+	}
 }

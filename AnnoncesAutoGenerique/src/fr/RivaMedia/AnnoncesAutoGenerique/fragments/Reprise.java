@@ -386,4 +386,14 @@ public class Reprise extends FragmentFormulaire implements ItemSelectedListener 
 			++i;
 		}
 	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		try{
+		trackerEcran("Ecran Reprise Android");
+		}catch(Exception e){
+			
+		}
+	}
 }

@@ -476,9 +476,10 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	public void onResume() {
 		super.onResume();
 		setTitre(getString(R.string.annonces));
-	    Tracker tracker = GoogleAnalytics.getInstance(getActivity()).getTracker("UA-46725109-2");	    
-	    tracker.set(Fields.SCREEN_NAME, "Annonces formulaire");
-	    tracker.send(MapBuilder.createAppView().build());	
+		try{
+		trackerEcran("Ecran Annonces Formulaire Android");
+		}catch(Exception e){			
+		}
 	    }
 
 	/* --------------------------------------------------------------------------- */

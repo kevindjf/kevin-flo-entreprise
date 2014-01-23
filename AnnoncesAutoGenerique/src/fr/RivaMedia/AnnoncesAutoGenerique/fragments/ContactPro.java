@@ -188,11 +188,10 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	public void onResume() {
 		try{
 			super.onResume();
-
 			trackerEcran("Ecran Contact Pro Android");
-
 			if(Donnees.client!= null && Donnees.client.getNom() != null)
 				setTitre(Donnees.client.getNom());	
+			
 		}catch(Exception e){
 			
 		}

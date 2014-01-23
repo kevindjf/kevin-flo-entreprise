@@ -65,8 +65,14 @@ public class MonGarage extends FragmentListe implements View.OnClickListener{
 	@Override
 	public void onResume() {
 		super.onResume();
+		try{
+		trackerEcran("Ecran Mon garage Android");
+		}catch(Exception e){
+			
+		}
 		setTitre(getString(R.string.monGarage));
 		afficherProgress(afficherProgress);
+		
 		getActivity().runOnUiThread(new Runnable(){
 			public void run(){
 				synchronized(_annonces){

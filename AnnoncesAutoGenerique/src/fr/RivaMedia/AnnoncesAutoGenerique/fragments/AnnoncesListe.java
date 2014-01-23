@@ -244,8 +244,11 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void onResume() {
 		super.onResume();
 		setTitre(getString(R.string.resultats));
+		try{
 		trackerEcran("Ecran Annonce Liste Android");
-
+		}catch(Exception e){
+			
+		}
 
 		super.afficherTrier();
 		super.afficherPlus().setOnClickListener(this);
