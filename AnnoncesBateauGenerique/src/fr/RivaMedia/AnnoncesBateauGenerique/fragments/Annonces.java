@@ -2,6 +2,7 @@ package fr.RivaMedia.AnnoncesBateauGenerique.fragments;
 
 import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -76,6 +77,23 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 			((TextView)_view.findViewById(R.id.annonces_nb_annonces_bateaux)).setText(nbBateaux.toString());
 			((TextView)_view.findViewById(R.id.annonces_nb_annonces_moteurs)).setText(nbMoteurs.toString());
 			((TextView)_view.findViewById(R.id.annonces_nb_annonces_accessoires)).setText(nbDivers.toString());
+			
+			if(nbBateaux == 0){
+				_view.findViewById(R.id.annonces_bouton_bateaux_et_voiliers).setVisibility(View.GONE);
+				_view.findViewById(R.id.cercle_bateaux).setVisibility(View.GONE);
+			}
+			
+			if(nbMoteurs == 0){
+				_view.findViewById(R.id.annonces_bouton_moteurs).setVisibility(View.GONE);
+				_view.findViewById(R.id.cercle_moteurs).setVisibility(View.GONE);
+
+			}
+			
+			if(nbDivers == 0){
+				_view.findViewById(R.id.annonces_bouton_accessoires_et_divers).setVisibility(View.GONE);
+				_view.findViewById(R.id.cercle_divers).setVisibility(View.GONE);
+	
+			}
 
 		}
 	}
@@ -84,8 +102,8 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 	public void remplir() {
 	}
 
-	public void afficherFormulaireBateaux(String item){
-		ajouterFragment(new AnnoncesFormulaire(item));
+	public void afficherAnnoncesByType(String item){
+		ajouterFragment(new AnnoncesListe(item));
 	}
 
 
@@ -94,11 +112,11 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.annonces_bouton_bateaux_et_voiliers) {
-			afficherFormulaireBateaux(Constantes.BATEAUX);
+			afficherAnnoncesByType(Constantes.BATEAUX);
 		} else if (id == R.id.annonces_bouton_moteurs) {
-			afficherFormulaireBateaux(Constantes.MOTEURS);
+			afficherAnnoncesByType(Constantes.MOTEURS);
 		} else if (id == R.id.annonces_bouton_accessoires_et_divers) {
-			afficherFormulaireBateaux(Constantes.ACCESSOIRES);
+			afficherAnnoncesByType(Constantes.ACCESSOIRES);
 		}
 	}
 
