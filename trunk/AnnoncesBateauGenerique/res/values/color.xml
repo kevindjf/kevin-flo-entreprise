@@ -15,6 +15,7 @@
     <color name="_gris">#DEDEDE</color>
     <color name="_gris_un_peu_fonce">#C2C2C2</color>
     <color name="_gris_clair">#EEE</color>
+    <color name="_gris_claire_transparent">#7CCC</color>
     <color name="_gris_swipe">#999999</color>
     <color name="_gris_fonce">#AAA</color>
     <color name="_gris_menu">#383C3F</color>
@@ -26,8 +27,6 @@
     <color name="_rouge">#BB0000</color>
     <color name="_rouge_claire">#F90000</color>
     <color name="_rose">#ff7070</color>
-    
-    
     <color name="couleur_1">@color/_bleu</color>
     <color name="couleur_2">@color/_bleu_claire</color>
     <color name="couleur_3">@color/_bleu_titre</color>
@@ -35,6 +34,7 @@
     <color name="couleur_2_transparent">@color/_bleu_claire_transparent</color>
     <color name="couleur_3_transparent">@color/_bleu_titre_transparent</color>
     <color name="couleur_progress">@color/_bleu_progress</color>
+    <color name="couleur_cellule">@color/_gris_claire_transparent</color>
     <color name="couleur_fond">@color/_blanc</color>
     <color name="couleur_fond_claire">@color/_gris_claire</color>
     <color name="couleur_menu">@color/_gris_menu</color>
@@ -53,7 +53,6 @@
     <color name="couleur_cellule_impaire">@color/_bleu_claire</color>
     <color name="couleur_cellule_touch">@color/_bleu</color>
     <color name="couleur_gris_supprimer_swipe">@color/_gris_swipe</color>
-    
     <color name="couleur_onglet_blanc">@color/_blanc</color>
     <color name="couleur_onglet_claire">@color/couleur_3</color>
 

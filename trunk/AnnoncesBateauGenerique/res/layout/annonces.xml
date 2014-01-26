@@ -16,10 +16,10 @@
             android:id="@+id/annonces_aujourd_hui"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" 
             android:layout_alignParentBottom="true"
-            android:padding="3dip"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="3dip" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,9 +34,9 @@
                 android:id="@+id/annonces_aujourd_hui_nombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dip"
                 android:layout_marginLeft="10dip"
                 android:layout_marginRight="10dip"
-                android:layout_marginBottom="4dip"
                 android:gravity="center"
                 android:text="00000000"
                 android:textColor="@color/_blanc"
@@ -99,7 +99,9 @@
 
             <LinearLayout style="@style/annonces_menu_cerlce_layout" >
 
-                <RelativeLayout style="@style/annonces_menu_cerlce" >
+                <RelativeLayout
+                    android:id="@+id/cercle_bateaux"
+                    style="@style/annonces_menu_cerlce" >
 
                     <TextView
                         android:id="@+id/annonces_nb_annonces_bateaux"
@@ -129,7 +131,9 @@
 
             <LinearLayout style="@style/annonces_menu_cerlce_layout" >
 
-                <RelativeLayout style="@style/annonces_menu_cerlce" >
+                <RelativeLayout
+                    android:id="@+id/cercle_moteurs"
+                    style="@style/annonces_menu_cerlce" >
 
                     <TextView
                         android:id="@+id/annonces_nb_annonces_moteurs"
@@ -159,7 +163,9 @@
 
             <LinearLayout style="@style/annonces_menu_cerlce_layout" >
 
-                <RelativeLayout style="@style/annonces_menu_cerlce" >
+                <RelativeLayout
+                    android:id="@+id/cercle_divers"
+                    style="@style/annonces_menu_cerlce" >
 
                     <TextView
                         android:id="@+id/annonces_nb_annonces_accessoires"

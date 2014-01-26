@@ -10,15 +10,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dip"
-        android:layout_marginBottom="10dip"
-        android:background="@color/couleur_slider" >
+        android:layout_marginBottom="10dip">
 
         <ImageView
+            android:id="@+id/slider_image_entete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:src="@drawable/logo_youboat_slider"
-            android:padding="15dip" />
+            android:padding="15dip"
+             />
     </RelativeLayout>
 
     <LinearLayout
@@ -36,6 +36,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/slider_accueil"
+                    style="@style/slider_element" >
+
+                    <ImageView
+                        style="@style/slider_element_image"
+                        android:src="@drawable/home_logo" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        style="@style/slider_element_texte"
+                        android:text="@string/accueil" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/slider_annonces"

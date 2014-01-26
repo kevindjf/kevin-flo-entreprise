@@ -2,18 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/couleur_fond" 
-    >
-    
+    android:background="@color/couleur_fond" >
+
+    <ImageView
+        android:id="@+id/fond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
+
     <include layout="@layout/vide" />
 
-    <com.costum.android.widget.PullAndLoadListView
+    <com.costum.android.widget.LoadMoreListView
         android:id="@+id/actualites_liste_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="0.0dp"
         android:divider="@android:color/transparent"
-        >
-    </com.costum.android.widget.PullAndLoadListView>
-    
+        />
+
 </RelativeLayout>
