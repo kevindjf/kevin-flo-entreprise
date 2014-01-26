@@ -82,4 +82,14 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 		}
 	}
 	
+	public View afficherPlus(){
+		return ((MainActivity)getActivity()).afficherPlus();
+	}
+
+	public void onResume(View v) {
+		// TODO Auto-generated method stub
+		super.onResume();
+		afficherProgress(afficherProgress);
+		
+	}
 }

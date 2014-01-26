@@ -84,7 +84,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 
 		chargerSlider();
 	}
-	
+
 	private void chargerCouleurs(){
 		super.afficherTexteCouleurTexte(_text_entreprise);
 	}
@@ -116,7 +116,7 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 	@Override
 	public void ajouterListeners() {
 	}
-		
+
 
 	@Override
 	public boolean onTouch(View arg0, MotionEvent arg1) {
@@ -210,7 +210,10 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 	}
 
 
-
-
+	@Override
+	public void onResume() {
+		super.onResume();
+		setTitre(getString(R.string.accueil));			
+	}
 
 }

@@ -16,6 +16,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.navdrawer.SimpleSideDrawer;
 
@@ -33,8 +35,10 @@ import fr.RivaMedia.AnnoncesBateauGenerique.fragments.MesAnnonces;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.OnDemand;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Vendre;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.Effaceable;
+import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Vendeur;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener, OnBackStackChangedListener{
 
@@ -43,7 +47,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _header_effacer;
 	View _header_favoris;
 	View _header_trier;
+	View _header_plus;
 
+	View _slider_accueil;
 	View _slider_annonces;
 	View _slider_vendre;
 	View _slider_on_demand;
@@ -58,6 +64,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View[] _slider_elements;
 
 	View _progress;
+
+	ImageView _slider_logo;
+	TextView _header_titre;
 
 	Annonce _annoncePourFavoris;
 
@@ -84,6 +93,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_effacer = findViewById(R.id.header_effacer);
 		_header_favoris = findViewById(R.id.header_favoris);
 		_header_trier = findViewById(R.id.header_tri);
+		_header_plus = findViewById(R.id.header_plus);
+		_header_titre = (TextView)findViewById(R.id.header_titre);
 
 		_slider_annonces = findViewById(R.id.slider_annonces);
 		_slider_vendre = findViewById(R.id.slider_vendre);
@@ -95,8 +106,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider_informations = findViewById(R.id.slider_informations);
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
 		_slider_credits = findViewById(R.id.slider_credits);
-
+		_slider_accueil = findViewById(R.id.slider_accueil);
+		_slider_logo = (ImageView)findViewById(R.id.slider_image_entete);
+		
 		_slider_elements = new View[]{
+				_slider_accueil,
 				_slider_annonces,
 				_slider_vendre,
 				_slider_on_demand,
@@ -115,7 +129,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	protected void charger(){
 
 		afficherAccueil();
-		//		afficherAnnonces();
+		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _slider_logo);
+
 	}
 
 	protected void ajouterListeners(){
@@ -142,6 +157,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 		if(v.getId() == R.id.header_menu){
 			ouvrirSlider();
+		}
+		else if(v.getId() ==  R.id.slider_accueil){
+			fermerSlider();	
+			afficherAccueil();
 		}
 		else if(v.getId() ==  R.id.slider_annonces){
 			fermerSlider();	
@@ -184,6 +203,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			afficherCredits();
 		}
 
+	}
+	
+	public void setTitre(String titre){
+		_header_titre.setText(titre);
 	}
 
 	public void afficherAccueil(){
@@ -244,6 +267,16 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_trier.setOnClickListener(null);
 	}
 
+	public View afficherPlus(){
+		_header_plus.setVisibility(View.VISIBLE);
+		return _header_plus;
+	}
+
+	public void cacherPlus(){
+		_header_plus.setVisibility(View.GONE);
+		_header_plus.setOnClickListener(null);
+	}
+	
 	public void ajouterFragment(Fragment fragment){
 		ajouterFragment(fragment,true);
 	}

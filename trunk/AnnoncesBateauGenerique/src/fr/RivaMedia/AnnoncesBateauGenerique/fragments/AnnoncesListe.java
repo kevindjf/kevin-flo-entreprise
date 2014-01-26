@@ -13,6 +13,7 @@ import com.costum.android.widget.LoadMoreListView.OnLoadMoreListener;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,11 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 
 	String idClient = null; 
 
+	public AnnoncesListe(){}
+
+	public AnnoncesListe(String type){
+		this._type = type ;
+	}
 	public AnnoncesListe(List<NameValuePair> donneesFormulaire, String type){
 		this._donneesFormulaire = donneesFormulaire;
 		this._type = type;
@@ -97,13 +103,12 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	}
 
 
-
-
 	@Override
 	public void onClick(View v) {
-		super.onClick(v);
-		switch(v.getId()){
-		}
+		super.onClick(v);		
+		if(v.getId() == R.id.header_plus)
+			ajouterFragment(new AnnoncesFormulaire(_type), true);
+		
 	}
 
 
@@ -209,6 +214,13 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		protected void onPostExecute(){
 		}
 	}
-
-
+	
+	@Override
+	public void onResume(View v){
+		super.onResume();
+		Log.e("AnnonceListe", "OnResume");
+		//afficherProgress(afficherProgress);
+		setTitre(getString(R.string.resultats));
+		super.afficherPlus().setOnClickListener(this);
+	}
 }

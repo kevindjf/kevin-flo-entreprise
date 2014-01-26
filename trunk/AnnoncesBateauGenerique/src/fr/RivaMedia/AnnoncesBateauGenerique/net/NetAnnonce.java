@@ -1,5 +1,6 @@
 package fr.RivaMedia.AnnoncesBateauGenerique.net;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -31,12 +32,17 @@ public class NetAnnonce extends Net {
 
 	public static List<Annonce> rechercher(String type, Integer page, List<NameValuePair> donnees, String idClient){
 
-		if(page != null)
-			Net.add(donnees, Constantes.PAGE, page);
-		if(idClient != null)
-			Net.add(donnees, Constantes.ANNONCES_ID_CLIENT, idClient);
+		if(donnees == null )
+			donnees = new ArrayList<NameValuePair>();
+		
+		List<NameValuePair> d = new ArrayList<NameValuePair>(donnees);
 
-		String xml = Net.requeteGet(recupererUrlAnnonces(type),donnees);
+		if(page != null)
+			Net.add(d, Constantes.PAGE, page);
+		if(idClient != null)
+			Net.add(d, Constantes.ANNONCES_ID_CLIENT, idClient);
+
+		String xml = Net.requeteGet(recupererUrlAnnonces(type),d);
 		Log.e("NetRecherche",xml);
 		return new AnnonceXmlParser(xml).getListe();
 	}

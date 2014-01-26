@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
@@ -23,6 +24,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.selector.DonneeValeurSelector;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.selector.MarqueSelector;
+import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Categorie;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Etat;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Lieu;
@@ -96,7 +98,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		charger();
 		remplir();
 		ajouterListeners();
-
+		chargerCouleurs();
 		return _view;
 	}
 
@@ -143,6 +145,22 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 
 	public void remplir(){
 
+	}
+	
+	public void chargerCouleurs(){
+		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), (ImageView)_view.findViewById(R.id.autotheque_entete_logo));
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+
+		afficherTexteCouleurTexte(_view.findViewById(R.id.autotheque_entete_1),_view.findViewById(R.id.autotheque_entete_2));
+		afficherCouleurNormal(_view.findViewById(R.id.autotheque_separator_1),_view.findViewById(R.id.autotheque_separator_2),_view.findViewById(R.id.autotheque_separator_3),
+				_view.findViewById(R.id.autotheque_separator_4));
+		
+		afficherTexteCouleurTitre(_view.findViewById(R.id.autotheque_separator_1),_view.findViewById(R.id.autotheque_separator_2),_view.findViewById(R.id.autotheque_separator_3),_view.findViewById(R.id.autotheque_separator_4));
+		
+		afficherCouleurTouch(_boat_on_demand_etape_suivante);
+		selector(_boat_on_demand_etape_suivante,false);
+		
+		afficherTexteCouleurTexte(_views);
 	}
 
 	public void ajouterListeners(){
