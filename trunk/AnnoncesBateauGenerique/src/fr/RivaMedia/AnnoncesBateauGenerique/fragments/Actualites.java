@@ -3,26 +3,28 @@ package fr.RivaMedia.AnnoncesBateauGenerique.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.costum.android.widget.PullAndLoadListView;
-import com.costum.android.widget.PullAndLoadListView.OnLoadMoreListener;
-import com.costum.android.widget.PullToRefreshListView.OnRefreshListener;
+import com.costum.android.widget.LoadMoreListView;
+import com.costum.android.widget.LoadMoreListView.OnLoadMoreListener;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.adapter.ActualiteListAdapter;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentNormal;
+import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Actualite;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetActualite;
 
 public class Actualites extends FragmentNormal{
 
 	View _view;
-	PullAndLoadListView _liste = null;
+	LoadMoreListView _liste = null;
 
 	ActualiteListAdapter _adapter = null;
 
@@ -51,6 +53,7 @@ public class Actualites extends FragmentNormal{
 	@Override
 	public void onResume() {
 		super.onResume();
+		setTitre(getString(R.string.actualites));
 		afficherProgress(afficherProgress);
 	}
 
@@ -59,11 +62,16 @@ public class Actualites extends FragmentNormal{
 		charger();
 		remplir();
 		ajouterListeners();
+		chargerCouleurs();
+	}
+
+	public void chargerCouleurs(){
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 	}
 
 	public void charger(){
 		if(_liste == null)
-			_liste = (PullAndLoadListView)_view.findViewById(R.id.actualites_liste_listview);		
+			_liste = (LoadMoreListView)_view.findViewById(R.id.actualites_liste_listview);		
 	}
 	public void remplir(){
 		if(_adapter == null){
@@ -82,6 +90,7 @@ public class Actualites extends FragmentNormal{
 
 	}
 	public void ajouterListeners(){
+		/*
 		_liste.setOnRefreshListener(new OnRefreshListener() {
 			public void onRefresh() {
 				page = 0;
@@ -91,7 +100,7 @@ public class Actualites extends FragmentNormal{
 				task.execute();
 			}
 		});
-
+		 */
 		if(dernierNombre > 0)
 			_liste.setOnLoadMoreListener(new OnLoadMoreListener() {
 				public void onLoadMore() {
@@ -120,11 +129,11 @@ public class Actualites extends FragmentNormal{
 					chargerNews();
 					afficherProgress = false;
 					afficherProgress(afficherProgress);
-
+					/*
 					if(page == 0)
 						_liste.onRefreshComplete();
-					else
-						_liste.onLoadMoreComplete();
+					else*/
+					_liste.onLoadMoreComplete();
 				}
 
 			});
