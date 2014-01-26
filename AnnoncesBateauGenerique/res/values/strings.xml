@@ -9,6 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="actualites">Actualités</string>
     <string name="actuellement">Actuellement</string>
+    <string name="accueil">Accueil</string>
     <string name="ajouter_une_alerte">Ajouter une alerte</string>
     <string name="ajouter_une_photo">Ajouter une photo</string>
     <string name="alerte_ajoutee">L\'alerte à été ajoutée</string>
@@ -161,6 +162,7 @@
     <string name="rechercher">Rechercher</string>
     <string name="reprise_de_votre_bateau">REPRISE DE VOTRE ?</string>
     <string name="requis">requis</string>
+    <string name="resultats">Resultats</string>
     <string name="retour">Retour</string>
     <string name="salle_de_bain">Salle de bain</string>
     <string name="selectionnez_les_criteres_desires">Selectionnez les critères desirés</string>
