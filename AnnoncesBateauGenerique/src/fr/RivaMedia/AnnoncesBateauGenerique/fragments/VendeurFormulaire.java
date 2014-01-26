@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
@@ -23,6 +24,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentFormulaire;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.selector.DonneeValeurSelector;
+import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Departement;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetOnDemand;
@@ -75,6 +77,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		_view = inflater.inflate(R.layout.vendeur_formulaire,container, false);
 
 		charger();
+		changerCouleur();
 		remplir();
 		ajouterListeners();
 
@@ -103,6 +106,16 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 		recupererValeursInitiales();
 
+	}
+	
+	public void changerCouleur(){
+		afficherCouleurTouch(_valider);
+		selector(_valider,false);
+		
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		
+		
+		afficherTexteCouleurTexte(views);
 	}
 
 	protected void recupererValeursInitiales(){
