@@ -168,7 +168,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			System.err.println("TYPE :"+type);
 
 			FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.main_fragment, new AnnonceDetail(id,type));
+			transaction.add(R.id.fragment_container, new AnnonceDetail(id,type));
 			transaction.addToBackStack(null);
 			transaction.commit();
 		}
