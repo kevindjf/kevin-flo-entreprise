@@ -1,6 +1,8 @@
 
 package fr.RivaMedia.AnnoncesBateauGenerique.activity;
 
+import java.util.LinkedList;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -42,6 +44,8 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener, OnBackStackChangedListener{
 
+	static LinkedList<Fragment> fragments = new LinkedList<Fragment>();
+	
 	SimpleSideDrawer _slider;
 	View _header_menu;
 	View _header_effacer;
@@ -128,7 +132,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	protected void charger(){
 
-		afficherAccueil();
+		if (fragments.size() == 0)
+			afficherAccueil();
+		
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _slider_logo);
 
 	}
@@ -276,24 +282,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_plus.setVisibility(View.GONE);
 		_header_plus.setOnClickListener(null);
 	}
-	
-	public void ajouterFragment(Fragment fragment){
-		ajouterFragment(fragment,true);
-	}
-	public void ajouterFragment(Fragment fragment, boolean back){
-		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-		FragmentManager manager = getSupportFragmentManager();
-		Fragment currFrag = (Fragment)manager.findFragmentById(R.id.main_fragment);
-
-		//transaction.hide(getSupportFragmentManager().findFragmentById(R.id.main_fragment));
-		transaction.add(R.id.main_fragment, fragment);
-
-		if(back || currFrag instanceof Annonces)
-			transaction.addToBackStack(null);
-
-		transaction.commit();
-	}
 
 	public void envoyerEmailVendeur(String email, Vendeur vendeur){
 		envoyerEmail(email, EmailFragment.EMAIL_CLIENT, vendeur);
@@ -355,18 +343,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_annoncePourFavoris = null;
 	}
 
-	public void onBackStackChanged() 
-	{                   
-		FragmentManager manager = getSupportFragmentManager();
-
-		if (manager != null)
-		{
-			Fragment currFrag = (Fragment)manager.findFragmentById(R.id.main_fragment);
-
-			currFrag.onResume();
-		}                   
-	}
-
 	public View afficherTrier(){
 		_header_trier.setVisibility(View.VISIBLE);
 		return _header_trier;
@@ -389,32 +365,68 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	@Override
-	public void onBackPressed() {
-
-		if(!_slider.isClosed()){
-			fermerSlider();
-		}else{
-			FragmentManager manager = getSupportFragmentManager();
-
-			if (manager != null)
-			{
-				Fragment currFrag = (Fragment)manager.findFragmentById(R.id.main_fragment);
-
-				if(currFrag instanceof Annonces)
-					this.finish();
-			}    
-
-			super.onBackPressed();
-		}
-	}
-
-	@Override
 	public boolean onKeyDown(int keycode, KeyEvent event ) {
 		if(keycode == KeyEvent.KEYCODE_MENU){
 			if(_slider != null)
 				ouvrirSlider();
 		}
 		return super.onKeyDown(keycode,event);  
+	}
+	
+	
+	public void ajouterFragment(Fragment fragment) {
+		ajouterFragment(fragment, true);
+	}
+
+	public void retirerFragment() {
+		try {
+			fragments.removeLast().onPause();
+			FragmentTransaction transaction = getSupportFragmentManager()
+					.beginTransaction();
+			transaction.replace(R.id.fragment_container, fragments.getLast());
+			transaction.commit();
+		} catch (Exception e) {
+		}
+	}
+
+	public void ajouterFragment(Fragment fragment, boolean back) {
+		if (!back)
+			fragments.clear();
+
+		fragments.addLast(fragment);
+
+		FragmentTransaction transaction = getSupportFragmentManager()
+				.beginTransaction();
+		transaction.replace(R.id.fragment_container, fragments.getLast());
+
+		if (back)
+			transaction.addToBackStack(null);
+
+		transaction.commit();
+	}
+
+	public void onBackStackChanged() {
+		FragmentManager manager = getSupportFragmentManager();
+
+		if (manager != null) {
+			Fragment currFrag = (Fragment) manager
+					.findFragmentById(R.id.fragment_container);
+
+			currFrag.onResume();
+		}
+	}
+
+	@Override
+	public void onBackPressed() {
+
+		FragmentManager manager = getSupportFragmentManager();
+
+		if (manager != null) {
+			retirerFragment();
+
+			if (fragments.size() == 0)
+				this.finish();
+		}
 	}
 
 

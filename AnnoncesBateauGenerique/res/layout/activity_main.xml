@@ -7,11 +7,9 @@
 
     <include layout="@layout/header" />
 
-    <fragment
-        android:id="@+id/main_fragment"
+    <RelativeLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="fr.RivaMedia.AnnoncesBateauGenerique.fragments.Annonces"
-        android:tag="annonces" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -118,7 +118,7 @@ public class VendeurView extends YouBoatView implements View.OnTouchListener{
 		String id = _vendeur.getNumero();
 
 		FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-		transaction.add(R.id.main_fragment, new VendeurDetail(id));
+		transaction.add(R.id.fragment_container, new VendeurDetail(id));
 		transaction.addToBackStack(null);
 		transaction.commit();
 	}
