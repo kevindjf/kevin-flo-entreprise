@@ -3,15 +3,23 @@
     android:id="@+id/screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/couleur_fond"
+    android:background="@android:color/transparent"
+    android:clickable="false"
     android:orientation="vertical"
     android:visibility="gone" >
+
+    <ImageView
+        android:id="@+id/fond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:id="@+id/annonce_detail_layout_haut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/couleur_3"
+        android:background="@android:color/transparent"
+        android:clickable="false"
         android:gravity="center"
         android:orientation="vertical" >
 
@@ -23,7 +31,7 @@
             android:layout_marginTop="5dip"
             android:paddingLeft="5dip"
             android:paddingRight="5dip"
-            android:textColor="@color/couleur_fond"
+            android:textColor="@color/_noir"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -31,30 +39,21 @@
             android:id="@+id/annonce_detail_sous_titre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dip"
+            android:layout_centerVertical="true"
+            android:gravity="center"
             android:textColor="@color/couleur_texte_fonce"
             android:textSize="15sp" />
 
         <LinearLayout
             android:id="@+id/annonce_detail_prix_entete"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dip"
             android:gravity="center"
             android:orientation="horizontal" >
 
             <TextView
-                android:id="@+id/annonce_detail_prix_entete_a_partir_de"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dip"
-                android:text="@string/apartirde"
-                android:textColor="@color/couleur_texte_blanc"
-                android:textSize="15sp"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@id/text"
+                android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/couleur_texte_blanc"
@@ -68,97 +67,112 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/couleur_fond"
+        android:background="@android:color/transparent"
         android:gravity="center"
         android:orientation="vertical" >
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="50dip"
-            android:gravity="center"
-            android:orientation="horizontal" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dip" >
 
-            <LinearLayout
-                android:id="@+id/annonce_detail_telephone_principal"
+            <View
+                android:id="@+id/annonces_formulaire_centre"
+                android:layout_width="0dip"
+                android:layout_height="0dip"
+                android:layout_centerInParent="true" />
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="1dip"
-                android:layout_weight="1"
-                android:background="@color/couleur_3"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingTop="5dp" >
+                android:layout_toLeftOf="@+id/annonces_formulaire_centre"
+                android:background="@android:color/white"
+                android:text="@string/rechercher"
+                android:textColor="@color/couleur_texte_blanc" >
+
+                <LinearLayout
+                    android:id="@+id/annonce_detail_telephone_principal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/_bleu_fonce"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingRight="30dip"
+                    android:paddingTop="5dp" >
+
+                    <View
+                        android:layout_width="20dip"
+                        android:layout_height="20dip"
+                        android:background="@drawable/phone"
+                        android:text="appeler"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Appeler"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/annonces_formulaire_centre"
+                android:background="@android:color/white"
+                android:text="@string/rechercher"
+                android:textColor="@color/couleur_texte_blanc" >
+
+                <LinearLayout
+                    android:id="@+id/annonce_detail_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/_bleu_fonce"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="30dip"
+                    android:paddingTop="5dp" >
+
+                    <View
+                        android:layout_width="20dip"
+                        android:layout_height="20dip"
+                        android:layout_marginBottom="1dp"
+                        android:background="@drawable/mail"
+                        android:text="appeler"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/envoyer_un_email"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/annonce_detail_rond"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerInParent="true" >
 
                 <View
-                    android:layout_width="20dip"
-                    android:layout_height="20dip"
-                    android:background="@drawable/phone"
-                    android:text="appeler"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0606060606"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/annonce_detail_vendeur"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dip"
-                android:layout_weight="1"
-                android:background="@color/couleur_3"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingTop="5dp" >
+                    android:id="@+id/contact_pro_shape_oval"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/circle" />
 
                 <ImageView
-                    android:id="@+id/image"
-                    android:layout_width="20dip"
-                    android:layout_height="20dip"
-                    android:src="@drawable/logo_vendeur_blanc"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/le_vendeur"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/annonce_detail_email"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="1dip"
-                android:layout_weight="1"
-                android:background="@color/couleur_3"
-                android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingTop="5dp" >
-
-                <View
-                    android:layout_width="20dip"
-                    android:layout_height="20dip"
-                    android:layout_marginBottom="1dp"
-                    android:background="@drawable/mail"
-                    android:text="appeler"
-                    android:textColor="@android:color/white" />
-
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/envoyer_un_email"
-                    android:textColor="@android:color/white"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/contact" />
+            </RelativeLayout>
+        </RelativeLayout>
     </LinearLayout>
 
     <ScrollView
@@ -174,19 +188,37 @@
             android:orientation="vertical"
             android:paddingBottom="20dip" >
 
-            <android.support.v4.view.ViewPager
+            <LinearLayout
                 android:id="@+id/annonce_detail_image_pager"
                 android:layout_width="match_parent"
-                android:layout_height="250dip"
-                android:background="@color/couleur_3" >
-            </android.support.v4.view.ViewPager>
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal" >
 
-            <com.viewpagerindicator.CirclePageIndicator
-                android:id="@+id/annonce_detail_image_pager_indicator"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:background="@color/couleur_3"
-                android:padding="3dip" />
+                <ImageView
+                    android:id="@+id/annonce_detail_image_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dip"
+                    android:layout_weight="1"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/annonce_detail_image_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dip"
+                    android:layout_weight="1"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/annonce_detail_image_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dip"
+                    android:layout_weight="1"
+                    android:visibility="gone" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -195,8 +227,8 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
-                    style="@style/formulaire_separator"
-                    android:layout_marginTop="10dip" >
+                    android:id="@+id/annonce_detail_separator_1"
+                    style="@style/formulaire_separator" >
 
                     <TextView
                         style="@style/formulaire_separator_titre"
@@ -204,8 +236,8 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    style="@style/formulaire_cellule"
-                    android:layout_marginLeft="5dip" >
+                    android:id="@+id/annonce_details_categorie"
+                    style="@style/formulaire_cellule" >
 
                     <TextView
                         style="@style/formulaire_cellule_titre"
@@ -216,169 +248,148 @@
                         style="@style/annonce_cellule_texte" />
                 </RelativeLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dip"
-                    android:orientation="horizontal" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_longueur"
+                    style="@style/formulaire_cellule" >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/longueur" />
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_longueur"
-                            style="@style/formulaire_cellule" >
+                    <TextView
+                        android:id="@+id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/longueur" />
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_largeur"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                android:id="@+id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/largeur" />
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_largeur"
-                            style="@style/formulaire_cellule" >
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/largeur" />
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_cabines"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/cabines" />
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_cabines"
-                            style="@style/formulaire_cellule" >
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/cabines" />
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_couchettes"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/couchettes" />
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_couchettes"
-                            style="@style/formulaire_cellule" >
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/couchettes" />
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_salle_de_bain"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/salle_de_bain" />
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_salle_de_bain"
-                            style="@style/formulaire_cellule" >
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/salle_de_bain" />
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_annee"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/annee" />
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_annee"
-                            style="@style/formulaire_cellule" >
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/annee" />
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_etat"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
-                    </LinearLayout>
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/etat" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_etat"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_moteur"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/etat" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/moteur" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_moteur"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_puissance"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/moteur" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/puissance" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_puissance"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_propulsion"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/puissance" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/propulsion" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_propulsion"
-                            style="@style/formulaire_cellule" >
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_nombre_heures"
+                    style="@style/formulaire_cellule" >
 
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/propulsion" />
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/nombres_heures" />
 
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/annonce_detail_nombre_heures"
-                            style="@style/formulaire_cellule" >
-
-                            <TextView
-                                style="@style/formulaire_cellule_titre"
-                                android:text="@string/nombres_heures" />
-
-                            <TextView
-                                android:id="@id/text"
-                                style="@style/annonce_cellule_texte" />
-                        </RelativeLayout>
-                    </LinearLayout>
-                </LinearLayout>
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/annonce_detail_prix"
@@ -408,6 +419,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/annonce_detail_separator_2"
                     style="@style/formulaire_separator"
                     android:layout_marginTop="15dip" >
 
@@ -422,41 +434,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dip"
                     android:textColor="@color/couleur_texte_noir" />
-
-                <LinearLayout
-                    style="@style/formulaire_separator"
-                    android:layout_marginTop="10dip" >
-
-                    <TextView
-                        style="@style/formulaire_separator_titre"
-                        android:text="@string/vendeur" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/annonce_detail_nom_vendeur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"
-                    android:layout_marginTop="10dip"
-                    android:textColor="@color/couleur_3"
-                    android:textSize="19sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/annonce_detail_adresse_vendeur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"
-                    android:textColor="@color/couleur_texte_noir"
-                    android:textSize="17sp" />
-
-                <TextView
-                    android:id="@+id/annonce_detail_code_postale_vendeur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dip"
-                    android:textColor="@color/couleur_texte_noir"
-                    android:textSize="17sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

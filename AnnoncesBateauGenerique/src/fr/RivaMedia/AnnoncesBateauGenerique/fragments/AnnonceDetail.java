@@ -7,6 +7,8 @@ import java.util.List;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -27,6 +29,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Lien;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAnnonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.core.Net;
 import fr.RivaMedia.AnnoncesBateauGenerique.utils.FavorisManager;
@@ -39,6 +42,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	String _id;
 	String _type;
 	View screen;
+	View layout_haut;
 
 	View titre;
 	View sousTitre;
@@ -58,11 +62,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	View nbHeures;
 	View prix;
 	View description;
-	View nomVendeur;
-	View adresseVendeur;
-	View postaleVendeur;
 	View telephonePrincipal;
-	View vendeur;
 	View email;
 
 	View apartirDe;
@@ -72,11 +72,21 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	FavorisManager _favorisManager;
 
 	PagerAdapter _pagesAdapter;
-	ViewPager _page;	
 	CirclePageIndicator _indicator;
 
 	LayoutInflater _inflater;
 
+	View contact_rond;
+
+
+	View _page;
+	ImageView _image1;
+	ImageView _image2;
+	ImageView _image3;
+
+	View[] _views;
+
+	
 	boolean afficherProgress = true;
 
 	public AnnonceDetail(String id, String type){
@@ -101,6 +111,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		return _view;
 	}
 
+
+
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -108,13 +120,15 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		afficherLogoFavoris();
 	}
 
-
 	public void charger(){
+
 		screen = _view.findViewById(R.id.screen);
+		layout_haut = _view.findViewById(R.id.annonce_detail_layout_haut);
 		titre = _view.findViewById(R.id.annonce_detail_titre);	
 		sousTitre = _view.findViewById(R.id.annonce_detail_sous_titre);
 		prixEntete = _view.findViewById(R.id.annonce_detail_prix_entete);
 		type =  _view.findViewById(R.id.annonce_detail_type);
+
 		longeur = _view.findViewById(R.id.annonce_detail_longueur);
 		largeur =  _view.findViewById(R.id.annonce_detail_largeur);
 		cabines =  _view.findViewById(R.id.annonce_detail_cabines);
@@ -126,23 +140,36 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		puissance =  _view.findViewById(R.id.annonce_detail_puissance);
 		propulsion =  _view.findViewById(R.id.annonce_detail_propulsion);
 		nbHeures =  _view.findViewById(R.id.annonce_detail_nombre_heures);
+
 		prix =  _view.findViewById(R.id.annonce_detail_prix);
 		description = _view.findViewById(R.id.annonce_detail_description);
-		nomVendeur = _view.findViewById(R.id.annonce_detail_nom_vendeur);
-		adresseVendeur =  _view.findViewById(R.id.annonce_detail_adresse_vendeur);
-		postaleVendeur =  _view.findViewById(R.id.annonce_detail_code_postale_vendeur);
 		telephonePrincipal =  _view.findViewById(R.id.annonce_detail_telephone_principal);
-		vendeur = _view.findViewById(R.id.annonce_detail_vendeur);
 		email = _view.findViewById(R.id.annonce_detail_email);
 		apartirDe = _view.findViewById(R.id.annonce_detail_prix_a_partir_de);
-		apartirDeEntete = _view.findViewById(R.id.annonce_detail_prix_entete_a_partir_de);
 
-		_page = (ViewPager) getView().findViewById(R.id.annonce_detail_image_pager);
+		_page = getView().findViewById(R.id.annonce_detail_image_pager);
+		_image1 = (ImageView)getView().findViewById(R.id.annonce_detail_image_1);
+		_image2 = (ImageView)getView().findViewById(R.id.annonce_detail_image_2);
+		_image3 = (ImageView)getView().findViewById(R.id.annonce_detail_image_3);
 
-		_indicator = (CirclePageIndicator)getView().findViewById(R.id.annonce_detail_image_pager_indicator);
+		contact_rond = _view.findViewById(R.id.annonce_detail_rond);
 
-
+		_views = new View[]{
+				type,
+				longeur,
+				largeur,
+				cabines,
+				couchettes,
+				salleDeBain,
+				annee,
+				etat,
+				moteur,
+				puissance,
+				propulsion,
+				nbHeures,
+				description};
 	}
+
 	public void remplir(){
 		if(_annonce != null){
 
@@ -242,57 +269,34 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			else
 				description.setVisibility(View.GONE);
 
-			if(_annonce.getVendeur() != null){
-				if(_annonce.getVendeur().getNom() != null)
-					((TextView)nomVendeur).setText(_annonce.getVendeur().getNom());
-				else
-					nomVendeur.setVisibility(View.GONE);
-
-				if(_annonce.getVendeur().getAdresse() != null)
-					((TextView)adresseVendeur).setText(_annonce.getVendeur().getAdresse());
-				else
-					adresseVendeur.setVisibility(View.GONE);
-
-				if(_annonce.getVendeur().getCodePostal() != null && _annonce.getVendeur().getVille() != null)
-					((TextView)postaleVendeur).setText(_annonce.getVendeur().getCodePostal() + " " + _annonce.getVendeur().getVille());
-				else
-					postaleVendeur.setVisibility(View.GONE);
-
-				if(_annonce.getVendeur().getTel1() != null)
-					((TextView)telephonePrincipal.findViewById(R.id.text)).setText(_annonce.getVendeur().getTel1());
-				else
-					telephonePrincipal.setVisibility(View.GONE);
-
-				if(_annonce.getVendeur() != null && _annonce.getVendeur().getNom() != null){
-					//((TextView)vendeur.findViewById(R.id.text)).setText(_annonce.getVendeur().getNom());
-					if(_annonce.getVendeur().getLogo() != null)
-						ImageLoaderCache.charger(_annonce.getVendeur().getLogo(), ((ImageView)vendeur.findViewById(R.id.image)));
+			if(_annonce.getPhotos() != null){
+				if(_annonce.getPhotos().size()>0){
+					_image1.setVisibility(View.VISIBLE);
+					ImageLoaderCache.charger(_annonce.getPhotos().get(0).getUrl(), _image1);
 				}
-				else
-					vendeur.setVisibility(View.GONE);
-
-				if(_annonce.getVendeur().getEmail() != null){
-					//((TextView)email.findViewById(R.id.text)).setText(_annonce.getVendeur().getEmail());
+				if(_annonce.getPhotos().size()>1){
+					_image2.setVisibility(View.VISIBLE);
+					ImageLoaderCache.charger(_annonce.getPhotos().get(1).getUrl(), _image2);
 				}
-				else
-					email.setVisibility(View.GONE);
-
+				if(_annonce.getPhotos().size()>2){
+					_image3.setVisibility(View.VISIBLE);
+					ImageLoaderCache.charger(_annonce.getPhotos().get(2).getUrl(), _image3);
+				}
 			}
-
-			afficherLogoFavoris();
 		}
+
+		afficherLogoFavoris();
+
+
 		screen.setVisibility(View.VISIBLE);
 
-		_pagesAdapter = new ImagePagesAdapter();
-		_page.setAdapter(_pagesAdapter);
-		_indicator.setViewPager(_page);
-		//_page.getAdapter().notifyDataSetChanged();
-
 	}
+
 	public void ajouterListeners(){
 		telephonePrincipal.setOnClickListener(this);
-		vendeur.setOnClickListener(this);
 		email.setOnClickListener(this);
+		contact_rond.setOnClickListener(this);
+		_page.setOnClickListener(this);
 
 
 		if(_favoris != null)
@@ -310,22 +314,33 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(View v) {		
 		int id = v.getId();
 		if (id == R.id.annonce_detail_telephone_principal) {
-			super.appeller(((TextView)telephonePrincipal.findViewById(R.id.text)).getText().toString());
-		} else if (id == R.id.annonce_detail_vendeur) {
-			afficherVendeur();
+			afficherCouleurTouch(v);
+			if(Donnees.client.getTel1() != null)
+				super.appeller(Donnees.client.getTel1());
 		} else if (id == R.id.annonce_detail_email) {
-			super.envoyerEmailAnnonce(((TextView)email.findViewById(R.id.text)).getText().toString(),this._annonce);
+			afficherCouleurTouch(v);
+			if(Donnees.client.getEmail() != null)
+				super.envoyerEmailAnnonce(Donnees.client.getEmail(),this._annonce);
+		} else if (id == R.id.annonce_detail_rond) {
+			super.ajouterContactPro();
 		} else if (id == R.id.header_favoris) {
 			switchFavoris();
+		} else if (id == R.id.annonce_detail_image_pager) {
+			Intent intent = new Intent(AnnonceDetail.this.getActivity(),Gallery.class);
+			if(_annonce.getTitle() != null)
+				intent.putExtra(Gallery.TEXTE, _annonce.getTitle());
+			
+			ArrayList<Lien> liens = (ArrayList<Lien>)_annonce.getPhotos();
+			ArrayList<String> photos = new ArrayList<String>();
+					for(Lien lien : liens)
+						photos.add(lien.getUrl());
+			
+			intent.putStringArrayListExtra(Gallery.IMAGES,photos);
+			getActivity().startActivity(intent);
 		}
-	}
-
-	protected void afficherVendeur(){
-		if(_annonce != null && _annonce.getIdClient() != null)
-			ajouterFragment(new VendeurDetail(_annonce.getIdClient()));
 	}
 
 	protected void switchFavoris(){
@@ -346,6 +361,48 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		}
 	}
 
+	protected void chargerAnnonce(){
+		charger();
+		remplir();
+		changerCouleur();
+		ajouterListeners();
+	}
+	
+	@SuppressWarnings("deprecation")
+	protected void changerCouleur(){
+		afficherCouleurTouch(email);
+		afficherCouleurTouch(telephonePrincipal);
+
+		selector(email,false);
+		selector(telephonePrincipal,false);
+
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+
+		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_1),
+				_view.findViewById(R.id.annonce_detail_layout_haut),
+
+				_view.findViewById(R.id.annonce_detail_separator_2));
+
+		afficherTexteCouleurTitre(
+				_view.findViewById(R.id.annonce_detail_titre),
+				_view.findViewById(R.id.annonce_detail_sous_titre),
+				_view.findViewById(R.id.annonce_detail_separator_1),
+				_view.findViewById(R.id.annonce_detail_separator_2)
+				);
+
+		afficherTexteCouleurTexte(_views);
+		afficherTexteCouleurTexte(type);
+
+		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
+		drawable.setColor(Donnees.parametres.getBackgroundColorUn());
+		drawable.setStroke(4 , Color.WHITE);
+		drawable.setCornerRadius(270);
+		contact_rond.setBackgroundDrawable(drawable);
+
+		((TextView)prix.findViewById(R.id.text)).setTextColor(Donnees.parametres.getBackgroundColorDeux());
+		((TextView)prixEntete.findViewById(R.id.text)).setTextColor(Donnees.parametres.getBackgroundColorDeux());
+
+	}
 
 	public class ImagePagesAdapter extends PagerAdapter {
 
@@ -435,11 +492,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	}
 
 
-	protected void chargerAnnonce(){
-		charger();
-		remplir();
-		ajouterListeners();
-	}
+
 
 
 

@@ -8,6 +8,7 @@ import java.util.Map;
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Actualite;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Categorie;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.Client;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Departement;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Energie;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Etat;
@@ -22,7 +23,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.TypeCategories;
 public class Donnees {
 
 	public static Parametres parametres;
-	
+	public static Client client;
 	public static Map<String,Integer> nbAnnonces;
 	public static List<Actualite> news;
 	public static List<TypeAnnonce> typesAnnonces = new ArrayList<TypeAnnonce>();
