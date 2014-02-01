@@ -237,4 +237,8 @@ public class Constantes {
 	
 	public static final String URL_ACTUALITES = "client/actuClient.php";	
 	
+	public static final String URL_CLIENTS_PRO = "clients.php";
+	public static final String URL_CLIENT_DETAIL = "client.php";
+	public static final String CLIENT_DETAIL_ID = "client";
+	
 }

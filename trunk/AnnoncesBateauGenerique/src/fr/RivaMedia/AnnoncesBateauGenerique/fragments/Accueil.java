@@ -58,7 +58,6 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 
 		task = new AccueilImagesMoverTask();
 		timer.scheduleAtFixedRate(task, 3000, 3000);
-
 		return _view;
 	}	
 

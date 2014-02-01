@@ -1,6 +1,7 @@
 package fr.RivaMedia.AnnoncesBateauGenerique.activity;
 
 import java.util.List;
+import java.util.Map;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+import fr.RivaMedia.AnnoncesBateauGenerique.net.core.NetClient;
 import fr.RivaMedia.AnnoncesBateauGenerique.ConstantesClient;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
@@ -93,7 +95,7 @@ public class SplashScreenActivity extends Activity{
 
 	protected void etapeSuivante(){
 
-		Intent i = new Intent(this,MagasineActivity.class);
+		Intent i = new Intent(this,MainActivity.class);
 		startActivity(i);
 		finish();
 
@@ -168,7 +170,27 @@ public class SplashScreenActivity extends Activity{
 			Donnees.TOUTESmarques.put(Constantes.VOILIER, TOUTESmarquesVoilier);
 			Donnees.TOUTESmarques.put(Constantes.PNEU, TOUTESmarquesPneu);
 			Donnees.TOUTESmarques.put(Constantes.MOTEURS, TOUTESmarquesMoteur);
-			
+			Donnees.client = NetClient.getClient(Constantes.ID_CLIENT);
+
+			final List<Marque> toutesMarques = NetChargement.chargerMarquesBateauType(null, null,true);
+			final List<Marque> marquesBateauxAMoteur = NetChargement.chargerMarquesBateauType(Constantes.BATEAU_A_MOTEUR,null,true);
+			final List<Marque> marquesVoilier = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,true);	
+			final List<Marque> marquesPneu = NetChargement.chargerMarquesBateauType(Constantes.VOILIER,null,true);
+			final List<Marque> marquesMoteur = NetChargement.chargerMarquesMoteurs(null,true);
+			Donnees.marquesDistribuees = NetChargement.chargerMarquesDistribuees();
+			Donnees.lieux = NetChargement.chargerLieux();
+
+			final Map<String,Integer> nbAnnonces = NetChargement.chargerNbAnnonces();
+
+			Donnees.toutesMarques = toutesMarques;
+			Donnees.marques.put("0", toutesMarques);
+			Donnees.TOUTESmarques.put("0", toutesMarques);
+			Donnees.marques.put(Constantes.BATEAU_A_MOTEUR, marquesBateauxAMoteur);
+			Donnees.marques.put(Constantes.VOILIER, marquesVoilier);
+			Donnees.marques.put(Constantes.PNEU, marquesPneu);
+			Donnees.marques.put(Constantes.MOTEURS, marquesMoteur);
+			Log.e("marques moteur",""+marquesMoteur.size());
+			Donnees.nbAnnonces = nbAnnonces;
 			Log.e("marques moteur",""+TOUTESmarquesMoteur.size());
 
 			/*

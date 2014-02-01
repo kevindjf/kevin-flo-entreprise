@@ -17,6 +17,9 @@
     <string name="annee">Année</string>
     <string name="annee_du_moteur">Année du moteur</string>
     <string name="annonces">Annonces</string>
+    <string name="annonces_bateaux">Annonces Bateaux</string>
+    <string name="annonces_moteurs">Annonces Moteurs</string>
+    <string name="annonces_accessoires">Annonces Accessoires</string>
     <string name="annonces_small">annonces</string>
     <string name="annonces_en_vente">annonces en vente</string>
     <string name="annonce_postee">Votre annonce sera mise en ligne prochainement</string>
@@ -161,6 +164,7 @@
     <string name="que_souhaitez_vous_vendre">Que souhaitez vous vendre ?</string>
     <string name="rechercher">Rechercher</string>
     <string name="reprise_de_votre_bateau">REPRISE DE VOTRE ?</string>
+    <string name="reprise">Reprise Bateau</string>
     <string name="requis">requis</string>
     <string name="resultats">Resultats</string>
     <string name="retour">Retour</string>

@@ -207,6 +207,11 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 			}
 		});
 	}
+
+	public void ajouterContactPro() {
+		((MainActivity)getActivity()).ajouterContactPro();
+		
+	}
 	
 	
 

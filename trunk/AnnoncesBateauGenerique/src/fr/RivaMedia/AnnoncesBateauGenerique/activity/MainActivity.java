@@ -23,10 +23,12 @@ import android.widget.TextView;
 
 import com.navdrawer.SimpleSideDrawer;
 
+import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Accueil;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Actualites;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Annonces;
+import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnoncesListe;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Annuaire;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.ContactPro;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Credit;
@@ -45,7 +47,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 public class MainActivity extends FragmentActivity implements View.OnClickListener, OnBackStackChangedListener{
 
 	static LinkedList<Fragment> fragments = new LinkedList<Fragment>();
-	
+
 	SimpleSideDrawer _slider;
 	View _header_menu;
 	View _header_effacer;
@@ -54,14 +56,15 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	View _header_plus;
 
 	View _slider_accueil;
-	View _slider_annonces;
+	View _slider_annonces_bateaux;
+	View _slider_annonces_moteurs;
+	View _slider_annonces_accessoires;
+
 	View _slider_vendre;
 	View _slider_on_demand;
 	View _slider_actualites;
 	View _slider_annuaire;
 	View _slider_mes_annonces;
-	View _slider_mes_alertes;
-	View _slider_informations;
 	View _slider_contact_pro;
 	View _slider_credits;
 
@@ -74,6 +77,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 	Annonce _annoncePourFavoris;
 
+	ContactPro _contactPro = null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,6 +86,26 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		ajouterVues();
 		charger();
 		ajouterListeners();
+		cacherVues();
+	}
+	private void cacherVues() {
+		Integer nbBateaux = Donnees.nbAnnonces.get(Constantes.NB_ANNONCES_BATEAUX);
+		Integer nbMoteurs = Donnees.nbAnnonces.get(Constantes.NB_ANNONCES_MOTEURS);
+		Integer nbDivers = Donnees.nbAnnonces.get(Constantes.NB_ANNONCES_DIVERS);
+
+		if(nbBateaux == 0){
+			_slider_annonces_bateaux.setVisibility(View.GONE);	
+		}
+
+		if(nbMoteurs == 0){
+			_slider_annonces_moteurs.setVisibility(View.GONE);	
+
+		}
+
+		if(nbDivers == 0){
+			_slider_annonces_accessoires.setVisibility(View.GONE);	
+
+		}
 	}
 	public void afficherProgress(boolean afficher){
 		if(afficher)
@@ -100,29 +125,30 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_header_plus = findViewById(R.id.header_plus);
 		_header_titre = (TextView)findViewById(R.id.header_titre);
 
-		_slider_annonces = findViewById(R.id.slider_annonces);
+		_slider_annonces_bateaux = findViewById(R.id.slider_annonces_bateaux);
+		_slider_annonces_accessoires = findViewById(R.id.slider_annonces_accessoires);
+		_slider_annonces_moteurs = findViewById(R.id.slider_annonces_moteurs);
+
 		_slider_vendre = findViewById(R.id.slider_vendre);
 		_slider_on_demand = findViewById(R.id.slider_on_demand);
 		_slider_actualites = findViewById(R.id.slider_actualites);
 		_slider_annuaire = findViewById(R.id.slider_annuaire);
 		_slider_mes_annonces = findViewById(R.id.slider_mes_annonces);
-		_slider_mes_alertes = findViewById(R.id.slider_mes_alertes);
-		_slider_informations = findViewById(R.id.slider_informations);
 		_slider_contact_pro = findViewById(R.id.slider_contact_pro);
 		_slider_credits = findViewById(R.id.slider_credits);
 		_slider_accueil = findViewById(R.id.slider_accueil);
 		_slider_logo = (ImageView)findViewById(R.id.slider_image_entete);
-		
+
 		_slider_elements = new View[]{
 				_slider_accueil,
-				_slider_annonces,
+				_slider_annonces_bateaux,
+				_slider_annonces_moteurs,
+				_slider_annonces_accessoires,				
 				_slider_vendre,
 				_slider_on_demand,
 				_slider_actualites,
 				_slider_annuaire,
 				_slider_mes_annonces,
-				_slider_mes_alertes,
-				_slider_informations,
 				_slider_contact_pro,
 				_slider_credits
 		};
@@ -134,7 +160,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
 		if (fragments.size() == 0)
 			afficherAccueil();
-		
+
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _slider_logo);
 
 	}
@@ -156,6 +182,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		_slider.toggleLeftDrawer();	
 	}
 
+	public static final int BATEAU = 0;
+	public static final int MOTEUR = 1;
+	public static final int ACCESSOIRE = 2;
+
 	@Override
 	public void onClick(View v) {
 
@@ -168,10 +198,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			fermerSlider();	
 			afficherAccueil();
 		}
-		else if(v.getId() ==  R.id.slider_annonces){
+		else if(v.getId() ==  R.id.slider_annonces_bateaux){
 			fermerSlider();	
-			afficherAnnonces();
+			afficherAnnonces(Constantes.BATEAUX);
 		}
+		else if(v.getId() ==  R.id.slider_annonces_bateaux){
+			fermerSlider();	
+			afficherAnnonces(Constantes.MOTEURS);
+		}
+		else if(v.getId() ==  R.id.slider_annonces_bateaux){
+			fermerSlider();	
+			afficherAnnonces(Constantes.ACCESSOIRES);
+		}
+		
 		else if(v.getId() == R.id.slider_vendre){
 			fermerSlider();	
 			afficherVendre();
@@ -192,14 +231,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			fermerSlider();	
 			afficherMesAnnonces();
 		}
-		else if(v.getId() == R.id.slider_mes_alertes){
-			fermerSlider();		
-			afficherMesAlertes();
-		}
-		else if(v.getId() == R.id.slider_informations){
-			fermerSlider();	
-			afficherInformations();
-		}
 		else if(v.getId() ==  R.id.slider_contact_pro){
 			fermerSlider();	
 			afficherContactPro();
@@ -210,7 +241,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		}
 
 	}
-	
+
 	public void setTitre(String titre){
 		_header_titre.setText(titre);
 	}
@@ -218,8 +249,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	public void afficherAccueil(){
 		ajouterFragment(new Accueil(),false);
 	}
-	public void afficherAnnonces(){
-		ajouterFragment(new Annonces(),false);
+	public void afficherAnnonces(String item){
+		ajouterFragment(new AnnoncesListe(item));
 	}
 	public void afficherVendre(){
 		ajouterFragment(new Vendre(),false);
@@ -372,8 +403,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		}
 		return super.onKeyDown(keycode,event);  
 	}
-	
-	
+
+
 	public void ajouterFragment(Fragment fragment) {
 		ajouterFragment(fragment, true);
 	}
@@ -390,19 +421,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 	}
 
 	public void ajouterFragment(Fragment fragment, boolean back) {
-		if (!back)
-			fragments.clear();
+		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-		fragments.addLast(fragment);
+		FragmentManager manager = getSupportFragmentManager();
+		Fragment currFrag = (Fragment)manager.findFragmentById(R.id.fragment_container);
 
-		FragmentTransaction transaction = getSupportFragmentManager()
-				.beginTransaction();
-		transaction.replace(R.id.fragment_container, fragments.getLast());
+		//transaction.hide(getSupportFragmentManager().findFragmentById(R.id.main_fragment));
+		transaction.add(R.id.fragment_container, fragment);
 
-		if (back)
+		if(back || currFrag instanceof Accueil)
 			transaction.addToBackStack(null);
 
 		transaction.commit();
+
 	}
 
 	public void onBackStackChanged() {
@@ -427,6 +458,18 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 			if (fragments.size() == 0)
 				this.finish();
 		}
+	}
+	public void ajouterContactPro() {
+		try{
+			if(getSupportFragmentManager().getFragments().contains(_contactPro) && _contactPro != null){
+				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+				transaction.remove(_contactPro);
+				transaction.add(R.id.fragment_container,_contactPro);
+				transaction.commit();
+			}else{
+				ajouterFragment((_contactPro = new ContactPro()));
+			}
+		}catch(Exception e){}		
 	}
 
 

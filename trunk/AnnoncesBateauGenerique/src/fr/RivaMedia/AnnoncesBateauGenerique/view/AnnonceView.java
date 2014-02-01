@@ -1,6 +1,7 @@
 package fr.RivaMedia.AnnoncesBateauGenerique.view;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -12,6 +13,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnonceDetail;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.view.core.YouBoatView;
 
 public class AnnonceView extends YouBoatView implements View.OnTouchListener{
@@ -135,14 +137,43 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	private void afficherNormal(){
-		if(_position%2==0){
+		
+		_prix.setTextColor(Donnees.parametres.getBackgroundColorDeux());
+
+		
+		if(_swipable){
 			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
-		}else{
-			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
+			changerCouleursPaire();
+		}
+		else
+		{
+			if(_position%2==0){
+				changerCouleursPaire();
+				_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
+			}else{
+				changerCouleurs();
+				_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
+			}
 		}
 	}
+	
+	
+	public void changerCouleursPaire(){		
+		_titre.setTextColor(Color.BLACK);
+		_sousTitre.setTextColor(Color.BLACK);
+		_taille.setTextColor(Color.BLACK);
+		_annee.setTextColor(Color.BLACK);
+	}
+	
+	public void changerCouleurs(){		
+		_titre.setTextColor(Donnees.parametres.getFontColorUn());
+		_sousTitre.setTextColor(Donnees.parametres.getFontColorUn());
+		_taille.setTextColor(Donnees.parametres.getFontColorUn());
+		_annee.setTextColor(Donnees.parametres.getFontColorUn());
+	}
+	
 	private void afficherTouch(){
-		_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_touch));
+		_devant.setBackgroundColor(Donnees.parametres.getBackgroundColorDeux());
 	}
 
 	@Override

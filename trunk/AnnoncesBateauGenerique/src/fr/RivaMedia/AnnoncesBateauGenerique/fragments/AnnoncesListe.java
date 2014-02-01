@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.adapter.AnnonceListAdapter;
@@ -24,7 +25,9 @@ import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnonceDateComparator;
 import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnoncePrixComparator;
 import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnoncePrixParLongueurComparator;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentListe;
+import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAnnonce;
 
 @SuppressLint("ValidFragment")
@@ -67,6 +70,8 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		}
 		else
 			super.afficherTriLongueur(false);
+
+		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 
 		return _view;
 	}
