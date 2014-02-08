@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.activity.MainActivity;
+import fr.RivaMedia.AnnoncesBateauGenerique.activity.core.BateauFragmentActivity;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Marque;
@@ -104,8 +105,8 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 		Modele modele = _marque.getModeles().get(position);
 		_listener.itemSelected(this,_reponseId,_marque.getId()+";"+modele.getId(), _marque.getLibelle()+" / "+modele.getLibelle());
-		getFragmentManager().popBackStack();
-		getFragmentManager().popBackStack();
+		((BateauFragmentActivity)getActivity()).retirerFragment();
+		((BateauFragmentActivity)getActivity()).retirerFragment();
 	}
 
 	class ChargerModelesTask extends AsyncTask<Void, Void, Void> {

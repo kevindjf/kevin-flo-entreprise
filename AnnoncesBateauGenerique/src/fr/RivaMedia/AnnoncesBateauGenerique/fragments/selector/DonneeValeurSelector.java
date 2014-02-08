@@ -18,6 +18,7 @@ import com.woozzu.android.adapter.IndexableListViewAdapter;
 import com.woozzu.android.widget.IndexableListView;
 
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
+import fr.RivaMedia.AnnoncesBateauGenerique.activity.core.BateauFragmentActivity;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.ItemSelectedListener;
 
@@ -108,7 +109,7 @@ public class DonneeValeurSelector extends FragmentNormal implements OnItemClickL
 		String item = _types.get(position);
 		String valeur = _types_valeurs.get(item);
 		_listener.itemSelected(DonneeValeurSelector.this,_idRetour,valeur,item);
-		getFragmentManager().popBackStack();
+		((BateauFragmentActivity)getActivity()).retirerFragment();
 	}
 
 

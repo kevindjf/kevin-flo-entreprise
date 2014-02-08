@@ -10,8 +10,8 @@ import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.view.View;
 
 public abstract class BateauFragmentActivity extends FragmentActivity
-		implements View.OnClickListener, OnBackStackChangedListener
-		 {
+implements View.OnClickListener, OnBackStackChangedListener
+{
 
 	static LinkedList<Fragment> fragments = new LinkedList<Fragment>();
 
@@ -56,36 +56,18 @@ public abstract class BateauFragmentActivity extends FragmentActivity
 						FragmentTransaction transaction = getSupportFragmentManager()
 								.beginTransaction();
 						transaction.remove(fragment);
-						transaction.commitAllowingStateLoss();
+						transaction.commit();
 
 						fragments.getLast().onResume();
 
-						getSupportFragmentManager()
-								.executePendingTransactions();
+						getSupportFragmentManager().executePendingTransactions();
+
 
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 
-				if (!fragments.isEmpty()) {
-					try {
-						if (!fragments.getLast().isAdded()) {
-							FragmentTransaction transaction = getSupportFragmentManager()
-									.beginTransaction();
-
-							transaction.replace(R.id.fragment_container,
-									fragments.getLast());
-
-							transaction.commitAllowingStateLoss();
-
-							getSupportFragmentManager()
-									.executePendingTransactions();
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
 			}
 		});
 	}
@@ -100,52 +82,17 @@ public abstract class BateauFragmentActivity extends FragmentActivity
 			public void run() {
 				if (!back)
 					fragments.clear();
-
+				
 				fragments.addLast(fragment);
+				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-				System.out.println(fragments);
+				FragmentManager manager = getSupportFragmentManager();
+				Fragment currFrag = (Fragment)manager.findFragmentById(R.id.fragment_container);
 
-				try {
-					if (!fragments.getLast().isAdded()) {
-						FragmentTransaction transaction = getSupportFragmentManager()
-								.beginTransaction();
+				//transaction.hide(getSupportFragmentManager().findFragmentById(R.id.main_fragment));
+				transaction.add(R.id.fragment_container, fragment);
 
-						transaction.replace(R.id.fragment_container,
-								fragments.getLast());
-
-						if (back)
-							transaction.addToBackStack(null);
-
-						transaction.commitAllowingStateLoss();
-
-						getSupportFragmentManager()
-								.executePendingTransactions();
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				try {
-					if (!fragments.getLast().isAdded()) {
-						FragmentTransaction transaction2 = getSupportFragmentManager()
-								.beginTransaction();
-
-						transaction2.replace(R.id.fragment_container,
-								fragments.getLast());
-
-						if (back)
-							transaction2.addToBackStack(null);
-
-						transaction2.commitAllowingStateLoss();
-
-						getSupportFragmentManager()
-								.executePendingTransactions();
-					}
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				transaction.commit();
 			}
 		});
 
@@ -178,15 +125,11 @@ public abstract class BateauFragmentActivity extends FragmentActivity
 		if (manager != null) {
 			retirerFragment();
 
+			System.out.println(fragments);
 			if (fragments.size() == 0) {
+				System.out.println("quitter : "+fragments);
 				quitter();
 			}
-		}
-
-		try {
-			super.onBackPressed();
-		} catch (Exception e) {
-			// e.printStackTrace();
 		}
 	}
 
@@ -203,7 +146,7 @@ public abstract class BateauFragmentActivity extends FragmentActivity
 		try {
 			super.onPause();
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 
@@ -212,7 +155,7 @@ public abstract class BateauFragmentActivity extends FragmentActivity
 		try {
 			super.onDestroy();
 		} catch (Exception e) {
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 
 		if (destroy)

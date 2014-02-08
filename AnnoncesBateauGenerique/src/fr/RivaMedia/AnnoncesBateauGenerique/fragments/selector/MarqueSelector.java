@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
+import fr.RivaMedia.AnnoncesBateauGenerique.activity.core.BateauFragmentActivity;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.ItemSelectedListener;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Marque;
@@ -111,7 +112,7 @@ public class MarqueSelector extends FragmentNormal implements OnItemClickListene
 			String item = "-1";
 			String valeur = indifferent;
 			_listener.itemSelected(this,_reponseId,item,valeur);
-			getFragmentManager().popBackStack();
+			((BateauFragmentActivity)getActivity()).retirerFragment();
 		}else{
 			ajouterFragment(new ModeleSelector(_listener, _reponseId, _type, _marques.get(p),WA));
 		}
