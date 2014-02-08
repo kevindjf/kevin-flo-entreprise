@@ -150,7 +150,11 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 				e.printStackTrace();
 			}
 
+			try{
 			((ViewPager) container).addView(_layout,position);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			return _layout;
 
 		}

@@ -1,11 +1,14 @@
 package fr.RivaMedia.AnnoncesBateauGenerique.fragments.core;
 
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.activity.MainActivity;
@@ -18,7 +21,32 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 	protected AsyncTask<Void, Void, Void> task;
 	protected boolean visible = false;
+	
 	protected boolean afficherProgress = false;
+	
+	boolean fragmentVisible = false;
+	LayoutInflater layoutInflater;
+	View fragmentView = null;
+
+	public boolean onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState, int layoutId) {
+
+		if (getFragmentView() != null) {
+			((ViewGroup) getFragmentView().getParent())
+					.removeView(getFragmentView());
+			return false;
+		} else {
+			setLayoutInflater(inflater);
+			setFragmentView(inflater.inflate(layoutId, container, false));
+			return true;
+		}
+	}
+	
+
+	public View findViewById(int id) {
+		return getFragmentView().findViewById(id);
+	}
+
 	
 	public void afficherProgress(boolean afficher){
 		this.afficherProgress = afficher;
@@ -127,6 +155,14 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		v.setBackgroundColor(Donnees.parametres.getBackgroundColorDeux());
 	}
 
+	public View getFragmentView() {
+		return fragmentView;
+	}
+
+	public void setFragmentView(View fragmentView) {
+		this.fragmentView = fragmentView;
+	}
+
 	public static void afficherTexteCouleurTexte(View v){
 			try{
 				((TextView)v).setTextColor(Donnees.parametres.getFontColorUn());
@@ -165,6 +201,26 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 			afficherTexteCouleurTitre(v);
 		}
 	}
+
+	public boolean isFragmentVisible() {
+		return fragmentVisible;
+	}
+
+
+	public void setFragmentVisible(boolean fragmentVisible) {
+		this.fragmentVisible = fragmentVisible;
+	}
+
+
+	public LayoutInflater getLayoutInflater() {
+		return layoutInflater;
+	}
+
+
+	public void setLayoutInflater(LayoutInflater layoutInflater) {
+		this.layoutInflater = layoutInflater;
+	}
+
 
 	public static void selector(View v){
 		selector(v,true);

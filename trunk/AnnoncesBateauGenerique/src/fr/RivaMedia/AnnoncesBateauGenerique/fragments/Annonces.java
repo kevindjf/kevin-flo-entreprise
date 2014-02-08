@@ -126,6 +126,8 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 	public void onResume(){
 		super.onResume();
 		setTitre(getString(R.string.annonces));
+		
+		
 	}
 	
 	@Override

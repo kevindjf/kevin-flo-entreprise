@@ -257,8 +257,12 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				((TextView)prixEntete.findViewById(R.id.text)).setText(p + " € " + _annonce.getTaxePrix());
 
 				if(_annonce.getApartirDe() != null && _annonce.getApartirDe().trim().equals("1")){
+					try{
 					apartirDe.setVisibility(View.VISIBLE);
 					apartirDeEntete.setVisibility(View.VISIBLE);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
 				}
 			}
 			else

@@ -33,7 +33,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAnnonce;
 @SuppressLint("ValidFragment")
 public class AnnoncesListe extends FragmentListe implements View.OnClickListener{
 
-	View _view;
+
 	LoadMoreListView _liste = null;
 	AnnonceListAdapter _adapter = null;
 	List<Annonce> _annonces = new ArrayList<Annonce>();
@@ -59,31 +59,34 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		_view = inflater.inflate(R.layout.liste_annonces,container, false);
-		afficherProgress(afficherProgress);
+		if(super.onCreateView(inflater, container, savedInstanceState, R.layout.liste_annonces)){
+			afficherProgress(afficherProgress);
 
-		task = new ChargerAnnoncesTask();
-		task.execute();
-		
-		if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU)){
-			super.afficherTriLongueur(true);
+			task = new ChargerAnnoncesTask();
+			task.execute();
+
+			if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU)){
+				super.afficherTriLongueur(true);
+			}
+			else
+				super.afficherTriLongueur(false);
+
+			ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)getFragmentView().findViewById(R.id.fond));
+
 		}
-		else
-			super.afficherTriLongueur(false);
 
-		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 
-		return _view;
+		return getFragmentView();
 	}
 
 	public void charger(){
 		if(_liste == null)
-			_liste = (LoadMoreListView)_view.findViewById(android.R.id.list);		
+			_liste = (LoadMoreListView)findViewById(android.R.id.list);	
 	}
 	public void remplir(){
 
 		if(_annonces == null || _annonces.size()==0)
-			_view.findViewById(R.id.vide).setVisibility(View.VISIBLE);
+			findViewById(R.id.vide).setVisibility(View.VISIBLE);
 		else{
 			if(_adapter == null){
 				_adapter = new AnnonceListAdapter(getActivity(), _annonces,_type);
@@ -113,7 +116,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		super.onClick(v);		
 		if(v.getId() == R.id.header_plus)
 			ajouterFragment(new AnnoncesFormulaire(_type), true);
-		
+
 	}
 
 
@@ -191,7 +194,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 			_adapter.notifyDataSetChanged();
 		}
 	}
-	
+
 	/* --------------------------------------------------------------------------- */
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
@@ -219,13 +222,15 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		protected void onPostExecute(){
 		}
 	}
-	
+
 	@Override
-	public void onResume(View v){
+	public void onResume(){
 		super.onResume();
 		Log.e("AnnonceListe", "OnResume");
 		//afficherProgress(afficherProgress);
-		setTitre(getString(R.string.resultats));
+		setTitre(getString(R.string.annonces));
 		super.afficherPlus().setOnClickListener(this);
+
+		chargerAnnonces();
 	}
 }

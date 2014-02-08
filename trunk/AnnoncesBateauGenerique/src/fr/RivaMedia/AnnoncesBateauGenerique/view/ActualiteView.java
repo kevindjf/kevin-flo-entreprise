@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
+import fr.RivaMedia.AnnoncesBateauGenerique.activity.core.BateauFragmentActivity;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.ActualiteDetail;
+import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnonceDetail;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Actualite;
 import fr.RivaMedia.AnnoncesBateauGenerique.view.core.YouBoatView;
@@ -99,10 +101,7 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 			Actualite news = (Actualite)_element;
 			afficherNormal();
 
-			FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.fragment_container, new ActualiteDetail(news.getId()));
-			transaction.addToBackStack(null);
-			transaction.commit();
+			((BateauFragmentActivity)getContext()).ajouterFragment(new ActualiteDetail(news.getId()));
 			
 		}
 	}
