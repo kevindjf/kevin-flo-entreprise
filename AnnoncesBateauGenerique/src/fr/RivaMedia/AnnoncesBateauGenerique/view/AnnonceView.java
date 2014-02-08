@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
+import fr.RivaMedia.AnnoncesBateauGenerique.activity.core.BateauFragmentActivity;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnonceDetail;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
@@ -198,10 +199,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			System.err.println("ID :"+id);
 			System.err.println("TYPE :"+type);
 
-			FragmentTransaction transaction = ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction();
-			transaction.add(R.id.fragment_container, new AnnonceDetail(id,type));
-			transaction.addToBackStack(null);
-			transaction.commit();
+			((BateauFragmentActivity)getContext()).ajouterFragment(new AnnonceDetail(id,type));
 		}
 	}
 
