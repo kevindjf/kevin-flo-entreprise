@@ -618,6 +618,12 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		});
 
 	}
+	
+	@Override
+	public void onResume(){
+		super.onResume();
+		setTitre(getString(R.string.annonce_formulaire));
+	}
 
 	/* --------------------------------------------------------------------------- */
 

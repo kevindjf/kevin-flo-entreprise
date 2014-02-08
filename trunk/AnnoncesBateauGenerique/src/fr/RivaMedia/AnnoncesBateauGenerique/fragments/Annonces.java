@@ -123,6 +123,12 @@ public class Annonces extends FragmentNormal implements View.OnClickListener, On
 	private int p=0;
 
 	@Override
+	public void onResume(){
+		super.onResume();
+		setTitre(getString(R.string.annonces));
+	}
+	
+	@Override
 	public boolean onTouch(View arg0, MotionEvent e) {
 		switch(e.getAction()){
 		case MotionEvent.ACTION_CANCEL:

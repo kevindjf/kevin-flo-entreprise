@@ -118,6 +118,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		super.onResume();
 		afficherProgress(afficherProgress);
 		afficherLogoFavoris();
+		setTitre(getString(R.string.annonce_detail));
 	}
 
 	public void charger(){

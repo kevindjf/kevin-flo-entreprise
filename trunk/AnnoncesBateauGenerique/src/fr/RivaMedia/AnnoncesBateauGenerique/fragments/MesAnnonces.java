@@ -69,6 +69,7 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
+		setTitre(getString(R.string.favoris));
 		getActivity().runOnUiThread(new Runnable(){
 			public void run(){
 				synchronized(_annonces){

@@ -82,6 +82,7 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
+		setTitre(getString(R.string.EMAIL));
 	}
 
 	@Override
