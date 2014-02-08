@@ -509,6 +509,12 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	}
 
 	@Override
+	public void onResume(){
+		super.onResume();
+		setTitre(getString(R.string.on_demand));
+	}
+	
+	@Override
 	public void onMinMaxSelected(String titre, String min, String max) {
 		if(titre.equals(getActivity().getResources().getString(R.string.taille))){
 			demand_taille_min = min;
