@@ -11,8 +11,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -25,9 +23,9 @@ import com.navdrawer.SimpleSideDrawer;
 
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
+import fr.RivaMedia.AnnoncesBateauGenerique.activity.core.BateauFragmentActivity;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Accueil;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Actualites;
-import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Annonces;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnoncesListe;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Annuaire;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.ContactPro;
@@ -44,7 +42,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Vendeur;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener, OnBackStackChangedListener{
+public class MainActivity extends BateauFragmentActivity implements View.OnClickListener, OnBackStackChangedListener{
 
 	static LinkedList<Fragment> fragments = new LinkedList<Fragment>();
 
@@ -404,61 +402,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 		return super.onKeyDown(keycode,event);  
 	}
 
-
-	public void ajouterFragment(Fragment fragment) {
-		ajouterFragment(fragment, true);
-	}
-
-	public void retirerFragment() {
-		try {
-			fragments.removeLast().onPause();
-			FragmentTransaction transaction = getSupportFragmentManager()
-					.beginTransaction();
-			transaction.replace(R.id.fragment_container, fragments.getLast());
-			transaction.commit();
-		} catch (Exception e) {
-		}
-	}
-
-	public void ajouterFragment(Fragment fragment, boolean back) {
-		FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-		FragmentManager manager = getSupportFragmentManager();
-		Fragment currFrag = (Fragment)manager.findFragmentById(R.id.fragment_container);
-
-		//transaction.hide(getSupportFragmentManager().findFragmentById(R.id.main_fragment));
-		transaction.add(R.id.fragment_container, fragment);
-
-		if(back || currFrag instanceof Accueil)
-			transaction.addToBackStack(null);
-
-		transaction.commit();
-
-	}
-
-	public void onBackStackChanged() {
-		FragmentManager manager = getSupportFragmentManager();
-
-		if (manager != null) {
-			Fragment currFrag = (Fragment) manager
-					.findFragmentById(R.id.fragment_container);
-
-			currFrag.onResume();
-		}
-	}
-
-	@Override
-	public void onBackPressed() {
-
-		FragmentManager manager = getSupportFragmentManager();
-
-		if (manager != null) {
-			retirerFragment();
-
-			if (fragments.size() == 0)
-				this.finish();
-		}
-	}
 	public void ajouterContactPro() {
 		try{
 			if(getSupportFragmentManager().getFragments().contains(_contactPro) && _contactPro != null){
