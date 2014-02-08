@@ -87,8 +87,6 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 
 
-	View _view;
-
 	private String typeVente;
 
 	private View _boutonBateaux;
@@ -173,55 +171,59 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		_view = inflater.inflate(R.layout.vendre,container, false);
-		this._inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		System.out.println("onCreateView");
+		
+		if(super.onCreateView(inflater, container, savedInstanceState, R.layout.vendre)){
+			this._inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		charger();
-		ajouterListeners();
-		remplir();
+			charger();
+			ajouterListeners();
+			remplir();
+			
+		}
 
-		//vendreBateaux();
+			//vendreBateaux();
 
-
-		return _view;
+		return getFragmentView();
 	}
 
 	public void charger(){
-		_boutonBateaux = _view.findViewById(R.id.vendre_bateaux);
-		_boutonMoteurs = _view.findViewById(R.id.vendre_moteurs);
-		_boutonDivers  = _view.findViewById(R.id.vendre_divers);
-		_ajouterPhoto = _view.findViewById(R.id.vendre_ajouter_photo);
-		_etapeSuivante = _view.findViewById(R.id.vendre_etape_suivante);
+		_boutonBateaux = findViewById(R.id.vendre_bateaux);
+		_boutonMoteurs = findViewById(R.id.vendre_moteurs);
+		_boutonDivers  = findViewById(R.id.vendre_divers);
+		_ajouterPhoto = findViewById(R.id.vendre_ajouter_photo);
+		_etapeSuivante = findViewById(R.id.vendre_etape_suivante);
 
-		_pub = _view.findViewById(R.id.vendre_pub);
-		_scroll = _view.findViewById(R.id.vendre_scroll);
+		_pub = findViewById(R.id.vendre_pub);
+		_scroll = findViewById(R.id.vendre_scroll);
 
-		_type = _view.findViewById(R.id.vendre_type);
-		_categorie = _view.findViewById(R.id.vendre_categorie);
-		_chantierModele = _view.findViewById(R.id.vendre_chantier_modele);
-		_annee = _view.findViewById(R.id.vendre_annee);
-		_longueur = _view.findViewById(R.id.vendre_longueur);
-		_longueurUnite = _view.findViewById(R.id.vendre_unite_longueur);
-		_prix = _view.findViewById(R.id.vendre_prix);
-		_nombreCabines = _view.findViewById(R.id.nombre_cabine);
-		_nombresCouchettes = _view.findViewById(R.id.nombre_couchage);
-		_nombreSalleDeBain = _view.findViewById(R.id.nombre_salle_de_bain);
-		_motorisation = _view.findViewById(R.id.vendre_motorisation);
-		_nombreMoteur = _view.findViewById(R.id.vendre_nombre_moteur);
-		_puissanceCH = _view.findViewById(R.id.vendre_puissance_ch);
-		_marqueMoteur = _view.findViewById(R.id.vendre_marque_moteur);
-		_anneeMoteur = _view.findViewById(R.id.vendre_annee_moteur);
-		_description = _view.findViewById(R.id.vendre_description);
+		_type = findViewById(R.id.vendre_type);
+		_categorie = findViewById(R.id.vendre_categorie);
+		_chantierModele = findViewById(R.id.vendre_chantier_modele);
+		_annee = findViewById(R.id.vendre_annee);
+		_longueur = findViewById(R.id.vendre_longueur);
+		_longueurUnite = findViewById(R.id.vendre_unite_longueur);
+		_prix = findViewById(R.id.vendre_prix);
+		_nombreCabines = findViewById(R.id.nombre_cabine);
+		_nombresCouchettes = findViewById(R.id.nombre_couchage);
+		_nombreSalleDeBain = findViewById(R.id.nombre_salle_de_bain);
+		_motorisation = findViewById(R.id.vendre_motorisation);
+		_nombreMoteur = findViewById(R.id.vendre_nombre_moteur);
+		_puissanceCH = findViewById(R.id.vendre_puissance_ch);
+		_marqueMoteur = findViewById(R.id.vendre_marque_moteur);
+		_anneeMoteur = findViewById(R.id.vendre_annee_moteur);
+		_description = findViewById(R.id.vendre_description);
 
 		//Moteur
-		_marque = _view.findViewById(R.id.vendre_marque);
-		_modele = _view.findViewById(R.id.vendre_modele);
-		_energie = _view.findViewById(R.id.vendre_energie);
-		_puissance = _view.findViewById(R.id.vendre_puissance);
-		_nombreHeure = _view.findViewById(R.id.nombre_heure);
+		_marque = findViewById(R.id.vendre_marque);
+		_modele = findViewById(R.id.vendre_modele);
+		_energie = findViewById(R.id.vendre_energie);
+		_puissance = findViewById(R.id.vendre_puissance);
+		_nombreHeure = findViewById(R.id.nombre_heure);
 
 		//Divers
-		_intitule = _view.findViewById(R.id.vendre_intitule);
+		_intitule = findViewById(R.id.vendre_intitule);
 
 		_views = new View[]{
 				_type,
@@ -245,7 +247,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 				_energie,
 				_puissance,
 				_intitule,
-				
+
 				_description
 		};
 
@@ -322,9 +324,9 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		};
 
 
-		_layoutPhotos = _view.findViewById(R.id.vendre_photos);
-		_page = (ViewPager) _view.findViewById(R.id.vendre_photos_pager);
-		_indicator = (CirclePageIndicator)_view.findViewById(R.id.vendre_photos_pager_indicator);
+		_layoutPhotos = findViewById(R.id.vendre_photos);
+		_page = (ViewPager) findViewById(R.id.vendre_photos_pager);
+		_indicator = (CirclePageIndicator)findViewById(R.id.vendre_photos_pager_indicator);
 
 		_pagesAdapter = new ImagePagesAdapter();
 		_page.setAdapter(_pagesAdapter);
@@ -595,7 +597,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 		_pagesAdapter.notifyDataSetChanged();
 		System.gc();
 		_layoutPhotos.setVisibility(View.GONE);
-		
+
 		_boutonBateaux.setSelected(false);
 		_boutonDivers.setSelected(false);
 		_boutonMoteurs.setSelected(false);
@@ -963,6 +965,7 @@ public class Vendre extends FragmentFormulaire implements View.OnClickListener, 
 	@Override
 	public void onResume() {
 		((MainActivity)getActivity()).afficherEffacer(this);
+		setTitre(getActivity().getResources().getString(R.string.vendre));
 		super.onResume();
 	}
 

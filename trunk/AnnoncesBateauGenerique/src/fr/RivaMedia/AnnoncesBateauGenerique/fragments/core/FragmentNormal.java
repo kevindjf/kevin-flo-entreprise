@@ -81,7 +81,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 
 		afficherProgress(afficherProgress);
 		super.onResume();
-		getView().setOnClickListener(this);
+		if(getFragmentView() != null)
+			getFragmentView().setOnClickListener(this);
+		if(getView() != null)
+			getView().setOnClickListener(this);
 	}
 	
 	

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;	
+import fr.RivaMedia.AnnoncesBateauGenerique.activity.core.BateauFragmentActivity;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentNormal;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.ItemSelectedListener;
 
@@ -79,7 +80,7 @@ public class ValeurSelector extends FragmentNormal implements OnItemClickListene
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 		String valeur = _valeurs.get(position);
 		_listener.itemSelected(ValeurSelector.this,_idRetour,valeur,valeur);
-		getFragmentManager().popBackStack();
+		((BateauFragmentActivity)getActivity()).retirerFragment();
 	}
 
 }
