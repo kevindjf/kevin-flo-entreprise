@@ -148,13 +148,14 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		}
 		else
 		{
-			if(_position%2==0){
+			//if(_position%2==0){
 				changerCouleursPaire();
 				_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
-			}else{
+			/*}else{
+			
 				changerCouleurs();
 				_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
-			}
+			}*/
 		}
 	}
 	
