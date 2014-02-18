@@ -156,6 +156,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		contact_rond = _view.findViewById(R.id.annonce_detail_rond);
 
 		_views = new View[]{
+				
 				type,
 				longeur,
 				largeur,
@@ -185,7 +186,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				sousTitre.setVisibility(View.GONE);
 
 			if(_annonce.getType() != null && _annonce.getCategorie() != null)
-				((TextView)type).setText(_annonce.getCategorie());
+				((TextView)type.findViewById(R.id.text)).setText(_annonce.getCategorie());
 			else
 				type.setVisibility(View.GONE);
 
@@ -388,7 +389,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 				_view.findViewById(R.id.annonce_detail_separator_2));
 
-		afficherTexteCouleurTitre(
+		afficherTexteCouleurTexte(
 				_view.findViewById(R.id.annonce_detail_titre),
 				_view.findViewById(R.id.annonce_detail_sous_titre),
 				_view.findViewById(R.id.annonce_detail_separator_1),
