@@ -46,6 +46,8 @@ public class SplashScreenActivity extends Activity{
 		
 		findViewById(R.id.splash_progress).setVisibility(View.VISIBLE);
 		findViewById(R.id.splash_progress).setEnabled(true);
+		
+		chargerSplash();
 
 		if(isOnline()){
 			gcmInitializer = new GcmInitializer(this);
@@ -126,6 +128,20 @@ public class SplashScreenActivity extends Activity{
 
 		});
 	}
+	
+	void chargerSplash(){
+		runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try{
+				ImageLoaderCache.charger(Donnees.parametres.getImageStart728x1280(), (ImageView)findViewById(R.id.splash));
+				}catch(Exception e){
+					
+				}
+			}
+		});
+	}
 
 	/* --------------------------------------------------------------------------- */
 
@@ -143,6 +159,8 @@ public class SplashScreenActivity extends Activity{
 			*/
 			
 			Donnees.parametres = NetChargement.chargerParametres();
+			
+			chargerSplash();
 
 			Donnees.autoPromo = NetChargement.chargerAutoPromo();
 			Donnees.magazine = NetChargement.chargerMagazineEnCours();

@@ -164,6 +164,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_sousTitre.setTextColor(Color.BLACK);
 		_taille.setTextColor(Color.BLACK);
 		_annee.setTextColor(Color.BLACK);
+		((TextView)_apartirDe).setTextColor(Color.BLACK);
 	}
 	
 	public void changerCouleurs(){		
@@ -171,6 +172,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_sousTitre.setTextColor(Donnees.parametres.getFontColorUn());
 		_taille.setTextColor(Donnees.parametres.getFontColorUn());
 		_annee.setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)_apartirDe).setTextColor(Donnees.parametres.getFontColorUn());
 	}
 	
 	private void afficherTouch(){
