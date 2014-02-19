@@ -114,6 +114,9 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	public void ajouterFragment(Fragment fragment, boolean back){
 		((MainActivity)getActivity()).ajouterFragment(fragment,back);
 	}
+	public void retirerFragment(){
+		((MainActivity)getActivity()).retirerFragment();
+	}
 	
 	public void envoyerEmailVendeur(String email, Vendeur vendeur){
 		((MainActivity)getActivity()).envoyerEmailVendeur(email, vendeur);
@@ -154,6 +157,11 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 		Log.e("Je color","normalement");
 		v.setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 	}
+	public static void afficherCouleurTouch(View...vs){
+		for(View v : vs)
+			afficherCouleurTouch(v);
+	}
+	
 	public static void afficherCouleurTouch(View v){
 		v.setBackgroundColor(Donnees.parametres.getBackgroundColorDeux());
 	}

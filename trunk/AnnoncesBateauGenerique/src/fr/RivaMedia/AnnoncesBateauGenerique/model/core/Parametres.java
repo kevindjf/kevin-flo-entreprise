@@ -3,6 +3,8 @@ package fr.RivaMedia.AnnoncesBateauGenerique.model.core;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Color;
+
 public class Parametres {
 
 	private String texteIntro;
@@ -54,7 +56,7 @@ public class Parametres {
 		return fontColorDeux;
 	}
 	public void setFontColorDeux(int fontColorDeux) {
-		this.fontColorDeux = fontColorDeux;
+		//this.fontColorDeux = fontColorDeux;
 	}
 	public String getMajInterval() {
 		return majInterval;

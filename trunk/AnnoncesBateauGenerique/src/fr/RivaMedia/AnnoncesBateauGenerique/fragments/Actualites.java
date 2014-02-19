@@ -66,7 +66,7 @@ public class Actualites extends FragmentNormal{
 	}
 
 	public void chargerCouleurs(){
-		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		//ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 	}
 
 	public void charger(){
