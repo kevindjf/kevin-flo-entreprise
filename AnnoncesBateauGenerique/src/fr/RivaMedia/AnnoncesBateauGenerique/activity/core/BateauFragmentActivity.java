@@ -72,7 +72,11 @@ implements View.OnClickListener, OnBackStackChangedListener
 	}
 
 	public void retirerFragment() {
+		try{
 		retirerFragment(1);
+		}catch(Exception e){
+			
+		}
 	}
 
 	public void ajouterFragment(final Fragment fragment, final boolean back) {
