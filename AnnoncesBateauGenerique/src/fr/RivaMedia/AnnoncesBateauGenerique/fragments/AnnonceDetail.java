@@ -376,31 +376,38 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	
 	@SuppressWarnings("deprecation")
 	protected void changerCouleur(){
-		afficherCouleurTouch(email);
-		afficherCouleurTouch(telephonePrincipal);
+		afficherCouleurNormal(email);
+		afficherCouleurNormal(telephonePrincipal);
+		
+		selector(email,true);
+		selector(telephonePrincipal,true);
+		
+		((TextView)telephonePrincipal.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)email.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
 
-		selector(email,false);
-		selector(telephonePrincipal,false);
 
-		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
-
-		afficherCouleurNormal(_view.findViewById(R.id.annonce_detail_separator_1),
-				_view.findViewById(R.id.annonce_detail_layout_haut),
-
-				_view.findViewById(R.id.annonce_detail_separator_2));
-
+		//ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		_view.findViewById(R.id.fond).setVisibility(View.GONE);
+		_view.setBackgroundColor(Color.WHITE);
+		
+		_view.findViewById(R.id.annonce_detail_separator_1).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
+		_view.findViewById(R.id.annonce_detail_layout_haut).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
+		_view.findViewById(R.id.annonce_detail_image_pager).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
+		_view.findViewById(R.id.annonce_detail_separator_2).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
+		
 		afficherTexteCouleurTexte(
 				_view.findViewById(R.id.annonce_detail_titre),
 				_view.findViewById(R.id.annonce_detail_sous_titre),
 				_view.findViewById(R.id.annonce_detail_separator_1),
 				_view.findViewById(R.id.annonce_detail_separator_2)
 				);
+				
 
-		afficherTexteCouleurTexte(_views);
-		afficherTexteCouleurTexte(type);
+		//afficherTexteCouleurTexte(_views);
+		//afficherTexteCouleurTexte(type);
 
 		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
-		drawable.setColor(Donnees.parametres.getBackgroundColorUn());
+		drawable.setColor(Donnees.parametres.getBackgroundColorDeux());
 		drawable.setStroke(4 , Color.WHITE);
 		drawable.setCornerRadius(270);
 		contact_rond.setBackgroundDrawable(drawable);

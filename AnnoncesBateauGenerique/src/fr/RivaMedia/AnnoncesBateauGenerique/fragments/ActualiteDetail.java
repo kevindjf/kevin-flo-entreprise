@@ -44,7 +44,7 @@ public class ActualiteDetail extends FragmentNormal{
 
 		_view = inflater.inflate(R.layout.actualite_details, container, false);
 		_view.setVisibility(View.GONE);
-		
+
 		ImageLoaderCache.load(getActivity());
 
 		task = new ChargerNewsTask();
@@ -52,7 +52,7 @@ public class ActualiteDetail extends FragmentNormal{
 
 		return _view;
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -88,10 +88,9 @@ public class ActualiteDetail extends FragmentNormal{
 			if(_news.getPubDate() != null)
 				_date.setText(DateFrancais.convertirDate(_news.getPubDate()));
 			//	_date.setText(changerDate(_news.getPubDate()));
-
-			Log.e("Date",_news.getPubDate());
-			//TODO remplacer par dateFormatee
-
+			else
+				_date.setVisibility(View.GONE);
+			
 			if(_news.getDescription() != null)
 				_texte.setText(_news.getDescription());
 		}
@@ -104,20 +103,23 @@ public class ActualiteDetail extends FragmentNormal{
 
 	class ChargerNewsTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			//tests
-			_news = NetActualite.getActualite(_id);
+			try{
+				_news = NetActualite.getActualite(_id);
 
-			getActivity().runOnUiThread(new Runnable(){
+				getActivity().runOnUiThread(new Runnable(){
 
-				@Override
-				public void run() {
-					chargerNews();
-					afficherProgress = false;
-					afficherProgress(afficherProgress);
-					_view.setVisibility(View.VISIBLE);
-				}
+					@Override
+					public void run() {
+						chargerNews();
+						afficherProgress = false;
+						afficherProgress(afficherProgress);
+						_view.setVisibility(View.VISIBLE);
+					}
 
-			});
+				});
+			}catch(Exception e){
+				retirerFragment();
+			}
 
 			return null;
 		}

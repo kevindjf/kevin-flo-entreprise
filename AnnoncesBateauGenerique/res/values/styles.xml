@@ -32,7 +32,7 @@
     </style>
 
     <style name="formulaire_cellule_titre">
-         <item name="android:id">@+id/titre</item>
+         <item name="android:id">@id/titre</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/couleur_texte_noir</item>
@@ -60,7 +60,7 @@
     </style>
 
     <style name="annonce_cellule_texte">
-        <item name="android:id">@+id/text</item>
+        <item name="android:id">@id/text</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/couleur_texte_fonce</item>
