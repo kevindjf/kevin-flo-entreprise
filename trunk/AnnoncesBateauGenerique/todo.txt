@@ -1,10 +1,5 @@
 Général :
 
--> police d’ecriture Roboto
--> rajouter la page de location ?
--> Tracker l'écran partout
--> Réparer le onResume
--> Réparer le onBackPressed
 -> Logo favoris bleu ?
 
 
@@ -15,27 +10,24 @@ Accueil :
 
 AnnonceListe :
 
--> Mettre le plus pour le filtre
 
 Annonce Détail :
 
--> Texte couleur noir, fond noir problème mais c'est pas notre faute
+
 
 Actualité :
 
--> Pas d'actu donc pas plus tester
 
 Boat & Demand :
 
--> Ca devrait être bon, juste problème avec le fond noir et texte noir
+
 
 Reprise :
 
--> A faire
+-> A faire ?
 
 Favoris :
 
--> Je pense qu'il y a un favoris de trop
 
 Contact Pro :
 

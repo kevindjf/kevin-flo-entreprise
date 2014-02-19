@@ -6,12 +6,15 @@ import java.util.Map;
 
 import org.apache.http.NameValuePair;
 
+import com.google.android.gms.internal.dp;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -161,6 +164,8 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		selector(_boat_on_demand_etape_suivante,false);
 		
 		afficherTexteCouleurTexte(_views);
+		((Button)_boat_on_demand_etape_suivante).setTextColor(Donnees.parametres.getBackgroundColorUn());;
+
 	}
 
 	public void ajouterListeners(){
