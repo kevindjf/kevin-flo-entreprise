@@ -24,6 +24,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.adapter.AnnonceListAdapter;
 import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnonceDateComparator;
 import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnoncePrixComparator;
 import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnoncePrixParLongueurComparator;
+import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnoncesFormulaire.AnnoncesFormulaireDelegate;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentListe;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
@@ -31,7 +32,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAnnonce;
 
 @SuppressLint("ValidFragment")
-public class AnnoncesListe extends FragmentListe implements View.OnClickListener{
+public class AnnoncesListe extends FragmentListe implements View.OnClickListener, AnnoncesFormulaireDelegate{
 
 
 	LoadMoreListView _liste = null;
@@ -56,20 +57,23 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		this._type = type;
 	}
 
+	public void chargerAnnoncesTask(){
+		task = new ChargerAnnoncesTask();
+		task.execute();
+
+		if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU)){
+			super.afficherTriLongueur(true);
+		}
+		else
+			super.afficherTriLongueur(false);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		if(super.onCreateView(inflater, container, savedInstanceState, R.layout.liste_annonces)){
 			afficherProgress(afficherProgress);
 
-			task = new ChargerAnnoncesTask();
-			task.execute();
-
-			if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU)){
-				super.afficherTriLongueur(true);
-			}
-			else
-				super.afficherTriLongueur(false);
+			chargerAnnoncesTask();
 
 			ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)getFragmentView().findViewById(R.id.fond));
 
@@ -115,7 +119,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void onClick(View v) {
 		super.onClick(v);		
 		if(v.getId() == R.id.header_plus)
-			ajouterFragment(new AnnoncesFormulaire(_type), true);
+			ajouterFragment(new AnnoncesFormulaire(_type,this), true);
 
 	}
 
@@ -201,7 +205,11 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		protected Void doInBackground(Void...donnees) {
 			List<Annonce> annonces = NetAnnonce.rechercher(_type, Integer.valueOf(page), _donneesFormulaire, idClient);
 			dernierNombre = annonces.size();
-			_annonces.addAll(annonces);
+			
+			if(page == 1)
+				_annonces = annonces;
+			else 
+				_annonces.addAll(annonces);
 
 			getActivity().runOnUiThread(new Runnable(){
 
@@ -230,7 +238,22 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		//afficherProgress(afficherProgress);
 		setTitre(getString(R.string.annonces));
 		super.afficherPlus().setOnClickListener(this);
+	}
 
-		chargerAnnonces();
+	@Override
+	public void rechercher(List<NameValuePair> donneesFormulaire, String type) {
+		this._donneesFormulaire = donneesFormulaire;
+		this._type = type;
+		
+		this._annonces.clear();
+		this._adapter.notifyDataSetChanged();
+		
+		page = 1;
+		dernierNombre = 1;
+		
+		_liste = null;
+		_adapter = null;
+		
+		chargerAnnoncesTask();
 	}
 }

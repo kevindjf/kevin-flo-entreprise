@@ -58,8 +58,6 @@ implements View.OnClickListener, OnBackStackChangedListener
 						transaction.remove(fragment);
 						transaction.commit();
 
-						fragments.getLast().onResume();
-
 						getSupportFragmentManager().executePendingTransactions();
 
 
@@ -67,7 +65,8 @@ implements View.OnClickListener, OnBackStackChangedListener
 						e.printStackTrace();
 					}
 				}
-
+				
+				fragments.getLast().onResume();
 			}
 		});
 	}

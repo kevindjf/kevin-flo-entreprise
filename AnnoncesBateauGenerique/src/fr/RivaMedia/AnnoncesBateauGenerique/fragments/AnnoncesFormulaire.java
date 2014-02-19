@@ -45,6 +45,10 @@ import fr.RivaMedia.AnnoncesBateauGenerique.utils.JetonManager;
 @SuppressLint("ValidFragment")
 public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnClickListener, ItemSelectedListener, OnMinMaxListener{
 
+	public interface AnnoncesFormulaireDelegate{
+		public void rechercher(List<NameValuePair> donneesFormulaire, String type);
+	}
+
 	private String typeAnnonces;
 
 	public static int TYPE = 0;
@@ -103,8 +107,11 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	List<Marque> _marques = null;
 
-	public AnnoncesFormulaire(String type){
+	AnnoncesFormulaireDelegate delegate;
+
+	public AnnoncesFormulaire(String type,AnnoncesFormulaireDelegate delegate){
 		this.typeAnnonces = type;
+		this.delegate = delegate;
 	}
 
 	@Override
@@ -357,7 +364,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	public void afficherAnnoncesListe(List<NameValuePair> donneesFormulaire, String type){
-		ajouterFragment(new AnnoncesListe(donneesFormulaire,type));
+		delegate.rechercher(donneesFormulaire,type);
+		retirerFragment();
 	}
 
 	public void reset(){
@@ -605,20 +613,25 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 
 	public void afficherNombreAnnonces(final String nombre){
-		getActivity().runOnUiThread(new Runnable(){
+		try{
+			if(getActivity() != null)
+				getActivity().runOnUiThread(new Runnable(){
 
-			@Override
-			public void run() {
-				System.err.println(nombre);
-				_nombreAnnonces.setText(nombre);
-				_nombreAnnonces.invalidate();
-				System.err.println(_nombreAnnonces.getText());
-			}
+					@Override
+					public void run() {
+						System.err.println(nombre);
+						_nombreAnnonces.setText(nombre);
+						_nombreAnnonces.invalidate();
+						System.err.println(_nombreAnnonces.getText());
+					}
 
-		});
+				});
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 
 	}
-	
+
 	@Override
 	public void onResume(){
 		super.onResume();
@@ -650,7 +663,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		JetonManager jm = new JetonManager(this.getActivity());
 		String jeton = jm.getJeton();
-		
+
 		Net.add(donnees, Constantes.ALERTE_ID_SMARTPHONE,jeton);
 
 		//TODO ajouter le md5 de la date

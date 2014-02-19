@@ -3,6 +3,8 @@ package fr.RivaMedia.AnnoncesBateauGenerique.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -13,13 +15,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
+import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnoncesFormulaire.AnnoncesFormulaireDelegate;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentListe;
 import fr.RivaMedia.AnnoncesBateauGenerique.tab.alertes.TabMesAlertesAnnonces;
 import fr.RivaMedia.AnnoncesBateauGenerique.tab.alertes.TabMesAlertesFormulaires;
 import fr.RivaMedia.AnnoncesBateauGenerique.tab.core.PagesAdapter;
 import fr.RivaMedia.AnnoncesBateauGenerique.tab.core.Tab;
 
-public class MesAlertes extends FragmentListe implements View.OnClickListener{
+public class MesAlertes extends FragmentListe implements View.OnClickListener, AnnoncesFormulaireDelegate{
 
 	View _view;
 	TabMesAlertesAnnonces _tabAnnonces = null;
@@ -143,7 +146,7 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 
 
 	private void rechercher() {
-		ajouterFragment(new AnnoncesFormulaire(Constantes.BATEAUX));
+		ajouterFragment(new AnnoncesFormulaire(Constantes.BATEAUX,this));
 	}
 
 
@@ -230,6 +233,13 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener{
 		afficherProgress(afficherProgress);
 		if(_tabFormulaires != null)
 			_tabFormulaires.onResume();
+	}
+
+
+	@Override
+	public void rechercher(List<NameValuePair> donneesFormulaire, String type) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
