@@ -85,6 +85,8 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 			getFragmentView().setOnClickListener(this);
 		if(getView() != null)
 			getView().setOnClickListener(this);
+		
+		System.out.println("onResume");
 	}
 	
 	

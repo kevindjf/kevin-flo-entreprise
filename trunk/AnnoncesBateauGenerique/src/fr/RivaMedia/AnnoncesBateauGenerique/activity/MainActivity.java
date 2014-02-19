@@ -401,7 +401,14 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 		}
 		return super.onKeyDown(keycode,event);  
 	}
-
+	
+	@Override
+	public void onBackPressed() {
+		if(_slider.isClosed())
+			super.onBackPressed();
+		else
+			_slider.close();
+	}
 	public void ajouterContactPro() {
 		try{
 			if(getSupportFragmentManager().getFragments().contains(_contactPro) && _contactPro != null){
