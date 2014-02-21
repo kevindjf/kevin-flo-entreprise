@@ -29,6 +29,7 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/slider_annonces"
                     style="@style/slider_element" >
 
@@ -39,6 +40,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/slider_droite_date_croissant"
                     style="@style/slider_element" >
 
@@ -53,6 +55,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/slider_droite_date_decroissant"
                     style="@style/slider_element" >
 

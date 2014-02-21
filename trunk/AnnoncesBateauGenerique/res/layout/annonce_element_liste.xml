@@ -25,13 +25,13 @@
 
         <ImageView
             android:id="@+id/annonce_element_liste_image"
-            android:layout_width="120dip"
-            android:layout_height="120dip"
+            android:layout_width="100dip"
+            android:layout_height="100dip"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="10dip"
             android:adjustViewBounds="true"
             android:fitsSystemWindows="true"
-            android:scaleType="fitCenter" />
+            android:scaleType="centerCrop" />
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -126,7 +126,7 @@
 
                     <TextView
                         style="@style/slider_element_texte"
-                        android:text="@string/on_demand" />
+                        android:text="@string/ma_recherche" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -167,7 +167,7 @@
 
                     <TextView
                         style="@style/slider_element_texte"
-                        android:text="@string/contact_pro" />
+                        android:text="@string/contactez_nous" />
                 </LinearLayout>
 
                 <LinearLayout

@@ -51,6 +51,7 @@
     <string name="choix_des_criteres">CHOIX DES CRITERES</string>
     <string name="code_postal">Code Postal</string>
     <string name="code_postal_star">Code Postal *</string>
+    <string name="contactez_nous">Contactez-nous</string>
     <string name="commentaire">Commentaire</string>
     <string name="contact_pro">Contact PRO</string>
     <string name="coordonnees">Coordonnées</string>
@@ -66,7 +67,7 @@
     <string name="description">DESCRIPTION</string>
     <string name="description_dots">Description :</string>
     <string name="description_maj">DESCRIPTION</string>
-    <string name="description_boat_on_demand">Décrivez les critères du bateau de vos rêves, celui que vous souhaitez acquérir ! Nous nous chargeons de transférer votre demande à nos clients partenaires qui vous contacteront avec la meilleure offre s’il possède l’unité qui vous correspond. \n\nEnsuite c’est à vous de jouer ! </string>
+    <string name="description_boat_on_demand">Décrivez les critères du bateau de vos rêves, celui que vous souhaitez acquérir ! Nous nous chargeons de vous contacter si nous avons un bateau qui pourrait vous convenir avec un devis personnalisé. </string>
     <string name="description_annuaire">Trouvez un professionnel du Nautisme en sélectionnant les critères désirés</string>
     <string name="diesel">Diesel</string>
     <string name="distributeur_de_la_marque">Distributeur de la marque</string>
@@ -116,6 +117,7 @@
     <string name="localite_dots">Localite :</string>
     <string name="longueur">Longueur</string>
     <string name="longueur_dots">Longueur :</string>
+    <string name="ma_recherche">Ma recherche</string>
     <string name="manche_bretagne">Manche/Bretagne</string>
     <string name="marque">Marque</string>
     <string name="marque_star">Marque *</string>
@@ -150,7 +152,7 @@
     <string name="pays_star">Pays *</string>
     <string name="occasion">Occasion</string>
     <string name="ok">Ok</string>
-    <string name="on_demand">Boat On Demand</string>
+    <string name="on_demand">Ma recherche</string>
     <string name="on_demand_big">BOAT ON DEMAND</string>
     <string name="ou">ou</string>
     <string name="oui">Oui</string>

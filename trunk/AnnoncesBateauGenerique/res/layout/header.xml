@@ -83,7 +83,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dip"
             android:layout_toLeftOf="@+id/header_tri"
-            android:background="@drawable/plus"
+            android:background="@drawable/autotheque_logo"
             android:visibility="gone" />
     </RelativeLayout>
 

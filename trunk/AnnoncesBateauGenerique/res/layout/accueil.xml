@@ -19,6 +19,7 @@
             android:id="@+id/logo_entreprise"
             android:layout_width="fill_parent"
             android:layout_height="80dip"
+            android:layout_marginBottom="30dip"
             android:layout_gravity="center_horizontal"
             android:adjustViewBounds="true" />
 
