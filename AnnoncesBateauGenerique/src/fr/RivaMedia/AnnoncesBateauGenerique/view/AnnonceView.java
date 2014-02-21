@@ -91,18 +91,8 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 				if(_annonce.getMoteur() != null && _annonce.getMoteur().getMarqueMoteur() != null)
 					_titre.setText(_annonce.getMoteur().getMarqueMoteur());
 
-			if(!_swipable)
-				if(_annonce.getNomMoteur() != null)
-					_sousTitre.setText(_annonce.getNomMoteur());
-				else
-					if(_annonce.getCommentaire() != null)
-						_sousTitre.setText(_annonce.getCommentaire());
-
-			if(_annonce.getLongueur() != null)
-				_taille.setText(_annonce.getLongueur()+" m");
-			if(_annonce.getMoteur() != null && _annonce.getMoteur().getPuissanceMoteur() != null)
-				_taille.setText(_annonce.getMoteur().getPuissanceMoteur()+" ch");
-
+			_taille.setVisibility(View.GONE);
+			
 			if(_annonce.getAnnee() != null)
 				_annee.setText(_annonce.getAnnee());
 			else

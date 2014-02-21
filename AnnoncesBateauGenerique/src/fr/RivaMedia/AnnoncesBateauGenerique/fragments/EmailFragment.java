@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -72,17 +73,23 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 		charger();
 		remplir();
 		ajouterListeners();
-
+		chargerCouleur();
 		ImageLoaderCache.load(getActivity());
 
 		return _view;
+	}
+
+	private void chargerCouleur() {
+		afficherCouleurTouch(_envoyer);
+		selector(_envoyer,false);
+		((Button)_envoyer).setTextColor(Donnees.parametres.getBackgroundColorUn());		
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
 		afficherProgress(afficherProgress);
-		setTitre(getString(R.string.EMAIL));
+		setTitre(getString(R.string.email));
 	}
 
 	@Override

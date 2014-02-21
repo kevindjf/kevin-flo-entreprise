@@ -14,7 +14,8 @@
 
         <RelativeLayout
             android:id="@+id/annonces_formulaire_type"
-            style="@style/formulaire_cellule" >
+            style="@style/formulaire_cellule"
+            android:visibility="gone" >
 
             <TextView
                 style="@style/formulaire_cellule_titre"
@@ -170,9 +171,21 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom" >
+
+        <Button
+            android:id="@+id/annonces_formulaire_bouton_rechercher"
+            style="@style/bouton_rechercher"
+            android:layout_height="60dip" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="60dip"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dip" >
+        android:layout_marginTop="10dip"
+        android:visibility="gone" >
 
         <View
             android:id="@+id/annonces_formulaire_centre"
@@ -181,7 +194,7 @@
             android:layout_centerInParent="true" />
 
         <RelativeLayout
-            android:id="@+id/annonces_formulaire_bouton_rechercher"
+            android:id="@+id/teub"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_toLeftOf="@+id/annonces_formulaire_centre"
@@ -221,7 +234,8 @@
             android:layout_toRightOf="@+id/annonces_formulaire_centre"
             android:background="@drawable/fond_bleu_select_bleu2"
             android:text="@string/rechercher"
-            android:textColor="@color/couleur_texte_blanc" >
+            android:textColor="@color/couleur_texte_blanc"
+            android:visibility="gone" >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -252,20 +266,21 @@
             android:id="@+id/annonces_formulaire_ou"
             android:layout_width="35dip"
             android:layout_height="35dip"
-            android:layout_centerInParent="true" >
+            android:layout_centerInParent="true"
+            android:visibility="gone" >
 
             <TextView
                 android:id="@+id/annonces_formulaire_nombre_annonces"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/cercle_bleu"
                 android:gravity="center"
-                 android:background="@drawable/cercle_bleu"
                 android:paddingBottom="2dip"
                 android:paddingTop="2dip"
                 android:text=""
-                android:textSize="10sp"
                 android:textColor="@color/couleur_texte_blanc"
-                 />
+                android:textSize="10sp" />
         </RelativeLayout>
     </RelativeLayout>
+
 </RelativeLayout>
