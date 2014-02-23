@@ -1,5 +1,7 @@
 package fr.RivaMedia.AnnoncesBateauGenerique.model;
 
+import java.util.List;
+
 public class Client {
 
 	String id;
@@ -17,11 +19,21 @@ public class Client {
 	String image;
 	
 	String horaires;
-	String services;
+	List<String> services;
 	String distributeur;
 	
 	String lng;
 	String lat;
+	
+	String fax;
+	String siteWeb;
+	String description;
+	String logo;
+	
+	int nbBateau;
+	int nbMoteur;
+	int nbAccessoires;
+	
 	
 	public String getId() {
 		return id;
@@ -101,10 +113,10 @@ public class Client {
 	public void setHoraires(String horaires) {
 		this.horaires = horaires;
 	}
-	public String getServices() {
+	public List<String> getServices() {
 		return services;
 	}
-	public void setServices(String services) {
+	public void setServices(List<String> services) {
 		this.services = services;
 	}
 	public String getDistributeur() {
@@ -130,6 +142,62 @@ public class Client {
 	}
 	public void setLat(String lat) {
 		this.lat = lat;
+	}
+	public String getFax() {
+		return fax;
+	}
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+	public String getSiteWeb() {
+		return siteWeb;
+	}
+	public void setSiteWeb(String siteWeb) {
+		this.siteWeb = siteWeb;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
+	public int getNbBateau() {
+		return nbBateau;
+	}
+	public void setNbBateau(int nbBateau) {
+		this.nbBateau = nbBateau;
+	}
+	public int getNbMoteur() {
+		return nbMoteur;
+	}
+	public void setNbMoteur(int nbMoteur) {
+		this.nbMoteur = nbMoteur;
+	}
+	public int getNbAccessoires() {
+		return nbAccessoires;
+	}
+	public void setNbAccessoires(int nbAccessoires) {
+		this.nbAccessoires = nbAccessoires;
+	}
+	@Override
+	public String toString() {
+		return "Client [id=" + id + ", contrat=" + contrat + ", nom=" + nom
+				+ ", adresse=" + adresse + ", cp=" + cp + ", ville=" + ville
+				+ ", tel1=" + tel1 + ", tel2=" + tel2 + ", email=" + email
+				+ ", contact=" + contact + ", departement=" + departement
+				+ ", departementNum=" + departementNum + ", image=" + image
+				+ ", horaires=" + horaires + ", services=" + services
+				+ ", distributeur=" + distributeur + ", lng=" + lng + ", lat="
+				+ lat + ", fax=" + fax + ", siteWeb=" + siteWeb
+				+ ", description=" + description + ", logo=" + logo
+				+ ", nbBateau=" + nbBateau + ", nbMoteur=" + nbMoteur
+				+ ", nbAccessoires=" + nbAccessoires + "]";
 	}
 	
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 
+import android.util.Log;
+
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Client;
 import fr.RivaMedia.AnnoncesBateauGenerique.xml.ClientXmlParser;
@@ -24,6 +26,8 @@ public class NetClient extends Net {
 				Net.construireDonnes(
 				Constantes.CLIENT_DETAIL_ID,id)
 				);
+		
+		Log.e("CLIENT",xml);
 		
 		return new ClientXmlParser(xml).getClient();
 	}

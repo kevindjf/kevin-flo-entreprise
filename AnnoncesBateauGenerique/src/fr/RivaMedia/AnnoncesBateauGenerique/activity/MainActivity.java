@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.navdrawer.SimpleSideDrawer;
 
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
+import fr.RivaMedia.AnnoncesBateauGenerique.ConstantesClient;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.activity.core.BateauFragmentActivity;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Accueil;
@@ -328,7 +329,8 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 	public void envoyerEmailDirect(String email){
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setData(Uri.parse("mailto:"+email));
-		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject));
+		intent.putExtra(Intent.EXTRA_SUBJECT, "["+ConstantesClient.APPLICATION_NAME+"]");
+		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_contact).replace("$nom$", ConstantesClient.APPLICATION_NAME));
 		startActivity(intent);
 	}
 

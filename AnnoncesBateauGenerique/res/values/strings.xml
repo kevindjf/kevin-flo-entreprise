@@ -24,8 +24,9 @@
     <string name="annonces_moteurs">Annonces Moteurs</string>
     <string name="annonces_accessoires">Annonces Accessoires</string>
     <string name="annonces_small">annonces</string>
+    <string name="annonces_trouvees">annonces trouvées</string>
     <string name="annonces_en_vente">annonces en vente</string>
-    <string name="annonce_postee">Votre annonce sera mise en ligne prochainement</string>
+    <string name="annonce_postee">Recherche envoyée ! Nous vous contacterons uniquement si nous avons quelque chose à vous proposer !</string>
     <string name="annuaire">Annuaire des pros</string>
     <string name="apartirde">A partir de</string>
     <string name="appareil_photo">Appareil photo</string>
@@ -77,6 +78,7 @@
     <string name="effacer">Effacer</string>
     <string name="email">E-Mail</string>
     <string name="email_contenu">Bonjour,\n\nJe souhaiterai avoir des informations complémentaires concernant votre $nom$ à $prix$ €.\n\nMerci de me recontacter aux coordonnées indiquées.\n\nCordialement,</string>
+    <string name="email_contact">Mail provenant de votre appli Android $nom$\n</string>
     <string name="email_dots">E-Mail :</string>
     <string name="email_envoye">E-Mail envoyé</string>
     <string name="email_star">E-Mail *</string>
@@ -169,7 +171,7 @@
     <string name="puissance_ch">Puissance (ch)</string>
     <string name="que_souhaitez_vous_vendre">Que souhaitez vous vendre ?</string>
     <string name="rechercher">Rechercher</string>
-    <string name="reprise_de_votre_bateau">REPRISE DE VOTRE ?</string>
+    <string name="reprise_de_votre_bateau">VOTRE REPRISE ?</string>
     <string name="reprise">Reprise Bateau</string>
     <string name="requis">requis</string>
     <string name="resultats">Resultats</string>
@@ -179,7 +181,7 @@
     <string name="services">Services</string>
     <string name="services_dots">Services :</string>
     <string name="societe">Société</string>
-    <string name="subject">[Youboat]</string>
+    <string name="subject">[Contact]</string>
     <string name="supprimer">Supprimer</string>
     <string name="taille">Taille</string>
     <string name="taille_star">Taille *</string>

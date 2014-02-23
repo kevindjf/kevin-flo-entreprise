@@ -29,7 +29,8 @@ import fr.RivaMedia.AnnoncesBateauGenerique.net.core.Net;
 
 public class SplashScreenActivity extends Activity{
 
-	public static final String CLIENT = "000";
+	public static final String CLIENT = "CLIENT";
+	public static final String APPLICATION_NAME = "APPLICATION_NAME";
 	
 	public static final int tempsAttenteSecondes = 0;
 
@@ -43,6 +44,7 @@ public class SplashScreenActivity extends Activity{
 		//Net.enableHttpResponseCache(this);
 		
 		ConstantesClient.ID_CLIENT = getIntent().getExtras().getString(CLIENT);
+		ConstantesClient.APPLICATION_NAME = getIntent().getExtras().getString(APPLICATION_NAME);
 		
 		findViewById(R.id.splash_progress).setVisibility(View.VISIBLE);
 		findViewById(R.id.splash_progress).setEnabled(true);
@@ -159,8 +161,10 @@ public class SplashScreenActivity extends Activity{
 			*/
 			
 			Donnees.parametres = NetChargement.chargerParametres();
-			
 			chargerSplash();
+			
+			Donnees.client = NetClient.getClient(Constantes.ID_CLIENT);
+			
 
 			Donnees.autoPromo = NetChargement.chargerAutoPromo();
 			Donnees.magazine = NetChargement.chargerMagazineEnCours();
@@ -188,7 +192,6 @@ public class SplashScreenActivity extends Activity{
 			Donnees.TOUTESmarques.put(Constantes.VOILIER, TOUTESmarquesVoilier);
 			Donnees.TOUTESmarques.put(Constantes.PNEU, TOUTESmarquesPneu);
 			Donnees.TOUTESmarques.put(Constantes.MOTEURS, TOUTESmarquesMoteur);
-			Donnees.client = NetClient.getClient(Constantes.ID_CLIENT);
 
 			final List<Marque> toutesMarques = NetChargement.chargerMarquesBateauType(null, null,true);
 			final List<Marque> marquesBateauxAMoteur = NetChargement.chargerMarquesBateauType(Constantes.BATEAU_A_MOTEUR,null,true);

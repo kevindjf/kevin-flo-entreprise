@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.adapter.AnnonceListAdapter;
@@ -46,6 +47,8 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	int dernierNombre = 1;
 
 	String idClient = null; 
+	
+	TextView nombreAnnonces = null;
 
 	public AnnoncesListe(){}
 
@@ -86,17 +89,26 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void charger(){
 		if(_liste == null)
 			_liste = (LoadMoreListView)findViewById(android.R.id.list);	
+		
+		if(nombreAnnonces == null)
+			nombreAnnonces = (TextView)findViewById(R.id.nombre_annonces);
 	}
 	public void remplir(){
 
-		if(_annonces == null || _annonces.size()==0)
+		if(_annonces == null || _annonces.size()==0){
 			findViewById(R.id.vide).setVisibility(View.VISIBLE);
+			nombreAnnonces.setVisibility(View.GONE);
+		}
+		
 		else{
+			nombreAnnonces.setVisibility(View.VISIBLE);
 			if(_adapter == null){
 				_adapter = new AnnonceListAdapter(getActivity(), _annonces,_type);
 				_liste.setAdapter(_adapter);
 			}else
 				_adapter.notifyDataSetChanged();
+			
+			nombreAnnonces.setText(Donnees.nb_result+" "+getActivity().getResources().getString(R.string.annonces_trouvees));
 		}
 	}
 	public void ajouterListeners(){

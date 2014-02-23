@@ -37,7 +37,7 @@ public class ActualiteXmlParser extends XmlParser {
 		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				if(tag.equals("item")){
+				if(tag.equals("actu")){
 					listeActualites.add(getNews());
 				}
 			}
@@ -78,6 +78,10 @@ public class ActualiteXmlParser extends XmlParser {
 				else if(tag.equals("img")){
 					news.setImageAdress(getString());
 					Log.e("IMAGE",news.getImageAdress());
+				}
+				else if(tag.equals("date")){
+					news.setPubDate(getString());
+					//TODO affecter dateFormatee
 				}
 				else if(tag.equals("pubDate")){
 					news.setPubDate(getString());

@@ -15,6 +15,7 @@ public class MainActivity extends Activity{
 		
 		Intent intent = new Intent(this,SplashScreenActivity.class);
 		intent.putExtra(SplashScreenActivity.CLIENT, Constantes.CLIENT_VALUE);
+		intent.putExtra(SplashScreenActivity.APPLICATION_NAME, Constantes.APPLICATION_NAME);
 		
 		startActivity(intent);
 		finish();

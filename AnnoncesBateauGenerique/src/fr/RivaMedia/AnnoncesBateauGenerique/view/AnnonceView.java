@@ -30,13 +30,14 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	TextView _taille;
 	TextView _annee;
 	TextView _prix;
+	TextView _taxe;
 
 	Annonce _annonce;
 
 	View _derriere;
 	View _devant;
 	
-	View _apartirDe;
+	TextView _apartirDe;
 
 	public AnnonceView(Annonce annonce, Context context, View view, int position, String type, boolean swipable) {
 		super(context, view);
@@ -59,6 +60,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_taille = (TextView)getView().findViewById(R.id.annonce_element_liste_taille);
 		_annee = (TextView)getView().findViewById(R.id.annonce_element_liste_annee);
 		_prix = (TextView)getView().findViewById(R.id.annonce_element_liste_prix);
+		_taxe = (TextView)getView().findViewById(R.id.annonce_element_liste_prix_taxe);
 		_apartirDe = (TextView)getView().findViewById(R.id.annonce_element_liste_a_partir_de);
 
 		if(_swipable){
@@ -101,7 +103,7 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			if(_annonce.getPrix() != null){
 				String p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim()+" € ";
 				if(_annonce.getTaxePrix() != null)
-					p += _annonce.getTaxePrix();
+					_taxe.setText(_annonce.getTaxePrix());
 				_prix.setText(p);
 			}
 			
@@ -129,8 +131,9 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 	private void afficherNormal(){
 		
+		_apartirDe.setTextColor(Donnees.parametres.getBackgroundColorDeux());
 		_prix.setTextColor(Donnees.parametres.getBackgroundColorDeux());
-
+		_taxe.setTextColor(Donnees.parametres.getBackgroundColorDeux());
 		
 		if(_swipable){
 			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
@@ -155,7 +158,6 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_sousTitre.setTextColor(Color.BLACK);
 		_taille.setTextColor(Color.BLACK);
 		_annee.setTextColor(Color.BLACK);
-		((TextView)_apartirDe).setTextColor(Color.BLACK);
 	}
 	
 	public void changerCouleurs(){		
@@ -163,7 +165,6 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_sousTitre.setTextColor(Donnees.parametres.getFontColorUn());
 		_taille.setTextColor(Donnees.parametres.getFontColorUn());
 		_annee.setTextColor(Donnees.parametres.getFontColorUn());
-		((TextView)_apartirDe).setTextColor(Donnees.parametres.getFontColorUn());
 	}
 	
 	private void afficherTouch(){
