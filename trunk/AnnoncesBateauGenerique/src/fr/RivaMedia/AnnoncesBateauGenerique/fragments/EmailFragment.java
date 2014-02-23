@@ -45,6 +45,8 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 	Object objet;
 
 	String departementId;
+	
+	View _layoutHaut;
 
 	EditText _adresseEmail;
 	EditText _nom;
@@ -81,6 +83,7 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 
 	private void chargerCouleur() {
 		afficherCouleurTouch(_envoyer);
+		afficherCouleurNormal(_layoutHaut);
 		selector(_envoyer,false);
 		((Button)_envoyer).setTextColor(Donnees.parametres.getBackgroundColorUn());		
 	}
@@ -99,7 +102,8 @@ public class EmailFragment extends FragmentNormal implements ItemSelectedListene
 		_telephone = (EditText)_view.findViewById(R.id.email_telephone);
 		_departement = _view.findViewById(R.id.email_departement);
 		_message = (EditText)_view.findViewById(R.id.email_message);
-
+		
+		_layoutHaut = _view.findViewById(R.id.email_layout_banniere);
 		_envoyer = _view.findViewById(R.id.email_bouton_envoyer);
 
 		_image = (ImageView)_view.findViewById(R.id.email_image);
