@@ -49,6 +49,8 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
+		System.out.println(Donnees.client.toString());
+		
 		if (view != null) {
 			ViewGroup parent = (ViewGroup) view.getParent();
 			if (parent != null)
@@ -123,7 +125,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		if(Donnees.client.getAdresse() != null)
 			_adresse.setText(Donnees.client.getAdresse());
 
-		if(Donnees.client.getDepartementNum() != null && Donnees.client.getVille() != null)
+		if(Donnees.client.getCp() != null && Donnees.client.getVille() != null)
 			_adresse_postale.setText(Donnees.client.getCp() + " " + Donnees.client.getVille());
 
 
@@ -169,12 +171,18 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 		selector(button_email,false);
 		selector(contact_pro_email);
-
-		//afficherTexteCouleurTexte(_horaire,_adresse,_adresse_postale);
-
 		selector(button_telephone,false);
 		selector(contact_pro_telephone);
 
+		
+		((TextView)button_email.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)contact_pro_email.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)button_telephone.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)contact_pro_telephone.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
+
+		//afficherTexteCouleurTitre(_horaire,_adresse,_adresse_postale);
+
+		
 		GradientDrawable drawable = (GradientDrawable) getResources().getDrawable(R.drawable.circle);
 		drawable.setColor(Donnees.parametres.getBackgroundColorUn());
 		drawable.setStroke(4 , Color.WHITE);

@@ -101,4 +101,6 @@ public class Donnees {
 
 	public static List<Lieu> lieux;
 
+	public static int nb_result = 0;
+	
 }

@@ -62,6 +62,8 @@ public class ClientXmlParser extends XmlParser {
 					client.setTel1(getString());
 				else if(tag.equals("tel2"))
 					client.setTel2(getString());
+				else if(tag.equals("fax"))
+					client.setFax(getString());
 				else if(tag.equals("email"))
 					client.setEmail(getString());
 				else if(tag.equals("contact"))
@@ -76,14 +78,30 @@ public class ClientXmlParser extends XmlParser {
 				else if(tag.equals("horaires"))
 					client.setHoraires(getString());
 				else if(tag.equals("services"))
-					client.setServices(getString());
+					client.setServices(getServices());
 				else if(tag.equals("distributeur"))
 					client.setDistributeur(getString());
 				
-				else if(tag.equals("lat"))
+				else if(tag.equals("gpslatitude"))
 					client.setLat(getString());
-				else if(tag.equals("long"))
+				else if(tag.equals("gpslongitude"))
 					client.setLng(getString());
+				
+				else if(tag.equals("siteweb"))
+					client.setSiteWeb(getString());
+				else if(tag.equals("description"))
+					client.setDescription(getString());
+				
+				else if(tag.equals("logo")){
+					client.setLogo(getXpp().getAttributeValue(null, "url"));
+				}
+				
+				else if(tag.equals("nb_bateau"))
+					client.setNbBateau(getInteger());
+				else if(tag.equals("nb_moteur"))
+					client.setNbMoteur(getInteger());
+				else if(tag.equals("nb_accessoires"))
+					client.setNbAccessoires(getInteger());
 				
 				else
 					Log.e("XML INCONNU",tag);
@@ -94,5 +112,22 @@ public class ClientXmlParser extends XmlParser {
 		return client;
 	}
 
+	protected List<String> getServices(){
+		List<String> services = new ArrayList<String>();
+		
+		int eventType = XMLgetEventType(); 
+		do{
+			if (eventType == XmlPullParser.START_TAG) {
+				String tag = getXpp().getName();
+				//Log.e("XML", tag);
+				if(tag.equals("service")){
+					services.add(getString());
+				}
+			}
+			eventType = XMLgetSuivant();
+		}while (eventType != XmlPullParser.END_TAG);
+		
+		return services;
+	}
 
 }

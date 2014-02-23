@@ -143,6 +143,8 @@ public class Net {
 			donneesPost = Net.construireDonnes();
 
 		add(donneesPost,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
+		
+		add(donneesPost,Constantes.ID_CLIENT,ConstantesClient.ID_CLIENT);
 
 		HttpClient httpClient = new DefaultHttpClient();
 

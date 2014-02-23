@@ -10,6 +10,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Lien;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Moteur;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Vendeur;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.xml.core.XmlParser;
 
 public class AnnonceXmlParser extends XmlParser {
@@ -21,9 +22,10 @@ public class AnnonceXmlParser extends XmlParser {
 	public AnnonceXmlParser(XmlPullParser xpp) {
 		super(xpp);
 	}
-
+	
 	public List<Annonce> getListe() {
 		List<Annonce> annonces = new ArrayList<Annonce>();
+		
 		int eventType = XMLgetEventType(); 
 		while (eventType != XmlPullParser.END_DOCUMENT) { 
 			if (eventType == XmlPullParser.START_TAG) {
@@ -31,6 +33,8 @@ public class AnnonceXmlParser extends XmlParser {
 				if(tag.equals("ad")){
 					Annonce annonce = getAnnonce(true);
 					annonces.add(annonce);
+				}else if(tag.equals("nb_result")){
+					Donnees.nb_result = getInteger();
 				}
 			}
 			eventType = XMLgetSuivant();

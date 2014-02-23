@@ -41,8 +41,11 @@ public class Gallery extends Activity{
 		public Object instantiateItem(final ViewGroup container, final int position) {
 			PhotoView photoView = new PhotoView(container.getContext());
 			
+			try{
 			ImageLoaderCache.charger(images.get(position), photoView);
-
+			}catch(Exception e){
+				e.printStackTrace();
+			}			
 			container.addView(photoView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
 			return photoView;

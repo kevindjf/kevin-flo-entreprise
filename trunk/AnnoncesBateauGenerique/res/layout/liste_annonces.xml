@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/couleur_fond" 
-    >
+    android:background="@color/couleur_fond" >
 
     <ImageView
         android:id="@+id/fond"
@@ -12,14 +11,34 @@
         android:scaleType="fitXY" />
 
     <include layout="@layout/vide" />
-        
-    <com.costum.android.widget.LoadMoreListView
-        android:id="@android:id/list"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="0.5dp"
-        android:divider="#AAA"
-        
-        />
-    
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#AAA"
+            android:orientation="vertical"
+            android:padding="1.5dp" >
+
+            <TextView
+                android:id="@+id/nombre_annonces"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:textColor="@android:color/black" />
+
+        </LinearLayout>
+
+        <com.costum.android.widget.LoadMoreListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#AAA"
+            android:dividerHeight="0.5dp" />
+    </LinearLayout>
+
 </RelativeLayout>

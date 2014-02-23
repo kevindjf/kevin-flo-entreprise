@@ -72,17 +72,13 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	FavorisManager _favorisManager;
 
 	PagerAdapter _pagesAdapter;
+	ViewPager _page;	
 	CirclePageIndicator _indicator;
 
 	LayoutInflater _inflater;
 
 	View contact_rond;
 
-
-	View _page;
-	ImageView _image1;
-	ImageView _image2;
-	ImageView _image3;
 
 	View[] _views;
 
@@ -148,10 +144,9 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		email = _view.findViewById(R.id.annonce_detail_email);
 		apartirDe = _view.findViewById(R.id.annonce_detail_prix_a_partir_de);
 
-		_page = getView().findViewById(R.id.annonce_detail_image_pager);
-		_image1 = (ImageView)getView().findViewById(R.id.annonce_detail_image_1);
-		_image2 = (ImageView)getView().findViewById(R.id.annonce_detail_image_2);
-		_image3 = (ImageView)getView().findViewById(R.id.annonce_detail_image_3);
+		_page = (ViewPager) getView().findViewById(R.id.annonce_detail_image_pager);
+
+		_indicator = (CirclePageIndicator)getView().findViewById(R.id.annonce_detail_image_pager_indicator);
 
 		contact_rond = _view.findViewById(R.id.annonce_detail_rond);
 
@@ -276,19 +271,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				description.setVisibility(View.GONE);
 
 			if(_annonce.getPhotos() != null){
-				if(_annonce.getPhotos().size()>0){
-					_image1.setVisibility(View.VISIBLE);
-					ImageLoaderCache.charger(_annonce.getPhotos().get(0).getUrl(), _image1);
-				}
-				if(_annonce.getPhotos().size()>1){
-					_image2.setVisibility(View.VISIBLE);
-					ImageLoaderCache.charger(_annonce.getPhotos().get(1).getUrl(), _image2);
-				}
-				if(_annonce.getPhotos().size()>2){
-					_image3.setVisibility(View.VISIBLE);
-					ImageLoaderCache.charger(_annonce.getPhotos().get(2).getUrl(), _image3);
-				}
-			}
+				_pagesAdapter = new ImagePagesAdapter();
+				_page.setAdapter(_pagesAdapter);
+				_indicator.setViewPager(_page);
+			}else
+				findViewById(R.id.annonce_detail_image_pager_layout).setVisibility(View.GONE);
 		}
 
 		afficherLogoFavoris();
