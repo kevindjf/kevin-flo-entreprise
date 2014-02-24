@@ -36,6 +36,8 @@ public class ParametresXmlParser extends XmlParser {
 					parametres.setFontColorDeux(Color.parseColor(getString()));
 				else if(tag.equals("maj_interval"))
 					parametres.setMajInterval(getString());
+				else if(tag.equals("image_start_draw9"))
+					parametres.setImageStartDraw9(getString());
 				else if(tag.equals("image_start_728x1280"))
 					parametres.setImageStart728x1280(getString());
 				else if(tag.equals("image_start_640x1136"))

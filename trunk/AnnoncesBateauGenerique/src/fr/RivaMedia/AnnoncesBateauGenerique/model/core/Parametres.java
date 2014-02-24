@@ -17,6 +17,7 @@ public class Parametres {
 	private String imageStart640x1136;
 	private String imageStart640x960;
 	private String imageStart640x480;
+	private String imageStartDraw9;
 	private String imageFond;
 	private List<String> imagesSlide = new ArrayList<String>();
 	
@@ -100,6 +101,12 @@ public class Parametres {
 	}
 	public void setImageLogo(String imageLogo) {
 		this.imageLogo = imageLogo;
+	}
+	public String getImageStartDraw9() {
+		return imageStartDraw9;
+	}
+	public void setImageStartDraw9(String imageStartDraw9) {
+		this.imageStartDraw9 = imageStartDraw9;
 	}
 
 }
