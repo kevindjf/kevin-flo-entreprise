@@ -96,7 +96,7 @@
                 android:id="@+id/developpeurs_texte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Antoine Cointepas\nFlorent Champigny\n Kevin De Jesus"
+                android:text="Antoine Cointepas\nFlorent Champigny\n Kevin De Jesus Ferreira"
                 android:textColor="@color/couleur_texte_noir"
                 android:gravity="center"
                 android:textSize="12sp"
