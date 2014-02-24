@@ -55,7 +55,7 @@ public class ActualiteXmlParser extends XmlParser {
 		while (eventType != XmlPullParser.END_TAG) { 
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
-				//Log.e("XML",tag);
+				Log.e("XML",tag);
 				if(tag.equals("title")){
 					news.setTitle(getString());
 				}

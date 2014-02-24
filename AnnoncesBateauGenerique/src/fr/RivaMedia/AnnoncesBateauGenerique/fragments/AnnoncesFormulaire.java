@@ -52,7 +52,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	private String typeAnnonces;
-	
+
 	private TypeAnnonce typeAnnoncesObject;
 
 	public static int TYPE = 0;
@@ -111,10 +111,15 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	AnnoncesFormulaireDelegate delegate;
 
-	public AnnoncesFormulaire(String type,AnnoncesFormulaireDelegate delegate, TypeAnnonce typeAnnonce){
+	public AnnoncesFormulaire(String type,AnnoncesFormulaireDelegate delegate, TypeAnnonce ta){
 		this.typeAnnonces = type;
 		this.delegate = delegate;
-		this.typeAnnoncesObject = typeAnnonce;
+		this.typeAnnoncesObject = ta;
+		
+		if(typeAnnoncesObject != null)
+			typeAnnonces = typeAnnoncesObject.getId();
+		
+		System.out.println("typeAnnoncesObject="+typeAnnoncesObject);
 	}
 
 	@Override
@@ -188,12 +193,22 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	public void remplir(){
-		if(typeAnnonces.equals(Constantes.BATEAUX))
-			afficherFormulaireBateau();
-		else if(typeAnnonces.equals(Constantes.MOTEURS))
-			afficherFormulaireMoteur();
-		else if(typeAnnonces.equals(Constantes.ACCESSOIRES))
-			afficherFormulaireAccessoire();
+		if(typeAnnoncesObject.getId() != null){
+			int id = Integer.parseInt(typeAnnoncesObject.getId());
+			if(id<4)
+				afficherFormulaireBateau();
+			else if (id == 5)
+				afficherFormulaireMoteur();
+			else
+				afficherFormulaireAccessoire();
+		}else{
+			if(typeAnnonces.equals(Constantes.BATEAUX))
+				afficherFormulaireBateau();
+			else if(typeAnnonces.equals(Constantes.MOTEURS))
+				afficherFormulaireMoteur();
+			else if(typeAnnonces.equals(Constantes.ACCESSOIRES))
+				afficherFormulaireAccessoire();
+		}
 	}
 
 	public void ajouterListeners(){
@@ -253,18 +268,18 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 	protected void demanderCategorie(){
 
-			String type = typeAnnonces;
+		String type = typeAnnonces;
 
-			List<Categorie> categories = Donnees.getCategories(type,true);
-			if(categories != null){
-				Map<String,String> donneesValeurs = new HashMap<String,String>();
-				for(Categorie categorie : categories){
-					donneesValeurs.put(categorie.getLibelle(), categorie.getId());
-				}
-
-				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
+		List<Categorie> categories = Donnees.getCategories(type,true);
+		if(categories != null){
+			Map<String,String> donneesValeurs = new HashMap<String,String>();
+			for(Categorie categorie : categories){
+				donneesValeurs.put(categorie.getLibelle(), categorie.getId());
 			}
-		
+
+			ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
+		}
+
 	}
 
 	protected void demanderPrix(){
@@ -293,7 +308,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 				).show();
 	}
 	protected void demanderChantierModele(){
-			if(typeAnnonces.equals(Constantes.BATEAUX))
+		if(typeAnnonces.equals(Constantes.BATEAUX))
 			ajouterFragment(new MarqueSelector(this,CHANTIER_MODELE,typeAnnonces,true));
 	}
 	protected void demanderEtat(){
@@ -330,17 +345,17 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 	protected void demanderMarque(){
 
-			if(typeAnnonces.equals(Constantes.MOTEURS)){
-				List<Marque> marques = Donnees.getMarques(""+typeAnnonces,true);
-				Map<String,String> donneesValeurs = new HashMap<String, String>();
-				for(Marque m : marques){
-					donneesValeurs.put(m.getLibelle(), m.getId());
-				}
-				ajouterFragment(new DonneeValeurSelector(this, MARQUE, donneesValeurs));
-			}else{
-				ajouterFragment(new MarqueSelector(this,MARQUE,""+typeAnnonces,true));
+		if(typeAnnonces.equals(Constantes.MOTEURS)){
+			List<Marque> marques = Donnees.getMarques(""+typeAnnonces,true);
+			Map<String,String> donneesValeurs = new HashMap<String, String>();
+			for(Marque m : marques){
+				donneesValeurs.put(m.getLibelle(), m.getId());
 			}
-		
+			ajouterFragment(new DonneeValeurSelector(this, MARQUE, donneesValeurs));
+		}else{
+			ajouterFragment(new MarqueSelector(this,MARQUE,""+typeAnnonces,true));
+		}
+
 	}
 
 	public void afficherAnnoncesListe(List<NameValuePair> donneesFormulaire, String type){
@@ -483,19 +498,19 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	public void rechercher(){
 
-			afficherAnnoncesListe(recupererDonnees(),recupererType());
-		
+		afficherAnnoncesListe(recupererDonnees(),recupererType());
+
 	}
 
 	public void rechercherNombre(){
 
-			task = new RechercherNombreAnnoncesTask();
-			task.execute();
-		
+		task = new RechercherNombreAnnoncesTask();
+		task.execute();
+
 	}
 
 	protected String recupererType(){
-			return typeAnnonces;  
+		return typeAnnonces;  
 	}
 
 	protected List<NameValuePair> recupererDonnees(){
@@ -503,58 +518,58 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		List<NameValuePair> donnees = Net.construireDonnes();
 
 
-			if(this.typeAnnonces != null)
-				Net.add(donnees, Constantes.ANNONCES_TYPE_ID,typeAnnonces);
+		if(this.typeAnnonces != null)
+			Net.add(donnees, Constantes.ANNONCES_TYPE_ID,typeAnnonces);
 
-			if(this.recherche_categorie_id != null && !this.recherche_categorie_id.equals("-1"))
-				Net.add(donnees, Constantes.ANNONCES_CATEGORIE_ID,recherche_categorie_id);
+		if(this.recherche_categorie_id != null && !this.recherche_categorie_id.equals("-1"))
+			Net.add(donnees, Constantes.ANNONCES_CATEGORIE_ID,recherche_categorie_id);
 
-			if(recherche_localisation_id != null && !this.recherche_localisation_id.equals("-1"))
-				Net.add(donnees, Constantes.ANNONCES_REGION_ID,recherche_localisation_id);
+		if(recherche_localisation_id != null && !this.recherche_localisation_id.equals("-1"))
+			Net.add(donnees, Constantes.ANNONCES_REGION_ID,recherche_localisation_id);
 
-			if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
-				if(!this.recherche_longueur_max.equals(MinMaxDialog.PLUS))
-					Net.add(donnees, Constantes.ANNONCES_MAX_TAILLE,recherche_longueur_max);
-				//if(!this.recherche_longueur_min.equals("0"))
-				Net.add(donnees, Constantes.ANNONCES_MIN_TAILLE,recherche_longueur_min);
-			}
+		if(this.recherche_longueur_min != null && this.recherche_longueur_max != null){
+			if(!this.recherche_longueur_max.equals(MinMaxDialog.PLUS))
+				Net.add(donnees, Constantes.ANNONCES_MAX_TAILLE,recherche_longueur_max);
+			//if(!this.recherche_longueur_min.equals("0"))
+			Net.add(donnees, Constantes.ANNONCES_MIN_TAILLE,recherche_longueur_min);
+		}
 
-			if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
-				if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
-					Net.add(donnees, Constantes.ANNONCES_MAX_PUISS,recherche_puissance_max);
-				//if(!this.recherche_puissance_min.equals("0"))
-				Net.add(donnees, Constantes.ANNONCES_MIN_PUISS,recherche_puissance_min);
-			}
+		if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
+			if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
+				Net.add(donnees, Constantes.ANNONCES_MAX_PUISS,recherche_puissance_max);
+			//if(!this.recherche_puissance_min.equals("0"))
+			Net.add(donnees, Constantes.ANNONCES_MIN_PUISS,recherche_puissance_min);
+		}
 
-			if(this.recherche_prix_min != null && this.recherche_prix_max != null){
-				if(!this.recherche_prix_max.equals(MinMaxDialog.PLUS))
-					Net.add(donnees, Constantes.ANNONCES_MAX_PRIX,recherche_prix_max);
-				//if(!this.recherche_prix_max.equals("0"))
-				Net.add(donnees, Constantes.ANNONCES_MIN_PRIX,recherche_prix_min);
-			}
+		if(this.recherche_prix_min != null && this.recherche_prix_max != null){
+			if(!this.recherche_prix_max.equals(MinMaxDialog.PLUS))
+				Net.add(donnees, Constantes.ANNONCES_MAX_PRIX,recherche_prix_max);
+			//if(!this.recherche_prix_max.equals("0"))
+			Net.add(donnees, Constantes.ANNONCES_MIN_PRIX,recherche_prix_min);
+		}
 
-			if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
-				if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
-					Net.add(donnees, Constantes.ANNONCES_MAX_PUISS,recherche_puissance_max);
-				//if(!this.recherche_prix_max.equals("0"))
-				Net.add(donnees, Constantes.ANNONCES_MIN_PUISS,recherche_puissance_min);
-			}
+		if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
+			if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
+				Net.add(donnees, Constantes.ANNONCES_MAX_PUISS,recherche_puissance_max);
+			//if(!this.recherche_prix_max.equals("0"))
+			Net.add(donnees, Constantes.ANNONCES_MIN_PUISS,recherche_puissance_min);
+		}
 
 
-			if(recherche_etat_id != null && !this.recherche_etat_id.equals("-1"))
-				Net.add(donnees, Constantes.ANNONCES_ETAT,recherche_etat_id);
+		if(recherche_etat_id != null && !this.recherche_etat_id.equals("-1"))
+			Net.add(donnees, Constantes.ANNONCES_ETAT,recherche_etat_id);
 
-			if(typeAnnonces.equals(Constantes.BATEAUX)){
-				if(recherche_modele_id != null  && !this.recherche_modele_id.equals("-1"))
-					Net.add(donnees,Constantes.ANNONCES_MODELE_ID,recherche_modele_id);
-				if(recherche_chantier_id != null  && !this.recherche_chantier_id.equals("-1"))
-					Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_chantier_id);
-			}
-			else if(typeAnnonces.equals(Constantes.MOTEURS) && recherche_marque_id != null && !this.recherche_marque_id.equals("-1"))
-				Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_marque_id);
+		if(typeAnnonces.equals(Constantes.BATEAUX)){
+			if(recherche_modele_id != null  && !this.recherche_modele_id.equals("-1"))
+				Net.add(donnees,Constantes.ANNONCES_MODELE_ID,recherche_modele_id);
+			if(recherche_chantier_id != null  && !this.recherche_chantier_id.equals("-1"))
+				Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_chantier_id);
+		}
+		else if(typeAnnonces.equals(Constantes.MOTEURS) && recherche_marque_id != null && !this.recherche_marque_id.equals("-1"))
+			Net.add(donnees, Constantes.ANNONCES_MARQUE_ID,recherche_marque_id);
 
-			return donnees;
-		
+		return donnees;
+
 	}
 
 	@Override
@@ -621,7 +636,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 		//TODO ajouter le md5 de la date
 
-			Net.add(donnees, Constantes.ALERTE_ID_TYPE,typeAnnonces);
+		Net.add(donnees, Constantes.ALERTE_ID_TYPE,typeAnnonces);
 
 		if(this.recherche_categorie_id != null && !this.recherche_categorie_id.equals("-1"))
 			Net.add(donnees, Constantes.ALERTE_ID_CATEGORIE,recherche_categorie_id);

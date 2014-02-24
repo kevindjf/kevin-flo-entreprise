@@ -20,6 +20,8 @@ public class NetActualite extends Net{
 
 		String xml = Net.requeteGet(Constantes.URL_ACTUALITE_DETAIL, Net.construireDonnes(
 				Constantes.ACTUALITE_DETAIL_ID_ACTUALITE, id));
+		
+		System.out.println(xml);
 
 		return new ActualiteXmlParser(xml).getNews();
 	}

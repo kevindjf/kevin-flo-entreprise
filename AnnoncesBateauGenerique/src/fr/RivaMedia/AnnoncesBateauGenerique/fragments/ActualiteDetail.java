@@ -64,6 +64,7 @@ public class ActualiteDetail extends FragmentNormal{
 	protected void chargerNews(){
 		charger();
 		remplir();
+		changerCouleurs();
 		ajouterListeners();
 	}
 
@@ -76,6 +77,11 @@ public class ActualiteDetail extends FragmentNormal{
 
 
 	}
+	
+	protected void changerCouleurs(){
+		afficherCouleurTouch(_view.findViewById(R.id.actualite_titre_layout));
+		afficherTexteCouleurTexte(_view.findViewById(R.id.actualite_detail_titre));
+	}
 
 	public void remplir(){
 		if(_news != null){
@@ -86,7 +92,7 @@ public class ActualiteDetail extends FragmentNormal{
 				_titre.setText(_news.getTitle());
 
 			if(_news.getPubDate() != null)
-				_date.setText(DateFrancais.convertirDate(_news.getPubDate()));
+				_date.setText(DateFrancais.dateEnToFr(_news.getPubDate()));
 			//	_date.setText(changerDate(_news.getPubDate()));
 			else
 				_date.setVisibility(View.GONE);

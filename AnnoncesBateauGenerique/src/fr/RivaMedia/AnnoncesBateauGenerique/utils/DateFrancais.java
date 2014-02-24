@@ -59,7 +59,7 @@ public class DateFrancais {
 		Log.e("DateFr",dateFr);
 		return dateFr;
 	}
-
+	
 	public static String dateEnToFr(String date){
 		
 		return date.substring(8)+"/"+date.substring(5,7)+"/"+date.substring(0,4);
