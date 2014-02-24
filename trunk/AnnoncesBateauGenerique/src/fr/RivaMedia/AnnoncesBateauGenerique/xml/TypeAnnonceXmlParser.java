@@ -61,6 +61,9 @@ public class TypeAnnonceXmlParser extends XmlParser {
 				else if(tag.equals("nb")){
 					type.setNb(getString());
 				}
+				else if(tag.equals("id")){
+					type.setId(getString());
+				}
 				else if(tag.equals("urlws")){
 					type.setUrl(getString());
 				}

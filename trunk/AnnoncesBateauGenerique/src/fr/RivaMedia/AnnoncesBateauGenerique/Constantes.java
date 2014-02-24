@@ -88,8 +88,8 @@ public class Constantes {
 	public static final String ANNONCES_MODELE_ID = "idmo"; //F
 	public static final String ANNONCES_MARQUE_ID = "idm"; //F
 	
-	public static final String URL_ACTUALITE_DETAIL = "actu-detail.php"; //F
-	public static final String ACTUALITE_DETAIL_ID_ACTUALITE = "idactu"; //F
+	
+	
 	
 	
 	public static final String URL_VENDRE = "getAnnonce.php"; //F
@@ -241,5 +241,8 @@ public class Constantes {
 	public static final String URL_CLIENTS_PRO = "clients.php";
 	public static final String URL_CLIENT_DETAIL = "client.php";
 	public static final String CLIENT_DETAIL_ID = "client";
+	
+	public static final String URL_ACTUALITE_DETAIL = "client/actuClient_detail.php"; //F
+	public static final String ACTUALITE_DETAIL_ID_ACTUALITE = "id"; //F
 	
 }
