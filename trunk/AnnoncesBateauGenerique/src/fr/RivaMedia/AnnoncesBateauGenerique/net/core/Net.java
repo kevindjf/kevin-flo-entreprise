@@ -225,6 +225,10 @@ public class Net {
 			sb.append("?");
 		if(donnees != null){
 			boolean premier = true;
+			
+			if(url.contains("&"))
+				premier = false;
+			
 			for(NameValuePair nvp : donnees){
 				if(!premier)
 					sb.append("&");
@@ -239,7 +243,7 @@ public class Net {
 		String urlRequete = "";
 
 		if(urlComplete)
-			urlRequete = url;
+			urlRequete = url+sb.toString();
 		else if(anciennesUrl)
 			urlRequete = Constantes.ANCIEN_URL_BASE+url+sb.toString();
 		else

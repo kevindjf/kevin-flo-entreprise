@@ -31,9 +31,11 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.Etat;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Lieu;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Marque;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.TypeAnnonce;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.TypeCategories;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAlerte;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAnnonce;
+import fr.RivaMedia.AnnoncesBateauGenerique.net.NetChargement;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.core.Net;
 import fr.RivaMedia.AnnoncesBateauGenerique.utils.JetonManager;
 
@@ -266,20 +268,51 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 				);
 
 	}
+	
+	
+	static AsyncTask<Void, Void, Void> taskCategorie = null;
 	protected void demanderCategorie(){
 
-		String type = typeAnnonces;
+		class DemanderCategorie extends AsyncTask<Void, Void, Void> {
+			protected Void doInBackground(Void...donnees) {
+				
+				afficherProgress(true);
+				TypeCategories typeCategorie = NetChargement.chargerTypesCategories(true,typeAnnonces);
+				final List<Categorie> categories = typeCategorie.getCategories();
+				
+				getActivity().runOnUiThread(new Runnable(){
 
-		List<Categorie> categories = Donnees.getCategories(type,true);
-		if(categories != null){
-			Map<String,String> donneesValeurs = new HashMap<String,String>();
-			for(Categorie categorie : categories){
-				donneesValeurs.put(categorie.getLibelle(), categorie.getId());
+					@SuppressLint("DefaultLocale")
+					@Override
+					public void run() {
+						if(categories != null){
+							Map<String,String> donneesValeurs = new HashMap<String,String>();
+							for(Categorie categorie : categories){
+								donneesValeurs.put(categorie.getLibelle(), categorie.getId());
+							}
+
+							ajouterFragment(new DonneeValeurSelector(AnnoncesFormulaire.this,CATEGORIE,donneesValeurs));
+						}
+					}
+
+				});
+				
+				afficherProgress(false);
+
+				return null;
 			}
 
-			ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,donneesValeurs));
+			protected void onPostExecute(){
+			}
 		}
-
+		
+		try{
+		if(taskCategorie != null)
+			taskCategorie.cancel(true);
+		}catch(Exception e){}
+		
+		taskCategorie = new DemanderCategorie();
+		taskCategorie.execute();
 	}
 
 	protected void demanderPrix(){

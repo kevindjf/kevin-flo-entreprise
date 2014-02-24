@@ -55,7 +55,7 @@ public class NetChargement extends Net{
 					);
 			if(WA)
 				Net.add(donnees,Constantes.MARQUES_POUR, "1");
-			
+
 			String xml = Net.requeteGet(Constantes.URL_TYPES_CATEGORIES, donnees);
 			type.setCategories(new CategorieXmlParser(xml).getCategoriesBateau());
 
@@ -64,6 +64,24 @@ public class NetChargement extends Net{
 
 
 		return types;
+	}
+
+	public static TypeCategories chargerTypesCategories(boolean WA, String typeId){
+
+		TypeCategories type = new TypeCategories();
+		type.setId(typeId);
+
+		List<NameValuePair> donnees = Net.construireDonnes(
+				Constantes.CATEGORIES_TYPE_ID, typeId
+				);
+		if(WA)
+			Net.add(donnees,Constantes.MARQUES_POUR, "1");
+
+		String xml = Net.requeteGet(Constantes.URL_TYPES_CATEGORIES, donnees);
+		type.setCategories(new CategorieXmlParser(xml).getCategoriesBateau());
+
+
+		return type;
 	}
 
 	public static List<Service> chargerServices(){
@@ -129,10 +147,10 @@ public class NetChargement extends Net{
 		if(idClient != null)
 			Net.add(donnees, Constantes.MARQUES_POUR_CLIENT, idClient
 					);
-		
+
 		if(WA)
 			Net.add(donnees, Constantes.MARQUES_POUR, "1");
-		
+
 		Log.e("MARQUE_MOTEUR",""+WA);
 
 		String xml = Net.requeteGet(Constantes.URL_MARQUES_MOTEUR, donnees);		
