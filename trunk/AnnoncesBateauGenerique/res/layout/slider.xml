@@ -36,12 +36,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <LinearLayout
-                    android:id="@+id/slider_annonces_layout_annonces_client"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-                </LinearLayout>
+                
 
                 <LinearLayout
                     android:id="@+id/slider_accueil"
@@ -56,6 +51,13 @@
                         android:id="@+id/text"
                         style="@style/slider_element_texte"
                         android:text="@string/accueil" />
+                </LinearLayout>
+                
+                <LinearLayout
+                    android:id="@+id/slider_annonces_layout_annonces_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
                 </LinearLayout>
 
                 <LinearLayout
