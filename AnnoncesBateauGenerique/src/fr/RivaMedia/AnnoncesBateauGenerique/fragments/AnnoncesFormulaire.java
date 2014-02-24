@@ -30,6 +30,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.Categorie;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Etat;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Lieu;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Marque;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.TypeAnnonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAlerte;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAnnonce;
@@ -51,6 +52,8 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	}
 
 	private String typeAnnonces;
+	
+	private TypeAnnonce typeAnnoncesObject;
 
 	public static int TYPE = 0;
 	public static int CATEGORIE = 1;
@@ -108,9 +111,10 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 	AnnoncesFormulaireDelegate delegate;
 
-	public AnnoncesFormulaire(String type,AnnoncesFormulaireDelegate delegate){
+	public AnnoncesFormulaire(String type,AnnoncesFormulaireDelegate delegate, TypeAnnonce typeAnnonce){
 		this.typeAnnonces = type;
 		this.delegate = delegate;
+		this.typeAnnoncesObject = typeAnnonce;
 	}
 
 	@Override

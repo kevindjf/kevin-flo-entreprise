@@ -15,7 +15,9 @@ import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +42,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.fragments.Vendre;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.Effaceable;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.TypeAnnonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Vendeur;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 
@@ -66,6 +69,8 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 	View _slider_mes_annonces;
 	View _slider_contact_pro;
 	View _slider_credits;
+	
+	ViewGroup _slider_layout_annonces;
 
 	View[] _slider_elements;
 
@@ -82,6 +87,9 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		ImageLoaderCache.load(this);
+		
 		ajouterVues();
 		charger();
 		ajouterListeners();
@@ -137,7 +145,8 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 		_slider_credits = findViewById(R.id.slider_credits);
 		_slider_accueil = findViewById(R.id.slider_accueil);
 		_slider_logo = (ImageView)findViewById(R.id.slider_image_entete);
-
+		_slider_layout_annonces = (ViewGroup)findViewById(R.id.slider_annonces_layout_annonces_client);
+		
 		_slider_elements = new View[]{
 				_slider_accueil,
 				_slider_annonces_bateaux,
@@ -149,12 +158,38 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 				_slider_annuaire,
 				_slider_mes_annonces,
 				_slider_contact_pro,
-				_slider_credits
+				_slider_credits,
+				_slider_layout_annonces
 		};
 
 		_progress = findViewById(R.id.header_progress);
+		
+		
 	}
 
+	protected void chargerSlider(){
+		LayoutInflater layoutInflater = getLayoutInflater();
+		for(TypeAnnonce ta : Donnees.typesAnnonces){
+			View layoutType = layoutInflater.inflate(R.layout.slider_menu, null);
+			
+			((TextView)layoutType.findViewById(R.id.slider_annonces_text)).setText(ta.getIntitule());
+			ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), (ImageView)layoutType.findViewById(R.id.slider_annonces_image));
+			
+			final TypeAnnonce type = ta;
+			
+			layoutType.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View arg0) {
+					afficherAnnonces(type);
+					fermerSlider();
+				}
+			});
+			
+			_slider_layout_annonces.addView(layoutType);
+		}
+	}
+	
 	protected void charger(){
 
 		if (fragments.size() == 0)
@@ -162,6 +197,7 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), _slider_logo);
 
+		chargerSlider();
 	}
 
 	protected void ajouterListeners(){
@@ -248,6 +284,11 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 	public void afficherAccueil(){
 		ajouterFragment(new Accueil(),false);
 	}
+	
+	public void afficherAnnonces(TypeAnnonce ta){
+		ajouterFragment(new AnnoncesListe(ta));
+	}
+	
 	public void afficherAnnonces(String item){
 		ajouterFragment(new AnnoncesListe(item));
 	}

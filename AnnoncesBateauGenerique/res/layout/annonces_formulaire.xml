@@ -147,7 +147,8 @@
 
         <RelativeLayout
             android:id="@+id/annonces_formulaire_localisation"
-            style="@style/formulaire_cellule" >
+            style="@style/formulaire_cellule"
+            android:visibility="gone" >
 
             <TextView
                 style="@style/formulaire_cellule_titre"

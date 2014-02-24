@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/slider_annonces_layout"
+    style="@style/slider_element" >
+
+    <ImageView
+        android:id="@+id/slider_annonces_image"
+        style="@style/slider_element_image"
+        android:src="@drawable/logo_annonces_blanc" />
+
+    <TextView
+        android:id="@+id/slider_annonces_text"
+        style="@style/slider_element_texte"
+        android:text="@string/annonces_bateaux" />
+
+</LinearLayout>

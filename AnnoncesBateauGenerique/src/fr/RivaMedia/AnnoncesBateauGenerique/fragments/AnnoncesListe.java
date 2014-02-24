@@ -29,13 +29,15 @@ import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnoncesFormulaire.Annonce
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentListe;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.TypeAnnonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAnnonce;
 
 @SuppressLint("ValidFragment")
 public class AnnoncesListe extends FragmentListe implements View.OnClickListener, AnnoncesFormulaireDelegate{
 
-
+	TypeAnnonce typeAnnonce = null;
+	
 	LoadMoreListView _liste = null;
 	AnnonceListAdapter _adapter = null;
 	List<Annonce> _annonces = new ArrayList<Annonce>();
@@ -52,6 +54,11 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 
 	public AnnoncesListe(){}
 
+	public AnnoncesListe(TypeAnnonce typeAnnonce){
+		System.out.println(typeAnnonce);
+		this.typeAnnonce = typeAnnonce;
+	}
+	
 	public AnnoncesListe(String type){
 		this._type = type ;
 	}
@@ -64,7 +71,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		task = new ChargerAnnoncesTask();
 		task.execute();
 
-		if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU)){
+		if(typeAnnonce != null || (_type != null && (_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU)))){
 			super.afficherTriLongueur(true);
 		}
 		else
@@ -131,7 +138,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void onClick(View v) {
 		super.onClick(v);		
 		if(v.getId() == R.id.header_plus)
-			ajouterFragment(new AnnoncesFormulaire(_type,this), true);
+			ajouterFragment(new AnnoncesFormulaire(_type,this,typeAnnonce), true);
 
 	}
 
@@ -215,7 +222,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
-			List<Annonce> annonces = NetAnnonce.rechercher(_type, Integer.valueOf(page), _donneesFormulaire, idClient);
+			List<Annonce> annonces = NetAnnonce.rechercher(_type, typeAnnonce, Integer.valueOf(page), _donneesFormulaire, idClient);
 			dernierNombre = annonces.size();
 			
 			if(page == 1)
@@ -258,7 +265,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		this._type = type;
 		
 		this._annonces.clear();
-		this._adapter.notifyDataSetChanged();
+		remplir();
 		
 		page = 1;
 		dernierNombre = 1;
