@@ -57,6 +57,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public AnnoncesListe(TypeAnnonce typeAnnonce){
 		System.out.println("typeAnnonce :"+typeAnnonce);
 		this.typeAnnonce = typeAnnonce;
+		this._type = typeAnnonce.getId();
 	}
 	
 	public AnnoncesListe(String type){
