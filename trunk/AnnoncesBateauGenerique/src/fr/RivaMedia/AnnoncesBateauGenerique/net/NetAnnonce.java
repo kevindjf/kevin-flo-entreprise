@@ -8,13 +8,14 @@ import org.apache.http.NameValuePair;
 import android.util.Log;
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.TypeAnnonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.core.Net;
 import fr.RivaMedia.AnnoncesBateauGenerique.xml.AnnonceXmlParser;
 import fr.RivaMedia.AnnoncesBateauGenerique.xml.NombreXmlParser;
 
 public class NetAnnonce extends Net {	
 
-	protected static String recupererUrlAnnonces(String _type){
+	protected static String recupererUrlAnnonces(String _type ){
 		String url = null;
 
 		if(_type != null){
@@ -30,7 +31,7 @@ public class NetAnnonce extends Net {
 		return url;
 	}
 
-	public static List<Annonce> rechercher(String type, Integer page, List<NameValuePair> donnees, String idClient){
+	public static List<Annonce> rechercher(String type, TypeAnnonce typeAnnonce, Integer page, List<NameValuePair> donnees, String idClient){
 
 		if(donnees == null )
 			donnees = new ArrayList<NameValuePair>();
@@ -42,14 +43,18 @@ public class NetAnnonce extends Net {
 		if(idClient != null)
 			Net.add(d, Constantes.ANNONCES_ID_CLIENT, idClient);
 
-		String xml = Net.requeteGet(recupererUrlAnnonces(type),d);
+		String xml = "";
+		if(typeAnnonce != null && typeAnnonce.getUrl() != null)
+			xml = Net.requeteGet(typeAnnonce.getUrl(),true,d);
+		else
+			xml = Net.requeteGet(recupererUrlAnnonces(type),d);
 		Log.e("NetRecherche",xml);
 		return new AnnonceXmlParser(xml).getListe();
 	}
 
 	protected static String recupererUrlAnnonce(String _type){
 		String url = null;
-
+ 
 		if(_type != null){
 
 			if(_type.equals(Constantes.BATEAU_A_MOTEUR) || _type.equals(Constantes.VOILIER) || _type.equals(Constantes.PNEU))

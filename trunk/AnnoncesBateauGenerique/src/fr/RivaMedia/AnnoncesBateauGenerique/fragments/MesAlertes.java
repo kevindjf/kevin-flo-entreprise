@@ -146,7 +146,7 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener, A
 
 
 	private void rechercher() {
-		ajouterFragment(new AnnoncesFormulaire(Constantes.BATEAUX,this));
+		ajouterFragment(new AnnoncesFormulaire(Constantes.BATEAUX,this,null));
 	}
 
 

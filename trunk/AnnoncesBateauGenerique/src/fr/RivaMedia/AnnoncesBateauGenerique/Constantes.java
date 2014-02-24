@@ -26,7 +26,7 @@ public class Constantes {
 	public static final String URL_MAGAZINE = "magazine.php"; //F
 	public static final String URL_AUTO_PROMO = "autopromo.php"; //F
 	
-	public static final String URL_TYPES_ANNONCES = "type.php"; //F
+
 	public static final String URL_REGIONS = "region.php"; //F
 	public static final String URL_ETATS = "etat.php"; //F
 	public static final String URL_ENERGIES = "nrj.php"; //F
@@ -230,10 +230,11 @@ public class Constantes {
 	
 	
 	
-	// ANNONCES AUTO GENERIQUE
+	// ANNONCES GENERIQUE
 	public static final String ID_CLIENT = "idcli"; 
 	
 	public static final String URL_PARAMETRES = "client/_configGenerique.php"; 
+	public static final String URL_TYPES_ANNONCES = "client/typeAnnonce.php"; //F
 	
 	public static final String URL_ACTUALITES = "client/actuClient.php";	
 	

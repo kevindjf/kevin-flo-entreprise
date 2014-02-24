@@ -73,7 +73,7 @@ public class Net {
 		for(int i=0;i<donnes.length;i+=2){
 			String cle = donnes[i].toString();
 			String valeur = donnes[i+1].toString();
-			
+
 			if(!donneesPost.contains(cle))
 				donneesPost.add(new BasicNameValuePair(cle, valeur));
 		}
@@ -143,7 +143,7 @@ public class Net {
 			donneesPost = Net.construireDonnes();
 
 		add(donneesPost,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
-		
+
 		add(donneesPost,Constantes.ID_CLIENT,ConstantesClient.ID_CLIENT);
 
 		HttpClient httpClient = new DefaultHttpClient();
@@ -152,12 +152,12 @@ public class Net {
 		CacheConfig cacheConfig = new CacheConfig();  
 		cacheConfig.setMaxCacheEntries(1000);
 		cacheConfig.setMaxObjectSizeBytes(8192);
-		
+
 
 		DefaultHttpClient realClient = new DefaultHttpClient();
 		realClient.addResponseInterceptor(MakeCacheable.INSTANCE, 0); // This goes first
 		CachingHttpClient httpClient = new CachingHttpClient(realClient, cacheConfig);
-		*/
+		 */
 
 		try {
 
@@ -176,14 +176,14 @@ public class Net {
 			//StatusLine statusLine = httpReponse.getStatusLine();
 			//if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
 			//String response = responseToString(httpReponse.getEntity());
-			
+
 			StatusLine statusLine = httpReponse.getStatusLine();
 			Log.e("NET_ST",statusLine.toString());
 			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
 				Log.d("NET_STATUS","STATUS OK");
 			}else
 				Log.d("NET_STATUS","STATUS PAS OK");
-			
+
 			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim().replace("&aecute", "é");  
 			Log.d("NET",response);
 			Log.d("NET_REPONSE_TAILLE",""+response.length());
@@ -205,15 +205,19 @@ public class Net {
 	}
 
 	public static String requeteGet(String url, List<NameValuePair> donnees){
-		return requeteGet(url, donnees,false);
+		return requeteGet(url, false, donnees,false);
 	}
-	
-	public static String requeteGet(String url, List<NameValuePair> donnees, boolean anciennesUrl){
+
+	public static String requeteGet(String url, boolean urlComplete, List<NameValuePair> donnees){
+		return requeteGet(url, urlComplete, donnees,false);
+	}
+
+	public static String requeteGet(String url, boolean urlComplete, List<NameValuePair> donnees, boolean anciennesUrl){
 
 		if(donnees == null)
 			donnees = Net.construireDonnes();
 		add(donnees,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
-		
+
 		add(donnees,Constantes.ID_CLIENT,ConstantesClient.ID_CLIENT);
 
 		StringBuilder sb = new StringBuilder();
@@ -233,7 +237,10 @@ public class Net {
 		}
 
 		String urlRequete = "";
-		if(anciennesUrl)
+
+		if(urlComplete)
+			urlRequete = url;
+		else if(anciennesUrl)
 			urlRequete = Constantes.ANCIEN_URL_BASE+url+sb.toString();
 		else
 			urlRequete = SITE+url+sb.toString();
@@ -252,7 +259,7 @@ public class Net {
 				Log.d("NET_STATUS","STATUS OK");
 			}else
 				Log.d("NET_STATUS","STATUS PAS OK");
-			
+
 			//String response = responseToString(httpReponse.getEntity());
 			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim().replace("&aecute", "é");  
 			Log.d("NET",response);
@@ -287,18 +294,18 @@ public class Net {
 
 			HttpPost requete = new HttpPost(SITE+url);
 			requete.setEntity(donneesPost);
-			
+
 			Log.d("NET",SITE+url);
 
 			HttpResponse httpReponse = httpClient.execute(requete);
-			
+
 			StatusLine statusLine = httpReponse.getStatusLine();
 			Log.e("NET_ST",statusLine.toString());
 			if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
 				Log.d("NET_STATUS","STATUS OK");
 			}else
 				Log.d("NET_STATUS","STATUS PAS OK");
-			
+
 			String response = EntityUtils.toString( httpReponse.getEntity(), HTTP.ISO_8859_1 ).trim();
 			Log.d("NET",response);
 			return response.replace("<br>", "").replace("<br>", "").replace("<br/>", "").replace("<br />", "");

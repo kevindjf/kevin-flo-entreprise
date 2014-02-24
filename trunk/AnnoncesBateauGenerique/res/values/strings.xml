@@ -55,6 +55,7 @@
     <string name="contactez_nous">Contactez-nous</string>
     <string name="commentaire">Commentaire</string>
     <string name="contact_pro">Contact PRO</string>
+    <string name="consulter_les_offres_de">CONSULTER LES OFFRES DE</string>
     <string name="coordonnees">Coordonnées</string>
     <string name="couchettes">Couchettes</string>
     <string name="crash_toast_text">Une erreur est survenue, aidez nous à améliorer cette application en ous envoyant le rapport de bug</string>
@@ -65,6 +66,7 @@
     <string name="departement">Département</string>
     <string name="departement_dots">Département :</string>
     <string name="departement_pays_star">Département/pays *</string>
+    <string name="derniere_actualite_de">DERNIERE ACTUALITE DE</string>
     <string name="description">DESCRIPTION</string>
     <string name="description_dots">Description :</string>
     <string name="description_maj">DESCRIPTION</string>

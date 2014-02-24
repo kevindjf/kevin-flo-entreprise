@@ -24,6 +24,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.alertes.GcmInitializer;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Marque;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
+import fr.RivaMedia.AnnoncesBateauGenerique.net.NetActualite;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetChargement;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.core.Net;
 
@@ -168,6 +169,7 @@ public class SplashScreenActivity extends Activity{
 
 			Donnees.autoPromo = NetChargement.chargerAutoPromo();
 			Donnees.magazine = NetChargement.chargerMagazineEnCours();
+			Donnees.news = NetActualite.chargerListeNews(0);
 			chargerImage();
 
 			Donnees.typesAnnonces = NetChargement.chargerTypesAnnonces();

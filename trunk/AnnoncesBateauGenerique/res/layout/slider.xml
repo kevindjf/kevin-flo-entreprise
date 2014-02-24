@@ -37,8 +37,16 @@
                 android:orientation="vertical" >
 
                 <LinearLayout
+                    android:id="@+id/slider_annonces_layout_annonces_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/slider_accueil"
-                    style="@style/slider_element" >
+                    style="@style/slider_element"
+                     >
 
                     <ImageView
                         style="@style/slider_element_image"
@@ -52,7 +60,8 @@
 
                 <LinearLayout
                     android:id="@+id/slider_annonces_bateaux"
-                    style="@style/slider_element" >
+                    style="@style/slider_element"
+                    android:visibility="gone" >
 
                     <ImageView
                         style="@style/slider_element_image"
@@ -65,7 +74,8 @@
 
                 <LinearLayout
                     android:id="@+id/slider_annonces_moteurs"
-                    style="@style/slider_element" >
+                    style="@style/slider_element"
+                    android:visibility="gone" >
 
                     <ImageView
                         style="@style/slider_element_image"
@@ -78,7 +88,8 @@
 
                 <LinearLayout
                     android:id="@+id/slider_annonces_accessoires"
-                    style="@style/slider_element" >
+                    style="@style/slider_element"
+                    android:visibility="gone" >
 
                     <ImageView
                         style="@style/slider_element_image"
@@ -131,8 +142,8 @@
 
                 <LinearLayout
                     android:id="@+id/slider_reprise"
-                    android:visibility="gone"
-                    style="@style/slider_element" >
+                    style="@style/slider_element"
+                    android:visibility="gone" >
 
                     <ImageView
                         style="@style/slider_element_image"
