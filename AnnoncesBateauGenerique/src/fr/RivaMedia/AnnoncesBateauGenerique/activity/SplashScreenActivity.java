@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 //import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -36,6 +37,8 @@ public class SplashScreenActivity extends Activity{
 	public static final int tempsAttenteSecondes = 0;
 
 	GcmInitializer gcmInitializer;
+	
+	int splash = 0;
 
 
 	@Override
@@ -133,14 +136,15 @@ public class SplashScreenActivity extends Activity{
 	}
 	
 	void chargerSplash(){
+		
 		runOnUiThread(new Runnable() {
 			
 			@Override
 			public void run() {
 				try{
-				ImageLoaderCache.charger(Donnees.parametres.getImageStart728x1280(), (ImageView)findViewById(R.id.splash));
+					ImageLoaderCache.charger(Donnees.parametres.getImageStartDraw9(), (ImageView)findViewById(R.id.splash));
 				}catch(Exception e){
-					
+					e.printStackTrace();
 				}
 			}
 		});

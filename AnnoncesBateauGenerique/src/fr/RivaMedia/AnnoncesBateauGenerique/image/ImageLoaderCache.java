@@ -29,6 +29,7 @@ public class ImageLoaderCache {
 
 	public static void charger(String url, ImageView imageView) {
 		ImageLoader.getInstance().displayImage(url, imageView, options);
+		ImageLoader.getInstance().displayImage(url, imageView, options);
 	}
 	
 }
