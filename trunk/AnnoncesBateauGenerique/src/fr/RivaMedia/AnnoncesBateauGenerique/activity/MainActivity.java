@@ -178,7 +178,6 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 			View layoutType = layoutInflater.inflate(R.layout.slider_menu, null);
 			
 			((TextView)layoutType.findViewById(R.id.slider_annonces_text)).setText(ta.getIntitule());
-			ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), (ImageView)layoutType.findViewById(R.id.slider_annonces_image));
 			
 			final TypeAnnonce type = ta;
 			
