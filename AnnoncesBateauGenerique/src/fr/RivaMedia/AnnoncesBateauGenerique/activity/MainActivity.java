@@ -114,11 +114,16 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 
 		}
 	}
-	public void afficherProgress(boolean afficher){
-		if(afficher)
-			_progress.setVisibility(View.VISIBLE);
-		else
-			_progress.setVisibility(View.GONE);
+	public void afficherProgress(final boolean afficher){
+		runOnUiThread(new Runnable(){
+			public void run(){
+				if(afficher)
+					_progress.setVisibility(View.VISIBLE);
+				else
+					_progress.setVisibility(View.GONE);
+			}
+		});
+		
 	}
 
 	protected void ajouterVues(){
