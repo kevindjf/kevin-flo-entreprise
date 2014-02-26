@@ -25,7 +25,7 @@
 
         <ImageView
             android:id="@+id/annonce_element_liste_image"
-            android:layout_width="100dip"
+            android:layout_width="150dip"
             android:layout_height="100dip"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="10dip"
@@ -84,7 +84,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/annonce_element_liste_taille"
                 android:layout_alignParentBottom="true"
-                android:layout_below="@+id/annonce_element_liste_taille"
                 android:orientation="horizontal" >
 
                 <TextView

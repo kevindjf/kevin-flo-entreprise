@@ -45,7 +45,8 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	View button_telephone;
 	View contact_pro_telephone;
 	View contact_pro_email;
-
+	View background_contact_pro;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
@@ -55,9 +56,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 			ViewGroup parent = (ViewGroup) view.getParent();
 			if (parent != null)
 				parent.removeView(view);
-			
-			//trackerEcran("Ecran Contact Pro Android");
-			
+
 			return view;
 		}
 		try {
@@ -96,7 +95,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 	public void charger() {
 		mMapFragment = ((SupportMapFragment)getFragmentManager().findFragmentById(R.id.map));
 		mMap = mMapFragment.getMap();
-
+		background_contact_pro = view.findViewById(R.id.background_contact_pro);
 		shape_ovale = view.findViewById(R.id.contact_pro_shape_oval);
 		button_email = view.findViewById(R.id.contact_pro_button_email);
 		button_telephone = view.findViewById(R.id.contact_pro_button_telephone);
@@ -169,6 +168,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		afficherCouleurTouch(button_telephone);
 		afficherCouleurNormal(contact_pro_telephone);
 
+		afficherCouleurNormal(background_contact_pro);
 		selector(button_email,false);
 		selector(contact_pro_email);
 		selector(button_telephone,false);
@@ -179,6 +179,9 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		((TextView)contact_pro_email.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
 		((TextView)button_telephone.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
 		((TextView)contact_pro_telephone.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)_adresse).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)_adresse_postale).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)_horaire).setTextColor(Donnees.parametres.getFontColorUn());
 
 		//afficherTexteCouleurTitre(_horaire,_adresse,_adresse_postale);
 

@@ -79,6 +79,7 @@ implements View.OnClickListener, OnBackStackChangedListener
 		}
 	}
 
+
 	public void ajouterFragment(final Fragment fragment, final boolean back) {
 
 		runOnUiThread(new Runnable() {

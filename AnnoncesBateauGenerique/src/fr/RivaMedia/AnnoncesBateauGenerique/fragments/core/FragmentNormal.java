@@ -175,6 +175,10 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	public void setFragmentView(View fragmentView) {
 		this.fragmentView = fragmentView;
 	}
+	
+	public boolean onBackPressed() {
+		return false;
+	}
 
 	public static void afficherTexteCouleurTexte(View v){
 			try{

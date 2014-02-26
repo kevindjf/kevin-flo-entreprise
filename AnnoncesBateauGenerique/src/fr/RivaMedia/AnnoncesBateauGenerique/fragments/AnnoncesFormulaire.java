@@ -76,7 +76,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	View _longueur;
 	View _chantierModele;
 	View _etat;
-	View _localisation;
 
 	//MOTEUR
 	View _puissance;
@@ -152,7 +151,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		_longueur = _view.findViewById(R.id.annonces_formulaire_longueur);
 		_chantierModele = _view.findViewById(R.id.annonces_formulaire_chantier_modele);
 		_etat = _view.findViewById(R.id.annonces_formulaire_etat);
-		_localisation = _view.findViewById(R.id.annonces_formulaire_localisation);
 
 		//MOTEUR
 		_puissance = _view.findViewById(R.id.annonces_formulaire_puissance);
@@ -163,8 +161,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 				_prix,
 				_longueur,
 				_chantierModele,
-				_etat,
-				_localisation
+				_etat
 		};
 
 		_vuesMoteur = new View[]{
@@ -172,14 +169,13 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 				_prix,
 				_puissance,
 				_marque,
-				_etat,
-				_localisation
+				_etat
 		};
 
 		_vuesAccessoire = new View[]{
 				_categorie, 
-				_prix, 
-				_localisation
+				_prix
+				
 		};
 
 		_views = new View[]{
@@ -188,7 +184,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 				_longueur,
 				_chantierModele,
 				_etat,
-				_localisation,
 				_puissance,
 				_marque,
 		};
@@ -197,9 +192,10 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 	public void remplir(){
 		if(typeAnnoncesObject.getId() != null){
 			int id = Integer.parseInt(typeAnnoncesObject.getId());
+			Log.e("Id ", id+"");
 			if(id<4)
 				afficherFormulaireBateau();
-			else if (id == 5)
+			else if (id == 4)
 				afficherFormulaireMoteur();
 			else
 				afficherFormulaireAccessoire();
@@ -221,7 +217,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		_longueur.setOnClickListener(this);
 		_chantierModele.setOnClickListener(this);
 		_etat.setOnClickListener(this);
-		_localisation.setOnClickListener(this);
 		_puissance.setOnClickListener(this);
 		_marque.setOnClickListener(this);
 	}
@@ -243,8 +238,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			demanderChantierModele();
 		} else if (id == R.id.annonces_formulaire_etat) {
 			demanderEtat();
-		} else if (id == R.id.annonces_formulaire_localisation) {
-			demanderLocalisation();
 		} else if (id == R.id.annonces_formulaire_puissance) {
 			demanderPuissance();
 		} else if (id == R.id.annonces_formulaire_marque) {
@@ -469,12 +462,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			recherche_categorie_id = item;
 			((TextView)_categorie.findViewById(R.id.text)).setText(value);
 		}
-
-		else if(idRetour == LOCALISATION){
-			recherche_localisation_id = item;
-			((TextView)_localisation.findViewById(R.id.text)).setText(value);
-		}
-
 		else if(idRetour == CHANTIER_MODELE){
 			if(item.equals("-1")){
 				recherche_chantier_id = null;

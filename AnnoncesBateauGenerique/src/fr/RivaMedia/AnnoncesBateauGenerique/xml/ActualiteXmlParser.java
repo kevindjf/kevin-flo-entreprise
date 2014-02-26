@@ -77,7 +77,7 @@ public class ActualiteXmlParser extends XmlParser {
 				}
 				else if(tag.equals("img")){
 					news.setImageAdress(getString());
-					Log.e("IMAGE",news.getImageAdress());
+					//Log.e("IMAGE",news.getImageAdress());
 				}
 				else if(tag.equals("date")){
 					news.setPubDate(getString());
