@@ -290,26 +290,26 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 	}
 	
 	public void afficherAnnonces(TypeAnnonce ta){
-		ajouterFragment(new AnnoncesListe(ta));
+		ajouterFragment(new AnnoncesListe(ta),true);
 	}
 	
 	public void afficherAnnonces(String item){
-		ajouterFragment(new AnnoncesListe(item));
+		ajouterFragment(new AnnoncesListe(item),true);
 	}
 	public void afficherVendre(){
-		ajouterFragment(new Vendre(),false);
+		ajouterFragment(new Vendre(),true);
 	}
 	public void afficherBoatOnDemand(){
-		ajouterFragment(new OnDemand(),false);
+		ajouterFragment(new OnDemand(),true);
 	}
 	public void afficherActualites(){
-		ajouterFragment(new Actualites(),false);
+		ajouterFragment(new Actualites(),true);
 	}
 	public void afficherAnnuaire(){
 		ajouterFragment(new Annuaire(),false);
 	}
 	public void afficherMesAnnonces(){
-		ajouterFragment(new MesAnnonces(),false);
+		ajouterFragment(new MesAnnonces(),true);
 	}
 
 	public void afficherMesAlertes(){
@@ -317,15 +317,15 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 	}
 
 	public void afficherInformations(){
-		ajouterFragment(new Informations(),false);
+		ajouterFragment(new Informations(),true);
 	}
 
 	public void afficherContactPro(){
-		ajouterFragment(new ContactPro(),false);
+		ajouterFragment(new ContactPro(),true);
 	}
 
 	public void afficherCredits(){
-		ajouterFragment(new Credit(),false);
+		ajouterFragment(new Credit(),true);
 	}
 
 	public void afficherEffacer(final Effaceable effaceable){
@@ -374,7 +374,7 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 	public void envoyerEmailDirect(String email){
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setData(Uri.parse("mailto:"+email));
-		intent.putExtra(Intent.EXTRA_SUBJECT, "["+ConstantesClient.APPLICATION_NAME+"]");
+		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_contact).replace("$nom$", ConstantesClient.APPLICATION_NAME));
 		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_contact).replace("$nom$", ConstantesClient.APPLICATION_NAME));
 		startActivity(intent);
 	}

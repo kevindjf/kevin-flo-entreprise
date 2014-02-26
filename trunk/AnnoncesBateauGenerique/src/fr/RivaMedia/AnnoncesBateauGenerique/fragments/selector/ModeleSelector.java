@@ -105,8 +105,11 @@ public class ModeleSelector extends FragmentNormal implements OnItemClickListene
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id){
 		Modele modele = _marque.getModeles().get(position);
 		_listener.itemSelected(this,_reponseId,_marque.getId()+";"+modele.getId(), _marque.getLibelle()+" / "+modele.getLibelle());
-		((BateauFragmentActivity)getActivity()).retirerFragment();
-		((BateauFragmentActivity)getActivity()).retirerFragment();
+		try{
+		((BateauFragmentActivity)getActivity()).retirerFragment(2);
+		}catch(Exception e){
+			
+		}
 	}
 
 	class ChargerModelesTask extends AsyncTask<Void, Void, Void> {

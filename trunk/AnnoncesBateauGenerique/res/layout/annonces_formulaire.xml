@@ -145,22 +145,6 @@
             <ImageView style="@style/formulaire_cellule_indicator" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/annonces_formulaire_localisation"
-            style="@style/formulaire_cellule"
-            android:visibility="gone" >
-
-            <TextView
-                style="@style/formulaire_cellule_titre"
-                android:text="@string/localisation" />
-
-            <TextView
-                android:id="@id/text"
-                style="@style/formulaire_cellule_texte"
-                android:hint="@string/facultatif" />
-
-            <ImageView style="@style/formulaire_cellule_indicator" />
-        </RelativeLayout>
     </LinearLayout>
 
     <!--
