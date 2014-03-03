@@ -32,7 +32,7 @@
             android:layout_marginLeft="10dip"
             android:adjustViewBounds="true"
             android:fitsSystemWindows="true"
-            android:scaleType="centerCrop" />
+            android:scaleType="fitXY" />
 
         <RelativeLayout
             android:layout_width="match_parent"

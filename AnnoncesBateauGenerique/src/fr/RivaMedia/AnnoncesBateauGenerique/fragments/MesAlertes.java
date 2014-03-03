@@ -1,6 +1,7 @@
 package fr.RivaMedia.AnnoncesBateauGenerique.fragments;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
+import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnoncePuissanceComparator;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnoncesFormulaire.AnnoncesFormulaireDelegate;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentListe;
 import fr.RivaMedia.AnnoncesBateauGenerique.tab.alertes.TabMesAlertesAnnonces;
@@ -225,6 +227,12 @@ public class MesAlertes extends FragmentListe implements View.OnClickListener, A
 		}
 	}
 
+	@Override
+	public void afficherPuissanceCroissant(){
+	}
+	@Override
+	public void afficherPuissanceDeCroissant(){
+	}
 
 
 	@Override

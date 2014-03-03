@@ -249,4 +249,11 @@ public class MesAnnonces extends FragmentListe implements View.OnClickListener{
 		}
 	}
 
+	@Override
+	public void afficherPuissanceCroissant(){
+	}
+	@Override
+	public void afficherPuissanceDeCroissant(){
+	}
+
 }

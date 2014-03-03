@@ -25,6 +25,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.adapter.AnnonceListAdapter;
 import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnonceDateComparator;
 import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnoncePrixComparator;
 import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnoncePrixParLongueurComparator;
+import fr.RivaMedia.AnnoncesBateauGenerique.comparator.AnnoncePuissanceComparator;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnoncesFormulaire.AnnoncesFormulaireDelegate;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.core.FragmentListe;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
@@ -77,6 +78,20 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		}
 		else
 			super.afficherTriLongueur(false);
+		
+		if(_type != null && _type.equals(Constantes.MOTEURS)){
+			super.afficherTriPuissance(true);
+			super.afficherTriLongueur(false);
+		}
+		
+		try{
+		if(_type != null && Integer.parseInt(_type) > Integer.parseInt(Constantes.MOTEURS)){
+			super.afficherTriPuissance(false);
+			super.afficherTriLongueur(false);
+		}
+		}catch(Exception e){
+			
+		}
 	}
 
 	@Override
@@ -215,6 +230,21 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void afficherLongueurDeCroissant() {
 		if(_adapter != null && _annonces != null){
 			Collections.sort(_annonces,new AnnoncePrixParLongueurComparator(false));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+	
+	@Override
+	public void afficherPuissanceCroissant(){
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePuissanceComparator(true));
+			_adapter.notifyDataSetChanged();
+		}
+	}
+	@Override
+	public void afficherPuissanceDeCroissant(){
+		if(_adapter != null && _annonces != null){
+			Collections.sort(_annonces,new AnnoncePuissanceComparator(false));
 			_adapter.notifyDataSetChanged();
 		}
 	}
