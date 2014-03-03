@@ -26,6 +26,8 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 		getActivity().findViewById(R.id.slider_droite_prix_decroissant).setOnClickListener(this);
 		getActivity().findViewById(R.id.slider_droite_longueur_croissant).setOnClickListener(this);
 		getActivity().findViewById(R.id.slider_droite_longueur_decroissant).setOnClickListener(this);
+		getActivity().findViewById(R.id.slider_droite_puissance_croissant).setOnClickListener(this);
+		getActivity().findViewById(R.id.slider_droite_puissance_decroissant).setOnClickListener(this);
 	}
 	
 	public void fermerSliderDroite(){
@@ -46,12 +48,21 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 			getActivity().findViewById(R.id.slider_droite_tri_longueur).setVisibility(View.GONE);
 	}
 	
+	public void afficherTriPuissance(boolean b){
+		if(b)
+			getActivity().findViewById(R.id.slider_droite_tri_puissance_moteur).setVisibility(View.VISIBLE);
+		else
+			getActivity().findViewById(R.id.slider_droite_tri_puissance_moteur).setVisibility(View.GONE);
+	}
+	
 	public abstract void afficherPrixCroissant();
 	public abstract void afficherPrixDeCroissant();
 	public abstract void afficherDateCroissant();
 	public abstract void afficherDateDeCroissant();
 	public abstract void afficherLongueurCroissant();
 	public abstract void afficherLongueurDeCroissant();
+	public abstract void afficherPuissanceCroissant();
+	public abstract void afficherPuissanceDeCroissant();
 	
 	@Override
 	public void onClick(View v) {
@@ -78,6 +89,12 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 			fermerSliderDroite();
 		} else if (id == R.id.slider_droite_longueur_decroissant) {
 			afficherLongueurDeCroissant();
+			fermerSliderDroite();
+		}else if (id == R.id.slider_droite_puissance_croissant) {
+			afficherPuissanceCroissant();
+			fermerSliderDroite();
+		} else if (id == R.id.slider_droite_puissance_decroissant) {
+			afficherPuissanceDeCroissant();
 			fermerSliderDroite();
 		}
 	}
