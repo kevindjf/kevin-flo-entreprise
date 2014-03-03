@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dip" >
+    android:layout_height="wrap_content"
+    android:minHeight="100dip" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
         <ImageView
             android:id="@+id/annonce_element_liste_image"
             android:layout_width="150dip"
-            android:layout_height="100dip"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="10dip"
             android:adjustViewBounds="true"
@@ -45,8 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:lines="1"
-                android:text="SKUTSHJE 15M"
+                android:text="PACIFIC CRAFT 815 SUN CRUISER"
                 android:textColor="@color/couleur_texte_fonce"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -83,8 +83,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/annonce_element_liste_taille"
                 android:layout_alignParentBottom="true"
+                android:layout_alignLeft="@+id/annonce_element_liste_taille"
+                android:layout_below="@+id/annonce_element_liste_taille"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -106,6 +107,7 @@
                     android:textColor="@color/couleur_1"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/annonce_element_liste_prix_taxe"
                     android:layout_width="wrap_content"
