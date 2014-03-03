@@ -293,7 +293,8 @@
                     <Button
                         android:id="@+id/boat_on_demand_etape_suivante"
                         style="@style/bouton_rechercher"
-                        android:layout_height="60dip" />
+                        android:layout_height="60dip"
+                        android:text="@string/mes_coordonnes" />
                 </RelativeLayout>
             </LinearLayout>
         </ScrollView>

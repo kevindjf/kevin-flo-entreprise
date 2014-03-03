@@ -47,7 +47,7 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 		if(_element instanceof Actualite){
 			Actualite news = (Actualite)_element;
 
-			ImageLoaderCache.charger(news.getImageAdress(),_image);
+			ImageLoaderCache.charger(news.getImageAdress(),_image, getView().findViewById(android.R.id.progress));
 			_titre.setText(news.getTitle());
 			_sousTitre.setText(news.getDescription());
 		}

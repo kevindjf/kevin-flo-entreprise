@@ -128,6 +128,7 @@
     <string name="marque_modele_star">Marque/Modèle *</string>
     <string name="marque_du_moteur">Marque du moteur</string>
     <string name="mes_annonces">Mes annonces</string>
+    <string name="mes_coordonnes">Mes coordonnees</string>
     <string name="mes_alertes">Mes alertes</string>
     <string name="mes_alertes_chevron">&lt; Mes alertes</string>
     <string name="mes_favoris">Mes favoris</string>

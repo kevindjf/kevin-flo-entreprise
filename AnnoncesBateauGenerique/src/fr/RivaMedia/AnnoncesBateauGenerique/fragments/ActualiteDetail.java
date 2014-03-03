@@ -86,7 +86,10 @@ public class ActualiteDetail extends FragmentNormal{
 	public void remplir(){
 		if(_news != null){
 			if(_news.getImageAdress() != null)
-				ImageLoaderCache.charger(_news.getImageAdress(), _image);
+				ImageLoaderCache.charger(_news.getImageAdress(), _image, _view.findViewById(android.R.id.progress));
+			else{
+				_image.setVisibility(View.GONE);
+			}
 
 			if(_news.getTitle() != null)
 				_titre.setText(_news.getTitle());

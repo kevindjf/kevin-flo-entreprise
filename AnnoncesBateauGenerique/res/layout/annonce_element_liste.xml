@@ -9,6 +9,7 @@
         android:background="@color/couleur_cellule_impaire" >
 
         <RelativeLayout
+            android:id="@android:id/progress"
             android:layout_width="120dip"
             android:layout_height="100dip"
             android:layout_alignBottom="@+id/annonce_element_liste_image"

@@ -103,6 +103,9 @@ public class ClientXmlParser extends XmlParser {
 				else if(tag.equals("nb_accessoires"))
 					client.setNbAccessoires(getInteger());
 				
+				else if(tag.equals("nom"))
+					client.setNom(getString());
+				
 				else
 					Log.e("XML INCONNU",tag);
 			}

@@ -144,7 +144,7 @@ public class Constantes {
 	public static final String ANNURAIRE_MARQUE = "listMarque";
 	public static final String ANNURAIRE_SERVICE = "service";
 	
-	public static final String URL_ON_DEMAND = "bod.php"; //F
+	
 	public static final String VENDEUR_NOM = "nom"; //F
 	public static final String VENDEUR_PRENOM = "prenom"; //F
 	public static final String VENDEUR_EMAIL = "email"; //F
@@ -237,6 +237,8 @@ public class Constantes {
 	public static final String URL_TYPES_ANNONCES = "client/typeAnnonce.php"; //F
 	
 	public static final String URL_ACTUALITES = "client/actuClient.php";	
+	
+	public static final String URL_ON_DEMAND = "client/bodClient.php"; //F
 	
 	public static final String URL_CLIENTS_PRO = "clients.php";
 	public static final String URL_CLIENT_DETAIL = "client.php";
