@@ -11,7 +11,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.net.core.Net;
 public class NetOnDemand {
 
 	public static String onDemand(List<NameValuePair> donnees) {
-		return Net.requeteGet(Constantes.URL_ON_DEMAND, donnees);
+		return Net.requete(Constantes.URL_ON_DEMAND, donnees);
 	}
 
 }

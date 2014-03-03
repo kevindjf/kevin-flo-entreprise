@@ -77,13 +77,13 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 			if(!_swipable){
 				if(_annonce.getLien() != null && _annonce.getLien().getUrl() != null){
-					ImageLoaderCache.charger(_annonce.getLien().getUrl(),_image);
+					ImageLoaderCache.charger(_annonce.getLien().getUrl(),_image, getView().findViewById(android.R.id.progress));
 					Log.e("IMAGE",_annonce.getLien().getUrl());
 				}
 			}else{
 				if(_annonce.getPhotos() != null && _annonce.getPhotos().size()>0 
 						&& _annonce.getPhotos().get(0) != null && _annonce.getPhotos().get(0).getUrl() != null){
-					ImageLoaderCache.charger(_annonce.getPhotos().get(0).getUrl(),_image);
+					ImageLoaderCache.charger(_annonce.getPhotos().get(0).getUrl(),_image, getView().findViewById(android.R.id.progress));
 				}
 			}
 

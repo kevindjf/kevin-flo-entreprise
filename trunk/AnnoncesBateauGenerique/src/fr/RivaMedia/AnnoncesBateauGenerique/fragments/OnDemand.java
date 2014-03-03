@@ -9,6 +9,7 @@ import org.apache.http.NameValuePair;
 import com.google.android.gms.internal.dp;
 
 import android.annotation.SuppressLint;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,7 +33,9 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.Categorie;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Etat;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Lieu;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Marque;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.TypeCategories;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
+import fr.RivaMedia.AnnoncesBateauGenerique.net.NetChargement;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.core.Net;
 
 @SuppressLint("ValidFragment")
@@ -149,7 +152,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 	public void remplir(){
 
 	}
-	
+
 	public void chargerCouleurs(){
 		ImageLoaderCache.charger(Donnees.parametres.getImageLogo(), (ImageView)_view.findViewById(R.id.autotheque_entete_logo));
 		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
@@ -157,12 +160,12 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		afficherTexteCouleurTexte(_view.findViewById(R.id.autotheque_entete_1),_view.findViewById(R.id.autotheque_entete_2));
 		afficherCouleurNormal(_view.findViewById(R.id.autotheque_separator_1),_view.findViewById(R.id.autotheque_separator_2),_view.findViewById(R.id.autotheque_separator_3),
 				_view.findViewById(R.id.autotheque_separator_4));
-		
+
 		afficherTexteCouleurTitre(_view.findViewById(R.id.autotheque_separator_1),_view.findViewById(R.id.autotheque_separator_2),_view.findViewById(R.id.autotheque_separator_3),_view.findViewById(R.id.autotheque_separator_4));
-		
+
 		afficherCouleurTouch(_boat_on_demand_etape_suivante);
 		selector(_boat_on_demand_etape_suivante,false);
-		
+
 		afficherTexteCouleurTexte(_views);
 		((Button)_boat_on_demand_etape_suivante).setTextColor(Donnees.parametres.getBackgroundColorUn());
 
@@ -424,6 +427,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 
 	}
 
+	/*
 	protected void demanderCategorie(){
 		if(demand_type == null){
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
@@ -438,6 +442,59 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 
 				ajouterFragment(new DonneeValeurSelector(this,CATEGORIE,false,donneesValeurs));
 			}
+		}
+	}
+	 */
+
+	static AsyncTask<Void, Void, Void> taskCategorie = null;
+	protected void demanderCategorie(){
+
+		if(demand_type == null){
+			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
+		}
+		else{
+
+			class DemanderCategorie extends AsyncTask<Void, Void, Void> {
+				protected Void doInBackground(Void...donnees) {
+
+					afficherProgress(true);
+					TypeCategories typeCategorie = NetChargement.chargerTypesCategories(true,demand_type);
+					final List<Categorie> categories = typeCategorie.getCategories();
+
+					getActivity().runOnUiThread(new Runnable(){
+
+						@SuppressLint("DefaultLocale")
+						@Override
+						public void run() {
+							if(categories != null){
+								Map<String,String> donneesValeurs = new HashMap<String,String>();
+								for(Categorie categorie : categories){
+									donneesValeurs.put(categorie.getLibelle(), categorie.getId());
+								}
+
+								ajouterFragment(new DonneeValeurSelector(OnDemand.this,CATEGORIE,donneesValeurs));
+							}
+						}
+
+					});
+
+					afficherProgress(false);
+
+					return null;
+				}
+
+				protected void onPostExecute(){
+				}
+			}
+
+			try{
+				if(taskCategorie != null)
+					taskCategorie.cancel(true);
+			}catch(Exception e){}
+
+			taskCategorie = new DemanderCategorie();
+			taskCategorie.execute();
+
 		}
 	}
 
@@ -507,7 +564,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 				demand_chantier_posseder_id = null;
 				demand_modele_posseder_id = null;
 			}
-				
+
 			((TextView)_chantierModelePosseder.findViewById(R.id.text)).setText(value);
 		}
 
@@ -518,7 +575,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		super.onResume();
 		setTitre(getString(R.string.on_demand));
 	}
-	
+
 	@Override
 	public void onMinMaxSelected(String titre, String min, String max) {
 		if(titre.equals(getActivity().getResources().getString(R.string.taille))){

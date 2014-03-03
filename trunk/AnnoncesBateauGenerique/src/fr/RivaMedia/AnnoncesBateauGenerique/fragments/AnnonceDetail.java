@@ -82,7 +82,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 	View[] _views;
 
-	
+
 	boolean afficherProgress = true;
 
 	public AnnonceDetail(String id, String type){
@@ -102,7 +102,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		task.execute();
 
 		this._inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+		setFragmentView(_view);
 
 		return _view;
 	}
@@ -151,7 +151,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		contact_rond = _view.findViewById(R.id.annonce_detail_rond);
 
 		_views = new View[]{
-				
+
 				type,
 				longeur,
 				largeur,
@@ -254,8 +254,8 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 				if(_annonce.getApartirDe() != null && _annonce.getApartirDe().trim().equals("1")){
 					try{
-					apartirDe.setVisibility(View.VISIBLE);
-					apartirDeEntete.setVisibility(View.VISIBLE);
+						apartirDe.setVisibility(View.VISIBLE);
+						apartirDeEntete.setVisibility(View.VISIBLE);
 					}catch(Exception e){
 						e.printStackTrace();
 					}
@@ -270,12 +270,15 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			else
 				description.setVisibility(View.GONE);
 
-			if(_annonce.getPhotos() != null){
+			if(_annonce.getPhotos() == null || _annonce.getPhotos().size() == 0){
+					findViewById(R.id.annonce_detail_image_pager_layout).setVisibility(View.GONE);
+					_page.setVisibility(View.GONE);
+					_indicator.setVisibility(View.GONE);
+			}else{
 				_pagesAdapter = new ImagePagesAdapter();
 				_page.setAdapter(_pagesAdapter);
 				_indicator.setViewPager(_page);
-			}else
-				findViewById(R.id.annonce_detail_image_pager_layout).setVisibility(View.GONE);
+			}
 		}
 
 		afficherLogoFavoris();
@@ -325,12 +328,12 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			Intent intent = new Intent(AnnonceDetail.this.getActivity(),Gallery.class);
 			if(_annonce.getTitle() != null)
 				intent.putExtra(Gallery.TEXTE, _annonce.getTitle());
-			
+
 			ArrayList<Lien> liens = (ArrayList<Lien>)_annonce.getPhotos();
 			ArrayList<String> photos = new ArrayList<String>();
-					for(Lien lien : liens)
-						photos.add(lien.getUrl());
-			
+			for(Lien lien : liens)
+				photos.add(lien.getUrl());
+
 			intent.putStringArrayListExtra(Gallery.IMAGES,photos);
 			getActivity().startActivity(intent);
 		}
@@ -360,15 +363,15 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		changerCouleur();
 		ajouterListeners();
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	protected void changerCouleur(){
 		afficherCouleurNormal(email);
 		afficherCouleurNormal(telephonePrincipal);
-		
+
 		selector(email,true);
 		selector(telephonePrincipal,true);
-		
+
 		((TextView)telephonePrincipal.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
 		((TextView)email.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
 
@@ -376,19 +379,19 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		//ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		_view.findViewById(R.id.fond).setVisibility(View.GONE);
 		_view.setBackgroundColor(Color.WHITE);
-		
+
 		_view.findViewById(R.id.annonce_detail_separator_1).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 		_view.findViewById(R.id.annonce_detail_layout_haut).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 		_view.findViewById(R.id.annonce_detail_image_pager).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 		_view.findViewById(R.id.annonce_detail_separator_2).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
-		
+
 		afficherTexteCouleurTexte(
 				_view.findViewById(R.id.annonce_detail_titre),
 				_view.findViewById(R.id.annonce_detail_sous_titre),
 				_view.findViewById(R.id.annonce_detail_separator_1),
 				_view.findViewById(R.id.annonce_detail_separator_2)
 				);
-				
+
 
 		//afficherTexteCouleurTexte(_views);
 		//afficherTexteCouleurTexte(type);
@@ -439,7 +442,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 
 				ImageLoaderCache.load(getActivity());
 				try{
-					ImageLoaderCache.charger(_urlImage, _imageView);
+					ImageLoaderCache.charger(_urlImage, _imageView, _view.findViewById(android.R.id.progress));
 					System.err.println(_urlImage);
 				}catch(Exception e){
 					e.printStackTrace();
