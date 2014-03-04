@@ -113,6 +113,8 @@ public class NetChargement extends Net{
 	public static List<TypeAnnonce> chargerTypesAnnonces(){
 		String xml = Net.requeteGet(Constantes.URL_TYPES_ANNONCES, null);
 
+		Log.d("TypeAnnonces",xml);
+		
 		return new TypeAnnonceXmlParser(xml).getTypesAnnonces();
 	}
 

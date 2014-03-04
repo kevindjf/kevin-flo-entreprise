@@ -6,6 +6,7 @@ public class Moteur {
 	private String heureMoteur;
 	private String marqueMoteur;
 	private String puissanceMoteur;
+	private String anneeMoteur;
 	private Integer puissNumber;
 	private String prix;
 
@@ -50,6 +51,12 @@ public class Moteur {
 	}
 	public void setPrix(String prix) {
 		this.prix = prix;
+	}
+	public String getAnneeMoteur() {
+		return anneeMoteur;
+	}
+	public void setAnneeMoteur(String anneeMoteur) {
+		this.anneeMoteur = anneeMoteur;
 	}
 
 }

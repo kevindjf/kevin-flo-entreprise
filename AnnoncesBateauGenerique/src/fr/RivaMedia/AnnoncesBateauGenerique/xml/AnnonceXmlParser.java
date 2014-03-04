@@ -161,6 +161,13 @@ public class AnnonceXmlParser extends XmlParser {
 				else if(tag.equals("apartirde")){
 					annonce.setApartirDe(getString());
 				}
+				
+				//LOCATION
+				else if(tag.equals("port_de_depart"))
+					annonce.setPortDeDepart(getString());
+				else if(tag.equals("lieu_nav"))
+					annonce.setLieuNav(getString());
+				
 				else
 					Log.e("XML INCONNU",tag);
 			}
@@ -189,6 +196,8 @@ public class AnnonceXmlParser extends XmlParser {
 					moteur.setMarqueMoteur(getString());
 				else if(tag.equals("puissance_moteur"))
 					moteur.setPuissanceMoteur(getString());
+				else if(tag.equals("annee_moteur"))
+					moteur.setAnneeMoteur(getString());
 			}
 
 			eventType = XMLgetSuivant();

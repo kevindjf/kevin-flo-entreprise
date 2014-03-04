@@ -15,6 +15,8 @@ public class Constantes {
 	public static final String MOTEURS = "4";
 	public static final String ACCESSOIRES = "5";
 	public static final String PLACE_DE_PORT="6";
+	
+	public static final String LOCATION="99";
 
 	/////////////////////////////////////////////////////////////////////////
 	
@@ -247,4 +249,5 @@ public class Constantes {
 	public static final String URL_ACTUALITE_DETAIL = "client/actuClient_detail.php"; //F
 	public static final String ACTUALITE_DETAIL_ID_ACTUALITE = "id"; //F
 	
+	public static final String URL_LOCATION_DETAIL = "detail-location.php?";
 }

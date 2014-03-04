@@ -166,6 +166,9 @@ public class SplashScreenActivity extends Activity{
 			*/
 			
 			Donnees.parametres = NetChargement.chargerParametres();
+			
+			ConstantesClient.APPLICATION_NAME = Donnees.parametres.getNom();
+			
 			chargerSplash();
 			
 			Donnees.client = NetClient.getClient(Constantes.ID_CLIENT);

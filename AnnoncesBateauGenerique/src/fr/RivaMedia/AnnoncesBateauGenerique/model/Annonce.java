@@ -49,6 +49,9 @@ public class Annonce {
     
     private String logoVendeur;
     
+    private String portDeDepart;
+    private String lieuNav;
+    
 	public String getNumero() {
 		return numero;
 	}
@@ -273,6 +276,18 @@ public class Annonce {
 	}
 	public void setLogoVendeur(String logoVendeur) {
 		this.logoVendeur = logoVendeur;
+	}
+	public String getPortDeDepart() {
+		return portDeDepart;
+	}
+	public void setPortDeDepart(String portDeDepart) {
+		this.portDeDepart = portDeDepart;
+	}
+	public String getLieuNav() {
+		return lieuNav;
+	}
+	public void setLieuNav(String lieuNav) {
+		this.lieuNav = lieuNav;
 	}
     
     

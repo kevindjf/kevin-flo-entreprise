@@ -7,6 +7,7 @@ import android.graphics.Color;
 
 public class Parametres {
 
+	private String nom;
 	private String texteIntro;
 	private int backgroundColorUn;
 	private int backgroundColorDeux;
@@ -107,6 +108,12 @@ public class Parametres {
 	}
 	public void setImageStartDraw9(String imageStartDraw9) {
 		this.imageStartDraw9 = imageStartDraw9;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 }
