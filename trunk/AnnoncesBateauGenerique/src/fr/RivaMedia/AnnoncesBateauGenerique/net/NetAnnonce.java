@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 
 import android.util.Log;
+
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Annonce;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.TypeAnnonce;
@@ -48,7 +49,7 @@ public class NetAnnonce extends Net {
 			xml = Net.requeteGet(typeAnnonce.getUrl(),true,d);
 		else
 			xml = Net.requeteGet(recupererUrlAnnonces(type),d);
-		Log.e("NetRecherche",xml);
+		//Log.e("NetRecherche",xml);
 		return new AnnonceXmlParser(xml).getListe();
 	}
 
@@ -63,6 +64,9 @@ public class NetAnnonce extends Net {
 				url = Constantes.URL_ANNONCE_DETAIL_MOTEUR;
 			else if(_type.equals(Constantes.ACCESSOIRES))
 				url = Constantes.URL_ANNONCE_DETAIL_DIVER;
+			
+			else if(_type.equals(Constantes.LOCATION))
+				url = Constantes.URL_LOCATION_DETAIL;
 		}
 
 		return url;
@@ -76,6 +80,7 @@ public class NetAnnonce extends Net {
 			String xml = Net.requeteGet(recupererUrlAnnonce(type),donnees);
 			Annonce annonce = new AnnonceXmlParser(xml).getAnnonce();
 			annonce.setType(type);
+			
 			return annonce;
 		}
 		return null;

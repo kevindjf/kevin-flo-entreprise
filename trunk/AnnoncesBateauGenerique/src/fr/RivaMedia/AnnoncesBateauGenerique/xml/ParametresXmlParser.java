@@ -24,7 +24,9 @@ public class ParametresXmlParser extends XmlParser {
 			if (eventType == XmlPullParser.START_TAG) {
 				String tag = getXpp().getName();
 				
-				if(tag.equals("texte_intro"))
+				if(tag.equals("nom"))
+					parametres.setNom(getString());
+				else if(tag.equals("texte_intro"))
 					parametres.setTexteIntro(getString());
 				else if(tag.equals("background_color_un"))
 					parametres.setBackgroundColorUn(Color.parseColor(getString()));
