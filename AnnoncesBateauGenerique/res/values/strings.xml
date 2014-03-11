@@ -128,7 +128,7 @@
     <string name="marque_modele_star">Marque/Modèle *</string>
     <string name="marque_du_moteur">Marque du moteur</string>
     <string name="mes_annonces">Mes annonces</string>
-    <string name="mes_coordonnes">Mes coordonnees</string>
+    <string name="mes_coordonnes">Mes coordonnees >> </string>
     <string name="mes_alertes">Mes alertes</string>
     <string name="mes_alertes_chevron">&lt; Mes alertes</string>
     <string name="mes_favoris">Mes favoris</string>
@@ -155,6 +155,7 @@
     <string name="paca">Paca</string>
     <string name="pays">Pays</string>
     <string name="pays_star">Pays *</string>
+    <string name="port_de_depart">Port de depart</string>
     <string name="occasion">Occasion</string>
     <string name="ok">Ok</string>
     <string name="on_demand">Ma recherche</string>

@@ -44,6 +44,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	View _view;
 	View _valider;
 
+	View _coordonnees;
+	
 	View _nom;
 	View _prenom;
 	View _email;
@@ -93,6 +95,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		_codePostal = _view.findViewById(R.id.vendeur_formulaire_code_postal);	
 		_pays = _view.findViewById(R.id.vendeur_formulaire_pays);	
 		_ville = _view.findViewById(R.id.vendeur_formulaire_ville);	
+		_coordonnees = _view.findViewById(R.id.vendeur_formulaire_coordonnees);	
 
 		views = new View[]{
 				_nom,
@@ -108,7 +111,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 
 	}
 	
-	public void changerCouleur(){
+	public void changerCouleur(){		
 		afficherCouleurTouch(_valider);
 		selector(_valider,false);
 		
@@ -116,6 +119,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		
 		
 		afficherTexteCouleurTexte(views);
+		afficherTexteCouleurTexte(_coordonnees);
 	}
 
 	protected void recupererValeursInitiales(){

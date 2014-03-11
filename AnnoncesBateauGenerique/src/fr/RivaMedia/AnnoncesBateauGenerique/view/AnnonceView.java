@@ -9,6 +9,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
+import fr.RivaMedia.AnnoncesBateauGenerique.ConstantesClient;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.activity.core.BateauFragmentActivity;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnonceDetail;
@@ -106,11 +108,32 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 			_taille.setVisibility(View.GONE);
 			_annee.setVisibility(View.GONE);
 
+			String type = _annonce.getType();
+
 			if(_annonce.getPrix() != null){
-				String p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim()+" € ";
-				if(_annonce.getTaxePrix() != null)
-					_taxe.setText(_annonce.getTaxePrix());
-				_prix.setText(p);
+				String p = "";
+				if(_annonce.getPrix().trim().equals("0")){
+					p = "Prix nous consulter";
+				}else{
+					p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim();
+
+					if(type != null && type.equals(Constantes.LOCATION)){
+						p +=" / jour";
+						_taxe.setVisibility(View.GONE);
+					}
+
+					else{
+						p += " € ";
+						if(_annonce.getTaxePrix() != null)
+							_taxe.setText(_annonce.getTaxePrix());
+					}
+					
+					_prix.setText(p);
+				}
+			}
+
+			if(type != null && type.equals(Constantes.LOCATION)){
+				_apartirDe.setVisibility(View.VISIBLE);
 			}
 
 			if(_annonce.getApartirDe() != null && _annonce.getApartirDe().trim().equals("1"))

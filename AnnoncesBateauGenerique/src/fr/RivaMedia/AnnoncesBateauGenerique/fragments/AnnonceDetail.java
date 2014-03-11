@@ -54,6 +54,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 	View cabines;
 	View couchettes;
 	View salleDeBain;
+	View portDeDepart;
 	View annee;
 	View etat;
 	View moteur;
@@ -131,6 +132,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		cabines =  _view.findViewById(R.id.annonce_detail_cabines);
 		couchettes =  _view.findViewById(R.id.annonce_detail_couchettes);
 		salleDeBain = _view.findViewById(R.id.annonce_detail_salle_de_bain);
+		portDeDepart = _view.findViewById(R.id.annonce_detail_port_de_depart);
 		annee =  _view.findViewById(R.id.annonce_detail_annee);
 		etat =  _view.findViewById(R.id.annonce_detail_etat);
 		moteur =  _view.findViewById(R.id.annonce_detail_moteur);
@@ -158,6 +160,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				cabines,
 				couchettes,
 				salleDeBain,
+				portDeDepart,
 				annee,
 				etat,
 				moteur,
@@ -199,6 +202,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				((TextView)cabines.findViewById(R.id.text)).setText(_annonce.getNbCabines());
 			else
 				cabines.setVisibility(View.GONE);
+			
+			if(_annonce.getPortDeDepart() != null)
+				((TextView)portDeDepart.findViewById(R.id.text)).setText(_annonce.getPortDeDepart());
+			else
+				portDeDepart.setVisibility(View.GONE);
 
 			if(_annonce.getNbCouchettes() != null && !_annonce.getNbCouchettes().equals("0"))
 				((TextView)couchettes.findViewById(R.id.text)).setText(_annonce.getNbCouchettes());

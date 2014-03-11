@@ -28,9 +28,8 @@
 
     <TextView
         android:id="@+id/actualite_element_liste_titre"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/actualite_element_liste_image"
         android:layout_toRightOf="@+id/actualite_element_liste_image"
         android:textColor="@drawable/text_color_button"

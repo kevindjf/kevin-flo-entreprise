@@ -47,6 +47,8 @@ public class Annonce {
     
     private String apartirDe;
     
+    private boolean location = false;
+    
     private String logoVendeur;
     
     private String portDeDepart;
@@ -288,6 +290,12 @@ public class Annonce {
 	}
 	public void setLieuNav(String lieuNav) {
 		this.lieuNav = lieuNav;
+	}
+	public boolean isLocation() {
+		return location;
+	}
+	public void setLocation(boolean location) {
+		this.location = location;
 	}
     
     
