@@ -263,6 +263,19 @@
                         android:id="@id/text"
                         style="@style/annonce_cellule_texte" />
                 </RelativeLayout>
+                
+                <RelativeLayout
+                    android:id="@+id/annonce_detail_port_de_depart"
+                    style="@style/formulaire_cellule" >
+
+                    <TextView
+                        style="@style/formulaire_cellule_titre"
+                        android:text="@string/port_de_depart" />
+
+                    <TextView
+                        android:id="@id/text"
+                        style="@style/annonce_cellule_texte" />
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/annonce_detail_cabines"

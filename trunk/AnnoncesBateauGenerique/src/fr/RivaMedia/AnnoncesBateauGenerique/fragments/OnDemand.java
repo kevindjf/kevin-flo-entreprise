@@ -458,7 +458,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 				protected Void doInBackground(Void...donnees) {
 
 					afficherProgress(true);
-					TypeCategories typeCategorie = NetChargement.chargerTypesCategories(true,demand_type);
+					TypeCategories typeCategorie = NetChargement.chargerTypesCategories(false,demand_type);
 					final List<Categorie> categories = typeCategorie.getCategories();
 
 					getActivity().runOnUiThread(new Runnable(){

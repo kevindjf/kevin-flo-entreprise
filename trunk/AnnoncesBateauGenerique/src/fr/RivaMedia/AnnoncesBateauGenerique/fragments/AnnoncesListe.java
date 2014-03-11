@@ -256,6 +256,9 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 			List<Annonce> annonces = NetAnnonce.rechercher(_type, typeAnnonce, Integer.valueOf(page), _donneesFormulaire, idClient);
 			dernierNombre = annonces.size();
 			
+			for(Annonce a : annonces)
+				a.setType(_type);
+			
 			if(page == 1)
 				_annonces = annonces;
 			else 

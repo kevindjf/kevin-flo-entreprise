@@ -27,7 +27,7 @@
     <style name="formulaire_cellule_vendeur">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dip</item>
-        <item name="android:background">@color/couleur_fond</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:padding">5dip</item>
     </style>
 
