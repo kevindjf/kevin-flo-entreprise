@@ -554,13 +554,6 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 			Net.add(donnees, Constantes.ANNONCES_MIN_TAILLE,recherche_longueur_min);
 		}
 
-		if(this.recherche_puissance_min != null && this.recherche_puissance_max != null){
-			if(!this.recherche_puissance_max.equals(MinMaxDialog.PLUS))
-				Net.add(donnees, Constantes.ANNONCES_MAX_PUISS,recherche_puissance_max);
-			//if(!this.recherche_puissance_min.equals("0"))
-			Net.add(donnees, Constantes.ANNONCES_MIN_PUISS,recherche_puissance_min);
-		}
-
 		if(this.recherche_prix_min != null && this.recherche_prix_max != null){
 			if(!this.recherche_prix_max.equals(MinMaxDialog.PLUS))
 				Net.add(donnees, Constantes.ANNONCES_MAX_PRIX,recherche_prix_max);
