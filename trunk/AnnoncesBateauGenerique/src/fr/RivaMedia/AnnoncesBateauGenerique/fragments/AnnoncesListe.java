@@ -38,7 +38,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.net.NetAnnonce;
 public class AnnoncesListe extends FragmentListe implements View.OnClickListener, AnnoncesFormulaireDelegate{
 
 	TypeAnnonce typeAnnonce = null;
-	
+
 	LoadMoreListView _liste = null;
 	AnnonceListAdapter _adapter = null;
 	List<Annonce> _annonces = new ArrayList<Annonce>();
@@ -50,7 +50,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	int dernierNombre = 1;
 
 	String idClient = null; 
-	
+
 	TextView nombreAnnonces = null;
 
 	public AnnoncesListe(){}
@@ -60,7 +60,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		this.typeAnnonce = typeAnnonce;
 		this._type = typeAnnonce.getId();
 	}
-	
+
 	public AnnoncesListe(String type){
 		this._type = type ;
 	}
@@ -78,25 +78,26 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 		}
 		else
 			super.afficherTriLongueur(false);
-		
+
 		if(_type != null && _type.equals(Constantes.MOTEURS)){
 			super.afficherTriPuissance(true);
 			super.afficherTriLongueur(false);
 		}
-		
+
 		try{
-		if(_type != null && Integer.parseInt(_type) > Integer.parseInt(Constantes.MOTEURS)){
-			super.afficherTriPuissance(false);
-			super.afficherTriLongueur(false);
-		}
+			if(_type != null && Integer.parseInt(_type) > Integer.parseInt(Constantes.MOTEURS)){
+				super.afficherTriPuissance(false);
+				super.afficherTriLongueur(false);
+			}
 		}catch(Exception e){
-			
+
 		}
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		if(super.onCreateView(inflater, container, savedInstanceState, R.layout.liste_annonces)){
+			afficherProgress = true;
 			afficherProgress(afficherProgress);
 
 			chargerAnnoncesTask();
@@ -112,7 +113,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void charger(){
 		if(_liste == null)
 			_liste = (LoadMoreListView)findViewById(android.R.id.list);	
-		
+
 		if(nombreAnnonces == null)
 			nombreAnnonces = (TextView)findViewById(R.id.nombre_annonces);
 	}
@@ -122,7 +123,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 			findViewById(R.id.vide).setVisibility(View.VISIBLE);
 			nombreAnnonces.setVisibility(View.GONE);
 		}
-		
+
 		else{
 			nombreAnnonces.setVisibility(View.VISIBLE);
 			if(_adapter == null){
@@ -130,7 +131,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 				_liste.setAdapter(_adapter);
 			}else
 				_adapter.notifyDataSetChanged();
-			
+
 			nombreAnnonces.setText(Donnees.nb_result+" "+getActivity().getResources().getString(R.string.annonces_trouvees));
 		}
 	}
@@ -233,7 +234,7 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 			_adapter.notifyDataSetChanged();
 		}
 	}
-	
+
 	@Override
 	public void afficherPuissanceCroissant(){
 		if(_adapter != null && _annonces != null){
@@ -253,12 +254,13 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 
 	class ChargerAnnoncesTask extends AsyncTask<Void, Void, Void> {
 		protected Void doInBackground(Void...donnees) {
+			Log.e("Chargement ANNonces","yes");
 			List<Annonce> annonces = NetAnnonce.rechercher(_type, typeAnnonce, Integer.valueOf(page), _donneesFormulaire, idClient);
 			dernierNombre = annonces.size();
-			
+
 			for(Annonce a : annonces)
 				a.setType(_type);
-			
+
 			if(page == 1)
 				_annonces = annonces;
 			else 
@@ -288,25 +290,30 @@ public class AnnoncesListe extends FragmentListe implements View.OnClickListener
 	public void onResume(){
 		super.onResume();
 		Log.e("AnnonceListe", "OnResume");
-		//afficherProgress(afficherProgress);
+		afficherProgress(afficherProgress);
 		setTitre(getString(R.string.annonces));
-		super.afficherPlus().setOnClickListener(this);
+
+		if(!this._type.equals(Constantes.LOCATION)){
+			super.afficherPlus().setOnClickListener(this);
+		}else{
+			super.cacherPlus();
+		}
 	}
 
 	@Override
 	public void rechercher(List<NameValuePair> donneesFormulaire, String type) {
 		this._donneesFormulaire = donneesFormulaire;
 		this._type = type;
-		
+
 		this._annonces.clear();
 		remplir();
-		
+
 		page = 1;
 		dernierNombre = 1;
-		
+
 		_liste = null;
 		_adapter = null;
-		
+
 		chargerAnnoncesTask();
 	}
 }

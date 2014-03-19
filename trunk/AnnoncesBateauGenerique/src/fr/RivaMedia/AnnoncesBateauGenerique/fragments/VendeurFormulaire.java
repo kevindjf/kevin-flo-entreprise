@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -120,6 +121,8 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		
 		afficherTexteCouleurTexte(views);
 		afficherTexteCouleurTexte(_coordonnees);
+		((Button)_valider).setTextColor(Donnees.parametres.getBackgroundColorDeux());
+
 	}
 
 	protected void recupererValeursInitiales(){
@@ -284,7 +287,7 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 	public void demande_envoyee(){
 		Toast.makeText(getActivity(), R.string.demande_postee, Toast.LENGTH_LONG).show();
 		afficherProgress(false);
-		ajouterFragment(new Annonces(), false);
+		ajouterFragment(new Accueil(), false);
 	}
 
 	class EnvoyerOnDemandTask extends AsyncTask<Void, Void, Void> {

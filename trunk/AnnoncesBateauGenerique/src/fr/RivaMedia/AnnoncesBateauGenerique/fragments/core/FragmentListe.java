@@ -103,6 +103,10 @@ public abstract class FragmentListe extends FragmentNormal implements Effaceable
 		return ((MainActivity)getActivity()).afficherPlus();
 	}
 
+	public void cacherPlus(){
+	 ((MainActivity)getActivity()).cacherPlus();
+	}
+	
 	public void onResume(View v) {
 		// TODO Auto-generated method stub
 		super.onResume();

@@ -112,13 +112,15 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 			if(_annonce.getPrix() != null){
 				String p = "";
-				if(_annonce.getPrix().trim().equals("0")){
+				Log.e("Prix",_annonce.getPrix()+"" );
+				if(_annonce.getPrix().trim().equalsIgnoreCase("0")){
 					p = "Prix nous consulter";
+
 				}else{
 					p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim();
 
 					if(type != null && type.equals(Constantes.LOCATION)){
-						p +=" / jour";
+						p +=" € / jour";
 						_taxe.setVisibility(View.GONE);
 					}
 
@@ -126,19 +128,26 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 						p += " € ";
 						if(_annonce.getTaxePrix() != null)
 							_taxe.setText(_annonce.getTaxePrix());
-					}
-					
-					_prix.setText(p);
+					}				
 				}
+				_prix.setText(p);
+
 			}
 
-			if(type != null && type.equals(Constantes.LOCATION)){
-				_apartirDe.setVisibility(View.VISIBLE);
+			if(_annonce.getPrix().trim().equalsIgnoreCase("0")){
+				_apartirDe.setVisibility(View.GONE);
+				_taxe.setVisibility(View.GONE);
+
+
+			}else{
+
+				if(type != null && type.equals(Constantes.LOCATION)){
+					_apartirDe.setVisibility(View.VISIBLE);
+				}
+
+				if(_annonce.getApartirDe() != null && _annonce.getApartirDe().trim().equals("1"))
+					_apartirDe.setVisibility(View.VISIBLE);
 			}
-
-			if(_annonce.getApartirDe() != null && _annonce.getApartirDe().trim().equals("1"))
-				_apartirDe.setVisibility(View.VISIBLE);
-
 		}
 
 		afficherNormal();

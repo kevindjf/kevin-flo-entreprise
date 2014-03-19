@@ -538,7 +538,7 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 		List<NameValuePair> donnees = Net.construireDonnes();
 
 
-		if(this.typeAnnonces != null)
+		if(this.typeAnnonces != null && !this.typeAnnonces.equals(Constantes.LOCATION))
 			Net.add(donnees, Constantes.ANNONCES_TYPE_ID,typeAnnonces);
 
 		if(this.recherche_categorie_id != null && !this.recherche_categorie_id.equals("-1"))
@@ -607,10 +607,10 @@ public class AnnoncesFormulaire extends FragmentFormulaire implements View.OnCli
 
 					@Override
 					public void run() {
-						System.err.println(nombre);
+						//System.err.println(nombre);
 						_nombreAnnonces.setText(nombre);
 						_nombreAnnonces.invalidate();
-						System.err.println(_nombreAnnonces.getText());
+						//System.err.println(_nombreAnnonces.getText());
 					}
 
 				});

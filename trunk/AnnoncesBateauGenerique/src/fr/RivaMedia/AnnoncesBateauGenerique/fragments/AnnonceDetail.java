@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -145,6 +146,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		telephonePrincipal =  _view.findViewById(R.id.annonce_detail_telephone_principal);
 		email = _view.findViewById(R.id.annonce_detail_email);
 		apartirDe = _view.findViewById(R.id.annonce_detail_prix_a_partir_de);
+		apartirDeEntete = _view.findViewById(R.id.annonce_detail_prix_a_partir_de_en_tete);
 
 		_page = (ViewPager) getView().findViewById(R.id.annonce_detail_image_pager);
 
@@ -202,7 +204,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				((TextView)cabines.findViewById(R.id.text)).setText(_annonce.getNbCabines());
 			else
 				cabines.setVisibility(View.GONE);
-			
+
 			if(_annonce.getPortDeDepart() != null)
 				((TextView)portDeDepart.findViewById(R.id.text)).setText(_annonce.getPortDeDepart());
 			else
@@ -269,9 +271,32 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 					}
 				}
 			}
-			else
-				prix.setVisibility(View.GONE);
+			else{
+				Log.e("Le prix est null","yes");
 
+				if(_annonce.getPrix() != null){
+					String p = "";
+					Log.e("Prix",_annonce.getPrix()+"" );
+
+					if(_annonce.getPrix().trim().equalsIgnoreCase("0")){
+						p = "Prix nous consulter";
+
+					}else{
+						apartirDeEntete.setVisibility(View.VISIBLE);
+						apartirDe.setVisibility(View.VISIBLE);
+						p = String.format("%,8d", Integer.parseInt(_annonce.getPrix())).trim();
+
+						p +=" € / jour";
+
+					}
+
+					((TextView)prix.findViewById(R.id.text)).setText(p);
+					((TextView)prixEntete.findViewById(R.id.text)).setText(p);
+
+				}else{
+					prix.setVisibility(View.GONE);
+				}
+			}
 
 			if(_annonce.getCommentaire() != null)
 				((TextView)description).setText(_annonce.getCommentaire());
@@ -279,9 +304,9 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 				description.setVisibility(View.GONE);
 
 			if(_annonce.getPhotos() == null || _annonce.getPhotos().size() == 0){
-					findViewById(R.id.annonce_detail_image_pager_layout).setVisibility(View.GONE);
-					_page.setVisibility(View.GONE);
-					_indicator.setVisibility(View.GONE);
+				findViewById(R.id.annonce_detail_image_pager_layout).setVisibility(View.GONE);
+				_page.setVisibility(View.GONE);
+				_indicator.setVisibility(View.GONE);
 			}else{
 				_pagesAdapter = new ImagePagesAdapter();
 				_page.setAdapter(_pagesAdapter);
@@ -410,8 +435,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		drawable.setCornerRadius(270);
 		contact_rond.setBackgroundDrawable(drawable);
 
-		((TextView)prix.findViewById(R.id.text)).setTextColor(Donnees.parametres.getBackgroundColorDeux());
-		((TextView)prixEntete.findViewById(R.id.text)).setTextColor(Donnees.parametres.getBackgroundColorDeux());
+		((TextView)prix.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)prixEntete.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)apartirDe).setTextColor(Donnees.parametres.getFontColorUn());
+
+		((TextView)apartirDeEntete).setTextColor(Donnees.parametres.getFontColorUn());
 
 	}
 
