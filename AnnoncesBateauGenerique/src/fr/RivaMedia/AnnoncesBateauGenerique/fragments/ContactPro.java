@@ -1,7 +1,11 @@
 package fr.RivaMedia.AnnoncesBateauGenerique.fragments;
 
+import java.util.List;
+
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.InflateException;
@@ -139,12 +143,18 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		//List<Address> address;
 
 		try {
-			//address = coder.getFromLocationName(Donnees.client.getVille(),5);
+			//address = coder.getFromLocationName(Donnees.client.getAdresse()+" "+Donnees.client.getCp()+Donnees.client.getVille(),5);
 			//Address location = address.get(0);
 			//LatLng position = new LatLng(location.getLatitude(),location.getLongitude());
 
+			//if(position == null)
+			
+			Log.e("LATLONG",Donnees.client.getLat()+" "+Donnees.client.getLng());
+			
 			LatLng position = new LatLng(Double.parseDouble(Donnees.client.getLat()), Double.parseDouble(Donnees.client.getLng()));
 
+			
+			
 			if(Donnees.client.getDistributeur() != null && Donnees.client.getNom() != null){
 				mMap.addMarker(new MarkerOptions()
 				.position(position)
@@ -156,7 +166,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 				.position(position)
 				.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 			}
-			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 15));
+			mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(position, 10));
 
 			mMap.animateCamera(CameraUpdateFactory.zoomTo(15), 2000, null);
 		}catch(Exception e){

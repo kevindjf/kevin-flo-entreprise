@@ -82,10 +82,16 @@ public class ClientXmlParser extends XmlParser {
 				else if(tag.equals("distributeur"))
 					client.setDistributeur(getString());
 				
-				else if(tag.equals("gpslatitude"))
-					client.setLat(getString());
-				else if(tag.equals("gpslongitude"))
-					client.setLng(getString());
+				else if(tag.equals("gpslatitude")){
+					String lat = getString();
+					client.setLat(lat);
+					Log.e("LAT",lat);
+				}
+				else if(tag.equals("gpslongitude")){
+					String lng = getString();
+					client.setLng(lng);
+					Log.e("LNG",lng);
+				}
 				
 				else if(tag.equals("siteweb"))
 					client.setSiteWeb(getString());

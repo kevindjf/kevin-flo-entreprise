@@ -27,6 +27,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.model.Marque;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetActualite;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.NetChargement;
+import fr.RivaMedia.AnnoncesBateauGenerique.net.NetInscriptionActualite;
 import fr.RivaMedia.AnnoncesBateauGenerique.net.core.Net;
 
 public class SplashScreenActivity extends Activity{
@@ -164,6 +165,10 @@ public class SplashScreenActivity extends Activity{
 			});
 			th.start();
 			*/
+			
+			try{
+				NetInscriptionActualite.inscrireActualites(Donnees.jeton);
+			}catch(Exception e){}
 			
 			Donnees.parametres = NetChargement.chargerParametres();
 			
