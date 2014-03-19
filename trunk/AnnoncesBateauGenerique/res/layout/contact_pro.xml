@@ -22,6 +22,13 @@
         android:orientation="vertical" >
 
         <TextView
+            android:id="@+id/nom_entreprise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/black" />
+        
+        <TextView
             android:id="@+id/adresse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

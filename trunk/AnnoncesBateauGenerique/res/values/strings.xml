@@ -80,6 +80,7 @@
     <string name="effacer">Effacer</string>
     <string name="email">E-Mail</string>
     <string name="email_contenu">Bonjour,\n\nJe souhaiterai avoir des informations complémentaires concernant votre $nom$ à $prix$ €.\n\nMerci de me recontacter aux coordonnées indiquées.\n\nCordialement,</string>
+    <string name="email_contenu_contact_pro">Bonjour,\n\nJe souhaiterai avoir des informations complémentaires.\n\nMerci de me recontacter par mail.\n\nCordialement.</string>
     <string name="email_contact">Mail provenant de votre appli Android $nom$\n</string>
     <string name="email_dots">E-Mail :</string>
     <string name="email_envoye">E-Mail envoyé</string>

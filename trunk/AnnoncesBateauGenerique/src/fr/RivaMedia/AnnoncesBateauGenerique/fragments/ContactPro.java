@@ -36,6 +36,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 
 	ImageView image_entreprise;
 
+	TextView _nomEntreprise;
 	TextView _horaire;
 	TextView _adresse;
 	TextView _adresse_postale;
@@ -103,6 +104,7 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		contact_pro_telephone = view.findViewById(R.id.contact_pro_telephone);
 		contact_pro_email = view.findViewById(R.id.contact_pro_email);
 		image_entreprise = (ImageView) view.findViewById(R.id.logo_entreprise);
+		_nomEntreprise = (TextView) view.findViewById(R.id.nom_entreprise);
 		_horaire = (TextView) view.findViewById(R.id.horaire);
 		_adresse = (TextView) view.findViewById(R.id.adresse);
 		_adresse_postale = (TextView) view.findViewById(R.id.adresse_postale);
@@ -121,6 +123,9 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 			_horaire.setText(horaire.replace("&gt;", ">"));
 		}
 
+		if(Donnees.client.getNom() != null)
+			_nomEntreprise.setText(Donnees.client.getNom().toUpperCase());
+		
 		if(Donnees.client.getAdresse() != null)
 			_adresse.setText(Donnees.client.getAdresse());
 
@@ -175,11 +180,12 @@ public class ContactPro extends FragmentNormal implements View.OnClickListener{
 		selector(contact_pro_telephone);
 
 		
-		((TextView)button_email.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
-		((TextView)contact_pro_email.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
-		((TextView)button_telephone.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
-		((TextView)contact_pro_telephone.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)button_email.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorDeux());
+		((TextView)contact_pro_email.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorDeux());
+		((TextView)button_telephone.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorDeux());
+		((TextView)contact_pro_telephone.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorDeux());
 		((TextView)_adresse).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)_nomEntreprise).setTextColor(Donnees.parametres.getFontColorUn());
 		((TextView)_adresse_postale).setTextColor(Donnees.parametres.getFontColorUn());
 		((TextView)_horaire).setTextColor(Donnees.parametres.getFontColorUn());
 

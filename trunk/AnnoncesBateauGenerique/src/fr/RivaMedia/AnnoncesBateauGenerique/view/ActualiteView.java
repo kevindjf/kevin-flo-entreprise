@@ -13,6 +13,7 @@ import fr.RivaMedia.AnnoncesBateauGenerique.fragments.ActualiteDetail;
 import fr.RivaMedia.AnnoncesBateauGenerique.fragments.AnnonceDetail;
 import fr.RivaMedia.AnnoncesBateauGenerique.image.ImageLoaderCache;
 import fr.RivaMedia.AnnoncesBateauGenerique.model.Actualite;
+import fr.RivaMedia.AnnoncesBateauGenerique.model.core.Donnees;
 import fr.RivaMedia.AnnoncesBateauGenerique.view.core.YouBoatView;
 
 public class ActualiteView extends YouBoatView implements View.OnTouchListener{
@@ -70,14 +71,16 @@ public class ActualiteView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	private void afficherNormal(){
-		_titre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_noir));
-		_sousTitre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_noir));
+		_titre.setTextColor(Donnees.parametres.getFontColorUn());
+		_sousTitre.setTextColor(Donnees.parametres.getFontColorUn());
 
-		if(_position%2==0){
+		getView().setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
+		
+		/*if(_position%2==0){
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
 		}else{
 			getView().setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
-		}
+		}*/
 	}
 	private void afficherTouch(){
 		_titre.setTextColor(getContext().getResources().getColor(R.color.couleur_texte_blanc));

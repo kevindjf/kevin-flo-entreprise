@@ -1,13 +1,17 @@
 package fr.RivaMedia.view;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import fr.RivaMedia.Constantes;
 import fr.RivaMedia.R;
 import fr.RivaMedia.fragments.AnnonceDetail;
 import fr.RivaMedia.image.ImageLoaderCache;
@@ -97,6 +101,16 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 
 			if(_annonce.getLongueur() != null)
 				_taille.setText(_annonce.getLongueur()+" m");
+			else if(this._type == Constantes.MOTEURS){
+				RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) _annee.getLayoutParams();
+				
+				Resources r = getContext().getResources();
+				int px = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, r.getDisplayMetrics());
+				lp.setMargins(px, 0, 0, 0);
+				
+				_annee.setLayoutParams(lp);
+			}
+				
 			if(_annonce.getMoteur() != null && _annonce.getMoteur().getPuissanceMoteur() != null)
 				_taille.setText(_annonce.getMoteur().getPuissanceMoteur()+" ch");
 

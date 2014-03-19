@@ -173,26 +173,17 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 	}
 
 	private void afficherNormal(){
-
-		_apartirDe.setTextColor(Donnees.parametres.getBackgroundColorDeux());
-		_prix.setTextColor(Donnees.parametres.getBackgroundColorDeux());
-		_taxe.setTextColor(Donnees.parametres.getBackgroundColorDeux());
-
-		if(_swipable){
-			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
-			changerCouleursPaire();
-		}
-		else
-		{
+		
+		
 			//if(_position%2==0){
-			changerCouleursPaire();
+			changerCouleurs();
 			_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_paire));
+			_devant.setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 			/*}else{
 
 				changerCouleurs();
 				_devant.setBackgroundColor(getContext().getResources().getColor(R.color.couleur_cellule_impaire));
 			}*/
-		}
 	}
 
 
@@ -208,6 +199,10 @@ public class AnnonceView extends YouBoatView implements View.OnTouchListener{
 		_sousTitre.setTextColor(Donnees.parametres.getFontColorUn());
 		_taille.setTextColor(Donnees.parametres.getFontColorUn());
 		_annee.setTextColor(Donnees.parametres.getFontColorUn());
+		
+		_apartirDe.setTextColor(Donnees.parametres.getFontColorDeux());
+		_prix.setTextColor(Donnees.parametres.getFontColorDeux());
+		_taxe.setTextColor(Donnees.parametres.getFontColorDeux());
 	}
 
 	private void afficherTouch(){

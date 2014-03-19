@@ -112,8 +112,10 @@ public class MinMaxDialog extends AlertDialog implements View.OnClickListener, O
 				if(_maxValeur.getText().toString().equals(PLUS) || _maxValeur.getText().toString().equals(""+_valeurMax))
 					sMax = "+";
 
-				if(min>max)
-					min=0;
+				if(min>max){
+					max=_valeurMax;
+					sMax = "+";
+				}
 
 				_listener.onMinMaxSelected(_titre, ""+min, sMax);
 				this.dismiss();

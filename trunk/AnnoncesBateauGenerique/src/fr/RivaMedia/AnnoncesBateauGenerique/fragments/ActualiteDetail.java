@@ -79,7 +79,7 @@ public class ActualiteDetail extends FragmentNormal{
 	}
 	
 	protected void changerCouleurs(){
-		afficherCouleurTouch(_view.findViewById(R.id.actualite_titre_layout));
+		afficherCouleurNormal(_view.findViewById(R.id.actualite_titre_layout));
 		afficherTexteCouleurTexte(_view.findViewById(R.id.actualite_detail_titre));
 	}
 

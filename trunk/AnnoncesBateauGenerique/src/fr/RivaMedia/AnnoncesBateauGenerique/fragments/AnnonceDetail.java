@@ -370,6 +370,13 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 			intent.putStringArrayListExtra(Gallery.IMAGES,photos);
 			getActivity().startActivity(intent);
 		}
+		
+		try{
+			afficherCouleurNormal(email);
+			afficherCouleurNormal(telephonePrincipal);
+		}catch(Exception e){
+			
+		}
 	}
 
 	protected void switchFavoris(){
@@ -413,11 +420,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_view.findViewById(R.id.fond).setVisibility(View.GONE);
 		_view.setBackgroundColor(Color.WHITE);
 
-		_view.findViewById(R.id.annonce_detail_separator_1).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
+		_view.findViewById(R.id.annonce_detail_separator_1).setBackgroundColor(Donnees.parametres.getBackgroundColorDeux());
 		_view.findViewById(R.id.annonce_detail_layout_haut).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 		_view.findViewById(R.id.annonce_detail_image_pager).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 		_view.findViewById(R.id.annonce_detail_image_pager_indicator).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
-		_view.findViewById(R.id.annonce_detail_separator_2).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
+		_view.findViewById(R.id.annonce_detail_separator_2).setBackgroundColor(Donnees.parametres.getBackgroundColorDeux());
 
 		afficherTexteCouleurTexte(
 				_view.findViewById(R.id.annonce_detail_titre),
@@ -436,11 +443,11 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		drawable.setCornerRadius(270);
 		contact_rond.setBackgroundDrawable(drawable);
 
-		((TextView)prix.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
-		((TextView)prixEntete.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorUn());
-		((TextView)apartirDe).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)prix.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorDeux());
+		((TextView)prixEntete.findViewById(R.id.text)).setTextColor(Donnees.parametres.getFontColorDeux());
+		((TextView)apartirDe).setTextColor(Donnees.parametres.getFontColorDeux());
 
-		((TextView)apartirDeEntete).setTextColor(Donnees.parametres.getFontColorUn());
+		((TextView)apartirDeEntete).setTextColor(Donnees.parametres.getFontColorDeux());
 
 	}
 
