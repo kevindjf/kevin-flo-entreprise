@@ -135,9 +135,11 @@ public class Accueil extends FragmentNormal implements View.OnClickListener, OnT
 			final TypeAnnonce type = Donnees.typesAnnonces.get(i);
 			
 			View layoutType = _inflater.inflate(R.layout.accueil_menu, null);
+			layoutType.setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 			
 			TextView titreType = (TextView)layoutType.findViewById(R.id.accueil_annonces_text);
 			titreType.setText(type.getIntitule());
+			titreType.setTextColor(Donnees.parametres.getFontColorUn());
 			
 			TextView nombreAnnonce = (TextView)layoutType.findViewById(R.id.accueil_annonces_nombre_annonces);
 			nombreAnnonce.setText(type.getNb());

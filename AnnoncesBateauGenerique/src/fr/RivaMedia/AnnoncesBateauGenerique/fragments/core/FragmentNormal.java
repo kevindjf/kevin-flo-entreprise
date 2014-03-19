@@ -1,5 +1,6 @@
 package fr.RivaMedia.AnnoncesBateauGenerique.fragments.core;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -161,11 +162,30 @@ public abstract class FragmentNormal extends Fragment implements IFragment, OnCl
 	}
 	public static void afficherCouleurTouch(View...vs){
 		for(View v : vs)
-			afficherCouleurTouch(v);
+			afficherBackgroundCouleurTouch(v);
 	}
 	
-	public static void afficherCouleurTouch(View v){
+	public static void afficherBackgroundCouleurTouch(View v){
 		v.setBackgroundColor(Donnees.parametres.getBackgroundColorDeux());
+	}
+	
+	public static void afficherTextCouleurNoir(View...vs){
+		for(View v : vs)
+			afficherCouleurNoirText(v);
+	}
+	public static void afficherCouleurNoirText(View v){
+		try{
+			((TextView)v).setTextColor(Color.BLACK);
+		}catch(Exception e){
+		}
+		try{
+			((TextView)v.findViewById(R.id.text)).setTextColor(Color.BLACK);
+		}catch(Exception e){
+		}
+		try{
+			((TextView)v.findViewById(R.id.titre)).setTextColor(Color.BLACK);
+		}catch(Exception e){
+		}
 	}
 
 	public View getFragmentView() {

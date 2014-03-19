@@ -167,8 +167,8 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		afficherCouleurTouch(_boat_on_demand_etape_suivante);
 		selector(_boat_on_demand_etape_suivante,false);
 
-		afficherTexteCouleurTexte(_views);
-		((Button)_boat_on_demand_etape_suivante).setTextColor(Donnees.parametres.getBackgroundColorDeux());
+		afficherTextCouleurNoir(_views);
+		((Button)_boat_on_demand_etape_suivante).setTextColor(Donnees.parametres.getFontColorDeux());
 
 	}
 

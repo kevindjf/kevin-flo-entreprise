@@ -376,7 +376,7 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 		Intent intent = new Intent(Intent.ACTION_VIEW);
 		intent.setData(Uri.parse("mailto:"+email));
 		intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_contact).replace("$nom$", ConstantesClient.APPLICATION_NAME));
-		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_contact).replace("$nom$", ConstantesClient.APPLICATION_NAME));
+		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_contenu_contact_pro));
 		startActivity(intent);
 	}
 

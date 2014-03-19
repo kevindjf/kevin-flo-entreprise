@@ -58,7 +58,7 @@ public class Parametres {
 		return fontColorDeux;
 	}
 	public void setFontColorDeux(int fontColorDeux) {
-		//this.fontColorDeux = fontColorDeux;
+		this.fontColorDeux = fontColorDeux;
 	}
 	public String getMajInterval() {
 		return majInterval;

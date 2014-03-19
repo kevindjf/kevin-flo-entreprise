@@ -184,9 +184,9 @@
             <com.viewpagerindicator.CirclePageIndicator
                 android:id="@+id/annonce_detail_image_pager_indicator"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="20dp"
                 android:background="@color/couleur_3"
-                android:padding="3dip" />
+                android:padding="8dip" />
 
             <LinearLayout
                 android:layout_width="match_parent"

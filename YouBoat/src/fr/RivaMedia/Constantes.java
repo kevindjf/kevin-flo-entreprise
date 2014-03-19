@@ -83,8 +83,8 @@ public class Constantes {
 	public static final String ANNONCES_REGION_ID = "idr"; //F
 	public static final String ANNONCES_MAX_TAILLE = "mxt"; //F
 	public static final String ANNONCES_MIN_TAILLE = "mit"; //F
-	public static final String ANNONCES_MAX_PUISS = "mxp"; //F
-	public static final String ANNONCES_MIN_PUISS = "mip"; //F
+	public static final String ANNONCES_MAX_PUISS = "mxch"; //F
+	public static final String ANNONCES_MIN_PUISS = "mich"; //F
 	public static final String ANNONCES_MAX_PRIX = "mxp"; //F
 	public static final String ANNONCES_MIN_PRIX = "mip"; //F
 	public static final String ANNONCES_ETAT = "et"; //F

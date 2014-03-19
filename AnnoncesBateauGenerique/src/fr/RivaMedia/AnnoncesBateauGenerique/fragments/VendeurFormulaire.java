@@ -116,12 +116,13 @@ public class VendeurFormulaire extends FragmentFormulaire implements View.OnClic
 		afficherCouleurTouch(_valider);
 		selector(_valider,false);
 		
-		ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
+		//ImageLoaderCache.charger(Donnees.parametres.getImageFond(), (ImageView)_view.findViewById(R.id.fond));
 		
 		
-		afficherTexteCouleurTexte(views);
+		afficherTextCouleurNoir(views);
 		afficherTexteCouleurTexte(_coordonnees);
-		((Button)_valider).setTextColor(Donnees.parametres.getBackgroundColorDeux());
+		_coordonnees.setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
+		((Button)_valider).setTextColor(Donnees.parametres.getFontColorDeux());
 
 	}
 
