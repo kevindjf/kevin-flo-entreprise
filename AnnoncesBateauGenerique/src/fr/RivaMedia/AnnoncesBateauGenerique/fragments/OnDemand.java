@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import fr.RivaMedia.AnnoncesBateauGenerique.ConstantesClient;
 import fr.RivaMedia.AnnoncesBateauGenerique.R;
 import fr.RivaMedia.AnnoncesBateauGenerique.Constantes;
 import fr.RivaMedia.AnnoncesBateauGenerique.dialog.MinMaxDialog;
@@ -331,6 +332,8 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		// Ajout du paramètre uniqueRecherche
 		Net.add(donnees,Constantes.ON_DEMAND_MODELE_POSSEDE,Constantes.ON_DEMAND_UNIQUE_RECHERCHE_VALUE);
 
+		Net.add(donnees,"track","smartphone");
+		Net.add(donnees,Constantes.ID_CLIENT,ConstantesClient.ID_CLIENT);
 		
 		return donnees;
 	}
