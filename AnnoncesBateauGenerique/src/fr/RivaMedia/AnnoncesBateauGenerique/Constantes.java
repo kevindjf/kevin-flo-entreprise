@@ -155,7 +155,7 @@ public class Constantes {
 	public static final String VENDEUR_VILLE = "ville"; //F
 	public static final String VENDEUR_PAYS = "pays"; //F
 	
-	public static final String ON_DEMAND_ORIGINE_VALUE = "BOD"; //F
+	public static final String ON_DEMAND_ORIGINE_VALUE = "CRM"; //F
 	
 	public static final String ON_DEMAND_ORIGINE = "origine"; //F
 	public static final String ON_DEMAND_ETAT = "idtypads"; //F
@@ -173,7 +173,9 @@ public class Constantes {
 	public static final String ON_DEMAND_MARQUE_POSSEDE = "listMarque2"; //F
 	public static final String ON_DEMAND_MODELE_POSSEDE = "listModele2"; //F
 	public static final String ON_DEMAND_PRIX_CESSION = "budget2"; //F
-	
+	public static final String ON_DEMAND_UNIQUE_RECHERCHE = "uniqueRech"; //F
+	public static final Integer ON_DEMAND_UNIQUE_RECHERCHE_VALUE = 1; //F
+
 	public static final String URL_NB_ANNONCES = "nbannonce.php"; //F
 	public static final String URL_NB_ANNONCES_BATEAUX = "nbbateau.php"; //F
 	public static final String URL_NB_ANNONCES_MOTEURS = "nbmoteur.php"; //F

@@ -353,6 +353,7 @@ public class MainActivity extends BateauFragmentActivity implements View.OnClick
 		return _header_plus;
 	}
 
+	
 	public void cacherPlus(){
 		_header_plus.setVisibility(View.GONE);
 		_header_plus.setOnClickListener(null);

@@ -159,6 +159,6 @@
         style="@style/bouton_rechercher"
         android:layout_height="60dip"
         android:layout_alignParentBottom="true"
-        android:text="@string/valider" />
+        android:text="@string/sendMySearch" />
 
 </RelativeLayout>

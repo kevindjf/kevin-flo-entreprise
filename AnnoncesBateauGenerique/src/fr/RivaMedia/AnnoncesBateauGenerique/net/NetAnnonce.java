@@ -45,12 +45,13 @@ public class NetAnnonce extends Net {
 			Net.add(d, Constantes.ANNONCES_ID_CLIENT, idClient);
 
 		String xml = "";
-		if(typeAnnonce != null && typeAnnonce.getUrl() != null)
+		if(typeAnnonce != null && typeAnnonce.getUrl() != null){
 			xml = Net.requeteGet(typeAnnonce.getUrl(),true,d);
-		else
+
+		}else{
 			xml = Net.requeteGet(recupererUrlAnnonces(type),d);
-		//Log.e("NetRecherche",xml);
-		return new AnnonceXmlParser(xml).getListe();
+		}
+			return new AnnonceXmlParser(xml).getListe();
 	}
 
 	protected static String recupererUrlAnnonce(String _type){

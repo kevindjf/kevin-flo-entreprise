@@ -146,6 +146,7 @@ public class Net {
 
 		add(donneesPost,Constantes.ID_CLIENT,ConstantesClient.ID_CLIENT);
 
+
 		HttpClient httpClient = new DefaultHttpClient();
 
 		/*
@@ -170,7 +171,7 @@ public class Net {
 			HttpPost requete = new HttpPost(urlRequete.replace("?", ""));
 			requete.setEntity(new UrlEncodedFormEntity(donneesPost,"UTF-8"));
 
-			Log.d("NET",SITE+url);
+			Log.d("NETURL",SITE+url);
 			HttpResponse httpReponse = httpClient.execute(requete);
 
 			//StatusLine statusLine = httpReponse.getStatusLine();
@@ -216,9 +217,12 @@ public class Net {
 
 		if(donnees == null)
 			donnees = Net.construireDonnes();
-		add(donnees,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
+		
+		if(!url.contains(Constantes.DATE_MD5+"="))
+			add(donnees,Constantes.DATE_MD5,MD5.getDateFormateeMD5());
 
-		add(donnees,Constantes.ID_CLIENT,ConstantesClient.ID_CLIENT);
+		if(!url.contains(Constantes.ID_CLIENT+"="))
+			add(donnees,Constantes.ID_CLIENT,ConstantesClient.ID_CLIENT);
 
 		StringBuilder sb = new StringBuilder();
 		if(!url.contains("?"))

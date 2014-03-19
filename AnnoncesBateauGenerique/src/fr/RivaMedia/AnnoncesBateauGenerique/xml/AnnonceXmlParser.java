@@ -106,7 +106,10 @@ public class AnnonceXmlParser extends XmlParser {
 					getString();
 				}
 				else if(tag.equals("prix")){
+					Log.e("prix","prix");
 					annonce.setPrix(getString());
+					Log.e("prix",annonce.getPrix());
+
 				}
 				else if(tag.equals("taxeprix")){
 					annonce.setTaxePrix(getString());

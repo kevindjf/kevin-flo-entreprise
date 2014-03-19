@@ -53,6 +53,16 @@
             android:orientation="horizontal" >
 
             <TextView
+                android:id="@+id/annonce_detail_prix_a_partir_de_en_tete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dip"
+                android:text="@string/apartirde"
+                android:textColor="@color/couleur_texte_fonce"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -205,9 +215,9 @@
                     android:id="@+id/annonce_detail_image_pager_indicator"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
+                    android:layout_alignBottom="@+id/annonce_detail_image_pager"
                     android:background="@android:color/transparent"
-                    android:padding="3dip"
-                    android:layout_alignBottom="@+id/annonce_detail_image_pager" />
+                    android:padding="3dip" />
             </RelativeLayout>
 
             <LinearLayout
@@ -263,7 +273,7 @@
                         android:id="@id/text"
                         style="@style/annonce_cellule_texte" />
                 </RelativeLayout>
-                
+
                 <RelativeLayout
                     android:id="@+id/annonce_detail_port_de_depart"
                     style="@style/formulaire_cellule" >
@@ -438,7 +448,6 @@
                     android:layout_margin="10dip"
                     android:textColor="@color/couleur_texte_noir" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 

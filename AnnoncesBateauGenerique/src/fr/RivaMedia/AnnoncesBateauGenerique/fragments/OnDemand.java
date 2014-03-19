@@ -167,7 +167,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 		selector(_boat_on_demand_etape_suivante,false);
 
 		afficherTexteCouleurTexte(_views);
-		((Button)_boat_on_demand_etape_suivante).setTextColor(Donnees.parametres.getBackgroundColorUn());
+		((Button)_boat_on_demand_etape_suivante).setTextColor(Donnees.parametres.getBackgroundColorDeux());
 
 	}
 
@@ -327,6 +327,11 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 
 		if(((EditText)_prixCessionPosseder.findViewById(R.id.text)).getText().length() > 0)
 			Net.add(donnees,Constantes.ON_DEMAND_PRIX_CESSION,((TextView)_prixCessionPosseder.findViewById(R.id.text)).getText().toString().trim().replace(" €", ""));
+	
+		// Ajout du paramètre uniqueRecherche
+		Net.add(donnees,Constantes.ON_DEMAND_MODELE_POSSEDE,Constantes.ON_DEMAND_UNIQUE_RECHERCHE_VALUE);
+
+		
 		return donnees;
 	}
 
@@ -344,7 +349,7 @@ public class OnDemand extends FragmentFormulaire implements ItemSelectedListener
 			Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.veuillez_choisir_un_type), Toast.LENGTH_SHORT).show();
 		}
 		else{
-			List<Categorie> categories = Donnees.getCategories(demand_type_posseder,false);
+			List<Categorie> categories = Donnees.getCategories(demand_type_posseder,true);
 			if(categories != null){
 				Map<String,String> donneesValeurs = new HashMap<String,String>();
 				for(Categorie categorie : categories){
