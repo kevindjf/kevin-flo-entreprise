@@ -416,6 +416,7 @@ public class AnnonceDetail extends FragmentNormal implements View.OnClickListene
 		_view.findViewById(R.id.annonce_detail_separator_1).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 		_view.findViewById(R.id.annonce_detail_layout_haut).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 		_view.findViewById(R.id.annonce_detail_image_pager).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
+		_view.findViewById(R.id.annonce_detail_image_pager_indicator).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 		_view.findViewById(R.id.annonce_detail_separator_2).setBackgroundColor(Donnees.parametres.getBackgroundColorUn());
 
 		afficherTexteCouleurTexte(
