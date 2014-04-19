@@ -1,3 +1,5 @@
+package fr.RivaMedia.AnnoncesBateauGenerique.alertes;
+
 /*
  * Copyright (C) 2013 The Android Open Source Project
  *
@@ -14,28 +16,20 @@
  * limitations under the License.
  */
 
-package fr.RivaMedia.AnnoncesBateauGenerique.alertes;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-
-import fr.RivaMedia.AnnoncesBateauGenerique.R;
-import fr.RivaMedia.AnnoncesBateauGenerique.activity.SplashScreenActivity;
-import fr.RivaMedia.AnnoncesBateauGenerique.utils.AlertesManager;
-
 import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
+
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import fr.RivaMedia.AnnoncesBateauGenerique.R;
+
 
 /**
  * This {@code IntentService} does the actual handling of the GCM message.
@@ -87,29 +81,11 @@ public class GcmIntentService extends IntentService {
                 Log.i(TAG, "Completed work @ " + SystemClock.elapsedRealtime());
 				 */
 
+				String titre = extras.getString("titre");
 				String message = extras.getString("message");
-				String annonces = extras.getString("annonces");
-				
-				AlertesManager alertManager = new AlertesManager(getApplicationContext());
-				
-				try{
-					JSONArray arrayAnnonces = new JSONArray(annonces);
-					for(int i=0;i<arrayAnnonces.length();++i){
-						JSONObject objectAnnonce = arrayAnnonces.getJSONObject(i);
-						String type = objectAnnonce.getString("type");
-						String id = objectAnnonce.getString("id");
-						
-						alertManager.ajouter(id, type);
-					}
-				}catch(Exception e){}
-
-
-				Log.i(TAG, "Received: " + extras.toString());
-				Log.e(TAG, "ReceivedMessage: " + message.toString());
-				Log.e(TAG, "ReceivedAnnonces: " + annonces.toString());
 				
 				// Post notification of received message.
-				sendNotification(message, "Cliquez ici pour les consulter");
+				sendNotification(titre, message);
 			}
 		}
 		// Release the wake lock provided by the WakefulBroadcastReceiver.
@@ -124,26 +100,17 @@ public class GcmIntentService extends IntentService {
 
 		//TODO: remplir
 		//Intent de lancement
-		Intent lancement = new Intent(this, SplashScreenActivity.class);
-
+		
+		PackageManager pm = getPackageManager();
+	    Intent lancement = pm.getLaunchIntentForPackage(getPackageName());
+		
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, lancement, 0);
-
-		Bitmap large_100 = BitmapFactory.decodeResource(getResources(), R.drawable.splash_screen_v2_logo_petit);
-		Bitmap large = BitmapFactory.decodeResource(getResources(), R.drawable.splash_screen_v2_logo);
 
 		NotificationCompat.Builder mBuilder =
 				new NotificationCompat.Builder(this)
-		.setSmallIcon(R.drawable.splash_screen_v2_logo_petit)
-		.setLargeIcon(large_100)
+		.setSmallIcon(R.drawable.app_icon)
 		.setContentTitle(titre)
-		.setContentText(message)
-		
-		.setStyle(new NotificationCompat.BigPictureStyle()
-		.setBigContentTitle(titre)
-		.setSummaryText(message)
-		.bigPicture(large)
-		.bigLargeIcon(large_100)
-				);
+		.setContentText(message);
 
 		mBuilder.setContentIntent(contentIntent);
 		Notification notif =  mBuilder.build();
