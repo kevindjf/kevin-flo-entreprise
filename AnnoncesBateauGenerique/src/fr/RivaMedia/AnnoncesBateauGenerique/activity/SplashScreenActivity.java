@@ -170,6 +170,8 @@ public class SplashScreenActivity extends Activity{
 				NetInscriptionActualite.inscrireActualites(Donnees.jeton);
 			}catch(Exception e){}
 			
+			Log.e("JETON",Donnees.jeton);
+			
 			Donnees.parametres = NetChargement.chargerParametres();
 			
 			ConstantesClient.APPLICATION_NAME = Donnees.parametres.getNom();
